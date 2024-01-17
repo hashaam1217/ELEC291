@@ -150,17 +150,17 @@ LCD_4BIT:
 ; purpose: prints string of characters onto LCD screen
 printstring:
     ; Make sure that DPTR is set externally
-    MOV B, #00 ; Set it to zero
+    MOV R2, #00 ; Set it to zero
     MOV R1, #00 ; Set counter to change cursor position
     
 nextchar:
-    MOVC B, @B+DPTR
+    MOVC R2, @R2+DPTR
     JZ endstring ; end condition
 
     MOV A, R0
     ADD A, R1
     lcall WriteCommand
-    mov a, B
+    mov a, R2
     lcall WriteData
 
     INC R1
