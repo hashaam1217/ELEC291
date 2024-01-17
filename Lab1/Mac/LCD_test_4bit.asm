@@ -144,7 +144,47 @@ LCD_4BIT:
     ret
 
 
+print: 
+    MOV A, #0
+    MOV R1, #0
+    sjmp nextchar
+  
+    
+nextchar:
+	MOV A, R1 			;Updates counter
+	MOVC A, @A+DPTR		;Retrieves character
+    MOV R3, A			;Saves character
+	MOV A, R0		
+	ADD A, R1 			;Updates cursor
+    lcall WriteCommand  
+    MOV A, R3			;Writes character
+    lcall WriteData
 
+
+    MOV R2, #0xFF		;Delay (250ms)
+    lcall WaitmilliSec
+    
+	INC R1
+	CJNE R1, #7, nextchar; end condition
+	
+	MOV A, R1
+	MOVC A, @A+DPTR
+    
+    ; Final iteration to print the last character
+    MOV A, R1 			;Updates counter
+	MOVC A, @A+DPTR		;Retrieves character
+    MOV R3, A			;Saves character
+	MOV A, R0		
+	ADD A, R1 			;Updates cursor
+    lcall WriteCommand  
+    MOV A, R3			;Writes character
+    lcall WriteData
+
+
+    MOV R2, #0xFF		;Delay (250ms)
+    lcall WaitmilliSec
+   
+    RET
 ;---------------------------------;
 ; Main loop.  Initialize stack,   ;
 ; ports, LCD, and displays        ;
@@ -165,132 +205,21 @@ myprogram:
     ; Writing out my name - Hashaam
     MOV DPTR, #FirstName
     MOV R0, #0x80
+    MOV R2, #7
     lcall print
-    sjmp continue
-print: 
-		;MOV R0, #0 ; Set the accumulator to zero
-    MOV R1, #0x00
-    MOV A, #0
-    MOV R5, #1
-    MOV R1, #0
-    sjmp nextchar
-    MOV R1, #0
-    sjmp nextchar
-    MOV R1, #0
-    sjmp nextchar
-    
-    
-nextchar:
-	MOV A, R1
-	MOVC A, @A+DPTR
-    
-    
 
-    ; Trying to save the value of A so it can be passed in the second command
-    MOV R3, A
-	MOV A, #0x80
-	ADD A, R1 
-    lcall WriteCommand
-    ;mov A, #'S'
-    MOV A, R3
-    lcall WriteData
-    
-
-    MOV R2, #0xFF
-    lcall WaitmilliSec
-	INC R1
-	CJNE R1, #6, nextchar; end condition
-    RET
-
-
-
-continue:
-
-;    mov a, #0x80 ; Move cursor to line 1 column 1
-;    lcall WriteCommand
-;    mov a, #'H'
-;    lcall WriteData
-;
-;    mov a, #0x81 ; move cursor to line 1 column 2
-;    lcall writecommand
-;    mov a, #'a'
-;    lcall writedata
-;
- ;;   mov a, #0x82 ; Move cursor to line 1 column 3
-;    lcall WriteCommand
-;    mov a, #'s'
-;    lcall WriteData
-;
-;    mov a, #0x83 ; Move cursor to line 1 column 4
-;    lcall WriteCommand
-;    mov a, #'h'
-;    lcall WriteData
-;
-;    mov a, #0x84 ; Move cursor to line 1 column 5
-;    lcall WriteCommand
-;    mov a, #'a'
-;    lcall WriteData
-;
-;
-;    mov a, #0x85 ; Move cursor to line 1 column 6
-;    lcall WriteCommand
-;    mov a, #'a'
- ;;   lcall WriteData
-;
-;    mov a, #0x86 ; Move cursor to line 1 column 7
-;    lcall WriteCommand
-;    mov a, #'m'
- ;   lcall WriteData
-
-    ; Writing out my student number
-    mov a, #0xC0 ; Move cursor to line 2 column 1
-    lcall WriteCommand
-    mov a, #'1'
-    lcall WriteData
-    
-    mov a, #0xC1 ; Move cursor to line 2 column 2
-    lcall WriteCommand
-    mov a, #'0'
-    lcall WriteData
-    
-    mov a, #0xC2 ; Move cursor to line 2 column 3
-    lcall WriteCommand
-    mov a, #'0'
-    lcall WriteData
-    
-    mov a, #0xC3 ; Move cursor to line 2 column 4
-    lcall WriteCommand
-    mov a, #'7'
-    lcall WriteData
-    
-    mov a, #0xC4 ; Move cursor to line 2 column 5
-    lcall WriteCommand
-    mov a, #'8'
-    lcall WriteData
-    
-    mov a, #0xC5 ; Move cursor to line 2 column 6
-    lcall WriteCommand
-    mov a, #'0'
-    lcall WriteData
-    
-    mov a, #0xC6 ; Move cursor to line 2 column 7
-    lcall WriteCommand
-    mov a, #'2'
-    lcall WriteData
-    
-    mov a, #0xC7 ; Move cursor to line 2 column 8
-    lcall WriteCommand
-    mov a, #'0'
-    lcall WriteData
-    
- 
+	; Writing out student number - 10078020
+	MOV DPTR, #StudentNumber
+	MOV R0, #0xC0
+	MOV R2, #8
+	lcall print
     
 forever:
     sjmp forever
 
 ; Data declarations
-FirstName: DB 'Hashaam' , 0
-StudentNumber: DB '10078020', 0
+FirstName: DB 'Hashaam ' , 0
+StudentNumber: DB '10078020',0
 END
 
 
