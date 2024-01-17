@@ -159,15 +159,17 @@ nextchar:
 
     ; Trying to save the value of A so it can be passed in the second command
     MOV R2, A
-
+	INC R0
     MOV A, R0
-    ADD A, R1
+
     lcall WriteCommand
-    mov A, R2
+	MOV A, R2
     lcall WriteData
 
     INC R1
     INC DPTR
+    MOV R2, #0xFF
+    lcall WaitmilliSec
     SJMP nextchar
 
 endstring: 
@@ -190,6 +192,11 @@ myprogram:
     lcall LCD_4BIT
 
     ; Writing out my name - Hashaam
+
+mov a, #0x80 ; Move cursor to line 1 column 1
+    lcall WriteCommand
+    mov a, #'A'
+    lcall WriteData
 
     MOV R0, #0x80
     MOV DPTR, #FirstName
@@ -276,7 +283,7 @@ forever:
     sjmp forever
 
 ; Data declarations
-FirstName: DB 'Hashaam', 0
+FirstName: DB 'H', 'H', 's', 'h', 'a', 'a', 'm' , 0
 StudentNumber: DB '10078020', 0
 END
 
