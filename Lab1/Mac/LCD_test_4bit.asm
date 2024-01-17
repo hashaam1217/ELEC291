@@ -143,37 +143,8 @@ LCD_4BIT:
     lcall WaitmilliSec
     ret
 
-; printstring: 
-; returns: nothing
-; input: DPTR as the DB string
-; input: R0 the starting position of the cursor in hex
-; purpose: prints string of characters onto LCD screen
-printstring:
-    ; Make sure that DPTR is set externally
-    MOV A, #00 ; Set it to zero
-    MOV R1, #00 ; Set counter to change cursor position
-    
-nextchar:
-    MOVC A, @A+DPTR
-    JZ endstring ; end condition
 
-    ; Trying to save the value of A so it can be passed in the second command
-    MOV R2, A
-	INC R0
-    MOV A, R0
 
-    lcall WriteCommand
-	MOV A, R2
-    lcall WriteData
-
-    INC R1
-    INC DPTR
-    MOV R2, #0xFF
-    lcall WaitmilliSec
-    SJMP nextchar
-
-endstring: 
-    RET
 ;---------------------------------;
 ; Main loop.  Initialize stack,   ;
 ; ports, LCD, and displays        ;
@@ -192,15 +163,48 @@ myprogram:
     lcall LCD_4BIT
 
     ; Writing out my name - Hashaam
-
-mov a, #0x80 ; Move cursor to line 1 column 1
-    lcall WriteCommand
-    mov a, #'A'
-    lcall WriteData
-
-    MOV R0, #0x80
     MOV DPTR, #FirstName
-    lcall printstring
+    MOV R0, #0x80
+    lcall print
+    sjmp continue
+print: 
+		;MOV R0, #0 ; Set the accumulator to zero
+    MOV R1, #0x00
+    MOV A, #0
+    MOV R5, #1
+    MOV R1, #0
+    sjmp nextchar
+    MOV R1, #0
+    sjmp nextchar
+    MOV R1, #0
+    sjmp nextchar
+    
+    
+nextchar:
+	MOV A, R1
+	MOVC A, @A+DPTR
+    
+    
+
+    ; Trying to save the value of A so it can be passed in the second command
+    MOV R3, A
+	MOV A, #0x80
+	ADD A, R1 
+    lcall WriteCommand
+    ;mov A, #'S'
+    MOV A, R3
+    lcall WriteData
+    
+
+    MOV R2, #0xFF
+    lcall WaitmilliSec
+	INC R1
+	CJNE R1, #6, nextchar; end condition
+    RET
+
+
+
+continue:
 
 ;    mov a, #0x80 ; Move cursor to line 1 column 1
 ;    lcall WriteCommand
@@ -279,11 +283,13 @@ mov a, #0x80 ; Move cursor to line 1 column 1
     mov a, #'0'
     lcall WriteData
     
+ 
+    
 forever:
     sjmp forever
 
 ; Data declarations
-FirstName: DB 'H', 'H', 's', 'h', 'a', 'a', 'm' , 0
+FirstName: DB 'Hashaam' , 0
 StudentNumber: DB '10078020', 0
 END
 
