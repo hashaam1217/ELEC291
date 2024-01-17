@@ -185,6 +185,8 @@ nextchar:
     lcall WaitmilliSec
    
     RET
+    
+ 
 ;---------------------------------;
 ; Main loop.  Initialize stack,   ;
 ; ports, LCD, and displays        ;
@@ -213,13 +215,186 @@ myprogram:
 	MOV R0, #0xC0
 	MOV R2, #8
 	lcall print
+	
+	;Pacman code
+;    MOV DPTR, #Pacman
+;    mov A, #0x40
+;    lcall WriteCommand
+;    MOV R1, #0
+;loop:;
+;	MOV A, R1
+;MOVC A, @A+DPTR
+;lcall WriteData
+;INC R1
+;CJNE R1, #8, loop
+	
+;MOV A, #0x80
+;lcall WriteCommand
+;MOV A, #0x00
+;lcall WriteData
+ 
+	
     
 forever:
-    sjmp forever
+	;Animation for Pacman
+	MOV R0, #0 ;Counter for the path
 
+MainLoop:
+	MOV DPTR, #Path
+	MOV A, R0 			;Updates counter
+	MOVC A, @A+DPTR		;Retrieves character
+    MOV R2, A 			;Saves R2 as pacman's position
+    
+    ;Ghost 1
+    MOV A, R0
+    INC A	 			;Updates counter
+	MOVC A, @A+DPTR		;Retrieves character
+    MOV R3, A 			;Saves R2 as pacman's position
+    
+    ;Ghost 2
+    MOV A, R0
+    INC A
+    INC A	 			;Updates counter
+	MOVC A, @A+DPTR		;Retrieves character
+    MOV R4, A 			;Saves R2 as pacman's position
+    
+    ;Ghost 3
+    MOV A, R0
+    INC A
+    INC A
+    INC A	 			;Updates counter
+	MOVC A, @A+DPTR		;Retrieves character
+    MOV R5, A 			;Saves R2 as pacman's position
+    
+    ;Ghost 4
+    MOV A, R0
+    INC A
+    INC A
+    INC A
+    INC A	 			;Updates counter
+	MOVC A, @A+DPTR		;Retrieves character
+    MOV R6, A 			;Saves R2 as pacman's position
+    
+
+    
+    
+    MOV A, #01H ; Load the immediate value into the accumulator
+	ANL A, R2 ; Perform bitwise AND with the value in R2
+	MOV R2, A ; Move the result back to register R2
+	JZ EvenLabel
+	;Odd number code
+	MOV DPTR, #Pacman
+	sjmp EvenOddEnd
+
+EvenLabel: 
+	MOV DPTR, #AltPacman
+	;Basic if else to alternate between pacman and alt pacman
+	
+	;Prints out pacman
+EvenOddEnd: 
+	mov A, #0x40
+    lcall WriteCommand
+    MOV R1, #0
+PacmanLoop:
+	MOV A, R1
+	MOVC A, @A+DPTR
+	lcall WriteData
+	INC R1
+	CJNE R1, #8, PacmanLoop
+ 
+ ;Ghost one
+ 
+    MOV DPTR, #Ghost1
+    mov A, #0x40
+    lcall WriteCommand
+    MOV R1, #0
+Ghost1Loop:
+	MOV A, R1
+	MOVC A, @A+DPTR
+	lcall WriteData
+	INC R1
+	CJNE R1, #8, Ghost1Loop
+	
+	MOV A, R3
+	lcall WriteCommand
+	MOV A, #0x00
+	lcall WriteData
+	
+;Ghost two
+    MOV DPTR, #Ghost2
+    mov A, #0x40
+    lcall WriteCommand
+    MOV R1, #0
+Ghost2Loop:
+	MOV A, R1
+	MOVC A, @A+DPTR
+	lcall WriteData
+	INC R1
+	CJNE R1, #8, Ghost2Loop
+	
+	MOV A, #0x80
+	lcall WriteCommand
+	MOV A, #0x00
+	lcall WriteData
+	
+;Ghost 3
+    MOV DPTR, #Ghost3
+    mov A, #0x40
+    lcall WriteCommand
+    MOV R1, #0
+Ghost3Loop:
+	MOV A, R1
+	MOVC A, @A+DPTR
+	lcall WriteData
+	INC R1
+	CJNE R1, #8, Ghost3Loop
+	
+	MOV A, #0x80
+	lcall WriteCommand
+	MOV A, #0x00
+	lcall WriteData
+	
+;Ghost 4
+    MOV DPTR, #Ghost4
+    mov A, #0x40
+    lcall WriteCommand
+    MOV R1, #0
+Ghost4Loop:
+	MOV A, R1
+	MOVC A, @A+DPTR
+	lcall WriteData
+	INC R1
+	CJNE R1, #8, Ghost4Loop
+	
+	MOV A, R6
+	lcall WriteCommand
+	MOV A, #0x00
+	lcall WriteData
+	
+	MOV R2, #0xFF		;Delay (250ms)
+    lcall WaitmilliSec
+    
+    INC R0
+    
+    CJNE R0, #15, bigjump
+    
+	
+    ljmp forever
+bigjump:
+	LJMP MainLoop
 ; Data declarations
 FirstName: DB 'Hashaam ' , 0
 StudentNumber: DB '10078020',0
+
+; Custom Characters (8 allowed)
+Pacman: DB  0x00, 0x0E, 0x1F, 0x1E, 0x1C, 0x1E, 0x1F, 0x0E
+AltPacman: DB  0x00, 0x0E ,0x1F, 0x1B, 0x1F, 0x16, 0x19, 0x0E
+Ghost1: DB 0x00, 0x00, 0x0E, 0x1F, 0x15, 0x1F, 0x1F, 0x0A
+Ghost2: DB 0x00, 0x00, 0x0E, 0x1F, 0x15, 0x1F, 0x1F, 0x15
+Ghost3: DB 0x0E, 0x1F, 0x15, 0x1F, 0x1F, 0x0A, 0x00, 0x00
+Ghost4: DB 0x0E, 0x1F, 0x15, 0x1F, 0x1F, 0x15, 0x00, 0x00
+
+Path: DB 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0xCF, 0xCE, 0xCD, 0xCC, 0xCB, 0xCA, 0xC9, 0xC8,0x08, 0x09, 0x0A, 0x0B, 0x0C  
 END
 
 
