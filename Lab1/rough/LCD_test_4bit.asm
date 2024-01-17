@@ -143,6 +143,32 @@ LCD_4BIT:
     lcall WaitmilliSec
     ret
 
+; printstring: 
+; returns: nothing
+; input: DPTR as the DB string
+; input: R0 the starting position of the cursor in hex
+; purpose: prints string of characters onto LCD screen
+printstring:
+    ; Make sure that DPTR is set externally
+    MOV B, #00 ; Set it to zero
+    MOV R1, #00 ; Set counter to change cursor position
+    
+nextchar:
+    MOVC B, @B+DPTR
+    JZ endstring ; end condition
+
+    MOV A, R0
+    ADD A, R1
+    lcall WriteCommand
+    mov a, B
+    lcall WriteData
+
+    INC R1
+    INC DPTR
+    SJMP nextchar
+
+endstring: 
+    RET
 ;---------------------------------;
 ; Main loop.  Initialize stack,   ;
 ; ports, LCD, and displays        ;
@@ -162,41 +188,45 @@ myprogram:
 
     ; Writing out my name - Hashaam
 
-    mov a, #0x80 ; Move cursor to line 1 column 1
-    lcall WriteCommand
-    mov a, #'H'
-    lcall WriteData
+    MOV R0, #0x80
+    MOV DPTR, #FirstName
+    lcall printstring
 
-    mov a, #0x81 ; move cursor to line 1 column 2
-    lcall writecommand
-    mov a, #'a'
-    lcall writedata
-
-    mov a, #0x82 ; Move cursor to line 1 column 3
-    lcall WriteCommand
-    mov a, #'s'
-    lcall WriteData
-
-    mov a, #0x83 ; Move cursor to line 1 column 4
-    lcall WriteCommand
-    mov a, #'h'
-    lcall WriteData
-
-    mov a, #0x84 ; Move cursor to line 1 column 5
-    lcall WriteCommand
-    mov a, #'a'
-    lcall WriteData
-
-
-    mov a, #0x85 ; Move cursor to line 1 column 6
-    lcall WriteCommand
-    mov a, #'a'
-    lcall WriteData
-
-    mov a, #0x86 ; Move cursor to line 1 column 7
-    lcall WriteCommand
-    mov a, #'m'
-    lcall WriteData
+;    mov a, #0x80 ; Move cursor to line 1 column 1
+;    lcall WriteCommand
+;    mov a, #'H'
+;    lcall WriteData
+;
+;    mov a, #0x81 ; move cursor to line 1 column 2
+;    lcall writecommand
+;    mov a, #'a'
+;    lcall writedata
+;
+ ;;   mov a, #0x82 ; Move cursor to line 1 column 3
+;    lcall WriteCommand
+;    mov a, #'s'
+;    lcall WriteData
+;
+;    mov a, #0x83 ; Move cursor to line 1 column 4
+;    lcall WriteCommand
+;    mov a, #'h'
+;    lcall WriteData
+;
+;    mov a, #0x84 ; Move cursor to line 1 column 5
+;    lcall WriteCommand
+;    mov a, #'a'
+;    lcall WriteData
+;
+;
+;    mov a, #0x85 ; Move cursor to line 1 column 6
+;    lcall WriteCommand
+;    mov a, #'a'
+ ;;   lcall WriteData
+;
+;    mov a, #0x86 ; Move cursor to line 1 column 7
+;    lcall WriteCommand
+;    mov a, #'m'
+ ;   lcall WriteData
 
     ; Writing out my student number
     mov a, #0xC0 ; Move cursor to line 2 column 1
@@ -241,4 +271,10 @@ myprogram:
     
 forever:
     sjmp forever
+
+; Data declarations
+FirstName: DB 'Hashaam', 0
+StudentNumber: DB '10078020', 0
 END
+
+
