@@ -185,8 +185,127 @@ nextchar:
     lcall WaitmilliSec
    
     RET
+   
+; Input: DPTR for emoticon
+; Input: R3 with the cursor
+PacManEat:
+;Pacman code
+
+    mov A, #0x40
+    lcall WriteCommand
+    MOV R1, #0
+
+Loop2:
+	MOV A, R1
+	MOVC A, @A+DPTR
+	lcall WriteData
+	INC R1
+	CJNE R1, #8, Loop2
+	
+	MOV A, R3
+	lcall WriteCommand
+	MOV A, #0x00
+	lcall WriteData
+	
+	MOV R2, #0xFF
+	lcall WaitmilliSec
+	MOV R2, #0xFF
+	lcall WaitmilliSec
+	
+	MOV A, R3
+	lcall WriteCommand
+	MOV A, #' '
+	lcall WriteData
+	
+	
+	RET
+	
+Ghost:
     
- 
+    mov A, #0x40
+    lcall WriteCommand
+    MOV R1, #0
+
+Loop4:
+	MOV A, R1
+	MOVC A, @A+DPTR
+	lcall WriteData
+	INC R1
+	CJNE R1, #8, Loop4
+	
+	MOV A, R3
+	lcall WriteCommand
+	MOV A, #0x00
+	lcall WriteData
+	
+	RET
+
+EatStudentNumber:
+	;Pacman code
+    MOV DPTR, #Pacman
+    MOV R3, #0x80
+    lcall PacManEat
+    
+	MOV DPTR, #AltPacman
+    MOV R3, #0x81
+    lcall PacManEat
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0x82
+    lcall PacManEat
+    
+    MOV DPTR, #AltPacman
+    MOV R3, #0x83
+    lcall PacManEat
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0x84
+    lcall PacManEat
+    
+    MOV DPTR, #AltPacman
+    MOV R3, #0x85
+    lcall PacManEat
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0x86
+    lcall PacManEat
+    
+    MOV R2, #0xFF
+    lcall WaitmilliSec
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0xC0
+    lcall PacManEat
+    
+	MOV DPTR, #AltPacman
+    MOV R3, #0xC1
+    lcall PacManEat
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0xC2
+    lcall PacManEat
+    
+    MOV DPTR, #AltPacman
+    MOV R3, #0xC3
+    lcall PacManEat
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0xC4
+    lcall PacManEat
+    
+    MOV DPTR, #AltPacman
+    MOV R3, #0xC5
+    lcall PacManEat
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0xC6
+    lcall PacManEat
+    
+    MOV DPTR, #Pacman
+    MOV R3, #0xC7
+    lcall PacManEat
+    RET
+
 ;---------------------------------;
 ; Main loop.  Initialize stack,   ;
 ; ports, LCD, and displays        ;
@@ -216,172 +335,59 @@ myprogram:
 	MOV R2, #8
 	lcall print
 	
-	;Pacman code
-;    MOV DPTR, #Pacman
-;    mov A, #0x40
-;    lcall WriteCommand
-;    MOV R1, #0
-;loop:;
-;	MOV A, R1
-;MOVC A, @A+DPTR
-;lcall WriteData
-;INC R1
-;CJNE R1, #8, loop
+	lcall EatStudentNumber
+
+
 	
-;MOV A, #0x80
-;lcall WriteCommand
-;MOV A, #0x00
-;lcall WriteData
- 
 	
-    
+	
+	
+	
+	
+	
+	
+	
 forever:
-	;Animation for Pacman
-	MOV R0, #0 ;Counter for the path
+	MOV R5, #0
+	lcall movementloop
+	sjmp forever
+	
+movementloop:
+	MOV R4, #0xC0
+	
+	MOV DPTR, #0
+	MOV DPTR, #Ghost1
+	MOV R3, #0xC9
+	lcall Ghost
+	
+	MOV R2, #0xFF
+	lcall WaitmilliSec
+	
+	MOV DPTR, #0
+	MOV DPTR, #Ghost2
+	MOV R3, #0xCA
+	lcall Ghost
+	
+	MOV R2, #0xFF
+	lcall WaitmilliSec
+	
+	MOV DPTR, #0
+	MOV DPTR, #Ghost3
+	MOV R3, #0xCB
+	lcall Ghost
+	
+	MOV R2, #0xFF
+	lcall WaitmilliSec
+	
+	MOV DPTR, #0
+	MOV DPTR, #Ghost4
+	MOV R3, #0xCC
+	lcall Ghost
+    
+    MOV R2, #0xFF
+	lcall WaitmilliSec
+	RET
 
-MainLoop:
-	MOV DPTR, #Path
-	MOV A, R0 			;Updates counter
-	MOVC A, @A+DPTR		;Retrieves character
-    MOV R2, A 			;Saves R2 as pacman's position
-    
-    ;Ghost 1
-    MOV A, R0
-    INC A	 			;Updates counter
-	MOVC A, @A+DPTR		;Retrieves character
-    MOV R3, A 			;Saves R2 as pacman's position
-    
-    ;Ghost 2
-    MOV A, R0
-    INC A
-    INC A	 			;Updates counter
-	MOVC A, @A+DPTR		;Retrieves character
-    MOV R4, A 			;Saves R2 as pacman's position
-    
-    ;Ghost 3
-    MOV A, R0
-    INC A
-    INC A
-    INC A	 			;Updates counter
-	MOVC A, @A+DPTR		;Retrieves character
-    MOV R5, A 			;Saves R2 as pacman's position
-    
-    ;Ghost 4
-    MOV A, R0
-    INC A
-    INC A
-    INC A
-    INC A	 			;Updates counter
-	MOVC A, @A+DPTR		;Retrieves character
-    MOV R6, A 			;Saves R2 as pacman's position
-    
-
-    
-    
-    MOV A, #01H ; Load the immediate value into the accumulator
-	ANL A, R2 ; Perform bitwise AND with the value in R2
-	MOV R2, A ; Move the result back to register R2
-	JZ EvenLabel
-	;Odd number code
-	MOV DPTR, #Pacman
-	sjmp EvenOddEnd
-
-EvenLabel: 
-	MOV DPTR, #AltPacman
-	;Basic if else to alternate between pacman and alt pacman
-	
-	;Prints out pacman
-EvenOddEnd: 
-	mov A, #0x40
-    lcall WriteCommand
-    MOV R1, #0
-PacmanLoop:
-	MOV A, R1
-	MOVC A, @A+DPTR
-	lcall WriteData
-	INC R1
-	CJNE R1, #8, PacmanLoop
- 
- ;Ghost one
- 
-    MOV DPTR, #Ghost1
-    mov A, #0x40
-    lcall WriteCommand
-    MOV R1, #0
-Ghost1Loop:
-	MOV A, R1
-	MOVC A, @A+DPTR
-	lcall WriteData
-	INC R1
-	CJNE R1, #8, Ghost1Loop
-	
-	MOV A, R3
-	lcall WriteCommand
-	MOV A, #0x00
-	lcall WriteData
-	
-;Ghost two
-    MOV DPTR, #Ghost2
-    mov A, #0x40
-    lcall WriteCommand
-    MOV R1, #0
-Ghost2Loop:
-	MOV A, R1
-	MOVC A, @A+DPTR
-	lcall WriteData
-	INC R1
-	CJNE R1, #8, Ghost2Loop
-	
-	MOV A, #0x80
-	lcall WriteCommand
-	MOV A, #0x00
-	lcall WriteData
-	
-;Ghost 3
-    MOV DPTR, #Ghost3
-    mov A, #0x40
-    lcall WriteCommand
-    MOV R1, #0
-Ghost3Loop:
-	MOV A, R1
-	MOVC A, @A+DPTR
-	lcall WriteData
-	INC R1
-	CJNE R1, #8, Ghost3Loop
-	
-	MOV A, #0x80
-	lcall WriteCommand
-	MOV A, #0x00
-	lcall WriteData
-	
-;Ghost 4
-    MOV DPTR, #Ghost4
-    mov A, #0x40
-    lcall WriteCommand
-    MOV R1, #0
-Ghost4Loop:
-	MOV A, R1
-	MOVC A, @A+DPTR
-	lcall WriteData
-	INC R1
-	CJNE R1, #8, Ghost4Loop
-	
-	MOV A, R6
-	lcall WriteCommand
-	MOV A, #0x00
-	lcall WriteData
-	
-	MOV R2, #0xFF		;Delay (250ms)
-    lcall WaitmilliSec
-    
-    INC R0
-    
-    CJNE R0, #15, bigjump
-    
-	
-    ljmp forever
-bigjump:
-	LJMP MainLoop
 ; Data declarations
 FirstName: DB 'Hashaam ' , 0
 StudentNumber: DB '10078020',0
