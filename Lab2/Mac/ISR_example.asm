@@ -47,7 +47,7 @@ $LIST
 CLK           EQU 16600000 ; Microcontroller system frequency in Hz
 TIMER0_RATE   EQU 4096     ; 2048Hz squarewave (peak amplitude of CEM-1203 speaker)
 TIMER0_RELOAD EQU ((65536-(CLK/TIMER0_RATE)))
-TIMER2_RATE   EQU 1000     ; 1000Hz, for a timer tick of 1ms
+TIMER2_RATE   EQU 500     ; 1000Hz, for a timer tick of 1ms
 TIMER2_RELOAD EQU ((65536-(CLK/TIMER2_RATE)))
 
 CLEAR_BUTTON  equ P1.5
@@ -86,6 +86,9 @@ org 0x002B
 dseg at 0x30
 Count1ms:     ds 2 ; Used to determine when half second has passed
 BCD_counter:  ds 1 ; The BCD counter incrememted in the ISR and displayed in the main loop
+min_counter:  ds 1
+hour_counter: ds 1
+day_state:    ds 1
 
 ; In the 8051 we have variables that are 1-bit in size.  We can use the setb, clr, jb, and jnb
 ; instructions with these variables.  This is how you define a 1-bit variable:
@@ -109,6 +112,8 @@ $LIST
 ;                     1234567890123456    <- This helps determine the location of the counter
 Initial_Message:  db 'xx:xx:xx xx', 0
 ;                    '00:00:00 AM '
+AM: db 'AM', 0
+PM: db 'PM', 0
 
 ;---------------------------------;
 ; Routine to initialize the ISR   ;
@@ -204,6 +209,7 @@ Timer2_ISR_decrement:
 Timer2_ISR_da:
 	da a ; Decimal adjust instruction.  Check datasheet for more details!
 	mov BCD_counter, a
+  
 
 Timer2_ISR_done:
 	pop psw
@@ -234,6 +240,9 @@ main:
     Send_Constant_String(#Initial_Message)
     setb half_seconds_flag
 	mov BCD_counter, #0x00
+    mov min_counter, #0x00
+    mov hour_counter, #0x00
+    mov day_state, #0 ; To configure AM/PM
 
 	; After initialization the program stays in this 'forever' loop
 loop:
@@ -259,16 +268,47 @@ loop_b:
 ;	Set_Cursor(1, 14)     ; the place in the LCD where we want the BCD counter value
 ;	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
 
-    Set_Cursor(1, 1)
-    Display_BCD(BCD_counter)
-
-    Set_Cursor(1, 4)
-    Display_BCD(BCD_counter)
-
+    mov R4, BCD_counter
+    CJNE R4, #2, secondskip
+    mov BCD_counter, #0x00
+    inc min_counter
+secondskip:
     Set_Cursor(1, 7)
     Display_BCD(BCD_counter)
 
+    mov R4, min_counter
+    CJNE R4, #2, minskip
+    mov min_counter, #0x00
+    inc hour_counter
+minskip:
+    Set_Cursor(1, 4)
+    Display_BCD(min_counter)
+
+    mov R4, hour_counter
+    CJNE R4, #2, hourskip
+    mov hour_counter, #0x00
+;Check states and run if else
+    mov R4, day_state
+    cjne R4, #0, PMtoAM
+;PMtoAM
+    mov day_state, #1
+    sjmp hourskip
+PMtoAM:
+    mov day_state, #0
+
+hourskip:
+    Set_Cursor(1, 1)
+    Display_BCD(hour_counter)
+
+;Check states and run alternate
+    mov R4, day_state
+    CJNE R4, #0, timeAM
+timePM:
     Set_Cursor(1, 10)
-    Display_BCD(BCD_counter)
+    Send_Constant_String(#PM)
+    ljmp loop
+timeAM:
+    Set_Cursor(1, 10)
+    Send_Constant_String(#AM)
     ljmp loop
 END
