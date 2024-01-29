@@ -20,7 +20,29 @@ $LIST
 ;                         VDD -|9    12|- P1.3/SCL/[STADC]
 ;            PWM5/IC7/SS/P1.5 -|10   11|- P1.4/SDA/FB/PWM1
 ;                               -------
+; 1     UNUSED
+; 2     USED
+; 3     USED
+; 4     RESET BUTTON
+; 5     UNUSED
+; 6     UNUSED
+; 7     GND
+; 8     UNUSED
+; 9     VDD
+; 10    UNUSED
 ;
+; 11    UNUSED
+; 12    USED
+; 13    USED
+; 14    USED
+; 15    USED
+; 16    UNUSED
+; 17    UNUSED
+; 18    UNUSED
+; 19    UNUSED
+; 20    UNUSED
+
+
 
 CLK           EQU 16600000 ; Microcontroller system frequency in Hz
 TIMER0_RATE   EQU 4096     ; 2048Hz squarewave (peak amplitude of CEM-1203 speaker)
@@ -53,9 +75,9 @@ org 0x001B
 	reti
 
 ; Serial port receive/transmit interrupt vector (not used in this code)
-org 0x0023 
+org 0x0023
 	reti
-	
+
 ; Timer/Counter 2 overflow interrupt vector
 org 0x002B
 	ljmp Timer2_ISR
@@ -85,7 +107,8 @@ $include(LCD_4bit.inc) ; A library of LCD related functions and utility macros
 $LIST
 
 ;                     1234567890123456    <- This helps determine the location of the counter
-Initial_Message:  db 'BCD_counter: xx ', 0
+Initial_Message:  db 'xx:xx:xx xx', 0
+;                    '00:00:00 AM '
 
 ;---------------------------------;
 ; Routine to initialize the ISR   ;
@@ -146,11 +169,11 @@ Timer2_Init:
 Timer2_ISR:
 	clr TF2  ; Timer 2 doesn't clear TF2 automatically. Do it in the ISR.  It is bit addressable.
 	cpl P0.4 ; To check the interrupt rate with oscilloscope. It must be precisely a 1 ms pulse.
-	
+
 	; The two registers used in the ISR must be saved in the stack
 	push acc
 	push psw
-	
+
 	; Increment the 16-bit one mili second counter
 	inc Count1ms+0    ; Increment the low 8-bits first
 	mov a, Count1ms+0 ; If the low 8-bits overflow, then increment high 8-bits
@@ -163,7 +186,7 @@ Inc_Done:
 	cjne a, #low(500), Timer2_ISR_done ; Warning: this instruction changes the carry flag!
 	mov a, Count1ms+1
 	cjne a, #high(500), Timer2_ISR_done
-	
+
 	; 500 milliseconds have passed.  Set a flag so the main program knows
 	setb half_seconds_flag ; Let the main program know half second had passed
 	cpl TR0 ; Enable/disable timer/counter 0. This line creates a beep-silence-beep-silence sound.
@@ -181,7 +204,7 @@ Timer2_ISR_decrement:
 Timer2_ISR_da:
 	da a ; Decimal adjust instruction.  Check datasheet for more details!
 	mov BCD_counter, a
-	
+
 Timer2_ISR_done:
 	pop psw
 	pop acc
@@ -201,7 +224,7 @@ main:
     mov P1M2, #0x00
     mov P3M2, #0x00
     mov P3M2, #0x00
-          
+
     lcall Timer0_Init
     lcall Timer2_Init
     setb EA   ; Enable Global interrupts
@@ -211,7 +234,7 @@ main:
     Send_Constant_String(#Initial_Message)
     setb half_seconds_flag
 	mov BCD_counter, #0x00
-	
+
 	; After initialization the program stays in this 'forever' loop
 loop:
 	jb CLEAR_BUTTON, loop_a  ; if the 'CLEAR' button is not pressed skip
@@ -231,8 +254,21 @@ loop:
 loop_a:
 	jnb half_seconds_flag, loop
 loop_b:
+    ;Using this to print the time
     clr half_seconds_flag ; We clear this flag in the main loop, but it is set in the ISR for timer 2
-	Set_Cursor(1, 14)     ; the place in the LCD where we want the BCD counter value
-	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
+;	Set_Cursor(1, 14)     ; the place in the LCD where we want the BCD counter value
+;	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
+
+    Set_Cursor(1, 1)
+    Display_BCD(BCD_counter)
+
+    Set_Cursor(1, 4)
+    Display_BCD(BCD_counter)
+
+    Set_Cursor(1, 7)
+    Display_BCD(BCD_counter)
+
+    Set_Cursor(1, 10)
+    Display_BCD(BCD_counter)
     ljmp loop
 END

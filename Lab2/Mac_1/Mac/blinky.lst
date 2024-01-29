@@ -1,0 +1,296 @@
+                 -1   $MODN76E003
+0000              1   ; Register definitions for the Nuvoton N76E003
+0000              2   ;
+0000              3   ;--------------------------------------------------------
+0000              4   ; Special Function Registers
+0000              5   ;--------------------------------------------------------
+0000              6   P0             DATA 0x80
+0000              7   SP             DATA 0x81
+0000              8   DPL            DATA 0x82
+0000              9   DPH            DATA 0x83
+0000             10   RCTRIM0        DATA 0x84
+0000             11   RCTRIM1        DATA 0x85
+0000             12   RWK            DATA 0x86
+0000             13   PCON           DATA 0x87
+0000             14   TCON           DATA 0x88
+0000             15   TMOD           DATA 0x89
+0000             16   TL0            DATA 0x8a
+0000             17   TL1            DATA 0x8b
+0000             18   TH0            DATA 0x8c
+0000             19   TH1            DATA 0x8d
+0000             20   CKCON          DATA 0x8e
+0000             21   WKCON          DATA 0x8f
+0000             22   P1             DATA 0x90
+0000             23   SFRS           DATA 0x91
+0000             24   CAPCON0        DATA 0x92
+0000             25   CAPCON1        DATA 0x93
+0000             26   CAPCON2        DATA 0x94
+0000             27   CKDIV          DATA 0x95
+0000             28   CKSWT          DATA 0x96
+0000             29   CKEN           DATA 0x97
+0000             30   SCON           DATA 0x98
+0000             31   SBUF           DATA 0x99
+0000             32   SBUF_1         DATA 0x9a
+0000             33   EIE            DATA 0x9b
+0000             34   EIE1           DATA 0x9c
+0000             35   CHPCON         DATA 0x9f
+0000             36   P2             DATA 0xa0
+0000             37   AUXR1          DATA 0xa2
+0000             38   BODCON0        DATA 0xa3
+0000             39   IAPTRG         DATA 0xa4
+0000             40   IAPUEN         DATA 0xa5
+0000             41   IAPAL          DATA 0xa6
+0000             42   IAPAH          DATA 0xa7
+0000             43   IE             DATA 0xa8
+0000             44   SADDR          DATA 0xa9
+0000             45   WDCON          DATA 0xaa
+0000             46   BODCON1        DATA 0xab
+0000             47   P3M1           DATA 0xac
+0000             48   P3S            DATA 0xac
+0000             49   P3M2           DATA 0xad
+0000             50   P3SR           DATA 0xad
+0000             51   IAPFD          DATA 0xae
+0000             52   IAPCN          DATA 0xaf
+0000             53   P3             DATA 0xb0
+0000             54   P0M1           DATA 0xb1
+0000             55   P0S            DATA 0xb1
+0000             56   P0M2           DATA 0xb2
+0000             57   P0SR           DATA 0xb2
+0000             58   P1M1           DATA 0xb3
+0000             59   P1S            DATA 0xb3
+0000             60   P1M2           DATA 0xb4
+0000             61   P1SR           DATA 0xb4
+0000             62   P2S            DATA 0xb5
+0000             63   IPH            DATA 0xb7
+0000             64   PWMINTC        DATA 0xb7
+0000             65   IP             DATA 0xb8
+0000             66   SADEN          DATA 0xb9
+0000             67   SADEN_1        DATA 0xba
+0000             68   SADDR_1        DATA 0xbb
+0000             69   I2DAT          DATA 0xbc
+0000             70   I2STAT         DATA 0xbd
+0000             71   I2CLK          DATA 0xbe
+0000             72   I2TOC          DATA 0xbf
+0000             73   I2CON          DATA 0xc0
+0000             74   I2ADDR         DATA 0xc1
+0000             75   ADCRL          DATA 0xc2
+0000             76   ADCRH          DATA 0xc3
+0000             77   T3CON          DATA 0xc4
+0000             78   PWM4H          DATA 0xc4
+0000             79   RL3            DATA 0xc5
+0000             80   PWM5H          DATA 0xc5
+0000             81   RH3            DATA 0xc6
+0000             82   PIOCON1        DATA 0xc6
+0000             83   TA             DATA 0xc7
+0000             84   T2CON          DATA 0xc8
+0000             85   T2MOD          DATA 0xc9
+0000             86   RCMP2L         DATA 0xca
+0000             87   RCMP2H         DATA 0xcb
+0000             88   TL2            DATA 0xcc
+0000             89   PWM4L          DATA 0xcc
+0000             90   TH2            DATA 0xcd
+0000             91   PWM5L          DATA 0xcd
+0000             92   ADCMPL         DATA 0xce
+0000             93   ADCMPH         DATA 0xcf
+0000             94   PSW            DATA 0xd0
+0000             95   PWMPH          DATA 0xd1
+0000             96   PWM0H          DATA 0xd2
+0000             97   PWM1H          DATA 0xd3
+0000             98   PWM2H          DATA 0xd4
+0000             99   PWM3H          DATA 0xd5
+0000            100   PNP            DATA 0xd6
+0000            101   FBD            DATA 0xd7
+0000            102   PWMCON0        DATA 0xd8
+0000            103   PWMPL          DATA 0xd9
+0000            104   PWM0L          DATA 0xda
+0000            105   PWM1L          DATA 0xdb
+0000            106   PWM2L          DATA 0xdc
+0000            107   PWM3L          DATA 0xdd
+0000            108   PIOCON0        DATA 0xde
+0000            109   PWMCON1        DATA 0xdf
+0000            110   ACC            DATA 0xe0
+0000            111   ADCCON1        DATA 0xe1
+0000            112   ADCCON2        DATA 0xe2
+0000            113   ADCDLY         DATA 0xe3
+0000            114   C0L            DATA 0xe4
+0000            115   C0H            DATA 0xe5
+0000            116   C1L            DATA 0xe6
+0000            117   C1H            DATA 0xe7
+0000            118   ADCCON0        DATA 0xe8
+0000            119   PICON          DATA 0xe9
+0000            120   PINEN          DATA 0xea
+0000            121   PIPEN          DATA 0xeb
+0000            122   PIF            DATA 0xec
+0000            123   C2L            DATA 0xed
+0000            124   C2H            DATA 0xee
+0000            125   EIP            DATA 0xef
+0000            126   B              DATA 0xf0
+0000            127   CAPCON3        DATA 0xf1
+0000            128   CAPCON4        DATA 0xf2
+0000            129   SPCR           DATA 0xf3
+0000            130   SPCR2          DATA 0xf3
+0000            131   SPSR           DATA 0xf4
+0000            132   SPDR           DATA 0xf5
+0000            133   AINDIDS        DATA 0xf6
+0000            134   EIPH           DATA 0xf7
+0000            135   SCON_1         DATA 0xf8
+0000            136   PDTEN          DATA 0xf9
+0000            137   PDTCNT         DATA 0xfa
+0000            138   PMEN           DATA 0xfb
+0000            139   PMD            DATA 0xfc
+0000            140   EIP1           DATA 0xfe
+0000            141   EIPH1          DATA 0xff
+0000            142   
+0000            143   ;--------------------------------------------------------
+0000            144   ; special function bits
+0000            145   ;--------------------------------------------------------
+0000            146   SM0_1          BIT 0xff
+0000            147   FE_1           BIT 0xff
+0000            148   SM1_1          BIT 0xfe
+0000            149   SM2_1          BIT 0xfd
+0000            150   REN_1          BIT 0xfc
+0000            151   TB8_1          BIT 0xfb
+0000            152   RB8_1          BIT 0xfa
+0000            153   TI_1           BIT 0xf9
+0000            154   RI_1           BIT 0xf8
+0000            155   B_7            BIT 0xf7
+0000            156   B_6            BIT 0xf6
+0000            157   B_5            BIT 0xf5
+0000            158   B_4            BIT 0xf4
+0000            159   B_3            BIT 0xf3
+0000            160   B_2            BIT 0xf2
+0000            161   B_1            BIT 0xf1
+0000            162   B_0            BIT 0xf0
+0000            163   ADCF           BIT 0xef
+0000            164   ADCS           BIT 0xee
+0000            165   ETGSEL1        BIT 0xed
+0000            166   ETGSEL0        BIT 0xec
+0000            167   ADCHS3         BIT 0xeb
+0000            168   ADCHS2         BIT 0xea
+0000            169   ADCHS1         BIT 0xe9
+0000            170   ADCHS0         BIT 0xe8
+0000            171   ACC_7          BIT 0xe7
+0000            172   ACC_6          BIT 0xe6
+0000            173   ACC_5          BIT 0xe5
+0000            174   ACC_4          BIT 0xe4
+0000            175   ACC_3          BIT 0xe3
+0000            176   ACC_2          BIT 0xe2
+0000            177   ACC_1          BIT 0xe1
+0000            178   ACC_0          BIT 0xe0
+0000            179   PWMRUN         BIT 0xdf
+0000            180   LOAD           BIT 0xde
+0000            181   PWMF           BIT 0xdd
+0000            182   CLRPWM         BIT 0xdc
+0000            183   CY             BIT 0xd7
+0000            184   AC             BIT 0xd6
+0000            185   F0             BIT 0xd5
+0000            186   RS1            BIT 0xd4
+0000            187   RS0            BIT 0xd3
+0000            188   OV             BIT 0xd2
+0000            189   P              BIT 0xd0
+0000            190   TF2            BIT 0xcf
+0000            191   TR2            BIT 0xca
+0000            192   CM_RL2         BIT 0xc8
+0000            193   I2CEN          BIT 0xc6
+0000            194   STA            BIT 0xc5
+0000            195   STO            BIT 0xc4
+0000            196   SI             BIT 0xc3
+0000            197   AA             BIT 0xc2
+0000            198   I2CPX          BIT 0xc0
+0000            199   PADC           BIT 0xbe
+0000            200   PBOD           BIT 0xbd
+0000            201   PS             BIT 0xbc
+0000            202   PT1            BIT 0xbb
+0000            203   PX1            BIT 0xba
+0000            204   PT0            BIT 0xb9
+0000            205   PX0            BIT 0xb8
+0000            206   P3_0           BIT 0xb0
+0000            207   EA             BIT 0xaf
+0000            208   EADC           BIT 0xae
+0000            209   EBOD           BIT 0xad
+0000            210   ES             BIT 0xac
+0000            211   ET1            BIT 0xab
+0000            212   EX1            BIT 0xaa
+0000            213   ET0            BIT 0xa9
+0000            214   EX0            BIT 0xa8
+0000            215   P2_0           BIT 0xa0
+0000            216   SM0            BIT 0x9f
+0000            217   FE             BIT 0x9f
+0000            218   SM1            BIT 0x9e
+0000            219   SM2            BIT 0x9d
+0000            220   REN            BIT 0x9c
+0000            221   TB8            BIT 0x9b
+0000            222   RB8            BIT 0x9a
+0000            223   TI             BIT 0x99
+0000            224   RI             BIT 0x98
+0000            225   P1_7           BIT 0x97
+0000            226   P1_6           BIT 0x96
+0000            227   TXD_1          BIT 0x96
+0000            228   P1_5           BIT 0x95
+0000            229   P1_4           BIT 0x94
+0000            230   SDA            BIT 0x94
+0000            231   P1_3           BIT 0x93
+0000            232   SCL            BIT 0x93
+0000            233   P1_2           BIT 0x92
+0000            234   P1_1           BIT 0x91
+0000            235   P1_0           BIT 0x90
+0000            236   TF1            BIT 0x8f
+0000            237   TR1            BIT 0x8e
+0000            238   TF0            BIT 0x8d
+0000            239   TR0            BIT 0x8c
+0000            240   IE1            BIT 0x8b
+0000            241   IT1            BIT 0x8a
+0000            242   IE0            BIT 0x89
+0000            243   IT0            BIT 0x88
+0000            244   P0_7           BIT 0x87
+0000            245   RXD            BIT 0x87
+0000            246   P06            BIT 0x86
+0000            247   TXD            BIT 0x86
+0000            248   P0_5           BIT 0x85
+0000            249   P0_4           BIT 0x84
+0000            250   STADC          BIT 0x84
+0000            251   P0_3           BIT 0x83
+0000            252   P0_2           BIT 0x82
+0000            253   RXD_1          BIT 0x82
+0000            254   P0_1           BIT 0x81
+0000            255   MISO           BIT 0x81
+0000            256   P0_0           BIT 0x80
+0000            257   MOSI           BIT 0x80
+0000              2   
+0000              3   ;  N76E003AT20 pinout:
+0000              4   ;                               -------
+0000              5   ;       PWM2/IC6/T0/AIN4/P0.5 -|1    20|- P0.4/AIN5/STADC/PWM3/IC3
+0000              6   ;               TXD/AIN3/P0.6 -|2    19|- P0.3/PWM5/IC5/AIN6
+0000              7   ;               RXD/AIN2/P0.7 -|3    18|- P0.2/ICPCK/OCDCK/RXD_1/[SCL]
+0000              8   ;                    RST/P2.0 -|4    17|- P0.1/PWM4/IC4/MISO
+0000              9   ;        INT0/OSCIN/AIN1/P3.0 -|5    16|- P0.0/PWM3/IC3/MOSI/T1
+0000             10   ;              INT1/AIN0/P1.7 -|6    15|- P1.0/PWM2/IC2/SPCLK
+0000             11   ;                         GND -|7    14|- P1.1/PWM1/IC1/AIN7/CLO
+0000             12   ;[SDA]/TXD_1/ICPDA/OCDDA/P1.6 -|8    13|- P1.2/PWM0/IC0
+0000             13   ;                         VDD -|9    12|- P1.3/SCL/[STADC]
+0000             14   ;            PWM5/IC7/SS/P1.5 -|10   11|- P1.4/SDA/FB/PWM1
+0000             15   ;                               -------
+0000             16   ;
+0000             17   
+0000             18   org 0000H
+0000 020010      19       ljmp myprogram
+0003             20   
+0003             21   ; When using a 16.6MHz oscillator one cycle takes 1.0/16.6MHz = 60.24 ns
+0003             22   WaitHalfSec:
+0003 7A64        23       mov R2, #100
+0005 79C8        24   L3: mov R1, #200
+0007 7868        25   L2: mov R0, #104
+0009 D8FE        26   L1: djnz R0, L1 ; 4 cycles->4*60.24ns*104=25us
+000B D9FA        27       djnz R1, L2 ; 25us*200=5.0ms
+000D DAF6        28       djnz R2, L3 ; 5.0ms*100=0.5s (approximately)
+000F 22          29       ret
+0010             30            
+0010             31   myprogram:
+0010 75817F      32       mov SP, #7FH
+0013 75B300      33       mov P1M1, #0 ; Configure P1 in bidirectional mode
+0016 75B400      34       mov P1M2, #0 ; Configure P1 in bidirectional mode
+0019             35   M0:
+0019 B297        36       cpl P1.7
+001B 120003      37       lcall WaitHalfSec
+001E 80F9        38       sjmp M0
+0020             39   EN
