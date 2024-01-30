@@ -1,3 +1,6 @@
+; vim:foldmethod=marker:foldlevel=0
+
+; DOCS {{{
 ; ISR_example.asm: a) Increments/decrements a BCD variable every half second using
 ; an ISR for timer 2; b) Generates a 2kHz square wave at pin P1.7 using
 ; an ISR for timer 0; and c) in the 'main' loop it displays the variable
@@ -20,21 +23,21 @@ $LIST
 ;                         VDD -|9    12|- P1.3/SCL/[STADC]
 ;            PWM5/IC7/SS/P1.5 -|10   11|- P1.4/SDA/FB/PWM1
 ;                               -------
-; 1     UNUSED
+; 1     0.5 - BUTTON 1
 ; 2     USED
 ; 3     USED
 ; 4     RESET BUTTON
-; 5     UNUSED
-; 6     UNUSED
+; 5     3.0 - BUTTON 2
+; 6     SPEAKER
 ; 7     GND
-; 8     UNUSED
+; 8     1.6 - BUTTON 4
 ; 9     VDD
-; 10    UNUSED
+; 10    1.5 - BUTTON 5
 ;
 ; 11    UNUSED
 ; 12    USED
 ; 13    USED
-; 14    USED
+; 14    1.1 - BUTTON 3
 ; 15    USED
 ; 16    UNUSED
 ; 17    UNUSED
@@ -42,17 +45,28 @@ $LIST
 ; 19    UNUSED
 ; 20    UNUSED
 
+; Button mapping:
+; Button 1 to 5, starting from  left to right
+; BUTTON 1 - HOUR
+; BUTTON 2 - MIN
+; BUTTON 3 - SEC
+; BUTTON 4 - TIME SET
+; BUTTON 5 - ALARM
 
-
+; CONFIG {{{
 CLK           EQU 16600000 ; Microcontroller system frequency in Hz
 TIMER0_RATE   EQU 4096     ; 2048Hz squarewave (peak amplitude of CEM-1203 speaker)
 TIMER0_RELOAD EQU ((65536-(CLK/TIMER0_RATE)))
 TIMER2_RATE   EQU 500     ; 1000Hz, for a timer tick of 1ms
 TIMER2_RELOAD EQU ((65536-(CLK/TIMER2_RATE)))
 
-CLEAR_BUTTON  equ P1.5
 UPDOWN        equ P1.6
 SOUND_OUT     equ P1.7
+BUTTON1       equ P0.5
+BUTTON2       equ P3.0
+BUTTON3       equ P1.1
+BUTTON4       equ P1.6
+BUTTON5       equ P1.5
 
 ; Reset vector
 org 0x0000
@@ -209,18 +223,19 @@ Timer2_ISR_decrement:
 Timer2_ISR_da:
 	da a ; Decimal adjust instruction.  Check datasheet for more details!
 	mov BCD_counter, a
-  
+
 
 Timer2_ISR_done:
 	pop psw
 	pop acc
 	reti
-
+;}}}
 ;---------------------------------;
 ; Main program. Includes hardware ;
 ; initialization and 'forever'    ;
 ; loop.                           ;
 ;---------------------------------;
+; MAIN LOOP + buttons {{{
 main:
 	; Initialization
     mov SP, #0x7F
@@ -246,10 +261,41 @@ main:
 
 	; After initialization the program stays in this 'forever' loop
 loop:
-	jb CLEAR_BUTTON, loop_a  ; if the 'CLEAR' button is not pressed skip
+	jb BUTTON1, buttonjump2 ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
-	jb CLEAR_BUTTON, loop_a  ; if the 'CLEAR' button is not pressed skip
-	jnb CLEAR_BUTTON, $		; Wait for button release.  The '$' means: jump to same instruction.
+	jb BUTTON1, buttonjump2; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON1, $		; Wait for button release.  The '$' means: jump to same instruction.
+    sjmp clear
+
+buttonjump2:
+	jb BUTTON2, buttonjump3 ; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON2, buttonjump3; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON2, $		; Wait for button release.  The '$' means: jump to same instruction.
+    sjmp clear
+buttonjump3:
+	jb BUTTON3, buttonjump4 ; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON3, buttonjump4; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON3, $		; Wait for button release.  The '$' means: jump to same instruction.
+    sjmp clear
+buttonjump4:
+	jb BUTTON4, buttonjump5 ; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON4, buttonjump5; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON4, $		; Wait for button release.  The '$' means: jump to same instruction.
+    sjmp clear
+buttonjump5:
+	jb BUTTON5, loop_a ; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON5, loop_a  ; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON5, $		; Wait for button release.  The '$' means: jump to same instruction.
+
+clear:
+
+
+
+
 	; A valid press of the 'CLEAR' button has been detected, reset the BCD counter.
 	; But first stop timer 2 and reset the milli-seconds counter, to resync everything.
 	clr TR2                 ; Stop timer 2
@@ -260,8 +306,11 @@ loop:
 	mov BCD_counter, a
 	setb TR2                ; Start timer 2
 	sjmp loop_b             ; Display the new value
+
+;}}}
 loop_a:
 	jnb half_seconds_flag, loop
+; LOOP B Display Timer {{{
 loop_b:
     ;Using this to print the time
     clr half_seconds_flag ; We clear this flag in the main loop, but it is set in the ISR for timer 2
@@ -269,7 +318,7 @@ loop_b:
 ;	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
 
     mov R4, BCD_counter
-    CJNE R4, #2, secondskip
+    CJNE R4, #6, secondskip
     mov BCD_counter, #0x00
     inc min_counter
 secondskip:
@@ -311,4 +360,6 @@ timeAM:
     Set_Cursor(1, 10)
     Send_Constant_String(#AM)
     ljmp loop
+
+;}}}
 END
