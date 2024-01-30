@@ -290,7 +290,8 @@ buttonjump4:
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON4, buttonjump5; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON4, $		; Wait for button release.  The '$' means: jump to same instruction.
-    ljmp clear
+    lcall displaytimesetfunction
+    sjmp loop
 buttonjump5:
 	jb BUTTON5, loop_a ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
@@ -325,7 +326,7 @@ loop_b:
 ;	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
 
     mov R4, BCD_counter
-    CJNE R4, #6, secondskip
+    CJNE R4, #60, secondskip
     mov BCD_counter, #0x00
     inc min_counter
 secondskip:
@@ -333,7 +334,7 @@ secondskip:
     Display_BCD(BCD_counter)
 
     mov R4, min_counter
-    CJNE R4, #2, minskip
+    CJNE R4, #60, minskip
     mov min_counter, #0x00
     inc hour_counter
 minskip:
@@ -341,7 +342,7 @@ minskip:
     Display_BCD(min_counter)
 
     mov R4, hour_counter
-    CJNE R4, #2, hourskip
+    CJNE R4, #12, hourskip
     mov hour_counter, #0x00
 ;Check states and run if else
     mov R4, day_state
@@ -369,28 +370,63 @@ timeAM:
     ljmp loop
 ;}}}
 ; DISPLAY TIME FUNCTION {{{
+displaytimesetfunction:
+
+loop2:
+	jb BUTTON1, sbuttonjump2 ; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON1, sbuttonjump2; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON1, $		; Wait for button release.  The '$' means: jump to same instruction.
+    inc timesethours
+    sjmp displaytimefunction
+
+sbuttonjump2:
+	jb BUTTON2, sbuttonjump3 ; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#100)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON2, sbuttonjump3; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON2, $		; Wait for button release.  The '$' means: jump to same instruction.
+    inc timesetminutes
+    sjmp displaytimefunction
+sbuttonjump3:
+	jb BUTTON3, sbuttonjump4 ; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#100)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON3, sbuttonjump4; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON3, $		; Wait for button release.  The '$' means: jump to same instruction.
+    inc timesetseconds
+    sjmp displaytimefunction
+sbuttonjump4:
+	jb BUTTON4, displaytimefunction; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#100)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON4, displaytimefunction; if the 'CLEAR' button is not pressed skip
+	jnb BUTTON4, $		; Wait for button release.  The '$' me2buttans: jump to same instruction.
+    ret
+
+
 displaytimefunction:
-    mov timesetseconds, #69
-    mov timesetminutes, #69
-    mov timesethours, #69
     mov R4, timesetseconds
     CJNE R4, #6, timesetsecondskip
     mov timesetseconds, #0x00
     inc timesetminutes
 timesetsecondskip:
     Set_Cursor(1, 7)
+    mov a, timesetseconds
+    da a
+    mov timesetseconds, a
     Display_BCD(timesetseconds)
 
     mov R4, timesetminutes
-    CJNE R4, #2, timesetminskip
+    CJNE R4, #6, timesetminskip
     mov timesetminutes, #0x00
     inc timesethours
 timesetminskip:
     Set_Cursor(1, 4)
+    mov a, timesetminutes
+    da a
+    mov timesetminutes, a
     Display_BCD(timesetminutes)
 
     mov R4, timesethours
-    CJNE R4, #2, timesethourskip
+    CJNE R4, #12, timesethourskip
     mov timesethours, #0x00
 ;Check states and run if else
     mov R4, timesetdaystate
@@ -403,6 +439,9 @@ setPMtoAM:
 
 timesethourskip:
     Set_Cursor(1, 1)
+    mov a, timesethours
+    da a
+    mov timesethours, a
     Display_BCD(timesethours)
 
 ;Check states and run alternate
@@ -411,10 +450,10 @@ timesethourskip:
 settimePM:
     Set_Cursor(1, 10)
     Send_Constant_String(#PM)
-    ret
+    ljmp loop2
 settimeAM:
     Set_Cursor(1, 10)
     Send_Constant_String(#AM)
-    ret
+    ljmp loop2
 ;}}}
 END
