@@ -52,7 +52,7 @@ $LIST
 ; BUTTON 3 - SEC
 ; BUTTON 4 - TIME SET
 ; BUTTON 5 - ALARM
-
+; }}}
 ; CONFIG {{{
 CLK           EQU 16600000 ; Microcontroller system frequency in Hz
 TIMER0_RATE   EQU 4096     ; 2048Hz squarewave (peak amplitude of CEM-1203 speaker)
@@ -230,12 +230,12 @@ Timer2_ISR_done:
 	pop acc
 	reti
 ;}}}
+; MAIN + BUTTONS {{{
 ;---------------------------------;
 ; Main program. Includes hardware ;
 ; initialization and 'forever'    ;
 ; loop.                           ;
 ;---------------------------------;
-; MAIN LOOP + buttons {{{
 main:
 	; Initialization
     mov SP, #0x7F
@@ -308,9 +308,9 @@ clear:
 	sjmp loop_b             ; Display the new value
 
 ;}}}
+; LOOP B Display Timer {{{
 loop_a:
 	jnb half_seconds_flag, loop
-; LOOP B Display Timer {{{
 loop_b:
     ;Using this to print the time
     clr half_seconds_flag ; We clear this flag in the main loop, but it is set in the ISR for timer 2
