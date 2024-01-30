@@ -98,12 +98,15 @@ org 0x002B
 
 ; In the 8051 we can define direct access variables starting at location 0x30 up to location 0x7F
 dseg at 0x30
-Count1ms:     ds 2 ; Used to determine when half second has passed
-BCD_counter:  ds 1 ; The BCD counter incrememted in the ISR and displayed in the main loop
-min_counter:  ds 1
-hour_counter: ds 1
-day_state:    ds 1
-
+Count1ms:           ds 2 ; Used to determine when half second has passed
+BCD_counter:        ds 1 ; The BCD counter incrememted in the ISR and displayed in the main loop
+min_counter:        ds 1
+hour_counter:       ds 1
+day_state:          ds 1
+timesetseconds:     ds 1
+timesetminutes:     ds 1
+timesethours:       ds 1
+timesetdaystate:    ds 1
 ; In the 8051 we have variables that are 1-bit in size.  We can use the setb, clr, jb, and jnb
 ; instructions with these variables.  This is how you define a 1-bit variable:
 bseg
@@ -225,8 +228,7 @@ Timer2_ISR_da:
 	mov BCD_counter, a
 
 
-Timer2_ISR_done:
-	pop psw
+Timer2_ISR_done: pop psw
 	pop acc
 	reti
 ;}}}
@@ -258,6 +260,10 @@ main:
     mov min_counter, #0x00
     mov hour_counter, #0x00
     mov day_state, #0 ; To configure AM/PM
+    mov timesetseconds, #0x00
+    mov timesetminutes, #0x00
+    mov timesethours, #0x00
+    mov timesetdaystate, #0
 
 	; After initialization the program stays in this 'forever' loop
 loop:
@@ -284,7 +290,7 @@ buttonjump4:
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON4, buttonjump5; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON4, $		; Wait for button release.  The '$' means: jump to same instruction.
-    sjmp clear
+    ljmp clear
 buttonjump5:
 	jb BUTTON5, loop_a ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
@@ -305,7 +311,8 @@ clear:
 	; Now clear the BCD counter
 	mov BCD_counter, a
 	setb TR2                ; Start timer 2
-	sjmp loop_b             ; Display the new value
+    sjmp loop_b
+    ;ljmp loop
 
 ;}}}
 ; LOOP B Display Timer {{{
@@ -360,6 +367,54 @@ timeAM:
     Set_Cursor(1, 10)
     Send_Constant_String(#AM)
     ljmp loop
+;}}}
+; DISPLAY TIME FUNCTION {{{
+displaytimefunction:
+    mov timesetseconds, #69
+    mov timesetminutes, #69
+    mov timesethours, #69
+    mov R4, timesetseconds
+    CJNE R4, #6, timesetsecondskip
+    mov timesetseconds, #0x00
+    inc timesetminutes
+timesetsecondskip:
+    Set_Cursor(1, 7)
+    Display_BCD(timesetseconds)
 
+    mov R4, timesetminutes
+    CJNE R4, #2, timesetminskip
+    mov timesetminutes, #0x00
+    inc timesethours
+timesetminskip:
+    Set_Cursor(1, 4)
+    Display_BCD(timesetminutes)
+
+    mov R4, timesethours
+    CJNE R4, #2, timesethourskip
+    mov timesethours, #0x00
+;Check states and run if else
+    mov R4, timesetdaystate
+    cjne R4, #0, setPMtoAM
+;PMtoAM
+    mov timesetdaystate, #1
+    sjmp timesethourskip
+setPMtoAM:
+    mov timesetdaystate, #0
+
+timesethourskip:
+    Set_Cursor(1, 1)
+    Display_BCD(timesethours)
+
+;Check states and run alternate
+    mov R4, timesetdaystate
+    CJNE R4, #0, settimeAM
+settimePM:
+    Set_Cursor(1, 10)
+    Send_Constant_String(#PM)
+    ret
+settimeAM:
+    Set_Cursor(1, 10)
+    Send_Constant_String(#AM)
+    ret
 ;}}}
 END
