@@ -67,6 +67,7 @@ BUTTON2       equ P3.0
 BUTTON3       equ P1.1
 BUTTON4       equ P1.6
 BUTTON5       equ P1.5
+SERVO         equ P1.0
 
 ; Reset vector
 org 0x0000
@@ -269,7 +270,7 @@ main:
     setb half_seconds_flag
 	mov BCD_counter, #00
     mov min_counter, #00
-    mov hour_counter, #00
+    mov hour_counter, #01
     mov day_state, #0 ; To configure AM/PM
     mov timesetseconds, #00
     mov timesetminutes, #00
@@ -419,7 +420,7 @@ timeAM:
 
 alarm:
     mov R4, alarmseconds
-    CJNE R4, #0x06, asecondskip
+    CJNE R4, #0x60, asecondskip
     mov alarmseconds, #000
     inc alarmminutes
 asecondskip:
@@ -427,7 +428,7 @@ asecondskip:
     Display_BCD(alarmseconds)
 
     mov R4, alarmminutes
-    CJNE R4, #0x06, aminskip
+    CJNE R4, #0x60, aminskip
     mov alarmminutes, #000
     inc alarmhours
 aminskip:
@@ -435,8 +436,8 @@ aminskip:
     Display_BCD(alarmminutes)
 
     mov R4, alarmhours
-    CJNE R4, #0x12, ahourskip
-    mov alarmhours, #000
+    CJNE R4, #0x13, ahourskip
+    mov alarmhours, #001
 ;Check states and run if else
     mov R4, alarmday_state
     cjne R4, #0, aPMtoAM
@@ -507,7 +508,11 @@ loop2:
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON1, sbuttonjump2; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON1, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc hour_counter
+    ;inc hour_counter
+    mov a, hour_counter
+    add A, #1
+    da a
+    mov hour_counter, A
     sjmp displaytimefunction
 
 sbuttonjump2:
@@ -515,14 +520,22 @@ sbuttonjump2:
 	Wait_Milli_Seconds(#255)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON2, sbuttonjump3; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON2, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc min_counter
+    ;inc min_counter
+    mov a, min_counter
+    add A, #1
+    da a
+    mov min_counter, A
     sjmp displaytimefunction
 sbuttonjump3:
 	jb BUTTON3, sbuttonjump4; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON3, sbuttonjump4; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON3, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc timesetseconds
+    ;inc timesetseconds
+    mov a, timesetseconds
+    add A, #1
+    da a
+    mov timesetseconds, A
     sjmp displaytimefunction
 sbuttonjump4:
 	jb BUTTON4, displaytimefunction; if the 'CLEAR' button is not pressed skip
@@ -548,7 +561,7 @@ sminskip:
     Display_BCD(min_counter)
 
     mov R4, hour_counter
-    CJNE R4, #12, shourskip
+    CJNE R4, #0x12, shourskip
     mov hour_counter, #01
 ;Check states and run if else
     mov R4, day_state
