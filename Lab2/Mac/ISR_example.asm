@@ -111,6 +111,8 @@ alarmseconds:       ds 1
 alarmminutes:       ds 1
 alarmhours:         ds 1
 alarmday_state:     ds 1
+alarm_state:        ds 1
+alarm_on:           ds 1
 ; In the 8051 we have variables that are 1-bit in size.  We can use the setb, clr, jb, and jnb
 ; instructions with these variables.  This is how you define a 1-bit variable:
 bseg
@@ -133,7 +135,7 @@ $LIST
 ;                     1234567890123456    <- This helps determine the location of the counter
 Initial_Message:  db 'xx:xx:xx xx', 0
 ;                    '00:00:00 AM '
-Alarm_Message: db    'xx:xx:xx XX XXX', 0
+Alarm_Message: db    'xx:xx:xx XX', 0
 AM: db 'AM', 0
 PM: db 'PM', 0
 ON: db 'ON ', 0
@@ -168,7 +170,7 @@ Timer0_ISR:
 	mov TH0, #high(TIMER0_RELOAD)
 	mov TL0, #low(TIMER0_RELOAD)
 	setb TR0
-	cpl SOUND_OUT ; Connect speaker the pin assigned to 'SOUND_OUT'!
+	;cpl SOUND_OUT ; Connect speaker the pin assigned to 'SOUND_OUT'!
 	reti
 
 ;---------------------------------;
@@ -263,7 +265,7 @@ main:
 	Set_Cursor(1, 1)
     Send_Constant_String(#Initial_Message)
     Set_Cursor(2, 1)
-    ;Send_Constant_String(#Alarm_Message)
+    Send_Constant_String(#Alarm_Message)
     setb half_seconds_flag
 	mov BCD_counter, #00
     mov min_counter, #00
@@ -273,9 +275,11 @@ main:
     mov timesetminutes, #00
     mov timesethours, #0x00
     mov timesetdaystate, #0
-    mov alarmseconds, #0x02
-    mov alarmminutes, #0x02
+    mov alarmseconds, #0x0
+    mov alarmminutes, #0x0
     mov alarmhours, #0x02
+    mov alarm_state, #0x00
+    mov alarm_on, #0x0
 
 	; After initialization the program stays in this 'forever' loop
 loop:
@@ -283,22 +287,34 @@ loop:
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON1, buttonjump2; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON1, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc alarmseconds
+    ;inc alarmhours
+    mov a, alarmhours
+    add A, #1
+    da a
+    mov alarmhours, A
     ljmp loop_b
 
 buttonjump2:
 	jb BUTTON2, buttonjump3 ; if the 'CLEAR' button is not pressed skip
-	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	Wait_Milli_Seconds(#200)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON2, buttonjump3; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON2, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc alarmminutes
+    ;inc alarmminutes
+    mov a, alarmminutes
+    add A, #1
+    da a
+    mov alarmminutes, A
     ljmp loop_b
 buttonjump3:
 	jb BUTTON3, buttonjump4 ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON3, buttonjump4; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON3, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc alarmhours
+    ;inc alarmseconds
+    mov a, alarmseconds
+    add A, #1
+    da a
+    mov alarmseconds, A
     ljmp loop_b
 buttonjump4:
 	jb BUTTON4, buttonjump5 ; if the 'CLEAR' button is not pressed skip
@@ -311,25 +327,37 @@ buttonjump5:
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON5, loop_b  ; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON5, $		; Wait for button release.  The '$' means: jump to same instruction.
-    sjmp clear
+    ljmp alarmday_state_branch
 
-clear:
-	; A valid press of the 'CLEAR' button has been detected, reset the BCD counter.
-	; But first stop timer 2 and reset the milli-seconds counter, to resync everything.
-	clr TR2                 ; Stop timer 2
-	clr a
-	mov Count1ms+0, a
-	mov Count1ms+1, a
-	; Now clear the BCD counter
-	mov BCD_counter, a
-	setb TR2                ; Start timer 2
-    ;lcall loop_b
-    ljmp loop
+alarmday_state_branch:
+    mov R0, alarm_state
+    cjne r0, #0, alternate
+    mov alarm_state, #1
+    sjmp loop_b
+
+alternate:
+    mov alarm_state, #0
+    sjmp loop_b
+;clear:
+;	; A valid press of the 'CLEAR' button has been detected, reset the BCD counter.
+;	; But first stop timer 2 and reset the milli-seconds counter, to resync everything.
+;	clr TR2                 ; Stop timer 2
+;	clr a
+;	mov Count1ms+0, a
+;	mov Count1ms+1, a
+;	; Now clear the BCD counter
+;	mov BCD_counter, a
+;	setb TR2                ; Start timer 2
+;   ;lcall loop_b
+;  ljmp loop
 
 ;}}}
-; LOOP B Display Timer {{{
+; LOOP B Display Timer {{
 loop_a:
-	jnb half_seconds_flag, loop
+	jnb half_seconds_flag, int_loop
+    sjmp loop_b
+int_loop:
+    ljmp loop
 loop_b:
     ;Using this to print the time
     clr half_seconds_flag ; We clear this flag in the main loop, but it is set in the ISR for timer 2
@@ -337,7 +365,7 @@ loop_b:
 ;	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
 
     mov R4, BCD_counter
-    CJNE R4, #0x1, secondskip
+    CJNE R4, #0x60, secondskip
     mov BCD_counter, #00
     ;inc min_counter
     mov a, min_counter
@@ -349,7 +377,7 @@ secondskip:
     Display_BCD(BCD_counter)
 
     mov a, min_counter
-    CJNE a, #0x1, minskip
+    CJNE a, #0x60, minskip
     mov min_counter, #00
     ;inc hour_counter;
     mov a, hour_counter
@@ -428,10 +456,46 @@ ahourskip:
 atimePM:
     Set_Cursor(2, 10)
     Send_Constant_String(#PM)
-    ljmp loop
+    sjmp alarm_symbol
 atimeAM:
     Set_Cursor(2, 10)
     Send_Constant_String(#AM)
+
+alarm_symbol:
+    Set_Cursor(2, 13)
+    mov R0, alarm_state
+    cjne R0, #0x00, skip_this
+    Send_Constant_String(#OFF)
+    mov alarm_on, #0
+    ljmp loop
+skip_this:
+    Send_Constant_String(#ON)
+    ljmp alarm_sound
+
+alarm_sound:
+    mov r0, alarmseconds
+    mov r1, alarmminutes
+    mov r2, alarmhours
+    mov r3, hour_counter
+    mov r4, min_counter
+    mov r5, BCD_counter
+    mov r6, alarmday_state
+    mov r7, day_state
+
+    mov a, r2
+    subb a, r3
+    cjne a, #0, noalarm
+    mov a, r1
+    subb a, r4
+    cjne a, #0, noalarm
+    mov a, r0
+    subb a, r5
+    cjne a, #0, noalarm
+    mov alarm_on, #1
+
+    cpl sound_out
+
+noalarm:
     ljmp loop
 ;}}}
 ; DISPLAY TIME FUNCTION {{{
@@ -470,14 +534,14 @@ sbuttonjump4:
 
 displaytimefunction:
     mov R4, timesetseconds
-    CJNE R4, #6, ssecondskip
+    CJNE R4, #0x60, ssecondskip
     mov timesetseconds, #000
 ssecondskip:
     Set_Cursor(1, 7)
     Display_BCD(timesetseconds)
 
     mov R4, min_counter
-    CJNE R4, #6, sminskip
+    CJNE R4, #0x60, sminskip
     mov min_counter, #000
 sminskip:
     Set_Cursor(1, 4)
@@ -485,7 +549,7 @@ sminskip:
 
     mov R4, hour_counter
     CJNE R4, #12, shourskip
-    mov hour_counter, #000
+    mov hour_counter, #01
 ;Check states and run if else
     mov R4, day_state
     cjne R4, #0, sPMtoAM
