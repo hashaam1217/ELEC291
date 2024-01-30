@@ -290,19 +290,15 @@ buttonjump4:
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON4, buttonjump5; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON4, $		; Wait for button release.  The '$' means: jump to same instruction.
-    lcall displaytimesetfunction
-    sjmp loop
+    ljmp displaytimesetfunction
 buttonjump5:
 	jb BUTTON5, loop_a ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON5, loop_a  ; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON5, $		; Wait for button release.  The '$' means: jump to same instruction.
+    sjmp clear
 
 clear:
-
-
-
-
 	; A valid press of the 'CLEAR' button has been detected, reset the BCD counter.
 	; But first stop timer 2 and reset the milli-seconds counter, to resync everything.
 	clr TR2                 ; Stop timer 2
@@ -312,8 +308,8 @@ clear:
 	; Now clear the BCD counter
 	mov BCD_counter, a
 	setb TR2                ; Start timer 2
-    sjmp loop_b
-    ;ljmp loop
+    ;lcall loop_b
+    ljmp loop
 
 ;}}}
 ; LOOP B Display Timer {{{
@@ -326,7 +322,7 @@ loop_b:
 ;	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
 
     mov R4, BCD_counter
-    CJNE R4, #60, secondskip
+    CJNE R4, #6, secondskip
     mov BCD_counter, #0x00
     inc min_counter
 secondskip:
@@ -334,7 +330,7 @@ secondskip:
     Display_BCD(BCD_counter)
 
     mov R4, min_counter
-    CJNE R4, #60, minskip
+    CJNE R4, #6, minskip
     mov min_counter, #0x00
     inc hour_counter
 minskip:
@@ -373,85 +369,74 @@ timeAM:
 displaytimesetfunction:
 
 loop2:
-	jb BUTTON1, sbuttonjump2 ; if the 'CLEAR' button is not pressed skip
+	jb BUTTON1, sbuttonjump2; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON1, sbuttonjump2; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON1, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc timesethours
+    inc hour_counter
     sjmp displaytimefunction
 
 sbuttonjump2:
-	jb BUTTON2, sbuttonjump3 ; if the 'CLEAR' button is not pressed skip
-	Wait_Milli_Seconds(#100)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON2, sbuttonjump3; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#255)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON2, sbuttonjump3; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON2, $		; Wait for button release.  The '$' means: jump to same instruction.
-    inc timesetminutes
+    inc min_counter
     sjmp displaytimefunction
 sbuttonjump3:
-	jb BUTTON3, sbuttonjump4 ; if the 'CLEAR' button is not pressed skip
-	Wait_Milli_Seconds(#100)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	jb BUTTON3, sbuttonjump4; if the 'CLEAR' button is not pressed skip
+	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON3, sbuttonjump4; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON3, $		; Wait for button release.  The '$' means: jump to same instruction.
     inc timesetseconds
     sjmp displaytimefunction
 sbuttonjump4:
 	jb BUTTON4, displaytimefunction; if the 'CLEAR' button is not pressed skip
-	Wait_Milli_Seconds(#100)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
+	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON4, displaytimefunction; if the 'CLEAR' button is not pressed skip
-	jnb BUTTON4, $		; Wait for button release.  The '$' me2buttans: jump to same instruction.
-    ret
-
+	jnb BUTTON4, $		; Wait for button release.  The '$' means: jump to same instruction.
+    mov BCD_counter, timesetseconds
+    ljmp loop
 
 displaytimefunction:
     mov R4, timesetseconds
-    CJNE R4, #6, timesetsecondskip
+    CJNE R4, #6, ssecondskip
     mov timesetseconds, #0x00
-    inc timesetminutes
-timesetsecondskip:
+ssecondskip:
     Set_Cursor(1, 7)
-    mov a, timesetseconds
-    da a
-    mov timesetseconds, a
     Display_BCD(timesetseconds)
 
-    mov R4, timesetminutes
-    CJNE R4, #6, timesetminskip
-    mov timesetminutes, #0x00
-    inc timesethours
-timesetminskip:
+    mov R4, min_counter
+    CJNE R4, #6, sminskip
+    mov min_counter, #0x00
+sminskip:
     Set_Cursor(1, 4)
-    mov a, timesetminutes
-    da a
-    mov timesetminutes, a
-    Display_BCD(timesetminutes)
+    Display_BCD(min_counter)
 
-    mov R4, timesethours
-    CJNE R4, #12, timesethourskip
-    mov timesethours, #0x00
+    mov R4, hour_counter
+    CJNE R4, #12, shourskip
+    mov hour_counter, #0x00
 ;Check states and run if else
-    mov R4, timesetdaystate
-    cjne R4, #0, setPMtoAM
+    mov R4, day_state
+    cjne R4, #0, sPMtoAM
 ;PMtoAM
-    mov timesetdaystate, #1
-    sjmp timesethourskip
-setPMtoAM:
-    mov timesetdaystate, #0
+    mov day_state, #1
+    sjmp shourskip
+sPMtoAM:
+    mov day_state, #0
 
-timesethourskip:
+shourskip:
     Set_Cursor(1, 1)
-    mov a, timesethours
-    da a
-    mov timesethours, a
-    Display_BCD(timesethours)
+    Display_BCD(hour_counter)
 
 ;Check states and run alternate
-    mov R4, timesetdaystate
-    CJNE R4, #0, settimeAM
-settimePM:
+    mov R4, day_state
+    CJNE R4, #0, stimeAM
+stimePM:
     Set_Cursor(1, 10)
     Send_Constant_String(#PM)
     ljmp loop2
-settimeAM:
+stimeAM:
     Set_Cursor(1, 10)
     Send_Constant_String(#AM)
     ljmp loop2
