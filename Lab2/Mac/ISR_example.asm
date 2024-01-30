@@ -57,7 +57,7 @@ $LIST
 CLK           EQU 16600000 ; Microcontroller system frequency in Hz
 TIMER0_RATE   EQU 4096     ; 2048Hz squarewave (peak amplitude of CEM-1203 speaker)
 TIMER0_RELOAD EQU ((65536-(CLK/TIMER0_RATE)))
-TIMER2_RATE   EQU 500     ; 1000Hz, for a timer tick of 1ms
+TIMER2_RATE   EQU 2000     ; 1000Hz, for a timer tick of 1ms
 TIMER2_RELOAD EQU ((65536-(CLK/TIMER2_RATE)))
 
 UPDOWN        equ P1.6
@@ -107,6 +107,10 @@ timesetseconds:     ds 1
 timesetminutes:     ds 1
 timesethours:       ds 1
 timesetdaystate:    ds 1
+alarmseconds:       ds 1
+alarmminutes:       ds 1
+alarmhours:         ds 1
+alarmday_state:     ds 1
 ; In the 8051 we have variables that are 1-bit in size.  We can use the setb, clr, jb, and jnb
 ; instructions with these variables.  This is how you define a 1-bit variable:
 bseg
@@ -129,8 +133,11 @@ $LIST
 ;                     1234567890123456    <- This helps determine the location of the counter
 Initial_Message:  db 'xx:xx:xx xx', 0
 ;                    '00:00:00 AM '
+Alarm_Message: db    'xx:xx:xx XX XXX', 0
 AM: db 'AM', 0
 PM: db 'PM', 0
+ON: db 'ON ', 0
+OFF: db 'OFF', 0
 
 ;---------------------------------;
 ; Routine to initialize the ISR   ;
@@ -255,15 +262,20 @@ main:
     ; For convenience a few handy macros are included in 'LCD_4bit.inc':
 	Set_Cursor(1, 1)
     Send_Constant_String(#Initial_Message)
+    Set_Cursor(2, 1)
+    ;Send_Constant_String(#Alarm_Message)
     setb half_seconds_flag
-	mov BCD_counter, #0x00
-    mov min_counter, #0x00
-    mov hour_counter, #0x00
+	mov BCD_counter, #00
+    mov min_counter, #00
+    mov hour_counter, #00
     mov day_state, #0 ; To configure AM/PM
-    mov timesetseconds, #0x00
-    mov timesetminutes, #0x00
+    mov timesetseconds, #00
+    mov timesetminutes, #00
     mov timesethours, #0x00
     mov timesetdaystate, #0
+    mov alarmseconds, #0x02
+    mov alarmminutes, #0x02
+    mov alarmhours, #0x02
 
 	; After initialization the program stays in this 'forever' loop
 loop:
@@ -271,20 +283,23 @@ loop:
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON1, buttonjump2; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON1, $		; Wait for button release.  The '$' means: jump to same instruction.
-    sjmp clear
+    inc alarmseconds
+    ljmp loop_b
 
 buttonjump2:
 	jb BUTTON2, buttonjump3 ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON2, buttonjump3; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON2, $		; Wait for button release.  The '$' means: jump to same instruction.
-    sjmp clear
+    inc alarmminutes
+    ljmp loop_b
 buttonjump3:
 	jb BUTTON3, buttonjump4 ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
 	jb BUTTON3, buttonjump4; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON3, $		; Wait for button release.  The '$' means: jump to same instruction.
-    sjmp clear
+    inc alarmhours
+    ljmp loop_b
 buttonjump4:
 	jb BUTTON4, buttonjump5 ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
@@ -292,9 +307,9 @@ buttonjump4:
 	jnb BUTTON4, $		; Wait for button release.  The '$' means: jump to same instruction.
     ljmp displaytimesetfunction
 buttonjump5:
-	jb BUTTON5, loop_a ; if the 'CLEAR' button is not pressed skip
+	jb BUTTON5, loop_b ; if the 'CLEAR' button is not pressed skip
 	Wait_Milli_Seconds(#50)	; Debounce delay.  This macro is also in 'LCD_4bit.inc'
-	jb BUTTON5, loop_a  ; if the 'CLEAR' button is not pressed skip
+	jb BUTTON5, loop_b  ; if the 'CLEAR' button is not pressed skip
 	jnb BUTTON5, $		; Wait for button release.  The '$' means: jump to same instruction.
     sjmp clear
 
@@ -322,24 +337,32 @@ loop_b:
 ;	Display_BCD(BCD_counter) ; This macro is also in 'LCD_4bit.inc'
 
     mov R4, BCD_counter
-    CJNE R4, #6, secondskip
-    mov BCD_counter, #0x00
-    inc min_counter
+    CJNE R4, #0x1, secondskip
+    mov BCD_counter, #00
+    ;inc min_counter
+    mov a, min_counter
+    add A, #1
+    da a
+    mov min_counter, A
 secondskip:
     Set_Cursor(1, 7)
     Display_BCD(BCD_counter)
 
-    mov R4, min_counter
-    CJNE R4, #6, minskip
-    mov min_counter, #0x00
-    inc hour_counter
+    mov a, min_counter
+    CJNE a, #0x1, minskip
+    mov min_counter, #00
+    ;inc hour_counter;
+    mov a, hour_counter
+    add A, #1
+    da a
+    mov hour_counter, A
 minskip:
     Set_Cursor(1, 4)
     Display_BCD(min_counter)
 
     mov R4, hour_counter
-    CJNE R4, #12, hourskip
-    mov hour_counter, #0x00
+    CJNE R4, #0x13, hourskip
+    mov hour_counter, #0x01
 ;Check states and run if else
     mov R4, day_state
     cjne R4, #0, PMtoAM
@@ -359,13 +382,60 @@ hourskip:
 timePM:
     Set_Cursor(1, 10)
     Send_Constant_String(#PM)
-    ljmp loop
+    sjmp alarm
 timeAM:
     Set_Cursor(1, 10)
+    Send_Constant_String(#AM)
+    sjmp alarm
+
+
+alarm:
+    mov R4, alarmseconds
+    CJNE R4, #0x06, asecondskip
+    mov alarmseconds, #000
+    inc alarmminutes
+asecondskip:
+    Set_Cursor(2, 7)
+    Display_BCD(alarmseconds)
+
+    mov R4, alarmminutes
+    CJNE R4, #0x06, aminskip
+    mov alarmminutes, #000
+    inc alarmhours
+aminskip:
+    Set_Cursor(2, 4)
+    Display_BCD(alarmminutes)
+
+    mov R4, alarmhours
+    CJNE R4, #0x12, ahourskip
+    mov alarmhours, #000
+;Check states and run if else
+    mov R4, alarmday_state
+    cjne R4, #0, aPMtoAM
+;PMtoAM
+    mov alarmday_state, #1
+    sjmp ahourskip
+aPMtoAM:
+    mov alarmday_state, #0
+
+ahourskip:
+    Set_Cursor(2, 1)
+    Display_BCD(alarmhours)
+
+;Check states and run alternate
+    mov R4, alarmday_state
+    CJNE R4, #0, atimeAM
+atimePM:
+    Set_Cursor(2, 10)
+    Send_Constant_String(#PM)
+    ljmp loop
+atimeAM:
+    Set_Cursor(2, 10)
     Send_Constant_String(#AM)
     ljmp loop
 ;}}}
 ; DISPLAY TIME FUNCTION {{{
+
 displaytimesetfunction:
 
 loop2:
@@ -401,21 +471,21 @@ sbuttonjump4:
 displaytimefunction:
     mov R4, timesetseconds
     CJNE R4, #6, ssecondskip
-    mov timesetseconds, #0x00
+    mov timesetseconds, #000
 ssecondskip:
     Set_Cursor(1, 7)
     Display_BCD(timesetseconds)
 
     mov R4, min_counter
     CJNE R4, #6, sminskip
-    mov min_counter, #0x00
+    mov min_counter, #000
 sminskip:
     Set_Cursor(1, 4)
     Display_BCD(min_counter)
 
     mov R4, hour_counter
     CJNE R4, #12, shourskip
-    mov hour_counter, #0x00
+    mov hour_counter, #000
 ;Check states and run if else
     mov R4, day_state
     cjne R4, #0, sPMtoAM
