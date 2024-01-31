@@ -494,6 +494,7 @@ alarm_sound:
     cjne a, #0, noalarm
     mov alarm_on, #1
 
+
     cpl sound_out
 
 noalarm:
