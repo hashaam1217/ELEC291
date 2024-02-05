@@ -1,0 +1,90 @@
+0000              1   ; 76E003 Serial port test program: Sends a message using the serial port.
+0000              2   
+                  4   $LIST
+0000              6   
+0000              7   ;  N76E003 pinout:
+0000              8   ;                               -------
+0000              9   ;       PWM2/IC6/T0/AIN4/P0.5 -|1    20|- P0.4/AIN5/STADC/PWM3/IC3
+0000             10   ;               TXD/AIN3/P0.6 -|2    19|- P0.3/PWM5/IC5/AIN6
+0000             11   ;               RXD/AIN2/P0.7 -|3    18|- P0.2/ICPCK/OCDCK/RXD_1/[SCL]
+0000             12   ;                    RST/P2.0 -|4    17|- P0.1/PWM4/IC4/MISO
+0000             13   ;        INT0/OSCIN/AIN1/P3.0 -|5    16|- P0.0/PWM3/IC3/MOSI/T1
+0000             14   ;              INT1/AIN0/P1.7 -|6    15|- P1.0/PWM2/IC2/SPCLK
+0000             15   ;                         GND -|7    14|- P1.1/PWM1/IC1/AIN7/CLO
+0000             16   ;[SDA]/TXD_1/ICPDA/OCDDA/P1.6 -|8    13|- P1.2/PWM0/IC0
+0000             17   ;                         VDD -|9    12|- P1.3/SCL/[STADC]
+0000             18   ;            PWM5/IC7/SS/P1.5 -|10   11|- P1.4/SDA/FB/PWM1
+0000             19   ;                               -------
+0000             20   ;
+0000             21   
+0000             22   CLK           EQU 16600000 ; Microcontroller system frequency in Hz
+0000             23   BAUD          EQU 115200 ; Baud rate of UART in bps
+0000             24   TIMER1_RELOAD EQU (0x100-(CLK/(16*BAUD)))
+0000             25   
+0000             26   org 0000H
+0000 020058      27      ljmp MainProgram
+0003             28   
+0003             29   CSEG
+0003             30   
+0003             31   ; Configure the serial port and baud rate
+0003             32   InitSerialPort:
+0003             33            ; Configure all the pins for biderectional I/O
+0003 75AC00      34            mov     P3M1,#0x00
+0006 75AD00      35            mov     P3M2,#0x00
+0009 75B300      36            mov     P1M1,#0x00
+000C 75B400      37            mov     P1M2,#0x00
+000F 75B100      38            mov     P0M1,#0x00
+0012 75B200      39            mov     P0M2,#0x00
+0015             40            
+0015             41       ; Since the reset button bounces, we need to wait a bit before
+0015             42       ; sending messages, otherwise we risk displaying gibberish!
+0015 79C8        43       mov R1, #200
+0017 7868        44       mov R0, #104
+0019 D8FE        45       djnz R0, $   ; 4 cycles->4*60.285ns*104=25us
+001B D9FA        46       djnz R1, $-4 ; 25us*200=5.0ms
+001D             47   
+001D             48       ; Now we can proceed with the configuration of the serial port
+001D 438E10      49            orl     CKCON, #0x10 ; CLK is the input for timer 1
+0020 438780      50            orl     PCON, #0x80 ; Bit SMOD=1, double baud rate
+0023 759852      51            mov     SCON, #0x52
+0026 53C4DF      52            anl     T3CON, #0b11011111
+0029 53890F      53            anl     TMOD, #0x0F ; Clear the configuration bits for timer 1
+002C 438920      54            orl     TMOD, #0x20 ; Timer 1 Mode 2
+002F 758DF7      55            mov     TH1, #TIMER1_RELOAD
+0032 D28E        56            setb TR1
+0034 22          57       ret
+0035             58   
+0035             59   ; Send a character using the serial port
+0035             60   putchar:
+0035 3099FD      61       jnb TI, putchar
+0038 C299        62       clr TI
+003A F599        63       mov SBUF, a
+003C 22          64       ret
+003D             65   
+003D             66   ; Send a constant-zero-terminated string using the serial port
+003D             67   SendString:
+003D E4          68       clr A
+003E 93          69       movc A, @A+DPTR
+003F 6006        70       jz SendStringDone
+0041 120035      71       lcall putchar
+0044 A3          72       inc DPTR
+0045 80F6        73       sjmp SendString
+0047             74   SendStringDone:
+0047 22          75       ret
+0048             76    
+0048             77   Hello_World:
+0048 48656C6C    78       DB  'Hello, World!', '\r', '\n', 0
+     6F2C2057
+     6F726C64
+     210D0A00
+0058             79   
+0058             80   MainProgram:
+0058 75817F      81       mov SP, #7FH ; Set the stack pointer to the begining of idata
+005B             82       
+005B 120003      83       lcall InitSerialPort
+005E 900048      84       mov DPTR, #Hello_World
+0061 12003D      85       lcall SendString
+0064             86       
+0064 80FE        87       sjmp $; This is equivalent to 'forever: sjmp forever'
+0066             88       
+0066             89   END
