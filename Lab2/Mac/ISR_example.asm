@@ -353,7 +353,7 @@ alternate:
 ;  ljmp loop
 
 ;}}}
-; LOOP B Display Timer {{
+; LOOP B Display Timer {{{
 loop_a:
 	jnb half_seconds_flag, int_loop
     sjmp loop_b

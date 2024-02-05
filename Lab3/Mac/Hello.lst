@@ -85,6 +85,6 @@
 005E 900048      84       mov DPTR, #Hello_World
 0061 12003D      85       lcall SendString
 0064             86       
-0064 80FE        87       sjmp $; This is equivalent to 'forever: sjmp forever'
+0064 80F2        87       sjmp MainProgram; This is equivalent to 'forever: sjmp forever'
 0066             88       
 0066             89   END

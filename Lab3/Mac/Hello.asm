@@ -37,7 +37,7 @@ InitSerialPort:
 	mov	P1M2,#0x00
 	mov	P0M1,#0x00
 	mov	P0M2,#0x00
-	
+
     ; Since the reset button bounces, we need to wait a bit before
     ; sending messages, otherwise we risk displaying gibberish!
     mov R1, #200
@@ -73,7 +73,7 @@ SendString:
     sjmp SendString
 SendStringDone:
     ret
- 
+
 Hello_World:
     DB  'Hello, World!', '\r', '\n', 0
 
@@ -84,6 +84,6 @@ MainProgram:
     mov DPTR, #Hello_World
     lcall SendString
     
-    sjmp $; This is equivalent to 'forever: sjmp forever'
+    sjmp MainProgram; This is equivalent to 'forever: sjmp forever'
     
 END
