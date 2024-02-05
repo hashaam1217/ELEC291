@@ -53,7 +53,11 @@ MainProgram:
     mov SP, #7FH ; Set the stack pointer to the begining of idata
 
     lcall InitSerialPort
-    mov DPTR, #Hello_World
+    ;mov DPTR, #0x38H
+    ;mov DPTR, #Hello_World
+    mov SBUF, #0x05
+    lcall putchar
+    ret
     lcall SendString
 
     ;sjmp $; This is equivalent to 'forever: sjmp forever'

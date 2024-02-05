@@ -190,7 +190,8 @@ Forever:
 	; Convert to BCD and display
 	lcall hex2bcd
 	lcall Display_formated_BCD
-    lcall MainProgram
+    ;lcall MainProgram
+    lcall Send_BCD
 
 	; Wait 500 ms between conversions
 	mov R2, #250
