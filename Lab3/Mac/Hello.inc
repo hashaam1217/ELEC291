@@ -47,20 +47,13 @@ SendStringDone:
     ret
 
 Hello_World:
-    DB  'Hello, World!', '\r', '\n', 0
+    DB  '\r', '\n', 0
 
 MainProgram:
-    mov SP, #7FH ; Set the stack pointer to the begining of idata
+    ;mov SP, #7FH ; Set the stack pointer to the begining of idata
 
     lcall InitSerialPort
-    ;mov DPTR, #0x38H
-    ;mov DPTR, #Hello_World
-    mov SBUF, #0x05
-    lcall putchar
-    ret
+    mov DPTR, #Hello_World
     lcall SendString
-
-    ;sjmp $; This is equivalent to 'forever: sjmp forever'
     ret
-
 END

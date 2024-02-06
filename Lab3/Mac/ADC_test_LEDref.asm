@@ -42,7 +42,6 @@ LCD_D7 equ P0.3
 
 $NOLIST
 $include(LCD_4bit.inc) ; A library of LCD related functions and utility macros
-$include(Hello.inc)
 $LIST
 
 ; These register definitions needed by 'math32.inc'
@@ -57,6 +56,7 @@ mf: dbit 1
 
 $NOLIST
 $include(math32.inc)
+$include(Hello.inc)
 $LIST
 
 Init_All:
@@ -67,7 +67,7 @@ Init_All:
 	mov	P1M2, #0x00
 	mov	P0M1, #0x00
 	mov	P0M2, #0x00
-
+	
 	orl	CKCON, #0x10 ; CLK is the input for timer 1
 	orl	PCON, #0x80 ; Bit SMOD=1, double baud rate
 	mov	SCON, #0x52
@@ -76,17 +76,17 @@ Init_All:
 	orl	TMOD, #0x20 ; Timer 1 Mode 2
 	mov	TH1, #TIMER1_RELOAD ; TH1=TIMER1_RELOAD;
 	setb TR1
-
+	
 	; Using timer 0 for delay functions.  Initialize here:
 	clr	TR0 ; Stop timer 0
 	orl	CKCON,#0x08 ; CLK is the input for timer 0
 	anl	TMOD,#0xF0 ; Clear the configuration bits for timer 0
 	orl	TMOD,#0x01 ; Timer 0 in Mode 1: 16-bit timer
-
+	
 	; Initialize the pins used by the ADC (P1.1, P1.7) as input.
 	orl	P1M1, #0b10000010
 	anl	P1M2, #0b01111101
-
+	
 	; Initialize and start the ADC:
 	anl ADCCON0, #0xF0
 	orl ADCCON0, #0x07 ; Select channel 7
@@ -94,9 +94,9 @@ Init_All:
 	mov AINDIDS, #0x00 ; Disable all analog inputs
 	orl AINDIDS, #0b10000001 ; Activate AIN0 and AIN7 analog inputs
 	orl ADCCON1, #0x01 ; Enable ADC
-
+	
 	ret
-
+	
 wait_1ms:
 	clr	TR0 ; Stop timer 0
 	clr	TF0 ; Clear overflow flag
@@ -128,12 +128,12 @@ Read_ADC:
 	clr ADCF
 	setb ADCS ;  ADC start trigger signal
     jnb ADCF, $ ; Wait for conversion complete
-
+    
     ; Read the ADC result and store in [R1, R0]
     mov a, ADCRL
     anl a, #0x0f
     mov R0, a
-    mov a, ADCRH
+    mov a, ADCRH   
     swap a
     push acc
     anl a, #0x0f
@@ -144,17 +144,48 @@ Read_ADC:
     mov R0, A
 	ret
 
+; Custom functions:
+Send_BCD mac
+push ar0
+mov r0, %0
+lcall ?Send_BCD
+pop ar0
+endmac
+?Send_BCD:
+push acc
+; Write most significant digit
+mov a, r0
+swap a
+anl a, #0fh
+orl a, #30h
+lcall putchar
+; write least significant digit
+mov a, r0
+anl a, #0fh
+orl a, #30h
+lcall putchar
+pop acc
+ret
+
+SendtoSerial:
+    Send_BCD(bcd + 3)
+    Send_BCD(bcd + 2)
+    Send_BCD(bcd + 1)
+    Send_BCD(bcd + 0)
+
+    ret
+
 main:
 	mov sp, #0x7f
 	lcall Init_All
     lcall LCD_4BIT
-
+    
     ; initial messages in LCD
 	Set_Cursor(1, 1)
     Send_Constant_String(#test_message)
 	Set_Cursor(2, 1)
     Send_Constant_String(#value_message)
-
+    
 Forever:
 
 	; Read the 2.08V LED voltage connected to AIN0 on pin 6
@@ -170,7 +201,7 @@ Forever:
 	anl ADCCON0, #0xF0
 	orl ADCCON0, #0x07 ; Select channel 7
 	lcall Read_ADC
-
+    
     ; Convert to voltage
 	mov x+0, R0
 	mov x+1, R1
@@ -190,14 +221,14 @@ Forever:
 	; Convert to BCD and display
 	lcall hex2bcd
 	lcall Display_formated_BCD
-    ;lcall MainProgram
-    lcall Send_BCD
-
+    lcall MainProgram
+	
 	; Wait 500 ms between conversions
 	mov R2, #250
 	lcall waitms
 	mov R2, #250
 	lcall waitms
-
+	
 	ljmp Forever
 END
+	

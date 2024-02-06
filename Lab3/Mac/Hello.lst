@@ -35,7 +35,7 @@
 000C 75B400      37            mov     P1M2,#0x00
 000F 75B100      38            mov     P0M1,#0x00
 0012 75B200      39            mov     P0M2,#0x00
-0015             40            
+0015             40   
 0015             41       ; Since the reset button bounces, we need to wait a bit before
 0015             42       ; sending messages, otherwise we risk displaying gibberish!
 0015 79C8        43       mov R1, #200
@@ -71,7 +71,7 @@
 0045 80F6        73       sjmp SendString
 0047             74   SendStringDone:
 0047 22          75       ret
-0048             76    
+0048             76   
 0048             77   Hello_World:
 0048 48656C6C    78       DB  'Hello, World!', '\r', '\n', 0
      6F2C2057

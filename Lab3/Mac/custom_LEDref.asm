@@ -1,4 +1,5 @@
 ; 76E003 ADC test program: Reads channel 7 on P1.1, pin 14
+; This version uses an LED as voltage reference connected to pin 6 (P1.7/AIN0)
 
 $NOLIST
 $MODN76E003
@@ -33,7 +34,6 @@ value_message:    db 'V(pin 14)=      ', 0
 cseg
 ; These 'equ' must match the hardware wiring
 LCD_RS equ P1.3
-;LCD_RW equ PX.X ; Not used in this code, connect the pin to GND
 LCD_E  equ P1.4
 LCD_D4 equ P0.0
 LCD_D5 equ P0.1
@@ -50,6 +50,7 @@ DSEG at 30H
 x:   ds 4
 y:   ds 4
 bcd: ds 5
+VLED_ADC: ds 2
 
 BSEG
 mf: dbit 1
@@ -66,7 +67,7 @@ Init_All:
 	mov	P1M2, #0x00
 	mov	P0M1, #0x00
 	mov	P0M2, #0x00
-	
+
 	orl	CKCON, #0x10 ; CLK is the input for timer 1
 	orl	PCON, #0x80 ; Bit SMOD=1, double baud rate
 	mov	SCON, #0x52
@@ -75,27 +76,27 @@ Init_All:
 	orl	TMOD, #0x20 ; Timer 1 Mode 2
 	mov	TH1, #TIMER1_RELOAD ; TH1=TIMER1_RELOAD;
 	setb TR1
-	
+
 	; Using timer 0 for delay functions.  Initialize here:
 	clr	TR0 ; Stop timer 0
 	orl	CKCON,#0x08 ; CLK is the input for timer 0
 	anl	TMOD,#0xF0 ; Clear the configuration bits for timer 0
 	orl	TMOD,#0x01 ; Timer 0 in Mode 1: 16-bit timer
-	
-	; Initialize the pin used by the ADC (P1.1) as input.
-	orl	P1M1, #0b00000010
-	anl	P1M2, #0b11111101
-	
+
+	; Initialize the pins used by the ADC (P1.1, P1.7) as input.
+	orl	P1M1, #0b10000010
+	anl	P1M2, #0b01111101
+
 	; Initialize and start the ADC:
 	anl ADCCON0, #0xF0
 	orl ADCCON0, #0x07 ; Select channel 7
 	; AINDIDS select if some pins are analog inputs or digital I/O:
 	mov AINDIDS, #0x00 ; Disable all analog inputs
-	orl AINDIDS, #0b10000000 ; P1.1 is analog input
+	orl AINDIDS, #0b10000001 ; Activate AIN0 and AIN7 analog inputs
 	orl ADCCON1, #0x01 ; Enable ADC
-	
+
 	ret
-	
+
 wait_1ms:
 	clr	TR0 ; Stop timer 0
 	clr	TF0 ; Clear overflow flag
@@ -123,7 +124,27 @@ Display_formated_BCD:
 	Display_char(#'=')
 	ret
 
-; Custom Functions
+Read_ADC:
+	clr ADCF
+	setb ADCS ;  ADC start trigger signal
+    jnb ADCF, $ ; Wait for conversion complete
+
+    ; Read the ADC result and store in [R1, R0]
+    mov a, ADCRL
+    anl a, #0x0f
+    mov R0, a
+    mov a, ADCRH
+    swap a
+    push acc
+    anl a, #0x0f
+    mov R1, a
+    pop acc
+    anl a, #0xf0
+    orl a, R0
+    mov R0, A
+	ret
+
+; Custom functions:
 Send_BCD mac
 push ar0
 mov r0, %0
@@ -167,36 +188,42 @@ main:
     Send_Constant_String(#value_message)
 
 Forever:
-	clr ADCF
-	setb ADCS ;  ADC start trigger signal
-    jnb ADCF, $ ; Wait for conversion complete
 
-    ; Read the ADC result and store in [R1, R0]
-    mov a, ADCRH
-    swap a
-    push acc
-    anl a, #0x0f
-    mov R1, a
-    pop acc
-    anl a, #0xf0
-    orl a, ADCRL
-    mov R0, A
+	; Read the 2.08V LED voltage connected to AIN0 on pin 6
+	anl ADCCON0, #0xF0
+	orl ADCCON0, #0x00 ; Select channel 0
+
+	lcall Read_ADC
+	; Save result for later use
+	mov VLED_ADC+0, R0
+	mov VLED_ADC+1, R1
+
+	; Read the signal connected to AIN7
+	anl ADCCON0, #0xF0
+	orl ADCCON0, #0x07 ; Select channel 7
+	lcall Read_ADC
 
     ; Convert to voltage
 	mov x+0, R0
 	mov x+1, R1
+	; Pad other bits with zero
 	mov x+2, #0
 	mov x+3, #0
-	Load_y(20563) ; VCC voltage measured
+	Load_y(20563) ; The MEASURED LED voltage: 2.074V, with 4 decimal places
 	lcall mul32
-	Load_y(4095) ; 2^12-1
+	; Retrive the ADC LED value
+	mov y+0, VLED_ADC+0
+	mov y+1, VLED_ADC+1
+	; Pad other bits with zero
+	mov y+2, #0
+	mov y+3, #0
 	lcall div32
 
 	; Convert to BCD and display
 	lcall hex2bcd
 	lcall Display_formated_BCD
-    ;mov a, bcd
-    
+    mov a, bcd
+    lcall SendtoSerial
     lcall MainProgram
 
 	; Wait 500 ms between conversions
@@ -205,8 +232,5 @@ Forever:
 	mov R2, #250
 	lcall waitms
 
-	cpl P1.7 ; Blinking LED...
-
 	ljmp Forever
-
 END

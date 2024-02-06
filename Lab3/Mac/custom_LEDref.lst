@@ -46,18 +46,18 @@
 0025             40   LCD_D6 equ P0.2
 0025             41   LCD_D7 equ P0.3
 0025             42   
-                 44   	$LIST
-00D9             46   
-00D9             47   ; These register definitions needed by 'math32.inc'
-0030             48   DSEG at 30H
-0030             49   x:   ds 4
-0034             50   y:   ds 4
-0038             51   bcd: ds 5
-003D             52   VLED_ADC: ds 2
-003F             53   
-0000             54   BSEG
-0000             55   mf: dbit 1
-0001             56   
+                 45   $LIST
+012B             47   
+012B             48   ; These register definitions needed by 'math32.inc'
+0030             49   DSEG at 30H
+0030             50   x:   ds 4
+0034             51   y:   ds 4
+0038             52   bcd: ds 5
+003D             53   VLED_ADC: ds 2
+003F             54   
+0000             55   BSEG
+0000             56   mf: dbit 1
+0001             57   
                 546   $LIST
                  59   $LIST
 039B             61   
@@ -69,7 +69,7 @@
 03A4 75B400      67            mov     P1M2, #0x00
 03A7 75B100      68            mov     P0M1, #0x00
 03AA 75B200      69            mov     P0M2, #0x00
-03AD             70            
+03AD             70   
 03AD 438E10      71            orl     CKCON, #0x10 ; CLK is the input for timer 1
 03B0 438780      72            orl     PCON, #0x80 ; Bit SMOD=1, double baud rate
 03B3 759852      73            mov     SCON, #0x52
@@ -78,17 +78,17 @@
 03BC 438920      76            orl     TMOD, #0x20 ; Timer 1 Mode 2
 03BF 758DF7      77            mov     TH1, #TIMER1_RELOAD ; TH1=TIMER1_RELOAD;
 03C2 D28E        78            setb TR1
-03C4             79            
+03C4             79   
 03C4             80            ; Using timer 0 for delay functions.  Initialize here:
 03C4 C28C        81            clr     TR0 ; Stop timer 0
 03C6 438E08      82            orl     CKCON,#0x08 ; CLK is the input for timer 0
 03C9 5389F0      83            anl     TMOD,#0xF0 ; Clear the configuration bits for timer 0
 03CC 438901      84            orl     TMOD,#0x01 ; Timer 0 in Mode 1: 16-bit timer
-03CF             85            
+03CF             85   
 03CF             86            ; Initialize the pins used by the ADC (P1.1, P1.7) as input.
 03CF 43B382      87            orl     P1M1, #0b10000010
 03D2 53B47D      88            anl     P1M2, #0b01111101
-03D5             89            
+03D5             89   
 03D5             90            ; Initialize and start the ADC:
 03D5 53E8F0      91            anl ADCCON0, #0xF0
 03D8 43E807      92            orl ADCCON0, #0x07 ; Select channel 7
@@ -96,9 +96,9 @@
 03DB 75F600      94            mov AINDIDS, #0x00 ; Disable all analog inputs
 03DE 43F681      95            orl AINDIDS, #0b10000001 ; Activate AIN0 and AIN7 analog inputs
 03E1 43E101      96            orl ADCCON1, #0x01 ; Enable ADC
-03E4             97            
+03E4             97   
 03E4 22          98            ret
-03E5             99            
+03E5             99   
 03E5            100   wait_1ms:
 03E5 C28C       101            clr     TR0 ; Stop timer 0
 03E7 C28D       102            clr     TF0 ; Clear overflow flag
@@ -153,12 +153,12 @@
 043D C2EF       128            clr ADCF
 043F D2EE       129            setb ADCS ;  ADC start trigger signal
 0441 30EFFD     130       jnb ADCF, $ ; Wait for conversion complete
-0444            131       
+0444            131   
 0444            132       ; Read the ADC result and store in [R1, R0]
 0444 E5C2       133       mov a, ADCRL
 0446 540F       134       anl a, #0x0f
 0448 F8         135       mov R0, a
-0449 E5C3       136       mov a, ADCRH   
+0449 E5C3       136       mov a, ADCRH
 044B C4         137       swap a
 044C C0E0       138       push acc
 044E 540F       139       anl a, #0x0f
@@ -183,12 +183,12 @@
 045B C4         158   swap a
 045C 540F       159   anl a, #0fh
 045E 4430       160   orl a, #30h
-0460 12037B     161   lcall putchar
+0460 12010B     161   lcall putchar
 0463            162   ; write least significant digit
 0463 E8         163   mov a, r0
 0464 540F       164   anl a, #0fh
 0466 4430       165   orl a, #30h
-0468 12037B     166   lcall putchar
+0468 12010B     166   lcall putchar
 046B D0E0       167   pop acc
 046D 22         168   ret
 046E            169   
@@ -212,84 +212,87 @@
 0492            175   
 0492 22         176       ret
 0493            177   
-0493            178   main:
-0493 75817F     179            mov sp, #0x7f
-0496 12039B     180            lcall Init_All
-0499 12007E     181       lcall LCD_4BIT
-049C            182       
-049C            183       ; initial messages in LCD
-049C C0E0       184            push acc
-049E 7401       184            mov a, #1
-04A0 14         184            dec a
-04A1 1200BE     184            lcall ?Set_Cursor_1 ; Select column and row
-04A4 D0E0       184            pop acc
-04A6 C083       185            push dph
-04A8 C082       185            push dpl
-04AA C0E0       185            push acc
-04AC 900003     185            mov dptr, #test_message
-04AF 1200B1     185            lcall ?Send_Constant_String
-04B2 D0E0       185            pop acc
-04B4 D082       185            pop dpl
-04B6 D083       185            pop dph
-04B8 C0E0       186            push acc
-04BA 7401       186            mov a, #1
-04BC 14         186            dec a
-04BD 1200BC     186            lcall ?Set_Cursor_2 ; Select column and row
-04C0 D0E0       186            pop acc
-04C2 C083       187            push dph
-04C4 C082       187            push dpl
-04C6 C0E0       187            push acc
-04C8 900014     187            mov dptr, #value_message
-04CB 1200B1     187            lcall ?Send_Constant_String
-04CE D0E0       187            pop acc
-04D0 D082       187            pop dpl
-04D2 D083       187            pop dph
-04D4            188       
-04D4            189   Forever:
-04D4            190   
-04D4            191            ; Read the 2.08V LED voltage connected to AIN0 on pin 6
-04D4 53E8F0     192            anl ADCCON0, #0xF0
-04D7 43E800     193            orl ADCCON0, #0x00 ; Select channel 0
-04DA            194   
-04DA 12043D     195            lcall Read_ADC
-04DD            196            ; Save result for later use
-04DD 883D       197            mov VLED_ADC+0, R0
-04DF 893E       198            mov VLED_ADC+1, R1
-04E1            199   
-04E1            200            ; Read the signal connected to AIN7
-04E1 53E8F0     201            anl ADCCON0, #0xF0
-04E4 43E807     202            orl ADCCON0, #0x07 ; Select channel 7
-04E7 12043D     203            lcall Read_ADC
-04EA            204       
-04EA            205       ; Convert to voltage
-04EA 8830       206            mov x+0, R0
-04EC 8931       207            mov x+1, R1
-04EE            208            ; Pad other bits with zero
-04EE 753200     209            mov x+2, #0
-04F1 753300     210            mov x+3, #0
-04F4 753453     211            mov y+0, #low (20563 % 0x10000)
-04F7 753550     211            mov y+1, #high(20563 % 0x10000)
-04FA 753600     211            mov y+2, #low (20563 / 0x10000)
-04FD 753700     211            mov y+3, #high(20563 / 0x10000) ; The MEASURED LED voltage: 2.074V, with 4 decimal places
-0500 120253     212            lcall mul32
-0503            213            ; Retrive the ADC LED value
-0503 853D34     214            mov y+0, VLED_ADC+0
-0506 853E35     215            mov y+1, VLED_ADC+1
-0509            216            ; Pad other bits with zero
-0509 753600     217            mov y+2, #0
-050C 753700     218            mov y+3, #0
-050F 1202E0     219            lcall div32
-0512            220   
-0512            221            ; Convert to BCD and display
-0512 1200D9     222            lcall hex2bcd
-0515 1203FB     223            lcall Display_formated_BCD
-0518 120391     224       lcall MainProgram
-051B            225            
-051B            226            ; Wait 500 ms between conversions
-051B 7AFA       227            mov R2, #250
-051D 1203F5     228            lcall waitms
-0520 7AFA       229            mov R2, #250
-0522 1203F5     230            lcall waitms
-0525            231            
-0525 0204D4     232            ljmp Forever
-0528            233   END
+0493            178   
+0493            179   main:
+0493 75817F     180            mov sp, #0x7f
+0496 12039B     181            lcall Init_All
+0499 12007E     182       lcall LCD_4BIT
+049C            183   
+049C            184       ; initial messages in LCD
+049C C0E0       185            push acc
+049E 7401       185            mov a, #1
+04A0 14         185            dec a
+04A1 1200BE     185            lcall ?Set_Cursor_1 ; Select column and row
+04A4 D0E0       185            pop acc
+04A6 C083       186            push dph
+04A8 C082       186            push dpl
+04AA C0E0       186            push acc
+04AC 900003     186            mov dptr, #test_message
+04AF 1200B1     186            lcall ?Send_Constant_String
+04B2 D0E0       186            pop acc
+04B4 D082       186            pop dpl
+04B6 D083       186            pop dph
+04B8 C0E0       187            push acc
+04BA 7401       187            mov a, #1
+04BC 14         187            dec a
+04BD 1200BC     187            lcall ?Set_Cursor_2 ; Select column and row
+04C0 D0E0       187            pop acc
+04C2 C083       188            push dph
+04C4 C082       188            push dpl
+04C6 C0E0       188            push acc
+04C8 900014     188            mov dptr, #value_message
+04CB 1200B1     188            lcall ?Send_Constant_String
+04CE D0E0       188            pop acc
+04D0 D082       188            pop dpl
+04D2 D083       188            pop dph
+04D4            189   
+04D4            190   Forever:
+04D4            191   
+04D4            192            ; Read the 2.08V LED voltage connected to AIN0 on pin 6
+04D4 53E8F0     193            anl ADCCON0, #0xF0
+04D7 43E800     194            orl ADCCON0, #0x00 ; Select channel 0
+04DA            195   
+04DA 12043D     196            lcall Read_ADC
+04DD            197            ; Save result for later use
+04DD 883D       198            mov VLED_ADC+0, R0
+04DF 893E       199            mov VLED_ADC+1, R1
+04E1            200   
+04E1            201            ; Read the signal connected to AIN7
+04E1 53E8F0     202            anl ADCCON0, #0xF0
+04E4 43E807     203            orl ADCCON0, #0x07 ; Select channel 7
+04E7 12043D     204            lcall Read_ADC
+04EA            205   
+04EA            206       ; Convert to voltage
+04EA 8830       207            mov x+0, R0
+04EC 8931       208            mov x+1, R1
+04EE            209            ; Pad other bits with zero
+04EE 753200     210            mov x+2, #0
+04F1 753300     211            mov x+3, #0
+04F4 753453     212            mov y+0, #low (20563 % 0x10000)
+04F7 753550     212            mov y+1, #high(20563 % 0x10000)
+04FA 753600     212            mov y+2, #low (20563 / 0x10000)
+04FD 753700     212            mov y+3, #high(20563 / 0x10000) ; The MEASURED LED voltage: 2.074V, with 4 decimal places
+0500 1202A5     213            lcall mul32
+0503            214            ; Retrive the ADC LED value
+0503 853D34     215            mov y+0, VLED_ADC+0
+0506 853E35     216            mov y+1, VLED_ADC+1
+0509            217            ; Pad other bits with zero
+0509 753600     218            mov y+2, #0
+050C 753700     219            mov y+3, #0
+050F 120332     220            lcall div32
+0512            221   
+0512            222            ; Convert to BCD and display
+0512 12012B     223            lcall hex2bcd
+0515 1203FB     224            lcall Display_formated_BCD
+0518 E538       225       mov a, bcd
+051A 12046E     226       lcall SendtoSerial
+051D 120121     227       lcall MainProgram
+0520            228   
+0520            229            ; Wait 500 ms between conversions
+0520 7AFA       230            mov R2, #250
+0522 1203F5     231            lcall waitms
+0525 7AFA       232            mov R2, #250
+0527 1203F5     233            lcall waitms
+052A            234   
+052A 0204D4     235            ljmp Forever
+052D            236   END
