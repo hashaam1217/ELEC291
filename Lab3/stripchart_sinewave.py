@@ -2,17 +2,32 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import sys, time, math
+import serial
 
+ser = serial.Serial(
+    port='/dev/ttyUSB0',
+    baudrate=115200,
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_TWO,
+    bytesize=serial.EIGHTBITS
+)
 
+ser.isOpen()
 
 xsize=100
 
 def data_gen():
     t = data_gen.t
     while True:
-       t+=1
-       val=100.0*math.sin(t*2.0*3.1415/100.0)
-       yield t, val
+        strin = ser.readline()
+        byte_string = strin
+        string = byte_string.decode('utf-8')  # Decode the byte string into a regular string
+        string = string.strip()  # Remove the newline character at the end
+        number = int(string)
+        print (number)
+        t+=0.5
+        val=number
+        yield t, val
 
 def run(data):
     # update the data
@@ -34,7 +49,7 @@ fig = plt.figure()
 fig.canvas.mpl_connect('close_event', on_close_figure)
 ax = fig.add_subplot(111)
 line, = ax.plot([], [], lw=2)
-ax.set_ylim(29500, 30000)
+ax.set_ylim(10, 50)
 ax.set_xlim(0, xsize)
 ax.grid()
 xdata, ydata = [], []

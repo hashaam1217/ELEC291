@@ -49,6 +49,8 @@ $LIST
 DSEG at 30H
 x:   ds 4
 y:   ds 4
+load_average:   ds 4
+tired: ds 1
 bcd: ds 5
 VLED_ADC: ds 2
 
@@ -196,6 +198,12 @@ main:
     Send_Constant_String(#value_message)
 
 Forever:
+    mov R6, #0
+    mov load_average+0, #0
+    mov load_average+1, #0
+    mov load_average+2, #0
+    mov load_average+3, #0
+Wakanda_Forever:
 
 	; Read the 2.08V LED voltage connected to AIN0 on pin 6
 	anl ADCCON0, #0xF0
@@ -217,7 +225,7 @@ Forever:
 	; Pad other bits with zero
 	mov x+2, #0
 	mov x+3, #0
-	Load_y(20509) ; The MEASURED LED voltage: 2.074V, with 4 decimal places
+	Load_y(20409) ; The MEASURED LED voltage: 2.074V, with 4 decimal places
 	lcall mul32
 	; Retrive the ADC LED value
 	mov y+0, VLED_ADC+0
@@ -226,17 +234,50 @@ Forever:
 	mov y+2, #0
 	mov y+3, #0
 	lcall div32
+
+    ;mov y+0, load_average+0
+    ;mov y+1, load_average+1
+    ;mov y+2, load_average+2
+    ;mov y+3, load_average+3
+
+    ;lcall add32 ; Adding load and the previous answer
+    ;mov load_average+0, x+0
+    ;mov load_average+1, x+1
+    ;mov load_average+2, x+2
+    ;mov load_average+3, x+3
+    ;Saving answer back
+
+	;mov R2, #250
+	;lcall waitms
+	;mov R2, #250
+	;lcall waitms
+
+    ;mov a, R6
+    ;add a,  #1
+    ;mov R6, a
+    ;cjne R6, #2, Wakanda_Forever
+
+    ;mov x+0, load_average+0
+    ;mov x+1, load_average+1
+    ;mov x+2, load_average+2
+    ;mov x+3, load_average+3
+
+
     lcall hex2bcd
 	lcall Display_formated_BCD
 
-    Load_y(5)
-    lcall mul32 ; Vout = ADC*500
+    ;Load_y(20409)
+    ;lcall mul32
+    ;Load_y(4095)
+    ;lcall div32
     Load_y(27300)
-    lcall sub32 ; Temp = Temp - 273
-    Load_y(4095)
-    lcall div32 ; Vout = Vout/4095
+    lcall sub32
+    ;Load_y(100)
+    ;lcall mul32
     Load_y(100)
-    lcall mul32 ; Change from Temp/100 to Temp in degC
+    lcall div32
+
+
 
 
 	; Convert to BCD and display
