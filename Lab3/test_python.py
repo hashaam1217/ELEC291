@@ -11,4 +11,8 @@ ser = serial.Serial(
 ser.isOpen()
 while 1 :
     strin = ser.readline()
-    print (strin)
+    byte_string = strin
+    string = byte_string.decode('utf-8')  # Decode the byte string into a regular string
+    string = string.strip()  # Remove the newline character at the end
+    number = int(string)
+    print (number)

@@ -29,7 +29,7 @@ ORG 0x0000
 	ljmp main
 
 ;                     1234567890123456    <- This helps determine the location of the counter
-test_message:     db '*** ADC TEST ***', 0
+test_message:     db 'ADC TEST        ', 0
 value_message:    db 'V(pin 14)=      ', 0
 cseg
 ; These 'equ' must match the hardware wiring
@@ -123,7 +123,15 @@ Display_formated_BCD:
 	Set_Cursor(2, 10)
 	Display_char(#'=')
 	ret
-
+Display_formated_BCD_t:
+	Set_Cursor(1, 10)
+	Display_BCD(bcd+2)
+	Display_char(#'.')
+	Display_BCD(bcd+1)
+	Display_BCD(bcd+0)
+	;Set_Cursor(2, 10)
+	;Display_char(#'=')
+	ret
 Read_ADC:
 	clr ADCF
 	setb ADCS ;  ADC start trigger signal
@@ -209,7 +217,7 @@ Forever:
 	; Pad other bits with zero
 	mov x+2, #0
 	mov x+3, #0
-	Load_y(20563) ; The MEASURED LED voltage: 2.074V, with 4 decimal places
+	Load_y(20509) ; The MEASURED LED voltage: 2.074V, with 4 decimal places
 	lcall mul32
 	; Retrive the ADC LED value
 	mov y+0, VLED_ADC+0
@@ -218,10 +226,22 @@ Forever:
 	mov y+2, #0
 	mov y+3, #0
 	lcall div32
+    lcall hex2bcd
+	lcall Display_formated_BCD
+
+    Load_y(5)
+    lcall mul32 ; Vout = ADC*500
+    Load_y(27300)
+    lcall sub32 ; Temp = Temp - 273
+    Load_y(4095)
+    lcall div32 ; Vout = Vout/4095
+    Load_y(100)
+    lcall mul32 ; Change from Temp/100 to Temp in degC
+
 
 	; Convert to BCD and display
 	lcall hex2bcd
-	lcall Display_formated_BCD
+	lcall Display_formated_BCD_t
     mov a, bcd
     lcall SendtoSerial
     lcall MainProgram
