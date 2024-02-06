@@ -38,6 +38,7 @@ def data_gen():
         # Calculate the average of the last N samples
         val = sum(samples) / len(samples)
         print(val)
+        derivative = np.diff(samples)/0.5
 
         yield t, val
 
@@ -70,24 +71,7 @@ xdata, ydata = [], []
 # Important: Although blit=True makes graphing faster, we need blit=False to prevent
 # spurious lines to appear when resizing the stripchart.
 ani = animation.FuncAnimation(fig, run, data_gen, blit=False, interval=100, repeat=False)
+
 plt.show()
 
 
-import time
-import serial
-# configure the serial port
-ser = serial.Serial(
-    port='/dev/ttyUSB0',
-    baudrate=115200,
-    parity=serial.PARITY_NONE,
-    stopbits=serial.STOPBITS_TWO,
-    bytesize=serial.EIGHTBITS
-)
-ser.isOpen()
-while 1 :
-    strin = ser.readline()
-    byte_string = strin
-    string = byte_string.decode('utf-8')  # Decode the byte string into a regular string
-    string = string.strip()  # Remove the newline character at the end
-    number = int(string)
-    print (number)
