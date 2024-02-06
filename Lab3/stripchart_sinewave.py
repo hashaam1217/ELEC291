@@ -18,6 +18,9 @@ xsize=100
 
 def data_gen():
     t = data_gen.t
+    N = 20  # Number of samples to average over
+    samples = []  # List to store the last N samples
+
     while True:
         strin = ser.readline()
         byte_string = strin
@@ -25,9 +28,19 @@ def data_gen():
         string = string.strip()  # Remove the newline character at the end
         number = int(string)
         print (number)
-        t+=0.5
-        val=number
+        t += 0.5
+        samples.append(number)  # Add the new sample to the list
+
+        # If we have more than N samples, remove the oldest one
+        if len(samples) > N:
+            samples.pop(0)
+
+        # Calculate the average of the last N samples
+        val = sum(samples) / len(samples)
+        print(val)
+
         yield t, val
+
 
 def run(data):
     # update the data
