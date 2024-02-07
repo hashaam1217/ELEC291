@@ -4,6 +4,48 @@ import matplotlib.animation as animation
 import sys, time, math
 import serial
 
+import dash_daq as daq
+
+
+# Temp {{{
+
+from dash import Dash, html, dcc, Input, Output, callback
+import dash_daq as daq
+
+app = Dash(__name__)
+
+app.layout = html.Div([
+    daq.Thermometer(
+        id='my-thermometer-1',
+        value=5,
+        min=0,
+        max=10,
+        style={
+            'margin-bottom': '5%'
+        }
+    ),
+    dcc.Slider(
+        id='thermometer-slider-1',
+        value=5,
+        min=0,
+        max=10,
+
+    ),
+])
+
+
+@callback(
+    Output('my-thermometer-1', 'value'),
+    Input('thermometer-slider-1', 'value')
+)
+def update_thermometer(value):
+    return value
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+#}}}
+
 ser = serial.Serial(
     port='/dev/ttyUSB0',
     baudrate=115200,
@@ -20,7 +62,7 @@ def data_gen():
     t = data_gen.t
     N = 20  # Number of samples to average over
     samples = []  # List to store the last N samples
-
+    derivative_samples= []
     while True:
         strin = ser.readline()
         byte_string = strin
@@ -38,40 +80,42 @@ def data_gen():
         # Calculate the average of the last N samples
         val = sum(samples) / len(samples)
         print(val)
-        derivative = np.diff(samples)/0.5
+        if len(samples) > 1:
+            derivative = np.diff(samples)[-1]/0.5
+            derivative_samples.append(derivative)
+            if len(derivative_samples) > N:
+                derivative_samples.pop(0)
+                derivative = sum(derivative_samples) / len(derivative_samples)
+        else:
+            derivative = 0
 
-        yield t, val
-
+        yield t, val, derivative
 
 def run(data):
     # update the data
-    t,y = data
-    if t>-1:
+    t, y, dydt = data
+    if t > -1:
         xdata.append(t)
         ydata.append(y)
-        if t>xsize: # Scroll to the left.
-            ax.set_xlim(t-xsize, t)
+        dydt_data.append(dydt)
+        if t > xsize:  # Scroll to the left.
+            ax.set_xlim(t - xsize, t)
         line.set_data(xdata, ydata)
+        line2.set_data(xdata, dydt_data)
 
-    return line,
-
-def on_close_figure(event):
-    sys.exit(0)
+    return line, line2,
 
 data_gen.t = -1
 fig = plt.figure()
-fig.canvas.mpl_connect('close_event', on_close_figure)
 ax = fig.add_subplot(111)
 line, = ax.plot([], [], lw=2)
-ax.set_ylim(10, 50)
+line2, = ax.plot([], [], lw=2, color='r')  # New line for the derivative
+ax.set_ylim(0, 50)
 ax.set_xlim(0, xsize)
 ax.grid()
-xdata, ydata = [], []
+xdata, ydata, dydt_data = [], [], []  # New list for the derivative data
 
-# Important: Although blit=True makes graphing faster, we need blit=False to prevent
-# spurious lines to appear when resizing the stripchart.
 ani = animation.FuncAnimation(fig, run, data_gen, blit=False, interval=100, repeat=False)
 
 plt.show()
-
 
