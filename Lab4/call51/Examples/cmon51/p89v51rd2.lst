@@ -1,0 +1,1352 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
+0000              4   ; This file was generated Mon Jan 07 19:38:33 2013
+0000              5   ;--------------------------------------------------------
+                  5   $name p89v51rd2
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_ISEG    segment idata
+0000             13            R_OSEG    segment data overlay
+0000             14            BIT_BANK  segment data overlay
+0000             15            R_HOME    segment code
+0000             16            R_GSINIT  segment code
+0000             17            R_IXSEG   segment xdata
+0000             18            R_CONST   segment code
+0000             19            R_XINIT   segment code
+0000             20            R_DINIT   segment code
+0000             21   
+0000             22   ;--------------------------------------------------------
+0000             23   ; Public variables in this module
+0000             24   ;--------------------------------------------------------
+0000             25            public _FlashByte_PARM_2
+0000             26            public _bitn
+0000             27            public _sfrn
+0000             28            public _JumpToMonitor
+0000             29            public _set_timer1_priority
+0000             30            public _getchar
+0000             31            public __sdcc_external_startup
+0000             32            public _main
+0000             33            public _asm_code_sfr
+0000             34            public _putnl
+0000             35            public _FlashByte
+0000             36            public _erasesector
+0000             37            public _loadintelhex
+0000             38            public _read_sfr
+0000             39            public _write_sfr
+0000             40            public _restorePC
+0000             41            public _cpuid
+0000             42   ;--------------------------------------------------------
+0000             43   ; Special Function Registers
+0000             44   ;--------------------------------------------------------
+0000             45   _P0             DATA 0x80
+0000             46   _SP             DATA 0x81
+0000             47   _DPL            DATA 0x82
+0000             48   _DPH            DATA 0x83
+0000             49   _PCON           DATA 0x87
+0000             50   _TCON           DATA 0x88
+0000             51   _TMOD           DATA 0x89
+0000             52   _TL0            DATA 0x8a
+0000             53   _TL1            DATA 0x8b
+0000             54   _TH0            DATA 0x8c
+0000             55   _TH1            DATA 0x8d
+0000             56   _P1             DATA 0x90
+0000             57   _SCON           DATA 0x98
+0000             58   _SBUF           DATA 0x99
+0000             59   _P2             DATA 0xa0
+0000             60   _IE             DATA 0xa8
+0000             61   _P3             DATA 0xb0
+0000             62   _IP             DATA 0xb8
+0000             63   _PSW            DATA 0xd0
+0000             64   _ACC            DATA 0xe0
+0000             65   _B              DATA 0xf0
+0000             66   _T2CON          DATA 0xc8
+0000             67   _RCAP2L         DATA 0xca
+0000             68   _RCAP2H         DATA 0xcb
+0000             69   _TL2            DATA 0xcc
+0000             70   _TH2            DATA 0xcd
+0000             71   _AUXR           DATA 0x8e
+0000             72   _AUXR1          DATA 0xa2
+0000             73   _CCAP0H         DATA 0xfa
+0000             74   _CCAP1H         DATA 0xfb
+0000             75   _CCAP2H         DATA 0xfc
+0000             76   _CCAP3H         DATA 0xfd
+0000             77   _CCAP4H         DATA 0xfe
+0000             78   _CCAP0L         DATA 0xea
+0000             79   _CCAP1L         DATA 0xeb
+0000             80   _CCAP2L         DATA 0xec
+0000             81   _CCAP3L         DATA 0xed
+0000             82   _CCAP4L         DATA 0xee
+0000             83   _CCAPM0         DATA 0xda
+0000             84   _CCAPM1         DATA 0xdb
+0000             85   _CCAPM2         DATA 0xdc
+0000             86   _CCAPM3         DATA 0xdd
+0000             87   _CCAPM4         DATA 0xde
+0000             88   _CCON           DATA 0xd8
+0000             89   _CH             DATA 0xf9
+0000             90   _CL             DATA 0xe9
+0000             91   _CMOD           DATA 0xd9
+0000             92   _FST            DATA 0xb6
+0000             93   _FCF            DATA 0xb1
+0000             94   _IEN0           DATA 0xa8
+0000             95   _IEN1           DATA 0xe8
+0000             96   _IP0            DATA 0xb8
+0000             97   _IP0H           DATA 0xb7
+0000             98   _IP1            DATA 0xf8
+0000             99   _IP1H           DATA 0xf7
+0000            100   _SADDR          DATA 0xa9
+0000            101   _SADEN          DATA 0xb9
+0000            102   _SPCR           DATA 0xd5
+0000            103   _SPCTL          DATA 0xd5
+0000            104   _SPSR           DATA 0xaa
+0000            105   _SPCFG          DATA 0xaa
+0000            106   _SPDR           DATA 0x86
+0000            107   _SPDAT          DATA 0x86
+0000            108   _WDTC           DATA 0xc0
+0000            109   _WDTD           DATA 0x85
+0000            110   _T2MOD          DATA 0xc9
+0000            111   ;--------------------------------------------------------
+0000            112   ; special function bits
+0000            113   ;--------------------------------------------------------
+0000            114   _P0_0           BIT 0x80
+0000            115   _P0_1           BIT 0x81
+0000            116   _P0_2           BIT 0x82
+0000            117   _P0_3           BIT 0x83
+0000            118   _P0_4           BIT 0x84
+0000            119   _P0_5           BIT 0x85
+0000            120   _P0_6           BIT 0x86
+0000            121   _P0_7           BIT 0x87
+0000            122   _IT0            BIT 0x88
+0000            123   _IE0            BIT 0x89
+0000            124   _IT1            BIT 0x8a
+0000            125   _IE1            BIT 0x8b
+0000            126   _TR0            BIT 0x8c
+0000            127   _TF0            BIT 0x8d
+0000            128   _TR1            BIT 0x8e
+0000            129   _TF1            BIT 0x8f
+0000            130   _P1_0           BIT 0x90
+0000            131   _P1_1           BIT 0x91
+0000            132   _P1_2           BIT 0x92
+0000            133   _P1_3           BIT 0x93
+0000            134   _P1_4           BIT 0x94
+0000            135   _P1_5           BIT 0x95
+0000            136   _P1_6           BIT 0x96
+0000            137   _P1_7           BIT 0x97
+0000            138   _RI             BIT 0x98
+0000            139   _TI             BIT 0x99
+0000            140   _RB8            BIT 0x9a
+0000            141   _TB8            BIT 0x9b
+0000            142   _REN            BIT 0x9c
+0000            143   _SM2            BIT 0x9d
+0000            144   _SM1            BIT 0x9e
+0000            145   _SM0            BIT 0x9f
+0000            146   _P2_0           BIT 0xa0
+0000            147   _P2_1           BIT 0xa1
+0000            148   _P2_2           BIT 0xa2
+0000            149   _P2_3           BIT 0xa3
+0000            150   _P2_4           BIT 0xa4
+0000            151   _P2_5           BIT 0xa5
+0000            152   _P2_6           BIT 0xa6
+0000            153   _P2_7           BIT 0xa7
+0000            154   _EX0            BIT 0xa8
+0000            155   _ET0            BIT 0xa9
+0000            156   _EX1            BIT 0xaa
+0000            157   _ET1            BIT 0xab
+0000            158   _ES             BIT 0xac
+0000            159   _EA             BIT 0xaf
+0000            160   _P3_0           BIT 0xb0
+0000            161   _P3_1           BIT 0xb1
+0000            162   _P3_2           BIT 0xb2
+0000            163   _P3_3           BIT 0xb3
+0000            164   _P3_4           BIT 0xb4
+0000            165   _P3_5           BIT 0xb5
+0000            166   _P3_6           BIT 0xb6
+0000            167   _P3_7           BIT 0xb7
+0000            168   _RXD            BIT 0xb0
+0000            169   _TXD            BIT 0xb1
+0000            170   _INT0           BIT 0xb2
+0000            171   _INT1           BIT 0xb3
+0000            172   _T0             BIT 0xb4
+0000            173   _T1             BIT 0xb5
+0000            174   _WR             BIT 0xb6
+0000            175   _RD             BIT 0xb7
+0000            176   _PX0            BIT 0xb8
+0000            177   _PT0            BIT 0xb9
+0000            178   _PX1            BIT 0xba
+0000            179   _PT1            BIT 0xbb
+0000            180   _PS             BIT 0xbc
+0000            181   _P              BIT 0xd0
+0000            182   _F1             BIT 0xd1
+0000            183   _OV             BIT 0xd2
+0000            184   _RS0            BIT 0xd3
+0000            185   _RS1            BIT 0xd4
+0000            186   _F0             BIT 0xd5
+0000            187   _AC             BIT 0xd6
+0000            188   _CY             BIT 0xd7
+0000            189   _ET2            BIT 0xad
+0000            190   _PT2            BIT 0xbd
+0000            191   _T2CON_0        BIT 0xc8
+0000            192   _T2CON_1        BIT 0xc9
+0000            193   _T2CON_2        BIT 0xca
+0000            194   _T2CON_3        BIT 0xcb
+0000            195   _T2CON_4        BIT 0xcc
+0000            196   _T2CON_5        BIT 0xcd
+0000            197   _T2CON_6        BIT 0xce
+0000            198   _T2CON_7        BIT 0xcf
+0000            199   _CP_RL2         BIT 0xc8
+0000            200   _C_T2           BIT 0xc9
+0000            201   _TR2            BIT 0xca
+0000            202   _EXEN2          BIT 0xcb
+0000            203   _TCLK           BIT 0xcc
+0000            204   _RCLK           BIT 0xcd
+0000            205   _EXF2           BIT 0xce
+0000            206   _TF2            BIT 0xcf
+0000            207   _CF             BIT 0xdf
+0000            208   _CR             BIT 0xde
+0000            209   _CCF4           BIT 0xdc
+0000            210   _CCF3           BIT 0xdb
+0000            211   _CCF2           BIT 0xda
+0000            212   _CCF1           BIT 0xd9
+0000            213   _CCF0           BIT 0xd8
+0000            214   _EC             BIT 0xae
+0000            215   _EBO            BIT 0xeb
+0000            216   _PPC            BIT 0xbe
+0000            217   _PBO            BIT 0xfb
+0000            218   _WDOUT          BIT 0xc4
+0000            219   _WDRE           BIT 0xc3
+0000            220   _WDTS           BIT 0xc2
+0000            221   _WDT            BIT 0xc1
+0000            222   _SWDT           BIT 0xc0
+0000            223   ;--------------------------------------------------------
+0000            224   ; overlayable register banks
+0000            225   ;--------------------------------------------------------
+0000            226            rbank0 segment data overlay
+0000            227   ;--------------------------------------------------------
+0000            228   ; internal ram data
+0000            229   ;--------------------------------------------------------
+0000            230            rseg R_DSEG
+0000            231   ;--------------------------------------------------------
+0000            232   ; overlayable items in internal ram 
+0000            233   ;--------------------------------------------------------
+0000            234            rseg    R_OSEG
+0000            235   _FlashByte_PARM_2:
+0000            236            ds 1
+0001            237            rseg    R_OSEG
+0001            238   ;--------------------------------------------------------
+0001            239   ; indirectly addressable internal ram data
+0001            240   ;--------------------------------------------------------
+0000            241            rseg R_ISEG
+0000            242   ;--------------------------------------------------------
+0000            243   ; absolute internal ram data
+0000            244   ;--------------------------------------------------------
+0000            245            DSEG
+0000            246   ;--------------------------------------------------------
+0000            247   ; bit data
+0000            248   ;--------------------------------------------------------
+0000            249            rseg R_BSEG
+0000            250   _loadintelhex_errorbit_1_38:
+0000            251            DBIT    1
+0001            252   _loadintelhex_errorprog_1_38:
+0001            253            DBIT    1
+0002            254   _loadintelhex_wroteat1b_1_38:
+0002            255            DBIT    1
+0003            256   ;--------------------------------------------------------
+0003            257   ; paged external ram data
+0003            258   ;--------------------------------------------------------
+0000            259            rseg R_XSEG
+0000            260   ;--------------------------------------------------------
+0000            261   ; external ram data
+0000            262   ;--------------------------------------------------------
+0000            263            rseg R_XSEG
+0000            264   ;--------------------------------------------------------
+0000            265   ; absolute external ram data
+0000            266   ;--------------------------------------------------------
+0000            267            XSEG
+0000            268   ;--------------------------------------------------------
+0000            269   ; external initialized ram data
+0000            270   ;--------------------------------------------------------
+0000            271            rseg R_IXSEG
+0000            272            rseg R_HOME
+0000            273            rseg R_GSINIT
+0000            274            rseg R_CSEG
+0000            275   ;--------------------------------------------------------
+0000            276   ; Reset entry point and interrupt vectors
+0000            277   ;--------------------------------------------------------
+E000            278            CSEG at 0xe000
+E000 020100     279            ljmp    _crt0
+E003            280   ;--------------------------------------------------------
+E003            281   ; global & static initialisations
+E003            282   ;--------------------------------------------------------
+0000            283            rseg R_HOME
+0000            284            rseg R_GSINIT
+0000            285            rseg R_GSINIT
+0000            286   ;--------------------------------------------------------
+0000            287   ; data variables initialization
+0000            288   ;--------------------------------------------------------
+0000            289            rseg R_DINIT
+0000            290            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            291   ;--------------------------------------------------------
+0000            292   ; code
+0000            293   ;--------------------------------------------------------
+0000            294            rseg R_CSEG
+0000            295   ;------------------------------------------------------------
+0000            296   ;Allocation info for local variables in function 'asm_code_sfr'
+0000            297   ;------------------------------------------------------------
+0000            298   ;------------------------------------------------------------
+0000            299   ;        .\p89v51rd2.c:47: void asm_code_sfr (void) _naked
+0000            300   ;        -----------------------------------------
+0000            301   ;         function asm_code_sfr
+0000            302   ;        -----------------------------------------
+0000            303   _asm_code_sfr:
+0000            304   ;        naked function: no prologue.
+0000            305   ;        .\p89v51rd2.c:58: _endasm;
+0000            306            
+0000            307                 dumm_sfr_address data 0xff
+0000            308                 _code_sfr:
+0000            309     ; Write sfr
+0000 8582FF     310              mov dumm_sfr_address, dpl
+0003 22         311              ret
+0004            312     ; Read sfr
+0004 85FF82     313              mov dpl, dumm_sfr_address
+0007 22         314              ret
+0008            315                
+0008            316   ;        naked function: no epilogue.
+0008            317   ;------------------------------------------------------------
+0008            318   ;Allocation info for local variables in function 'main'
+0008            319   ;------------------------------------------------------------
+0008            320   ;------------------------------------------------------------
+0008            321   ;        .\p89v51rd2.c:195: void main (void)
+0008            322   ;        -----------------------------------------
+0008            323   ;         function main
+0008            324   ;        -----------------------------------------
+0008            325   _main:
+0008            326            using   0
+0008            327   ;        .\p89v51rd2.c:199: _endasm; //All the work is done in cmon51.c
+0008            328            
+0008 020100     329              ljmp _do_cmd
+000B            330             
+000B 22         331            ret
+000C            332   ;------------------------------------------------------------
+000C            333   ;Allocation info for local variables in function '_sdcc_external_startup'
+000C            334   ;------------------------------------------------------------
+000C            335   ;------------------------------------------------------------
+000C            336   ;        .\p89v51rd2.c:202: unsigned char _sdcc_external_startup(void)
+000C            337   ;        -----------------------------------------
+000C            338   ;         function _sdcc_external_startup
+000C            339   ;        -----------------------------------------
+000C            340   __sdcc_external_startup:
+000C            341   ;        .\p89v51rd2.c:204: IE=0;
+000C 75A800     342            mov     _IE,#0x00
+000F            343   ;        .\p89v51rd2.c:205: TR1=0;
+000F C28E       344            clr     _TR1
+0011            345   ;        .\p89v51rd2.c:206: TMOD=(TMOD&0x0f)|0x20;
+0011 740F       346            mov     a,#0x0F
+0013 5589       347            anl     a,_TMOD
+0015 4420       348            orl     a,#0x20
+0017 F589       349            mov     _TMOD,a
+0019            350   ;        .\p89v51rd2.c:207: PCON|=0x80; //x2 baudrate
+0019 438780     351            orl     _PCON,#0x80
+001C            352   ;        .\p89v51rd2.c:208: TH1=TIMER1_K2_115200;
+001C 758DFF     353            mov     _TH1,#0xFF
+001F            354   ;        .\p89v51rd2.c:209: TR1=1;
+001F D28E       355            setb    _TR1
+0021            356   ;        .\p89v51rd2.c:210: SCON=0x52;
+0021 759852     357            mov     _SCON,#0x52
+0024            358   ;        .\p89v51rd2.c:212: return 0;
+0024 758200     359            mov     dpl,#0x00
+0027 22         360            ret
+0028            361   ;------------------------------------------------------------
+0028            362   ;Allocation info for local variables in function 'getchar'
+0028            363   ;------------------------------------------------------------
+0028            364   ;------------------------------------------------------------
+0028            365   ;        .\p89v51rd2.c:215: char getchar(void)
+0028            366   ;        -----------------------------------------
+0028            367   ;         function getchar
+0028            368   ;        -----------------------------------------
+0028            369   _getchar:
+0028            370   ;        .\p89v51rd2.c:217: while (!RI);
+0028            371   L005001?:
+0028            372   ;        .\p89v51rd2.c:218: RI=0;
+0028 109898     373            jbc     _RI,L005008?
+002B 8001       374            sjmp    L005001?
+002D            375   L005008?:
+002D            376   ;        .\p89v51rd2.c:219: return SBUF;
+002D 859982     377            mov     dpl,_SBUF
+0030 22         378            ret
+0031            379   ;------------------------------------------------------------
+0031            380   ;Allocation info for local variables in function 'putnl'
+0031            381   ;------------------------------------------------------------
+0031            382   ;------------------------------------------------------------
+0031            383   ;        .\p89v51rd2.c:222: void putnl (void)
+0031            384   ;        -----------------------------------------
+0031            385   ;         function putnl
+0031            386   ;        -----------------------------------------
+0031            387   _putnl:
+0031            388   ;        .\p89v51rd2.c:224: while (!TI);
+0031            389   L006001?:
+0031            390   ;        .\p89v51rd2.c:225: TI=0;
+0031 109918     391            jbc     _TI,L006013?
+0034 8001       392            sjmp    L006001?
+0036            393   L006013?:
+0036            394   ;        .\p89v51rd2.c:226: SBUF='\r';
+0036 75990D     395            mov     _SBUF,#0x0D
+0039            396   ;        .\p89v51rd2.c:227: while (!TI);
+0039            397   L006004?:
+0039            398   ;        .\p89v51rd2.c:228: TI=0;
+0039 109998     399            jbc     _TI,L006014?
+003C 8001       400            sjmp    L006004?
+003E            401   L006014?:
+003E            402   ;        .\p89v51rd2.c:229: SBUF='\n';
+003E 75990A     403            mov     _SBUF,#0x0A
+0041 22         404            ret
+0042            405   ;------------------------------------------------------------
+0042            406   ;Allocation info for local variables in function 'FlashByte'
+0042            407   ;------------------------------------------------------------
+0042            408   ;value                     Allocated with name '_FlashByte_PARM_2'
+0042            409   ;address                   Allocated to registers r2 r3 
+0042            410   ;------------------------------------------------------------
+0042            411   ;        .\p89v51rd2.c:233: void FlashByte (unsigned int address, unsigned char value)
+0042            412   ;        -----------------------------------------
+0042            413   ;         function FlashByte
+0042            414   ;        -----------------------------------------
+0042            415   _FlashByte:
+0042 AA82       416            mov     r2,dpl
+0044 AB83       417            mov     r3,dph
+0046            418   ;        .\p89v51rd2.c:235: if(address>=MONITOR_LOC) return; //Protect the monitor
+0046 7420       419            mov     a,#0x100 - 0xE0
+0048 2B         420            add     a,r3
+0049 5001       421            jnc     L007002?
+004B 22         422            ret
+004C            423   L007002?:
+004C            424   ;        .\p89v51rd2.c:236: FCF=0; //Flash routines are in block 0
+004C 75B100     425            mov     _FCF,#0x00
+004F            426   ;        .\p89v51rd2.c:243: _endasm;
+004F            427            
+004F 7902       428              mov R1, #0x02
+0051            429     ;DPH contains the high part of the sector
+0051            430     ;DPL contains the low part of the sector
+0051 E500       431              mov a,_FlashByte_PARM_2
+0053 121FF0     432              lcall 0x1ff0
+0056            433             
+0056            434   ;        .\p89v51rd2.c:244: FCF=BSEL; //Go back to block 1
+0056 75B101     435            mov     _FCF,#0x01
+0059            436   ;        .\p89v51rd2.c:246: value; 
+0059 22         437            ret
+005A            438   ;------------------------------------------------------------
+005A            439   ;Allocation info for local variables in function 'erasesector'
+005A            440   ;------------------------------------------------------------
+005A            441   ;address                   Allocated to registers r2 r3 
+005A            442   ;------------------------------------------------------------
+005A            443   ;        .\p89v51rd2.c:252: void erasesector (unsigned int address)
+005A            444   ;        -----------------------------------------
+005A            445   ;         function erasesector
+005A            446   ;        -----------------------------------------
+005A            447   _erasesector:
+005A AA82       448            mov     r2,dpl
+005C AB83       449            mov     r3,dph
+005E            450   ;        .\p89v51rd2.c:254: if(address<MONITOR_LOC)
+005E 7420       451            mov     a,#0x100 - 0xE0
+0060 2B         452            add     a,r3
+0061 5001       453            jnc     L008009?
+0063 020100     454            ljmp    L008002?
+0066            455   L008009?:
+0066            456   ;        .\p89v51rd2.c:256: FCF=0; //Flash routines are in block 0
+0066 75B100     457            mov     _FCF,#0x00
+0069            458   ;        .\p89v51rd2.c:262: _endasm;
+0069            459            
+0069 7908       460               mov R1, #0x08
+006B            461      ;DPH contains the high part of the sector
+006B            462      ;DPL contains the low part of the sector
+006B 121FF0     463               lcall 0x1ff0 ;Entry point
+006E            464              
+006E            465   ;        .\p89v51rd2.c:263: FCF=BSEL; //Go back to block 1
+006E 75B101     466            mov     _FCF,#0x01
+0071            467   L008002?:
+0071            468   ;        .\p89v51rd2.c:265: if(address<0x0080)
+0071 C3         469            clr     c
+0072 EA         470            mov     a,r2
+0073 9480       471            subb    a,#0x80
+0075 EB         472            mov     a,r3
+0076 9400       473            subb    a,#0x00
+0078 5001       474            jnc     L008005?
+007A            475   ;        .\p89v51rd2.c:268: FlashByte(0x0000, 0x02);
+007A 750002     476            mov     _FlashByte_PARM_2,#0x02
+007D 900000     477            mov     dptr,#0x0000
+0080 120100     478            lcall   _FlashByte
+0083            479   ;        .\p89v51rd2.c:269: FlashByte(0x0001, MONITOR_LOC/0x100);
+0083 7500E0     480            mov     _FlashByte_PARM_2,#0xE0
+0086 900001     481            mov     dptr,#0x0001
+0089 120100     482            lcall   _FlashByte
+008C            483   ;        .\p89v51rd2.c:270: FlashByte(0x0002, 0x00);
+008C 750000     484            mov     _FlashByte_PARM_2,#0x00
+008F 900002     485            mov     dptr,#0x0002
+0092 120100     486            lcall   _FlashByte
+0095            487   ;        .\p89v51rd2.c:273: FlashByte(0x001b, 0x02);
+0095 750002     488            mov     _FlashByte_PARM_2,#0x02
+0098 90001B     489            mov     dptr,#0x001B
+009B 120100     490            lcall   _FlashByte
+009E            491   ;        .\p89v51rd2.c:274: FlashByte(0x001c, MONITOR_LOC/0x100);
+009E 7500E0     492            mov     _FlashByte_PARM_2,#0xE0
+00A1 90001C     493            mov     dptr,#0x001C
+00A4 120100     494            lcall   _FlashByte
+00A7            495   ;        .\p89v51rd2.c:275: FlashByte(0x001d, 0x03);
+00A7 750003     496            mov     _FlashByte_PARM_2,#0x03
+00AA 90001D     497            mov     dptr,#0x001D
+00AD 020100     498            ljmp    _FlashByte
+00B0            499   L008005?:
+00B0 22         500            ret
+00B1            501   ;------------------------------------------------------------
+00B1            502   ;Allocation info for local variables in function 'loadintelhex'
+00B1            503   ;------------------------------------------------------------
+00B1            504   ;j                         Allocated to registers r3 r0 
+00B1            505   ;address                   Allocated to registers r4 r5 
+00B1            506   ;size                      Allocated to registers r3 
+00B1            507   ;type                      Allocated to registers r7 
+00B1            508   ;check                     Allocated to registers r6 
+00B1            509   ;n                         Allocated to registers r2 
+00B1            510   ;ptr                       Allocated to registers 
+00B1            511   ;------------------------------------------------------------
+00B1            512   ;        .\p89v51rd2.c:279: void loadintelhex (void)
+00B1            513   ;        -----------------------------------------
+00B1            514   ;         function loadintelhex
+00B1            515   ;        -----------------------------------------
+00B1            516   _loadintelhex:
+00B1            517   ;        .\p89v51rd2.c:286: saved_jmp[0]=0;              
+00B1 900000     518            mov     dptr,#_saved_jmp
+00B4            519   ;        .\p89v51rd2.c:287: saved_int[0]=0;              
+00B4 E4         520            clr     a
+00B5 F0         521            movx    @dptr,a
+00B6 900000     522            mov     dptr,#_saved_int
+00B9 F0         523            movx    @dptr,a
+00BA            524   ;        .\p89v51rd2.c:289: putsp("Erasing");
+00BA 907398     525            mov     dptr,#__str_0
+00BD 75F080     526            mov     b,#0x80
+00C0 120100     527            lcall   _putsp
+00C3            528   ;        .\p89v51rd2.c:290: for(j=0; j<MONITOR_LOC; j+=0x80)
+00C3 7A00       529            mov     r2,#0x00
+00C5 7B00       530            mov     r3,#0x00
+00C7            531   L009049?:
+00C7 7420       532            mov     a,#0x100 - 0xE0
+00C9 2B         533            add     a,r3
+00CA 4001       534            jc      L009052?
+00CC            535   ;        .\p89v51rd2.c:292: if((j%0x800)==0) putc('.');
+00CC EA         536            mov     a,r2
+00CD 7001       537            jnz     L009088?
+00CF EB         538            mov     a,r3
+00D0 5407       539            anl     a,#0x07
+00D2 6001       540            jz      L009089?
+00D4            541   L009088?:
+00D4 8001       542            sjmp    L009005?
+00D6            543   L009089?:
+00D6            544   L009001?:
+00D6 1099D8     545            jbc     _TI,L009090?
+00D9 8001       546            sjmp    L009001?
+00DB            547   L009090?:
+00DB 75992E     548            mov     _SBUF,#0x2E
+00DE            549   L009005?:
+00DE            550   ;        .\p89v51rd2.c:293: erasesector(j);
+00DE 8A82       551            mov     dpl,r2
+00E0 8B83       552            mov     dph,r3
+00E2 C002       553            push    ar2
+00E4 C003       554            push    ar3
+00E6 120100     555            lcall   _erasesector
+00E9 D003       556            pop     ar3
+00EB D002       557            pop     ar2
+00ED            558   ;        .\p89v51rd2.c:290: for(j=0; j<MONITOR_LOC; j+=0x80)
+00ED 7480       559            mov     a,#0x80
+00EF 2A         560            add     a,r2
+00F0 FA         561            mov     r2,a
+00F1 E4         562            clr     a
+00F2 3B         563            addc    a,r3
+00F3 FB         564            mov     r3,a
+00F4 8001       565            sjmp    L009049?
+00F6            566   L009052?:
+00F6            567   ;        .\p89v51rd2.c:295: putsp("\nSend file or <Esc>\n");
+00F6 907618     568            mov     dptr,#__str_1
+00F9 75F080     569            mov     b,#0x80
+00FC 120100     570            lcall   _putsp
+00FF            571   ;        .\p89v51rd2.c:297: errorbit=0;
+00FF C228       572            clr     _loadintelhex_errorbit_1_38
+0101            573   ;        .\p89v51rd2.c:298: errorprog=0;
+0101 C278       574            clr     _loadintelhex_errorprog_1_38
+0103            575   ;        .\p89v51rd2.c:299: wroteat1b=0;
+0103 C2C8       576            clr     _loadintelhex_wroteat1b_1_38
+0105            577   ;        .\p89v51rd2.c:301: while(1)
+0105            578   L009034?:
+0105            579   ;        .\p89v51rd2.c:303: n=getchar();
+0105 120100     580            lcall   _getchar
+0108 AA82       581            mov     r2,dpl
+010A            582   ;        .\p89v51rd2.c:305: if(n==0x1b) break; //Provide a way out
+010A BA1B98     583            cjne    r2,#0x1B,L009091?
+010D 020100     584            ljmp    L009035?
+0110            585   L009091?:
+0110            586   ;        .\p89v51rd2.c:307: if(n==(unsigned char)':')
+0110 BA3A58     587            cjne    r2,#0x3A,L009034?
+0113            588   ;        .\p89v51rd2.c:309: size=getbytene();
+0113 120100     589            lcall   _getbytene
+0116 AB82       590            mov     r3,dpl
+0118            591   ;        .\p89v51rd2.c:312: address=getbytene();
+0118 C003       592            push    ar3
+011A 120100     593            lcall   _getbytene
+011D AC82       594            mov     r4,dpl
+011F D003       595            pop     ar3
+0121            596   ;        .\p89v51rd2.c:313: check+=address;
+0121 EC         597            mov     a,r4
+0122 2B         598            add     a,r3
+0123 FE         599            mov     r6,a
+0124            600   ;        .\p89v51rd2.c:314: address*=0x100;
+0124 8C05       601            mov     ar5,r4
+0126 7C00       602            mov     r4,#0x00
+0128            603   ;        .\p89v51rd2.c:315: n=getbytene();
+0128 C003       604            push    ar3
+012A C004       605            push    ar4
+012C C005       606            push    ar5
+012E C006       607            push    ar6
+0130 120100     608            lcall   _getbytene
+0133 AA82       609            mov     r2,dpl
+0135 D006       610            pop     ar6
+0137 D005       611            pop     ar5
+0139 D004       612            pop     ar4
+013B            613   ;        .\p89v51rd2.c:316: check+=n;
+013B EA         614            mov     a,r2
+013C 2E         615            add     a,r6
+013D FE         616            mov     r6,a
+013E            617   ;        .\p89v51rd2.c:317: address+=n;
+013E 8A07       618            mov     ar7,r2
+0140 7800       619            mov     r0,#0x00
+0142 EF         620            mov     a,r7
+0143 2C         621            add     a,r4
+0144 FC         622            mov     r4,a
+0145 E8         623            mov     a,r0
+0146 3D         624            addc    a,r5
+0147 FD         625            mov     r5,a
+0148            626   ;        .\p89v51rd2.c:319: type=getbytene();
+0148 C004       627            push    ar4
+014A C005       628            push    ar5
+014C C006       629            push    ar6
+014E 120100     630            lcall   _getbytene
+0151 AF82       631            mov     r7,dpl
+0153 D006       632            pop     ar6
+0155 D005       633            pop     ar5
+0157 D004       634            pop     ar4
+0159 D003       635            pop     ar3
+015B            636   ;        .\p89v51rd2.c:320: check+=type;
+015B EF         637            mov     a,r7
+015C 2E         638            add     a,r6
+015D FE         639            mov     r6,a
+015E            640   ;        .\p89v51rd2.c:322: for(j=address+size; address<j; address++)
+015E 7800       641            mov     r0,#0x00
+0160 EB         642            mov     a,r3
+0161 2C         643            add     a,r4
+0162 FB         644            mov     r3,a
+0163 E8         645            mov     a,r0
+0164 3D         646            addc    a,r5
+0165 F8         647            mov     r0,a
+0166            648   L009053?:
+0166 C3         649            clr     c
+0167 EC         650            mov     a,r4
+0168 9B         651            subb    a,r3
+0169 ED         652            mov     a,r5
+016A 98         653            subb    a,r0
+016B 4001       654            jc      L009094?
+016D 020100     655            ljmp    L009056?
+0170            656   L009094?:
+0170            657   ;        .\p89v51rd2.c:324: n=getbytene();
+0170 C003       658            push    ar3
+0172 C004       659            push    ar4
+0174 C005       660            push    ar5
+0176 C006       661            push    ar6
+0178 C007       662            push    ar7
+017A C000       663            push    ar0
+017C 120100     664            lcall   _getbytene
+017F AA82       665            mov     r2,dpl
+0181 D000       666            pop     ar0
+0183 D007       667            pop     ar7
+0185 D006       668            pop     ar6
+0187 D005       669            pop     ar5
+0189 D004       670            pop     ar4
+018B D003       671            pop     ar3
+018D            672   ;        .\p89v51rd2.c:325: check+=n;
+018D EA         673            mov     a,r2
+018E 2E         674            add     a,r6
+018F FE         675            mov     r6,a
+0190            676   ;        .\p89v51rd2.c:326: if(type==0x00)
+0190 EF         677            mov     a,r7
+0191 7001       678            jnz     L009055?
+0193            679   ;        .\p89v51rd2.c:328: if((address>2) && ((address<0x1b)||(address>0x1d)))
+0193 C3         680            clr     c
+0194 7402       681            mov     a,#0x02
+0196 9C         682            subb    a,r4
+0197 E4         683            clr     a
+0198 9D         684            subb    a,r5
+0199 5001       685            jnc     L009014?
+019B C3         686            clr     c
+019C EC         687            mov     a,r4
+019D 941B       688            subb    a,#0x1B
+019F ED         689            mov     a,r5
+01A0 9400       690            subb    a,#0x00
+01A2 4001       691            jc      L009013?
+01A4 741D       692            mov     a,#0x1D
+01A6 9C         693            subb    a,r4
+01A7 E4         694            clr     a
+01A8 9D         695            subb    a,r5
+01A9 5001       696            jnc     L009014?
+01AB            697   L009013?:
+01AB            698   ;        .\p89v51rd2.c:330: FlashByte(address, n);
+01AB 8A00       699            mov     _FlashByte_PARM_2,r2
+01AD 8C82       700            mov     dpl,r4
+01AF 8D83       701            mov     dph,r5
+01B1 C002       702            push    ar2
+01B3 C003       703            push    ar3
+01B5 C004       704            push    ar4
+01B7 C005       705            push    ar5
+01B9 C006       706            push    ar6
+01BB C007       707            push    ar7
+01BD C000       708            push    ar0
+01BF 120100     709            lcall   _FlashByte
+01C2 D000       710            pop     ar0
+01C4 D007       711            pop     ar7
+01C6 D006       712            pop     ar6
+01C8 D005       713            pop     ar5
+01CA D004       714            pop     ar4
+01CC D003       715            pop     ar3
+01CE D002       716            pop     ar2
+01D0            717   ;        .\p89v51rd2.c:331: ptr=(unsigned char code *)address;
+01D0 8C82       718            mov     dpl,r4
+01D2 8D83       719            mov     dph,r5
+01D4            720   ;        .\p89v51rd2.c:332: if(*ptr!=n) errorprog=1;
+01D4 E4         721            clr     a
+01D5 93         722            movc    a,@a+dptr
+01D6 F9         723            mov     r1,a
+01D7 B502D8     724            cjne    a,ar2,L009099?
+01DA 8001       725            sjmp    L009055?
+01DC            726   L009099?:
+01DC D278       727            setb    _loadintelhex_errorprog_1_38
+01DE 8001       728            sjmp    L009055?
+01E0            729   L009014?:
+01E0            730   ;        .\p89v51rd2.c:336: if (address<0x3)
+01E0 C3         731            clr     c
+01E1 EC         732            mov     a,r4
+01E2 9403       733            subb    a,#0x03
+01E4 ED         734            mov     a,r5
+01E5 9400       735            subb    a,#0x00
+01E7 5001       736            jnc     L009011?
+01E9            737   ;        .\p89v51rd2.c:338: saved_jmp[address]=n;
+01E9 EC         738            mov     a,r4
+01EA 2400       739            add     a,#_saved_jmp
+01EC F582       740            mov     dpl,a
+01EE ED         741            mov     a,r5
+01EF 3400       742            addc    a,#(_saved_jmp >> 8)
+01F1 F583       743            mov     dph,a
+01F3 EA         744            mov     a,r2
+01F4 F0         745            movx    @dptr,a
+01F5 8001       746            sjmp    L009055?
+01F7            747   L009011?:
+01F7            748   ;        .\p89v51rd2.c:342: saved_int[address-0x1b]=n;
+01F7 8C01       749            mov     ar1,r4
+01F9 E9         750            mov     a,r1
+01FA 24E5       751            add     a,#0xe5
+01FC 2400       752            add     a,#_saved_int
+01FE F582       753            mov     dpl,a
+0200 E4         754            clr     a
+0201 3400       755            addc    a,#(_saved_int >> 8)
+0203 F583       756            mov     dph,a
+0205 EA         757            mov     a,r2
+0206 F0         758            movx    @dptr,a
+0207            759   ;        .\p89v51rd2.c:343: wroteat1b=1;
+0207 D2C8       760            setb    _loadintelhex_wroteat1b_1_38
+0209            761   L009055?:
+0209            762   ;        .\p89v51rd2.c:322: for(j=address+size; address<j; address++)
+0209 0C         763            inc     r4
+020A BC0058     764            cjne    r4,#0x00,L009101?
+020D 0D         765            inc     r5
+020E            766   L009101?:
+020E 020100     767            ljmp    L009053?
+0211            768   L009056?:
+0211            769   ;        .\p89v51rd2.c:349: check+=getbytene();
+0211 C006       770            push    ar6
+0213 C007       771            push    ar7
+0215 120100     772            lcall   _getbytene
+0218 AA82       773            mov     r2,dpl
+021A D007       774            pop     ar7
+021C D006       775            pop     ar6
+021E EA         776            mov     a,r2
+021F 2E         777            add     a,r6
+0220 FE         778            mov     r6,a
+0221            779   ;        .\p89v51rd2.c:351: if(type!=0x00) break; //Most likely end record (type=0x01)
+0221 EF         780            mov     a,r7
+0222 7001       781            jnz     L009035?
+0224            782   ;        .\p89v51rd2.c:352: if(check!=0)
+0224 EE         783            mov     a,r6
+0225 6001       784            jz      L009025?
+0227            785   ;        .\p89v51rd2.c:354: errorbit=1;
+0227 D228       786            setb    _loadintelhex_errorbit_1_38
+0229            787   ;        .\p89v51rd2.c:355: putc('X'); //This means there was a checksum error in the record
+0229            788   L009022?:
+0229 109918     789            jbc     _TI,L009104?
+022C 8001       790            sjmp    L009022?
+022E            791   L009104?:
+022E 759958     792            mov     _SBUF,#0x58
+0231 020100     793            ljmp    L009034?
+0234            794   ;        .\p89v51rd2.c:357: else putc('.');
+0234            795   L009025?:
+0234 109958     796            jbc     _TI,L009105?
+0237 8001       797            sjmp    L009025?
+0239            798   L009105?:
+0239 75992E     799            mov     _SBUF,#0x2E
+023C 020100     800            ljmp    L009034?
+023F            801   L009035?:
+023F            802   ;        .\p89v51rd2.c:361: if(errorbit) putsp("\nChecksum error!\n");
+023F 302898     803            jnb     _loadintelhex_errorbit_1_38,L009040?
+0242 907AD8     804            mov     dptr,#__str_2
+0245 75F080     805            mov     b,#0x80
+0248 120100     806            lcall   _putsp
+024B 8001       807            sjmp    L009041?
+024D            808   L009040?:
+024D            809   ;        .\p89v51rd2.c:362: else if (errorprog) putsp("\nFlash error!\n");
+024D 307858     810            jnb     _loadintelhex_errorprog_1_38,L009037?
+0250 907B98     811            mov     dptr,#__str_3
+0253 75F080     812            mov     b,#0x80
+0256 120100     813            lcall   _putsp
+0259 8001       814            sjmp    L009041?
+025B            815   L009037?:
+025B            816   ;        .\p89v51rd2.c:363: else putsp("\nDone.\n");
+025B 907BD8     817            mov     dptr,#__str_4
+025E 75F080     818            mov     b,#0x80
+0261 120100     819            lcall   _putsp
+0264            820   L009041?:
+0264            821   ;        .\p89v51rd2.c:365: if(RI) getchar();//Last newline from final record
+0264 309818     822            jnb     _RI,L009043?
+0267 120100     823            lcall   _getchar
+026A            824   L009043?:
+026A            825   ;        .\p89v51rd2.c:367: if(saved_jmp[0]==0x02)
+026A 900000     826            mov     dptr,#_saved_jmp
+026D E0         827            movx    a,@dptr
+026E FA         828            mov     r2,a
+026F BA0258     829            cjne    r2,#0x02,L009045?
+0272            830   ;        .\p89v51rd2.c:370: FlashByte(MONITOR_LOC-2, saved_jmp[2]);
+0272 900002     831            mov     dptr,#(_saved_jmp + 0x0002)
+0275 E0         832            movx    a,@dptr
+0276 F500       833            mov     _FlashByte_PARM_2,a
+0278 90DFFE     834            mov     dptr,#0xDFFE
+027B 120100     835            lcall   _FlashByte
+027E            836   ;        .\p89v51rd2.c:371: FlashByte(MONITOR_LOC-1, saved_jmp[1]);
+027E 900001     837            mov     dptr,#(_saved_jmp + 0x0001)
+0281 E0         838            movx    a,@dptr
+0282 F500       839            mov     _FlashByte_PARM_2,a
+0284 90DFFF     840            mov     dptr,#0xDFFF
+0287 120100     841            lcall   _FlashByte
+028A            842   ;        .\p89v51rd2.c:372: restorePC();
+028A 120100     843            lcall   _restorePC
+028D            844   L009045?:
+028D            845   ;        .\p89v51rd2.c:375: if((saved_int[0]!=0x02)&&(wroteat1b)) putsp("WARNING: missing Timer1 jmp\n");
+028D 900000     846            mov     dptr,#_saved_int
+0290 E0         847            movx    a,@dptr
+0291 FA         848            mov     r2,a
+0292 BA0298     849            cjne    r2,#0x02,L009111?
+0295 22         850            ret
+0296            851   L009111?:
+0296 30C8D8     852            jnb     _loadintelhex_wroteat1b_1_38,L009057?
+0299 907D18     853            mov     dptr,#__str_5
+029C 75F080     854            mov     b,#0x80
+029F 020100     855            ljmp    _putsp
+02A2            856   L009057?:
+02A2 22         857            ret
+02A3            858   ;------------------------------------------------------------
+02A3            859   ;Allocation info for local variables in function 'read_sfr'
+02A3            860   ;------------------------------------------------------------
+02A3            861   ;x                         Allocated to registers r2 
+02A3            862   ;d                         Allocated to registers r3 
+02A3            863   ;------------------------------------------------------------
+02A3            864   ;        .\p89v51rd2.c:378: unsigned char read_sfr (unsigned char x)
+02A3            865   ;        -----------------------------------------
+02A3            866   ;         function read_sfr
+02A3            867   ;        -----------------------------------------
+02A3            868   _read_sfr:
+02A3 AA82       869            mov     r2,dpl
+02A5            870   ;        .\p89v51rd2.c:382: erasesector(MONITOR_LOC-0x100);
+02A5 90DF00     871            mov     dptr,#0xDF00
+02A8 C002       872            push    ar2
+02AA 120100     873            lcall   _erasesector
+02AD D002       874            pop     ar2
+02AF            875   ;        .\p89v51rd2.c:383: for(d=0; d<8; d++) FlashByte((MONITOR_LOC-0x100)+d, code_sfr[d]);
+02AF 7B00       876            mov     r3,#0x00
+02B1            877   L010001?:
+02B1 BB0898     878            cjne    r3,#0x08,L010010?
+02B4            879   L010010?:
+02B4 5001       880            jnc     L010004?
+02B6 8B04       881            mov     ar4,r3
+02B8 7D00       882            mov     r5,#0x00
+02BA 74DF       883            mov     a,#0xDF
+02BC 2D         884            add     a,r5
+02BD FD         885            mov     r5,a
+02BE EB         886            mov     a,r3
+02BF 906F98     887            mov     dptr,#_code_sfr
+02C2 93         888            movc    a,@a+dptr
+02C3 F500       889            mov     _FlashByte_PARM_2,a
+02C5 8C82       890            mov     dpl,r4
+02C7 8D83       891            mov     dph,r5
+02C9 C002       892            push    ar2
+02CB C003       893            push    ar3
+02CD 120100     894            lcall   _FlashByte
+02D0 D003       895            pop     ar3
+02D2 D002       896            pop     ar2
+02D4 0B         897            inc     r3
+02D5 8001       898            sjmp    L010001?
+02D7            899   L010004?:
+02D7            900   ;        .\p89v51rd2.c:385: FlashByte((MONITOR_LOC-0x100)+2, x);
+02D7 8A00       901            mov     _FlashByte_PARM_2,r2
+02D9 90DF02     902            mov     dptr,#0xDF02
+02DC C002       903            push    ar2
+02DE 120100     904            lcall   _FlashByte
+02E1 D002       905            pop     ar2
+02E3            906   ;        .\p89v51rd2.c:386: FlashByte((MONITOR_LOC-0x100)+5, x);
+02E3 8A00       907            mov     _FlashByte_PARM_2,r2
+02E5 90DF05     908            mov     dptr,#0xDF05
+02E8 120100     909            lcall   _FlashByte
+02EB            910   ;        .\p89v51rd2.c:390: _endasm;
+02EB            911            
+02EB 02DF04     912              ljmp (0xe000 -0x100)+04
+02EE            913             
+02EE            914   ;        .\p89v51rd2.c:392: return 0;
+02EE 758200     915            mov     dpl,#0x00
+02F1 22         916            ret
+02F2            917   ;------------------------------------------------------------
+02F2            918   ;Allocation info for local variables in function 'write_sfr'
+02F2            919   ;------------------------------------------------------------
+02F2            920   ;val                       Allocated to registers 
+02F2            921   ;------------------------------------------------------------
+02F2            922   ;        .\p89v51rd2.c:396: void write_sfr (unsigned char val)
+02F2            923   ;        -----------------------------------------
+02F2            924   ;         function write_sfr
+02F2            925   ;        -----------------------------------------
+02F2            926   _write_sfr:
+02F2            927   ;        .\p89v51rd2.c:400: _endasm;
+02F2            928            
+02F2 02DF00     929              ljmp (0xe000 -0x100)
+02F5            930             
+02F5            931   ;        .\p89v51rd2.c:401: val; //To prevent a sdcc warning. Optimized out by sdcc.
+02F5 22         932            ret
+02F6            933   ;------------------------------------------------------------
+02F6            934   ;Allocation info for local variables in function 'restorePC'
+02F6            935   ;------------------------------------------------------------
+02F6            936   ;------------------------------------------------------------
+02F6            937   ;        .\p89v51rd2.c:404: void restorePC (void)
+02F6            938   ;        -----------------------------------------
+02F6            939   ;         function restorePC
+02F6            940   ;        -----------------------------------------
+02F6            941   _restorePC:
+02F6            942   ;        .\p89v51rd2.c:406: PC_save=*(unsigned int code *)(MONITOR_LOC-2); //A copy of the user jump should be there
+02F6 90DFFE     943            mov     dptr,#0xDFFE
+02F9 E4         944            clr     a
+02FA 93         945            movc    a,@a+dptr
+02FB FA         946            mov     r2,a
+02FC A3         947            inc     dptr
+02FD E4         948            clr     a
+02FE 93         949            movc    a,@a+dptr
+02FF FB         950            mov     r3,a
+0300 900000     951            mov     dptr,#_PC_save
+0303 EA         952            mov     a,r2
+0304 F0         953            movx    @dptr,a
+0305 A3         954            inc     dptr
+0306 EB         955            mov     a,r3
+0307 F0         956            movx    @dptr,a
+0308 22         957            ret
+0309            958   ;------------------------------------------------------------
+0309            959   ;Allocation info for local variables in function 'cpuid'
+0309            960   ;------------------------------------------------------------
+0309            961   ;------------------------------------------------------------
+0309            962   ;        .\p89v51rd2.c:409: void cpuid (void)
+0309            963   ;        -----------------------------------------
+0309            964   ;         function cpuid
+0309            965   ;        -----------------------------------------
+0309            966   _cpuid:
+0309            967   ;        .\p89v51rd2.c:411: putsp(CPUPID);
+0309 907E58     968            mov     dptr,#__str_6
+030C 75F080     969            mov     b,#0x80
+030F 020100     970            ljmp    _putsp
+0312            971   ;------------------------------------------------------------
+0312            972   ;Allocation info for local variables in function 'set_timer1_priority'
+0312            973   ;------------------------------------------------------------
+0312            974   ;------------------------------------------------------------
+0312            975   ;        .\p89v51rd2.c:414: void set_timer1_priority (void) _naked
+0312            976   ;        -----------------------------------------
+0312            977   ;         function set_timer1_priority
+0312            978   ;        -----------------------------------------
+0312            979   _set_timer1_priority:
+0312            980   ;        naked function: no prologue.
+0312            981   ;        .\p89v51rd2.c:420: _endasm;
+0312            982            
+0312 D2BB       983                    setb PT1 ; Highest priority for timer 1 interrupt
+0314 43B780     984                    orl _IP0H, #0x80 ; Highest priority for timer 1 interrupt
+0317 22         985                    ret
+0318            986                
+0318            987   ;        naked function: no epilogue.
+0318            988   ;------------------------------------------------------------
+0318            989   ;Allocation info for local variables in function 'JumpToMonitor'
+0318            990   ;------------------------------------------------------------
+0318            991   ;------------------------------------------------------------
+0318            992   ;        .\p89v51rd2.c:425: void JumpToMonitor (void) _naked
+0318            993   ;        -----------------------------------------
+0318            994   ;         function JumpToMonitor
+0318            995   ;        -----------------------------------------
+0318            996   _JumpToMonitor:
+0318            997   ;        naked function: no prologue.
+0318            998   ;        .\p89v51rd2.c:437: _endasm;
+0318            999            
+0318           1000            
+0000           1001                cseg at 0x0000 ; Where the monitor is
+0000 02E000    1002                ljmp 0xe000
+0003           1003            
+001B           1004                cseg at 0x001B ; Timer 1 interrupt vector used for step by step execution.
+001B 02E003    1005                ljmp 0xe000 + 0x0003
+001E           1006            
+DFFE           1007                cseg at 0xe000 - 2
+DFFE 0000      1008                db 0x00, 0x00 ; Here the user PC will be saved. Default it to zero.
+E000           1009                
+E000           1010   ;        naked function: no epilogue.
+0318           1011            rseg R_CSEG
+0318           1012   
+0000           1013            rseg R_CONST
+0000           1014   _sfrn:
+0000 80        1015            db 0x80
+0001 5030      1016            db 'P0'
+0003 81        1017            db 0x81
+0004 5350      1018            db 'SP'
+0006 82        1019            db 0x82
+0007 44504C    1020            db 'DPL'
+000A 83        1021            db 0x83
+000B 445048    1022            db 'DPH'
+000E 85        1023            db 0x85
+000F 57445444  1024            db 'WDTD'
+0013 86        1025            db 0x86
+0014 53504452  1026            db 'SPDR'
+0018 86        1027            db 0x86
+0019 53504441  1028            db 'SPDAT'
+     54
+001E 87        1029            db 0x87
+001F 50434F4E  1030            db 'PCON'
+0023 88        1031            db 0x88
+0024 54434F4E  1032            db 'TCON'
+0028 89        1033            db 0x89
+0029 544D4F44  1034            db 'TMOD'
+002D 8A        1035            db 0x8A
+002E 544C30    1036            db 'TL0'
+0031 8B        1037            db 0x8B
+0032 544C31    1038            db 'TL1'
+0035 8C        1039            db 0x8C
+0036 544830    1040            db 'TH0'
+0039 8D        1041            db 0x8D
+003A 5448      1042            db 'TH'
+003C 31        1043            db '1'
+003D 8E        1044            db 0x8E
+003E 41555852  1045            db 'AUXR'
+0042 90        1046            db 0x90
+0043 5031      1047            db 'P1'
+0045 98        1048            db 0x98
+0046 53434F4E  1049            db 'SCON'
+004A 99        1050            db 0x99
+004B 53425546  1051            db 'SBUF'
+004F A0        1052            db 0xA0
+0050 5032      1053            db 'P2'
+0052 A2        1054            db 0xA2
+0053 41555852  1055            db 'AUXR1'
+     31
+0058 A8        1056            db 0xA8
+0059 4945      1057            db 'IE'
+005B A9        1058            db 0xA9
+005C 53414444  1059            db 'SADDR'
+     52
+0061 AA        1060            db 0xAA
+0062 53505352  1061            db 'SPSR'
+0066 AA        1062            db 0xAA
+0067 53504346  1063            db 'SPCFG'
+     47
+006C B0        1064            db 0xB0
+006D 5033      1065            db 'P3'
+006F B1        1066            db 0xB1
+0070 464346    1067            db 'FCF'
+0073 B6        1068            db 0xB6
+0074 465354    1069            db 'FST'
+0077 B7        1070            db 0xB7
+0078 49503048  1071            db 'IP0H'
+007C B8        1072            db 0xB8
+007D 4950      1073            db 'IP'
+007F B9        1074            db 0xB9
+0080 53414445  1075            db 'SADEN'
+     4E
+0085 C0        1076            db 0xC0
+0086 57445443  1077            db 'WDTC'
+008A C8        1078            db 0xC8
+008B 5432434F  1079            db 'T2CON'
+     4E
+0090 C9        1080            db 0xC9
+0091 54324D4F  1081            db 'T2MOD'
+     44
+0096 CA        1082            db 0xCA
+0097 52434150  1083            db 'RCAP2L'
+     324C
+009D CB        1084            db 0xCB
+009E 52434150  1085            db 'RCAP2H'
+     3248
+00A4 CC        1086            db 0xCC
+00A5 544C32    1087            db 'TL2'
+00A8 CD        1088            db 0xCD
+00A9 544832    1089            db 'TH2'
+00AC D0        1090            db 0xD0
+00AD 505357    1091            db 'PSW'
+00B0 D5        1092            db 0xD5
+00B1 535043    1093            db 'SPC'
+00B4 52        1094            db 'R'
+00B5 D5        1095            db 0xD5
+00B6 53504354  1096            db 'SPCTL'
+     4C
+00BB D8        1097            db 0xD8
+00BC 43434F4E  1098            db 'CCON'
+00C0 D9        1099            db 0xD9
+00C1 434D4F44  1100            db 'CMOD'
+00C5 DA        1101            db 0xDA
+00C6 43434150  1102            db 'CCAPM0'
+     4D30
+00CC DB        1103            db 0xDB
+00CD 43434150  1104            db 'CCAPM1'
+     4D31
+00D3 DC        1105            db 0xDC
+00D4 43434150  1106            db 'CCAPM2'
+     4D32
+00DA DD        1107            db 0xDD
+00DB 43434150  1108            db 'CCAPM3'
+     4D33
+00E1 DE        1109            db 0xDE
+00E2 43434150  1110            db 'CCAPM4'
+     4D34
+00E8 E0        1111            db 0xE0
+00E9 414343    1112            db 'ACC'
+00EC E0        1113            db 0xE0
+00ED 41        1114            db 'A'
+00EE E8        1115            db 0xE8
+00EF 49        1116            db 'I'
+00F0 454E31    1117            db 'EN1'
+00F3 E9        1118            db 0xE9
+00F4 434C      1119            db 'CL'
+00F6 EA        1120            db 0xEA
+00F7 43434150  1121            db 'CCAP0L'
+     304C
+00FD EB        1122            db 0xEB
+00FE 43434150  1123            db 'CCAP1L'
+     314C
+0104 EC        1124            db 0xEC
+0105 43434150  1125            db 'CCAP2L'
+     324C
+010B ED        1126            db 0xED
+010C 43434150  1127            db 'CCAP3L'
+     334C
+0112 EE        1128            db 0xEE
+0113 43434150  1129            db 'CCAP4L'
+     344C
+0119 F0        1130            db 0xF0
+011A 42        1131            db 'B'
+011B F7        1132            db 0xF7
+011C 49503148  1133            db 'IP1H'
+0120 F8        1134            db 0xF8
+0121 495031    1135            db 'IP1'
+0124 F9        1136            db 0xF9
+0125 4348      1137            db 'CH'
+0127 FA        1138            db 0xFA
+0128 43434150  1139            db 'CCAP'
+012C 3048      1140            db '0H'
+012E FB        1141            db 0xFB
+012F 43434150  1142            db 'CCAP1H'
+     3148
+0135 FC        1143            db 0xFC
+0136 43434150  1144            db 'CCAP2H'
+     3248
+013C FD        1145            db 0xFD
+013D 43434150  1146            db 'CCAP3H'
+     3348
+0143 FE        1147            db 0xFE
+0144 43434150  1148            db 'CCAP4H'
+     3448
+014A FF        1149            db 0xFF
+014B 00        1150            db 0x00
+014C 00        1151            db 0x00
+014D           1152   _bitn:
+014D 88        1153            db 0x88
+014E 495430    1154            db 'IT0'
+0151 89        1155            db 0x89
+0152 494530    1156            db 'IE0'
+0155 8A        1157            db 0x8A
+0156 495431    1158            db 'IT1'
+0159 8B        1159            db 0x8B
+015A 494531    1160            db 'IE1'
+015D 8C        1161            db 0x8C
+015E 545230    1162            db 'TR0'
+0161 8D        1163            db 0x8D
+0162 544630    1164            db 'TF0'
+0165 8E        1165            db 0x8E
+0166 545231    1166            db 'TR1'
+0169 8F        1167            db 0x8F
+016A 544631    1168            db 'TF1'
+016D 98        1169            db 0x98
+016E 5249      1170            db 'RI'
+0170 99        1171            db 0x99
+0171 5449      1172            db 'TI'
+0173 9A        1173            db 0x9A
+0174 524238    1174            db 'RB8'
+0177 9B        1175            db 0x9B
+0178 544238    1176            db 'TB8'
+017B 9C        1177            db 0x9C
+017C 52454E    1178            db 'REN'
+017F 9D        1179            db 0x9D
+0180 534D32    1180            db 'SM2'
+0183 9E        1181            db 0x9E
+0184 534D31    1182            db 'SM1'
+0187 9F        1183            db 0x9F
+0188 53        1184            db 'S'
+0189 4D30      1185            db 'M0'
+018B A8        1186            db 0xA8
+018C 455830    1187            db 'EX0'
+018F A9        1188            db 0xA9
+0190 455430    1189            db 'ET0'
+0193 AA        1190            db 0xAA
+0194 455831    1191            db 'EX1'
+0197 AB        1192            db 0xAB
+0198 455431    1193            db 'ET1'
+019B AC        1194            db 0xAC
+019C 4553      1195            db 'ES'
+019E AF        1196            db 0xAF
+019F 4541      1197            db 'EA'
+01A1 B8        1198            db 0xB8
+01A2 505830    1199            db 'PX0'
+01A5 B9        1200            db 0xB9
+01A6 505430    1201            db 'PT0'
+01A9 BA        1202            db 0xBA
+01AA 505831    1203            db 'PX1'
+01AD BB        1204            db 0xBB
+01AE 505431    1205            db 'PT1'
+01B1 BC        1206            db 0xBC
+01B2 5053      1207            db 'PS'
+01B4 BD        1208            db 0xBD
+01B5 505432    1209            db 'PT2'
+01B8 D0        1210            db 0xD0
+01B9 50        1211            db 'P'
+01BA D1        1212            db 0xD1
+01BB 4631      1213            db 'F1'
+01BD D2        1214            db 0xD2
+01BE 4F56      1215            db 'OV'
+01C0 D3        1216            db 0xD3
+01C1 525330    1217            db 'RS0'
+01C4 D4        1218            db 0xD4
+01C5 525331    1219            db 'RS1'
+01C8 D5        1220            db 0xD5
+01C9 4630      1221            db 'F0'
+01CB D6        1222            db 0xD6
+01CC 4143      1223            db 'AC'
+01CE D7        1224            db 0xD7
+01CF 4359      1225            db 'CY'
+01D1 C8        1226            db 0xC8
+01D2 43505F52  1227            db 'CP_RL2'
+     4C32
+01D8 C9        1228            db 0xC9
+01D9 435F5432  1229            db 'C_T2'
+01DD CA        1230            db 0xCA
+01DE 545232    1231            db 'TR2'
+01E1 CB        1232            db 0xCB
+01E2 4558454E  1233            db 'EXEN2'
+     32
+01E7 CC        1234            db 0xCC
+01E8 54434C4B  1235            db 'TCLK'
+01EC CD        1236            db 0xCD
+01ED 52434C4B  1237            db 'RCLK'
+01F1 CE        1238            db 0xCE
+01F2 45584632  1239            db 'EXF2'
+01F6 CF        1240            db 0xCF
+01F7 544632    1241            db 'TF2'
+01FA AD        1242            db 0xAD
+01FB 455432    1243            db 'ET2'
+01FE DF        1244            db 0xDF
+01FF 4346      1245            db 'CF'
+0201 DE        1246            db 0xDE
+0202 4352      1247            db 'CR'
+0204 DC        1248            db 0xDC
+0205 43434634  1249            db 'CCF4'
+0209 DB        1250            db 0xDB
+020A 43434633  1251            db 'CCF3'
+020E DA        1252            db 0xDA
+020F 43434632  1253            db 'CCF2'
+0213 D9        1254            db 0xD9
+0214 43434631  1255            db 'CCF1'
+0218 D8        1256            db 0xD8
+0219 43434630  1257            db 'CCF0'
+021D AE        1258            db 0xAE
+021E 4543      1259            db 'EC'
+0220 EB        1260            db 0xEB
+0221 45424F    1261            db 'EBO'
+0224 BE        1262            db 0xBE
+0225 505043    1263            db 'PPC'
+0228 FB        1264            db 0xFB
+0229 50424F    1265            db 'PBO'
+022C FF        1266            db 0xFF
+022D 00        1267            db 0x00
+022E 00        1268            db 0x00
+022F           1269   __str_0:
+022F 45726173  1270            db 'Erasing'
+     696E67
+0236 00        1271            db 0x00
+0237           1272   __str_1:
+0237 0A        1273            db 0x0A
+0238 53656E64  1274            db 'Send file or <Esc>'
+     2066696C
+     65206F72
+     203C4573
+     633E
+024A 0A        1275            db 0x0A
+024B 00        1276            db 0x00
+024C           1277   __str_2:
+024C 0A        1278            db 0x0A
+024D 43686563  1279            db 'Checksum error!'
+     6B73756D
+     20657272
+     6F7221
+025C 0A        1280            db 0x0A
+025D 00        1281            db 0x00
+025E           1282   __str_3:
+025E 0A        1283            db 0x0A
+025F 466C6173  1284            db 'Flash error!'
+     68206572
+     726F7221
+026B 0A        1285            db 0x0A
+026C 00        1286            db 0x00
+026D           1287   __str_4:
+026D 0A        1288            db 0x0A
+026E 446F6E65  1289            db 'Done.'
+     2E
+0273 0A        1290            db 0x0A
+0274 00        1291            db 0x00
+0275           1292   __str_5:
+0275 5741524E  1293            db 'WARNING: missing Timer1 jmp'
+     494E473A
+     206D6973
+     73696E67
+     2054696D
+     65723120
+     6A6D70
+0290 0A        1294            db 0x0A
+0291 00        1295            db 0x00
+0292           1296   __str_6:
+0292 506F7274  1297            db 'Port: P89V51RD2 V1.1'
+     3A205038
+     39563531
+     52443220
+     56312E31
+02A6 0A        1298            db 0x0A
+02A7 00        1299            db 0x00
+02A8           1300   
+0000           1301            rseg R_XINIT
+0000           1302   
+E000           1303            CSEG
+E000           1304   
+E000           1305   end

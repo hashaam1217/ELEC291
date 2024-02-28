@@ -1,0 +1,75 @@
+<PRJ>
+     `at89c51rd2.prj` `C:\Source\cmon51\at89c51rd2.prj`
+     `.\51s2.bat` `ld "%pathne%" %obj%`
+     `` ``
+     `` ``
+     10979108
+</PRJ>
+
+Source Files
+<C>
+`at89c51rd2.c` `.\at89c51rd2.c`
+   `.\51s2.bat` `cc "%pathne%"`
+   `` ``
+   `` ``
+   0
+`d51.c` `.\d51.c`
+   `.\51s2.bat` `cc "%pathne%"`
+   `` ``
+   `` ``
+   0
+`step.c` `.\step.c`
+   `.\51s2.bat` `cc "%pathne%"`
+   `` ``
+   `` ``
+   0
+`cmon51.c` `.\cmon51.c`
+   `.\51s2.bat` `cc "%pathne%"`
+   `` ``
+   `` ``
+   0
+</C>
+
+Header Files
+<H>
+`cmon51.h` `.\cmon51.h`
+   `` ``
+   `` ``
+   `` ``
+   0
+`d51.h` `.\d51.h`
+   `` ``
+   `` ``
+   `` ``
+   0
+`proto.h` `.\proto.h`
+   `` ``
+   `` ``
+   `` ``
+   0
+</H>
+
+Resource Files
+<R>
+`cmon51.asm` `.\cmon51.asm`
+   `` ``
+   `` ``
+   `` ``
+   0
+`51s2.bat` `.\51s2.bat`
+   `` ``
+   `` ``
+   `` ``
+   0
+`at89c51rd2.map` `C:\Source\cmon51\at89c51rd2.map`
+   `` ``
+   `` ``
+   `` ``
+   0
+`at89c51rd2.asm` `C:\Source\cmon51\at89c51rd2.asm`
+   `` ``
+   `` ``
+   `` ``
+   0
+</R>
+

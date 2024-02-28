@@ -1,0 +1,1027 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
+0000              4   ; This file was generated Thu Jan 17 21:24:38 2013
+0000              5   ;--------------------------------------------------------
+                  5   $name gcc_torture_execute_20041019_1
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_PSEG    segment xdata
+0000             13            R_ISEG    segment idata
+0000             14            R_OSEG    segment data overlay
+0000             15            BIT_BANK  segment data overlay
+0000             16            R_HOME    segment code
+0000             17            R_GSINIT  segment code
+0000             18            R_IXSEG   segment xdata
+0000             19            R_CONST   segment code
+0000             20            R_XINIT   segment code
+0000             21            R_DINIT   segment code
+0000             22   
+0000             23   ;--------------------------------------------------------
+0000             24   ; Public variables in this module
+0000             25   ;--------------------------------------------------------
+0000             26            public ___numCases
+0000             27            public _testTortureExecute
+0000             28            public _ftest_store_copy_prop
+0000             29            public _ftest_store_ccp
+0000             30            public _main
+0000             31            public __c51_external_startup
+0000             32            public ___fail_PARM_4
+0000             33            public ___fail_PARM_3
+0000             34            public ___fail_PARM_2
+0000             35            public ___numFailures
+0000             36            public ___numTests
+0000             37            public ___prints
+0000             38            public ___printn
+0000             39            public ___printf
+0000             40            public ___fail
+0000             41            public ___runSuite
+0000             42            public ___getSuiteName
+0000             43   ;--------------------------------------------------------
+0000             44   ; Special Function Registers
+0000             45   ;--------------------------------------------------------
+0000             46   _ACC            DATA 0xe0
+0000             47   _B              DATA 0xf0
+0000             48   _DPH            DATA 0x83
+0000             49   _DP0H           DATA 0x83
+0000             50   _DPL            DATA 0x82
+0000             51   _DP0L           DATA 0x82
+0000             52   _IE             DATA 0xa8
+0000             53   _IP             DATA 0xb8
+0000             54   _P0             DATA 0x80
+0000             55   _P1             DATA 0x90
+0000             56   _P2             DATA 0xa0
+0000             57   _P3             DATA 0xb0
+0000             58   _PCON           DATA 0x87
+0000             59   _PSW            DATA 0xd0
+0000             60   _SBUF           DATA 0x99
+0000             61   _SBUF0          DATA 0x99
+0000             62   _SCON           DATA 0x98
+0000             63   _SP             DATA 0x81
+0000             64   _TCON           DATA 0x88
+0000             65   _TH0            DATA 0x8c
+0000             66   _TH1            DATA 0x8d
+0000             67   _TL0            DATA 0x8a
+0000             68   _TL1            DATA 0x8b
+0000             69   _TMOD           DATA 0x89
+0000             70   _PSBANK         DATA 0x90
+0000             71   ;--------------------------------------------------------
+0000             72   ; special function bits
+0000             73   ;--------------------------------------------------------
+0000             74   _BREG_F0        BIT 0xf0
+0000             75   _BREG_F1        BIT 0xf1
+0000             76   _BREG_F2        BIT 0xf2
+0000             77   _BREG_F3        BIT 0xf3
+0000             78   _BREG_F4        BIT 0xf4
+0000             79   _BREG_F5        BIT 0xf5
+0000             80   _BREG_F6        BIT 0xf6
+0000             81   _BREG_F7        BIT 0xf7
+0000             82   _EX0            BIT 0xa8
+0000             83   _ET0            BIT 0xa9
+0000             84   _EX1            BIT 0xaa
+0000             85   _ET1            BIT 0xab
+0000             86   _ES             BIT 0xac
+0000             87   _EA             BIT 0xaf
+0000             88   _PX0            BIT 0xb8
+0000             89   _PT0            BIT 0xb9
+0000             90   _PX1            BIT 0xba
+0000             91   _PT1            BIT 0xbb
+0000             92   _PS             BIT 0xbc
+0000             93   _P0_0           BIT 0x80
+0000             94   _P0_1           BIT 0x81
+0000             95   _P0_2           BIT 0x82
+0000             96   _P0_3           BIT 0x83
+0000             97   _P0_4           BIT 0x84
+0000             98   _P0_5           BIT 0x85
+0000             99   _P0_6           BIT 0x86
+0000            100   _P0_7           BIT 0x87
+0000            101   _P1_0           BIT 0x90
+0000            102   _P1_1           BIT 0x91
+0000            103   _P1_2           BIT 0x92
+0000            104   _P1_3           BIT 0x93
+0000            105   _P1_4           BIT 0x94
+0000            106   _P1_5           BIT 0x95
+0000            107   _P1_6           BIT 0x96
+0000            108   _P1_7           BIT 0x97
+0000            109   _P2_0           BIT 0xa0
+0000            110   _P2_1           BIT 0xa1
+0000            111   _P2_2           BIT 0xa2
+0000            112   _P2_3           BIT 0xa3
+0000            113   _P2_4           BIT 0xa4
+0000            114   _P2_5           BIT 0xa5
+0000            115   _P2_6           BIT 0xa6
+0000            116   _P2_7           BIT 0xa7
+0000            117   _P3_0           BIT 0xb0
+0000            118   _P3_1           BIT 0xb1
+0000            119   _P3_2           BIT 0xb2
+0000            120   _P3_3           BIT 0xb3
+0000            121   _P3_4           BIT 0xb4
+0000            122   _P3_5           BIT 0xb5
+0000            123   _P3_6           BIT 0xb6
+0000            124   _P3_7           BIT 0xb7
+0000            125   _RXD            BIT 0xb0
+0000            126   _RXD0           BIT 0xb0
+0000            127   _TXD            BIT 0xb1
+0000            128   _TXD0           BIT 0xb1
+0000            129   _INT0           BIT 0xb2
+0000            130   _INT1           BIT 0xb3
+0000            131   _T0             BIT 0xb4
+0000            132   _T1             BIT 0xb5
+0000            133   _WR             BIT 0xb6
+0000            134   _RD             BIT 0xb7
+0000            135   _P              BIT 0xd0
+0000            136   _F1             BIT 0xd1
+0000            137   _OV             BIT 0xd2
+0000            138   _RS0            BIT 0xd3
+0000            139   _RS1            BIT 0xd4
+0000            140   _F0             BIT 0xd5
+0000            141   _AC             BIT 0xd6
+0000            142   _CY             BIT 0xd7
+0000            143   _RI             BIT 0x98
+0000            144   _TI             BIT 0x99
+0000            145   _RB8            BIT 0x9a
+0000            146   _TB8            BIT 0x9b
+0000            147   _REN            BIT 0x9c
+0000            148   _SM2            BIT 0x9d
+0000            149   _SM1            BIT 0x9e
+0000            150   _SM0            BIT 0x9f
+0000            151   _IT0            BIT 0x88
+0000            152   _IE0            BIT 0x89
+0000            153   _IT1            BIT 0x8a
+0000            154   _IE1            BIT 0x8b
+0000            155   _TR0            BIT 0x8c
+0000            156   _TF0            BIT 0x8d
+0000            157   _TR1            BIT 0x8e
+0000            158   _TF1            BIT 0x8f
+0000            159   ;--------------------------------------------------------
+0000            160   ; overlayable register banks
+0000            161   ;--------------------------------------------------------
+0000            162            rbank0 segment data overlay
+0000            163   ;--------------------------------------------------------
+0000            164   ; internal ram data
+0000            165   ;--------------------------------------------------------
+0000            166            rseg R_DSEG
+0000            167   ___numTests:
+0000            168            ds 2
+0002            169   ___numFailures:
+0002            170            ds 2
+0004            171   ___fail_PARM_2:
+0004            172            ds 2
+0006            173   ___fail_PARM_3:
+0006            174            ds 2
+0008            175   ___fail_PARM_4:
+0008            176            ds 2
+000A            177   ___fail_sloc0_1_0:
+000A            178            ds 3
+000D            179   ;--------------------------------------------------------
+000D            180   ; overlayable items in internal ram 
+000D            181   ;--------------------------------------------------------
+0000            182            rseg    R_OSEG
+0000            183   _ftest_store_ccp_a_1_73:
+0000            184            ds 2
+0002            185   _ftest_store_ccp_b_1_73:
+0002            186            ds 2
+0004            187   _ftest_store_ccp_c_1_73:
+0004            188            ds 2
+0006            189            rseg    R_OSEG
+0006            190   _ftest_store_copy_prop_a_1_75:
+0006            191            ds 2
+0008            192   _ftest_store_copy_prop_b_1_75:
+0008            193            ds 2
+000A            194   _ftest_store_copy_prop_c_1_75:
+000A            195            ds 2
+000C            196   ;--------------------------------------------------------
+000C            197   ; indirectly addressable internal ram data
+000C            198   ;--------------------------------------------------------
+0000            199            rseg R_ISEG
+0000            200   ___printn_buf_2_54:
+0000            201            ds 6
+0006            202   ;--------------------------------------------------------
+0006            203   ; absolute internal ram data
+0006            204   ;--------------------------------------------------------
+0000            205            DSEG
+0000            206   ;--------------------------------------------------------
+0000            207   ; bit data
+0000            208   ;--------------------------------------------------------
+0000            209            rseg R_BSEG
+0000            210   ;--------------------------------------------------------
+0000            211   ; paged external ram data
+0000            212   ;--------------------------------------------------------
+0000            213            rseg R_PSEG
+0000            214   ;--------------------------------------------------------
+0000            215   ; external ram data
+0000            216   ;--------------------------------------------------------
+0000            217            rseg R_XSEG
+0000            218   ;--------------------------------------------------------
+0000            219   ; absolute external ram data
+0000            220   ;--------------------------------------------------------
+0000            221            XSEG
+0000            222   ;--------------------------------------------------------
+0000            223   ; external initialized ram data
+0000            224   ;--------------------------------------------------------
+0000            225            rseg R_IXSEG
+0000            226            rseg R_HOME
+0000            227            rseg R_GSINIT
+0000            228            rseg R_CSEG
+0000            229   ;--------------------------------------------------------
+0000            230   ; Reset entry point and interrupt vectors
+0000            231   ;--------------------------------------------------------
+0000            232            CSEG at 0x0000
+0000 020100     233            ljmp    _crt0
+0003            234   ;--------------------------------------------------------
+0003            235   ; global & static initialisations
+0003            236   ;--------------------------------------------------------
+0000            237            rseg R_HOME
+0000            238            rseg R_GSINIT
+0000            239            rseg R_GSINIT
+0000            240   ;--------------------------------------------------------
+0000            241   ; data variables initialization
+0000            242   ;--------------------------------------------------------
+0000            243            rseg R_DINIT
+0000            244   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:20: int __numTests = 0;
+0000 E4         245            clr     a
+0001 F5F0       246            mov     ___numTests,a
+0003 F5F1       247            mov     (___numTests + 1),a
+0005            248   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:22: int __numFailures = 0;
+0005 E4         249            clr     a
+0006 F5B0       250            mov     ___numFailures,a
+0008 F5B1       251            mov     (___numFailures + 1),a
+000A            252            ; The linker places a 'ret' at the end of segment R_DINIT.
+000A            253   ;--------------------------------------------------------
+000A            254   ; code
+000A            255   ;--------------------------------------------------------
+0000            256            rseg R_CSEG
+0000            257   ;------------------------------------------------------------
+0000            258   ;Allocation info for local variables in function '__prints'
+0000            259   ;------------------------------------------------------------
+0000            260   ;s                         Allocated to registers r2 r3 r4 
+0000            261   ;c                         Allocated to registers r6 
+0000            262   ;------------------------------------------------------------
+0000            263   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:110: __prints (const char *s)
+0000            264   ;        -----------------------------------------
+0000            265   ;         function __prints
+0000            266   ;        -----------------------------------------
+0000            267   ___prints:
+0000            268            using   0
+0000 AA82       269            mov     r2,dpl
+0002 AB83       270            mov     r3,dph
+0004 ACF0       271            mov     r4,b
+0006            272   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:114: while ('\0' != (c = *s))
+0006            273   L002001?:
+0006 8A82       274            mov     dpl,r2
+0008 8B83       275            mov     dph,r3
+000A 8CF0       276            mov     b,r4
+000C 120100     277            lcall   __gptrget
+000F FD         278            mov     r5,a
+0010 FE         279            mov     r6,a
+0011 BD00A8     280            cjne    r5,#0x00,L002009?
+0014 22         281            ret
+0015            282   L002009?:
+0015            283   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:116: putchar(c);
+0015 8E82       284            mov     dpl,r6
+0017 C002       285            push    ar2
+0019 C003       286            push    ar3
+001B C004       287            push    ar4
+001D 120100     288            lcall   _putchar
+0020 D004       289            pop     ar4
+0022 D003       290            pop     ar3
+0024 D002       291            pop     ar2
+0026            292   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:117: ++s;
+0026 0A         293            inc     r2
+0027 BA0028     294            cjne    r2,#0x00,L002001?
+002A 0B         295            inc     r3
+002B 8001       296            sjmp    L002001?
+002D            297   ;------------------------------------------------------------
+002D            298   ;Allocation info for local variables in function '__printn'
+002D            299   ;------------------------------------------------------------
+002D            300   ;n                         Allocated to registers r2 r3 
+002D            301   ;p                         Allocated to registers r4 
+002D            302   ;neg                       Allocated to registers r5 
+002D            303   ;buf                       Allocated with name '___printn_buf_2_54'
+002D            304   ;------------------------------------------------------------
+002D            305   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:122: __printn (int n)
+002D            306   ;        -----------------------------------------
+002D            307   ;         function __printn
+002D            308   ;        -----------------------------------------
+002D            309   ___printn:
+002D AA82       310            mov     r2,dpl
+002F AB83       311            mov     r3,dph
+0031            312   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:124: if (0 == n)
+0031 BA0028     313            cjne    r2,#0x00,L003009?
+0034 BB0028     314            cjne    r3,#0x00,L003009?
+0037            315   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:126: putchar('0');
+0037 758230     316            mov     dpl,#0x30
+003A 020100     317            ljmp    _putchar
+003D            318   L003009?:
+003D            319   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:131: char MEMSPACE_BUF *p = &buf[sizeof (buf) - 1];
+003D 7CED       320            mov     r4,#(___printn_buf_2_54 + 0x0005)
+003F            321   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:132: char neg = 0;
+003F 7D00       322            mov     r5,#0x00
+0041            323   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:134: buf[sizeof(buf) - 1] = '\0';
+0041 78ED       324            mov     r0,#(___printn_buf_2_54 + 0x0005)
+0043 7600       325            mov     @r0,#0x00
+0045            326   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:136: if (0 > n)
+0045 EB         327            mov     a,r3
+0046 30E7A8     328            jnb     acc.7,L003016?
+0049            329   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:138: n = -n;
+0049 C3         330            clr     c
+004A E4         331            clr     a
+004B 9A         332            subb    a,r2
+004C FA         333            mov     r2,a
+004D E4         334            clr     a
+004E 9B         335            subb    a,r3
+004F FB         336            mov     r3,a
+0050            337   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:139: neg = 1;
+0050 7D01       338            mov     r5,#0x01
+0052            339   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:142: while (0 != n)
+0052            340   L003016?:
+0052 8C00       341            mov     ar0,r4
+0054            342   L003003?:
+0054 BA0028     343            cjne    r2,#0x00,L003022?
+0057 BB0028     344            cjne    r3,#0x00,L003022?
+005A 8001       345            sjmp    L003018?
+005C            346   L003022?:
+005C            347   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:144: *--p = '0' + __mod (n, 10);
+005C 18         348            dec     r0
+005D 75000A     349            mov     __modsint_PARM_2,#0x0A
+0060 E4         350            clr     a
+0061 F501       351            mov     (__modsint_PARM_2 + 1),a
+0063 8A82       352            mov     dpl,r2
+0065 8B83       353            mov     dph,r3
+0067 C002       354            push    ar2
+0069 C003       355            push    ar3
+006B C005       356            push    ar5
+006D C000       357            push    ar0
+006F 120100     358            lcall   __modsint
+0072 AE82       359            mov     r6,dpl
+0074 D000       360            pop     ar0
+0076 D005       361            pop     ar5
+0078 D003       362            pop     ar3
+007A D002       363            pop     ar2
+007C 7430       364            mov     a,#0x30
+007E 2E         365            add     a,r6
+007F F6         366            mov     @r0,a
+0080            367   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:145: n = __div (n, 10);
+0080 75000A     368            mov     __divsint_PARM_2,#0x0A
+0083 E4         369            clr     a
+0084 F501       370            mov     (__divsint_PARM_2 + 1),a
+0086 8A82       371            mov     dpl,r2
+0088 8B83       372            mov     dph,r3
+008A C005       373            push    ar5
+008C C000       374            push    ar0
+008E 120100     375            lcall   __divsint
+0091 AA82       376            mov     r2,dpl
+0093 AB83       377            mov     r3,dph
+0095 D000       378            pop     ar0
+0097 D005       379            pop     ar5
+0099 8001       380            sjmp    L003003?
+009B            381   L003018?:
+009B 8804       382            mov     ar4,r0
+009D            383   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:148: if (neg)
+009D ED         384            mov     a,r5
+009E 6001       385            jz      L003007?
+00A0            386   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:149: putchar('-');
+00A0 75822D     387            mov     dpl,#0x2D
+00A3 C004       388            push    ar4
+00A5 120100     389            lcall   _putchar
+00A8 D004       390            pop     ar4
+00AA            391   L003007?:
+00AA            392   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:151: __prints(p);
+00AA 7A00       393            mov     r2,#0x00
+00AC 7B40       394            mov     r3,#0x40
+00AE 8C82       395            mov     dpl,r4
+00B0 8A83       396            mov     dph,r2
+00B2 8BF0       397            mov     b,r3
+00B4 020100     398            ljmp    ___prints
+00B7            399   ;------------------------------------------------------------
+00B7            400   ;Allocation info for local variables in function '_c51_external_startup'
+00B7            401   ;------------------------------------------------------------
+00B7            402   ;------------------------------------------------------------
+00B7            403   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:159: _c51_external_startup (void)
+00B7            404   ;        -----------------------------------------
+00B7            405   ;         function _c51_external_startup
+00B7            406   ;        -----------------------------------------
+00B7            407   __c51_external_startup:
+00B7            408   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:163: TI = 1;
+00B7 D299       409            setb    _TI
+00B9            410   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:164: return 0;
+00B9 758200     411            mov     dpl,#0x00
+00BC 22         412            ret
+00BD            413   ;------------------------------------------------------------
+00BD            414   ;Allocation info for local variables in function '__printf'
+00BD            415   ;------------------------------------------------------------
+00BD            416   ;szFormat                  Allocated to stack - offset -5
+00BD            417   ;ap                        Allocated to registers r2 
+00BD            418   ;sz                        Allocated to registers r3 r4 r5 
+00BD            419   ;i                         Allocated to registers r3 r4 
+00BD            420   ;------------------------------------------------------------
+00BD            421   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:170: __printf (const char *szFormat, ...)
+00BD            422   ;        -----------------------------------------
+00BD            423   ;         function __printf
+00BD            424   ;        -----------------------------------------
+00BD            425   ___printf:
+00BD C000       426            push    _bp
+00BF 858100     427            mov     _bp,sp
+00C2            428   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:173: va_start (ap, szFormat);
+00C2 E500       429            mov     a,_bp
+00C4 24FB       430            add     a,#0xfb
+00C6 FA         431            mov     r2,a
+00C7            432   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:175: while (*szFormat)
+00C7            433   L005009?:
+00C7 E500       434            mov     a,_bp
+00C9 24FB       435            add     a,#0xfb
+00CB F8         436            mov     r0,a
+00CC 8603       437            mov     ar3,@r0
+00CE 08         438            inc     r0
+00CF 8604       439            mov     ar4,@r0
+00D1 08         440            inc     r0
+00D2 8605       441            mov     ar5,@r0
+00D4 8B82       442            mov     dpl,r3
+00D6 8C83       443            mov     dph,r4
+00D8 8DF0       444            mov     b,r5
+00DA 120100     445            lcall   __gptrget
+00DD FE         446            mov     r6,a
+00DE 7001       447            jnz     L005020?
+00E0 020100     448            ljmp    L005012?
+00E3            449   L005020?:
+00E3            450   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:177: if (*szFormat == '%')
+00E3 BE2548     451            cjne    r6,#0x25,L005021?
+00E6 8001       452            sjmp    L005022?
+00E8            453   L005021?:
+00E8 020100     454            ljmp    L005007?
+00EB            455   L005022?:
+00EB            456   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:179: switch (*++szFormat)
+00EB E500       457            mov     a,_bp
+00ED 24FB       458            add     a,#0xfb
+00EF F8         459            mov     r0,a
+00F0 7401       460            mov     a,#0x01
+00F2 2B         461            add     a,r3
+00F3 F6         462            mov     @r0,a
+00F4 E4         463            clr     a
+00F5 3C         464            addc    a,r4
+00F6 08         465            inc     r0
+00F7 F6         466            mov     @r0,a
+00F8 08         467            inc     r0
+00F9 A605       468            mov     @r0,ar5
+00FB E500       469            mov     a,_bp
+00FD 24FB       470            add     a,#0xfb
+00FF F8         471            mov     r0,a
+0100 8603       472            mov     ar3,@r0
+0102 08         473            inc     r0
+0103 8604       474            mov     ar4,@r0
+0105 08         475            inc     r0
+0106 8605       476            mov     ar5,@r0
+0108 8B82       477            mov     dpl,r3
+010A 8C83       478            mov     dph,r4
+010C 8DF0       479            mov     b,r5
+010E 120100     480            lcall   __gptrget
+0111 FB         481            mov     r3,a
+0112 BB2508     482            cjne    r3,#0x25,L005023?
+0115 8001       483            sjmp    L005003?
+0117            484   L005023?:
+0117 BB7388     485            cjne    r3,#0x73,L005024?
+011A 8001       486            sjmp    L005001?
+011C            487   L005024?:
+011C            488   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:181: case 's':
+011C BB7508     489            cjne    r3,#0x75,L005008?
+011F 8001       490            sjmp    L005002?
+0121            491   L005001?:
+0121            492   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:183: char *sz = va_arg (ap, char *);
+0121 EA         493            mov     a,r2
+0122 24FD       494            add     a,#0xfd
+0124 F8         495            mov     r0,a
+0125 FA         496            mov     r2,a
+0126 8603       497            mov     ar3,@r0
+0128 08         498            inc     r0
+0129 8604       499            mov     ar4,@r0
+012B 08         500            inc     r0
+012C 8605       501            mov     ar5,@r0
+012E 18         502            dec     r0
+012F 18         503            dec     r0
+0130            504   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:184: __prints(sz);
+0130 8B82       505            mov     dpl,r3
+0132 8C83       506            mov     dph,r4
+0134 8DF0       507            mov     b,r5
+0136 C002       508            push    ar2
+0138 120100     509            lcall   ___prints
+013B D002       510            pop     ar2
+013D            511   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:185: break;
+013D            512   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:188: case 'u':
+013D 8001       513            sjmp    L005008?
+013F            514   L005002?:
+013F            515   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:190: int i = va_arg (ap, int);
+013F EA         516            mov     a,r2
+0140 24FE       517            add     a,#0xfe
+0142 F8         518            mov     r0,a
+0143 FA         519            mov     r2,a
+0144 8603       520            mov     ar3,@r0
+0146 08         521            inc     r0
+0147 8604       522            mov     ar4,@r0
+0149 18         523            dec     r0
+014A            524   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:191: __printn (i);
+014A 8B82       525            mov     dpl,r3
+014C 8C83       526            mov     dph,r4
+014E C002       527            push    ar2
+0150 120100     528            lcall   ___printn
+0153 D002       529            pop     ar2
+0155            530   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:192: break;
+0155            531   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:195: case '%':
+0155 8001       532            sjmp    L005008?
+0157            533   L005003?:
+0157            534   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:196: putchar ('%');
+0157 758225     535            mov     dpl,#0x25
+015A C002       536            push    ar2
+015C 120100     537            lcall   _putchar
+015F D002       538            pop     ar2
+0161            539   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:197: break;
+0161            540   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:201: }
+0161 8001       541            sjmp    L005008?
+0163            542   L005007?:
+0163            543   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:205: putchar (*szFormat);
+0163 8E82       544            mov     dpl,r6
+0165 C002       545            push    ar2
+0167 120100     546            lcall   _putchar
+016A D002       547            pop     ar2
+016C            548   L005008?:
+016C            549   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:207: szFormat++;
+016C E500       550            mov     a,_bp
+016E 24FB       551            add     a,#0xfb
+0170 F8         552            mov     r0,a
+0171 06         553            inc     @r0
+0172 B60088     554            cjne    @r0,#0x00,L005026?
+0175 08         555            inc     r0
+0176 06         556            inc     @r0
+0177            557   L005026?:
+0177 020100     558            ljmp    L005009?
+017A            559   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:209: va_end (ap);
+017A            560   L005012?:
+017A D000       561            pop     _bp
+017C 22         562            ret
+017D            563   ;------------------------------------------------------------
+017D            564   ;Allocation info for local variables in function '__fail'
+017D            565   ;------------------------------------------------------------
+017D            566   ;szCond                    Allocated with name '___fail_PARM_2'
+017D            567   ;szFile                    Allocated with name '___fail_PARM_3'
+017D            568   ;line                      Allocated with name '___fail_PARM_4'
+017D            569   ;szMsg                     Allocated to registers r2 r3 
+017D            570   ;sloc0                     Allocated with name '___fail_sloc0_1_0'
+017D            571   ;------------------------------------------------------------
+017D            572   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:213: __fail (code const char *szMsg, code const char *szCond, code const char *szFile, int line)
+017D            573   ;        -----------------------------------------
+017D            574   ;         function __fail
+017D            575   ;        -----------------------------------------
+017D            576   ___fail:
+017D AA82       577            mov     r2,dpl
+017F AB83       578            mov     r3,dph
+0181            579   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:215: __printf("--- FAIL: \"%s\" on %s at %s:%u\n", szMsg, szCond, szFile, line);
+0181 AC30       580            mov     r4,___fail_PARM_3
+0183 AD31       581            mov     r5,(___fail_PARM_3 + 1)
+0185 7E80       582            mov     r6,#0x80
+0187 8570B8     583            mov     ___fail_sloc0_1_0,___fail_PARM_2
+018A 8571B9     584            mov     (___fail_sloc0_1_0 + 1),(___fail_PARM_2 + 1)
+018D 75BA80     585            mov     (___fail_sloc0_1_0 + 2),#0x80
+0190 7F80       586            mov     r7,#0x80
+0192 C0F0       587            push    ___fail_PARM_4
+0194 C0F1       588            push    (___fail_PARM_4 + 1)
+0196 C004       589            push    ar4
+0198 C005       590            push    ar5
+019A C006       591            push    ar6
+019C C0B8       592            push    ___fail_sloc0_1_0
+019E C0B9       593            push    (___fail_sloc0_1_0 + 1)
+01A0 C0BA       594            push    (___fail_sloc0_1_0 + 2)
+01A2 C002       595            push    ar2
+01A4 C003       596            push    ar3
+01A6 C007       597            push    ar7
+01A8 74C8       598            mov     a,#__str_0
+01AA C0E0       599            push    acc
+01AC 746F       600            mov     a,#(__str_0 >> 8)
+01AE C0E0       601            push    acc
+01B0 7480       602            mov     a,#0x80
+01B2 C0E0       603            push    acc
+01B4 120100     604            lcall   ___printf
+01B7 E581       605            mov     a,sp
+01B9 24F2       606            add     a,#0xf2
+01BB F581       607            mov     sp,a
+01BD            608   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:216: __numFailures++;
+01BD 05B0       609            inc     ___numFailures
+01BF E4         610            clr     a
+01C0 B5B008     611            cjne    a,___numFailures,L006003?
+01C3 05B1       612            inc     (___numFailures + 1)
+01C5            613   L006003?:
+01C5 22         614            ret
+01C6            615   ;------------------------------------------------------------
+01C6            616   ;Allocation info for local variables in function 'main'
+01C6            617   ;------------------------------------------------------------
+01C6            618   ;------------------------------------------------------------
+01C6            619   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:220: main (void)
+01C6            620   ;        -----------------------------------------
+01C6            621   ;         function main
+01C6            622   ;        -----------------------------------------
+01C6            623   _main:
+01C6            624   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:222: __printf("--- Running: %s\n", __getSuiteName());
+01C6 120100     625            lcall   ___getSuiteName
+01C9 AA82       626            mov     r2,dpl
+01CB AB83       627            mov     r3,dph
+01CD 7C80       628            mov     r4,#0x80
+01CF C002       629            push    ar2
+01D1 C003       630            push    ar3
+01D3 C004       631            push    ar4
+01D5 7448       632            mov     a,#__str_1
+01D7 C0E0       633            push    acc
+01D9 7470       634            mov     a,#(__str_1 >> 8)
+01DB C0E0       635            push    acc
+01DD 7480       636            mov     a,#0x80
+01DF C0E0       637            push    acc
+01E1 120100     638            lcall   ___printf
+01E4 E581       639            mov     a,sp
+01E6 24FA       640            add     a,#0xfa
+01E8 F581       641            mov     sp,a
+01EA            642   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:224: __runSuite();
+01EA 120100     643            lcall   ___runSuite
+01ED            644   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:228: __numFailures, __numTests, __numCases
+01ED 901230     645            mov     dptr,#___numCases
+01F0 E4         646            clr     a
+01F1 93         647            movc    a,@a+dptr
+01F2 FA         648            mov     r2,a
+01F3 7401       649            mov     a,#0x01
+01F5 93         650            movc    a,@a+dptr
+01F6 FB         651            mov     r3,a
+01F7            652   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:226: __printf("--- Summary: %u/%u/%u: %u failed of %u tests in %u cases.\n",
+01F7 C002       653            push    ar2
+01F9 C003       654            push    ar3
+01FB C0F0       655            push    ___numTests
+01FD C0F1       656            push    (___numTests + 1)
+01FF C0B0       657            push    ___numFailures
+0201 C0B1       658            push    (___numFailures + 1)
+0203 C002       659            push    ar2
+0205 C003       660            push    ar3
+0207 C0F0       661            push    ___numTests
+0209 C0F1       662            push    (___numTests + 1)
+020B C0B0       663            push    ___numFailures
+020D C0B1       664            push    (___numFailures + 1)
+020F 7488       665            mov     a,#__str_2
+0211 C0E0       666            push    acc
+0213 7470       667            mov     a,#(__str_2 >> 8)
+0215 C0E0       668            push    acc
+0217 7480       669            mov     a,#0x80
+0219 C0E0       670            push    acc
+021B 120100     671            lcall   ___printf
+021E E581       672            mov     a,sp
+0220 24F1       673            add     a,#0xf1
+0222 F581       674            mov     sp,a
+0224            675   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:231: IE=0;
+0224 75A800     676            mov     _IE,#0x00
+0227            677   ;        C:\Source\call51\Source\regression\cases_gcc\/../fwk/include/testfwk.h:232: return 0;
+0227 900000     678            mov     dptr,#0x0000
+022A 22         679            ret
+022B            680   ;------------------------------------------------------------
+022B            681   ;Allocation info for local variables in function 'ftest_store_ccp'
+022B            682   ;------------------------------------------------------------
+022B            683   ;i                         Allocated to registers r2 r3 
+022B            684   ;p                         Allocated to registers r4 r5 r6 
+022B            685   ;a                         Allocated with name '_ftest_store_ccp_a_1_73'
+022B            686   ;b                         Allocated with name '_ftest_store_ccp_b_1_73'
+022B            687   ;c                         Allocated with name '_ftest_store_ccp_c_1_73'
+022B            688   ;------------------------------------------------------------
+022B            689   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:11: ftest_store_ccp (int i)
+022B            690   ;        -----------------------------------------
+022B            691   ;         function ftest_store_ccp
+022B            692   ;        -----------------------------------------
+022B            693   _ftest_store_ccp:
+022B AA82       694            mov     r2,dpl
+022D AB83       695            mov     r3,dph
+022F            696   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:15: if (i < 5)
+022F C3         697            clr     c
+0230 EA         698            mov     a,r2
+0231 9405       699            subb    a,#0x05
+0233 EB         700            mov     a,r3
+0234 6480       701            xrl     a,#0x80
+0236 9480       702            subb    a,#0x80
+0238 5001       703            jnc     L008005?
+023A            704   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:16: p = &a;
+023A 7C08       705            mov     r4,#_ftest_store_ccp_a_1_73
+023C 7D00       706            mov     r5,#0x00
+023E 7E40       707            mov     r6,#0x40
+0240 8001       708            sjmp    L008006?
+0242            709   L008005?:
+0242            710   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:17: else if (i > 8)
+0242 C3         711            clr     c
+0243 7408       712            mov     a,#0x08
+0245 9A         713            subb    a,r2
+0246 E4         714            clr     a
+0247 6480       715            xrl     a,#0x80
+0249 8BF0       716            mov     b,r3
+024B 63F080     717            xrl     b,#0x80
+024E 95F0       718            subb    a,b
+0250 5001       719            jnc     L008002?
+0252            720   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:18: p = &b;
+0252 7C58       721            mov     r4,#_ftest_store_ccp_b_1_73
+0254 7D00       722            mov     r5,#0x00
+0256 7E40       723            mov     r6,#0x40
+0258 8001       724            sjmp    L008006?
+025A            725   L008002?:
+025A            726   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:20: p = &c;
+025A 7CA8       727            mov     r4,#_ftest_store_ccp_c_1_73
+025C 7D00       728            mov     r5,#0x00
+025E 7E40       729            mov     r6,#0x40
+0260            730   L008006?:
+0260            731   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:22: *p = 10;
+0260 8C82       732            mov     dpl,r4
+0262 8D83       733            mov     dph,r5
+0264 8EF0       734            mov     b,r6
+0266 740A       735            mov     a,#0x0A
+0268 120100     736            lcall   __gptrput
+026B A3         737            inc     dptr
+026C E4         738            clr     a
+026D 120100     739            lcall   __gptrput
+0270            740   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:23: b = 3;
+0270 755803     741            mov     _ftest_store_ccp_b_1_73,#0x03
+0273 E4         742            clr     a
+0274 F559       743            mov     (_ftest_store_ccp_b_1_73 + 1),a
+0276            744   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:26: return *p + 2;
+0276 8C82       745            mov     dpl,r4
+0278 8D83       746            mov     dph,r5
+027A 8EF0       747            mov     b,r6
+027C 120100     748            lcall   __gptrget
+027F FC         749            mov     r4,a
+0280 A3         750            inc     dptr
+0281 120100     751            lcall   __gptrget
+0284 FD         752            mov     r5,a
+0285 8C82       753            mov     dpl,r4
+0287 8D83       754            mov     dph,r5
+0289 A3         755            inc     dptr
+028A A3         756            inc     dptr
+028B 22         757            ret
+028C            758   ;------------------------------------------------------------
+028C            759   ;Allocation info for local variables in function 'ftest_store_copy_prop'
+028C            760   ;------------------------------------------------------------
+028C            761   ;i                         Allocated to registers r2 r3 
+028C            762   ;p                         Allocated to registers r4 r5 r6 
+028C            763   ;a                         Allocated with name '_ftest_store_copy_prop_a_1_75'
+028C            764   ;b                         Allocated with name '_ftest_store_copy_prop_b_1_75'
+028C            765   ;c                         Allocated with name '_ftest_store_copy_prop_c_1_75'
+028C            766   ;------------------------------------------------------------
+028C            767   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:30: ftest_store_copy_prop (int i)
+028C            768   ;        -----------------------------------------
+028C            769   ;         function ftest_store_copy_prop
+028C            770   ;        -----------------------------------------
+028C            771   _ftest_store_copy_prop:
+028C AA82       772            mov     r2,dpl
+028E AB83       773            mov     r3,dph
+0290            774   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:34: if (i < 5)
+0290 C3         775            clr     c
+0291 EA         776            mov     a,r2
+0292 9405       777            subb    a,#0x05
+0294 EB         778            mov     a,r3
+0295 6480       779            xrl     a,#0x80
+0297 9480       780            subb    a,#0x80
+0299 5001       781            jnc     L009005?
+029B            782   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:35: p = &a;
+029B 7CF8       783            mov     r4,#_ftest_store_copy_prop_a_1_75
+029D 7D00       784            mov     r5,#0x00
+029F 7E40       785            mov     r6,#0x40
+02A1 8001       786            sjmp    L009006?
+02A3            787   L009005?:
+02A3            788   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:36: else if (i > 8)
+02A3 C3         789            clr     c
+02A4 7408       790            mov     a,#0x08
+02A6 9A         791            subb    a,r2
+02A7 E4         792            clr     a
+02A8 6480       793            xrl     a,#0x80
+02AA 8BF0       794            mov     b,r3
+02AC 63F080     795            xrl     b,#0x80
+02AF 95F0       796            subb    a,b
+02B1 5001       797            jnc     L009002?
+02B3            798   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:37: p = &b;
+02B3 7C48       799            mov     r4,#_ftest_store_copy_prop_b_1_75
+02B5 7D00       800            mov     r5,#0x00
+02B7 7E40       801            mov     r6,#0x40
+02B9 8001       802            sjmp    L009006?
+02BB            803   L009002?:
+02BB            804   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:39: p = &c;
+02BB 7C98       805            mov     r4,#_ftest_store_copy_prop_c_1_75
+02BD 7D00       806            mov     r5,#0x00
+02BF 7E40       807            mov     r6,#0x40
+02C1            808   L009006?:
+02C1            809   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:41: *p = i;
+02C1 8C82       810            mov     dpl,r4
+02C3 8D83       811            mov     dph,r5
+02C5 8EF0       812            mov     b,r6
+02C7 EA         813            mov     a,r2
+02C8 120100     814            lcall   __gptrput
+02CB A3         815            inc     dptr
+02CC EB         816            mov     a,r3
+02CD 120100     817            lcall   __gptrput
+02D0            818   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:42: b = i + 1;
+02D0 7401       819            mov     a,#0x01
+02D2 2A         820            add     a,r2
+02D3 F548       821            mov     _ftest_store_copy_prop_b_1_75,a
+02D5 E4         822            clr     a
+02D6 3B         823            addc    a,r3
+02D7 F549       824            mov     (_ftest_store_copy_prop_b_1_75 + 1),a
+02D9            825   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:45: return *p;
+02D9 8A82       826            mov     dpl,r2
+02DB 8B83       827            mov     dph,r3
+02DD 22         828            ret
+02DE            829   ;------------------------------------------------------------
+02DE            830   ;Allocation info for local variables in function 'testTortureExecute'
+02DE            831   ;------------------------------------------------------------
+02DE            832   ;x                         Allocated to registers r2 r3 
+02DE            833   ;------------------------------------------------------------
+02DE            834   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:50: testTortureExecute (void)
+02DE            835   ;        -----------------------------------------
+02DE            836   ;         function testTortureExecute
+02DE            837   ;        -----------------------------------------
+02DE            838   _testTortureExecute:
+02DE            839   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:55: x = ftest_store_ccp (10);
+02DE 90000A     840            mov     dptr,#0x000A
+02E1 120100     841            lcall   _ftest_store_ccp
+02E4 AA82       842            mov     r2,dpl
+02E6 AB83       843            mov     r3,dph
+02E8            844   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:56: if (x == 12)
+02E8 BA0C88     845            cjne    r2,#0x0C,L010002?
+02EB BB0088     846            cjne    r3,#0x00,L010002?
+02EE            847   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:57: ASSERT (0);
+02EE 05F0       848            inc     ___numTests
+02F0 E4         849            clr     a
+02F1 B5F0C8     850            cjne    a,___numTests,L010011?
+02F4 05F1       851            inc     (___numTests + 1)
+02F6            852   L010011?:
+02F6 757008     853            mov     ___fail_PARM_2,#__str_4
+02F9 757173     854            mov     (___fail_PARM_2 + 1),#(__str_4 >> 8)
+02FC 753048     855            mov     ___fail_PARM_3,#__str_5
+02FF 753173     856            mov     (___fail_PARM_3 + 1),#(__str_5 >> 8)
+0302 75F039     857            mov     ___fail_PARM_4,#0x39
+0305 E4         858            clr     a
+0306 F5F1       859            mov     (___fail_PARM_4 + 1),a
+0308 907388     860            mov     dptr,#__str_3
+030B 120100     861            lcall   ___fail
+030E            862   L010002?:
+030E            863   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:59: x = ftest_store_copy_prop (9);
+030E 900009     864            mov     dptr,#0x0009
+0311 120100     865            lcall   _ftest_store_copy_prop
+0314 AA82       866            mov     r2,dpl
+0316 AB83       867            mov     r3,dph
+0318            868   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:60: if (x == 9)
+0318 BA09C8     869            cjne    r2,#0x09,L010004?
+031B BB00C8     870            cjne    r3,#0x00,L010004?
+031E            871   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:61: ASSERT (0);
+031E 05F0       872            inc     ___numTests
+0320 E4         873            clr     a
+0321 B5F008     874            cjne    a,___numTests,L010014?
+0324 05F1       875            inc     (___numTests + 1)
+0326            876   L010014?:
+0326 757008     877            mov     ___fail_PARM_2,#__str_4
+0329 757173     878            mov     (___fail_PARM_2 + 1),#(__str_4 >> 8)
+032C 753048     879            mov     ___fail_PARM_3,#__str_5
+032F 753173     880            mov     (___fail_PARM_3 + 1),#(__str_5 >> 8)
+0332 75F03D     881            mov     ___fail_PARM_4,#0x3D
+0335 E4         882            clr     a
+0336 F5F1       883            mov     (___fail_PARM_4 + 1),a
+0338 907388     884            mov     dptr,#__str_3
+033B 120100     885            lcall   ___fail
+033E            886   L010004?:
+033E            887   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:63: return;
+033E 22         888            ret
+033F            889   ;------------------------------------------------------------
+033F            890   ;Allocation info for local variables in function '__runSuite'
+033F            891   ;------------------------------------------------------------
+033F            892   ;------------------------------------------------------------
+033F            893   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:68: __runSuite(void)
+033F            894   ;        -----------------------------------------
+033F            895   ;         function __runSuite
+033F            896   ;        -----------------------------------------
+033F            897   ___runSuite:
+033F            898   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:70: __prints("Running testTortureExecute\n");
+033F 907448     899            mov     dptr,#__str_6
+0342 75F080     900            mov     b,#0x80
+0345 120100     901            lcall   ___prints
+0348            902   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:71: testTortureExecute();
+0348 020100     903            ljmp    _testTortureExecute
+034B            904   ;------------------------------------------------------------
+034B            905   ;Allocation info for local variables in function '__getSuiteName'
+034B            906   ;------------------------------------------------------------
+034B            907   ;------------------------------------------------------------
+034B            908   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:77: __getSuiteName(void)
+034B            909   ;        -----------------------------------------
+034B            910   ;         function __getSuiteName
+034B            911   ;        -----------------------------------------
+034B            912   ___getSuiteName:
+034B            913   ;        C:\Source\call51\Source\regression\cases_gcc\gcc-torture-execute-20041019-1.c:79: return "cases_gcc\\gcc-torture-execute-20041019-1";
+034B 907488     914            mov     dptr,#__str_7
+034E 22         915            ret
+034F            916            rseg R_CSEG
+034F            917   
+0000            918            rseg R_XINIT
+0000            919   
+0000            920            rseg R_CONST
+0000            921   __str_0:
+0000 2D2D2D20   922            db '--- FAIL: '
+     4641494C
+     3A20
+000A 22         923            db 0x22
+000B 2573       924            db '%s'
+000D 22         925            db 0x22
+000E 206F6E20   926            db ' on %s at %s:%u'
+     25732061
+     74202573
+     3A2575
+001D 0A         927            db 0x0A
+001E 00         928            db 0x00
+001F            929   __str_1:
+001F 2D2D2D20   930            db '--- Running: %s'
+     52756E6E
+     696E673A
+     202573
+002E 0A         931            db 0x0A
+002F 00         932            db 0x00
+0030            933   __str_2:
+0030 2D2D2D20   934            db '--- Summary: %u/%u/%u: %u failed of %u tests in %u cases.'
+     53756D6D
+     6172793A
+     2025752F
+     25752F25
+     753A2025
+     75206661
+     696C6564
+     206F6620
+     25752074
+     65737473
+     20696E20
+     25752063
+     61736573
+     2E
+0069 0A         935            db 0x0A
+006A 00         936            db 0x00
+006B            937   __str_3:
+006B 41737365   938            db 'Assertion failed'
+     7274696F
+     6E206661
+     696C6564
+007B 00         939            db 0x00
+007C            940   __str_4:
+007C 30         941            db '0'
+007D 00         942            db 0x00
+007E            943   __str_5:
+007E 433A       944            db 'C:'
+0080 5C         945            db 0x5C
+0081 536F7572   946            db 'Source'
+     6365
+0087 5C         947            db 0x5C
+0088 63616C6C   948            db 'call51'
+     3531
+008E 5C         949            db 0x5C
+008F 536F7572   950            db 'Source'
+     6365
+0095 5C         951            db 0x5C
+0096 72656772   952            db 'regression'
+     65737369
+     6F6E
+00A0 5C         953            db 0x5C
+00A1 63617365   954            db 'cases_gcc'
+     735F6763
+     63
+00AA 5C         955            db 0x5C
+00AB 6763632D   956            db 'gcc-torture-exe'
+     746F7274
+     7572652D
+     657865
+00BA 63757465   957            db 'cute-20041019-1.c'
+     2D323030
+     34313031
+     392D312E
+     63
+00CB 00         958            db 0x00
+00CC            959   __str_6:
+00CC 52756E6E   960            db 'Running testTortureExecute'
+     696E6720
+     74657374
+     546F7274
+     75726545
+     78656375
+     7465
+00E6 0A         961            db 0x0A
+00E7 00         962            db 0x00
+00E8            963   ___numCases:
+00E8 0100       964            db 0x01,0x00    ;  1
+00EA            965   __str_7:
+00EA 63617365   966            db 'cases_gcc'
+     735F6763
+     63
+00F3 5C         967            db 0x5C
+00F4 6763632D   968            db 'gcc-torture-execute-20041019-1'
+     746F7274
+     7572652D
+     65786563
+     7574652D
+     32303034
+     31303139
+     2D31
+0112 00         969            db 0x00
+0113            970   
+0003            971            CSEG
+0003            972   
+0003            973   end

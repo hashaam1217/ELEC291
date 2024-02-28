@@ -1,0 +1,5 @@
+
+---------- REG_M.TXT
+bug3440327.c:45: error 92: Functions called via pointers must be 'reentrant' to take this many arguments
+bug3475990.c:10: parse error: token -> 'set_b' ; column 18
+bug3564649.c:14: parse error: token -> 'void' ; column 14

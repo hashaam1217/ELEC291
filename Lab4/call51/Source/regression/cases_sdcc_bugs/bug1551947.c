@@ -1,0 +1,30 @@
+/*
+   bug1551947.c
+*/
+
+#include "../fwk/include/testfwk.h"
+
+__xdata float z;
+__xdata float x = 1.0;
+
+void
+testBug (void)
+{
+  z = x * x;
+  ASSERT (z == 1.0);
+}
+
+void
+__runSuite(void)
+{
+  __prints("Running testBug\n");
+  testBug();
+}
+
+const int __numCases = 1;
+
+__code const char *
+__getSuiteName(void)
+{
+  return "cases_sdcc_bugs\\bug1551947";
+}

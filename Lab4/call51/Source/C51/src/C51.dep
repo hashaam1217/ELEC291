@@ -1,0 +1,924 @@
+# Microsoft Developer Studio Generated Dependency File, included by C51.mak
+
+..\support\Util\BuildCmd.c : \
+	"..\support\util\buildcmd.h"\
+	".\C51set.h"\
+	
+
+!IF  "$(CFG)" == "C51 - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "C51 - Win32 Release"
+
+!ENDIF 
+
+.\Resource\c51.rc : \
+	".\Resource\c51.ico"\
+	
+
+.\C51asm.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51ast.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51BBlock.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51bitv.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51cflow.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51cse.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51debug.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51dflow.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51dwarf2.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51dwarf2.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51err.c : \
+	".\C51err.h"\
+	
+
+.\C51glue.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51hasht.c : \
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51hasht.h"\
+	".\C51set.h"\
+	
+
+.\C51icode.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51label.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51lex.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51loop.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51lrange.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51macro.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51main.c : \
+	"..\support\util\buildcmd.h"\
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\MySystem.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\c51macro.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51mem.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51opt.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51peeph.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51ptropt.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51set.c : \
+	"..\support\Util\newalloc.h"\
+	".\C51set.h"\
+	
+
+.\C51symt.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\C51util.c : \
+	"..\..\..\..\..\programs\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51hasht.h"\
+	".\c51macro.h"\
+	".\C51set.h"\
+	".\C51util.h"\
+	".\version.h"\
+	
+
+.\C51val.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+.\c51y.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51ast.h"\
+	".\C51bitv.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51mem.h"\
+	".\C51peeph.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\port.h"\
+	
+
+.\cdbFile.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\c51args.h"\
+	".\C51asm.h"\
+	".\C51ast.h"\
+	".\C51BBlock.h"\
+	".\C51bitv.h"\
+	".\C51cflow.h"\
+	".\C51cse.h"\
+	".\c51debug.h"\
+	".\C51dflow.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51glue.h"\
+	".\C51hasht.h"\
+	".\C51icode.h"\
+	".\C51label.h"\
+	".\C51loop.h"\
+	".\C51lrange.h"\
+	".\C51mem.h"\
+	".\C51opt.h"\
+	".\C51peeph.h"\
+	".\C51ptropt.h"\
+	".\C51set.h"\
+	".\C51symt.h"\
+	".\C51util.h"\
+	".\C51val.h"\
+	".\c51y.h"\
+	".\common.h"\
+	".\port.h"\
+	
+
+..\support\Util\dbuf.c : \
+	"..\support\Util\dbuf.h"\
+	
+
+..\support\Util\dbuf_string.c : \
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\dbuf_string.h"\
+	
+
+..\support\Util\MySystem.c : \
+	"..\..\..\..\..\programs\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\support\Util\dbuf.h"\
+	"..\support\Util\MySystem.h"\
+	"..\support\Util\newalloc.h"\
+	".\c51.h"\
+	".\C51err.h"\
+	".\C51globl.h"\
+	".\C51hasht.h"\
+	".\C51set.h"\
+	".\C51util.h"\
+	
+
+..\support\Util\NewAlloc.c : \
+	"..\support\Util\newalloc.h"\
+	

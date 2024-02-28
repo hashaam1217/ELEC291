@@ -1,0 +1,2070 @@
+--- Running: cases_gcc\gcc-torture-execute-20000113-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000121-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000205-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000217-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000224-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000225-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000227-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000313-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000314-1
+Running testTortureExecute
+Running testTortureExecute
+--- Summary: 0/0/2: 0 failed of 0 tests in 2 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000314-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000314-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000402-1
+Running testTortureExecute
+Running testTortureExecute
+--- Summary: 0/0/2: 0 failed of 0 tests in 2 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000403-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000412-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000412-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000412-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000412-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000412-5
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000412-6
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000419-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000422-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000503-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-20000511-1.c:22: warning 84: 'auto' variable 'b' may be used before initialization
+gcc-torture-execute-20000511-1.c:22: warning 84: 'auto' variable 'c' may be used before initialization
+gcc-torture-execute-20000511-1.c:29: warning 84: 'auto' variable 'c' may be used before initialization
+gcc-torture-execute-20000511-1.c:29: warning 84: 'auto' variable 'e' may be used before initialization
+gcc-torture-execute-20000511-1.c:37: warning 84: 'auto' variable 'e' may be used before initialization
+gcc-torture-execute-20000511-1.c:38: warning 84: 'auto' variable 'e' may be used before initialization
+gcc-torture-execute-20000511-1.c:39: warning 84: 'auto' variable 'e' may be used before initialization
+gcc-torture-execute-20000511-1.c:40: warning 84: 'auto' variable 'e' may be used before initialization
+gcc-torture-execute-20000511-1.c:41: warning 84: 'auto' variable 'e' may be used before initialization
+gcc-torture-execute-20000511-1.c:42: warning 84: 'auto' variable 'e' may be used before initialization
+--- Running: cases_gcc\gcc-torture-execute-20000511-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000519-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000519-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000523-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000528-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000603-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000605-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000605-2
+Running testTortureExecute
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000605-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000622-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000703-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000706-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000706-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000706-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000706-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000706-5
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000707-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000715-1
+Running test1
+Running test2
+Running test3
+Running test4
+Running test5
+Running test6
+Running testTortureExecute
+--- Summary: 0/0/7: 0 failed of 0 tests in 7 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000715-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000717-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000717-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000717-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000717-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000717-5
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000722-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000726-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000731-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000731-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000801-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000801-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000801-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000815-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000818-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20000910-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001009-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001011-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001013-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001017-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001017-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001024-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001026-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001027-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001031-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001101
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001108-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001112-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001121-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001130-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001130-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001203-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001221-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20001228-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010106-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010114-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010118-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010123-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010129-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010209-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010221-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010222-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010224-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010403-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010409-1
+Running testTortureExecute
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010422-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010518-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010520-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010604-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010711-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010717-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010723-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010910-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010915-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010924-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20010925-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011008-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011019-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011024-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011109-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011109-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011113-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011114-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011126-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011126-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011128-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011217-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011219-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20011223-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020103-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020118-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020127-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020129-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020201-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020206-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020213-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020215-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020216-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020219-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020225-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020225-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020226-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020307-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020321-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020328-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020402-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020402-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020402-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020413-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020423-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020503-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020506-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020508-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020508-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020508-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020510-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020529-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020611-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020614-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020615-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020619-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020716-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020720-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020805-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020810-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020819-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020904-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020911-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020916-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20020920-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-20021010-1.c:21: warning 84: 'auto' variable 'a' may be used before initialization
+--- Running: cases_gcc\gcc-torture-execute-20021010-1
+Running testTortureExecute
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021010-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021011-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021015-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021111-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021118-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021118-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021118-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021119-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021120-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021120-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021120-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021204-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20021219-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030105-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030117-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030120-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030120-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030125-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030128-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030203-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030209-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030218-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030221-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030307-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030313-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030316-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030401-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030403-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030408-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030606-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030613-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030626-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030626-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030714-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030715-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-20030717-1.c:77: warning 158: overflow in implicit constant conversion
+--- Running: cases_gcc\gcc-torture-execute-20030717-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030718-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030828-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030828-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030903-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030909-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030913-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030914-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030914-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20030916-1
+Running testTortureExecute
+Running testTortureExecute
+--- Summary: 0/0/2: 0 failed of 0 tests in 2 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031010-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031011-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031012-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-20031020-1.c:28: warning 184: integer constant '2147483648L' out of range, truncated to 2147483647.
+gcc-torture-execute-20031020-1.c:29: warning 184: integer constant '2147483648L' out of range, truncated to 2147483647.
+--- Running: cases_gcc\gcc-torture-execute-20031020-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031204-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031211-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-20031211-2.c:23: warning 158: overflow in implicit constant conversion
+--- Running: cases_gcc\gcc-torture-execute-20031211-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031214-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031215-1
+Running test1
+Running test2
+Running test3
+Running testTortureExecute
+--- Summary: 0/0/4: 0 failed of 0 tests in 4 cases.
+--- Running: cases_gcc\gcc-torture-execute-20031216-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040208-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040218-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040309-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040311-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040313-1
+Running testTortureExecute
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040319-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040331-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040409-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040409-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040409-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040411-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040423-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040704-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040706-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040707-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040820-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040823-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040831-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20040917-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041011-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041019-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041112-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041113-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041114-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041126-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041210-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041212-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20041213-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050104-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050106-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050111-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050124-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050125-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050131-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050218-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050224-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050410-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050502-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050502-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050613-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050713-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050826-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050826-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20050929-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20051021-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20051104-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20051110-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20051110-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20051215-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060102-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060110-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060110-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060127-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060412-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060905-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060910-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060929-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060930-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20060930-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20061101-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20070201-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20070212-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20070212-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20070212-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20070517-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20070623-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20070724-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071011-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071030-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071108-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071202-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071205-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071210-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071213-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071216-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20071219-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080117-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080408-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080424-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080506-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080506-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080519-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080522-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080529-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080604-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20080719-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20081103-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20081112-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20090113-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20090207-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20090527-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20090623-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20090814-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20100316-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20100805-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20100827-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20101013-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20101025-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-20111208-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920202-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920409-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920411-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920428-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920429-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920501-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920501-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920501-6
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920501-8
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920501-9
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920506-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920520-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920603-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920604-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920612-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920618-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920625-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920710-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-920711-1.c:20: warning 184: integer constant '0x80000000L' out of range, truncated to 2147483647.
+--- Running: cases_gcc\gcc-torture-execute-920711-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920721-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920721-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920721-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920726-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920730-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920731-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920810-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920812-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920829-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920908-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920909-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920922-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-920929-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921006-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921013-1
+Running testTortureExecute
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921016-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921019-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921019-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921029-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921104-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921112-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921117-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921123-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921123-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921124-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921202-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921207-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921208-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921218-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-921218-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930106-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930111-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930123-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930126-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930208-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930406-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930408-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930429-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930429-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930513-1
+Running testTortureExecute
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930513-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930518-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930526-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930527-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930529-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930603-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930603-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930603-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930614-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930614-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930622-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930622-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930628-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930702-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930713-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930718-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930719-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930725-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930818-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930916-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-930929-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-10
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-11
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-13
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-14
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-5
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-6
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-7
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-8
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931004-9
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931005-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931009-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931012-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931017-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-931018-1.c:26: warning 184: integer constant '0xdeadbeefL' out of range, truncated to 2147483647.
+gcc-torture-execute-931018-1.c:30: warning 184: integer constant '0xdeadbeefL' out of range, truncated to 2147483647.
+--- Running: cases_gcc\gcc-torture-execute-931018-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931102-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931102-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931110-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931110-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-931208-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-940122-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-941014-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-941015-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-941021-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-941025-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-941031-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-941101-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-941110-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950322-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-950426-1.c:40: warning 127: non-pointer type cast to generic pointer
+gcc-torture-execute-950426-1.c:40: warning 127: non-pointer type cast to generic pointer
+--- Running: cases_gcc\gcc-torture-execute-950426-1
+Running testTortureExecute
+--- FAIL: "Assertion failed" on 0 at gcc-torture-execute-950426-1.c:43
+--- Summary: 1/1/1: 1 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950503-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950511-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950512-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950605-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950607-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950607-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950612-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950621-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950628-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950704-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950706-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950710-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950714-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950809-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950915-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-950929-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-951003-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-951115-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-951204-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960116-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960215-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960218-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960219-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960301-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960302-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960311-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960311-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960311-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960317-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960321-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960326-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960327-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960402-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960416-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960419-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960419-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960513-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960608-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960801-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-960909-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961004-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961017-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-961017-2.c:34: warning 84: 'auto' variable 'z' may be used before initialization
+gcc-torture-execute-961017-2.c:38: warning 84: 'auto' variable 'z' may be used before initialization
+gcc-torture-execute-961017-2.c:35: warning 84: 'auto' variable 'i' may be used before initialization
+gcc-torture-execute-961017-2.c:38: warning 84: 'auto' variable 'z' may be used before initialization
+--- Running: cases_gcc\gcc-torture-execute-961017-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961026-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961112-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961122-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961122-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961125-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961206-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961213-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-961223-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980205
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980223
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980424-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980505-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980505-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980506-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980506-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980506-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980526-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980602-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980604-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980612-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-980617-1.c:22: warning 158: overflow in implicit constant conversion
+--- Running: cases_gcc\gcc-torture-execute-980617-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980618-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980701-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980707-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980716-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-980929-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-981001-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-981019-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-981130-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-981206-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990106-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990106-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990117-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990127-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990128-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990211-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990222-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990404-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990513-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990524-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990525-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990525-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990527-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990531-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990604-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990804-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990811-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990827-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-990829-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991016-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991023-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991112-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991202-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991202-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991216-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991216-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991216-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-991227-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-anon-1.c:8: warning 115: unknown or unsupported #pragma directive 'std_c11'
+--- Running: cases_gcc\gcc-torture-execute-anon-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-arith-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-bitfld-1
+Running testTortureExecute
+--- FAIL: "Assertion failed" on 0 at gcc-torture-execute-bitfld-1.c:50
+--- Summary: 1/1/1: 1 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-cmpsf-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-compare-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-compare-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-compare-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-const-addr-expr-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-divcmp-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-divcmp-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-divcmp-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-divcmp-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-divconst-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-divconst-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-divmod-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-doloop-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-doloop-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-enum-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-enum-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-func-ptr-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-ifcvt-onecmpl-abs-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-int-compare
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-10
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-11
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-12
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-13
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-14
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-15
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-2c
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-2d
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-3b
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-3c
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-5
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-6
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-7
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-8
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-loop-9
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-mod-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pending-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-postmod-1
+Running testTortureExecute
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr15262-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr15262
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr15296
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr16790-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr17078-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr19005
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr19606
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr20100-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr20187-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr20466-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr20527-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-pr20601-1.c:8: warning 115: unknown or unsupported #pragma directive 'std_c11'
+--- Running: cases_gcc\gcc-torture-execute-pr20601-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr21331
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr22348
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr22630
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr23604
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr23941
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr24141
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr24142
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr24716
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr25737
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr27073
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr27260
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr27285
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr27671-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr28651
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr28982a
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr29156
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr31136
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr31169
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr33142
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr33382
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr33779-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr33779-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr33870-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr33870
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr34070-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr34070-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr34176
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr34415
+Running testTortureExecute
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr34456
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr35231
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr35390
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr35800
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr36691
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr37102
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr37125
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr37882
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr37924
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr37931
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr38048-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr38212
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr38236
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr38422
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr39100
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr39120
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr39233
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr39240
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr39339
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr39501
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr40057
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr40747
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr41317
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr41750
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr42006
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr42142
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr42269-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr42512
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr42544
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr42833
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr43236
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr43269
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr43438
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr44202-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr44468
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr44555
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr44575
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr45034
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr46909-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr46909-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr47148
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr47155
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr47299
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr47337
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr47538
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr48717
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr48809
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr48973-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr48973-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr49039
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr49073
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr49123
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr49161
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr49281
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr49419
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr49768
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pr51466
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pta-field-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pta-field-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-ptr-arith-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-pure-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-scope-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-shiftopt-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-stdarg-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-stdarg-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-string-opt-17
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-string-opt-18
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-string-opt-5
+Running testTortureExecute
+--- Summary: 0/27/1: 0 failed of 27 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-struct-ini-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-struct-ini-2
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-struct-ini-3
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-struct-ini-4
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_gcc\gcc-torture-execute-switch-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+gcc-torture-execute-unroll-1.c:27: warning 84: 'auto' variable 'a' may be used before initialization
+--- Running: cases_gcc\gcc-torture-execute-unroll-1
+Running testTortureExecute
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.

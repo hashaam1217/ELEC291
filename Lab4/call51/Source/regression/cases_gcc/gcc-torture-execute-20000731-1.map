@@ -1,0 +1,371 @@
+Modules linked:
+   'gcc-torture-execute-20000731-1' from 'gcc-torture-execute-20000731-1.obj'
+   'gptrget' from 'C:\Source\call51\bin\..\lib\large\libc51.lib'
+   'modsint' from 'C:\Source\call51\bin\..\lib\large\libint.lib'
+   'fslt' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'bp' from 'C:\Source\call51\bin\..\lib\large\libc51.lib'
+   'fsadd' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'divsint' from 'C:\Source\call51\bin\..\lib\large\libint.lib'
+   'crt0' from 'C:\Source\call51\bin\..\lib\large\libc51.lib'
+   'putchar' from 'C:\Source\call51\bin\..\lib\large\libc51.lib'
+   'moduint' from 'C:\Source\call51\bin\..\lib\large\libint.lib'
+   'fscmp' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'fsswapargs' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'fsreturnval' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'fsnormalize' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'fsget2args' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'fsrshift' from 'C:\Source\call51\bin\..\lib\large\libfloat.lib'
+   'divuint' from 'C:\Source\call51\bin\..\lib\large\libint.lib'
+
+Memory use per module linked:
+gcc-torture-execute-20000731-1: C:01224 D:003 I:006 B:000 X:00022
+            gptrget: C:00028 D:000 I:000 B:000 X:00000
+            modsint: C:00109 D:000 I:000 B:000 X:00004
+               fslt: C:00048 D:000 I:000 B:000 X:00000
+                 bp: C:00000 D:001 I:000 B:000 X:00000
+              fsadd: C:00089 D:000 I:000 B:000 X:00000
+            divsint: C:00117 D:000 I:000 B:000 X:00004
+               crt0: C:00113 D:000 I:000 B:000 X:00000
+            putchar: C:00030 D:000 I:000 B:000 X:00001
+            moduint: C:00173 D:000 I:000 B:000 X:00005
+              fscmp: C:00073 D:000 I:000 B:000 X:00000
+         fsswapargs: C:00026 D:000 I:000 B:000 X:00000
+        fsreturnval: C:00079 D:000 I:000 B:000 X:00000
+        fsnormalize: C:00051 D:000 I:000 B:000 X:00000
+         fsget2args: C:00046 D:000 I:000 B:000 X:00000
+           fsrshift: C:00067 D:000 I:000 B:000 X:00000
+            divuint: C:00154 D:000 I:000 B:001 X:00006
+           ABSOLUTE: C:00004 D:000 I:000 B:000 X:00000
+------------------------------------------------------
+             Totals: C:02431 D:004 I:006 B:001 X:00042
+
+INTERMAL RAM map (see legend below):
+00: 0 0 0 0 0 0 0 0 a b b b c c c c 
+10: c c . . . . . . . . . . . . . . 
+20: B . . . . . . . . . . . . . . . 
+30: . . . . . . . . . . . . . . . . 
+40: . . . . . . . . . . . . . . . . 
+50: . . . . . . . . . . . . . . . . 
+60: . . . . . . . . . . . . . . . . 
+70: . . . . . . . . . . . . . . . . 
+80: . . . . . . . . . . . . . . . . 
+90: . . . . . . . . . . . . . . . . 
+A0: . . . . . . . . . . . . . . . . 
+B0: . . . . . . . . . . . . . . . . 
+C0: . . . . . . . . . . . . . . . . 
+D0: . . . . . . . . . . . . . . . . 
+E0: . . . . . . . . . . . . . . . . 
+F0: . . . . . . . . . . . . . . . . 
+
+Legend:
+	0: Register bank 0
+	1: Register bank 1
+	2: Register bank 2
+	3: Register bank 3
+	B: bits (see 'BIT map' below)
+	a: bp:R_DSEG
+	b: gcc-torture-execute-20000731-1:R_DSEG
+	c: R_ISEG
+
+BIT map:
+00: U . . . . . . . . . . . . . . . 
+10: . . . . . . . . . . . . . . . . 
+20: . . . . . . . . . . . . . . . . 
+30: . . . . . . . . . . . . . . . . 
+40: . . . . . . . . . . . . . . . . 
+50: . . . . . . . . . . . . . . . . 
+60: . . . . . . . . . . . . . . . . 
+70: . . . . . . . . . . . . . . . . 
+
+CODE usage map:
+0000: 256 256 256 256 256 256 256 256 256 127 000 000 000 000 000 000 
+1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 2431 bytes
+
+XDATA usage map:
+0000: 042 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 42 bytes
+
+Base Segments:
+   BIT_BANK=D:0000, size=0000
+   R_BSEG=B:0000, size=0001
+   R_CONST=C:0074, size=0113
+   R_CSEG=C:018C, size=07F3
+   R_DINIT=C:0187, size=0000
+   R_DSEG=D:0000, size=0004
+   R_GSINIT=C:0003, size=0071
+   R_HOME=C:0000, size=0000
+   R_ISEG=I:000C, size=0006
+   R_IXSEG=X:0026, size=0004
+   R_OSEG=D:0000, size=0000
+   R_PSEG=X:0000, size=0000
+   R_XINIT=C:0188, size=0004
+   R_XSEG=X:0000, size=0026
+   rbank0=D:0000, size=0008
+
+Module Segments:
+   CSEG=C:0000, size=0004
+   bp:R_DSEG=D:0008, size=0001
+   crt0:R_GSINIT=C:0003, size=0071
+   divsint:R_CSEG=C:064F, size=0075
+   divsint:R_XSEG=X:0016, size=0004
+   divuint:R_BSEG=B:0000, size=0001
+   divuint:R_CSEG=C:08E5, size=009A
+   divuint:R_XSEG=X:0020, size=0006
+   fsadd:R_CSEG=C:05F6, size=0059
+   fscmp:R_CSEG=C:078F, size=0049
+   fsget2args:R_CSEG=C:0874, size=002E
+   fslt:R_CSEG=C:05C6, size=0030
+   fsnormalize:R_CSEG=C:0841, size=0033
+   fsreturnval:R_CSEG=C:07F2, size=004F
+   fsrshift:R_CSEG=C:08A2, size=0043
+   fsswapargs:R_CSEG=C:07D8, size=001A
+   gcc-torture-execute-20000731-1:R_CONST=C:0074, size=0113
+   gcc-torture-execute-20000731-1:R_CSEG=C:018C, size=03B1
+   gcc-torture-execute-20000731-1:R_DSEG=D:0009, size=0003
+   gcc-torture-execute-20000731-1:R_ISEG=I:000C, size=0006
+   gcc-torture-execute-20000731-1:R_IXSEG=X:0026, size=0004
+   gcc-torture-execute-20000731-1:R_XINIT=C:0188, size=0004
+   gcc-torture-execute-20000731-1:R_XSEG=X:0000, size=0012
+   gptrget:R_CSEG=C:053D, size=001C
+   modsint:R_CSEG=C:0559, size=006D
+   modsint:R_XSEG=X:0012, size=0004
+   moduint:R_CSEG=C:06E2, size=00AD
+   moduint:R_XSEG=X:001B, size=0005
+   putchar:R_CSEG=C:06C4, size=001E
+   putchar:R_XSEG=X:001A, size=0001
+
+Public symbols:
+   _R_BSEG_size=L:0001
+   _R_BSEG_start=L:0000
+   _R_CONST_size=L:0113
+   _R_CONST_start=L:0074
+   _R_CSEG_size=L:07F3
+   _R_CSEG_start=L:018C
+   _R_DINIT_size=L:0000
+   _R_DINIT_start=L:0187
+   _R_GSINIT_size=L:0071
+   _R_GSINIT_start=L:0003
+   _R_HOME_size=L:0000
+   _R_HOME_start=L:0000
+   _R_ISEG_size=L:0006
+   _R_ISEG_start=L:0000
+   _R_IXSEG_size=L:0004
+   _R_IXSEG_start=L:0026
+   _R_OSEG_size=L:0000
+   _R_OSEG_start=L:0000
+   _R_PSEG_size=L:0000
+   _R_PSEG_start=L:0000
+   _R_XINIT_size=L:0004
+   _R_XINIT_start=L:0188
+   _R_XSEG_size=L:0026
+   _R_XSEG_start=L:0000
+   ___fail=C:035D
+   ___fail_PARM_2=X:0006
+   ___fail_PARM_3=X:0008
+   ___fail_PARM_4=X:000A
+   ___fsadd=C:05F6
+   ___fslt=C:05C6
+   ___getSuiteName=C:0539
+   ___numCases=C:015C
+   ___numFailures=X:0028
+   ___numTests=X:0026
+   ___printf=C:029D
+   ___printn=C:01E2
+   ___prints=C:018C
+   ___runSuite=C:052D
+   __c51_external_startup=C:0297
+   __divsint=C:064F
+   __divsint_PARM_2=X:0016
+   __divuint=C:08E5
+   __divuint_PARM_2=X:0020
+   __gptrget=C:053D
+   __modsint=C:0559
+   __modsint_PARM_2=X:0012
+   __moduint=C:06E2
+   __moduint_PARM_2=X:001B
+   _bp=D:0008
+   _bp_R_DSEG_size=L:0001
+   _bp_R_DSEG_start=L:0008
+   _crt0=C:0003
+   _do_sibcall=C:0445
+   _dummy_name_crt0=C:06C4
+   _foo=C:043E
+   _gcc-torture-execute-20000731-1_R_DSEG_size=L:0003
+   _gcc-torture-execute-20000731-1_R_DSEG_start=L:0009
+   _main=C:03C9
+   _putchar=C:06C4
+   _stack_start=L:0021
+   _testTortureExecute=C:0448
+   fs_check_negative_zeros=C:07AD
+   fs_compare_uint32=C:078F
+   fs_direct_return=C:081B
+   fs_normalize_a=C:0841
+   fs_return_inf=C:0829
+   fs_return_nan=C:0836
+   fs_return_zero=C:0813
+   fs_round_and_return=C:07F2
+   fs_rshift_a=C:08A2
+   fs_swap_a_b=C:07D8
+   fs_zerocheck_return=C:080A
+   fsadd_direct_entry=C:05F9
+   fsgetargs=C:0874
+
+Local symbols:
+   crt0:PClearLoop?done?=C:006C
+   crt0:PClearLoop?repeat?=C:005E
+   crt0:XClearLoop?done?=C:0054
+   crt0:XClearLoop?repeat?=C:0046
+   crt0:XInitLoop?done?=C:003C
+   crt0:XInitLoop?repeat?=C:001C
+   crt0:__c51_init_data=C:0010
+   crt0:__c51_program_startup=C:006F
+   crt0:forever?home?=C:0072
+   divsint:L002002?=C:06BF
+   divsint:L002006?=C:0671
+   divsint:L002007?=C:0675
+   divsint:L002008?=C:0690
+   divsint:L002009?=C:0694
+   divsint:__divsint_x_1_1=X:0018
+   divuint:L002002?=C:0945
+   divuint:L002005?=C:0901
+   divuint:L002006?=C:0971
+   divuint:__divuint_c_1_2=B:0000
+   divuint:__divuint_reste_1_2=X:0024
+   divuint:__divuint_x_1_1=X:0022
+   fsadd:L00005?=C:0602
+   fsadd:L00010?=C:0607
+   fsadd:L00011?=C:060F
+   fsadd:L00020?=C:0617
+   fsadd:L00021?=C:062B
+   fsadd:L00022?=C:062E
+   fsadd:L00025?=C:0649
+   fsadd:_dummy=C:05F6
+   fscmp:_dummy=C:078F
+   fscmp:a_check=C:07AD
+   fscmp:a_not_neg_zero=C:07BF
+   fscmp:a_not_neg_zero_cleanup=C:07BE
+   fscmp:b_check=C:07BF
+   fscmp:b_not_neg_zero=C:07D7
+   fscmp:b_not_neg_zero_cleanup_1=C:07D6
+   fscmp:b_not_neg_zero_cleanup_2=C:07D5
+   fscmp:b_not_neg_zero_cleanup_3=C:07D4
+   fscmp:compare32_done=C:07AC
+   fsget2args:L00001?=C:0881
+   fsget2args:L00002?=C:089D
+   fsget2args:_dummy=C:0874
+   fslt:_dummy=C:05C6
+   fslt:a_negative=C:05DB
+   fslt:a_positive=C:05D4
+   fslt:ab_different=C:05ED
+   fslt:ab_negative=C:05E4
+   fslt:ab_positive=C:05E2
+   fslt:skip_invert=C:05F1
+   fsnormalize:L00001?=C:0844
+   fsnormalize:L00002?=C:0856
+   fsnormalize:L00003?=C:0857
+   fsnormalize:L00004?=C:085B
+   fsnormalize:L00005?=C:0862
+   fsnormalize:L00006?=C:0871
+   fsnormalize:_dummy=C:0841
+   fsreturnval:L00001?=C:07F8
+   fsreturnval:_dummy=C:07F2
+   fsrshift:L00001?=C:08AB
+   fsrshift:L00003?=C:08D0
+   fsrshift:L00005?=C:08D5
+   fsrshift:L00020?=C:08E4
+   fsrshift:_dummy=C:08A2
+   fsswapargs:_dummy=C:07D8
+   gcc-torture-execute-20000731-1:L002001?=C:01A7
+   gcc-torture-execute-20000731-1:L002008?=C:01D6
+   gcc-torture-execute-20000731-1:L002010?=C:01C9
+   gcc-torture-execute-20000731-1:L003003?=C:0221
+   gcc-torture-execute-20000731-1:L003005?=C:0277
+   gcc-torture-execute-20000731-1:L003007?=C:0288
+   gcc-torture-execute-20000731-1:L003009?=C:0201
+   gcc-torture-execute-20000731-1:L003016?=C:021F
+   gcc-torture-execute-20000731-1:L003022?=C:0231
+   gcc-torture-execute-20000731-1:L005001?=C:0301
+   gcc-torture-execute-20000731-1:L005002?=C:031F
+   gcc-torture-execute-20000731-1:L005003?=C:0337
+   gcc-torture-execute-20000731-1:L005007?=C:0343
+   gcc-torture-execute-20000731-1:L005008?=C:034C
+   gcc-torture-execute-20000731-1:L005009?=C:02A7
+   gcc-torture-execute-20000731-1:L005012?=C:035A
+   gcc-torture-execute-20000731-1:L005020?=C:02C3
+   gcc-torture-execute-20000731-1:L005021?=C:02C8
+   gcc-torture-execute-20000731-1:L005022?=C:02CB
+   gcc-torture-execute-20000731-1:L005023?=C:02F7
+   gcc-torture-execute-20000731-1:L005024?=C:02FC
+   gcc-torture-execute-20000731-1:L005026?=C:0357
+   gcc-torture-execute-20000731-1:L010002?=C:052C
+   gcc-torture-execute-20000731-1:L010003?=C:0453
+   gcc-torture-execute-20000731-1:L010006?=C:04DB
+   gcc-torture-execute-20000731-1:___fail_sloc0_1_0=D:0009
+   gcc-torture-execute-20000731-1:___fail_szMsg_1_68=X:000C
+   gcc-torture-execute-20000731-1:___printn_buf_2_54=I:000C
+   gcc-torture-execute-20000731-1:___printn_n_1_51=X:0003
+   gcc-torture-execute-20000731-1:___printn_neg_2_54=X:0005
+   gcc-torture-execute-20000731-1:___prints_s_1_48=X:0000
+   gcc-torture-execute-20000731-1:__str_0=C:0074
+   gcc-torture-execute-20000731-1:__str_1=C:0093
+   gcc-torture-execute-20000731-1:__str_2=C:00A4
+   gcc-torture-execute-20000731-1:__str_3=C:00DF
+   gcc-torture-execute-20000731-1:__str_4=C:00F0
+   gcc-torture-execute-20000731-1:__str_5=C:00F2
+   gcc-torture-execute-20000731-1:__str_6=C:0140
+   gcc-torture-execute-20000731-1:__str_7=C:015E
+   gcc-torture-execute-20000731-1:__xinit____numFailures=C:018A
+   gcc-torture-execute-20000731-1:__xinit____numTests=C:0188
+   gcc-torture-execute-20000731-1:_testTortureExecute_x_1_77=X:000E
+   gptrget:codeptr?=C:0554
+   gptrget:dataptrrestore?=C:054B
+   gptrget:pdataptr?=C:0551
+   gptrget:xdataptr?=C:0557
+   modsint:L002002?=C:05C1
+   modsint:L002006?=C:057B
+   modsint:L002007?=C:057F
+   modsint:L002008?=C:0597
+   modsint:L002009?=C:059B
+   modsint:__modsint_a_1_1=X:0014
+   moduint:L002002?=C:0739
+   moduint:L002003?=C:06FC
+   moduint:L002007?=C:0768
+   moduint:L002008?=C:0746
+   moduint:L002017?=C:0741
+   moduint:__moduint_a_1_1=X:001D
+   moduint:__moduint_count_1_2=X:001F
+   putchar:L002001?=C:06D2
+   putchar:L002006?=C:06DA
+   putchar:L002017?=C:06D7
+   putchar:L002018?=C:06DF
+   putchar:_putchar_c_1_23=X:001A

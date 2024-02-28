@@ -1,0 +1,6 @@
+0000 75810A       1   mov SP, #0AH
+0003 750A08       2   mov 0AH, #08H
+0006 D081         3   pop SP
+0008 740A         4   mov a, #0AH
+000A 75D070       5   mov psw, #01110000B
+000D 9401         6   subb a, #01H

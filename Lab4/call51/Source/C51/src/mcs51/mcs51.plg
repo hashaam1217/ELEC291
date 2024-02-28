@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: mcs51 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\JCF_UBC\AppData\Local\Temp\RSPBC23.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /I ".." /I "." /I "..\.." /I "..\..\support\util" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FR"Debug/" /Fo"Debug/" /Fd"Debug/" /FD /GZ /Zm1500 /c 
+"C:\Source\call51\Source\C51\src\mcs51\gen.c"
+"C:\Source\call51\Source\C51\src\mcs51\main.c"
+"C:\Source\call51\Source\C51\src\mcs51\peep.c"
+"C:\Source\call51\Source\C51\src\mcs51\ralloc.c"
+"C:\Source\call51\Source\C51\src\mcs51\rtrack.c"
+]
+Creating command line "cl.exe @C:\Users\JCF_UBC\AppData\Local\Temp\RSPBC23.tmp" 
+Creating command line "link.exe -lib /nologo /out:"Debug\port.lib"  .\Debug\gen.obj .\Debug\main.obj .\Debug\peep.obj .\Debug\ralloc.obj .\Debug\rtrack.obj "
+<h3>Output Window</h3>
+Compiling...
+gen.c
+main.c
+peep.c
+ralloc.c
+rtrack.c
+Generating Code...
+Creating library...
+
+
+
+<h3>Results</h3>
+port.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

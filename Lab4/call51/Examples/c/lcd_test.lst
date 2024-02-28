@@ -1,0 +1,573 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
+0000              4   ; This file was generated Sun Jan 06 21:53:34 2013
+0000              5   ;--------------------------------------------------------
+                  5   $name lcd_test
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_ISEG    segment idata
+0000             13            R_OSEG    segment data overlay
+0000             14            BIT_BANK  segment data overlay
+0000             15            R_HOME    segment code
+0000             16            R_GSINIT  segment code
+0000             17            R_IXSEG   segment xdata
+0000             18            R_CONST   segment code
+0000             19            R_XINIT   segment code
+0000             20            R_DINIT   segment code
+0000             21   
+0000             22   ;--------------------------------------------------------
+0000             23   ; Public variables in this module
+0000             24   ;--------------------------------------------------------
+0000             25            public _main
+0000             26            public _LCD_puts
+0000             27            public _LCD_data
+0000             28            public _LCD_command
+0000             29            public _Wait40us
+0000             30            public _de2_8052_crt0
+0000             31   ;--------------------------------------------------------
+0000             32   ; Special Function Registers
+0000             33   ;--------------------------------------------------------
+0000             34   _P0             DATA 0x80
+0000             35   _SP             DATA 0x81
+0000             36   _DPL            DATA 0x82
+0000             37   _DPH            DATA 0x83
+0000             38   _PCON           DATA 0x87
+0000             39   _TCON           DATA 0x88
+0000             40   _TMOD           DATA 0x89
+0000             41   _TL0            DATA 0x8a
+0000             42   _TL1            DATA 0x8b
+0000             43   _TH0            DATA 0x8c
+0000             44   _TH1            DATA 0x8d
+0000             45   _P1             DATA 0x90
+0000             46   _SCON           DATA 0x98
+0000             47   _SBUF           DATA 0x99
+0000             48   _P2             DATA 0xa0
+0000             49   _IE             DATA 0xa8
+0000             50   _P3             DATA 0xb0
+0000             51   _IP             DATA 0xb8
+0000             52   _PSW            DATA 0xd0
+0000             53   _ACC            DATA 0xe0
+0000             54   _B              DATA 0xf0
+0000             55   _T2CON          DATA 0xc8
+0000             56   _RCAP2L         DATA 0xca
+0000             57   _RCAP2H         DATA 0xcb
+0000             58   _TL2            DATA 0xcc
+0000             59   _TH2            DATA 0xcd
+0000             60   _DPS            DATA 0x86
+0000             61   _DPH1           DATA 0x85
+0000             62   _DPL1           DATA 0x84
+0000             63   _HEX0           DATA 0x91
+0000             64   _HEX1           DATA 0x92
+0000             65   _HEX2           DATA 0x93
+0000             66   _HEX3           DATA 0x94
+0000             67   _HEX4           DATA 0x8e
+0000             68   _HEX5           DATA 0x8f
+0000             69   _HEX6           DATA 0x96
+0000             70   _HEX7           DATA 0x97
+0000             71   _LEDRA          DATA 0xe8
+0000             72   _LEDRB          DATA 0x95
+0000             73   _LEDRC          DATA 0x9e
+0000             74   _LEDG           DATA 0xf8
+0000             75   _SWA            DATA 0xe8
+0000             76   _SWB            DATA 0x95
+0000             77   _SWC            DATA 0x9e
+0000             78   _KEY            DATA 0xf8
+0000             79   _P0MOD          DATA 0x9a
+0000             80   _P1MOD          DATA 0x9b
+0000             81   _P2MOD          DATA 0x9c
+0000             82   _P3MOD          DATA 0x9d
+0000             83   _LCD_CMD        DATA 0xd8
+0000             84   _LCD_DATA       DATA 0xd9
+0000             85   _LCD_MOD        DATA 0xda
+0000             86   _JCMD           DATA 0xc0
+0000             87   _JBUF           DATA 0xc1
+0000             88   _JCNT           DATA 0xc2
+0000             89   _REP_ADD_L      DATA 0xf1
+0000             90   _REP_ADD_H      DATA 0xf2
+0000             91   _REP_VALUE      DATA 0xf3
+0000             92   _DEBUG_CALL_L   DATA 0xfa
+0000             93   _DEBUG_CALL_H   DATA 0xfb
+0000             94   _BPC            DATA 0xfc
+0000             95   _BPS            DATA 0xfd
+0000             96   _BPAL           DATA 0xfe
+0000             97   _BPAH           DATA 0xff
+0000             98   _LBPAL          DATA 0xfa
+0000             99   _LBPAH          DATA 0xfb
+0000            100   ;--------------------------------------------------------
+0000            101   ; special function bits
+0000            102   ;--------------------------------------------------------
+0000            103   _P0_0           BIT 0x80
+0000            104   _P0_1           BIT 0x81
+0000            105   _P0_2           BIT 0x82
+0000            106   _P0_3           BIT 0x83
+0000            107   _P0_4           BIT 0x84
+0000            108   _P0_5           BIT 0x85
+0000            109   _P0_6           BIT 0x86
+0000            110   _P0_7           BIT 0x87
+0000            111   _IT0            BIT 0x88
+0000            112   _IE0            BIT 0x89
+0000            113   _IT1            BIT 0x8a
+0000            114   _IE1            BIT 0x8b
+0000            115   _TR0            BIT 0x8c
+0000            116   _TF0            BIT 0x8d
+0000            117   _TR1            BIT 0x8e
+0000            118   _TF1            BIT 0x8f
+0000            119   _P1_0           BIT 0x90
+0000            120   _P1_1           BIT 0x91
+0000            121   _P1_2           BIT 0x92
+0000            122   _P1_3           BIT 0x93
+0000            123   _P1_4           BIT 0x94
+0000            124   _P1_5           BIT 0x95
+0000            125   _P1_6           BIT 0x96
+0000            126   _P1_7           BIT 0x97
+0000            127   _RI             BIT 0x98
+0000            128   _TI             BIT 0x99
+0000            129   _RB8            BIT 0x9a
+0000            130   _TB8            BIT 0x9b
+0000            131   _REN            BIT 0x9c
+0000            132   _SM2            BIT 0x9d
+0000            133   _SM1            BIT 0x9e
+0000            134   _SM0            BIT 0x9f
+0000            135   _P2_0           BIT 0xa0
+0000            136   _P2_1           BIT 0xa1
+0000            137   _P2_2           BIT 0xa2
+0000            138   _P2_3           BIT 0xa3
+0000            139   _P2_4           BIT 0xa4
+0000            140   _P2_5           BIT 0xa5
+0000            141   _P2_6           BIT 0xa6
+0000            142   _P2_7           BIT 0xa7
+0000            143   _EX0            BIT 0xa8
+0000            144   _ET0            BIT 0xa9
+0000            145   _EX1            BIT 0xaa
+0000            146   _ET1            BIT 0xab
+0000            147   _ES             BIT 0xac
+0000            148   _ET2            BIT 0xad
+0000            149   _EA             BIT 0xaf
+0000            150   _P3_0           BIT 0xb0
+0000            151   _P3_1           BIT 0xb1
+0000            152   _P3_2           BIT 0xb2
+0000            153   _P3_3           BIT 0xb3
+0000            154   _P3_4           BIT 0xb4
+0000            155   _P3_5           BIT 0xb5
+0000            156   _P3_6           BIT 0xb6
+0000            157   _P3_7           BIT 0xb7
+0000            158   _RXD            BIT 0xb0
+0000            159   _TXD            BIT 0xb1
+0000            160   _INT0           BIT 0xb2
+0000            161   _INT1           BIT 0xb3
+0000            162   _T0             BIT 0xb4
+0000            163   _T1             BIT 0xb5
+0000            164   _WR             BIT 0xb6
+0000            165   _RD             BIT 0xb7
+0000            166   _PX0            BIT 0xb8
+0000            167   _PT0            BIT 0xb9
+0000            168   _PX1            BIT 0xba
+0000            169   _PT1            BIT 0xbb
+0000            170   _PS             BIT 0xbc
+0000            171   _PT2            BIT 0xbd
+0000            172   _P              BIT 0xd0
+0000            173   _F1             BIT 0xd1
+0000            174   _OV             BIT 0xd2
+0000            175   _RS0            BIT 0xd3
+0000            176   _RS1            BIT 0xd4
+0000            177   _F0             BIT 0xd5
+0000            178   _AC             BIT 0xd6
+0000            179   _CY             BIT 0xd7
+0000            180   _T2CON_0        BIT 0xc8
+0000            181   _T2CON_1        BIT 0xc9
+0000            182   _T2CON_2        BIT 0xca
+0000            183   _T2CON_3        BIT 0xcb
+0000            184   _T2CON_4        BIT 0xcc
+0000            185   _T2CON_5        BIT 0xcd
+0000            186   _T2CON_6        BIT 0xce
+0000            187   _T2CON_7        BIT 0xcf
+0000            188   _CP_RL2         BIT 0xc8
+0000            189   _C_T2           BIT 0xc9
+0000            190   _TR2            BIT 0xca
+0000            191   _EXEN2          BIT 0xcb
+0000            192   _TCLK           BIT 0xcc
+0000            193   _RCLK           BIT 0xcd
+0000            194   _EXF2           BIT 0xce
+0000            195   _TF2            BIT 0xcf
+0000            196   _LEDRA_0        BIT 0xe8
+0000            197   _LEDRA_1        BIT 0xe9
+0000            198   _LEDRA_2        BIT 0xea
+0000            199   _LEDRA_3        BIT 0xeb
+0000            200   _LEDRA_4        BIT 0xec
+0000            201   _LEDRA_5        BIT 0xed
+0000            202   _LEDRA_6        BIT 0xee
+0000            203   _LEDRA_7        BIT 0xef
+0000            204   _SWA_0          BIT 0xe8
+0000            205   _SWA_1          BIT 0xe9
+0000            206   _SWA_2          BIT 0xea
+0000            207   _SWA_3          BIT 0xeb
+0000            208   _SWA_4          BIT 0xec
+0000            209   _SWA_5          BIT 0xed
+0000            210   _SWA_6          BIT 0xee
+0000            211   _SWA_7          BIT 0xef
+0000            212   _LEDG_0         BIT 0xf8
+0000            213   _LEDG_1         BIT 0xf9
+0000            214   _LEDG_2         BIT 0xfa
+0000            215   _LEDG_3         BIT 0xfb
+0000            216   _LEDG_4         BIT 0xfc
+0000            217   _LEDG_5         BIT 0xfd
+0000            218   _LEDG_6         BIT 0xfe
+0000            219   _LEDG_7         BIT 0xff
+0000            220   _KEY_1          BIT 0xf9
+0000            221   _KEY_2          BIT 0xfa
+0000            222   _KEY_3          BIT 0xfb
+0000            223   _LCD_RW         BIT 0xd8
+0000            224   _LCD_EN         BIT 0xd9
+0000            225   _LCD_RS         BIT 0xda
+0000            226   _LCD_ON         BIT 0xdb
+0000            227   _LCD_BLON       BIT 0xdc
+0000            228   _JRXRDY         BIT 0xc0
+0000            229   _JTXRDY         BIT 0xc1
+0000            230   _JRXEN          BIT 0xc2
+0000            231   _JTXEN          BIT 0xc3
+0000            232   _JTXFULL        BIT 0xc4
+0000            233   _JRXFULL        BIT 0xc5
+0000            234   _JTXEMPTY       BIT 0xc6
+0000            235   _JTDI           BIT 0xc7
+0000            236   ;--------------------------------------------------------
+0000            237   ; overlayable register banks
+0000            238   ;--------------------------------------------------------
+0000            239            rbank0 segment data overlay
+0000            240   ;--------------------------------------------------------
+0000            241   ; internal ram data
+0000            242   ;--------------------------------------------------------
+0000            243            rseg R_DSEG
+0000            244   ;--------------------------------------------------------
+0000            245   ; overlayable items in internal ram 
+0000            246   ;--------------------------------------------------------
+0000            247            rseg R_OSEG
+0000            248   ;--------------------------------------------------------
+0000            249   ; indirectly addressable internal ram data
+0000            250   ;--------------------------------------------------------
+0000            251            rseg R_ISEG
+0000            252   ;--------------------------------------------------------
+0000            253   ; absolute internal ram data
+0000            254   ;--------------------------------------------------------
+0000            255            DSEG
+0000            256   ;--------------------------------------------------------
+0000            257   ; bit data
+0000            258   ;--------------------------------------------------------
+0000            259            rseg R_BSEG
+0000            260   ;--------------------------------------------------------
+0000            261   ; paged external ram data
+0000            262   ;--------------------------------------------------------
+0000            263            rseg R_XSEG
+0000            264   ;--------------------------------------------------------
+0000            265   ; external ram data
+0000            266   ;--------------------------------------------------------
+0000            267            rseg R_XSEG
+0000            268   ;--------------------------------------------------------
+0000            269   ; absolute external ram data
+0000            270   ;--------------------------------------------------------
+0000            271            XSEG
+0000            272   ;--------------------------------------------------------
+0000            273   ; external initialized ram data
+0000            274   ;--------------------------------------------------------
+0000            275            rseg R_IXSEG
+0000            276            rseg R_HOME
+0000            277            rseg R_GSINIT
+0000            278            rseg R_CSEG
+0000            279   ;--------------------------------------------------------
+0000            280   ; Reset entry point and interrupt vectors
+0000            281   ;--------------------------------------------------------
+0000            282            CSEG at 0x0000
+0000 020100     283            ljmp    _crt0
+0003            284   ;--------------------------------------------------------
+0003            285   ; global & static initialisations
+0003            286   ;--------------------------------------------------------
+0000            287            rseg R_HOME
+0000            288            rseg R_GSINIT
+0000            289            rseg R_GSINIT
+0000            290   ;--------------------------------------------------------
+0000            291   ; data variables initialization
+0000            292   ;--------------------------------------------------------
+0000            293            rseg R_DINIT
+0000            294            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            295   ;--------------------------------------------------------
+0000            296   ; code
+0000            297   ;--------------------------------------------------------
+0000            298            rseg R_CSEG
+0000            299   ;------------------------------------------------------------
+0000            300   ;Allocation info for local variables in function 'de2_8052_crt0'
+0000            301   ;------------------------------------------------------------
+0000            302   ;------------------------------------------------------------
+0000            303   ;        C:/Source/call51/bin/../include/mcs51/DE2_8052.h:304: void de2_8052_crt0 (void) _naked
+0000            304   ;        -----------------------------------------
+0000            305   ;         function de2_8052_crt0
+0000            306   ;        -----------------------------------------
+0000            307   _de2_8052_crt0:
+0000            308   ;        naked function: no prologue.
+0000            309   ;        C:/Source/call51/bin/../include/mcs51/DE2_8052.h:373: _endasm;
+0000            310            
+0000            311            
+0000            312             rseg R_GSINIT
+0000            313             public _crt0
+0000            314            _crt0:
+0000 7581FF     315             mov sp,#_stack_start-1
+0003 120100     316             lcall __c51_external_startup
+0006 E582       317             mov a,dpl
+0008 6001       318             jz __c51_init_data
+000A 020100     319             ljmp __c51_program_startup
+000D            320            __c51_init_data:
+000D            321            
+000D            322   ; Initialize xdata variables
+000D            323            
+000D 758200     324             mov dpl, #_R_XINIT_start
+0010 758300     325             mov dph, #(_R_XINIT_start>>8)
+0013 758400     326             mov _DPL1, #_R_IXSEG_start
+0016 758500     327             mov _DPH1, #(_R_IXSEG_start>>8)
+0019 7800       328             mov r0, #_R_IXSEG_size
+001B 7900       329             mov r1, #(_R_IXSEG_size>>8)
+001D            330            
+001D            331            XInitLoop?repeat?:
+001D E8         332             mov a, r0
+001E 49         333             orl a, r1
+001F 6001       334             jz XInitLoop?done?
+0021 E4         335             clr a
+0022 758600     336             mov _DPS, #0 ; Using dpl, dph
+0025 93         337             movc a,@a+dptr
+0026 A3         338             inc dptr
+0027 758601     339             mov _DPS, #1 ; Using DPL1, DPH1
+002A F0         340             movx @dptr, a
+002B A3         341             inc dptr
+002C 18         342             dec r0
+002D B8FF80     343             cjne r0, #0xff, XInitLoop?repeat?
+0030 19         344             dec r1
+0031 8001       345             sjmp XInitLoop?repeat?
+0033            346            
+0033            347            XInitLoop?done?:
+0033            348            
+0033            349   ; Clear xdata variables
+0033 758600     350             mov _DPS, #0 ; Make sure we are using dpl, dph
+0036 758200     351             mov dpl, #_R_XSEG_start
+0039 758300     352             mov dph, #(_R_XSEG_start>>8)
+003C 7C00       353             mov r4, #_R_XSEG_size
+003E 7D00       354             mov r5, #(_R_XSEG_size>>8)
+0040            355            
+0040            356            XClearLoop?repeat?:
+0040 EC         357             mov a, r4
+0041 4D         358             orl a, r5
+0042 6001       359             jz XClearLoop?done?
+0044 E4         360             clr a
+0045 F0         361             movx @dptr, a
+0046 A3         362             inc dptr
+0047 1C         363             dec r4
+0048 BCFF90     364             cjne r4, #0xff, XClearLoop?repeat?
+004B 1D         365             dec r5
+004C 8001       366             sjmp XClearLoop?repeat?
+004E            367            
+004E            368            XClearLoop?done?:
+004E 120100     369             lcall _R_DINIT_start ; Initialize data/idata variables
+0051            370            
+0051            371            __c51_program_startup:
+0051 120100     372             lcall _main
+0054            373            
+0054            374            forever?home?:
+0054 8001       375             sjmp forever?home?
+0056            376            
+0056            377             
+0056            378   ;        naked function: no epilogue.
+0056            379   ;------------------------------------------------------------
+0056            380   ;Allocation info for local variables in function 'Wait40us'
+0056            381   ;------------------------------------------------------------
+0056            382   ;------------------------------------------------------------
+0056            383   ;        C:\Source\call51\Examples\c\lcd_test.c:5: void Wait40us(void)
+0056            384   ;        -----------------------------------------
+0056            385   ;         function Wait40us
+0056            386   ;        -----------------------------------------
+0056            387   _Wait40us:
+0056            388            using   0
+0056            389   ;        C:\Source\call51\Examples\c\lcd_test.c:12: _endasm;
+0056            390            
+0056 C000       391              push AR0
+0058 78C8       392              mov R0, #200
+005A            393             X1:
+005A D8A0       394            djnz R0, X1 ; 3 machine cycles-> 3*90ns*200>40us
+005C D000       395                 pop AR0
+005E            396                
+005E 22         397            ret
+005F            398   ;------------------------------------------------------------
+005F            399   ;Allocation info for local variables in function 'LCD_command'
+005F            400   ;------------------------------------------------------------
+005F            401   ;c                         Allocated to registers 
+005F            402   ;------------------------------------------------------------
+005F            403   ;        C:\Source\call51\Examples\c\lcd_test.c:37: void LCD_command (unsigned char c)
+005F            404   ;        -----------------------------------------
+005F            405   ;         function LCD_command
+005F            406   ;        -----------------------------------------
+005F            407   _LCD_command:
+005F 8582D9     408            mov     _LCD_DATA,dpl
+0062            409   ;        C:\Source\call51\Examples\c\lcd_test.c:40: LCD_RS=0;
+0062 C2DA       410            clr     _LCD_RS
+0064            411   ;        C:\Source\call51\Examples\c\lcd_test.c:41: LCD_EN=1;
+0064 D2D9       412            setb    _LCD_EN
+0066            413   ;        C:\Source\call51\Examples\c\lcd_test.c:42: LCD_EN=0;
+0066 C2D9       414            clr     _LCD_EN
+0068            415   ;        C:\Source\call51\Examples\c\lcd_test.c:43: Wait40us();
+0068 020100     416            ljmp    _Wait40us
+006B            417   ;------------------------------------------------------------
+006B            418   ;Allocation info for local variables in function 'LCD_data'
+006B            419   ;------------------------------------------------------------
+006B            420   ;c                         Allocated to registers 
+006B            421   ;------------------------------------------------------------
+006B            422   ;        C:\Source\call51\Examples\c\lcd_test.c:46: void LCD_data (unsigned char c)
+006B            423   ;        -----------------------------------------
+006B            424   ;         function LCD_data
+006B            425   ;        -----------------------------------------
+006B            426   _LCD_data:
+006B 8582D9     427            mov     _LCD_DATA,dpl
+006E            428   ;        C:\Source\call51\Examples\c\lcd_test.c:49: LCD_RS=1;
+006E D2DA       429            setb    _LCD_RS
+0070            430   ;        C:\Source\call51\Examples\c\lcd_test.c:50: LCD_EN=1;
+0070 D2D9       431            setb    _LCD_EN
+0072            432   ;        C:\Source\call51\Examples\c\lcd_test.c:51: LCD_EN=0;
+0072 C2D9       433            clr     _LCD_EN
+0074            434   ;        C:\Source\call51\Examples\c\lcd_test.c:52: Wait40us();
+0074 020100     435            ljmp    _Wait40us
+0077            436   ;------------------------------------------------------------
+0077            437   ;Allocation info for local variables in function 'LCD_puts'
+0077            438   ;------------------------------------------------------------
+0077            439   ;str                       Allocated to registers r2 r3 r4 
+0077            440   ;j                         Allocated to registers r5 
+0077            441   ;------------------------------------------------------------
+0077            442   ;        C:\Source\call51\Examples\c\lcd_test.c:56: void LCD_puts(char * str)
+0077            443   ;        -----------------------------------------
+0077            444   ;         function LCD_puts
+0077            445   ;        -----------------------------------------
+0077            446   _LCD_puts:
+0077 AA82       447            mov     r2,dpl
+0079 AB83       448            mov     r3,dph
+007B ACF0       449            mov     r4,b
+007D            450   ;        C:\Source\call51\Examples\c\lcd_test.c:59: for(j=0; str[j]!=0; j++)
+007D 7D00       451            mov     r5,#0x00
+007F            452   L006001?:
+007F ED         453            mov     a,r5
+0080 2A         454            add     a,r2
+0081 FE         455            mov     r6,a
+0082 E4         456            clr     a
+0083 3B         457            addc    a,r3
+0084 FF         458            mov     r7,a
+0085 8C00       459            mov     ar0,r4
+0087 8E82       460            mov     dpl,r6
+0089 8F83       461            mov     dph,r7
+008B 88F0       462            mov     b,r0
+008D 120100     463            lcall   __gptrget
+0090 FE         464            mov     r6,a
+0091 6001       465            jz      L006005?
+0093            466   ;        C:\Source\call51\Examples\c\lcd_test.c:61: LCD_data(str[j]);
+0093 8E82       467            mov     dpl,r6
+0095 C002       468            push    ar2
+0097 C003       469            push    ar3
+0099 C004       470            push    ar4
+009B C005       471            push    ar5
+009D 120100     472            lcall   _LCD_data
+00A0 D005       473            pop     ar5
+00A2 D004       474            pop     ar4
+00A4 D003       475            pop     ar3
+00A6 D002       476            pop     ar2
+00A8            477   ;        C:\Source\call51\Examples\c\lcd_test.c:59: for(j=0; str[j]!=0; j++)
+00A8 0D         478            inc     r5
+00A9 8001       479            sjmp    L006001?
+00AB            480   L006005?:
+00AB 22         481            ret
+00AC            482   ;------------------------------------------------------------
+00AC            483   ;Allocation info for local variables in function 'main'
+00AC            484   ;------------------------------------------------------------
+00AC            485   ;j                         Allocated to registers r2 
+00AC            486   ;------------------------------------------------------------
+00AC            487   ;        C:\Source\call51\Examples\c\lcd_test.c:65: void main (void)
+00AC            488   ;        -----------------------------------------
+00AC            489   ;         function main
+00AC            490   ;        -----------------------------------------
+00AC            491   _main:
+00AC            492   ;        C:\Source\call51\Examples\c\lcd_test.c:70: HEX0=0xff;
+00AC 7591FF     493            mov     _HEX0,#0xFF
+00AF            494   ;        C:\Source\call51\Examples\c\lcd_test.c:71: HEX1=0xff;
+00AF 7592FF     495            mov     _HEX1,#0xFF
+00B2            496   ;        C:\Source\call51\Examples\c\lcd_test.c:72: HEX2=0xff;
+00B2 7593FF     497            mov     _HEX2,#0xFF
+00B5            498   ;        C:\Source\call51\Examples\c\lcd_test.c:73: HEX3=0xff;
+00B5 7594FF     499            mov     _HEX3,#0xFF
+00B8            500   ;        C:\Source\call51\Examples\c\lcd_test.c:74: HEX4=0xff;
+00B8 758EFF     501            mov     _HEX4,#0xFF
+00BB            502   ;        C:\Source\call51\Examples\c\lcd_test.c:75: HEX5=0xff;
+00BB 758FFF     503            mov     _HEX5,#0xFF
+00BE            504   ;        C:\Source\call51\Examples\c\lcd_test.c:76: HEX6=0xff;
+00BE 7596FF     505            mov     _HEX6,#0xFF
+00C1            506   ;        C:\Source\call51\Examples\c\lcd_test.c:77: HEX7=0xff;
+00C1 7597FF     507            mov     _HEX7,#0xFF
+00C4            508   ;        C:\Source\call51\Examples\c\lcd_test.c:78: LEDRA=0;
+00C4 75E800     509            mov     _LEDRA,#0x00
+00C7            510   ;        C:\Source\call51\Examples\c\lcd_test.c:79: LEDRB=0;
+00C7 759500     511            mov     _LEDRB,#0x00
+00CA            512   ;        C:\Source\call51\Examples\c\lcd_test.c:80: LEDRC=0;
+00CA 759E00     513            mov     _LEDRC,#0x00
+00CD            514   ;        C:\Source\call51\Examples\c\lcd_test.c:81: LEDG=0;
+00CD 75F800     515            mov     _LEDG,#0x00
+00D0            516   ;        C:\Source\call51\Examples\c\lcd_test.c:85: LCD_ON=1; // Turn LCD on, and wait a bit.
+00D0 D2DB       517            setb    _LCD_ON
+00D2            518   ;        C:\Source\call51\Examples\c\lcd_test.c:86: Wait40us();
+00D2 120100     519            lcall   _Wait40us
+00D5            520   ;        C:\Source\call51\Examples\c\lcd_test.c:88: LCD_MOD=0xff; // Use LCD_DATA as output port
+00D5 75DAFF     521            mov     _LCD_MOD,#0xFF
+00D8            522   ;        C:\Source\call51\Examples\c\lcd_test.c:89: LCD_RW=0; // Only writing to the LCD in this code.
+00D8 C2D8       523            clr     _LCD_RW
+00DA            524   ;        C:\Source\call51\Examples\c\lcd_test.c:91: LCD_command(0x0c); // Display on command
+00DA 75820C     525            mov     dpl,#0x0C
+00DD 120100     526            lcall   _LCD_command
+00E0            527   ;        C:\Source\call51\Examples\c\lcd_test.c:92: LCD_command(0x38); // 8-bits interface, 2 lines, 5x7 characters
+00E0 758238     528            mov     dpl,#0x38
+00E3 120100     529            lcall   _LCD_command
+00E6            530   ;        C:\Source\call51\Examples\c\lcd_test.c:93: LCD_command(0x01); // Clear screen (Warning, very slow command!)
+00E6 758201     531            mov     dpl,#0x01
+00E9 120100     532            lcall   _LCD_command
+00EC            533   ;        C:\Source\call51\Examples\c\lcd_test.c:94: for(j=0; j<100; j++) Wait40us(); // Delay loop needed for 'clear screen' command above
+00EC 7A64       534            mov     r2,#0x64
+00EE            535   L007003?:
+00EE C002       536            push    ar2
+00F0 120100     537            lcall   _Wait40us
+00F3 D002       538            pop     ar2
+00F5 DAE0       539            djnz    r2,L007003?
+00F7            540   ;        C:\Source\call51\Examples\c\lcd_test.c:96: LCD_command(0x80); // Move to first column of first row
+00F7 758280     541            mov     dpl,#0x80
+00FA 120100     542            lcall   _LCD_command
+00FD            543   ;        C:\Source\call51\Examples\c\lcd_test.c:97: LCD_puts("Hello World!");
+00FD 907E20     544            mov     dptr,#__str_0
+0100 75F080     545            mov     b,#0x80
+0103 120100     546            lcall   _LCD_puts
+0106            547   ;        C:\Source\call51\Examples\c\lcd_test.c:99: LCD_command(0xC0); // Move to first column of second row
+0106 7582C0     548            mov     dpl,#0xC0
+0109 120100     549            lcall   _LCD_command
+010C            550   ;        C:\Source\call51\Examples\c\lcd_test.c:101: LCD_puts("Second LCD line.");
+010C 907E60     551            mov     dptr,#__str_1
+010F 75F080     552            mov     b,#0x80
+0112 020100     553            ljmp    _LCD_puts
+0000            554            rseg R_CSEG
+0000            555   
+0000            556            rseg R_CONST
+0000            557   __str_0:
+0000 48656C6C   558            db 'Hello World!'
+     6F20576F
+     726C6421
+000C 00         559            db 0x00
+000D            560   __str_1:
+000D 5365636F   561            db 'Second LCD line.'
+     6E64204C
+     4344206C
+     696E652E
+001D 00         562            db 0x00
+001E            563   
+0000            564            rseg R_XINIT
+0000            565   
+0003            566            CSEG
+0003            567   
+0003            568   end

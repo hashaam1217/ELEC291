@@ -1,0 +1,31 @@
+/** tests for strncmp
+*/
+#include "../fwk/include/testfwk.h"
+#include <string.h>
+
+static void 
+teststrncmp(void)
+{
+  ASSERT( strncmp("", "", 0) == 0);
+  ASSERT( strncmp("ab", "ab", 0) == 0);
+  ASSERT( strncmp("a", "a", 2) == 0);
+  ASSERT( strncmp("aa", "ab", 1) == 0);
+  ASSERT( strncmp("aa", "ab", 2) < 0);
+  ASSERT( strncmp("abc", "abd", 2) == 0);
+  ASSERT( strncmp("abc", "abc", 3) == 0);
+}
+
+void
+__runSuite(void)
+{
+  __prints("Running teststrncmp\n");
+  teststrncmp();
+}
+
+const int __numCases = 1;
+
+__code const char *
+__getSuiteName(void)
+{
+  return "cases\\t_strncmp";
+}

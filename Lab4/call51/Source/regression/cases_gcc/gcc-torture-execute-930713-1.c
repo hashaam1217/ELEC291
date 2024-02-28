@@ -1,0 +1,55 @@
+/*
+   930713-1.c from the execute part of the gcc torture suite.
+ */
+
+#include "../fwk/include/testfwk.h"
+
+#ifdef __C51
+#pragma std_c99
+#endif
+
+// Todo: Enable when C51 supports returning struct!
+#if 0
+typedef struct
+{
+  char x;
+} T;
+
+T
+f (s1)
+     T s1;
+{
+  T s1a;
+  s1a.x = 17;
+  return s1a;
+}
+#endif
+
+void
+testTortureExecute (void)
+{
+#if 0
+  T s1a, s1b;
+  s1a.x = 13;
+  s1b = f (s1a);
+  if (s1a.x != 13 || s1b.x != 17)
+    ASSERT (0);
+  return;
+#endif
+}
+
+
+void
+__runSuite(void)
+{
+  __prints("Running testTortureExecute\n");
+  testTortureExecute();
+}
+
+const int __numCases = 1;
+
+__code const char *
+__getSuiteName(void)
+{
+  return "cases_gcc\\gcc-torture-execute-930713-1";
+}

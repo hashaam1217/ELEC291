@@ -1,0 +1,777 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
+0000              4   ; This file was generated Mon Dec 17 11:11:49 2012
+0000              5   ;--------------------------------------------------------
+                  5   $name bug3564649
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_ISEG    segment idata
+0000             13            R_OSEG    segment data overlay
+0000             14            BIT_BANK  segment data overlay
+0000             15            R_HOME    segment code
+0000             16            R_GSINIT  segment code
+0000             17            R_IXSEG   segment xdata
+0000             18            R_CONST   segment code
+0000             19            R_XINIT   segment code
+0000             20            R_DINIT   segment code
+0000             21   
+0000             22   ;--------------------------------------------------------
+0000             23   ; Public variables in this module
+0000             24   ;--------------------------------------------------------
+0000             25            public _testBug
+0000             26            public _f
+0000             27            public _e
+0000             28            public _g
+0000             29            public _main
+0000             30            public __c51_external_startup
+0000             31            public ___fail_PARM_4
+0000             32            public ___fail_PARM_3
+0000             33            public ___fail_PARM_2
+0000             34            public ___numFailures
+0000             35            public ___numTests
+0000             36            public ___prints
+0000             37            public ___printn
+0000             38            public ___printf
+0000             39            public ___fail
+0000             40   ;--------------------------------------------------------
+0000             41   ; Special Function Registers
+0000             42   ;--------------------------------------------------------
+0000             43   _ACC            DATA 0xe0
+0000             44   _B              DATA 0xf0
+0000             45   _DPH            DATA 0x83
+0000             46   _DP0H           DATA 0x83
+0000             47   _DPL            DATA 0x82
+0000             48   _DP0L           DATA 0x82
+0000             49   _IE             DATA 0xa8
+0000             50   _IP             DATA 0xb8
+0000             51   _P0             DATA 0x80
+0000             52   _P1             DATA 0x90
+0000             53   _P2             DATA 0xa0
+0000             54   _P3             DATA 0xb0
+0000             55   _PCON           DATA 0x87
+0000             56   _PSW            DATA 0xd0
+0000             57   _SBUF           DATA 0x99
+0000             58   _SBUF0          DATA 0x99
+0000             59   _SCON           DATA 0x98
+0000             60   _SP             DATA 0x81
+0000             61   _TCON           DATA 0x88
+0000             62   _TH0            DATA 0x8c
+0000             63   _TH1            DATA 0x8d
+0000             64   _TL0            DATA 0x8a
+0000             65   _TL1            DATA 0x8b
+0000             66   _TMOD           DATA 0x89
+0000             67   _PSBANK         DATA 0x90
+0000             68   ;--------------------------------------------------------
+0000             69   ; special function bits
+0000             70   ;--------------------------------------------------------
+0000             71   _BREG_F0        BIT 0xf0
+0000             72   _BREG_F1        BIT 0xf1
+0000             73   _BREG_F2        BIT 0xf2
+0000             74   _BREG_F3        BIT 0xf3
+0000             75   _BREG_F4        BIT 0xf4
+0000             76   _BREG_F5        BIT 0xf5
+0000             77   _BREG_F6        BIT 0xf6
+0000             78   _BREG_F7        BIT 0xf7
+0000             79   _EX0            BIT 0xa8
+0000             80   _ET0            BIT 0xa9
+0000             81   _EX1            BIT 0xaa
+0000             82   _ET1            BIT 0xab
+0000             83   _ES             BIT 0xac
+0000             84   _EA             BIT 0xaf
+0000             85   _PX0            BIT 0xb8
+0000             86   _PT0            BIT 0xb9
+0000             87   _PX1            BIT 0xba
+0000             88   _PT1            BIT 0xbb
+0000             89   _PS             BIT 0xbc
+0000             90   _P0_0           BIT 0x80
+0000             91   _P0_1           BIT 0x81
+0000             92   _P0_2           BIT 0x82
+0000             93   _P0_3           BIT 0x83
+0000             94   _P0_4           BIT 0x84
+0000             95   _P0_5           BIT 0x85
+0000             96   _P0_6           BIT 0x86
+0000             97   _P0_7           BIT 0x87
+0000             98   _P1_0           BIT 0x90
+0000             99   _P1_1           BIT 0x91
+0000            100   _P1_2           BIT 0x92
+0000            101   _P1_3           BIT 0x93
+0000            102   _P1_4           BIT 0x94
+0000            103   _P1_5           BIT 0x95
+0000            104   _P1_6           BIT 0x96
+0000            105   _P1_7           BIT 0x97
+0000            106   _P2_0           BIT 0xa0
+0000            107   _P2_1           BIT 0xa1
+0000            108   _P2_2           BIT 0xa2
+0000            109   _P2_3           BIT 0xa3
+0000            110   _P2_4           BIT 0xa4
+0000            111   _P2_5           BIT 0xa5
+0000            112   _P2_6           BIT 0xa6
+0000            113   _P2_7           BIT 0xa7
+0000            114   _P3_0           BIT 0xb0
+0000            115   _P3_1           BIT 0xb1
+0000            116   _P3_2           BIT 0xb2
+0000            117   _P3_3           BIT 0xb3
+0000            118   _P3_4           BIT 0xb4
+0000            119   _P3_5           BIT 0xb5
+0000            120   _P3_6           BIT 0xb6
+0000            121   _P3_7           BIT 0xb7
+0000            122   _RXD            BIT 0xb0
+0000            123   _RXD0           BIT 0xb0
+0000            124   _TXD            BIT 0xb1
+0000            125   _TXD0           BIT 0xb1
+0000            126   _INT0           BIT 0xb2
+0000            127   _INT1           BIT 0xb3
+0000            128   _T0             BIT 0xb4
+0000            129   _T1             BIT 0xb5
+0000            130   _WR             BIT 0xb6
+0000            131   _RD             BIT 0xb7
+0000            132   _P              BIT 0xd0
+0000            133   _F1             BIT 0xd1
+0000            134   _OV             BIT 0xd2
+0000            135   _RS0            BIT 0xd3
+0000            136   _RS1            BIT 0xd4
+0000            137   _F0             BIT 0xd5
+0000            138   _AC             BIT 0xd6
+0000            139   _CY             BIT 0xd7
+0000            140   _RI             BIT 0x98
+0000            141   _TI             BIT 0x99
+0000            142   _RB8            BIT 0x9a
+0000            143   _TB8            BIT 0x9b
+0000            144   _REN            BIT 0x9c
+0000            145   _SM2            BIT 0x9d
+0000            146   _SM1            BIT 0x9e
+0000            147   _SM0            BIT 0x9f
+0000            148   _IT0            BIT 0x88
+0000            149   _IE0            BIT 0x89
+0000            150   _IT1            BIT 0x8a
+0000            151   _IE1            BIT 0x8b
+0000            152   _TR0            BIT 0x8c
+0000            153   _TF0            BIT 0x8d
+0000            154   _TR1            BIT 0x8e
+0000            155   _TF1            BIT 0x8f
+0000            156   ;--------------------------------------------------------
+0000            157   ; overlayable register banks
+0000            158   ;--------------------------------------------------------
+0000            159            rbank0 segment data overlay
+0000            160   ;--------------------------------------------------------
+0000            161   ; internal ram data
+0000            162   ;--------------------------------------------------------
+0000            163            rseg R_DSEG
+0000            164   ___numTests:
+0000            165            ds 2
+0002            166   ___numFailures:
+0002            167            ds 2
+0004            168   ___fail_PARM_2:
+0004            169            ds 2
+0006            170   ___fail_PARM_3:
+0006            171            ds 2
+0008            172   ___fail_PARM_4:
+0008            173            ds 2
+000A            174   ___fail_sloc0_1_0:
+000A            175            ds 3
+000D            176   _f_p_1_78:
+000D            177            ds 3
+0010            178   ;--------------------------------------------------------
+0010            179   ; overlayable items in internal ram 
+0010            180   ;--------------------------------------------------------
+0000            181            rseg    R_OSEG
+0000            182   ;--------------------------------------------------------
+0000            183   ; indirectly addressable internal ram data
+0000            184   ;--------------------------------------------------------
+0000            185            rseg R_ISEG
+0000            186   ___printn_buf_2_54:
+0000            187            ds 6
+0006            188   ;--------------------------------------------------------
+0006            189   ; absolute internal ram data
+0006            190   ;--------------------------------------------------------
+0000            191            DSEG
+0000            192   ;--------------------------------------------------------
+0000            193   ; bit data
+0000            194   ;--------------------------------------------------------
+0000            195            rseg R_BSEG
+0000            196   ;--------------------------------------------------------
+0000            197   ; paged external ram data
+0000            198   ;--------------------------------------------------------
+0000            199            rseg R_XSEG
+0000            200   ;--------------------------------------------------------
+0000            201   ; external ram data
+0000            202   ;--------------------------------------------------------
+0000            203            rseg R_XSEG
+0000            204   ;--------------------------------------------------------
+0000            205   ; absolute external ram data
+0000            206   ;--------------------------------------------------------
+0000            207            XSEG
+0000            208   ;--------------------------------------------------------
+0000            209   ; external initialized ram data
+0000            210   ;--------------------------------------------------------
+0000            211            rseg R_IXSEG
+0000            212            rseg R_HOME
+0000            213            rseg R_GSINIT
+0000            214            rseg R_CSEG
+0000            215   ;--------------------------------------------------------
+0000            216   ; Reset entry point and interrupt vectors
+0000            217   ;--------------------------------------------------------
+0000            218            CSEG at 0x0000
+0000 020100     219            ljmp    _crt0
+0003            220   ;--------------------------------------------------------
+0003            221   ; global & static initialisations
+0003            222   ;--------------------------------------------------------
+0000            223            rseg R_HOME
+0000            224            rseg R_GSINIT
+0000            225            rseg R_GSINIT
+0000            226   ;--------------------------------------------------------
+0000            227   ; data variables initialization
+0000            228   ;--------------------------------------------------------
+0000            229            rseg R_DINIT
+0000            230   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:20: int __numTests = 0;
+0000 E4         231            clr     a
+0001 F580       232            mov     ___numTests,a
+0003 F581       233            mov     (___numTests + 1),a
+0005            234   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:22: int __numFailures = 0;
+0005 E4         235            clr     a
+0006 F540       236            mov     ___numFailures,a
+0008 F541       237            mov     (___numFailures + 1),a
+000A            238            ; The linker places a 'ret' at the end of segment R_DINIT.
+000A            239   ;--------------------------------------------------------
+000A            240   ; code
+000A            241   ;--------------------------------------------------------
+0000            242            rseg R_CSEG
+0000            243   ;------------------------------------------------------------
+0000            244   ;Allocation info for local variables in function '__prints'
+0000            245   ;------------------------------------------------------------
+0000            246   ;s                         Allocated to registers r2 r3 r4 
+0000            247   ;c                         Allocated to registers r6 
+0000            248   ;------------------------------------------------------------
+0000            249   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:110: __prints (const char *s)
+0000            250   ;        -----------------------------------------
+0000            251   ;         function __prints
+0000            252   ;        -----------------------------------------
+0000            253   ___prints:
+0000            254            using   0
+0000 AA82       255            mov     r2,dpl
+0002 AB83       256            mov     r3,dph
+0004 ACF0       257            mov     r4,b
+0006            258   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:114: while ('\0' != (c = *s))
+0006            259   L002001?:
+0006 8A82       260            mov     dpl,r2
+0008 8B83       261            mov     dph,r3
+000A 8CF0       262            mov     b,r4
+000C 120100     263            lcall   __gptrget
+000F FD         264            mov     r5,a
+0010 FE         265            mov     r6,a
+0011 BD0008     266            cjne    r5,#0x00,L002009?
+0014 22         267            ret
+0015            268   L002009?:
+0015            269   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:116: putchar(c);
+0015 8E82       270            mov     dpl,r6
+0017 C002       271            push    ar2
+0019 C003       272            push    ar3
+001B C004       273            push    ar4
+001D 120100     274            lcall   _putchar
+0020 D004       275            pop     ar4
+0022 D003       276            pop     ar3
+0024 D002       277            pop     ar2
+0026            278   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:117: ++s;
+0026 0A         279            inc     r2
+0027 BA0088     280            cjne    r2,#0x00,L002001?
+002A 0B         281            inc     r3
+002B 8001       282            sjmp    L002001?
+002D            283   ;------------------------------------------------------------
+002D            284   ;Allocation info for local variables in function '__printn'
+002D            285   ;------------------------------------------------------------
+002D            286   ;n                         Allocated to registers r2 r3 
+002D            287   ;p                         Allocated to registers r4 
+002D            288   ;neg                       Allocated to registers r5 
+002D            289   ;buf                       Allocated with name '___printn_buf_2_54'
+002D            290   ;------------------------------------------------------------
+002D            291   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:122: __printn (int n)
+002D            292   ;        -----------------------------------------
+002D            293   ;         function __printn
+002D            294   ;        -----------------------------------------
+002D            295   ___printn:
+002D AA82       296            mov     r2,dpl
+002F AB83       297            mov     r3,dph
+0031            298   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:124: if (0 == n)
+0031 BA0088     299            cjne    r2,#0x00,L003009?
+0034 BB0088     300            cjne    r3,#0x00,L003009?
+0037            301   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:126: putchar('0');
+0037 758230     302            mov     dpl,#0x30
+003A 020100     303            ljmp    _putchar
+003D            304   L003009?:
+003D            305   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:131: char MEMSPACE_BUF *p = &buf[sizeof (buf) - 1];
+003D 7C4D       306            mov     r4,#(___printn_buf_2_54 + 0x0005)
+003F            307   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:132: char neg = 0;
+003F 7D00       308            mov     r5,#0x00
+0041            309   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:134: buf[sizeof(buf) - 1] = '\0';
+0041 784D       310            mov     r0,#(___printn_buf_2_54 + 0x0005)
+0043 7600       311            mov     @r0,#0x00
+0045            312   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:136: if (0 > n)
+0045 EB         313            mov     a,r3
+0046 30E708     314            jnb     acc.7,L003016?
+0049            315   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:138: n = -n;
+0049 C3         316            clr     c
+004A E4         317            clr     a
+004B 9A         318            subb    a,r2
+004C FA         319            mov     r2,a
+004D E4         320            clr     a
+004E 9B         321            subb    a,r3
+004F FB         322            mov     r3,a
+0050            323   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:139: neg = 1;
+0050 7D01       324            mov     r5,#0x01
+0052            325   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:142: while (0 != n)
+0052            326   L003016?:
+0052 8C00       327            mov     ar0,r4
+0054            328   L003003?:
+0054 BA0088     329            cjne    r2,#0x00,L003022?
+0057 BB0088     330            cjne    r3,#0x00,L003022?
+005A 8001       331            sjmp    L003018?
+005C            332   L003022?:
+005C            333   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:144: *--p = '0' + __mod (n, 10);
+005C 18         334            dec     r0
+005D 75000A     335            mov     __modsint_PARM_2,#0x0A
+0060 E4         336            clr     a
+0061 F501       337            mov     (__modsint_PARM_2 + 1),a
+0063 8A82       338            mov     dpl,r2
+0065 8B83       339            mov     dph,r3
+0067 C002       340            push    ar2
+0069 C003       341            push    ar3
+006B C005       342            push    ar5
+006D C000       343            push    ar0
+006F 120100     344            lcall   __modsint
+0072 AE82       345            mov     r6,dpl
+0074 D000       346            pop     ar0
+0076 D005       347            pop     ar5
+0078 D003       348            pop     ar3
+007A D002       349            pop     ar2
+007C 7430       350            mov     a,#0x30
+007E 2E         351            add     a,r6
+007F F6         352            mov     @r0,a
+0080            353   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:145: n = __div (n, 10);
+0080 75000A     354            mov     __divsint_PARM_2,#0x0A
+0083 E4         355            clr     a
+0084 F501       356            mov     (__divsint_PARM_2 + 1),a
+0086 8A82       357            mov     dpl,r2
+0088 8B83       358            mov     dph,r3
+008A C005       359            push    ar5
+008C C000       360            push    ar0
+008E 120100     361            lcall   __divsint
+0091 AA82       362            mov     r2,dpl
+0093 AB83       363            mov     r3,dph
+0095 D000       364            pop     ar0
+0097 D005       365            pop     ar5
+0099 8001       366            sjmp    L003003?
+009B            367   L003018?:
+009B 8804       368            mov     ar4,r0
+009D            369   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:148: if (neg)
+009D ED         370            mov     a,r5
+009E 6001       371            jz      L003007?
+00A0            372   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:149: putchar('-');
+00A0 75822D     373            mov     dpl,#0x2D
+00A3 C004       374            push    ar4
+00A5 120100     375            lcall   _putchar
+00A8 D004       376            pop     ar4
+00AA            377   L003007?:
+00AA            378   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:151: __prints(p);
+00AA 7A00       379            mov     r2,#0x00
+00AC 7B40       380            mov     r3,#0x40
+00AE 8C82       381            mov     dpl,r4
+00B0 8A83       382            mov     dph,r2
+00B2 8BF0       383            mov     b,r3
+00B4 020100     384            ljmp    ___prints
+00B7            385   ;------------------------------------------------------------
+00B7            386   ;Allocation info for local variables in function '_c51_external_startup'
+00B7            387   ;------------------------------------------------------------
+00B7            388   ;------------------------------------------------------------
+00B7            389   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:159: _c51_external_startup (void)
+00B7            390   ;        -----------------------------------------
+00B7            391   ;         function _c51_external_startup
+00B7            392   ;        -----------------------------------------
+00B7            393   __c51_external_startup:
+00B7            394   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:163: TI = 1;
+00B7 D299       395            setb    _TI
+00B9            396   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:164: return 0;
+00B9 758200     397            mov     dpl,#0x00
+00BC 22         398            ret
+00BD            399   ;------------------------------------------------------------
+00BD            400   ;Allocation info for local variables in function '__printf'
+00BD            401   ;------------------------------------------------------------
+00BD            402   ;szFormat                  Allocated to stack - offset -5
+00BD            403   ;ap                        Allocated to registers r2 
+00BD            404   ;sz                        Allocated to registers r3 r4 r5 
+00BD            405   ;i                         Allocated to registers r3 r4 
+00BD            406   ;------------------------------------------------------------
+00BD            407   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:170: __printf (const char *szFormat, ...)
+00BD            408   ;        -----------------------------------------
+00BD            409   ;         function __printf
+00BD            410   ;        -----------------------------------------
+00BD            411   ___printf:
+00BD C000       412            push    _bp
+00BF 858100     413            mov     _bp,sp
+00C2            414   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:173: va_start (ap, szFormat);
+00C2 E500       415            mov     a,_bp
+00C4 24FB       416            add     a,#0xfb
+00C6 FA         417            mov     r2,a
+00C7            418   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:175: while (*szFormat)
+00C7            419   L005009?:
+00C7 E500       420            mov     a,_bp
+00C9 24FB       421            add     a,#0xfb
+00CB F8         422            mov     r0,a
+00CC 8603       423            mov     ar3,@r0
+00CE 08         424            inc     r0
+00CF 8604       425            mov     ar4,@r0
+00D1 08         426            inc     r0
+00D2 8605       427            mov     ar5,@r0
+00D4 8B82       428            mov     dpl,r3
+00D6 8C83       429            mov     dph,r4
+00D8 8DF0       430            mov     b,r5
+00DA 120100     431            lcall   __gptrget
+00DD FE         432            mov     r6,a
+00DE 7001       433            jnz     L005020?
+00E0 020100     434            ljmp    L005012?
+00E3            435   L005020?:
+00E3            436   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:177: if (*szFormat == '%')
+00E3 BE25A8     437            cjne    r6,#0x25,L005021?
+00E6 8001       438            sjmp    L005022?
+00E8            439   L005021?:
+00E8 020100     440            ljmp    L005007?
+00EB            441   L005022?:
+00EB            442   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:179: switch (*++szFormat)
+00EB E500       443            mov     a,_bp
+00ED 24FB       444            add     a,#0xfb
+00EF F8         445            mov     r0,a
+00F0 7401       446            mov     a,#0x01
+00F2 2B         447            add     a,r3
+00F3 F6         448            mov     @r0,a
+00F4 E4         449            clr     a
+00F5 3C         450            addc    a,r4
+00F6 08         451            inc     r0
+00F7 F6         452            mov     @r0,a
+00F8 08         453            inc     r0
+00F9 A605       454            mov     @r0,ar5
+00FB E500       455            mov     a,_bp
+00FD 24FB       456            add     a,#0xfb
+00FF F8         457            mov     r0,a
+0100 8603       458            mov     ar3,@r0
+0102 08         459            inc     r0
+0103 8604       460            mov     ar4,@r0
+0105 08         461            inc     r0
+0106 8605       462            mov     ar5,@r0
+0108 8B82       463            mov     dpl,r3
+010A 8C83       464            mov     dph,r4
+010C 8DF0       465            mov     b,r5
+010E 120100     466            lcall   __gptrget
+0111 FB         467            mov     r3,a
+0112 BB2568     468            cjne    r3,#0x25,L005023?
+0115 8001       469            sjmp    L005003?
+0117            470   L005023?:
+0117 BB73E8     471            cjne    r3,#0x73,L005024?
+011A 8001       472            sjmp    L005001?
+011C            473   L005024?:
+011C            474   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:181: case 's':
+011C BB7568     475            cjne    r3,#0x75,L005008?
+011F 8001       476            sjmp    L005002?
+0121            477   L005001?:
+0121            478   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:183: char *sz = va_arg (ap, char *);
+0121 EA         479            mov     a,r2
+0122 24FD       480            add     a,#0xfd
+0124 F8         481            mov     r0,a
+0125 FA         482            mov     r2,a
+0126 8603       483            mov     ar3,@r0
+0128 08         484            inc     r0
+0129 8604       485            mov     ar4,@r0
+012B 08         486            inc     r0
+012C 8605       487            mov     ar5,@r0
+012E 18         488            dec     r0
+012F 18         489            dec     r0
+0130            490   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:184: __prints(sz);
+0130 8B82       491            mov     dpl,r3
+0132 8C83       492            mov     dph,r4
+0134 8DF0       493            mov     b,r5
+0136 C002       494            push    ar2
+0138 120100     495            lcall   ___prints
+013B D002       496            pop     ar2
+013D            497   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:185: break;
+013D            498   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:188: case 'u':
+013D 8001       499            sjmp    L005008?
+013F            500   L005002?:
+013F            501   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:190: int i = va_arg (ap, int);
+013F EA         502            mov     a,r2
+0140 24FE       503            add     a,#0xfe
+0142 F8         504            mov     r0,a
+0143 FA         505            mov     r2,a
+0144 8603       506            mov     ar3,@r0
+0146 08         507            inc     r0
+0147 8604       508            mov     ar4,@r0
+0149 18         509            dec     r0
+014A            510   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:191: __printn (i);
+014A 8B82       511            mov     dpl,r3
+014C 8C83       512            mov     dph,r4
+014E C002       513            push    ar2
+0150 120100     514            lcall   ___printn
+0153 D002       515            pop     ar2
+0155            516   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:192: break;
+0155            517   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:195: case '%':
+0155 8001       518            sjmp    L005008?
+0157            519   L005003?:
+0157            520   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:196: putchar ('%');
+0157 758225     521            mov     dpl,#0x25
+015A C002       522            push    ar2
+015C 120100     523            lcall   _putchar
+015F D002       524            pop     ar2
+0161            525   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:197: break;
+0161            526   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:201: }
+0161 8001       527            sjmp    L005008?
+0163            528   L005007?:
+0163            529   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:205: putchar (*szFormat);
+0163 8E82       530            mov     dpl,r6
+0165 C002       531            push    ar2
+0167 120100     532            lcall   _putchar
+016A D002       533            pop     ar2
+016C            534   L005008?:
+016C            535   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:207: szFormat++;
+016C E500       536            mov     a,_bp
+016E 24FB       537            add     a,#0xfb
+0170 F8         538            mov     r0,a
+0171 06         539            inc     @r0
+0172 B600E8     540            cjne    @r0,#0x00,L005026?
+0175 08         541            inc     r0
+0176 06         542            inc     @r0
+0177            543   L005026?:
+0177 020100     544            ljmp    L005009?
+017A            545   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:209: va_end (ap);
+017A            546   L005012?:
+017A D000       547            pop     _bp
+017C 22         548            ret
+017D            549   ;------------------------------------------------------------
+017D            550   ;Allocation info for local variables in function '__fail'
+017D            551   ;------------------------------------------------------------
+017D            552   ;szCond                    Allocated with name '___fail_PARM_2'
+017D            553   ;szFile                    Allocated with name '___fail_PARM_3'
+017D            554   ;line                      Allocated with name '___fail_PARM_4'
+017D            555   ;szMsg                     Allocated to registers r2 r3 
+017D            556   ;sloc0                     Allocated with name '___fail_sloc0_1_0'
+017D            557   ;------------------------------------------------------------
+017D            558   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:213: __fail (code const char *szMsg, code const char *szCond, code const char *szFile, int line)
+017D            559   ;        -----------------------------------------
+017D            560   ;         function __fail
+017D            561   ;        -----------------------------------------
+017D            562   ___fail:
+017D AA82       563            mov     r2,dpl
+017F AB83       564            mov     r3,dph
+0181            565   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:215: __printf("--- FAIL: \"%s\" on %s at %s:%u\n", szMsg, szCond, szFile, line);
+0181 ACC0       566            mov     r4,___fail_PARM_3
+0183 ADC1       567            mov     r5,(___fail_PARM_3 + 1)
+0185 7E80       568            mov     r6,#0x80
+0187 8500B8     569            mov     ___fail_sloc0_1_0,___fail_PARM_2
+018A 8501B9     570            mov     (___fail_sloc0_1_0 + 1),(___fail_PARM_2 + 1)
+018D 75BA80     571            mov     (___fail_sloc0_1_0 + 2),#0x80
+0190 7F80       572            mov     r7,#0x80
+0192 C080       573            push    ___fail_PARM_4
+0194 C081       574            push    (___fail_PARM_4 + 1)
+0196 C004       575            push    ar4
+0198 C005       576            push    ar5
+019A C006       577            push    ar6
+019C C0B8       578            push    ___fail_sloc0_1_0
+019E C0B9       579            push    (___fail_sloc0_1_0 + 1)
+01A0 C0BA       580            push    (___fail_sloc0_1_0 + 2)
+01A2 C002       581            push    ar2
+01A4 C003       582            push    ar3
+01A6 C007       583            push    ar7
+01A8 7428       584            mov     a,#__str_0
+01AA C0E0       585            push    acc
+01AC 746D       586            mov     a,#(__str_0 >> 8)
+01AE C0E0       587            push    acc
+01B0 7480       588            mov     a,#0x80
+01B2 C0E0       589            push    acc
+01B4 120100     590            lcall   ___printf
+01B7 E581       591            mov     a,sp
+01B9 24F2       592            add     a,#0xf2
+01BB F581       593            mov     sp,a
+01BD            594   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:216: __numFailures++;
+01BD 0540       595            inc     ___numFailures
+01BF E4         596            clr     a
+01C0 B54068     597            cjne    a,___numFailures,L006003?
+01C3 0541       598            inc     (___numFailures + 1)
+01C5            599   L006003?:
+01C5 22         600            ret
+01C6            601   ;------------------------------------------------------------
+01C6            602   ;Allocation info for local variables in function 'main'
+01C6            603   ;------------------------------------------------------------
+01C6            604   ;------------------------------------------------------------
+01C6            605   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:220: main (void)
+01C6            606   ;        -----------------------------------------
+01C6            607   ;         function main
+01C6            608   ;        -----------------------------------------
+01C6            609   _main:
+01C6            610   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:222: __printf("--- Running: %s\n", __getSuiteName());
+01C6 120100     611            lcall   ___getSuiteName
+01C9 AA82       612            mov     r2,dpl
+01CB AB83       613            mov     r3,dph
+01CD 7C80       614            mov     r4,#0x80
+01CF C002       615            push    ar2
+01D1 C003       616            push    ar3
+01D3 C004       617            push    ar4
+01D5 74E8       618            mov     a,#__str_1
+01D7 C0E0       619            push    acc
+01D9 746D       620            mov     a,#(__str_1 >> 8)
+01DB C0E0       621            push    acc
+01DD 7480       622            mov     a,#0x80
+01DF C0E0       623            push    acc
+01E1 120100     624            lcall   ___printf
+01E4 E581       625            mov     a,sp
+01E6 24FA       626            add     a,#0xfa
+01E8 F581       627            mov     sp,a
+01EA            628   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:224: __runSuite();
+01EA 120100     629            lcall   ___runSuite
+01ED            630   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:228: __numFailures, __numTests, __numCases
+01ED 900000     631            mov     dptr,#___numCases
+01F0 E4         632            clr     a
+01F1 93         633            movc    a,@a+dptr
+01F2 FA         634            mov     r2,a
+01F3 7401       635            mov     a,#0x01
+01F5 93         636            movc    a,@a+dptr
+01F6 FB         637            mov     r3,a
+01F7            638   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:226: __printf("--- Summary: %u/%u/%u: %u failed of %u tests in %u cases.\n",
+01F7 C002       639            push    ar2
+01F9 C003       640            push    ar3
+01FB C080       641            push    ___numTests
+01FD C081       642            push    (___numTests + 1)
+01FF C040       643            push    ___numFailures
+0201 C041       644            push    (___numFailures + 1)
+0203 C002       645            push    ar2
+0205 C003       646            push    ar3
+0207 C080       647            push    ___numTests
+0209 C081       648            push    (___numTests + 1)
+020B C040       649            push    ___numFailures
+020D C041       650            push    (___numFailures + 1)
+020F 74A8       651            mov     a,#__str_2
+0211 C0E0       652            push    acc
+0213 746E       653            mov     a,#(__str_2 >> 8)
+0215 C0E0       654            push    acc
+0217 7480       655            mov     a,#0x80
+0219 C0E0       656            push    acc
+021B 120100     657            lcall   ___printf
+021E E581       658            mov     a,sp
+0220 24F1       659            add     a,#0xf1
+0222 F581       660            mov     sp,a
+0224            661   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:231: IE=0;
+0224 75A800     662            mov     _IE,#0x00
+0227            663   ;        C:\Source\call51\Source\regression\sdcc_bugs\/../fwk/include/testfwk.h:232: return 0;
+0227 900000     664            mov     dptr,#0x0000
+022A 22         665            ret
+022B            666   ;------------------------------------------------------------
+022B            667   ;Allocation info for local variables in function 'g'
+022B            668   ;------------------------------------------------------------
+022B            669   ;p                         Allocated to registers 
+022B            670   ;------------------------------------------------------------
+022B            671   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:10: void g(void *p)
+022B            672   ;        -----------------------------------------
+022B            673   ;         function g
+022B            674   ;        -----------------------------------------
+022B            675   _g:
+022B            676   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:12: }
+022B 22         677            ret
+022C            678   ;------------------------------------------------------------
+022C            679   ;Allocation info for local variables in function 'e'
+022C            680   ;------------------------------------------------------------
+022C            681   ;------------------------------------------------------------
+022C            682   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:14: void e(void)
+022C            683   ;        -----------------------------------------
+022C            684   ;         function e
+022C            685   ;        -----------------------------------------
+022C            686   _e:
+022C            687   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:16: while (1) {}
+022C            688   L009002?:
+022C 8001       689            sjmp    L009002?
+022E            690   ;------------------------------------------------------------
+022E            691   ;Allocation info for local variables in function 'f'
+022E            692   ;------------------------------------------------------------
+022E            693   ;i                         Allocated to registers r2 r3 
+022E            694   ;p                         Allocated with name '_f_p_1_78'
+022E            695   ;------------------------------------------------------------
+022E            696   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:19: void f(int i)
+022E            697   ;        -----------------------------------------
+022E            698   ;         function f
+022E            699   ;        -----------------------------------------
+022E            700   _f:
+022E AA82       701            mov     r2,dpl
+0230 AB83       702            mov     r3,dph
+0232            703   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:23: if(i == 7)
+0232 BA0728     704            cjne    r2,#0x07,L010002?
+0235 BB0028     705            cjne    r3,#0x00,L010002?
+0238            706   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:24: p = 0;
+0238 7A00       707            mov     r2,#0x00
+023A 7B00       708            mov     r3,#0x00
+023C 7C00       709            mov     r4,#0x00
+023E 8001       710            sjmp    L010003?
+0240            711   L010002?:
+0240            712   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:26: e();
+0240 120100     713            lcall   _e
+0243            714   L010003?:
+0243            715   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:28: g(p); /* False "may be used before initialization" warning occoured here. */
+0243 8A82       716            mov     dpl,r2
+0245 8B83       717            mov     dph,r3
+0247 8CF0       718            mov     b,r4
+0249 020100     719            ljmp    _g
+024C            720   ;------------------------------------------------------------
+024C            721   ;Allocation info for local variables in function 'testBug'
+024C            722   ;------------------------------------------------------------
+024C            723   ;------------------------------------------------------------
+024C            724   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:32: void testBug(void)
+024C            725   ;        -----------------------------------------
+024C            726   ;         function testBug
+024C            727   ;        -----------------------------------------
+024C            728   _testBug:
+024C            729   ;        C:\Source\call51\Source\regression\sdcc_bugs\bug3564649.c:34: }
+024C 22         730            ret
+024D            731            rseg R_CSEG
+024D            732   
+0000            733            rseg R_CONST
+0000            734   __str_0:
+0000 2D2D2D20   735            db '--- FAIL: '
+     4641494C
+     3A20
+000A 22         736            db 0x22
+000B 2573       737            db '%s'
+000D 22         738            db 0x22
+000E 206F6E20   739            db ' on %s at %s:%u'
+     25732061
+     74202573
+     3A2575
+001D 0A         740            db 0x0A
+001E 00         741            db 0x00
+001F            742   __str_1:
+001F 2D2D2D20   743            db '--- Running: %s'
+     52756E6E
+     696E673A
+     202573
+002E 0A         744            db 0x0A
+002F 00         745            db 0x00
+0030            746   __str_2:
+0030 2D2D2D20   747            db '--- Summary: %u/%u/%u: %u failed of %u tests in %u cases.'
+     53756D6D
+     6172793A
+     2025752F
+     25752F25
+     753A2025
+     75206661
+     696C6564
+     206F6620
+     25752074
+     65737473
+     20696E20
+     25752063
+     61736573
+     2E
+0069 0A         748            db 0x0A
+006A 00         749            db 0x00
+006B            750   
+0000            751            rseg R_XINIT
+0000            752   
+0003            753            CSEG
+0003            754   
+0003            755   end

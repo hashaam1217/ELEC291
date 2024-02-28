@@ -1,0 +1,325 @@
+<CALL51LIB>
+
+<INDEX>
+       271
+<MODULE>
+crt0 11
+_crt0,R_GSINIT,0000,0000
+_dummy_name_crt0,R_CSEG,0000,0000
+</MODULE>
+
+<MODULE>
+decdptr 2747
+__decdptr,R_CSEG,0000,0000
+</MODULE>
+
+<MODULE>
+gptrget 3704
+__gptrget,R_CSEG,0000,0000
+</MODULE>
+
+</INDEX>
+
+<FILES>
+
+<FILE>
+crt0
+<OBJ>
+<MODULE>
+crt0
+</MODULE>
+<OPTC51>
+--model-medium
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0071,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,0000,NO
+</SEGMENTS>
+<LOCALS>
+forever?home?,R_GSINIT,006F,0000
+XInitLoop?done?,R_GSINIT,0039,0000
+XInitLoop?repeat?,R_GSINIT,0019,0000
+__c51_program_startup,R_GSINIT,006C,0000
+PClearLoop?done?,R_GSINIT,0069,0000
+PClearLoop?repeat?,R_GSINIT,005B,0000
+XClearLoop?repeat?,R_GSINIT,0043,0000
+XClearLoop?done?,R_GSINIT,0051,0000
+__c51_init_data,R_GSINIT,000D,0000
+</LOCALS>
+<PUBLICS>
+_crt0,R_GSINIT,0000,0000
+_dummy_name_crt0,R_CSEG,0000,0000
+</PUBLICS>
+<EXTERNALS>
+_R_IXSEG_start,any,0000,0000
+_main,any,0000,0000
+_R_IXSEG_size,any,0000,0000
+_R_DINIT_start,any,0000,0000
+__c51_external_startup,any,0000,0000
+_R_PSEG_start,any,0000,0000
+_R_XSEG_size,any,0000,0000
+_R_XINIT_start,any,0000,0000
+_stack_start,any,0000,0000
+_R_XSEG_start,any,0000,0000
+_R_PSEG_size,any,0000,0000
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_GSINIT>
+75 81 data8(_stack_start;0x0001;-;)
+12 addr16(__c51_external_startup;)  
+E5 82
+60 rel2(__c51_init_data;)
+02 addr16(__c51_program_startup;)  
+78 data8(_R_XINIT_start;0x0100;%;)
+79 data8(_R_XINIT_start;0x0100;/;)
+7A data8(_R_IXSEG_start;0x0100;%;)
+7B data8(_R_IXSEG_start;0x0100;/;)
+7C data8(_R_IXSEG_size;0x0100;%;)
+7D data8(_R_IXSEG_size;0x0100;/;)
+EC
+4D
+60 rel2(XInitLoop?done?;)
+88 82
+89 83
+E4
+93
+A3
+A8 82
+A9 83
+8A 82
+8B 83
+F0
+A3
+AA 82
+AB 83
+1C
+BC FF rel3(XInitLoop?repeat?;)
+1D
+80 rel2(XInitLoop?repeat?;)
+75 82 data8(_R_XSEG_start;0x0100;%;)
+75 83 data8(_R_XSEG_start;0x0100;/;)
+7C data8(_R_XSEG_size;0x0100;%;)
+7D data8(_R_XSEG_size;0x0100;/;)
+EC
+4D
+60 rel2(XClearLoop?done?;)
+E4
+F0
+A3
+1C
+BC FF rel3(XClearLoop?repeat?;)
+1D
+80 rel2(XClearLoop?repeat?;)
+75 82 data8(_R_PSEG_start;0x0100;%;)
+75 83 data8(_R_PSEG_start;0x0100;/;)
+7C data8(_R_PSEG_size;0x0100;%;)
+7D data8(_R_PSEG_size;0x0100;/;)
+EC
+4D
+60 rel2(PClearLoop?done?;)
+E4
+F0
+A3
+1C
+BC FF rel3(PClearLoop?repeat?;)
+1D
+80 rel2(PClearLoop?repeat?;)
+12 addr16(_R_DINIT_start;)  
+12 addr16(_main;)  
+80 rel2(forever?home?;)
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+<FILE>
+decdptr
+<OBJ>
+<MODULE>
+decdptr
+</MODULE>
+<OPTC51>
+--model-medium
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,000A,NO
+</SEGMENTS>
+<LOCALS>
+L00001?,R_CSEG,0006,0000
+</LOCALS>
+<PUBLICS>
+__decdptr,R_CSEG,0000,0000
+</PUBLICS>
+<EXTERNALS>
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+C5 82
+70 rel2(L00001?;)
+15 83
+14
+C5 82
+22
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+<FILE>
+gptrget
+<OBJ>
+<MODULE>
+gptrget
+</MODULE>
+<OPTC51>
+--model-medium
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,001C,NO
+</SEGMENTS>
+<LOCALS>
+pdataptr?,R_CSEG,0014,0000
+dataptrrestore?,R_CSEG,000E,0000
+xdataptr?,R_CSEG,001A,0000
+codeptr?,R_CSEG,0017,0000
+</LOCALS>
+<PUBLICS>
+__gptrget,R_CSEG,0000,0000
+</PUBLICS>
+<EXTERNALS>
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+20 F7 rel3(codeptr?;)
+30 F6 rel3(xdataptr?;)
+88 83
+A8 82
+20 F5 rel3(pdataptr?;)
+E6
+A8 83
+75 83 00
+22
+E2
+80 rel2(dataptrrestore?;)
+E4
+93
+22
+E0
+22
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+</FILES>
+
+</CALL51LIB>

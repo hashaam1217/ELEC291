@@ -1,0 +1,367 @@
+Modules linked:
+   'tetris_p89lpc9351' from 'tetris_p89lpc9351.obj'
+   'mulint' from 'C:\Source\call51\bin\..\lib\small\libint.lib'
+   'printf_tiny' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'islower' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'crt0' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'gptrget' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'bp' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'startup' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+
+Memory use per module linked:
+  tetris_p89lpc9351: C:02892 D:021 I:192 B:000 X:00000
+             mulint: C:00029 D:002 I:000 B:000 X:00000
+        printf_tiny: C:00265 D:000 I:000 B:000 X:00000
+            islower: C:00020 D:000 I:000 B:000 X:00000
+               crt0: C:00089 D:000 I:000 B:000 X:00000
+            gptrget: C:00028 D:000 I:000 B:000 X:00000
+                 bp: C:00000 D:001 I:000 B:000 X:00000
+            startup: C:00004 D:000 I:000 B:000 X:00000
+           ABSOLUTE: C:00007 D:000 I:000 B:000 X:00000
+------------------------------------------------------
+             Totals: C:03334 D:024 I:192 B:000 X:00000
+
+INTERMAL RAM map (see legend below):
+00: 0 0 0 0 0 0 0 0 a b b b b b b b 
+10: b b b b b b b b b b c c c . . . 
+20: K d d d d d d d d d d d d d d d 
+30: d d d d d d d d d d d d d d d d 
+40: d d d d d d d d d d d d d d d d 
+50: d d d d d d d d d d d d d d d d 
+60: d d d d d d d d d d d d d d d d 
+70: d d d d d d d d d d d d d d d d 
+80: d d d d d d d d d d d d d d d d 
+90: d d d d d d d d d d d d d d d d 
+A0: d d d d d d d d d d d d d d d d 
+B0: d d d d d d d d d d d d d d d d 
+C0: d d d d d d d d d d d d d d d d 
+D0: d d d d d d d d d d d d d d d d 
+E0: d . . . . . . . . . . . . . . . 
+F0: . . . . . . . . . . . . . . . . 
+
+Legend:
+	0: Register bank 0
+	1: Register bank 1
+	2: Register bank 2
+	3: Register bank 3
+	B: bits (see 'BIT map' below)
+	K: BIT_BANK
+	a: bp:R_DSEG
+	b: tetris_p89lpc9351:R_DSEG
+	c: R_OSEG
+	d: R_ISEG
+
+BIT map:
+00: U U U U U U U U . . . . . . . . 
+10: . . . . . . . . . . . . . . . . 
+20: . . . . . . . . . . . . . . . . 
+30: . . . . . . . . . . . . . . . . 
+40: . . . . . . . . . . . . . . . . 
+50: . . . . . . . . . . . . . . . . 
+60: . . . . . . . . . . . . . . . . 
+70: . . . . . . . . . . . . . . . . 
+
+CODE usage map:
+0000: 246 256 256 256 256 256 256 256 256 256 256 256 256 016 000 000 
+1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 3334 bytes
+
+XDATA usage map:
+0000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 0 bytes
+
+Segments:
+   BIT_BANK=D:0020, size=0001
+   R_BSEG=B:0000, size=0000
+   R_CONST=C:0077, size=027C
+   R_CSEG=C:02F3, size=0A1D
+   R_DINIT=C:0003, size=000D
+   R_DSEG=D:0000, size=0012
+   R_GSINIT=C:001E, size=0059
+   R_HOME=C:0000, size=0000
+   R_ISEG=I:0021, size=00C0
+   R_IXSEG=X:0000, size=0000
+   R_OSEG=D:001A, size=0003
+   R_XINIT=C:0000, size=0000
+   R_XSEG=X:0000, size=0000
+   rbank0=D:0000, size=0008
+
+Public symbols:
+   _BIT_BANK_size=L:0001
+   _BIT_BANK_start=L:0020
+   _Level=D:000A
+   _R_BSEG_size=L:0000
+   _R_BSEG_start=L:0000
+   _R_CONST_size=L:027C
+   _R_CONST_start=L:0077
+   _R_CSEG_size=L:0A1D
+   _R_CSEG_start=L:02F3
+   _R_DINIT_size=L:000D
+   _R_DINIT_start=L:0003
+   _R_DSEG_size=L:0012
+   _R_DSEG_start=L:0000
+   _R_GSINIT_size=L:0059
+   _R_GSINIT_start=L:001E
+   _R_HOME_size=L:0000
+   _R_HOME_start=L:0000
+   _R_ISEG_size=L:00C0
+   _R_ISEG_start=L:0000
+   _R_IXSEG_size=L:0000
+   _R_IXSEG_start=L:0000
+   _R_OSEG_size=L:0003
+   _R_OSEG_start=L:0000
+   _R_XINIT_size=L:0000
+   _R_XINIT_start=L:0000
+   _R_XSEG_size=L:0000
+   _R_XSEG_start=L:0000
+   _Score=D:000C
+   _Screen=I:0021
+   _Shapes=C:0077
+   __c51_external_startup=C:0D0C
+   __gptrget=C:0CF0
+   __mulint=C:0BB6
+   __mulint_PARM_2=D:001A
+   __mulint_dummy=C:0BB6
+   _blockDraw=C:04E4
+   _blockDraw_PARM_2=D:000E
+   _blockDraw_PARM_3=D:000F
+   _blockHit=C:050A
+   _blockHit_PARM_2=D:0010
+   _bp=D:0008
+   _collapse=C:06F0
+   _collapse_bonus_1_1=C:0186
+   _crt0=C:001E
+   _delay=D:0009
+   _dummy_name_crt0=C:0CF0
+   _dummyint3=C:0374
+   _exit=C:089C
+   _getKey=C:0802
+   _init=C:03C1
+   _islower=C:0CDC
+   _main=C:08AF
+   _printf_tiny=C:0BD3
+   _putchar=C:03E7
+   _rbank0_size=L:0008
+   _rbank0_start=L:0000
+   _refresh=C:03FC
+   _rscr=C:0346
+   _rscr_PARM_2=D:001C
+   _screenInit=C:0683
+   _shapeDraw=C:0517
+   _shapeDraw_PARM_2=D:0011
+   _shapeDraw_PARM_3=D:0012
+   _shapeErase=C:05A3
+   _shapeErase_PARM_2=D:0013
+   _shapeErase_PARM_3=D:0014
+   _shapeHit=C:060C
+   _shapeHit_PARM_2=D:0015
+   _shapeHit_PARM_3=D:0016
+   _stack_start=L:00E1
+   _wastetime=C:0879
+   _wscr=C:02F3
+   _wscr_PARM_2=D:001A
+   _wscr_PARM_3=D:001B
+
+Local symbols:
+   crt0:XClearLoop?done?=C:006F
+   crt0:XClearLoop?repeat?=C:0061
+   crt0:XInitLoop?done?=C:0057
+   crt0:XInitLoop?repeat?=C:0037
+   crt0:__c51_init_data=C:002B
+   crt0:__c51_program_startup=C:0072
+   crt0:forever?home?=C:0075
+   gptrget:codeptr?=C:0D07
+   gptrget:dataptrrestore?=C:0CFE
+   gptrget:pdataptr?=C:0D04
+   gptrget:xdataptr?=C:0D0A
+   islower:L002002?=C:0CEC
+   islower:L002008?=C:0CE1
+   printf_tiny:div_by_sub=C:0C9C
+   printf_tiny:div_by_sub_loop=C:0C9E
+   printf_tiny:printf_begin=C:0BD8
+   printf_tiny:printf_end=C:0CD9
+   printf_tiny:printf_end_h=C:0BF3
+   printf_tiny:printf_format=C:0BF6
+   printf_tiny:printf_format_c=C:0C16
+   printf_tiny:printf_format_d=C:0C21
+   printf_tiny:printf_format_done=C:0C64
+   printf_tiny:printf_format_s=C:0BFF
+   printf_tiny:printf_format_u=C:0C6B
+   printf_tiny:printf_format_x=C:0C3B
+   printf_tiny:printf_hex=C:0C45
+   printf_tiny:printf_int2bcd=C:0C74
+   printf_tiny:printf_main_loop=C:0BE3
+   printf_tiny:printf_phex_lsn=C:0CB2
+   printf_tiny:printf_phex_msn=C:0CB1
+   printf_tiny:printf_phex_ok=C:0CB9
+   printf_tiny:printf_putchar=C:0CC1
+   printf_tiny:printf_ret=C:0CD8
+   printf_tiny:printf_str_loop=C:0C0B
+   printf_tiny:printf_string=C:0C02
+   printf_tiny:printf_uint=C:0C6E
+   tetris_p89lpc9351:L002002?=C:032A
+   tetris_p89lpc9351:L002006?=C:0324
+   tetris_p89lpc9351:L002007?=C:0326
+   tetris_p89lpc9351:L003002?=C:0361
+   tetris_p89lpc9351:L003005?=C:036D
+   tetris_p89lpc9351:L003006?=C:036F
+   tetris_p89lpc9351:L004002?=C:03A2
+   tetris_p89lpc9351:L006001?=C:03EC
+   tetris_p89lpc9351:L006006?=C:03F4
+   tetris_p89lpc9351:L006017?=C:03F1
+   tetris_p89lpc9351:L006018?=C:03F9
+   tetris_p89lpc9351:L007003?=C:040B
+   tetris_p89lpc9351:L007005?=C:04CC
+   tetris_p89lpc9351:L007007?=C:03FE
+   tetris_p89lpc9351:L007009?=C:04D0
+   tetris_p89lpc9351:L007010?=C:04D4
+   tetris_p89lpc9351:L007020?=C:0409
+   tetris_p89lpc9351:L007021?=C:0416
+   tetris_p89lpc9351:L007022?=C:042F
+   tetris_p89lpc9351:L007023?=C:0432
+   tetris_p89lpc9351:L007024?=C:0463
+   tetris_p89lpc9351:L007025?=C:0471
+   tetris_p89lpc9351:L007026?=C:0483
+   tetris_p89lpc9351:L008002?=C:04F0
+   tetris_p89lpc9351:L008004?=C:04FC
+   tetris_p89lpc9351:L010001?=C:0530
+   tetris_p89lpc9351:L010004?=C:0589
+   tetris_p89lpc9351:L011001?=C:05BB
+   tetris_p89lpc9351:L011004?=C:0601
+   tetris_p89lpc9351:L012002?=C:064C
+   tetris_p89lpc9351:L012004?=C:067F
+   tetris_p89lpc9351:L012005?=C:0624
+   tetris_p89lpc9351:L012008?=C:066F
+   tetris_p89lpc9351:L013001?=C:068C
+   tetris_p89lpc9351:L013004?=C:06A6
+   tetris_p89lpc9351:L013005?=C:0685
+   tetris_p89lpc9351:L013008?=C:06C7
+   tetris_p89lpc9351:L013009?=C:06C9
+   tetris_p89lpc9351:L013013?=C:06EF
+   tetris_p89lpc9351:L013024?=C:0688
+   tetris_p89lpc9351:L013026?=C:068F
+   tetris_p89lpc9351:L013028?=C:06CC
+   tetris_p89lpc9351:L014006?=C:074F
+   tetris_p89lpc9351:L014007?=C:077A
+   tetris_p89lpc9351:L014013?=C:0700
+   tetris_p89lpc9351:L014015?=C:0726
+   tetris_p89lpc9351:L014016?=C:0729
+   tetris_p89lpc9351:L014017?=C:06F4
+   tetris_p89lpc9351:L014019?=C:0748
+   tetris_p89lpc9351:L014020?=C:074B
+   tetris_p89lpc9351:L014021?=C:07A0
+   tetris_p89lpc9351:L014025?=C:07C3
+   tetris_p89lpc9351:L014029?=C:0768
+   tetris_p89lpc9351:L014031?=C:07FA
+   tetris_p89lpc9351:L014032?=C:07FF
+   tetris_p89lpc9351:L014048?=C:07C1
+   tetris_p89lpc9351:L014051?=C:0794
+   tetris_p89lpc9351:L014061?=C:0748
+   tetris_p89lpc9351:L014063?=C:0778
+   tetris_p89lpc9351:L015002?=C:0809
+   tetris_p89lpc9351:L015003?=C:0850
+   tetris_p89lpc9351:L015004?=C:0854
+   tetris_p89lpc9351:L015005?=C:0858
+   tetris_p89lpc9351:L015006?=C:085C
+   tetris_p89lpc9351:L015007?=C:0860
+   tetris_p89lpc9351:L015008?=C:0864
+   tetris_p89lpc9351:L015010?=C:0868
+   tetris_p89lpc9351:L015011?=C:086C
+   tetris_p89lpc9351:L015013?=C:0870
+   tetris_p89lpc9351:L015017?=C:0875
+   tetris_p89lpc9351:L015020?=C:081C
+   tetris_p89lpc9351:L015021?=C:081E
+   tetris_p89lpc9351:L015038?=C:0823
+   tetris_p89lpc9351:L015039?=C:0828
+   tetris_p89lpc9351:L015040?=C:082D
+   tetris_p89lpc9351:L015041?=C:0832
+   tetris_p89lpc9351:L015042?=C:0837
+   tetris_p89lpc9351:L015043?=C:083C
+   tetris_p89lpc9351:L015044?=C:0841
+   tetris_p89lpc9351:L015045?=C:0846
+   tetris_p89lpc9351:L015046?=C:084B
+   tetris_p89lpc9351:L015048?=C:0875
+   tetris_p89lpc9351:L016003?=C:088F
+   tetris_p89lpc9351:L016008?=C:087D
+   tetris_p89lpc9351:L016011?=C:089B
+   tetris_p89lpc9351:L016020?=C:0886
+   tetris_p89lpc9351:L018001?=C:0962
+   tetris_p89lpc9351:L018004?=C:0981
+   tetris_p89lpc9351:L018005?=C:0990
+   tetris_p89lpc9351:L018008?=C:0A2E
+   tetris_p89lpc9351:L018010?=C:0A46
+   tetris_p89lpc9351:L018022?=C:0A9A
+   tetris_p89lpc9351:L018025?=C:0A88
+   tetris_p89lpc9351:L018028?=C:0A7B
+   tetris_p89lpc9351:L018031?=C:0A61
+   tetris_p89lpc9351:L018032?=C:0AAA
+   tetris_p89lpc9351:L018034?=C:0AAC
+   tetris_p89lpc9351:L018036?=C:0ABB
+   tetris_p89lpc9351:L018039?=C:0B0B
+   tetris_p89lpc9351:L018041?=C:0B4F
+   tetris_p89lpc9351:L018045?=C:0AF9
+   tetris_p89lpc9351:L018046?=C:0BA1
+   tetris_p89lpc9351:L018048?=C:09C3
+   tetris_p89lpc9351:L018049?=C:0BB3
+   tetris_p89lpc9351:L018052?=C:09FA
+   tetris_p89lpc9351:L018053?=C:09FE
+   tetris_p89lpc9351:L018084?=C:0A51
+   tetris_p89lpc9351:L018102?=C:0ABB
+   tetris_p89lpc9351:L018104?=C:0AFF
+   tetris_p89lpc9351:__str_0=C:0148
+   tetris_p89lpc9351:__str_10=C:024A
+   tetris_p89lpc9351:__str_11=C:0270
+   tetris_p89lpc9351:__str_12=C:0295
+   tetris_p89lpc9351:__str_13=C:02AB
+   tetris_p89lpc9351:__str_14=C:02C9
+   tetris_p89lpc9351:__str_15=C:02DE
+   tetris_p89lpc9351:__str_1=C:0169
+   tetris_p89lpc9351:__str_2=C:0172
+   tetris_p89lpc9351:__str_3=C:017B
+   tetris_p89lpc9351:__str_4=C:0190
+   tetris_p89lpc9351:__str_5=C:01A5
+   tetris_p89lpc9351:__str_6=C:01B0
+   tetris_p89lpc9351:__str_7=C:01D3
+   tetris_p89lpc9351:__str_8=C:01F5
+   tetris_p89lpc9351:__str_9=C:0222
+   tetris_p89lpc9351:_main_Shape_1_1=D:0017
+   tetris_p89lpc9351:_main_X_1_1=D:0018
+   tetris_p89lpc9351:_main_Y_1_1=D:0019
+   tetris_p89lpc9351:b0=D:0020
+   tetris_p89lpc9351:b1=D:0020
+   tetris_p89lpc9351:b2=D:0020
+   tetris_p89lpc9351:b3=D:0020
+   tetris_p89lpc9351:b4=D:0020
+   tetris_p89lpc9351:b5=D:0020
+   tetris_p89lpc9351:b6=D:0020
+   tetris_p89lpc9351:b7=D:0020
+   tetris_p89lpc9351:bits=D:0020

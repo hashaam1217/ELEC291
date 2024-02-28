@@ -1,0 +1,6 @@
+path=C:\Source\call51\bin\..\lib\large
+lib=libc51.lib
+lib=libint.lib
+lib=liblong.lib
+lib=libfloat.lib
+obj=gcc-torture-execute-20000731-1.obj

@@ -1,0 +1,3 @@
+array.obj builtin.obj eval.obj field.obj gawkmisc.obj io.obj main.obj 
+ext.obj msg.obj node.obj profile.obj re.obj version.obj 
+awkgram.obj getid.obj popen.obj getopt.obj getopt1.obj regex.obj dfa.obj random.obj 

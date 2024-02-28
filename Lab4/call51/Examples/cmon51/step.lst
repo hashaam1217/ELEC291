@@ -1,0 +1,301 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
+0000              4   ; This file was generated Mon Jan 07 19:38:34 2013
+0000              5   ;--------------------------------------------------------
+                  5   $name step
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_ISEG    segment idata
+0000             13            R_OSEG    segment data overlay
+0000             14            BIT_BANK  segment data overlay
+0000             15            R_HOME    segment code
+0000             16            R_GSINIT  segment code
+0000             17            R_IXSEG   segment xdata
+0000             18            R_CONST   segment code
+0000             19            R_XINIT   segment code
+0000             20            R_DINIT   segment code
+0000             21   
+0000             22   ;--------------------------------------------------------
+0000             23   ; Public variables in this module
+0000             24   ;--------------------------------------------------------
+0000             25            public _dostep
+0000             26            public _step_and_break
+0000             27   ;--------------------------------------------------------
+0000             28   ; Special Function Registers
+0000             29   ;--------------------------------------------------------
+0000             30   ;--------------------------------------------------------
+0000             31   ; special function bits
+0000             32   ;--------------------------------------------------------
+0000             33   ;--------------------------------------------------------
+0000             34   ; overlayable register banks
+0000             35   ;--------------------------------------------------------
+0000             36            rbank0 segment data overlay
+0000             37   ;--------------------------------------------------------
+0000             38   ; internal ram data
+0000             39   ;--------------------------------------------------------
+0000             40            rseg R_DSEG
+0000             41   ;--------------------------------------------------------
+0000             42   ; overlayable items in internal ram 
+0000             43   ;--------------------------------------------------------
+0000             44            rseg R_OSEG
+0000             45   ;--------------------------------------------------------
+0000             46   ; indirectly addressable internal ram data
+0000             47   ;--------------------------------------------------------
+0000             48            rseg R_ISEG
+0000             49   ;--------------------------------------------------------
+0000             50   ; absolute internal ram data
+0000             51   ;--------------------------------------------------------
+0000             52            DSEG
+0000             53   ;--------------------------------------------------------
+0000             54   ; bit data
+0000             55   ;--------------------------------------------------------
+0000             56            rseg R_BSEG
+0000             57   ;--------------------------------------------------------
+0000             58   ; paged external ram data
+0000             59   ;--------------------------------------------------------
+0000             60            rseg R_XSEG
+0000             61   ;--------------------------------------------------------
+0000             62   ; external ram data
+0000             63   ;--------------------------------------------------------
+0000             64            rseg R_XSEG
+0000             65   ;--------------------------------------------------------
+0000             66   ; absolute external ram data
+0000             67   ;--------------------------------------------------------
+0000             68            XSEG
+0000             69   ;--------------------------------------------------------
+0000             70   ; external initialized ram data
+0000             71   ;--------------------------------------------------------
+0000             72            rseg R_IXSEG
+0000             73            rseg R_HOME
+0000             74            rseg R_GSINIT
+0000             75            rseg R_CSEG
+0000             76   ;--------------------------------------------------------
+0000             77   ; Interrupt vectors
+0000             78   ;--------------------------------------------------------
+E01B             79            CSEG at 0xe01b
+E01B 020100      80            ljmp    _step_and_break
+E01E             81   ;--------------------------------------------------------
+E01E             82   ; global & static initialisations
+E01E             83   ;--------------------------------------------------------
+0000             84            rseg R_HOME
+0000             85            rseg R_GSINIT
+0000             86            rseg R_GSINIT
+0000             87   ;--------------------------------------------------------
+0000             88   ; data variables initialization
+0000             89   ;--------------------------------------------------------
+0000             90            rseg R_DINIT
+0000             91            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000             92   ;--------------------------------------------------------
+0000             93   ; code
+0000             94   ;--------------------------------------------------------
+0000             95            rseg R_CSEG
+0000             96   ;------------------------------------------------------------
+0000             97   ;Allocation info for local variables in function 'step_and_break'
+0000             98   ;------------------------------------------------------------
+0000             99   ;------------------------------------------------------------
+0000            100   ;        .\step.c:39: void step_and_break (void) interrupt 3 _naked
+0000            101   ;        -----------------------------------------
+0000            102   ;         function step_and_break
+0000            103   ;        -----------------------------------------
+0000            104   _step_and_break:
+0000            105   ;        naked function: no prologue.
+0000            106   ;        .\step.c:121: _endasm;
+0000            107            
+0000 C2AB       108              clr ET1 ; Disable timer 1 interrupt (just in case!)
+0002            109            
+0002            110        ; Save the IE register and disable interrupts ASAP since the user code
+0002            111        ; may have interrupts running which may modify the internal RAM
+0002 C0A8       112                    push IE
+0004 C2AF       113              clr EA
+0006            114            
+0006            115           ; Save the user DPTR on the stack so it can be used to address XRAM.
+0006 C083       116                    push DPH
+0008 C082       117                    push DPL
+000A            118            
+000A            119           ; Save user program registers
+000A 900000     120                    mov DPTR,#_A_save
+000D F0         121                    movx @DPTR,A
+000E            122            
+000E 900000     123                    mov DPTR,#_PSW_save
+0011 E5D0       124                    mov A,PSW
+0013 F0         125                    movx @DPTR,A
+0014            126            
+0014 900000     127                    mov DPTR,#_B_save
+0017 E5F0       128                    mov A,B
+0019 F0         129                    movx @DPTR,A
+001A            130            
+001A 900000     131                    mov DPTR,#_DPL_save
+001D D0E0       132                    pop ACC
+001F F0         133                    movx @DPTR,A
+0020 900000     134                    mov DPTR,#_DPH_save
+0023 D0E0       135                    pop ACC
+0025 F0         136                    movx @DPTR,A
+0026            137            
+0026 900000     138                    mov DPTR,#_IE_save
+0029 D0E0       139                    pop ACC
+002B F0         140                    movx @DPTR,A
+002C            141            
+002C            142           ;The address of the next instrurtion is in the stack
+002C 900001     143                    mov DPTR,#_PC_save+1
+002F D0E0       144                    pop ACC
+0031 F0         145                    movx @DPTR,A
+0032 900000     146                    mov DPTR,#_PC_save
+0035 D0E0       147                    pop ACC
+0037 F0         148                    movx @DPTR,A
+0038            149            
+0038            150           ;NOW we can save the user stack pointer
+0038 900000     151                    mov DPTR,#_SP_save
+003B E581       152                    mov A,SP
+003D F0         153                    movx @DPTR,A
+003E            154            
+003E            155           ; Save the user internal ram.
+003E 900000     156                    mov DPTR,#_iram_save
+0041 75D000     157                    mov PSW,#0 ; Select register bank 0.
+0044 E8         158                    mov A,R0 ; Save R0.
+0045 F0         159                    movx @DPTR,A
+0046 7801       160                    mov R0,#1
+0048            161            sab_l:
+0048 A3         162                    inc DPTR
+0049 E6         163                    mov A,@R0
+004A F0         164                    movx @DPTR,A
+004B 08         165                    inc R0
+004C B880E0     166                    cjne R0,#128,sab_l
+004F            167            
+004F            168           ;Tell the monitor that the code got here
+004F 900000     169                    mov DPTR,#_gotbreak
+0052 7401       170                    mov A,#1
+0054 F0         171                    movx @DPTR,A
+0055            172            
+0055            173           ; Now the tricky part... going back to the monitor
+0055            174            
+0055            175           ; Initialize the monitor stack
+0055 7581FF     176                    mov sp,#_stack_start - 1
+0058            177            
+0058            178           ; Call the monitor hardware initialization
+0058 120100     179                    lcall __c51_external_startup
+005B            180            
+005B            181           ; Notice that crt0 initialization is skiped, otherwise the expanded RAM
+005B            182           ; variables holding important variables will be clear.
+005B            183            
+005B            184           ; Go directly to the main routine
+005B 020100     185                    ljmp _main
+005E            186            
+005E            187                
+005E            188   ;        naked function: no epilogue.
+005E            189   ;------------------------------------------------------------
+005E            190   ;Allocation info for local variables in function 'dostep'
+005E            191   ;------------------------------------------------------------
+005E            192   ;------------------------------------------------------------
+005E            193   ;        .\step.c:125: void dostep (void) _naked
+005E            194   ;        -----------------------------------------
+005E            195   ;         function dostep
+005E            196   ;        -----------------------------------------
+005E            197   _dostep:
+005E            198   ;        naked function: no prologue.
+005E            199   ;        .\step.c:219: _endasm;
+005E            200            
+005E            201           ; Restore the user internal ram.
+005E 787F       202                    mov R0,#127
+0060 90007F     203                    mov DPTR,#(_iram_save+127)
+0063            204            ds_l:
+0063 E0         205                    movx A,@DPTR
+0064 F6         206                    mov @R0,A
+0065 1582       207                    dec DPL
+0067 D870       208                    djnz R0,ds_l
+0069 E0         209                    movx A,@DPTR
+006A F6         210                    mov @R0,A
+006B            211            
+006B            212           ; Restore user registers
+006B 900000     213                    mov DPTR,#_IE_save
+006E E0         214                    movx A,@DPTR
+006F F5A8       215                    mov IE, A
+0071            216            
+0071 900000     217                    mov DPTR,#_B_save
+0074 E0         218                    movx A,@DPTR
+0075 F5F0       219                    mov B,A
+0077            220            
+0077 900000     221                    mov DPTR,#_PSW_save
+007A E0         222                    movx A,@DPTR
+007B F5D0       223                    mov PSW,A
+007D            224            
+007D 900000     225                    mov DPTR,#_SP_save
+0080 E0         226                    movx A,@DPTR
+0081 F581       227                    mov SP,A
+0083            228            
+0083            229           ; if it is a 'go' push a 'break' into the stack
+0083 900000     230                    mov DPTR,#_gostep ; 1 is "go" 0 is step
+0086 E0         231                    movx A,@DPTR
+0087 6001       232                    jz ds_3
+0089 741B       233                    mov A, #0x1B
+008B C0E0       234                    push ACC
+008D E4         235                    clr A
+008E C0E0       236                    push ACC
+0090 741B       237                    mov A, #0x1B
+0092 C0E0       238                    push ACC
+0094 E4         239                    clr A
+0095 C0E0       240                    push ACC
+0097            241            ds_3:
+0097            242     ;Put the user code start in the stack. The reti or ret at the end will get us there.
+0097 900000     243                    mov DPTR,#_step_start
+009A E0         244                    movx A,@DPTR
+009B C0E0       245                    push ACC
+009D A3         246                    inc DPTR
+009E E0         247                    movx A,@DPTR
+009F C0E0       248                    push ACC
+00A1            249            
+00A1 900000     250                    mov DPTR,#_DPL_save
+00A4 E0         251                    movx A,@DPTR
+00A5 C0E0       252                    push ACC
+00A7 900000     253                    mov DPTR,#_DPH_save
+00AA E0         254                    movx A,@DPTR
+00AB C0E0       255                    push ACC
+00AD            256            
+00AD            257           ; Here use the accumulator to check if it is a go or a step
+00AD 900000     258                    mov DPTR,#_gostep ; 1 is "go" 0 is step
+00B0 E0         259                    movx A,@DPTR
+00B1 6001       260                    jz ds_2
+00B3            261            
+00B3            262           ; go - restore the user accumulator.
+00B3 900000     263                    mov DPTR,#_A_save
+00B6 E0         264                    movx A,@DPTR
+00B7            265            
+00B7            266           ; and pop the user DPTR from the stack.
+00B7 D083       267                    pop DPH
+00B9 D082       268                    pop DPL
+00BB            269            
+00BB 32         270                    reti
+00BC            271            
+00BC            272            ds_2:
+00BC            273           ; step - restore the user accumulator.
+00BC 900000     274                    mov DPTR,#_A_save
+00BF E0         275                    movx A,@DPTR
+00C0            276            
+00C0            277           ; pop the user DPTR from the user stack.
+00C0 D083       278                    pop DPH
+00C2 D082       279                    pop DPL
+00C4            280            
+00C4            281           ; Set up the timer 1 interrupt.
+00C4            282            
+00C4            283           ;Timer 1 must have the highest priority, otherwise in step by step
+00C4            284           ;execution instructions may look as if they are skept when interrupts
+00C4            285           ;of a higher priority are served. Since this is microcontroller dependent
+00C4            286           ;have it at the microcotnroller file (8052.c for example)
+00C4 120100     287                    lcall _set_timer1_priority
+00C7 D2AF       288                    setb EA ; enable interrupts
+00C9 D28A       289                    setb IT1 ; force timer 1 interrupt
+00CB D2AB       290                    setb ET1 ; Enable timer 1 interrupt
+00CD 32         291                    reti ; 'Return' to the user.
+00CE            292   ;        naked function: no epilogue.
+00CE            293            rseg R_CSEG
+00CE            294   
+0000            295            rseg R_CONST
+0000            296   
+0000            297            rseg R_XINIT
+0000            298   
+E01E            299            CSEG
+E01E            300   
+E01E            301   end

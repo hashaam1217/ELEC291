@@ -1,0 +1,2379 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1028 (Jul 17 2012) (MSVC)
+0000              4   ; This file was generated Sun Nov 11 15:01:59 2012
+0000              5   ;--------------------------------------------------------
+                  5   $name Tetris52
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_ISEG    segment idata
+0000             13            R_OSEG    segment data overlay
+0000             14            BIT_BANK  segment data overlay
+0000             15            R_HOME    segment code
+0000             16            R_GSINIT  segment code
+0000             17            R_IXSEG   segment xdata
+0000             18            R_CONST   segment code
+0000             19            R_XINIT   segment code
+0000             20            R_DINIT   segment code
+0000             21   
+0000             22   ;--------------------------------------------------------
+0000             23   ; Public variables in this module
+0000             24   ;--------------------------------------------------------
+0000             25            public _rscr_PARM_2
+0000             26            public _wscr_PARM_3
+0000             27            public _wscr_PARM_2
+0000             28            public _collapse_bonus_1_1
+0000             29            public _Shapes
+0000             30            public _main
+0000             31            public _exit
+0000             32            public _wastetime
+0000             33            public _getKey
+0000             34            public _collapse
+0000             35            public _screenInit
+0000             36            public _shapeHit
+0000             37            public _shapeErase
+0000             38            public _shapeDraw
+0000             39            public _blockHit
+0000             40            public _blockDraw
+0000             41            public _refresh
+0000             42            public __c51_external_startup
+0000             43            public _dummyint3
+0000             44            public _rscr
+0000             45            public _wscr
+0000             46            public _Screen
+0000             47            public _shapeHit_PARM_3
+0000             48            public _shapeHit_PARM_2
+0000             49            public _shapeErase_PARM_3
+0000             50            public _shapeErase_PARM_2
+0000             51            public _shapeDraw_PARM_3
+0000             52            public _shapeDraw_PARM_2
+0000             53            public _blockHit_PARM_2
+0000             54            public _blockDraw_PARM_3
+0000             55            public _blockDraw_PARM_2
+0000             56            public _Score
+0000             57            public _Level
+0000             58            public _delay
+0000             59            public _putchar
+0000             60   ;--------------------------------------------------------
+0000             61   ; Special Function Registers
+0000             62   ;--------------------------------------------------------
+0000             63   _P0             DATA 0x80
+0000             64   _SP             DATA 0x81
+0000             65   _DPL            DATA 0x82
+0000             66   _DPH            DATA 0x83
+0000             67   _PCON           DATA 0x87
+0000             68   _TCON           DATA 0x88
+0000             69   _TMOD           DATA 0x89
+0000             70   _TL0            DATA 0x8a
+0000             71   _TL1            DATA 0x8b
+0000             72   _TH0            DATA 0x8c
+0000             73   _TH1            DATA 0x8d
+0000             74   _P1             DATA 0x90
+0000             75   _SCON           DATA 0x98
+0000             76   _SBUF           DATA 0x99
+0000             77   _P2             DATA 0xa0
+0000             78   _IE             DATA 0xa8
+0000             79   _P3             DATA 0xb0
+0000             80   _IP             DATA 0xb8
+0000             81   _PSW            DATA 0xd0
+0000             82   _ACC            DATA 0xe0
+0000             83   _B              DATA 0xf0
+0000             84   _T2CON          DATA 0xc8
+0000             85   _T2MOD          DATA 0xc9
+0000             86   _RCAP2L         DATA 0xca
+0000             87   _RCAP2H         DATA 0xcb
+0000             88   _TL2            DATA 0xcc
+0000             89   _TH2            DATA 0xcd
+0000             90   ;--------------------------------------------------------
+0000             91   ; special function bits
+0000             92   ;--------------------------------------------------------
+0000             93   _P0_0           BIT 0x80
+0000             94   _P0_1           BIT 0x81
+0000             95   _P0_2           BIT 0x82
+0000             96   _P0_3           BIT 0x83
+0000             97   _P0_4           BIT 0x84
+0000             98   _P0_5           BIT 0x85
+0000             99   _P0_6           BIT 0x86
+0000            100   _P0_7           BIT 0x87
+0000            101   _IT0            BIT 0x88
+0000            102   _IE0            BIT 0x89
+0000            103   _IT1            BIT 0x8a
+0000            104   _IE1            BIT 0x8b
+0000            105   _TR0            BIT 0x8c
+0000            106   _TF0            BIT 0x8d
+0000            107   _TR1            BIT 0x8e
+0000            108   _TF1            BIT 0x8f
+0000            109   _P1_0           BIT 0x90
+0000            110   _P1_1           BIT 0x91
+0000            111   _P1_2           BIT 0x92
+0000            112   _P1_3           BIT 0x93
+0000            113   _P1_4           BIT 0x94
+0000            114   _P1_5           BIT 0x95
+0000            115   _P1_6           BIT 0x96
+0000            116   _P1_7           BIT 0x97
+0000            117   _RI             BIT 0x98
+0000            118   _TI             BIT 0x99
+0000            119   _RB8            BIT 0x9a
+0000            120   _TB8            BIT 0x9b
+0000            121   _REN            BIT 0x9c
+0000            122   _SM2            BIT 0x9d
+0000            123   _SM1            BIT 0x9e
+0000            124   _SM0            BIT 0x9f
+0000            125   _P2_0           BIT 0xa0
+0000            126   _P2_1           BIT 0xa1
+0000            127   _P2_2           BIT 0xa2
+0000            128   _P2_3           BIT 0xa3
+0000            129   _P2_4           BIT 0xa4
+0000            130   _P2_5           BIT 0xa5
+0000            131   _P2_6           BIT 0xa6
+0000            132   _P2_7           BIT 0xa7
+0000            133   _EX0            BIT 0xa8
+0000            134   _ET0            BIT 0xa9
+0000            135   _EX1            BIT 0xaa
+0000            136   _ET1            BIT 0xab
+0000            137   _ES             BIT 0xac
+0000            138   _EA             BIT 0xaf
+0000            139   _P3_0           BIT 0xb0
+0000            140   _P3_1           BIT 0xb1
+0000            141   _P3_2           BIT 0xb2
+0000            142   _P3_3           BIT 0xb3
+0000            143   _P3_4           BIT 0xb4
+0000            144   _P3_5           BIT 0xb5
+0000            145   _P3_6           BIT 0xb6
+0000            146   _P3_7           BIT 0xb7
+0000            147   _RXD            BIT 0xb0
+0000            148   _TXD            BIT 0xb1
+0000            149   _INT0           BIT 0xb2
+0000            150   _INT1           BIT 0xb3
+0000            151   _T0             BIT 0xb4
+0000            152   _T1             BIT 0xb5
+0000            153   _WR             BIT 0xb6
+0000            154   _RD             BIT 0xb7
+0000            155   _PX0            BIT 0xb8
+0000            156   _PT0            BIT 0xb9
+0000            157   _PX1            BIT 0xba
+0000            158   _PT1            BIT 0xbb
+0000            159   _PS             BIT 0xbc
+0000            160   _P              BIT 0xd0
+0000            161   _F1             BIT 0xd1
+0000            162   _OV             BIT 0xd2
+0000            163   _RS0            BIT 0xd3
+0000            164   _RS1            BIT 0xd4
+0000            165   _F0             BIT 0xd5
+0000            166   _AC             BIT 0xd6
+0000            167   _CY             BIT 0xd7
+0000            168   _ET2            BIT 0xad
+0000            169   _PT2            BIT 0xbd
+0000            170   _T2CON_0        BIT 0xc8
+0000            171   _T2CON_1        BIT 0xc9
+0000            172   _T2CON_2        BIT 0xca
+0000            173   _T2CON_3        BIT 0xcb
+0000            174   _T2CON_4        BIT 0xcc
+0000            175   _T2CON_5        BIT 0xcd
+0000            176   _T2CON_6        BIT 0xce
+0000            177   _T2CON_7        BIT 0xcf
+0000            178   _CP_RL2         BIT 0xc8
+0000            179   _C_T2           BIT 0xc9
+0000            180   _TR2            BIT 0xca
+0000            181   _EXEN2          BIT 0xcb
+0000            182   _TCLK           BIT 0xcc
+0000            183   _RCLK           BIT 0xcd
+0000            184   _EXF2           BIT 0xce
+0000            185   _TF2            BIT 0xcf
+0000            186   ;--------------------------------------------------------
+0000            187   ; overlayable register banks
+0000            188   ;--------------------------------------------------------
+0000            189            rbank0 segment data overlay
+0000            190   ;--------------------------------------------------------
+0000            191   ; overlayable bit register bank
+0000            192   ;--------------------------------------------------------
+0000            193            rseg BIT_BANK
+0000            194   bits:
+0000            195            ds 1
+0001            196            b0 equ  bits.0 
+0001            197            b1 equ  bits.1 
+0001            198            b2 equ  bits.2 
+0001            199            b3 equ  bits.3 
+0001            200            b4 equ  bits.4 
+0001            201            b5 equ  bits.5 
+0001            202            b6 equ  bits.6 
+0001            203            b7 equ  bits.7 
+0001            204   ;--------------------------------------------------------
+0001            205   ; internal ram data
+0001            206   ;--------------------------------------------------------
+0000            207            rseg R_DSEG
+0000            208   _delay:
+0000            209            ds 1
+0001            210   _Level:
+0001            211            ds 2
+0003            212   _Score:
+0003            213            ds 2
+0005            214   _blockDraw_PARM_2:
+0005            215            ds 1
+0006            216   _blockDraw_PARM_3:
+0006            217            ds 1
+0007            218   _blockHit_PARM_2:
+0007            219            ds 1
+0008            220   _shapeDraw_PARM_2:
+0008            221            ds 1
+0009            222   _shapeDraw_PARM_3:
+0009            223            ds 1
+000A            224   _shapeErase_PARM_2:
+000A            225            ds 1
+000B            226   _shapeErase_PARM_3:
+000B            227            ds 1
+000C            228   _shapeHit_PARM_2:
+000C            229            ds 1
+000D            230   _shapeHit_PARM_3:
+000D            231            ds 1
+000E            232   _main_Shape_1_1:
+000E            233            ds 1
+000F            234   _main_X_1_1:
+000F            235            ds 1
+0010            236   _main_Y_1_1:
+0010            237            ds 1
+0011            238   ;--------------------------------------------------------
+0011            239   ; overlayable items in internal ram 
+0011            240   ;--------------------------------------------------------
+0000            241            rseg    R_OSEG
+0000            242   _wscr_PARM_2:
+0000            243            ds 1
+0001            244   _wscr_PARM_3:
+0001            245            ds 1
+0002            246            rseg    R_OSEG
+0002            247   _rscr_PARM_2:
+0002            248            ds 1
+0003            249            rseg    R_OSEG
+0003            250            rseg    R_OSEG
+0003            251   ;--------------------------------------------------------
+0003            252   ; indirectly addressable internal ram data
+0003            253   ;--------------------------------------------------------
+0000            254            rseg R_ISEG
+0000            255   _Screen:
+0000            256            ds 192
+00C0            257   ;--------------------------------------------------------
+00C0            258   ; absolute internal ram data
+00C0            259   ;--------------------------------------------------------
+0000            260            DSEG
+0000            261   ;--------------------------------------------------------
+0000            262   ; bit data
+0000            263   ;--------------------------------------------------------
+0000            264            rseg R_BSEG
+0000            265   ;--------------------------------------------------------
+0000            266   ; paged external ram data
+0000            267   ;--------------------------------------------------------
+0000            268            rseg R_XSEG
+0000            269   ;--------------------------------------------------------
+0000            270   ; external ram data
+0000            271   ;--------------------------------------------------------
+0000            272            rseg R_XSEG
+0000            273   ;--------------------------------------------------------
+0000            274   ; absolute external ram data
+0000            275   ;--------------------------------------------------------
+0000            276            XSEG
+0000            277   ;--------------------------------------------------------
+0000            278   ; external initialized ram data
+0000            279   ;--------------------------------------------------------
+0000            280            rseg R_IXSEG
+0000            281            rseg R_HOME
+0000            282            rseg R_GSINIT
+0000            283            rseg R_CSEG
+0000            284   ;--------------------------------------------------------
+0000            285   ; Reset entry point and interrupt vectors
+0000            286   ;--------------------------------------------------------
+0000            287            CSEG at 0x0000
+0000 020100     288            ljmp    _crt0
+001B            289            CSEG at 0x001b
+001B 020100     290            ljmp    _dummyint3
+001E            291   ;--------------------------------------------------------
+001E            292   ; global & static initialisations
+001E            293   ;--------------------------------------------------------
+0000            294            rseg R_HOME
+0000            295            rseg R_GSINIT
+0000            296            rseg R_GSINIT
+0000            297   ;--------------------------------------------------------
+0000            298   ; data variables initialization
+0000            299   ;--------------------------------------------------------
+0000            300            rseg R_DINIT
+0000            301   ;        C:\Source\call51\Source\S51\test\Tetris52.c:35: unsigned char delay=250;
+0000 75E0FA     302            mov     _delay,#0xFA
+0003            303   ;        C:\Source\call51\Source\S51\test\Tetris52.c:141: unsigned int Level=0;
+0003 E4         304            clr     a
+0004 F5A0       305            mov     _Level,a
+0006 F5A1       306            mov     (_Level + 1),a
+0008            307   ;        C:\Source\call51\Source\S51\test\Tetris52.c:142: unsigned int Score=0;
+0008 E4         308            clr     a
+0009 F560       309            mov     _Score,a
+000B F561       310            mov     (_Score + 1),a
+000D            311            ; The linker places a 'ret' at the end of segment R_DINIT.
+000D            312   ;--------------------------------------------------------
+000D            313   ; code
+000D            314   ;--------------------------------------------------------
+0000            315            rseg R_CSEG
+0000            316   ;------------------------------------------------------------
+0000            317   ;Allocation info for local variables in function 'wscr'
+0000            318   ;------------------------------------------------------------
+0000            319   ;y                         Allocated with name '_wscr_PARM_2'
+0000            320   ;val                       Allocated with name '_wscr_PARM_3'
+0000            321   ;x                         Allocated to registers r2 
+0000            322   ;j                         Allocated to registers r4 
+0000            323   ;------------------------------------------------------------
+0000            324   ;        C:\Source\call51\Source\S51\test\Tetris52.c:144: void wscr (unsigned char x, unsigned char y, unsigned char val)
+0000            325   ;        -----------------------------------------
+0000            326   ;         function wscr
+0000            327   ;        -----------------------------------------
+0000            328   _wscr:
+0000            329            using   0
+0000            330   ;        C:\Source\call51\Source\S51\test\Tetris52.c:147: j=Screen[x/2][y];
+0000 E582       331            mov     a,dpl
+0002 FA         332            mov     r2,a
+0003 C3         333            clr     c
+0004 13         334            rrc     a
+0005 75F018     335            mov     b,#0x18
+0008 A4         336            mul     ab
+0009 FB         337            mov     r3,a
+000A 2450       338            add     a,#_Screen
+000C FC         339            mov     r4,a
+000D AD70       340            mov     r5,_wscr_PARM_2
+000F ED         341            mov     a,r5
+0010 2C         342            add     a,r4
+0011 F8         343            mov     r0,a
+0012 8604       344            mov     ar4,@r0
+0014            345   ;        C:\Source\call51\Source\S51\test\Tetris52.c:148: if((x&1)==0)
+0014 EA         346            mov     a,r2
+0015 20E070     347            jb      acc.0,L002002?
+0018            348   ;        C:\Source\call51\Source\S51\test\Tetris52.c:150: j&=0xf0;
+0018 5304F0     349            anl     ar4,#0xF0
+001B            350   ;        C:\Source\call51\Source\S51\test\Tetris52.c:151: Screen[x/2][y]=(j|(val&0x7)|(val&0x80?8:0));
+001B EB         351            mov     a,r3
+001C 2450       352            add     a,#_Screen
+001E FA         353            mov     r2,a
+001F ED         354            mov     a,r5
+0020 2A         355            add     a,r2
+0021 F8         356            mov     r0,a
+0022 7407       357            mov     a,#0x07
+0024 5530       358            anl     a,_wscr_PARM_3
+0026 4C         359            orl     a,r4
+0027 FA         360            mov     r2,a
+0028 E530       361            mov     a,_wscr_PARM_3
+002A 30E7B0     362            jnb     acc.7,L002006?
+002D 7E08       363            mov     r6,#0x08
+002F 8001       364            sjmp    L002007?
+0031            365   L002006?:
+0031 7E00       366            mov     r6,#0x00
+0033            367   L002007?:
+0033 EE         368            mov     a,r6
+0034 4A         369            orl     a,r2
+0035 F6         370            mov     @r0,a
+0036 22         371            ret
+0037            372   L002002?:
+0037            373   ;        C:\Source\call51\Source\S51\test\Tetris52.c:155: j&=0xf;
+0037 53040F     374            anl     ar4,#0x0F
+003A            375   ;        C:\Source\call51\Source\S51\test\Tetris52.c:156: Screen[x/2][y]=j|((val*0x10)&0x70)|(val&0x80);
+003A EB         376            mov     a,r3
+003B 2450       377            add     a,#_Screen
+003D FB         378            mov     r3,a
+003E ED         379            mov     a,r5
+003F 2B         380            add     a,r3
+0040 F8         381            mov     r0,a
+0041 E530       382            mov     a,_wscr_PARM_3
+0043 C4         383            swap    a
+0044 54F0       384            anl     a,#0xf0
+0046 FA         385            mov     r2,a
+0047 7470       386            mov     a,#0x70
+0049 5A         387            anl     a,r2
+004A 4204       388            orl     ar4,a
+004C 7480       389            mov     a,#0x80
+004E 5530       390            anl     a,_wscr_PARM_3
+0050 4C         391            orl     a,r4
+0051 F6         392            mov     @r0,a
+0052 22         393            ret
+0053            394   ;------------------------------------------------------------
+0053            395   ;Allocation info for local variables in function 'rscr'
+0053            396   ;------------------------------------------------------------
+0053            397   ;y                         Allocated with name '_rscr_PARM_2'
+0053            398   ;x                         Allocated to registers r2 
+0053            399   ;j                         Allocated to registers r3 
+0053            400   ;------------------------------------------------------------
+0053            401   ;        C:\Source\call51\Source\S51\test\Tetris52.c:160: unsigned char rscr (unsigned char x, unsigned char y)
+0053            402   ;        -----------------------------------------
+0053            403   ;         function rscr
+0053            404   ;        -----------------------------------------
+0053            405   _rscr:
+0053            406   ;        C:\Source\call51\Source\S51\test\Tetris52.c:163: j=Screen[x/2][y];
+0053 E582       407            mov     a,dpl
+0055 FA         408            mov     r2,a
+0056 C3         409            clr     c
+0057 13         410            rrc     a
+0058 75F018     411            mov     b,#0x18
+005B A4         412            mul     ab
+005C 2450       413            add     a,#_Screen
+005E FB         414            mov     r3,a
+005F E5F0       415            mov     a,_rscr_PARM_2
+0061 2B         416            add     a,r3
+0062 F8         417            mov     r0,a
+0063 8603       418            mov     ar3,@r0
+0065            419   ;        C:\Source\call51\Source\S51\test\Tetris52.c:164: if(x&1) j/=0x10;
+0065 EA         420            mov     a,r2
+0066 30E030     421            jnb     acc.0,L003002?
+0069 EB         422            mov     a,r3
+006A C4         423            swap    a
+006B 540F       424            anl     a,#0x0f
+006D FB         425            mov     r3,a
+006E            426   L003002?:
+006E            427   ;        C:\Source\call51\Source\S51\test\Tetris52.c:165: return ((j&0x7)|(j&0x8?0x80:0));
+006E 7407       428            mov     a,#0x07
+0070 5B         429            anl     a,r3
+0071 FA         430            mov     r2,a
+0072 EB         431            mov     a,r3
+0073 30E370     432            jnb     acc.3,L003005?
+0076 7B80       433            mov     r3,#0x80
+0078 8001       434            sjmp    L003006?
+007A            435   L003005?:
+007A 7B00       436            mov     r3,#0x00
+007C            437   L003006?:
+007C EB         438            mov     a,r3
+007D 4A         439            orl     a,r2
+007E F582       440            mov     dpl,a
+0080 22         441            ret
+0081            442   ;------------------------------------------------------------
+0081            443   ;Allocation info for local variables in function 'dummyint3'
+0081            444   ;------------------------------------------------------------
+0081            445   ;------------------------------------------------------------
+0081            446   ;        C:\Source\call51\Source\S51\test\Tetris52.c:168: void dummyint3 (void) interrupt 3
+0081            447   ;        -----------------------------------------
+0081            448   ;         function dummyint3
+0081            449   ;        -----------------------------------------
+0081            450   _dummyint3:
+0081 C0B0       451            push    bits
+0083 C0E0       452            push    acc
+0085 C0F0       453            push    b
+0087 C082       454            push    dpl
+0089 C083       455            push    dph
+008B C002       456            push    (0+2)
+008D C003       457            push    (0+3)
+008F C004       458            push    (0+4)
+0091 C005       459            push    (0+5)
+0093 C006       460            push    (0+6)
+0095 C007       461            push    (0+7)
+0097 C000       462            push    (0+0)
+0099 C001       463            push    (0+1)
+009B C0D0       464            push    psw
+009D 75D000     465            mov     psw,#0x00
+00A0            466   ;        C:\Source\call51\Source\S51\test\Tetris52.c:170: printf("Not running under CMON51!\n");
+00A0 7470       467            mov     a,#__str_0
+00A2 C0E0       468            push    acc
+00A4 7472       469            mov     a,#(__str_0 >> 8)
+00A6 C0E0       470            push    acc
+00A8 120100     471            lcall   _printf_tiny
+00AB 1581       472            dec     sp
+00AD 1581       473            dec     sp
+00AF            474   ;        C:\Source\call51\Source\S51\test\Tetris52.c:171: while(1);
+00AF            475   L004002?:
+00AF 8001       476            sjmp    L004002?
+00B1 D0D0       477            pop     psw
+00B3 D001       478            pop     (0+1)
+00B5 D000       479            pop     (0+0)
+00B7 D007       480            pop     (0+7)
+00B9 D006       481            pop     (0+6)
+00BB D005       482            pop     (0+5)
+00BD D004       483            pop     (0+4)
+00BF D003       484            pop     (0+3)
+00C1 D002       485            pop     (0+2)
+00C3 D083       486            pop     dph
+00C5 D082       487            pop     dpl
+00C7 D0F0       488            pop     b
+00C9 D0E0       489            pop     acc
+00CB D0B0       490            pop     bits
+00CD 32         491            reti
+00CE            492   ;------------------------------------------------------------
+00CE            493   ;Allocation info for local variables in function '_c51_external_startup'
+00CE            494   ;------------------------------------------------------------
+00CE            495   ;------------------------------------------------------------
+00CE            496   ;        C:\Source\call51\Source\S51\test\Tetris52.c:174: unsigned char _c51_external_startup(void)
+00CE            497   ;        -----------------------------------------
+00CE            498   ;         function _c51_external_startup
+00CE            499   ;        -----------------------------------------
+00CE            500   __c51_external_startup:
+00CE            501   ;        C:\Source\call51\Source\S51\test\Tetris52.c:176: TR1=0;
+00CE C28E       502            clr     _TR1
+00D0            503   ;        C:\Source\call51\Source\S51\test\Tetris52.c:177: TR0=0;
+00D0 C28C       504            clr     _TR0
+00D2            505   ;        C:\Source\call51\Source\S51\test\Tetris52.c:178: TMOD=0x22;  //Both timer 0 and 1 in autoreload mode
+00D2 758922     506            mov     _TMOD,#0x22
+00D5            507   ;        C:\Source\call51\Source\S51\test\Tetris52.c:179: PCON|=0x80;
+00D5 438780     508            orl     _PCON,#0x80
+00D8            509   ;        C:\Source\call51\Source\S51\test\Tetris52.c:180: TH1=TL1=TIMER1_RELOAD_VALUE;
+00D8 758BFF     510            mov     _TL1,#0xFF
+00DB 758DFF     511            mov     _TH1,#0xFF
+00DE            512   ;        C:\Source\call51\Source\S51\test\Tetris52.c:181: TH0=TL0=0-91; //Use a prime number to generate 'ramdom' numbers
+00DE 758AA5     513            mov     _TL0,#0xA5
+00E1 758CA5     514            mov     _TH0,#0xA5
+00E4            515   ;        C:\Source\call51\Source\S51\test\Tetris52.c:182: TR1=1;
+00E4 D28E       516            setb    _TR1
+00E6            517   ;        C:\Source\call51\Source\S51\test\Tetris52.c:183: TR0=1;
+00E6 D28C       518            setb    _TR0
+00E8            519   ;        C:\Source\call51\Source\S51\test\Tetris52.c:184: SCON=0x52;
+00E8 759852     520            mov     _SCON,#0x52
+00EB            521   ;        C:\Source\call51\Source\S51\test\Tetris52.c:186: return 0;
+00EB 758200     522            mov     dpl,#0x00
+00EE 22         523            ret
+00EF            524   ;------------------------------------------------------------
+00EF            525   ;Allocation info for local variables in function 'putchar'
+00EF            526   ;------------------------------------------------------------
+00EF            527   ;c                         Allocated to registers r2 
+00EF            528   ;------------------------------------------------------------
+00EF            529   ;        C:\Source\call51\Source\S51\test\Tetris52.c:189: void putchar(char c)
+00EF            530   ;        -----------------------------------------
+00EF            531   ;         function putchar
+00EF            532   ;        -----------------------------------------
+00EF            533   _putchar:
+00EF AA82       534            mov     r2,dpl
+00F1            535   ;        C:\Source\call51\Source\S51\test\Tetris52.c:191: if (c=='\n')
+00F1 BA0A70     536            cjne    r2,#0x0A,L006006?
+00F4            537   ;        C:\Source\call51\Source\S51\test\Tetris52.c:193: while (!TI);
+00F4            538   L006001?:
+00F4            539   ;        C:\Source\call51\Source\S51\test\Tetris52.c:194: TI=0;
+00F4 1099F0     540            jbc     _TI,L006017?
+00F7 8001       541            sjmp    L006001?
+00F9            542   L006017?:
+00F9            543   ;        C:\Source\call51\Source\S51\test\Tetris52.c:195: SBUF='\r';
+00F9 75990D     544            mov     _SBUF,#0x0D
+00FC            545   ;        C:\Source\call51\Source\S51\test\Tetris52.c:197: while (!TI);
+00FC            546   L006006?:
+00FC            547   ;        C:\Source\call51\Source\S51\test\Tetris52.c:198: TI=0;
+00FC 109930     548            jbc     _TI,L006018?
+00FF 8001       549            sjmp    L006006?
+0101            550   L006018?:
+0101            551   ;        C:\Source\call51\Source\S51\test\Tetris52.c:199: SBUF=c;
+0101 8A99       552            mov     _SBUF,r2
+0103 22         553            ret
+0104            554   ;------------------------------------------------------------
+0104            555   ;Allocation info for local variables in function 'refresh'
+0104            556   ;------------------------------------------------------------
+0104            557   ;XPos                      Allocated to registers r3 
+0104            558   ;YPos                      Allocated to registers r2 
+0104            559   ;------------------------------------------------------------
+0104            560   ;        C:\Source\call51\Source\S51\test\Tetris52.c:212: void refresh(void)
+0104            561   ;        -----------------------------------------
+0104            562   ;         function refresh
+0104            563   ;        -----------------------------------------
+0104            564   _refresh:
+0104            565   ;        C:\Source\call51\Source\S51\test\Tetris52.c:216: for(YPos=0; YPos < SCN_HT; YPos++)
+0104 7A00       566            mov     r2,#0x00
+0106            567   L007007?:
+0106 C3         568            clr     c
+0107 EA         569            mov     a,r2
+0108 6480       570            xrl     a,#0x80
+010A 9498       571            subb    a,#0x98
+010C 4001       572            jc      L007020?
+010E 020100     573            ljmp    L007010?
+0111            574   L007020?:
+0111            575   ;        C:\Source\call51\Source\S51\test\Tetris52.c:218: for(XPos=0; XPos < SCN_WID; XPos++)
+0111 7B00       576            mov     r3,#0x00
+0113            577   L007003?:
+0113 C3         578            clr     c
+0114 EB         579            mov     a,r3
+0115 6480       580            xrl     a,#0x80
+0117 948F       581            subb    a,#0x8f
+0119 4001       582            jc      L007021?
+011B 020100     583            ljmp    L007009?
+011E            584   L007021?:
+011E            585   ;        C:\Source\call51\Source\S51\test\Tetris52.c:220: if((rscr(XPos, YPos)&0x80)==0x80)
+011E 8AF0       586            mov     _rscr_PARM_2,r2
+0120 8B82       587            mov     dpl,r3
+0122 C002       588            push    ar2
+0124 C003       589            push    ar3
+0126 120100     590            lcall   _rscr
+0129 E582       591            mov     a,dpl
+012B D003       592            pop     ar3
+012D D002       593            pop     ar2
+012F 5480       594            anl     a,#0x80
+0131 FC         595            mov     r4,a
+0132 BC80F0     596            cjne    r4,#0x80,L007022?
+0135 8001       597            sjmp    L007023?
+0137            598   L007022?:
+0137 020100     599            ljmp    L007005?
+013A            600   L007023?:
+013A            601   ;        C:\Source\call51\Source\S51\test\Tetris52.c:222: wscr(XPos, YPos, rscr(XPos, YPos)&0x7f);
+013A 8AF0       602            mov     _rscr_PARM_2,r2
+013C 8B82       603            mov     dpl,r3
+013E C002       604            push    ar2
+0140 C003       605            push    ar3
+0142 120100     606            lcall   _rscr
+0145 E582       607            mov     a,dpl
+0147 D003       608            pop     ar3
+0149 D002       609            pop     ar2
+014B 547F       610            anl     a,#0x7F
+014D F530       611            mov     _wscr_PARM_3,a
+014F 8A70       612            mov     _wscr_PARM_2,r2
+0151 8B82       613            mov     dpl,r3
+0153 C002       614            push    ar2
+0155 C003       615            push    ar3
+0157 120100     616            lcall   _wscr
+015A D003       617            pop     ar3
+015C D002       618            pop     ar2
+015E            619   ;        C:\Source\call51\Source\S51\test\Tetris52.c:224: printf(GOTO_YX, YPos + 1, (XPos*2)+1);/* gotoxy(XPos, YPos) */
+015E C2D5       620            clr     F0
+0160 75F002     621            mov     b,#0x02
+0163 EB         622            mov     a,r3
+0164 30E7F0     623            jnb     acc.7,L007024?
+0167 B2D5       624            cpl     F0
+0169 F4         625            cpl     a
+016A 04         626            inc     a
+016B            627   L007024?:
+016B A4         628            mul     ab
+016C 30D530     629            jnb     F0,L007025?
+016F F4         630            cpl     a
+0170 2401       631            add     a,#0x01
+0172 C5F0       632            xch     a,b
+0174 F4         633            cpl     a
+0175 3400       634            addc    a,#0x00
+0177 C5F0       635            xch     a,b
+0179            636   L007025?:
+0179 2401       637            add     a,#0x01
+017B FC         638            mov     r4,a
+017C E4         639            clr     a
+017D 35F0       640            addc    a,b
+017F FD         641            mov     r5,a
+0180 EA         642            mov     a,r2
+0181 FE         643            mov     r6,a
+0182 33         644            rlc     a
+0183 95E0       645            subb    a,acc
+0185 FF         646            mov     r7,a
+0186 0E         647            inc     r6
+0187 BE0070     648            cjne    r6,#0x00,L007026?
+018A 0F         649            inc     r7
+018B            650   L007026?:
+018B C002       651            push    ar2
+018D C003       652            push    ar3
+018F C004       653            push    ar4
+0191 C005       654            push    ar5
+0193 C006       655            push    ar6
+0195 C007       656            push    ar7
+0197 74B0       657            mov     a,#__str_1
+0199 C0E0       658            push    acc
+019B 7477       659            mov     a,#(__str_1 >> 8)
+019D C0E0       660            push    acc
+019F 120100     661            lcall   _printf_tiny
+01A2 E581       662            mov     a,sp
+01A4 24FA       663            add     a,#0xfa
+01A6 F581       664            mov     sp,a
+01A8 D003       665            pop     ar3
+01AA D002       666            pop     ar2
+01AC            667   ;        C:\Source\call51\Source\S51\test\Tetris52.c:226: printf("\x1B[3%dm\xDB\xDB", rscr(XPos, YPos));
+01AC 8AF0       668            mov     _rscr_PARM_2,r2
+01AE 8B82       669            mov     dpl,r3
+01B0 C002       670            push    ar2
+01B2 C003       671            push    ar3
+01B4 120100     672            lcall   _rscr
+01B7 AC82       673            mov     r4,dpl
+01B9 7D00       674            mov     r5,#0x00
+01BB C004       675            push    ar4
+01BD C005       676            push    ar5
+01BF 74F0       677            mov     a,#__str_2
+01C1 C0E0       678            push    acc
+01C3 7477       679            mov     a,#(__str_2 >> 8)
+01C5 C0E0       680            push    acc
+01C7 120100     681            lcall   _printf_tiny
+01CA E581       682            mov     a,sp
+01CC 24FC       683            add     a,#0xfc
+01CE F581       684            mov     sp,a
+01D0 D003       685            pop     ar3
+01D2 D002       686            pop     ar2
+01D4            687   L007005?:
+01D4            688   ;        C:\Source\call51\Source\S51\test\Tetris52.c:218: for(XPos=0; XPos < SCN_WID; XPos++)
+01D4 0B         689            inc     r3
+01D5 020100     690            ljmp    L007003?
+01D8            691   L007009?:
+01D8            692   ;        C:\Source\call51\Source\S51\test\Tetris52.c:216: for(YPos=0; YPos < SCN_HT; YPos++)
+01D8 0A         693            inc     r2
+01D9 020100     694            ljmp    L007007?
+01DC            695   L007010?:
+01DC            696   ;        C:\Source\call51\Source\S51\test\Tetris52.c:231: printf(BKF_WTB);
+01DC 7430       697            mov     a,#__str_3
+01DE C0E0       698            push    acc
+01E0 7478       699            mov     a,#(__str_3 >> 8)
+01E2 C0E0       700            push    acc
+01E4 120100     701            lcall   _printf_tiny
+01E7 1581       702            dec     sp
+01E9 1581       703            dec     sp
+01EB 22         704            ret
+01EC            705   ;------------------------------------------------------------
+01EC            706   ;Allocation info for local variables in function 'blockDraw'
+01EC            707   ;------------------------------------------------------------
+01EC            708   ;YPos                      Allocated with name '_blockDraw_PARM_2'
+01EC            709   ;Color                     Allocated with name '_blockDraw_PARM_3'
+01EC            710   ;XPos                      Allocated to registers r2 
+01EC            711   ;------------------------------------------------------------
+01EC            712   ;        C:\Source\call51\Source\S51\test\Tetris52.c:243: void blockDraw(char XPos, char YPos, unsigned char Color)
+01EC            713   ;        -----------------------------------------
+01EC            714   ;         function blockDraw
+01EC            715   ;        -----------------------------------------
+01EC            716   _blockDraw:
+01EC AA82       717            mov     r2,dpl
+01EE            718   ;        C:\Source\call51\Source\S51\test\Tetris52.c:245: if(XPos >= SCN_WID) XPos=SCN_WID - 1;
+01EE C3         719            clr     c
+01EF EA         720            mov     a,r2
+01F0 6480       721            xrl     a,#0x80
+01F2 948F       722            subb    a,#0x8f
+01F4 4001       723            jc      L008002?
+01F6 7A0E       724            mov     r2,#0x0E
+01F8            725   L008002?:
+01F8            726   ;        C:\Source\call51\Source\S51\test\Tetris52.c:246: if(YPos >= SCN_HT) YPos=SCN_HT - 1;
+01F8 C3         727            clr     c
+01F9 E520       728            mov     a,_blockDraw_PARM_2
+01FB 6480       729            xrl     a,#0x80
+01FD 9498       730            subb    a,#0x98
+01FF 4001       731            jc      L008004?
+0201 752017     732            mov     _blockDraw_PARM_2,#0x17
+0204            733   L008004?:
+0204            734   ;        C:\Source\call51\Source\S51\test\Tetris52.c:248: wscr(XPos, YPos, Color|0x80);
+0204 852070     735            mov     _wscr_PARM_2,_blockDraw_PARM_2
+0207 7480       736            mov     a,#0x80
+0209 45D0       737            orl     a,_blockDraw_PARM_3
+020B F530       738            mov     _wscr_PARM_3,a
+020D 8A82       739            mov     dpl,r2
+020F 020100     740            ljmp    _wscr
+0212            741   ;------------------------------------------------------------
+0212            742   ;Allocation info for local variables in function 'blockHit'
+0212            743   ;------------------------------------------------------------
+0212            744   ;YPos                      Allocated with name '_blockHit_PARM_2'
+0212            745   ;XPos                      Allocated to registers r2 
+0212            746   ;------------------------------------------------------------
+0212            747   ;        C:\Source\call51\Source\S51\test\Tetris52.c:258: char blockHit(char XPos, char YPos)
+0212            748   ;        -----------------------------------------
+0212            749   ;         function blockHit
+0212            750   ;        -----------------------------------------
+0212            751   _blockHit:
+0212            752   ;        C:\Source\call51\Source\S51\test\Tetris52.c:260: return(rscr(XPos, YPos)&0x7f);
+0212 8580F0     753            mov     _rscr_PARM_2,_blockHit_PARM_2
+0215 120100     754            lcall   _rscr
+0218 E582       755            mov     a,dpl
+021A 547F       756            anl     a,#0x7F
+021C F582       757            mov     dpl,a
+021E 22         758            ret
+021F            759   ;------------------------------------------------------------
+021F            760   ;Allocation info for local variables in function 'shapeDraw'
+021F            761   ;------------------------------------------------------------
+021F            762   ;YPos                      Allocated with name '_shapeDraw_PARM_2'
+021F            763   ;WhichShape                Allocated with name '_shapeDraw_PARM_3'
+021F            764   ;XPos                      Allocated to registers r2 
+021F            765   ;Index                     Allocated to registers r6 
+021F            766   ;------------------------------------------------------------
+021F            767   ;        C:\Source\call51\Source\S51\test\Tetris52.c:272: void shapeDraw(char XPos, char YPos, char WhichShape)
+021F            768   ;        -----------------------------------------
+021F            769   ;         function shapeDraw
+021F            770   ;        -----------------------------------------
+021F            771   _shapeDraw:
+021F AA82       772            mov     r2,dpl
+0221            773   ;        C:\Source\call51\Source\S51\test\Tetris52.c:276: for(Index=0; Index < 4; Index++)
+0221 E5E0       774            mov     a,_shapeDraw_PARM_3
+0223 75F00B     775            mov     b,#0x0B
+0226 A4         776            mul     ab
+0227 FB         777            mov     r3,a
+0228 2400       778            add     a,#_Shapes
+022A FC         779            mov     r4,a
+022B E4         780            clr     a
+022C 3413       781            addc    a,#(_Shapes >> 8)
+022E FD         782            mov     r5,a
+022F 7403       783            mov     a,#0x03
+0231 2C         784            add     a,r4
+0232 FC         785            mov     r4,a
+0233 E4         786            clr     a
+0234 3D         787            addc    a,r5
+0235 FD         788            mov     r5,a
+0236 7E00       789            mov     r6,#0x00
+0238            790   L010001?:
+0238 C3         791            clr     c
+0239 EE         792            mov     a,r6
+023A 6480       793            xrl     a,#0x80
+023C 9484       794            subb    a,#0x84
+023E 5001       795            jnc     L010004?
+0240            796   ;        C:\Source\call51\Source\S51\test\Tetris52.c:278: blockDraw(XPos, YPos, Shapes[WhichShape].Color);
+0240 EB         797            mov     a,r3
+0241 2400       798            add     a,#_Shapes
+0243 FF         799            mov     r7,a
+0244 E4         800            clr     a
+0245 3413       801            addc    a,#(_Shapes >> 8)
+0247 F8         802            mov     r0,a
+0248 8F82       803            mov     dpl,r7
+024A 8883       804            mov     dph,r0
+024C A3         805            inc     dptr
+024D A3         806            inc     dptr
+024E E4         807            clr     a
+024F 93         808            movc    a,@a+dptr
+0250 F5D0       809            mov     _blockDraw_PARM_3,a
+0252 853020     810            mov     _blockDraw_PARM_2,_shapeDraw_PARM_2
+0255 8A82       811            mov     dpl,r2
+0257 C002       812            push    ar2
+0259 C003       813            push    ar3
+025B C004       814            push    ar4
+025D C005       815            push    ar5
+025F C006       816            push    ar6
+0261 120100     817            lcall   _blockDraw
+0264 D006       818            pop     ar6
+0266 D005       819            pop     ar5
+0268 D004       820            pop     ar4
+026A D003       821            pop     ar3
+026C D002       822            pop     ar2
+026E            823   ;        C:\Source\call51\Source\S51\test\Tetris52.c:279: XPos += Shapes[WhichShape].Dir[Index].DeltaX;
+026E EE         824            mov     a,r6
+026F 2E         825            add     a,r6
+0270 FF         826            mov     r7,a
+0271 2C         827            add     a,r4
+0272 F582       828            mov     dpl,a
+0274 E4         829            clr     a
+0275 3D         830            addc    a,r5
+0276 F583       831            mov     dph,a
+0278 E4         832            clr     a
+0279 93         833            movc    a,@a+dptr
+027A 2A         834            add     a,r2
+027B FA         835            mov     r2,a
+027C            836   ;        C:\Source\call51\Source\S51\test\Tetris52.c:280: YPos += Shapes[WhichShape].Dir[Index].DeltaY;
+027C EF         837            mov     a,r7
+027D 2C         838            add     a,r4
+027E FF         839            mov     r7,a
+027F E4         840            clr     a
+0280 3D         841            addc    a,r5
+0281 F8         842            mov     r0,a
+0282 8F82       843            mov     dpl,r7
+0284 8883       844            mov     dph,r0
+0286 A3         845            inc     dptr
+0287 E4         846            clr     a
+0288 93         847            movc    a,@a+dptr
+0289 FF         848            mov     r7,a
+028A 2530       849            add     a,_shapeDraw_PARM_2
+028C F530       850            mov     _shapeDraw_PARM_2,a
+028E            851   ;        C:\Source\call51\Source\S51\test\Tetris52.c:276: for(Index=0; Index < 4; Index++)
+028E 0E         852            inc     r6
+028F 8001       853            sjmp    L010001?
+0291            854   L010004?:
+0291            855   ;        C:\Source\call51\Source\S51\test\Tetris52.c:282: blockDraw(XPos, YPos, Shapes[WhichShape].Color);
+0291 EB         856            mov     a,r3
+0292 2400       857            add     a,#_Shapes
+0294 FB         858            mov     r3,a
+0295 E4         859            clr     a
+0296 3413       860            addc    a,#(_Shapes >> 8)
+0298 FC         861            mov     r4,a
+0299 8B82       862            mov     dpl,r3
+029B 8C83       863            mov     dph,r4
+029D A3         864            inc     dptr
+029E A3         865            inc     dptr
+029F E4         866            clr     a
+02A0 93         867            movc    a,@a+dptr
+02A1 F5D0       868            mov     _blockDraw_PARM_3,a
+02A3 853020     869            mov     _blockDraw_PARM_2,_shapeDraw_PARM_2
+02A6 8A82       870            mov     dpl,r2
+02A8 020100     871            ljmp    _blockDraw
+02AB            872   ;------------------------------------------------------------
+02AB            873   ;Allocation info for local variables in function 'shapeErase'
+02AB            874   ;------------------------------------------------------------
+02AB            875   ;YPos                      Allocated with name '_shapeErase_PARM_2'
+02AB            876   ;WhichShape                Allocated with name '_shapeErase_PARM_3'
+02AB            877   ;XPos                      Allocated to registers r2 
+02AB            878   ;Index                     Allocated to registers r5 
+02AB            879   ;------------------------------------------------------------
+02AB            880   ;        C:\Source\call51\Source\S51\test\Tetris52.c:290: void shapeErase(char XPos, char YPos, char WhichShape)
+02AB            881   ;        -----------------------------------------
+02AB            882   ;         function shapeErase
+02AB            883   ;        -----------------------------------------
+02AB            884   _shapeErase:
+02AB AA82       885            mov     r2,dpl
+02AD            886   ;        C:\Source\call51\Source\S51\test\Tetris52.c:294: for(Index=0; Index < 4; Index++)
+02AD E540       887            mov     a,_shapeErase_PARM_3
+02AF 75F00B     888            mov     b,#0x0B
+02B2 A4         889            mul     ab
+02B3 2400       890            add     a,#_Shapes
+02B5 FB         891            mov     r3,a
+02B6 E4         892            clr     a
+02B7 3413       893            addc    a,#(_Shapes >> 8)
+02B9 FC         894            mov     r4,a
+02BA 7403       895            mov     a,#0x03
+02BC 2B         896            add     a,r3
+02BD FB         897            mov     r3,a
+02BE E4         898            clr     a
+02BF 3C         899            addc    a,r4
+02C0 FC         900            mov     r4,a
+02C1 7D00       901            mov     r5,#0x00
+02C3            902   L011001?:
+02C3 C3         903            clr     c
+02C4 ED         904            mov     a,r5
+02C5 6480       905            xrl     a,#0x80
+02C7 9484       906            subb    a,#0x84
+02C9 5001       907            jnc     L011004?
+02CB            908   ;        C:\Source\call51\Source\S51\test\Tetris52.c:296: blockDraw(XPos, YPos, COLOR_BLACK);
+02CB 859020     909            mov     _blockDraw_PARM_2,_shapeErase_PARM_2
+02CE 75D000     910            mov     _blockDraw_PARM_3,#0x00
+02D1 8A82       911            mov     dpl,r2
+02D3 C002       912            push    ar2
+02D5 C003       913            push    ar3
+02D7 C004       914            push    ar4
+02D9 C005       915            push    ar5
+02DB 120100     916            lcall   _blockDraw
+02DE D005       917            pop     ar5
+02E0 D004       918            pop     ar4
+02E2 D003       919            pop     ar3
+02E4 D002       920            pop     ar2
+02E6            921   ;        C:\Source\call51\Source\S51\test\Tetris52.c:297: XPos += Shapes[WhichShape].Dir[Index].DeltaX;
+02E6 ED         922            mov     a,r5
+02E7 2D         923            add     a,r5
+02E8 FE         924            mov     r6,a
+02E9 2B         925            add     a,r3
+02EA F582       926            mov     dpl,a
+02EC E4         927            clr     a
+02ED 3C         928            addc    a,r4
+02EE F583       929            mov     dph,a
+02F0 E4         930            clr     a
+02F1 93         931            movc    a,@a+dptr
+02F2 2A         932            add     a,r2
+02F3 FA         933            mov     r2,a
+02F4            934   ;        C:\Source\call51\Source\S51\test\Tetris52.c:298: YPos += Shapes[WhichShape].Dir[Index].DeltaY;
+02F4 EE         935            mov     a,r6
+02F5 2B         936            add     a,r3
+02F6 FE         937            mov     r6,a
+02F7 E4         938            clr     a
+02F8 3C         939            addc    a,r4
+02F9 FF         940            mov     r7,a
+02FA 8E82       941            mov     dpl,r6
+02FC 8F83       942            mov     dph,r7
+02FE A3         943            inc     dptr
+02FF E4         944            clr     a
+0300 93         945            movc    a,@a+dptr
+0301 FE         946            mov     r6,a
+0302 2590       947            add     a,_shapeErase_PARM_2
+0304 F590       948            mov     _shapeErase_PARM_2,a
+0306            949   ;        C:\Source\call51\Source\S51\test\Tetris52.c:294: for(Index=0; Index < 4; Index++)
+0306 0D         950            inc     r5
+0307 8001       951            sjmp    L011001?
+0309            952   L011004?:
+0309            953   ;        C:\Source\call51\Source\S51\test\Tetris52.c:300: blockDraw(XPos, YPos, COLOR_BLACK);
+0309 859020     954            mov     _blockDraw_PARM_2,_shapeErase_PARM_2
+030C 75D000     955            mov     _blockDraw_PARM_3,#0x00
+030F 8A82       956            mov     dpl,r2
+0311 020100     957            ljmp    _blockDraw
+0314            958   ;------------------------------------------------------------
+0314            959   ;Allocation info for local variables in function 'shapeHit'
+0314            960   ;------------------------------------------------------------
+0314            961   ;YPos                      Allocated with name '_shapeHit_PARM_2'
+0314            962   ;WhichShape                Allocated with name '_shapeHit_PARM_3'
+0314            963   ;XPos                      Allocated to registers r2 
+0314            964   ;Index                     Allocated to registers r5 
+0314            965   ;------------------------------------------------------------
+0314            966   ;        C:\Source\call51\Source\S51\test\Tetris52.c:310: char shapeHit(char XPos, char YPos, char WhichShape)
+0314            967   ;        -----------------------------------------
+0314            968   ;         function shapeHit
+0314            969   ;        -----------------------------------------
+0314            970   _shapeHit:
+0314 AA82       971            mov     r2,dpl
+0316            972   ;        C:\Source\call51\Source\S51\test\Tetris52.c:314: for(Index=0; Index < 4; Index++)
+0316 E5A0       973            mov     a,_shapeHit_PARM_3
+0318 75F00B     974            mov     b,#0x0B
+031B A4         975            mul     ab
+031C 2400       976            add     a,#_Shapes
+031E FB         977            mov     r3,a
+031F E4         978            clr     a
+0320 3413       979            addc    a,#(_Shapes >> 8)
+0322 FC         980            mov     r4,a
+0323 7403       981            mov     a,#0x03
+0325 2B         982            add     a,r3
+0326 FB         983            mov     r3,a
+0327 E4         984            clr     a
+0328 3C         985            addc    a,r4
+0329 FC         986            mov     r4,a
+032A 7D00       987            mov     r5,#0x00
+032C            988   L012005?:
+032C C3         989            clr     c
+032D ED         990            mov     a,r5
+032E 6480       991            xrl     a,#0x80
+0330 9484       992            subb    a,#0x84
+0332 5001       993            jnc     L012008?
+0334            994   ;        C:\Source\call51\Source\S51\test\Tetris52.c:316: if(blockHit(XPos, YPos)) return(1);
+0334 85F080     995            mov     _blockHit_PARM_2,_shapeHit_PARM_2
+0337 8A82       996            mov     dpl,r2
+0339 C002       997            push    ar2
+033B C003       998            push    ar3
+033D C004       999            push    ar4
+033F C005      1000            push    ar5
+0341 120100    1001            lcall   _blockHit
+0344 E582      1002            mov     a,dpl
+0346 D005      1003            pop     ar5
+0348 D004      1004            pop     ar4
+034A D003      1005            pop     ar3
+034C D002      1006            pop     ar2
+034E 6001      1007            jz      L012002?
+0350 758201    1008            mov     dpl,#0x01
+0353 22        1009            ret
+0354           1010   L012002?:
+0354           1011   ;        C:\Source\call51\Source\S51\test\Tetris52.c:317: XPos += Shapes[WhichShape].Dir[Index].DeltaX;
+0354 ED        1012            mov     a,r5
+0355 2D        1013            add     a,r5
+0356 FE        1014            mov     r6,a
+0357 2B        1015            add     a,r3
+0358 F582      1016            mov     dpl,a
+035A E4        1017            clr     a
+035B 3C        1018            addc    a,r4
+035C F583      1019            mov     dph,a
+035E E4        1020            clr     a
+035F 93        1021            movc    a,@a+dptr
+0360 2A        1022            add     a,r2
+0361 FA        1023            mov     r2,a
+0362           1024   ;        C:\Source\call51\Source\S51\test\Tetris52.c:318: YPos += Shapes[WhichShape].Dir[Index].DeltaY;
+0362 EE        1025            mov     a,r6
+0363 2B        1026            add     a,r3
+0364 FE        1027            mov     r6,a
+0365 E4        1028            clr     a
+0366 3C        1029            addc    a,r4
+0367 FF        1030            mov     r7,a
+0368 8E82      1031            mov     dpl,r6
+036A 8F83      1032            mov     dph,r7
+036C A3        1033            inc     dptr
+036D E4        1034            clr     a
+036E 93        1035            movc    a,@a+dptr
+036F FE        1036            mov     r6,a
+0370 25F0      1037            add     a,_shapeHit_PARM_2
+0372 F5F0      1038            mov     _shapeHit_PARM_2,a
+0374           1039   ;        C:\Source\call51\Source\S51\test\Tetris52.c:314: for(Index=0; Index < 4; Index++)
+0374 0D        1040            inc     r5
+0375 8001      1041            sjmp    L012005?
+0377           1042   L012008?:
+0377           1043   ;        C:\Source\call51\Source\S51\test\Tetris52.c:320: if(blockHit(XPos, YPos)) return(1);
+0377 85F080    1044            mov     _blockHit_PARM_2,_shapeHit_PARM_2
+037A 8A82      1045            mov     dpl,r2
+037C 120100    1046            lcall   _blockHit
+037F E582      1047            mov     a,dpl
+0381 6001      1048            jz      L012004?
+0383 758201    1049            mov     dpl,#0x01
+0386           1050   ;        C:\Source\call51\Source\S51\test\Tetris52.c:321: return(0);
+0386 22        1051            ret
+0387           1052   L012004?:
+0387 758200    1053            mov     dpl,#0x00
+038A 22        1054            ret
+038B           1055   ;------------------------------------------------------------
+038B           1056   ;Allocation info for local variables in function 'screenInit'
+038B           1057   ;------------------------------------------------------------
+038B           1058   ;XPos                      Allocated to registers r3 
+038B           1059   ;YPos                      Allocated to registers r2 
+038B           1060   ;------------------------------------------------------------
+038B           1061   ;        C:\Source\call51\Source\S51\test\Tetris52.c:333: void screenInit(void)
+038B           1062   ;        -----------------------------------------
+038B           1063   ;         function screenInit
+038B           1064   ;        -----------------------------------------
+038B           1065   _screenInit:
+038B           1066   ;        C:\Source\call51\Source\S51\test\Tetris52.c:337: for(YPos=0; YPos < SCN_HT; YPos++)
+038B 7A00      1067            mov     r2,#0x00
+038D           1068   L013005?:
+038D BA1830    1069            cjne    r2,#0x18,L013024?
+0390           1070   L013024?:
+0390 5001      1071            jnc     L013008?
+0392           1072   ;        C:\Source\call51\Source\S51\test\Tetris52.c:339: for(XPos=1; XPos < (SCN_WID - 1); XPos++) wscr(XPos,YPos,0x80);
+0392 7B01      1073            mov     r3,#0x01
+0394           1074   L013001?:
+0394 BB0EF0    1075            cjne    r3,#0x0E,L013026?
+0397           1076   L013026?:
+0397 5001      1077            jnc     L013004?
+0399 8A70      1078            mov     _wscr_PARM_2,r2
+039B 753080    1079            mov     _wscr_PARM_3,#0x80
+039E 8B82      1080            mov     dpl,r3
+03A0 C002      1081            push    ar2
+03A2 C003      1082            push    ar3
+03A4 120100    1083            lcall   _wscr
+03A7 D003      1084            pop     ar3
+03A9 D002      1085            pop     ar2
+03AB 0B        1086            inc     r3
+03AC 8001      1087            sjmp    L013001?
+03AE           1088   L013004?:
+03AE           1089   ;        C:\Source\call51\Source\S51\test\Tetris52.c:341: wscr(0, YPos, COLOR_BLUE|0x80);
+03AE 8A70      1090            mov     _wscr_PARM_2,r2
+03B0 753084    1091            mov     _wscr_PARM_3,#0x84
+03B3 758200    1092            mov     dpl,#0x00
+03B6 C002      1093            push    ar2
+03B8 120100    1094            lcall   _wscr
+03BB D002      1095            pop     ar2
+03BD           1096   ;        C:\Source\call51\Source\S51\test\Tetris52.c:342: wscr(SCN_WID - 1, YPos, COLOR_BLUE|0x80);
+03BD 8A70      1097            mov     _wscr_PARM_2,r2
+03BF 753084    1098            mov     _wscr_PARM_3,#0x84
+03C2 75820E    1099            mov     dpl,#0x0E
+03C5 C002      1100            push    ar2
+03C7 120100    1101            lcall   _wscr
+03CA D002      1102            pop     ar2
+03CC           1103   ;        C:\Source\call51\Source\S51\test\Tetris52.c:337: for(YPos=0; YPos < SCN_HT; YPos++)
+03CC 0A        1104            inc     r2
+03CD 8001      1105            sjmp    L013005?
+03CF           1106   L013008?:
+03CF           1107   ;        C:\Source\call51\Source\S51\test\Tetris52.c:344: for(XPos=0; XPos < SCN_WID; XPos++)
+03CF 7A00      1108            mov     r2,#0x00
+03D1           1109   L013009?:
+03D1 BA0FB0    1110            cjne    r2,#0x0F,L013028?
+03D4           1111   L013028?:
+03D4 5001      1112            jnc     L013013?
+03D6           1113   ;        C:\Source\call51\Source\S51\test\Tetris52.c:347: wscr(XPos, 0, COLOR_BLUE|0x80);
+03D6 757000    1114            mov     _wscr_PARM_2,#0x00
+03D9 753084    1115            mov     _wscr_PARM_3,#0x84
+03DC 8A82      1116            mov     dpl,r2
+03DE C002      1117            push    ar2
+03E0 120100    1118            lcall   _wscr
+03E3 D002      1119            pop     ar2
+03E5           1120   ;        C:\Source\call51\Source\S51\test\Tetris52.c:348: wscr(XPos, SCN_HT-1, COLOR_BLUE|0x80);
+03E5 757017    1121            mov     _wscr_PARM_2,#0x17
+03E8 753084    1122            mov     _wscr_PARM_3,#0x84
+03EB 8A82      1123            mov     dpl,r2
+03ED C002      1124            push    ar2
+03EF 120100    1125            lcall   _wscr
+03F2 D002      1126            pop     ar2
+03F4           1127   ;        C:\Source\call51\Source\S51\test\Tetris52.c:344: for(XPos=0; XPos < SCN_WID; XPos++)
+03F4 0A        1128            inc     r2
+03F5 8001      1129            sjmp    L013009?
+03F7           1130   L013013?:
+03F7 22        1131            ret
+03F8           1132   ;------------------------------------------------------------
+03F8           1133   ;Allocation info for local variables in function 'collapse'
+03F8           1134   ;------------------------------------------------------------
+03F8           1135   ;SolidRows                 Allocated to registers r2 
+03F8           1136   ;Row                       Allocated to registers r3 
+03F8           1137   ;Col                       Allocated to registers r5 
+03F8           1138   ;Temp                      Allocated to registers r2 
+03F8           1139   ;------------------------------------------------------------
+03F8           1140   ;        C:\Source\call51\Source\S51\test\Tetris52.c:352: void collapse(void)
+03F8           1141   ;        -----------------------------------------
+03F8           1142   ;         function collapse
+03F8           1143   ;        -----------------------------------------
+03F8           1144   _collapse:
+03F8           1145   ;        C:\Source\call51\Source\S51\test\Tetris52.c:360: for(Row=1; Row < SCN_HT - 1; Row++)
+03F8 7A00      1146            mov     r2,#0x00
+03FA 7B01      1147            mov     r3,#0x01
+03FC           1148   L014017?:
+03FC C3        1149            clr     c
+03FD EB        1150            mov     a,r3
+03FE 6480      1151            xrl     a,#0x80
+0400 9497      1152            subb    a,#0x97
+0402 5001      1153            jnc     L014020?
+0404           1154   ;        C:\Source\call51\Source\S51\test\Tetris52.c:363: for(Col=1; Col < SCN_WID - 1; Col++)
+0404 7C00      1155            mov     r4,#0x00
+0406 7D01      1156            mov     r5,#0x01
+0408           1157   L014013?:
+0408 C3        1158            clr     c
+0409 ED        1159            mov     a,r5
+040A 6480      1160            xrl     a,#0x80
+040C 948E      1161            subb    a,#0x8e
+040E 5001      1162            jnc     L014016?
+0410           1163   ;        C:\Source\call51\Source\S51\test\Tetris52.c:364: if(rscr(Col, Row)&0x7f) Temp++;
+0410 8BF0      1164            mov     _rscr_PARM_2,r3
+0412 8D82      1165            mov     dpl,r5
+0414 C002      1166            push    ar2
+0416 C003      1167            push    ar3
+0418 C004      1168            push    ar4
+041A C005      1169            push    ar5
+041C 120100    1170            lcall   _rscr
+041F E582      1171            mov     a,dpl
+0421 D005      1172            pop     ar5
+0423 D004      1173            pop     ar4
+0425 D003      1174            pop     ar3
+0427 D002      1175            pop     ar2
+0429 547F      1176            anl     a,#0x7F
+042B 6001      1177            jz      L014015?
+042D 0C        1178            inc     r4
+042E           1179   L014015?:
+042E           1180   ;        C:\Source\call51\Source\S51\test\Tetris52.c:363: for(Col=1; Col < SCN_WID - 1; Col++)
+042E 0D        1181            inc     r5
+042F 8001      1182            sjmp    L014013?
+0431           1183   L014016?:
+0431           1184   ;        C:\Source\call51\Source\S51\test\Tetris52.c:365: if(Temp == SCN_WID - 2)
+0431 BC0D70    1185            cjne    r4,#0x0D,L014019?
+0434           1186   ;        C:\Source\call51\Source\S51\test\Tetris52.c:368: wscr(0, Row, COLOR_BLUE|0x80);
+0434 8B70      1187            mov     _wscr_PARM_2,r3
+0436 753084    1188            mov     _wscr_PARM_3,#0x84
+0439 758200    1189            mov     dpl,#0x00
+043C C002      1190            push    ar2
+043E C003      1191            push    ar3
+0440 120100    1192            lcall   _wscr
+0443 D003      1193            pop     ar3
+0445 D002      1194            pop     ar2
+0447           1195   ;        C:\Source\call51\Source\S51\test\Tetris52.c:369: SolidRows++;
+0447 0A        1196            inc     r2
+0448           1197   ;        C:\Source\call51\Source\S51\test\Tetris52.c:370: Level++;
+0448 05A0      1198            inc     _Level
+044A E4        1199            clr     a
+044B B5A0B0    1200            cjne    a,_Level,L014061?
+044E 05A1      1201            inc     (_Level + 1)
+0450           1202   L014061?:
+0450           1203   L014019?:
+0450           1204   ;        C:\Source\call51\Source\S51\test\Tetris52.c:360: for(Row=1; Row < SCN_HT - 1; Row++)
+0450 0B        1205            inc     r3
+0451 8001      1206            sjmp    L014017?
+0453           1207   L014020?:
+0453           1208   ;        C:\Source\call51\Source\S51\test\Tetris52.c:373: if(SolidRows == 0) return;
+0453 EA        1209            mov     a,r2
+0454 7001      1210            jnz     L014006?
+0456 22        1211            ret
+0457           1212   L014006?:
+0457           1213   ;        C:\Source\call51\Source\S51\test\Tetris52.c:375: Score+=bonus[SolidRows]; /* Bonus! */
+0457 EA        1214            mov     a,r2
+0458 2A        1215            add     a,r2
+0459 FA        1216            mov     r2,a
+045A 9012C0    1217            mov     dptr,#_collapse_bonus_1_1
+045D 93        1218            movc    a,@a+dptr
+045E CA        1219            xch     a,r2
+045F A3        1220            inc     dptr
+0460 93        1221            movc    a,@a+dptr
+0461 FB        1222            mov     r3,a
+0462 EA        1223            mov     a,r2
+0463 2560      1224            add     a,_Score
+0465 F560      1225            mov     _Score,a
+0467 EB        1226            mov     a,r3
+0468 3561      1227            addc    a,(_Score + 1)
+046A F561      1228            mov     (_Score + 1),a
+046C           1229   ;        C:\Source\call51\Source\S51\test\Tetris52.c:378: for(Temp=Row=SCN_HT - 2; Row > 0; Row--, Temp--)
+046C 7A16      1230            mov     r2,#0x16
+046E 7B16      1231            mov     r3,#0x16
+0470           1232   L014029?:
+0470 C3        1233            clr     c
+0471 E4        1234            clr     a
+0472 6480      1235            xrl     a,#0x80
+0474 8BF0      1236            mov     b,r3
+0476 63F080    1237            xrl     b,#0x80
+0479 95F0      1238            subb    a,b
+047B 4001      1239            jc      L014063?
+047D 020100    1240            ljmp    L014032?
+0480           1241   L014063?:
+0480           1242   ;        C:\Source\call51\Source\S51\test\Tetris52.c:380: while(rscr(0, Temp)&0x80) Temp--;
+0480 8A04      1243            mov     ar4,r2
+0482           1244   L014007?:
+0482 8CF0      1245            mov     _rscr_PARM_2,r4
+0484 758200    1246            mov     dpl,#0x00
+0487 C003      1247            push    ar3
+0489 C004      1248            push    ar4
+048B 120100    1249            lcall   _rscr
+048E E582      1250            mov     a,dpl
+0490 D004      1251            pop     ar4
+0492 D003      1252            pop     ar3
+0494 30E730    1253            jnb     acc.7,L014051?
+0497 1C        1254            dec     r4
+0498 8C02      1255            mov     ar2,r4
+049A 8001      1256            sjmp    L014007?
+049C           1257   L014051?:
+049C 8C02      1258            mov     ar2,r4
+049E           1259   ;        C:\Source\call51\Source\S51\test\Tetris52.c:381: if(Temp < 1)
+049E C3        1260            clr     c
+049F EC        1261            mov     a,r4
+04A0 6480      1262            xrl     a,#0x80
+04A2 9481      1263            subb    a,#0x81
+04A4 5001      1264            jnc     L014048?
+04A6           1265   ;        C:\Source\call51\Source\S51\test\Tetris52.c:383: for(Col=1; Col < SCN_WID - 1; Col++)
+04A6 7C01      1266            mov     r4,#0x01
+04A8           1267   L014021?:
+04A8 C3        1268            clr     c
+04A9 EC        1269            mov     a,r4
+04AA 6480      1270            xrl     a,#0x80
+04AC 948E      1271            subb    a,#0x8e
+04AE 5001      1272            jnc     L014031?
+04B0           1273   ;        C:\Source\call51\Source\S51\test\Tetris52.c:384: wscr(Col, Row, COLOR_BLACK|0x80);
+04B0 8B70      1274            mov     _wscr_PARM_2,r3
+04B2 753080    1275            mov     _wscr_PARM_3,#0x80
+04B5 8C82      1276            mov     dpl,r4
+04B7 C002      1277            push    ar2
+04B9 C003      1278            push    ar3
+04BB C004      1279            push    ar4
+04BD 120100    1280            lcall   _wscr
+04C0 D004      1281            pop     ar4
+04C2 D003      1282            pop     ar3
+04C4 D002      1283            pop     ar2
+04C6           1284   ;        C:\Source\call51\Source\S51\test\Tetris52.c:383: for(Col=1; Col < SCN_WID - 1; Col++)
+04C6 0C        1285            inc     r4
+04C7           1286   ;        C:\Source\call51\Source\S51\test\Tetris52.c:388: for(Col=1; Col < SCN_WID - 1; Col++)
+04C7 8001      1287            sjmp    L014021?
+04C9           1288   L014048?:
+04C9 7C01      1289            mov     r4,#0x01
+04CB           1290   L014025?:
+04CB C3        1291            clr     c
+04CC EC        1292            mov     a,r4
+04CD 6480      1293            xrl     a,#0x80
+04CF 948E      1294            subb    a,#0x8e
+04D1 5001      1295            jnc     L014031?
+04D3           1296   ;        C:\Source\call51\Source\S51\test\Tetris52.c:389: wscr(Col, Row, rscr(Col,Temp)|0x80);
+04D3 8AF0      1297            mov     _rscr_PARM_2,r2
+04D5 8C82      1298            mov     dpl,r4
+04D7 C002      1299            push    ar2
+04D9 C003      1300            push    ar3
+04DB C004      1301            push    ar4
+04DD 120100    1302            lcall   _rscr
+04E0 E582      1303            mov     a,dpl
+04E2 D004      1304            pop     ar4
+04E4 D003      1305            pop     ar3
+04E6 F5F0      1306            mov     b,a
+04E8 7480      1307            mov     a,#0x80
+04EA 45F0      1308            orl     a,b
+04EC F530      1309            mov     _wscr_PARM_3,a
+04EE 8B70      1310            mov     _wscr_PARM_2,r3
+04F0 8C82      1311            mov     dpl,r4
+04F2 C003      1312            push    ar3
+04F4 C004      1313            push    ar4
+04F6 120100    1314            lcall   _wscr
+04F9 D004      1315            pop     ar4
+04FB D003      1316            pop     ar3
+04FD D002      1317            pop     ar2
+04FF           1318   ;        C:\Source\call51\Source\S51\test\Tetris52.c:388: for(Col=1; Col < SCN_WID - 1; Col++)
+04FF 0C        1319            inc     r4
+0500 8001      1320            sjmp    L014025?
+0502           1321   L014031?:
+0502           1322   ;        C:\Source\call51\Source\S51\test\Tetris52.c:378: for(Temp=Row=SCN_HT - 2; Row > 0; Row--, Temp--)
+0502 1B        1323            dec     r3
+0503 1A        1324            dec     r2
+0504 020100    1325            ljmp    L014029?
+0507           1326   L014032?:
+0507           1327   ;        C:\Source\call51\Source\S51\test\Tetris52.c:392: refresh();
+0507 020100    1328            ljmp    _refresh
+050A           1329   ;------------------------------------------------------------
+050A           1330   ;Allocation info for local variables in function 'getKey'
+050A           1331   ;------------------------------------------------------------
+050A           1332   ;------------------------------------------------------------
+050A           1333   ;        C:\Source\call51\Source\S51\test\Tetris52.c:395: char getKey(void)
+050A           1334   ;        -----------------------------------------
+050A           1335   ;         function getKey
+050A           1336   ;        -----------------------------------------
+050A           1337   _getKey:
+050A           1338   ;        C:\Source\call51\Source\S51\test\Tetris52.c:397: if(!RI) return 0;
+050A 209870    1339            jb      _RI,L015002?
+050D 758200    1340            mov     dpl,#0x00
+0510 22        1341            ret
+0511           1342   L015002?:
+0511           1343   ;        C:\Source\call51\Source\S51\test\Tetris52.c:399: RI=0;
+0511 C298      1344            clr     _RI
+0513           1345   ;        C:\Source\call51\Source\S51\test\Tetris52.c:400: switch(toupper(SBUF))
+0513 859982    1346            mov     dpl,_SBUF
+0516 120100    1347            lcall   _islower
+0519 E582      1348            mov     a,dpl
+051B 6001      1349            jz      L015020?
+051D AA99      1350            mov     r2,_SBUF
+051F 5302DF    1351            anl     ar2,#0xDF
+0522 8001      1352            sjmp    L015021?
+0524           1353   L015020?:
+0524 AA99      1354            mov     r2,_SBUF
+0526           1355   L015021?:
+0526 BA2C70    1356            cjne    r2,#0x2C,L015038?
+0529 8001      1357            sjmp    L015010?
+052B           1358   L015038?:
+052B BA42F0    1359            cjne    r2,#0x42,L015039?
+052E 8001      1360            sjmp    L015011?
+0530           1361   L015039?:
+0530 BA4970    1362            cjne    r2,#0x49,L015040?
+0533 8001      1363            sjmp    L015008?
+0535           1364   L015040?:
+0535 BA4AF0    1365            cjne    r2,#0x4A,L015041?
+0538 8001      1366            sjmp    L015006?
+053A           1367   L015041?:
+053A BA4B70    1368            cjne    r2,#0x4B,L015042?
+053D 8001      1369            sjmp    L015004?
+053F           1370   L015042?:
+053F BA4CF0    1371            cjne    r2,#0x4C,L015043?
+0542 8001      1372            sjmp    L015007?
+0544           1373   L015043?:
+0544 BA4D70    1374            cjne    r2,#0x4D,L015044?
+0547 8001      1375            sjmp    L015010?
+0549           1376   L015044?:
+0549 BA50B0    1377            cjne    r2,#0x50,L015045?
+054C 8001      1378            sjmp    L015013?
+054E           1379   L015045?:
+054E BA5130    1380            cjne    r2,#0x51,L015046?
+0551 8001      1381            sjmp    L015003?
+0553           1382   L015046?:
+0553           1383   ;        C:\Source\call51\Source\S51\test\Tetris52.c:402: case 'Q': return KEY_QUIT;
+0553 BA55B0    1384            cjne    r2,#0x55,L015017?
+0556 8001      1385            sjmp    L015005?
+0558           1386   L015003?:
+0558 758201    1387            mov     dpl,#0x01
+055B           1388   ;        C:\Source\call51\Source\S51\test\Tetris52.c:403: case 'K': return KEY_CCW;
+055B 22        1389            ret
+055C           1390   L015004?:
+055C 758203    1391            mov     dpl,#0x03
+055F           1392   ;        C:\Source\call51\Source\S51\test\Tetris52.c:404: case 'U': return KEY_CW;
+055F 22        1393            ret
+0560           1394   L015005?:
+0560 758202    1395            mov     dpl,#0x02
+0563           1396   ;        C:\Source\call51\Source\S51\test\Tetris52.c:405: case 'J': return KEY_LEFT;
+0563 22        1397            ret
+0564           1398   L015006?:
+0564 758205    1399            mov     dpl,#0x05
+0567           1400   ;        C:\Source\call51\Source\S51\test\Tetris52.c:406: case 'L': return KEY_RIGHT;
+0567 22        1401            ret
+0568           1402   L015007?:
+0568 758204    1403            mov     dpl,#0x04
+056B           1404   ;        C:\Source\call51\Source\S51\test\Tetris52.c:407: case 'I': return KEY_UP;
+056B 22        1405            ret
+056C           1406   L015008?:
+056C 758206    1407            mov     dpl,#0x06
+056F           1408   ;        C:\Source\call51\Source\S51\test\Tetris52.c:409: case 'M': return KEY_DOWN;
+056F 22        1409            ret
+0570           1410   L015010?:
+0570 758207    1411            mov     dpl,#0x07
+0573           1412   ;        C:\Source\call51\Source\S51\test\Tetris52.c:410: case 'B': return KEY_BEGIN;
+0573 22        1413            ret
+0574           1414   L015011?:
+0574 758208    1415            mov     dpl,#0x08
+0577           1416   ;        C:\Source\call51\Source\S51\test\Tetris52.c:412: while(!RI);
+0577 22        1417            ret
+0578           1418   L015013?:
+0578           1419   ;        C:\Source\call51\Source\S51\test\Tetris52.c:413: RI=0;
+0578 109830    1420            jbc     _RI,L015048?
+057B 8001      1421            sjmp    L015013?
+057D           1422   L015048?:
+057D           1423   ;        C:\Source\call51\Source\S51\test\Tetris52.c:416: }
+057D           1424   L015017?:
+057D           1425   ;        C:\Source\call51\Source\S51\test\Tetris52.c:417: return 0;
+057D 758200    1426            mov     dpl,#0x00
+0580 22        1427            ret
+0581           1428   ;------------------------------------------------------------
+0581           1429   ;Allocation info for local variables in function 'wastetime'
+0581           1430   ;------------------------------------------------------------
+0581           1431   ;j                         Allocated to registers r2 r3 
+0581           1432   ;k                         Allocated to registers r4 
+0581           1433   ;------------------------------------------------------------
+0581           1434   ;        C:\Source\call51\Source\S51\test\Tetris52.c:420: void wastetime(int j)
+0581           1435   ;        -----------------------------------------
+0581           1436   ;         function wastetime
+0581           1437   ;        -----------------------------------------
+0581           1438   _wastetime:
+0581 AA82      1439            mov     r2,dpl
+0583 AB83      1440            mov     r3,dph
+0585           1441   ;        C:\Source\call51\Source\S51\test\Tetris52.c:423: while((j--)&&(RI==0))
+0585           1442   L016008?:
+0585 8A04      1443            mov     ar4,r2
+0587 8B05      1444            mov     ar5,r3
+0589 1A        1445            dec     r2
+058A BAFFB0    1446            cjne    r2,#0xff,L016020?
+058D 1B        1447            dec     r3
+058E           1448   L016020?:
+058E EC        1449            mov     a,r4
+058F 4D        1450            orl     a,r5
+0590 6001      1451            jz      L016011?
+0592 2098F0    1452            jb      _RI,L016011?
+0595           1453   ;        C:\Source\call51\Source\S51\test\Tetris52.c:425: for(k=0; k<delay; k++) if (RI) break;
+0595 7C00      1454            mov     r4,#0x00
+0597           1455   L016003?:
+0597 C3        1456            clr     c
+0598 EC        1457            mov     a,r4
+0599 95E0      1458            subb    a,_delay
+059B 5001      1459            jnc     L016008?
+059D 209870    1460            jb      _RI,L016008?
+05A0 0C        1461            inc     r4
+05A1 8001      1462            sjmp    L016003?
+05A3           1463   L016011?:
+05A3 22        1464            ret
+05A4           1465   ;------------------------------------------------------------
+05A4           1466   ;Allocation info for local variables in function 'exit'
+05A4           1467   ;------------------------------------------------------------
+05A4           1468   ;------------------------------------------------------------
+05A4           1469   ;        C:\Source\call51\Source\S51\test\Tetris52.c:429: void exit (void)
+05A4           1470   ;        -----------------------------------------
+05A4           1471   ;         function exit
+05A4           1472   ;        -----------------------------------------
+05A4           1473   _exit:
+05A4           1474   ;        C:\Source\call51\Source\S51\test\Tetris52.c:431: printf(CLEAR_SCREEN CURSOR_ON BKF_WTB);
+05A4 7470      1475            mov     a,#__str_4
+05A6 C0E0      1476            push    acc
+05A8 7488      1477            mov     a,#(__str_4 >> 8)
+05AA C0E0      1478            push    acc
+05AC 120100    1479            lcall   _printf_tiny
+05AF 1581      1480            dec     sp
+05B1 1581      1481            dec     sp
+05B3           1482   ;        C:\Source\call51\Source\S51\test\Tetris52.c:434: _endasm; //Go back to CMON51, if present...
+05B3           1483            
+05B3 02001B    1484                ljmp 0x1b
+05B6           1485                
+05B6 22        1486            ret
+05B7           1487   ;------------------------------------------------------------
+05B7           1488   ;Allocation info for local variables in function 'main'
+05B7           1489   ;------------------------------------------------------------
+05B7           1490   ;Fell                      Allocated to registers r3 
+05B7           1491   ;NewShape                  Allocated to registers r4 
+05B7           1492   ;NewX                      Allocated to registers r5 
+05B7           1493   ;NewY                      Allocated to registers r6 
+05B7           1494   ;Shape                     Allocated with name '_main_Shape_1_1'
+05B7           1495   ;X                         Allocated with name '_main_X_1_1'
+05B7           1496   ;Y                         Allocated with name '_main_Y_1_1'
+05B7           1497   ;Key                       Allocated to registers r2 
+05B7           1498   ;------------------------------------------------------------
+05B7           1499   ;        C:\Source\call51\Source\S51\test\Tetris52.c:437: void main(void)
+05B7           1500   ;        -----------------------------------------
+05B7           1501   ;         function main
+05B7           1502   ;        -----------------------------------------
+05B7           1503   _main:
+05B7           1504   ;        C:\Source\call51\Source\S51\test\Tetris52.c:446: printf(CLEAR_SCREEN CURSOR_OFF);
+05B7 74B0      1505            mov     a,#__str_5
+05B9 C0E0      1506            push    acc
+05BB 7488      1507            mov     a,#(__str_5 >> 8)
+05BD C0E0      1508            push    acc
+05BF 120100    1509            lcall   _printf_tiny
+05C2 1581      1510            dec     sp
+05C4 1581      1511            dec     sp
+05C6           1512   ;        C:\Source\call51\Source\S51\test\Tetris52.c:447: printf(GOTO_YX "TETRIS by Alexei Pazhitnov", 1, TEXT_POS);
+05C6 7420      1513            mov     a,#0x20
+05C8 C0E0      1514            push    acc
+05CA E4        1515            clr     a
+05CB C0E0      1516            push    acc
+05CD 7401      1517            mov     a,#0x01
+05CF C0E0      1518            push    acc
+05D1 E4        1519            clr     a
+05D2 C0E0      1520            push    acc
+05D4 74F0      1521            mov     a,#__str_6
+05D6 C0E0      1522            push    acc
+05D8 7488      1523            mov     a,#(__str_6 >> 8)
+05DA C0E0      1524            push    acc
+05DC 120100    1525            lcall   _printf_tiny
+05DF E581      1526            mov     a,sp
+05E1 24FA      1527            add     a,#0xfa
+05E3 F581      1528            mov     sp,a
+05E5           1529   ;        C:\Source\call51\Source\S51\test\Tetris52.c:448: printf(GOTO_YX "Originally by Chris Giese", 2, TEXT_POS);
+05E5 7420      1530            mov     a,#0x20
+05E7 C0E0      1531            push    acc
+05E9 E4        1532            clr     a
+05EA C0E0      1533            push    acc
+05EC 7402      1534            mov     a,#0x02
+05EE C0E0      1535            push    acc
+05F0 E4        1536            clr     a
+05F1 C0E0      1537            push    acc
+05F3 7430      1538            mov     a,#__str_7
+05F5 C0E0      1539            push    acc
+05F7 7489      1540            mov     a,#(__str_7 >> 8)
+05F9 C0E0      1541            push    acc
+05FB 120100    1542            lcall   _printf_tiny
+05FE E581      1543            mov     a,sp
+0600 24FA      1544            add     a,#0xfa
+0602 F581      1545            mov     sp,a
+0604           1546   ;        C:\Source\call51\Source\S51\test\Tetris52.c:449: printf(GOTO_YX "8052/C51 port by Jesus Calvino-Fraga", 3, TEXT_POS);
+0604 7420      1547            mov     a,#0x20
+0606 C0E0      1548            push    acc
+0608 E4        1549            clr     a
+0609 C0E0      1550            push    acc
+060B 7403      1551            mov     a,#0x03
+060D C0E0      1552            push    acc
+060F E4        1553            clr     a
+0610 C0E0      1554            push    acc
+0612 7470      1555            mov     a,#__str_8
+0614 C0E0      1556            push    acc
+0616 7489      1557            mov     a,#(__str_8 >> 8)
+0618 C0E0      1558            push    acc
+061A 120100    1559            lcall   _printf_tiny
+061D E581      1560            mov     a,sp
+061F 24FA      1561            add     a,#0xfa
+0621 F581      1562            mov     sp,a
+0623           1563   ;        C:\Source\call51\Source\S51\test\Tetris52.c:450: printf(GOTO_YX "'K':Rotate, 'P':Pause, 'Q':Quit", 5, TEXT_POS);
+0623 7420      1564            mov     a,#0x20
+0625 C0E0      1565            push    acc
+0627 E4        1566            clr     a
+0628 C0E0      1567            push    acc
+062A 7405      1568            mov     a,#0x05
+062C C0E0      1569            push    acc
+062E E4        1570            clr     a
+062F C0E0      1571            push    acc
+0631 74B0      1572            mov     a,#__str_9
+0633 C0E0      1573            push    acc
+0635 7489      1574            mov     a,#(__str_9 >> 8)
+0637 C0E0      1575            push    acc
+0639 120100    1576            lcall   _printf_tiny
+063C E581      1577            mov     a,sp
+063E 24FA      1578            add     a,#0xfa
+0640 F581      1579            mov     sp,a
+0642           1580   ;        C:\Source\call51\Source\S51\test\Tetris52.c:451: printf(GOTO_YX "'J':Left, 'L':Right, 'M':Down", 6, TEXT_POS);
+0642 7420      1581            mov     a,#0x20
+0644 C0E0      1582            push    acc
+0646 E4        1583            clr     a
+0647 C0E0      1584            push    acc
+0649 7406      1585            mov     a,#0x06
+064B C0E0      1586            push    acc
+064D E4        1587            clr     a
+064E C0E0      1588            push    acc
+0650 74F0      1589            mov     a,#__str_10
+0652 C0E0      1590            push    acc
+0654 7489      1591            mov     a,#(__str_10 >> 8)
+0656 C0E0      1592            push    acc
+0658 120100    1593            lcall   _printf_tiny
+065B E581      1594            mov     a,sp
+065D 24FA      1595            add     a,#0xfa
+065F F581      1596            mov     sp,a
+0661           1597   ;        C:\Source\call51\Source\S51\test\Tetris52.c:452: screenInit();
+0661 120100    1598            lcall   _screenInit
+0664           1599   ;        C:\Source\call51\Source\S51\test\Tetris52.c:453: refresh();
+0664 120100    1600            lcall   _refresh
+0667           1601   ;        C:\Source\call51\Source\S51\test\Tetris52.c:454: NEW_GAME:
+0667           1602   L018001?:
+0667           1603   ;        C:\Source\call51\Source\S51\test\Tetris52.c:455: printf(BKF_WTB GOTO_YX "Press 'B' to begin", 8, TEXT_POS);
+0667 7420      1604            mov     a,#0x20
+0669 C0E0      1605            push    acc
+066B E4        1606            clr     a
+066C C0E0      1607            push    acc
+066E 7408      1608            mov     a,#0x08
+0670 C0E0      1609            push    acc
+0672 E4        1610            clr     a
+0673 C0E0      1611            push    acc
+0675 7470      1612            mov     a,#__str_11
+0677 C0E0      1613            push    acc
+0679 748A      1614            mov     a,#(__str_11 >> 8)
+067B C0E0      1615            push    acc
+067D 120100    1616            lcall   _printf_tiny
+0680 E581      1617            mov     a,sp
+0682 24FA      1618            add     a,#0xfa
+0684 F581      1619            mov     sp,a
+0686           1620   ;        C:\Source\call51\Source\S51\test\Tetris52.c:456: do
+0686           1621   L018004?:
+0686           1622   ;        C:\Source\call51\Source\S51\test\Tetris52.c:458: Key=getKey();
+0686 120100    1623            lcall   _getKey
+0689 AA82      1624            mov     r2,dpl
+068B           1625   ;        C:\Source\call51\Source\S51\test\Tetris52.c:459: if(Key==KEY_QUIT) exit();
+068B BA01F0    1626            cjne    r2,#0x01,L018005?
+068E C002      1627            push    ar2
+0690 120100    1628            lcall   _exit
+0693 D002      1629            pop     ar2
+0695           1630   L018005?:
+0695           1631   ;        C:\Source\call51\Source\S51\test\Tetris52.c:460: } while (Key!=KEY_BEGIN);
+0695 BA08B0    1632            cjne    r2,#0x08,L018004?
+0698           1633   ;        C:\Source\call51\Source\S51\test\Tetris52.c:461: screenInit();
+0698 120100    1634            lcall   _screenInit
+069B           1635   ;        C:\Source\call51\Source\S51\test\Tetris52.c:463: Level=1;
+069B 75A001    1636            mov     _Level,#0x01
+069E E4        1637            clr     a
+069F F5A1      1638            mov     (_Level + 1),a
+06A1           1639   ;        C:\Source\call51\Source\S51\test\Tetris52.c:464: Score=0;
+06A1 E4        1640            clr     a
+06A2 F560      1641            mov     _Score,a
+06A4 F561      1642            mov     (_Score + 1),a
+06A6           1643   ;        C:\Source\call51\Source\S51\test\Tetris52.c:465: printf(BKF_WTB GOTO_YX CLR_TO_END_LINE, 8, TEXT_POS);
+06A6 7420      1644            mov     a,#0x20
+06A8 C0E0      1645            push    acc
+06AA E4        1646            clr     a
+06AB C0E0      1647            push    acc
+06AD 7408      1648            mov     a,#0x08
+06AF C0E0      1649            push    acc
+06B1 E4        1650            clr     a
+06B2 C0E0      1651            push    acc
+06B4 7430      1652            mov     a,#__str_12
+06B6 C0E0      1653            push    acc
+06B8 748B      1654            mov     a,#(__str_12 >> 8)
+06BA C0E0      1655            push    acc
+06BC 120100    1656            lcall   _printf_tiny
+06BF E581      1657            mov     a,sp
+06C1 24FA      1658            add     a,#0xfa
+06C3 F581      1659            mov     sp,a
+06C5           1660   ;        C:\Source\call51\Source\S51\test\Tetris52.c:466: goto NEW_SHAPE;
+06C5 020100    1661            ljmp    L018039?
+06C8           1662   ;        C:\Source\call51\Source\S51\test\Tetris52.c:468: while(1)
+06C8           1663   L018048?:
+06C8           1664   ;        C:\Source\call51\Source\S51\test\Tetris52.c:470: Fell=0;
+06C8 7B00      1665            mov     r3,#0x00
+06CA           1666   ;        C:\Source\call51\Source\S51\test\Tetris52.c:471: NewShape=Shape;
+06CA ACB0      1667            mov     r4,_main_Shape_1_1
+06CC           1668   ;        C:\Source\call51\Source\S51\test\Tetris52.c:472: NewX=X;
+06CC ADF0      1669            mov     r5,_main_X_1_1
+06CE           1670   ;        C:\Source\call51\Source\S51\test\Tetris52.c:473: NewY=Y;
+06CE AE30      1671            mov     r6,_main_Y_1_1
+06D0           1672   ;        C:\Source\call51\Source\S51\test\Tetris52.c:474: Key=getKey();
+06D0 C003      1673            push    ar3
+06D2 C004      1674            push    ar4
+06D4 C005      1675            push    ar5
+06D6 C006      1676            push    ar6
+06D8 120100    1677            lcall   _getKey
+06DB AA82      1678            mov     r2,dpl
+06DD D006      1679            pop     ar6
+06DF D005      1680            pop     ar5
+06E1 D004      1681            pop     ar4
+06E3 D003      1682            pop     ar3
+06E5           1683   ;        C:\Source\call51\Source\S51\test\Tetris52.c:475: if(Key == 0)
+06E5 EA        1684            mov     a,r2
+06E6 7001      1685            jnz     L018008?
+06E8           1686   ;        C:\Source\call51\Source\S51\test\Tetris52.c:477: NewY++;
+06E8 E530      1687            mov     a,_main_Y_1_1
+06EA 04        1688            inc     a
+06EB FE        1689            mov     r6,a
+06EC           1690   ;        C:\Source\call51\Source\S51\test\Tetris52.c:478: Fell=1;
+06EC 7B01      1691            mov     r3,#0x01
+06EE           1692   ;        C:\Source\call51\Source\S51\test\Tetris52.c:480: wastetime(2500-((Level<42?Level:42)*50));
+06EE C3        1693            clr     c
+06EF E5A0      1694            mov     a,_Level
+06F1 942A      1695            subb    a,#0x2A
+06F3 E5A1      1696            mov     a,(_Level + 1)
+06F5 9400      1697            subb    a,#0x00
+06F7 5001      1698            jnc     L018052?
+06F9 AFA0      1699            mov     r7,_Level
+06FB A8A1      1700            mov     r0,(_Level + 1)
+06FD 8001      1701            sjmp    L018053?
+06FF           1702   L018052?:
+06FF 7F2A      1703            mov     r7,#0x2A
+0701 7800      1704            mov     r0,#0x00
+0703           1705   L018053?:
+0703 8F00      1706            mov     __mulint_PARM_2,r7
+0705 8801      1707            mov     (__mulint_PARM_2 + 1),r0
+0707 900032    1708            mov     dptr,#0x0032
+070A C002      1709            push    ar2
+070C C003      1710            push    ar3
+070E C004      1711            push    ar4
+0710 C005      1712            push    ar5
+0712 C006      1713            push    ar6
+0714 120100    1714            lcall   __mulint
+0717 AF82      1715            mov     r7,dpl
+0719 A883      1716            mov     r0,dph
+071B 74C4      1717            mov     a,#0xC4
+071D C3        1718            clr     c
+071E 9F        1719            subb    a,r7
+071F F582      1720            mov     dpl,a
+0721 7409      1721            mov     a,#0x09
+0723 98        1722            subb    a,r0
+0724 F583      1723            mov     dph,a
+0726 120100    1724            lcall   _wastetime
+0729 D006      1725            pop     ar6
+072B D005      1726            pop     ar5
+072D D004      1727            pop     ar4
+072F D003      1728            pop     ar3
+0731 D002      1729            pop     ar2
+0733           1730   L018008?:
+0733           1731   ;        C:\Source\call51\Source\S51\test\Tetris52.c:483: if(RI) Key=getKey();
+0733 309830    1732            jnb     _RI,L018010?
+0736 C003      1733            push    ar3
+0738 C004      1734            push    ar4
+073A C005      1735            push    ar5
+073C C006      1736            push    ar6
+073E 120100    1737            lcall   _getKey
+0741 AA82      1738            mov     r2,dpl
+0743 D006      1739            pop     ar6
+0745 D005      1740            pop     ar5
+0747 D004      1741            pop     ar4
+0749 D003      1742            pop     ar3
+074B           1743   L018010?:
+074B           1744   ;        C:\Source\call51\Source\S51\test\Tetris52.c:485: if(Key != 0)
+074B EA        1745            mov     a,r2
+074C 6001      1746            jz      L018034?
+074E           1747   ;        C:\Source\call51\Source\S51\test\Tetris52.c:487: NewY=Y;
+074E AE30      1748            mov     r6,_main_Y_1_1
+0750           1749   ;        C:\Source\call51\Source\S51\test\Tetris52.c:488: if(Key == KEY_QUIT) break;
+0750 BA01B0    1750            cjne    r2,#0x01,L018084?
+0753 020100    1751            ljmp    L018049?
+0756           1752   L018084?:
+0756           1753   ;        C:\Source\call51\Source\S51\test\Tetris52.c:489: if(Key == KEY_CCW)
+0756 BA0330    1754            cjne    r2,#0x03,L018031?
+0759           1755   ;        C:\Source\call51\Source\S51\test\Tetris52.c:490: NewShape=Shapes[Shape].Plus90;
+0759 E5B0      1756            mov     a,_main_Shape_1_1
+075B 75F00B    1757            mov     b,#0x0B
+075E A4        1758            mul     ab
+075F 901300    1759            mov     dptr,#_Shapes
+0762 93        1760            movc    a,@a+dptr
+0763 FC        1761            mov     r4,a
+0764 8001      1762            sjmp    L018032?
+0766           1763   L018031?:
+0766           1764   ;        C:\Source\call51\Source\S51\test\Tetris52.c:491: else if(Key == KEY_CW)
+0766 BA02B0    1765            cjne    r2,#0x02,L018028?
+0769           1766   ;        C:\Source\call51\Source\S51\test\Tetris52.c:492: NewShape=Shapes[Shape].Minus90;
+0769 E5B0      1767            mov     a,_main_Shape_1_1
+076B 75F00B    1768            mov     b,#0x0B
+076E A4        1769            mul     ab
+076F 2400      1770            add     a,#_Shapes
+0771 FF        1771            mov     r7,a
+0772 E4        1772            clr     a
+0773 3413      1773            addc    a,#(_Shapes >> 8)
+0775 F8        1774            mov     r0,a
+0776 8F82      1775            mov     dpl,r7
+0778 8883      1776            mov     dph,r0
+077A A3        1777            inc     dptr
+077B E4        1778            clr     a
+077C 93        1779            movc    a,@a+dptr
+077D FC        1780            mov     r4,a
+077E 8001      1781            sjmp    L018032?
+0780           1782   L018028?:
+0780           1783   ;        C:\Source\call51\Source\S51\test\Tetris52.c:493: else if(Key == KEY_LEFT)
+0780 BA05F0    1784            cjne    r2,#0x05,L018025?
+0783           1785   ;        C:\Source\call51\Source\S51\test\Tetris52.c:494: {      if(X) NewX=X - 1; }
+0783 E5F0      1786            mov     a,_main_X_1_1
+0785 6001      1787            jz      L018032?
+0787 E5F0      1788            mov     a,_main_X_1_1
+0789 14        1789            dec     a
+078A FD        1790            mov     r5,a
+078B 8001      1791            sjmp    L018032?
+078D           1792   L018025?:
+078D           1793   ;        C:\Source\call51\Source\S51\test\Tetris52.c:495: else if(Key == KEY_RIGHT)
+078D BA0430    1794            cjne    r2,#0x04,L018022?
+0790           1795   ;        C:\Source\call51\Source\S51\test\Tetris52.c:496: {      if(X < SCN_WID - 1) NewX=X + 1; }
+0790 C3        1796            clr     c
+0791 E5F0      1797            mov     a,_main_X_1_1
+0793 6480      1798            xrl     a,#0x80
+0795 948E      1799            subb    a,#0x8e
+0797 5001      1800            jnc     L018032?
+0799 E5F0      1801            mov     a,_main_X_1_1
+079B 04        1802            inc     a
+079C FD        1803            mov     r5,a
+079D 8001      1804            sjmp    L018032?
+079F           1805   L018022?:
+079F           1806   ;        C:\Source\call51\Source\S51\test\Tetris52.c:499: else if(Key == KEY_DOWN)
+079F BA0770    1807            cjne    r2,#0x07,L018032?
+07A2           1808   ;        C:\Source\call51\Source\S51\test\Tetris52.c:500: {      if(Y < SCN_HT - 1) NewY=Y + 1; }
+07A2 C3        1809            clr     c
+07A3 E530      1810            mov     a,_main_Y_1_1
+07A5 6480      1811            xrl     a,#0x80
+07A7 9497      1812            subb    a,#0x97
+07A9 5001      1813            jnc     L018032?
+07AB E530      1814            mov     a,_main_Y_1_1
+07AD 04        1815            inc     a
+07AE FE        1816            mov     r6,a
+07AF           1817   L018032?:
+07AF           1818   ;        C:\Source\call51\Source\S51\test\Tetris52.c:501: Fell=0;
+07AF 7B00      1819            mov     r3,#0x00
+07B1           1820   L018034?:
+07B1           1821   ;        C:\Source\call51\Source\S51\test\Tetris52.c:504: if((NewX == X) && (NewY == Y) && (NewShape == Shape))
+07B1 ED        1822            mov     a,r5
+07B2 B5F070    1823            cjne    a,_main_X_1_1,L018036?
+07B5 EE        1824            mov     a,r6
+07B6 B53070    1825            cjne    a,_main_Y_1_1,L018036?
+07B9 EC        1826            mov     a,r4
+07BA B5B0B0    1827            cjne    a,_main_Shape_1_1,L018102?
+07BD 020100    1828            ljmp    L018048?
+07C0           1829   L018102?:
+07C0           1830   ;        C:\Source\call51\Source\S51\test\Tetris52.c:505: continue;
+07C0           1831   L018036?:
+07C0           1832   ;        C:\Source\call51\Source\S51\test\Tetris52.c:507: shapeErase(X, Y, Shape);
+07C0 853090    1833            mov     _shapeErase_PARM_2,_main_Y_1_1
+07C3 85B040    1834            mov     _shapeErase_PARM_3,_main_Shape_1_1
+07C6 85F082    1835            mov     dpl,_main_X_1_1
+07C9 C003      1836            push    ar3
+07CB C004      1837            push    ar4
+07CD C005      1838            push    ar5
+07CF C006      1839            push    ar6
+07D1 120100    1840            lcall   _shapeErase
+07D4 D006      1841            pop     ar6
+07D6 D005      1842            pop     ar5
+07D8 D004      1843            pop     ar4
+07DA           1844   ;        C:\Source\call51\Source\S51\test\Tetris52.c:509: if(shapeHit(NewX, NewY, NewShape) == 0) /* no, update pos'n */
+07DA 8EF0      1845            mov     _shapeHit_PARM_2,r6
+07DC 8CA0      1846            mov     _shapeHit_PARM_3,r4
+07DE 8D82      1847            mov     dpl,r5
+07E0 C004      1848            push    ar4
+07E2 C005      1849            push    ar5
+07E4 C006      1850            push    ar6
+07E6 120100    1851            lcall   _shapeHit
+07E9 E582      1852            mov     a,dpl
+07EB D006      1853            pop     ar6
+07ED D005      1854            pop     ar5
+07EF D004      1855            pop     ar4
+07F1 D003      1856            pop     ar3
+07F3 7001      1857            jnz     L018045?
+07F5           1858   ;        C:\Source\call51\Source\S51\test\Tetris52.c:511: X=NewX;
+07F5 8DF0      1859            mov     _main_X_1_1,r5
+07F7           1860   ;        C:\Source\call51\Source\S51\test\Tetris52.c:512: Y=NewY;
+07F7 8E30      1861            mov     _main_Y_1_1,r6
+07F9           1862   ;        C:\Source\call51\Source\S51\test\Tetris52.c:513: Shape=NewShape;
+07F9 8CB0      1863            mov     _main_Shape_1_1,r4
+07FB 020100    1864            ljmp    L018046?
+07FE           1865   L018045?:
+07FE           1866   ;        C:\Source\call51\Source\S51\test\Tetris52.c:515: else if(Fell) /* Yes -- did the piece hit something while falling on its own? */
+07FE EB        1867            mov     a,r3
+07FF 7001      1868            jnz     L018104?
+0801 020100    1869            ljmp    L018046?
+0804           1870   L018104?:
+0804           1871   ;        C:\Source\call51\Source\S51\test\Tetris52.c:517: shapeDraw(X, Y, Shape); /* Yes, draw it at the old pos'n... */
+0804 853030    1872            mov     _shapeDraw_PARM_2,_main_Y_1_1
+0807 85B0E0    1873            mov     _shapeDraw_PARM_3,_main_Shape_1_1
+080A 85F082    1874            mov     dpl,_main_X_1_1
+080D 120100    1875            lcall   _shapeDraw
+0810           1876   ;        C:\Source\call51\Source\S51\test\Tetris52.c:519: NEW_SHAPE:
+0810           1877   L018039?:
+0810           1878   ;        C:\Source\call51\Source\S51\test\Tetris52.c:520: Y=3;
+0810 753003    1879            mov     _main_Y_1_1,#0x03
+0813           1880   ;        C:\Source\call51\Source\S51\test\Tetris52.c:521: X=SCN_WID / 2;
+0813 75F007    1881            mov     _main_X_1_1,#0x07
+0816           1882   ;        C:\Source\call51\Source\S51\test\Tetris52.c:522: Shape=TL0 % 19; //rand() was here, use timer 0 register instead...
+0816 75F013    1883            mov     b,#0x13
+0819 E58A      1884            mov     a,_TL0
+081B 84        1885            div     ab
+081C 85F0B0    1886            mov     _main_Shape_1_1,b
+081F           1887   ;        C:\Source\call51\Source\S51\test\Tetris52.c:523: collapse();
+081F 120100    1888            lcall   _collapse
+0822           1889   ;        C:\Source\call51\Source\S51\test\Tetris52.c:525: if(shapeHit(X, Y, Shape))
+0822 75F003    1890            mov     _shapeHit_PARM_2,#0x03
+0825 85B0A0    1891            mov     _shapeHit_PARM_3,_main_Shape_1_1
+0828 758207    1892            mov     dpl,#0x07
+082B 120100    1893            lcall   _shapeHit
+082E E582      1894            mov     a,dpl
+0830 6001      1895            jz      L018041?
+0832           1896   ;        C:\Source\call51\Source\S51\test\Tetris52.c:527: printf(BKF_WTB GOTO_YX " GAME OVER ", SCN_HT/2, (SCN_WID-5));
+0832 740A      1897            mov     a,#0x0A
+0834 C0E0      1898            push    acc
+0836 E4        1899            clr     a
+0837 C0E0      1900            push    acc
+0839 740C      1901            mov     a,#0x0C
+083B C0E0      1902            push    acc
+083D E4        1903            clr     a
+083E C0E0      1904            push    acc
+0840 74F0      1905            mov     a,#__str_13
+0842 C0E0      1906            push    acc
+0844 7490      1907            mov     a,#(__str_13 >> 8)
+0846 C0E0      1908            push    acc
+0848 120100    1909            lcall   _printf_tiny
+084B E581      1910            mov     a,sp
+084D 24FA      1911            add     a,#0xfa
+084F F581      1912            mov     sp,a
+0851           1913   ;        C:\Source\call51\Source\S51\test\Tetris52.c:528: goto NEW_GAME;
+0851 020100    1914            ljmp    L018001?
+0854           1915   L018041?:
+0854           1916   ;        C:\Source\call51\Source\S51\test\Tetris52.c:530: Score+=Level;
+0854 E5A0      1917            mov     a,_Level
+0856 2560      1918            add     a,_Score
+0858 F560      1919            mov     _Score,a
+085A E5A1      1920            mov     a,(_Level + 1)
+085C 3561      1921            addc    a,(_Score + 1)
+085E F561      1922            mov     (_Score + 1),a
+0860           1923   ;        C:\Source\call51\Source\S51\test\Tetris52.c:531: printf(GOTO_YX CLR_TO_END_LINE "Level: %u", 15, TEXT_POS, Level);
+0860 C0A0      1924            push    _Level
+0862 C0A1      1925            push    (_Level + 1)
+0864 7420      1926            mov     a,#0x20
+0866 C0E0      1927            push    acc
+0868 E4        1928            clr     a
+0869 C0E0      1929            push    acc
+086B 740F      1930            mov     a,#0x0F
+086D C0E0      1931            push    acc
+086F E4        1932            clr     a
+0870 C0E0      1933            push    acc
+0872 7430      1934            mov     a,#__str_14
+0874 C0E0      1935            push    acc
+0876 7491      1936            mov     a,#(__str_14 >> 8)
+0878 C0E0      1937            push    acc
+087A 120100    1938            lcall   _printf_tiny
+087D E581      1939            mov     a,sp
+087F 24F8      1940            add     a,#0xf8
+0881 F581      1941            mov     sp,a
+0883           1942   ;        C:\Source\call51\Source\S51\test\Tetris52.c:532: printf(GOTO_YX CLR_TO_END_LINE "Score: %u", 16, TEXT_POS, Score);
+0883 C060      1943            push    _Score
+0885 C061      1944            push    (_Score + 1)
+0887 7420      1945            mov     a,#0x20
+0889 C0E0      1946            push    acc
+088B E4        1947            clr     a
+088C C0E0      1948            push    acc
+088E 7410      1949            mov     a,#0x10
+0890 C0E0      1950            push    acc
+0892 E4        1951            clr     a
+0893 C0E0      1952            push    acc
+0895 7470      1953            mov     a,#__str_15
+0897 C0E0      1954            push    acc
+0899 7491      1955            mov     a,#(__str_15 >> 8)
+089B C0E0      1956            push    acc
+089D 120100    1957            lcall   _printf_tiny
+08A0 E581      1958            mov     a,sp
+08A2 24F8      1959            add     a,#0xf8
+08A4 F581      1960            mov     sp,a
+08A6           1961   L018046?:
+08A6           1962   ;        C:\Source\call51\Source\S51\test\Tetris52.c:535: shapeDraw(X, Y, Shape);
+08A6 853030    1963            mov     _shapeDraw_PARM_2,_main_Y_1_1
+08A9 85B0E0    1964            mov     _shapeDraw_PARM_3,_main_Shape_1_1
+08AC 85F082    1965            mov     dpl,_main_X_1_1
+08AF 120100    1966            lcall   _shapeDraw
+08B2           1967   ;        C:\Source\call51\Source\S51\test\Tetris52.c:536: refresh();
+08B2 120100    1968            lcall   _refresh
+08B5 020100    1969            ljmp    L018048?
+08B8           1970   L018049?:
+08B8           1971   ;        C:\Source\call51\Source\S51\test\Tetris52.c:538: exit();
+08B8 020100    1972            ljmp    _exit
+08BB           1973            rseg R_CSEG
+08BB           1974   
+0000           1975            rseg R_CONST
+0000           1976   _Shapes:
+0000 00        1977            db 0x00         ;  0
+0001 00        1978            db 0x00         ;  0
+0002 04        1979            db 0x04         ;  4
+0003 00        1980            db 0x00         ;  0
+0004 FF        1981            db 0xff         ; -1
+0005 01        1982            db 0x01         ;  1
+0006 00        1983            db 0x00         ;  0
+0007 00        1984            db 0x00         ;  0
+0008 01        1985            db 0x01         ;  1
+0009 FF        1986            db 0xff         ; -1
+000A 00        1987            db 0x00         ;  0
+000B 02        1988            db 0x02         ;  2
+000C 02        1989            db 0x02         ;  2
+000D 02        1990            db 0x02         ;  2
+000E FF        1991            db 0xff         ; -1
+000F 00        1992            db 0x00         ;  0
+0010 01        1993            db 0x01         ;  1
+0011 00        1994            db 0x00         ;  0
+0012 01        1995            db 0x01         ;  1
+0013 00        1996            db 0x00         ;  0
+0014 01        1997            db 0x01         ;  1
+0015 00        1998            db 0x00         ;  0
+0016 01        1999            db 0x01         ;  1
+0017 01        2000            db 0x01         ;  1
+0018 02        2001            db 0x02         ;  2
+0019 00        2002            db 0x00         ;  0
+001A FF        2003            db 0xff         ; -1
+001B 00        2004            db 0x00         ;  0
+001C 01        2005            db 0x01         ;  1
+001D 00        2006            db 0x00         ;  0
+001E 01        2007            db 0x01         ;  1
+001F 00        2008            db 0x00         ;  0
+0020 01        2009            db 0x01         ;  1
+0021 04        2010            db 0x04         ;  4
+0022 04        2011            db 0x04         ;  4
+0023 06        2012            db 0x06         ;  6
+0024 FF        2013            db 0xff         ; -1
+0025 00        2014            db 0x00         ;  0
+0026 01        2015            db 0x01         ;  1
+0027 00        2016            db 0x00         ;  0
+0028 00        2017            db 0x00         ;  0
+0029 01        2018            db 0x01         ;  1
+002A 01        2019            db 0x01         ;  1
+002B 00        2020            db 0x00         ;  0
+002C 03        2021            db 0x03         ;  3
+002D 03        2022            db 0x03         ;  3
+002E 06        2023            db 0x06         ;  6
+002F 00        2024            db 0x00         ;  0
+0030 FF        2025            db 0xff         ; -1
+0031 00        2026            db 0x00         ;  0
+0032 01        2027            db 0x01         ;  1
+0033 FF        2028            db 0xff         ; -1
+0034 00        2029            db 0x00         ;  0
+0035 00        2030            db 0x00         ;  0
+0036 01        2031            db 0x01         ;  1
+0037 06        2032            db 0x06         ;  6
+0038 06        2033            db 0x06         ;  6
+0039 01        2034            db 0x01         ;  1
+003A 01        2035            db 0x01         ;  1
+003B 00        2036            db 0x00         ;  0
+003C FF        2037            db 0xff         ; -1
+003D 00        2038            db 0x00         ;  0
+003E 00        2039            db 0x00         ;  0
+003F 01        2040            db 0x01         ;  1
+0040 FF        2041            db 0xff         ; -1
+0041 00        2042            db 0x00         ;  0
+0042 05        2043            db 0x05         ;  5
+0043 05        2044            db 0x05         ;  5
+0044 01        2045            db 0x01         ;  1
+0045 00        2046            db 0x00         ;  0
+0046 FF        2047            db 0xff         ; -1
+0047 00        2048            db 0x00         ;  0
+0048 01        2049            db 0x01         ;  1
+0049 01        2050            db 0x01         ;  1
+004A 00        2051            db 0x00         ;  0
+004B 00        2052            db 0x00         ;  0
+004C 01        2053            db 0x01         ;  1
+004D 08        2054            db 0x08         ;  8
+004E 0A        2055            db 0x0a         ;  10
+004F 05        2056            db 0x05         ;  5
+0050 01        2057            db 0x01         ;  1
+0051 00        2058            db 0x00         ;  0
+0052 FF        2059            db 0xff         ; -1
+0053 00        2060            db 0x00         ;  0
+0054 FF        2061            db 0xff         ; -1
+0055 00        2062            db 0x00         ;  0
+0056 00        2063            db 0x00         ;  0
+0057 FF        2064            db 0xff         ; -1
+0058 09        2065            db 0x09         ;  9
+0059 07        2066            db 0x07         ;  7
+005A 05        2067            db 0x05         ;  5
+005B 00        2068            db 0x00         ;  0
+005C FF        2069            db 0xff         ; -1
+005D 00        2070            db 0x00         ;  0
+005E 01        2071            db 0x01         ;  1
+005F 00        2072            db 0x00         ;  0
+0060 01        2073            db 0x01         ;  1
+0061 FF        2074            db 0xff         ; -1
+0062 00        2075            db 0x00         ;  0
+0063 0A        2076            db 0x0a         ;  10
+0064 08        2077            db 0x08         ;  8
+0065 05        2078            db 0x05         ;  5
+0066 FF        2079            db 0xff         ; -1
+0067 00        2080            db 0x00         ;  0
+0068 01        2081            db 0x01         ;  1
+0069 00        2082            db 0x00         ;  0
+006A 01        2083            db 0x01         ;  1
+006B 00        2084            db 0x00         ;  0
+006C 00        2085            db 0x00         ;  0
+006D 01        2086            db 0x01         ;  1
+006E 07        2087            db 0x07         ;  7
+006F 09        2088            db 0x09         ;  9
+0070 05        2089            db 0x05         ;  5
+0071 00        2090            db 0x00         ;  0
+0072 01        2091            db 0x01         ;  1
+0073 00        2092            db 0x00         ;  0
+0074 FF        2093            db 0xff         ; -1
+0075 00        2094            db 0x00         ;  0
+0076 FF        2095            db 0xff         ; -1
+0077 01        2096            db 0x01         ;  1
+0078 00        2097            db 0x00         ;  0
+0079 0C        2098            db 0x0c         ;  12
+007A 0E        2099            db 0x0e         ;  14
+007B 03        2100            db 0x03         ;  3
+007C 01        2101            db 0x01         ;  1
+007D 00        2102            db 0x00         ;  0
+007E FF        2103            db 0xff         ; -1
+007F 00        2104            db 0x00         ;  0
+0080 FF        2105            db 0xff         ; -1
+0081 00        2106            db 0x00         ;  0
+0082 00        2107            db 0x00         ;  0
+0083 01        2108            db 0x01         ;  1
+0084 0D        2109            db 0x0d         ;  13
+0085 0B        2110            db 0x0b         ;  11
+0086 03        2111            db 0x03         ;  3
+0087 00        2112            db 0x00         ;  0
+0088 FF        2113            db 0xff         ; -1
+0089 00        2114            db 0x00         ;  0
+008A 01        2115            db 0x01         ;  1
+008B 00        2116            db 0x00         ;  0
+008C 01        2117            db 0x01         ;  1
+008D 01        2118            db 0x01         ;  1
+008E 00        2119            db 0x00         ;  0
+008F 0E        2120            db 0x0e         ;  14
+0090 0C        2121            db 0x0c         ;  12
+0091 03        2122            db 0x03         ;  3
+0092 FF        2123            db 0xff         ; -1
+0093 00        2124            db 0x00         ;  0
+0094 01        2125            db 0x01         ;  1
+0095 00        2126            db 0x00         ;  0
+0096 01        2127            db 0x01         ;  1
+0097 00        2128            db 0x00         ;  0
+0098 00        2129            db 0x00         ;  0
+0099 FF        2130            db 0xff         ; -1
+009A 0B        2131            db 0x0b         ;  11
+009B 0D        2132            db 0x0d         ;  13
+009C 03        2133            db 0x03         ;  3
+009D 00        2134            db 0x00         ;  0
+009E 01        2135            db 0x01         ;  1
+009F 00        2136            db 0x00         ;  0
+00A0 FF        2137            db 0xff         ; -1
+00A1 00        2138            db 0x00         ;  0
+00A2 FF        2139            db 0xff         ; -1
+00A3 FF        2140            db 0xff         ; -1
+00A4 00        2141            db 0x00         ;  0
+00A5 10        2142            db 0x10         ;  16
+00A6 12        2143            db 0x12         ;  18
+00A7 07        2144            db 0x07         ;  7
+00A8 00        2145            db 0x00         ;  0
+00A9 FF        2146            db 0xff         ; -1
+00AA 00        2147            db 0x00         ;  0
+00AB 01        2148            db 0x01         ;  1
+00AC FF        2149            db 0xff         ; -1
+00AD 00        2150            db 0x00         ;  0
+00AE 02        2151            db 0x02         ;  2
+00AF 00        2152            db 0x00         ;  0
+00B0 11        2153            db 0x11         ;  17
+00B1 0F        2154            db 0x0f         ;  15
+00B2 07        2155            db 0x07         ;  7
+00B3 FF        2156            db 0xff         ; -1
+00B4 00        2157            db 0x00         ;  0
+00B5 01        2158            db 0x01         ;  1
+00B6 00        2159            db 0x00         ;  0
+00B7 00        2160            db 0x00         ;  0
+00B8 FF        2161            db 0xff         ; -1
+00B9 00        2162            db 0x00         ;  0
+00BA 02        2163            db 0x02         ;  2
+00BB 12        2164            db 0x12         ;  18
+00BC 10        2165            db 0x10         ;  16
+00BD 07        2166            db 0x07         ;  7
+00BE 00        2167            db 0x00         ;  0
+00BF 01        2168            db 0x01         ;  1
+00C0 00        2169            db 0x00         ;  0
+00C1 FF        2170            db 0xff         ; -1
+00C2 01        2171            db 0x01         ;  1
+00C3 00        2172            db 0x00         ;  0
+00C4 FE        2173            db 0xfe         ; -2
+00C5 00        2174            db 0x00         ;  0
+00C6 0F        2175            db 0x0f         ;  15
+00C7 11        2176            db 0x11         ;  17
+00C8 07        2177            db 0x07         ;  7
+00C9 01        2178            db 0x01         ;  1
+00CA 00        2179            db 0x00         ;  0
+00CB FF        2180            db 0xff         ; -1
+00CC 00        2181            db 0x00         ;  0
+00CD 00        2182            db 0x00         ;  0
+00CE 01        2183            db 0x01         ;  1
+00CF 00        2184            db 0x00         ;  0
+00D0 FE        2185            db 0xfe         ; -2
+00D1           2186   __str_0:
+00D1 4E6F7420  2187            db 'Not running under CMON51!'
+     72756E6E
+     696E6720
+     756E6465
+     7220434D
+     4F4E3531
+     21
+00EA 0A        2188            db 0x0A
+00EB 00        2189            db 0x00
+00EC           2190   __str_1:
+00EC 1B        2191            db 0x1B
+00ED 5B25643B  2192            db '[%d;%dH'
+     256448
+00F4 00        2193            db 0x00
+00F5           2194   __str_2:
+00F5 1B        2195            db 0x1B
+00F6 5B332564  2196            db '[3%dm'
+     6D
+00FB DB        2197            db 0xDB
+00FC DB        2198            db 0xDB
+00FD 00        2199            db 0x00
+00FE           2200   __str_3:
+00FE 1B        2201            db 0x1B
+00FF 5B303B33  2202            db '[0;30;47m'
+     303B3437
+     6D
+0108 00        2203            db 0x00
+0109           2204   _collapse_bonus_1_1:
+0109 0000      2205            db 0x00,0x00    ; 0
+010B 3200      2206            db 0x32,0x00    ; 50
+010D 6400      2207            db 0x64,0x00    ; 100
+010F C800      2208            db 0xC8,0x00    ; 200
+0111 9001      2209            db 0x90,0x01    ; 400
+0113           2210   __str_4:
+0113 1B        2211            db 0x1B
+0114 5B324A    2212            db '[2J'
+0117 1B        2213            db 0x1B
+0118 5B3F3235  2214            db '[?25h'
+     68
+011D 1B        2215            db 0x1B
+011E 5B303B33  2216            db '[0;30;47m'
+     303B3437
+     6D
+0127 00        2217            db 0x00
+0128           2218   __str_5:
+0128 1B        2219            db 0x1B
+0129 5B324A    2220            db '[2J'
+012C 1B        2221            db 0x1B
+012D 5B3F3235  2222            db '[?25l'
+     6C
+0132 00        2223            db 0x00
+0133           2224   __str_6:
+0133 1B        2225            db 0x1B
+0134 5B25643B  2226            db '[%d;%dHTETRIS by Alexei Pazhitnov'
+     25644854
+     45545249
+     53206279
+     20416C65
+     78656920
+     50617A68
+     69746E6F
+     76
+0155 00        2227            db 0x00
+0156           2228   __str_7:
+0156 1B        2229            db 0x1B
+0157 5B25643B  2230            db '[%d;%dHOriginally by Chris Giese'
+     2564484F
+     72696769
+     6E616C6C
+     79206279
+     20436872
+     69732047
+     69657365
+0177 00        2231            db 0x00
+0178           2232   __str_8:
+0178 1B        2233            db 0x1B
+0179 5B25643B  2234            db '[%d;%dH8052/C51 port by Jesus Calvino-Fraga'
+     25644838
+     3035322F
+     43353120
+     706F7274
+     20627920
+     4A657375
+     73204361
+     6C76696E
+     6F2D4672
+     616761
+01A4 00        2235            db 0x00
+01A5           2236   __str_9:
+01A5 1B        2237            db 0x1B
+01A6 5B25643B  2238            db '[%d;%dH'
+     256448
+01AD 27        2239            db 0x27
+01AE 4B        2240            db 'K'
+01AF 27        2241            db 0x27
+01B0 3A526F74  2242            db ':Rotate, '
+     6174652C
+     20
+01B9 27        2243            db 0x27
+01BA 50        2244            db 'P'
+01BB 27        2245            db 0x27
+01BC 3A506175  2246            db ':Pause, '
+     73652C20
+01C4 27        2247            db 0x27
+01C5 51        2248            db 'Q'
+01C6 27        2249            db 0x27
+01C7 3A517569  2250            db ':Quit'
+     74
+01CC 00        2251            db 0x00
+01CD           2252   __str_10:
+01CD 1B        2253            db 0x1B
+01CE 5B25643B  2254            db '[%d;%dH'
+     256448
+01D5 27        2255            db 0x27
+01D6 4A        2256            db 'J'
+01D7 27        2257            db 0x27
+01D8 3A4C6566  2258            db ':Left, '
+     742C20
+01DF 27        2259            db 0x27
+01E0 4C        2260            db 'L'
+01E1 27        2261            db 0x27
+01E2 3A526967  2262            db ':Right, '
+     68742C20
+01EA 27        2263            db 0x27
+01EB 4D        2264            db 'M'
+01EC 27        2265            db 0x27
+01ED 3A446F77  2266            db ':Down'
+     6E
+01F2 00        2267            db 0x00
+01F3           2268   __str_11:
+01F3 1B        2269            db 0x1B
+01F4 5B303B33  2270            db '[0;30;47m'
+     303B3437
+     6D
+01FD 1B        2271            db 0x1B
+01FE 5B25643B  2272            db '[%d;%dHPress '
+     25644850
+     72657373
+     20
+020B 27        2273            db 0x27
+020C 42        2274            db 'B'
+020D 27        2275            db 0x27
+020E 20746F20  2276            db ' to begin'
+     62656769
+     6E
+0217 00        2277            db 0x00
+0218           2278   __str_12:
+0218 1B        2279            db 0x1B
+0219 5B303B33  2280            db '[0;30;47m'
+     303B3437
+     6D
+0222 1B        2281            db 0x1B
+0223 5B25643B  2282            db '[%d;%dH'
+     256448
+022A 1B        2283            db 0x1B
+022B 5B4B      2284            db '[K'
+022D 00        2285            db 0x00
+022E           2286   __str_13:
+022E 1B        2287            db 0x1B
+022F 5B303B33  2288            db '[0;30;47m'
+     303B3437
+     6D
+0238 1B        2289            db 0x1B
+0239 5B25643B  2290            db '[%d;%dH GAME OVER '
+     25644820
+     47414D45
+     204F5645
+     5220
+024B 00        2291            db 0x00
+024C           2292   __str_14:
+024C 1B        2293            db 0x1B
+024D 5B25643B  2294            db '[%d;%dH'
+     256448
+0254 1B        2295            db 0x1B
+0255 5B4B4C65  2296            db '[KLevel: %u'
+     76656C3A
+     202575
+0260 00        2297            db 0x00
+0261           2298   __str_15:
+0261 1B        2299            db 0x1B
+0262 5B25643B  2300            db '[%d;%dH'
+     256448
+0269 1B        2301            db 0x1B
+026A 5B4B5363  2302            db '[KScore: %u'
+     6F72653A
+     202575
+0275 00        2303            db 0x00
+0276           2304   
+0000           2305            rseg R_XINIT
+0000           2306   
+001E           2307            CSEG
+001E           2308   
+001E           2309   end

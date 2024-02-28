@@ -1,0 +1,1760 @@
+<MODULE>
+tetris_p89lpc9351
+</MODULE>
+
+<OPTC51>
+--model-small
+</OPTC51>
+
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0001,OV
+R_CONST,code,027C,NO
+rbank0,data,0000,OV
+R_DINIT,code,000D,NO
+R_DSEG,data,0011,NO
+R_OSEG,data,0003,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,00C0,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,08C3,NO
+</SEGMENTS>
+
+<LOCALS>
+L002006?,R_CSEG,0031,0000
+L002002?,R_CSEG,0037,0000
+bits,BIT_BANK,0000,0001
+L006018?,R_CSEG,0106,0000
+L018010?,R_CSEG,0753,0000
+L006017?,R_CSEG,00FE,0000
+L015008?,R_CSEG,0571,0000
+L015007?,R_CSEG,056D,0000
+L015006?,R_CSEG,0569,0000
+L015005?,R_CSEG,0565,0000
+L015004?,R_CSEG,0561,0000
+L015003?,R_CSEG,055D,0000
+L015002?,R_CSEG,0516,0000
+L018028?,R_CSEG,0788,0000
+L003006?,R_CSEG,007C,0000
+L018025?,R_CSEG,0795,0000
+L003005?,R_CSEG,007A,0000
+L018022?,R_CSEG,07A7,0000
+L003002?,R_CSEG,006E,0000
+L018039?,R_CSEG,0818,0000
+L018036?,R_CSEG,07C8,0000
+L018034?,R_CSEG,07B9,0000
+L018032?,R_CSEG,07B7,0000
+L018031?,R_CSEG,076E,0000
+L016008?,R_CSEG,058A,0000
+L018049?,R_CSEG,08C0,0000
+L018048?,R_CSEG,06D0,0000
+L016003?,R_CSEG,059C,0000
+L007010?,R_CSEG,01E1,0000
+L018046?,R_CSEG,08AE,0000
+L018045?,R_CSEG,0806,0000
+__str_10,R_CONST,01D3,0000
+__str_11,R_CONST,01F9,0000
+__str_12,R_CONST,021E,0000
+__str_13,R_CONST,0234,0000
+__str_14,R_CONST,0252,0000
+L018041?,R_CSEG,085C,0000
+__str_15,R_CONST,0267,0000
+L004002?,R_CSEG,00AF,0000
+L018104?,R_CSEG,080C,0000
+L007026?,R_CSEG,0190,0000
+L007025?,R_CSEG,017E,0000
+L018102?,R_CSEG,07C8,0000
+L007024?,R_CSEG,0170,0000
+L014051?,R_CSEG,04A1,0000
+L007023?,R_CSEG,013F,0000
+L007022?,R_CSEG,013C,0000
+L007021?,R_CSEG,0123,0000
+L007020?,R_CSEG,0116,0000
+L014063?,R_CSEG,0485,0000
+L014061?,R_CSEG,0455,0000
+b0,BIT_BANK,0000,0000
+b1,BIT_BANK,0000,0000
+b2,BIT_BANK,0000,0000
+b3,BIT_BANK,0000,0000
+b4,BIT_BANK,0000,0000
+b5,BIT_BANK,0000,0000
+b6,BIT_BANK,0000,0000
+b7,BIT_BANK,0000,0000
+L018008?,R_CSEG,073B,0000
+L018005?,R_CSEG,069D,0000
+L018004?,R_CSEG,068E,0000
+L018001?,R_CSEG,066F,0000
+L006006?,R_CSEG,0101,0000
+L006001?,R_CSEG,00F9,0000
+L013013?,R_CSEG,03FC,0000
+L007009?,R_CSEG,01DD,0000
+L010004?,R_CSEG,0296,0000
+L007007?,R_CSEG,010B,0000
+_main_Y_1_1,R_DSEG,0010,0001
+L007005?,R_CSEG,01D9,0000
+L013028?,R_CSEG,03D9,0000
+L010001?,R_CSEG,023D,0000
+L007003?,R_CSEG,0118,0000
+L013026?,R_CSEG,039C,0000
+L013024?,R_CSEG,0395,0000
+L014019?,R_CSEG,0455,0000
+L014017?,R_CSEG,0401,0000
+L014016?,R_CSEG,0436,0000
+L014015?,R_CSEG,0433,0000
+L014013?,R_CSEG,040D,0000
+__str_0,R_CONST,00D1,0000
+__str_1,R_CONST,00F2,0000
+__str_2,R_CONST,00FB,0000
+__str_3,R_CONST,0104,0000
+__str_4,R_CONST,0119,0000
+__str_5,R_CONST,012E,0000
+__str_6,R_CONST,0139,0000
+__str_7,R_CONST,015C,0000
+__str_8,R_CONST,017E,0000
+__str_9,R_CONST,01AB,0000
+L011004?,R_CSEG,030E,0000
+L014029?,R_CSEG,0475,0000
+L011001?,R_CSEG,02C8,0000
+L008004?,R_CSEG,0209,0000
+L008002?,R_CSEG,01FD,0000
+L014025?,R_CSEG,04D0,0000
+L018053?,R_CSEG,070B,0000
+L018052?,R_CSEG,0707,0000
+L014021?,R_CSEG,04AD,0000
+L014020?,R_CSEG,0458,0000
+L015017?,R_CSEG,0582,0000
+L014032?,R_CSEG,050C,0000
+L014031?,R_CSEG,0507,0000
+L015013?,R_CSEG,057D,0000
+L015011?,R_CSEG,0579,0000
+L015010?,R_CSEG,0575,0000
+_main_Shape_1_1,R_DSEG,000E,0001
+L012008?,R_CSEG,037C,0000
+L012005?,R_CSEG,0331,0000
+L012004?,R_CSEG,038C,0000
+L014048?,R_CSEG,04CE,0000
+L012002?,R_CSEG,0359,0000
+L015021?,R_CSEG,052B,0000
+L015020?,R_CSEG,0529,0000
+L015039?,R_CSEG,0535,0000
+L015038?,R_CSEG,0530,0000
+L018084?,R_CSEG,075E,0000
+L016011?,R_CSEG,05A8,0000
+L013009?,R_CSEG,03D6,0000
+L013008?,R_CSEG,03D4,0000
+L013005?,R_CSEG,0392,0000
+L013004?,R_CSEG,03B3,0000
+L015048?,R_CSEG,0582,0000
+_main_X_1_1,R_DSEG,000F,0001
+L015046?,R_CSEG,0558,0000
+L013001?,R_CSEG,0399,0000
+L015045?,R_CSEG,0553,0000
+L015044?,R_CSEG,054E,0000
+L015043?,R_CSEG,0549,0000
+L015042?,R_CSEG,0544,0000
+L015041?,R_CSEG,053F,0000
+L015040?,R_CSEG,053A,0000
+L016020?,R_CSEG,0593,0000
+L014007?,R_CSEG,0487,0000
+L014006?,R_CSEG,045C,0000
+L002007?,R_CSEG,0033,0000
+</LOCALS>
+
+<PUBLICS>
+_main,R_CSEG,05BC,0000
+_rscr,R_CSEG,0053,0000
+_shapeHit,R_CSEG,0319,0000
+_blockHit,R_CSEG,0217,0000
+_wscr,R_CSEG,0000,0000
+_getKey,R_CSEG,050F,0000
+_wscr_PARM_2,R_OSEG,0000,0001
+_wscr_PARM_3,R_OSEG,0001,0001
+_Score,R_DSEG,0003,0002
+_dummyint3,R_CSEG,0081,0000
+_blockHit_PARM_2,R_DSEG,0007,0001
+_shapeErase,R_CSEG,02B0,0000
+_blockDraw_PARM_2,R_DSEG,0005,0001
+_blockDraw_PARM_3,R_DSEG,0006,0001
+_Level,R_DSEG,0001,0002
+_init,R_CSEG,00CE,0000
+_delay,R_DSEG,0000,0001
+_Screen,R_ISEG,0000,00C0
+_shapeDraw_PARM_2,R_DSEG,0008,0001
+_shapeDraw_PARM_3,R_DSEG,0009,0001
+_shapeHit_PARM_2,R_DSEG,000C,0001
+_shapeHit_PARM_3,R_DSEG,000D,0001
+_exit,R_CSEG,05A9,0000
+_shapeErase_PARM_2,R_DSEG,000A,0001
+_shapeErase_PARM_3,R_DSEG,000B,0001
+_Shapes,R_CONST,0000,0000
+_collapse,R_CSEG,03FD,0000
+_refresh,R_CSEG,0109,0000
+_putchar,R_CSEG,00F4,0000
+_screenInit,R_CSEG,0390,0000
+_shapeDraw,R_CSEG,0224,0000
+_wastetime,R_CSEG,0586,0000
+_collapse_bonus_1_1,R_CONST,010F,0000
+_blockDraw,R_CSEG,01F1,0000
+_rscr_PARM_2,R_OSEG,0002,0001
+</PUBLICS>
+
+<EXTERNALS>
+__mulint,any,0000,0000
+__mulint_PARM_2,any,0000,0000
+_printf_tiny,any,0000,0000
+_islower,any,0000,0000
+_crt0,any,0000,0000
+</EXTERNALS>
+
+<CODE AT 0000>
+</CODE>
+
+<CODE R_HOME>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_CSEG>
+</CODE>
+
+<CODE AT 0000>
+02 addr16(_crt0;)  
+</CODE>
+
+<CODE AT 001B>
+02 addr16(_dummyint3;)  
+</CODE>
+
+<CODE R_HOME>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_DINIT>
+75 data8(_delay;) 28
+E4
+F5 data8(_Level;)
+F5 data8(_Level;0x0001;+;)
+E4
+F5 data8(_Score;)
+F5 data8(_Score;0x0001;+;)
+</CODE>
+
+<CODE R_CSEG>
+E5 82
+FA
+C3
+13
+75 F0 18
+A4
+FB
+24 data8(_Screen;)
+FC
+AD data8(_wscr_PARM_2;)
+ED
+2C
+F8
+86 04
+EA
+20 E0 rel3(L002002?;)
+53 04 F0
+EB
+24 data8(_Screen;)
+FA
+ED
+2A
+F8
+74 07
+55 data8(_wscr_PARM_3;)
+4C
+FA
+E5 data8(_wscr_PARM_3;)
+30 E7 rel3(L002006?;)
+7E 08
+80 rel2(L002007?;)
+7E 00
+EE
+4A
+F6
+22
+53 04 0F
+EB
+24 data8(_Screen;)
+FB
+ED
+2B
+F8
+E5 data8(_wscr_PARM_3;)
+C4
+54 F0
+FA
+74 70
+5A
+42 04
+74 80
+55 data8(_wscr_PARM_3;)
+4C
+F6
+22
+E5 82
+FA
+C3
+13
+75 F0 18
+A4
+24 data8(_Screen;)
+FB
+E5 data8(_rscr_PARM_2;)
+2B
+F8
+86 03
+EA
+30 E0 rel3(L003002?;)
+EB
+C4
+54 0F
+FB
+74 07
+5B
+FA
+EB
+30 E3 rel3(L003005?;)
+7B 80
+80 rel2(L003006?;)
+7B 00
+EB
+4A
+F5 82
+22
+C0 data8(bits;)
+C0 E0
+C0 F0
+C0 82
+C0 83
+C0 02
+C0 03
+C0 04
+C0 05
+C0 06
+C0 07
+C0 00
+C0 01
+C0 D0
+75 D0 00
+74 data8(__str_0;)
+C0 E0
+74 data8(__str_0;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+15 81
+15 81
+80 rel2(L004002?;)
+D0 D0
+D0 01
+D0 00
+D0 07
+D0 06
+D0 05
+D0 04
+D0 03
+D0 02
+D0 83
+D0 82
+D0 F0
+D0 E0
+D0 data8(bits;)
+32
+75 BD 00
+75 BF 00
+75 BE 30
+75 BD 03
+75 98 52
+75 91 00
+75 92 00
+C2 8C
+75 89 02
+75 8A A5
+75 8C A5
+D2 8C
+75 82 00
+22
+AA 82
+BA 0A rel3(L006006?;)
+10 99 rel3(L006017?;)
+80 rel2(L006001?;)
+75 99 0D
+10 99 rel3(L006018?;)
+80 rel2(L006006?;)
+8A 99
+22
+7A 00
+C3
+EA
+64 80
+94 98
+40 rel2(L007020?;)
+02 addr16(L007010?;)  
+7B 00
+C3
+EB
+64 80
+94 8F
+40 rel2(L007021?;)
+02 addr16(L007009?;)  
+8A data8(_rscr_PARM_2;)
+8B 82
+C0 02
+C0 03
+12 addr16(_rscr;)  
+E5 82
+D0 03
+D0 02
+54 80
+FC
+BC 80 rel3(L007022?;)
+80 rel2(L007023?;)
+02 addr16(L007005?;)  
+8A data8(_rscr_PARM_2;)
+8B 82
+C0 02
+C0 03
+12 addr16(_rscr;)  
+E5 82
+D0 03
+D0 02
+54 7F
+F5 data8(_wscr_PARM_3;)
+8A data8(_wscr_PARM_2;)
+8B 82
+C0 02
+C0 03
+12 addr16(_wscr;)  
+D0 03
+D0 02
+C2 D5
+75 F0 02
+EB
+30 E7 rel3(L007024?;)
+B2 D5
+F4
+04
+A4
+30 D5 rel3(L007025?;)
+F4
+24 01
+C5 F0
+F4
+34 00
+C5 F0
+24 01
+FC
+E4
+35 F0
+FD
+EA
+FE
+33
+95 E0
+FF
+0E
+BE 00 rel3(L007026?;)
+0F
+C0 02
+C0 03
+C0 04
+C0 05
+C0 06
+C0 07
+74 data8(__str_1;)
+C0 E0
+74 data8(__str_1;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+D0 03
+D0 02
+8A data8(_rscr_PARM_2;)
+8B 82
+C0 02
+C0 03
+12 addr16(_rscr;)  
+AC 82
+7D 00
+C0 04
+C0 05
+74 data8(__str_2;)
+C0 E0
+74 data8(__str_2;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FC
+F5 81
+D0 03
+D0 02
+0B
+02 addr16(L007003?;)  
+0A
+02 addr16(L007007?;)  
+74 data8(__str_3;)
+C0 E0
+74 data8(__str_3;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+15 81
+15 81
+22
+AA 82
+C3
+EA
+64 80
+94 8F
+40 rel2(L008002?;)
+7A 0E
+C3
+E5 data8(_blockDraw_PARM_2;)
+64 80
+94 98
+40 rel2(L008004?;)
+75 data8(_blockDraw_PARM_2;) 17
+85 data8(_blockDraw_PARM_2;) data8(_wscr_PARM_2;)
+74 80
+45 data8(_blockDraw_PARM_3;)
+F5 data8(_wscr_PARM_3;)
+8A 82
+02 addr16(_wscr;)  
+85 data8(_blockHit_PARM_2;) data8(_rscr_PARM_2;)
+12 addr16(_rscr;)  
+E5 82
+54 7F
+F5 82
+22
+AA 82
+E5 data8(_shapeDraw_PARM_3;)
+75 F0 0B
+A4
+FB
+24 data8(_Shapes;)
+FC
+E4
+34 data8(_Shapes;0x0008;>>;)
+FD
+74 03
+2C
+FC
+E4
+3D
+FD
+7E 00
+C3
+EE
+64 80
+94 84
+50 rel2(L010004?;)
+EB
+24 data8(_Shapes;)
+FF
+E4
+34 data8(_Shapes;0x0008;>>;)
+F8
+8F 82
+88 83
+A3
+A3
+E4
+93
+F5 data8(_blockDraw_PARM_3;)
+85 data8(_shapeDraw_PARM_2;) data8(_blockDraw_PARM_2;)
+8A 82
+C0 02
+C0 03
+C0 04
+C0 05
+C0 06
+12 addr16(_blockDraw;)  
+D0 06
+D0 05
+D0 04
+D0 03
+D0 02
+EE
+2E
+FF
+2C
+F5 82
+E4
+3D
+F5 83
+E4
+93
+2A
+FA
+EF
+2C
+FF
+E4
+3D
+F8
+8F 82
+88 83
+A3
+E4
+93
+FF
+25 data8(_shapeDraw_PARM_2;)
+F5 data8(_shapeDraw_PARM_2;)
+0E
+80 rel2(L010001?;)
+EB
+24 data8(_Shapes;)
+FB
+E4
+34 data8(_Shapes;0x0008;>>;)
+FC
+8B 82
+8C 83
+A3
+A3
+E4
+93
+F5 data8(_blockDraw_PARM_3;)
+85 data8(_shapeDraw_PARM_2;) data8(_blockDraw_PARM_2;)
+8A 82
+02 addr16(_blockDraw;)  
+AA 82
+E5 data8(_shapeErase_PARM_3;)
+75 F0 0B
+A4
+24 data8(_Shapes;)
+FB
+E4
+34 data8(_Shapes;0x0008;>>;)
+FC
+74 03
+2B
+FB
+E4
+3C
+FC
+7D 00
+C3
+ED
+64 80
+94 84
+50 rel2(L011004?;)
+85 data8(_shapeErase_PARM_2;) data8(_blockDraw_PARM_2;)
+75 data8(_blockDraw_PARM_3;) 00
+8A 82
+C0 02
+C0 03
+C0 04
+C0 05
+12 addr16(_blockDraw;)  
+D0 05
+D0 04
+D0 03
+D0 02
+ED
+2D
+FE
+2B
+F5 82
+E4
+3C
+F5 83
+E4
+93
+2A
+FA
+EE
+2B
+FE
+E4
+3C
+FF
+8E 82
+8F 83
+A3
+E4
+93
+FE
+25 data8(_shapeErase_PARM_2;)
+F5 data8(_shapeErase_PARM_2;)
+0D
+80 rel2(L011001?;)
+85 data8(_shapeErase_PARM_2;) data8(_blockDraw_PARM_2;)
+75 data8(_blockDraw_PARM_3;) 00
+8A 82
+02 addr16(_blockDraw;)  
+AA 82
+E5 data8(_shapeHit_PARM_3;)
+75 F0 0B
+A4
+24 data8(_Shapes;)
+FB
+E4
+34 data8(_Shapes;0x0008;>>;)
+FC
+74 03
+2B
+FB
+E4
+3C
+FC
+7D 00
+C3
+ED
+64 80
+94 84
+50 rel2(L012008?;)
+85 data8(_shapeHit_PARM_2;) data8(_blockHit_PARM_2;)
+8A 82
+C0 02
+C0 03
+C0 04
+C0 05
+12 addr16(_blockHit;)  
+E5 82
+D0 05
+D0 04
+D0 03
+D0 02
+60 rel2(L012002?;)
+75 82 01
+22
+ED
+2D
+FE
+2B
+F5 82
+E4
+3C
+F5 83
+E4
+93
+2A
+FA
+EE
+2B
+FE
+E4
+3C
+FF
+8E 82
+8F 83
+A3
+E4
+93
+FE
+25 data8(_shapeHit_PARM_2;)
+F5 data8(_shapeHit_PARM_2;)
+0D
+80 rel2(L012005?;)
+85 data8(_shapeHit_PARM_2;) data8(_blockHit_PARM_2;)
+8A 82
+12 addr16(_blockHit;)  
+E5 82
+60 rel2(L012004?;)
+75 82 01
+22
+75 82 00
+22
+7A 00
+BA 18 rel3(L013024?;)
+50 rel2(L013008?;)
+7B 01
+BB 0E rel3(L013026?;)
+50 rel2(L013004?;)
+8A data8(_wscr_PARM_2;)
+75 data8(_wscr_PARM_3;) 80
+8B 82
+C0 02
+C0 03
+12 addr16(_wscr;)  
+D0 03
+D0 02
+0B
+80 rel2(L013001?;)
+8A data8(_wscr_PARM_2;)
+75 data8(_wscr_PARM_3;) 84
+75 82 00
+C0 02
+12 addr16(_wscr;)  
+D0 02
+8A data8(_wscr_PARM_2;)
+75 data8(_wscr_PARM_3;) 84
+75 82 0E
+C0 02
+12 addr16(_wscr;)  
+D0 02
+0A
+80 rel2(L013005?;)
+7A 00
+BA 0F rel3(L013028?;)
+50 rel2(L013013?;)
+75 data8(_wscr_PARM_2;) 00
+75 data8(_wscr_PARM_3;) 84
+8A 82
+C0 02
+12 addr16(_wscr;)  
+D0 02
+75 data8(_wscr_PARM_2;) 17
+75 data8(_wscr_PARM_3;) 84
+8A 82
+C0 02
+12 addr16(_wscr;)  
+D0 02
+0A
+80 rel2(L013009?;)
+22
+7A 00
+7B 01
+C3
+EB
+64 80
+94 97
+50 rel2(L014020?;)
+7C 00
+7D 01
+C3
+ED
+64 80
+94 8E
+50 rel2(L014016?;)
+8B data8(_rscr_PARM_2;)
+8D 82
+C0 02
+C0 03
+C0 04
+C0 05
+12 addr16(_rscr;)  
+E5 82
+D0 05
+D0 04
+D0 03
+D0 02
+54 7F
+60 rel2(L014015?;)
+0C
+0D
+80 rel2(L014013?;)
+BC 0D rel3(L014019?;)
+8B data8(_wscr_PARM_2;)
+75 data8(_wscr_PARM_3;) 84
+75 82 00
+C0 02
+C0 03
+12 addr16(_wscr;)  
+D0 03
+D0 02
+0A
+05 data8(_Level;)
+E4
+B5 data8(_Level;) rel3(L014061?;)
+05 data8(_Level;0x0001;+;)
+0B
+80 rel2(L014017?;)
+EA
+70 rel2(L014006?;)
+22
+EA
+2A
+FA
+90 data16(_collapse_bonus_1_1;)  
+93
+CA
+A3
+93
+FB
+EA
+25 data8(_Score;)
+F5 data8(_Score;)
+EB
+35 data8(_Score;0x0001;+;)
+F5 data8(_Score;0x0001;+;)
+7A 16
+7B 16
+C3
+E4
+64 80
+8B F0
+63 F0 80
+95 F0
+40 rel2(L014063?;)
+02 addr16(L014032?;)  
+8A 04
+8C data8(_rscr_PARM_2;)
+75 82 00
+C0 03
+C0 04
+12 addr16(_rscr;)  
+E5 82
+D0 04
+D0 03
+30 E7 rel3(L014051?;)
+1C
+8C 02
+80 rel2(L014007?;)
+8C 02
+C3
+EC
+64 80
+94 81
+50 rel2(L014048?;)
+7C 01
+C3
+EC
+64 80
+94 8E
+50 rel2(L014031?;)
+8B data8(_wscr_PARM_2;)
+75 data8(_wscr_PARM_3;) 80
+8C 82
+C0 02
+C0 03
+C0 04
+12 addr16(_wscr;)  
+D0 04
+D0 03
+D0 02
+0C
+80 rel2(L014021?;)
+7C 01
+C3
+EC
+64 80
+94 8E
+50 rel2(L014031?;)
+8A data8(_rscr_PARM_2;)
+8C 82
+C0 02
+C0 03
+C0 04
+12 addr16(_rscr;)  
+E5 82
+D0 04
+D0 03
+F5 F0
+74 80
+45 F0
+F5 data8(_wscr_PARM_3;)
+8B data8(_wscr_PARM_2;)
+8C 82
+C0 03
+C0 04
+12 addr16(_wscr;)  
+D0 04
+D0 03
+D0 02
+0C
+80 rel2(L014025?;)
+1B
+1A
+02 addr16(L014029?;)  
+02 addr16(_refresh;)  
+20 98 rel3(L015002?;)
+75 82 00
+22
+C2 98
+85 99 82
+12 addr16(_islower;)  
+E5 82
+60 rel2(L015020?;)
+AA 99
+53 02 DF
+80 rel2(L015021?;)
+AA 99
+BA 2C rel3(L015038?;)
+80 rel2(L015010?;)
+BA 42 rel3(L015039?;)
+80 rel2(L015011?;)
+BA 49 rel3(L015040?;)
+80 rel2(L015008?;)
+BA 4A rel3(L015041?;)
+80 rel2(L015006?;)
+BA 4B rel3(L015042?;)
+80 rel2(L015004?;)
+BA 4C rel3(L015043?;)
+80 rel2(L015007?;)
+BA 4D rel3(L015044?;)
+80 rel2(L015010?;)
+BA 50 rel3(L015045?;)
+80 rel2(L015013?;)
+BA 51 rel3(L015046?;)
+80 rel2(L015003?;)
+BA 55 rel3(L015017?;)
+80 rel2(L015005?;)
+75 82 01
+22
+75 82 03
+22
+75 82 02
+22
+75 82 05
+22
+75 82 04
+22
+75 82 06
+22
+75 82 07
+22
+75 82 08
+22
+10 98 rel3(L015048?;)
+80 rel2(L015013?;)
+75 82 00
+22
+AA 82
+AB 83
+8A 04
+8B 05
+1A
+BA FF rel3(L016020?;)
+1B
+EC
+4D
+60 rel2(L016011?;)
+20 98 rel3(L016011?;)
+7C 00
+C3
+EC
+95 data8(_delay;)
+50 rel2(L016008?;)
+20 98 rel3(L016008?;)
+0C
+80 rel2(L016003?;)
+22
+74 data8(__str_4;)
+C0 E0
+74 data8(__str_4;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+15 81
+15 81
+12 00 1B
+22
+12 addr16(_init;)  
+74 data8(__str_5;)
+C0 E0
+74 data8(__str_5;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+15 81
+15 81
+74 20
+C0 E0
+E4
+C0 E0
+74 01
+C0 E0
+E4
+C0 E0
+74 data8(__str_6;)
+C0 E0
+74 data8(__str_6;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+74 20
+C0 E0
+E4
+C0 E0
+74 02
+C0 E0
+E4
+C0 E0
+74 data8(__str_7;)
+C0 E0
+74 data8(__str_7;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+74 20
+C0 E0
+E4
+C0 E0
+74 03
+C0 E0
+E4
+C0 E0
+74 data8(__str_8;)
+C0 E0
+74 data8(__str_8;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+74 20
+C0 E0
+E4
+C0 E0
+74 05
+C0 E0
+E4
+C0 E0
+74 data8(__str_9;)
+C0 E0
+74 data8(__str_9;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+74 20
+C0 E0
+E4
+C0 E0
+74 06
+C0 E0
+E4
+C0 E0
+74 data8(__str_10;)
+C0 E0
+74 data8(__str_10;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+12 addr16(_screenInit;)  
+12 addr16(_refresh;)  
+74 20
+C0 E0
+E4
+C0 E0
+74 08
+C0 E0
+E4
+C0 E0
+74 data8(__str_11;)
+C0 E0
+74 data8(__str_11;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+12 addr16(_getKey;)  
+AA 82
+BA 01 rel3(L018005?;)
+C0 02
+12 addr16(_exit;)  
+D0 02
+BA 08 rel3(L018004?;)
+12 addr16(_screenInit;)  
+75 data8(_Level;) 01
+E4
+F5 data8(_Level;0x0001;+;)
+E4
+F5 data8(_Score;)
+F5 data8(_Score;0x0001;+;)
+74 20
+C0 E0
+E4
+C0 E0
+74 08
+C0 E0
+E4
+C0 E0
+74 data8(__str_12;)
+C0 E0
+74 data8(__str_12;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+02 addr16(L018039?;)  
+7B 00
+AC data8(_main_Shape_1_1;)
+AD data8(_main_X_1_1;)
+AE data8(_main_Y_1_1;)
+C0 03
+C0 04
+C0 05
+C0 06
+12 addr16(_getKey;)  
+AA 82
+D0 06
+D0 05
+D0 04
+D0 03
+EA
+70 rel2(L018008?;)
+E5 data8(_main_Y_1_1;)
+04
+FE
+7B 01
+C3
+E5 data8(_Level;)
+94 2A
+E5 data8(_Level;0x0001;+;)
+94 00
+50 rel2(L018052?;)
+AF data8(_Level;)
+A8 data8(_Level;0x0001;+;)
+80 rel2(L018053?;)
+7F 2A
+78 00
+8F data8(__mulint_PARM_2;)
+88 data8(__mulint_PARM_2;0x0001;+;)
+90 00 32
+C0 02
+C0 03
+C0 04
+C0 05
+C0 06
+12 addr16(__mulint;)  
+AF 82
+A8 83
+74 C4
+C3
+9F
+F5 82
+74 09
+98
+F5 83
+12 addr16(_wastetime;)  
+D0 06
+D0 05
+D0 04
+D0 03
+D0 02
+30 98 rel3(L018010?;)
+C0 03
+C0 04
+C0 05
+C0 06
+12 addr16(_getKey;)  
+AA 82
+D0 06
+D0 05
+D0 04
+D0 03
+EA
+60 rel2(L018034?;)
+AE data8(_main_Y_1_1;)
+BA 01 rel3(L018084?;)
+02 addr16(L018049?;)  
+BA 03 rel3(L018031?;)
+E5 data8(_main_Shape_1_1;)
+75 F0 0B
+A4
+90 data16(_Shapes;)  
+93
+FC
+80 rel2(L018032?;)
+BA 02 rel3(L018028?;)
+E5 data8(_main_Shape_1_1;)
+75 F0 0B
+A4
+24 data8(_Shapes;)
+FF
+E4
+34 data8(_Shapes;0x0008;>>;)
+F8
+8F 82
+88 83
+A3
+E4
+93
+FC
+80 rel2(L018032?;)
+BA 05 rel3(L018025?;)
+E5 data8(_main_X_1_1;)
+60 rel2(L018032?;)
+E5 data8(_main_X_1_1;)
+14
+FD
+80 rel2(L018032?;)
+BA 04 rel3(L018022?;)
+C3
+E5 data8(_main_X_1_1;)
+64 80
+94 8E
+50 rel2(L018032?;)
+E5 data8(_main_X_1_1;)
+04
+FD
+80 rel2(L018032?;)
+BA 07 rel3(L018032?;)
+C3
+E5 data8(_main_Y_1_1;)
+64 80
+94 97
+50 rel2(L018032?;)
+E5 data8(_main_Y_1_1;)
+04
+FE
+7B 00
+ED
+B5 data8(_main_X_1_1;) rel3(L018036?;)
+EE
+B5 data8(_main_Y_1_1;) rel3(L018036?;)
+EC
+B5 data8(_main_Shape_1_1;) rel3(L018102?;)
+02 addr16(L018048?;)  
+85 data8(_main_Y_1_1;) data8(_shapeErase_PARM_2;)
+85 data8(_main_Shape_1_1;) data8(_shapeErase_PARM_3;)
+85 data8(_main_X_1_1;) 82
+C0 03
+C0 04
+C0 05
+C0 06
+12 addr16(_shapeErase;)  
+D0 06
+D0 05
+D0 04
+8E data8(_shapeHit_PARM_2;)
+8C data8(_shapeHit_PARM_3;)
+8D 82
+C0 04
+C0 05
+C0 06
+12 addr16(_shapeHit;)  
+E5 82
+D0 06
+D0 05
+D0 04
+D0 03
+70 rel2(L018045?;)
+8D data8(_main_X_1_1;)
+8E data8(_main_Y_1_1;)
+8C data8(_main_Shape_1_1;)
+02 addr16(L018046?;)  
+EB
+70 rel2(L018104?;)
+02 addr16(L018046?;)  
+85 data8(_main_Y_1_1;) data8(_shapeDraw_PARM_2;)
+85 data8(_main_Shape_1_1;) data8(_shapeDraw_PARM_3;)
+85 data8(_main_X_1_1;) 82
+12 addr16(_shapeDraw;)  
+75 data8(_main_Y_1_1;) 03
+75 data8(_main_X_1_1;) 07
+75 F0 13
+E5 8A
+84
+85 F0 data8(_main_Shape_1_1;)
+12 addr16(_collapse;)  
+75 data8(_shapeHit_PARM_2;) 03
+85 data8(_main_Shape_1_1;) data8(_shapeHit_PARM_3;)
+75 82 07
+12 addr16(_shapeHit;)  
+E5 82
+60 rel2(L018041?;)
+74 0A
+C0 E0
+E4
+C0 E0
+74 0C
+C0 E0
+E4
+C0 E0
+74 data8(__str_13;)
+C0 E0
+74 data8(__str_13;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 FA
+F5 81
+02 addr16(L018001?;)  
+E5 data8(_Level;)
+25 data8(_Score;)
+F5 data8(_Score;)
+E5 data8(_Level;0x0001;+;)
+35 data8(_Score;0x0001;+;)
+F5 data8(_Score;0x0001;+;)
+C0 data8(_Level;)
+C0 data8(_Level;0x0001;+;)
+74 20
+C0 E0
+E4
+C0 E0
+74 0F
+C0 E0
+E4
+C0 E0
+74 data8(__str_14;)
+C0 E0
+74 data8(__str_14;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 F8
+F5 81
+C0 data8(_Score;)
+C0 data8(_Score;0x0001;+;)
+74 20
+C0 E0
+E4
+C0 E0
+74 10
+C0 E0
+E4
+C0 E0
+74 data8(__str_15;)
+C0 E0
+74 data8(__str_15;0x0008;>>;)
+C0 E0
+12 addr16(_printf_tiny;)  
+E5 81
+24 F8
+F5 81
+85 data8(_main_Y_1_1;) data8(_shapeDraw_PARM_2;)
+85 data8(_main_Shape_1_1;) data8(_shapeDraw_PARM_3;)
+85 data8(_main_X_1_1;) 82
+12 addr16(_shapeDraw;)  
+12 addr16(_refresh;)  
+02 addr16(L018048?;)  
+02 addr16(_exit;)  
+</CODE>
+
+<CODE R_CSEG>
+</CODE>
+
+<CODE R_CONST>
+00
+00
+04
+00
+FF
+01
+00
+00
+01
+FF
+00
+02
+02
+02
+FF
+00
+01
+00
+01
+00
+01
+00
+01
+01
+02
+00
+FF
+00
+01
+00
+01
+00
+01
+04
+04
+06
+FF
+00
+01
+00
+00
+01
+01
+00
+03
+03
+06
+00
+FF
+00
+01
+FF
+00
+00
+01
+06
+06
+01
+01
+00
+FF
+00
+00
+01
+FF
+00
+05
+05
+01
+00
+FF
+00
+01
+01
+00
+00
+01
+08
+0A
+05
+01
+00
+FF
+00
+FF
+00
+00
+FF
+09
+07
+05
+00
+FF
+00
+01
+00
+01
+FF
+00
+0A
+08
+05
+FF
+00
+01
+00
+01
+00
+00
+01
+07
+09
+05
+00
+01
+00
+FF
+00
+FF
+01
+00
+0C
+0E
+03
+01
+00
+FF
+00
+FF
+00
+00
+01
+0D
+0B
+03
+00
+FF
+00
+01
+00
+01
+01
+00
+0E
+0C
+03
+FF
+00
+01
+00
+01
+00
+00
+FF
+0B
+0D
+03
+00
+01
+00
+FF
+00
+FF
+FF
+00
+10
+12
+07
+00
+FF
+00
+01
+FF
+00
+02
+00
+11
+0F
+07
+FF
+00
+01
+00
+00
+FF
+00
+02
+12
+10
+07
+00
+01
+00
+FF
+01
+00
+FE
+00
+0F
+11
+07
+01
+00
+FF
+00
+00
+01
+00
+FE
+4E 6F 74 20 72 75 6E 6E 69 6E 67 20 75 6E 64 65 72
+20 74 68 65 20 64 65 62 75 67 67 65 72 21 
+0A
+00
+1B
+5B 25 64 3B 25 64 48 
+00
+1B
+5B 33 25 64 6D 
+DB
+DB
+00
+1B
+5B 30 3B 33 30 3B 34 37 6D 
+00
+00
+00
+32
+00
+64
+00
+C8
+00
+90
+01
+1B
+5B 32 4A 
+1B
+5B 3F 32 35 68 
+1B
+5B 30 3B 33 30 3B 34 37 6D 
+00
+1B
+5B 32 4A 
+1B
+5B 3F 32 35 6C 
+00
+1B
+5B 25 64 3B 25 64 48 54 45 54 52 49 53 20 62 79 20
+41 6C 65 78 65 69 20 50 61 7A 68 69 74 6E 6F 76
+
+00
+1B
+5B 25 64 3B 25 64 48 4F 72 69 67 69 6E 61 6C 6C 79
+20 62 79 20 43 68 72 69 73 20 47 69 65 73 65 
+00
+1B
+5B 25 64 3B 25 64 48 38 30 35 32 2F 43 35 31 20 70
+6F 72 74 20 62 79 20 4A 65 73 75 73 20 43 61 6C
+76 69 6E 6F 2D 46 72 61 67 61 
+00
+1B
+5B 25 64 3B 25 64 48 
+27
+4B
+27
+3A 52 6F 74 61 74 65 2C 20 
+27
+50
+27
+3A 50 61 75 73 65 2C 20 
+27
+51
+27
+3A 51 75 69 74 
+00
+1B
+5B 25 64 3B 25 64 48 
+27
+4A
+27
+3A 4C 65 66 74 2C 20 
+27
+4C
+27
+3A 52 69 67 68 74 2C 20 
+27
+4D
+27
+3A 44 6F 77 6E 
+00
+1B
+5B 30 3B 33 30 3B 34 37 6D 
+1B
+5B 25 64 3B 25 64 48 50 72 65 73 73 20 
+27
+42
+27
+20 74 6F 20 62 65 67 69 6E 
+00
+1B
+5B 30 3B 33 30 3B 34 37 6D 
+1B
+5B 25 64 3B 25 64 48 
+1B
+5B 4B 
+00
+1B
+5B 30 3B 33 30 3B 34 37 6D 
+1B
+5B 25 64 3B 25 64 48 20 47 41 4D 45 20 4F 56 45 52
+20 
+00
+1B
+5B 25 64 3B 25 64 48 
+1B
+5B 4B 4C 65 76 65 6C 3A 20 25 75 
+00
+1B
+5B 25 64 3B 25 64 48 
+1B
+5B 4B 53 63 6F 72 65 3A 20 25 75 
+00
+</CODE>
+
+<CODE R_XINIT>
+</CODE>
+
+<CODE AT 001E>
+</CODE>

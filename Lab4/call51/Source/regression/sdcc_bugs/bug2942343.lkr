@@ -1,0 +1,6 @@
+path=C:\Source\call51\bin\..\lib\small
+lib=libc51.lib
+lib=libint.lib
+lib=liblong.lib
+lib=libfloat.lib
+obj=bug2942343.obj

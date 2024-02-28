@@ -1,0 +1,293 @@
+Modules linked:
+   'gcc-torture-execute-20041019-1' from 'gcc-torture-execute-20041019-1.obj'
+   'gptrget' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'moduint' from 'C:\Source\call51\bin\..\lib\small\libint.lib'
+   'bp' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'modsint' from 'C:\Source\call51\bin\..\lib\small\libint.lib'
+   'gptrput' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'divsint' from 'C:\Source\call51\bin\..\lib\small\libint.lib'
+   'crt0' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'putchar' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'divuint' from 'C:\Source\call51\bin\..\lib\small\libint.lib'
+
+Memory use per module linked:
+gcc-torture-execute-20041019-1: C:01132 D:025 I:006 B:000 X:00000
+            gptrget: C:00028 D:000 I:000 B:000 X:00000
+            moduint: C:00077 D:002 I:000 B:000 X:00000
+                 bp: C:00000 D:001 I:000 B:000 X:00000
+            modsint: C:00054 D:000 I:000 B:000 X:00000
+            gptrput: C:00025 D:001 I:000 B:000 X:00000
+            divsint: C:00056 D:000 I:000 B:000 X:00000
+               crt0: C:00113 D:000 I:000 B:000 X:00000
+            putchar: C:00021 D:000 I:000 B:000 X:00000
+            divuint: C:00041 D:002 I:000 B:000 X:00000
+           ABSOLUTE: C:00004 D:000 I:000 B:000 X:00000
+------------------------------------------------------
+             Totals: C:01551 D:031 I:006 B:000 X:00000
+
+INTERMAL RAM map (see legend below):
+00: 0 0 0 0 0 0 0 0 a b b b b b b b 
+10: b b b b b b c c c c c c c c c c 
+20: c c d d d d d d . . . . . . . . 
+30: . . . . . . . . . . . . . . . . 
+40: . . . . . . . . . . . . . . . . 
+50: . . . . . . . . . . . . . . . . 
+60: . . . . . . . . . . . . . . . . 
+70: . . . . . . . . . . . . . . . . 
+80: . . . . . . . . . . . . . . . . 
+90: . . . . . . . . . . . . . . . . 
+A0: . . . . . . . . . . . . . . . . 
+B0: . . . . . . . . . . . . . . . . 
+C0: . . . . . . . . . . . . . . . . 
+D0: . . . . . . . . . . . . . . . . 
+E0: . . . . . . . . . . . . . . . . 
+F0: . . . . . . . . . . . . . . . . 
+
+Legend:
+	0: Register bank 0
+	1: Register bank 1
+	2: Register bank 2
+	3: Register bank 3
+	B: bits (see 'BIT map' below)
+	a: bp:R_DSEG
+	b: gcc-torture-execute-20041019-1:R_DSEG
+	c: R_OSEG
+	d: R_ISEG
+
+BIT map:
+00: . . . . . . . . . . . . . . . . 
+10: . . . . . . . . . . . . . . . . 
+20: . . . . . . . . . . . . . . . . 
+30: . . . . . . . . . . . . . . . . 
+40: . . . . . . . . . . . . . . . . 
+50: . . . . . . . . . . . . . . . . 
+60: . . . . . . . . . . . . . . . . 
+70: . . . . . . . . . . . . . . . . 
+
+CODE usage map:
+0000: 256 256 256 256 256 256 015 000 000 000 000 000 000 000 000 000 
+1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 1551 bytes
+
+XDATA usage map:
+0000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+4000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+5000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+6000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+7000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+8000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+9000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+A000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+B000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+Total: 0 bytes
+
+Base Segments:
+   BIT_BANK=D:0000, size=0000
+   R_BSEG=B:0000, size=0000
+   R_CONST=C:0074, size=0113
+   R_CSEG=C:0192, size=047D
+   R_DINIT=C:0187, size=000A
+   R_DSEG=D:0000, size=000E
+   R_GSINIT=C:0003, size=0071
+   R_HOME=C:0000, size=0000
+   R_ISEG=I:0022, size=0006
+   R_IXSEG=X:0000, size=0000
+   R_OSEG=D:0016, size=000C
+   R_PSEG=X:0000, size=0000
+   R_XINIT=C:0000, size=0000
+   R_XSEG=X:0000, size=0000
+   rbank0=D:0000, size=0008
+
+Module Segments:
+   CSEG=C:0000, size=0004
+   bp:R_DSEG=D:0008, size=0001
+   crt0:R_GSINIT=C:0003, size=0071
+   divsint:R_CSEG=C:0599, size=0038
+   divuint:R_CSEG=C:05E6, size=0029
+   divuint:R_OSEG=D:0016, size=0002
+   gcc-torture-execute-20041019-1:R_CONST=C:0074, size=0113
+   gcc-torture-execute-20041019-1:R_CSEG=C:0192, size=034F
+   gcc-torture-execute-20041019-1:R_DINIT=C:0187, size=000A
+   gcc-torture-execute-20041019-1:R_DSEG=D:0009, size=000D
+   gcc-torture-execute-20041019-1:R_ISEG=I:0022, size=0006
+   gcc-torture-execute-20041019-1:R_OSEG=D:0016, size=000C
+   gptrget:R_CSEG=C:04E1, size=001C
+   gptrput:R_CSEG=C:0580, size=0019
+   gptrput:R_OSEG=D:0016, size=0001
+   modsint:R_CSEG=C:054A, size=0036
+   moduint:R_CSEG=C:04FD, size=004D
+   moduint:R_OSEG=D:0016, size=0002
+   putchar:R_CSEG=C:05D1, size=0015
+
+Public symbols:
+   _R_BSEG_size=L:0000
+   _R_BSEG_start=L:0000
+   _R_CONST_size=L:0113
+   _R_CONST_start=L:0074
+   _R_CSEG_size=L:047D
+   _R_CSEG_start=L:0192
+   _R_DINIT_size=L:000A
+   _R_DINIT_start=L:0187
+   _R_GSINIT_size=L:0071
+   _R_GSINIT_start=L:0003
+   _R_HOME_size=L:0000
+   _R_HOME_start=L:0000
+   _R_ISEG_size=L:0006
+   _R_ISEG_start=L:0000
+   _R_IXSEG_size=L:0000
+   _R_IXSEG_start=L:0000
+   _R_OSEG_size=L:000C
+   _R_OSEG_start=L:0016
+   _R_PSEG_size=L:0000
+   _R_PSEG_start=L:0000
+   _R_XINIT_size=L:0000
+   _R_XINIT_start=L:0000
+   _R_XSEG_size=L:0000
+   _R_XSEG_start=L:0000
+   ___fail=C:030F
+   ___fail_PARM_2=D:000D
+   ___fail_PARM_3=D:000F
+   ___fail_PARM_4=D:0011
+   ___getSuiteName=C:04DD
+   ___numCases=C:015C
+   ___numFailures=D:000B
+   ___numTests=D:0009
+   ___printf=C:024F
+   ___printn=C:01BF
+   ___prints=C:0192
+   ___runSuite=C:04D1
+   __c51_external_startup=C:0249
+   __divsint=C:0599
+   __divsint_PARM_2=D:0016
+   __divuint=C:05E6
+   __divuint_PARM_2=D:0016
+   __gptrget=C:04E1
+   __gptrput=C:0580
+   __gptrput_PARM_2=D:0016
+   __modsint=C:054A
+   __modsint_PARM_2=D:0016
+   __moduint=C:04FD
+   __moduint_PARM_2=D:0016
+   _bp=D:0008
+   _bp_R_DSEG_size=L:0001
+   _bp_R_DSEG_start=L:0008
+   _crt0=C:0003
+   _dummy_name_crt0=C:05D1
+   _ftest_store_ccp=C:03BD
+   _ftest_store_copy_prop=C:041E
+   _gcc-torture-execute-20041019-1_R_DSEG_size=L:000D
+   _gcc-torture-execute-20041019-1_R_DSEG_start=L:0009
+   _main=C:0358
+   _putchar=C:05D1
+   _stack_start=L:0028
+   _testTortureExecute=C:0470
+
+Local symbols:
+   crt0:PClearLoop?done?=C:006C
+   crt0:PClearLoop?repeat?=C:005E
+   crt0:XClearLoop?done?=C:0054
+   crt0:XClearLoop?repeat?=C:0046
+   crt0:XInitLoop?done?=C:003C
+   crt0:XInitLoop?repeat?=C:001C
+   crt0:__c51_init_data=C:0010
+   crt0:__c51_program_startup=C:006F
+   crt0:forever?home?=C:0072
+   divsint:__divsint_dummy=C:0599
+   divsint:a_not_negative=C:05AD
+   divsint:b_not_negative=C:05BF
+   divsint:not_negative=C:05D0
+   divuint:__divuint_dummy=C:05E6
+   divuint:loop=C:05EB
+   divuint:smaller=C:060C
+   gcc-torture-execute-20041019-1:L002001?=C:0198
+   gcc-torture-execute-20041019-1:L002009?=C:01A7
+   gcc-torture-execute-20041019-1:L003003?=C:01E6
+   gcc-torture-execute-20041019-1:L003007?=C:023C
+   gcc-torture-execute-20041019-1:L003009?=C:01CF
+   gcc-torture-execute-20041019-1:L003016?=C:01E4
+   gcc-torture-execute-20041019-1:L003018?=C:022D
+   gcc-torture-execute-20041019-1:L003022?=C:01EE
+   gcc-torture-execute-20041019-1:L005001?=C:02B3
+   gcc-torture-execute-20041019-1:L005002?=C:02D1
+   gcc-torture-execute-20041019-1:L005003?=C:02E9
+   gcc-torture-execute-20041019-1:L005007?=C:02F5
+   gcc-torture-execute-20041019-1:L005008?=C:02FE
+   gcc-torture-execute-20041019-1:L005009?=C:0259
+   gcc-torture-execute-20041019-1:L005012?=C:030C
+   gcc-torture-execute-20041019-1:L005020?=C:0275
+   gcc-torture-execute-20041019-1:L005021?=C:027A
+   gcc-torture-execute-20041019-1:L005022?=C:027D
+   gcc-torture-execute-20041019-1:L005023?=C:02A9
+   gcc-torture-execute-20041019-1:L005024?=C:02AE
+   gcc-torture-execute-20041019-1:L005026?=C:0309
+   gcc-torture-execute-20041019-1:L006003?=C:0357
+   gcc-torture-execute-20041019-1:L008002?=C:03EC
+   gcc-torture-execute-20041019-1:L008005?=C:03D4
+   gcc-torture-execute-20041019-1:L008006?=C:03F2
+   gcc-torture-execute-20041019-1:L009002?=C:044D
+   gcc-torture-execute-20041019-1:L009005?=C:0435
+   gcc-torture-execute-20041019-1:L009006?=C:0453
+   gcc-torture-execute-20041019-1:L010002?=C:04A0
+   gcc-torture-execute-20041019-1:L010004?=C:04D0
+   gcc-torture-execute-20041019-1:L010011?=C:0488
+   gcc-torture-execute-20041019-1:L010014?=C:04B8
+   gcc-torture-execute-20041019-1:___fail_sloc0_1_0=D:0013
+   gcc-torture-execute-20041019-1:___printn_buf_2_54=I:0022
+   gcc-torture-execute-20041019-1:__str_0=C:0074
+   gcc-torture-execute-20041019-1:__str_1=C:0093
+   gcc-torture-execute-20041019-1:__str_2=C:00A4
+   gcc-torture-execute-20041019-1:__str_3=C:00DF
+   gcc-torture-execute-20041019-1:__str_4=C:00F0
+   gcc-torture-execute-20041019-1:__str_5=C:00F2
+   gcc-torture-execute-20041019-1:__str_6=C:0140
+   gcc-torture-execute-20041019-1:__str_7=C:015E
+   gcc-torture-execute-20041019-1:_ftest_store_ccp_a_1_73=D:0016
+   gcc-torture-execute-20041019-1:_ftest_store_ccp_b_1_73=D:0018
+   gcc-torture-execute-20041019-1:_ftest_store_ccp_c_1_73=D:001A
+   gcc-torture-execute-20041019-1:_ftest_store_copy_prop_a_1_75=D:001C
+   gcc-torture-execute-20041019-1:_ftest_store_copy_prop_b_1_75=D:001E
+   gcc-torture-execute-20041019-1:_ftest_store_copy_prop_c_1_75=D:0020
+   gptrget:codeptr?=C:04F8
+   gptrget:dataptrrestore?=C:04EF
+   gptrget:pdataptr?=C:04F5
+   gptrget:xdataptr?=C:04FB
+   gptrput:codeptr?=C:0593
+   gptrput:dataptrrestore?=C:058E
+   gptrput:pdataptr?=C:0594
+   gptrput:xdataptr?=C:0597
+   modsint:__modsint_dummy=C:054A
+   modsint:a_not_negative=C:055E
+   modsint:b_not_negative=C:056E
+   modsint:not_negative=C:057F
+   moduint:__moduint_dummy=C:04FD
+   moduint:div_by_0=C:0549
+   moduint:loop1=C:0505
+   moduint:loop2=C:052A
+   moduint:msbset=C:0522
+   moduint:smaller=C:053C
+   moduint:start=C:051F
+   putchar:L002001?=C:05D6
+   putchar:L002006?=C:05DE
+   putchar:L002017?=C:05DB
+   putchar:L002018?=C:05E3

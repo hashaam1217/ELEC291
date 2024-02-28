@@ -1,0 +1,842 @@
+<MODULE>
+p89v51rd2
+</MODULE>
+
+<OPTC51>
+--model-small
+</OPTC51>
+
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0003,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,02A8,NO
+rbank0,data,0000,OV
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0001,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,0318,NO
+</SEGMENTS>
+
+<LOCALS>
+L009057?,R_CSEG,02A2,0000
+L009056?,R_CSEG,0211,0000
+L009055?,R_CSEG,0209,0000
+L009053?,R_CSEG,0166,0000
+L009052?,R_CSEG,00F6,0000
+_loadintelhex_errorprog_1_38,R_BSEG,0001,0001
+L006014?,R_CSEG,003E,0000
+L006013?,R_CSEG,0036,0000
+L009089?,R_CSEG,00D6,0000
+L009088?,R_CSEG,00D4,0000
+L010010?,R_CSEG,02B4,0000
+L009111?,R_CSEG,0296,0000
+L005008?,R_CSEG,002D,0000
+L005001?,R_CSEG,0028,0000
+L009014?,R_CSEG,01E0,0000
+L009013?,R_CSEG,01AB,0000
+L009011?,R_CSEG,01F7,0000
+L006004?,R_CSEG,0039,0000
+L006001?,R_CSEG,0031,0000
+L009025?,R_CSEG,0234,0000
+L009022?,R_CSEG,0229,0000
+L009037?,R_CSEG,025B,0000
+L009035?,R_CSEG,023F,0000
+L009034?,R_CSEG,0105,0000
+_loadintelhex_errorbit_1_38,R_BSEG,0000,0001
+L010004?,R_CSEG,02D7,0000
+L010001?,R_CSEG,02B1,0000
+L009049?,R_CSEG,00C7,0000
+L007002?,R_CSEG,004C,0000
+L009045?,R_CSEG,028D,0000
+L009043?,R_CSEG,026A,0000
+L009041?,R_CSEG,0264,0000
+L009040?,R_CSEG,024D,0000
+L009105?,R_CSEG,0239,0000
+L009104?,R_CSEG,022E,0000
+L009101?,R_CSEG,020E,0000
+__str_0,R_CONST,022F,0000
+__str_1,R_CONST,0237,0000
+__str_2,R_CONST,024C,0000
+__str_3,R_CONST,025E,0000
+__str_4,R_CONST,026D,0000
+__str_5,R_CONST,0275,0000
+__str_6,R_CONST,0292,0000
+L008009?,R_CSEG,0066,0000
+L008005?,R_CSEG,00B0,0000
+L008002?,R_CSEG,0071,0000
+L009005?,R_CSEG,00DE,0000
+L009001?,R_CSEG,00D6,0000
+L009099?,R_CSEG,01DC,0000
+_loadintelhex_wroteat1b_1_38,R_BSEG,0002,0001
+L009094?,R_CSEG,0170,0000
+L009091?,R_CSEG,0110,0000
+L009090?,R_CSEG,00DB,0000
+_code_sfr,R_CSEG,0000,0000
+</LOCALS>
+
+<PUBLICS>
+_set_timer1_priority,R_CSEG,0312,0000
+_main,R_CSEG,0008,0000
+_restorePC,R_CSEG,02F6,0000
+_loadintelhex,R_CSEG,00B1,0000
+_sfrn,R_CONST,0000,0000
+_write_sfr,R_CSEG,02F2,0000
+_putnl,R_CSEG,0031,0000
+_read_sfr,R_CSEG,02A3,0000
+__sdcc_external_startup,R_CSEG,000C,0000
+_getchar,R_CSEG,0028,0000
+_bitn,R_CONST,014D,0000
+_asm_code_sfr,R_CSEG,0000,0000
+_FlashByte,R_CSEG,0042,0000
+_JumpToMonitor,R_CSEG,0318,0000
+_erasesector,R_CSEG,005A,0000
+_FlashByte_PARM_2,R_OSEG,0000,0001
+_cpuid,R_CSEG,0309,0000
+</PUBLICS>
+
+<EXTERNALS>
+_PC_save,any,0000,0000
+_getbytene,any,0000,0000
+_do_cmd,any,0000,0000
+_saved_jmp,any,0000,0000
+_saved_int,any,0000,0000
+_putsp,any,0000,0000
+_crt0,any,0000,0000
+</EXTERNALS>
+
+<CODE AT 0000>
+</CODE>
+
+<CODE R_HOME>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_CSEG>
+</CODE>
+
+<CODE AT E000>
+02 addr16(_crt0;)  
+</CODE>
+
+<CODE R_HOME>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_DINIT>
+</CODE>
+
+<CODE R_CSEG>
+85 82 FF
+22
+85 FF 82
+22
+02 addr16(_do_cmd;)  
+22
+75 A8 00
+C2 8E
+74 0F
+55 89
+44 20
+F5 89
+43 87 80
+75 8D FF
+D2 8E
+75 98 52
+75 82 00
+22
+10 98 rel3(L005008?;)
+80 rel2(L005001?;)
+85 99 82
+22
+10 99 rel3(L006013?;)
+80 rel2(L006001?;)
+75 99 0D
+10 99 rel3(L006014?;)
+80 rel2(L006004?;)
+75 99 0A
+22
+AA 82
+AB 83
+74 20
+2B
+50 rel2(L007002?;)
+22
+75 B1 00
+79 02
+E5 data8(_FlashByte_PARM_2;)
+12 1F F0
+75 B1 01
+22
+AA 82
+AB 83
+74 20
+2B
+50 rel2(L008009?;)
+02 addr16(L008002?;)  
+75 B1 00
+79 08
+12 1F F0
+75 B1 01
+C3
+EA
+94 80
+EB
+94 00
+50 rel2(L008005?;)
+75 data8(_FlashByte_PARM_2;) 02
+90 00 00
+12 addr16(_FlashByte;)  
+75 data8(_FlashByte_PARM_2;) E0
+90 00 01
+12 addr16(_FlashByte;)  
+75 data8(_FlashByte_PARM_2;) 00
+90 00 02
+12 addr16(_FlashByte;)  
+75 data8(_FlashByte_PARM_2;) 02
+90 00 1B
+12 addr16(_FlashByte;)  
+75 data8(_FlashByte_PARM_2;) E0
+90 00 1C
+12 addr16(_FlashByte;)  
+75 data8(_FlashByte_PARM_2;) 03
+90 00 1D
+02 addr16(_FlashByte;)  
+22
+90 data16(_saved_jmp;)  
+E4
+F0
+90 data16(_saved_int;)  
+F0
+90 data16(__str_0;)  
+75 F0 80
+12 addr16(_putsp;)  
+7A 00
+7B 00
+74 20
+2B
+40 rel2(L009052?;)
+EA
+70 rel2(L009088?;)
+EB
+54 07
+60 rel2(L009089?;)
+80 rel2(L009005?;)
+10 99 rel3(L009090?;)
+80 rel2(L009001?;)
+75 99 2E
+8A 82
+8B 83
+C0 02
+C0 03
+12 addr16(_erasesector;)  
+D0 03
+D0 02
+74 80
+2A
+FA
+E4
+3B
+FB
+80 rel2(L009049?;)
+90 data16(__str_1;)  
+75 F0 80
+12 addr16(_putsp;)  
+C2 bit(_loadintelhex_errorbit_1_38;)
+C2 bit(_loadintelhex_errorprog_1_38;)
+C2 bit(_loadintelhex_wroteat1b_1_38;)
+12 addr16(_getchar;)  
+AA 82
+BA 1B rel3(L009091?;)
+02 addr16(L009035?;)  
+BA 3A rel3(L009034?;)
+12 addr16(_getbytene;)  
+AB 82
+C0 03
+12 addr16(_getbytene;)  
+AC 82
+D0 03
+EC
+2B
+FE
+8C 05
+7C 00
+C0 03
+C0 04
+C0 05
+C0 06
+12 addr16(_getbytene;)  
+AA 82
+D0 06
+D0 05
+D0 04
+EA
+2E
+FE
+8A 07
+78 00
+EF
+2C
+FC
+E8
+3D
+FD
+C0 04
+C0 05
+C0 06
+12 addr16(_getbytene;)  
+AF 82
+D0 06
+D0 05
+D0 04
+D0 03
+EF
+2E
+FE
+78 00
+EB
+2C
+FB
+E8
+3D
+F8
+C3
+EC
+9B
+ED
+98
+40 rel2(L009094?;)
+02 addr16(L009056?;)  
+C0 03
+C0 04
+C0 05
+C0 06
+C0 07
+C0 00
+12 addr16(_getbytene;)  
+AA 82
+D0 00
+D0 07
+D0 06
+D0 05
+D0 04
+D0 03
+EA
+2E
+FE
+EF
+70 rel2(L009055?;)
+C3
+74 02
+9C
+E4
+9D
+50 rel2(L009014?;)
+C3
+EC
+94 1B
+ED
+94 00
+40 rel2(L009013?;)
+74 1D
+9C
+E4
+9D
+50 rel2(L009014?;)
+8A data8(_FlashByte_PARM_2;)
+8C 82
+8D 83
+C0 02
+C0 03
+C0 04
+C0 05
+C0 06
+C0 07
+C0 00
+12 addr16(_FlashByte;)  
+D0 00
+D0 07
+D0 06
+D0 05
+D0 04
+D0 03
+D0 02
+8C 82
+8D 83
+E4
+93
+F9
+B5 02 rel3(L009099?;)
+80 rel2(L009055?;)
+D2 bit(_loadintelhex_errorprog_1_38;)
+80 rel2(L009055?;)
+C3
+EC
+94 03
+ED
+94 00
+50 rel2(L009011?;)
+EC
+24 data8(_saved_jmp;)
+F5 82
+ED
+34 data8(_saved_jmp;0x0008;>>;)
+F5 83
+EA
+F0
+80 rel2(L009055?;)
+8C 01
+E9
+24 E5
+24 data8(_saved_int;)
+F5 82
+E4
+34 data8(_saved_int;0x0008;>>;)
+F5 83
+EA
+F0
+D2 bit(_loadintelhex_wroteat1b_1_38;)
+0C
+BC 00 rel3(L009101?;)
+0D
+02 addr16(L009053?;)  
+C0 06
+C0 07
+12 addr16(_getbytene;)  
+AA 82
+D0 07
+D0 06
+EA
+2E
+FE
+EF
+70 rel2(L009035?;)
+EE
+60 rel2(L009025?;)
+D2 bit(_loadintelhex_errorbit_1_38;)
+10 99 rel3(L009104?;)
+80 rel2(L009022?;)
+75 99 58
+02 addr16(L009034?;)  
+10 99 rel3(L009105?;)
+80 rel2(L009025?;)
+75 99 2E
+02 addr16(L009034?;)  
+30 bit(_loadintelhex_errorbit_1_38;) rel3(L009040?;)
+90 data16(__str_2;)  
+75 F0 80
+12 addr16(_putsp;)  
+80 rel2(L009041?;)
+30 bit(_loadintelhex_errorprog_1_38;) rel3(L009037?;)
+90 data16(__str_3;)  
+75 F0 80
+12 addr16(_putsp;)  
+80 rel2(L009041?;)
+90 data16(__str_4;)  
+75 F0 80
+12 addr16(_putsp;)  
+30 98 rel3(L009043?;)
+12 addr16(_getchar;)  
+90 data16(_saved_jmp;)  
+E0
+FA
+BA 02 rel3(L009045?;)
+90 data16(_saved_jmp;0x0002;+;)  
+E0
+F5 data8(_FlashByte_PARM_2;)
+90 DF FE
+12 addr16(_FlashByte;)  
+90 data16(_saved_jmp;0x0001;+;)  
+E0
+F5 data8(_FlashByte_PARM_2;)
+90 DF FF
+12 addr16(_FlashByte;)  
+12 addr16(_restorePC;)  
+90 data16(_saved_int;)  
+E0
+FA
+BA 02 rel3(L009111?;)
+22
+30 bit(_loadintelhex_wroteat1b_1_38;) rel3(L009057?;)
+90 data16(__str_5;)  
+75 F0 80
+02 addr16(_putsp;)  
+22
+AA 82
+90 DF 00
+C0 02
+12 addr16(_erasesector;)  
+D0 02
+7B 00
+BB 08 rel3(L010010?;)
+50 rel2(L010004?;)
+8B 04
+7D 00
+74 DF
+2D
+FD
+EB
+90 data16(_code_sfr;)  
+93
+F5 data8(_FlashByte_PARM_2;)
+8C 82
+8D 83
+C0 02
+C0 03
+12 addr16(_FlashByte;)  
+D0 03
+D0 02
+0B
+80 rel2(L010001?;)
+8A data8(_FlashByte_PARM_2;)
+90 DF 02
+C0 02
+12 addr16(_FlashByte;)  
+D0 02
+8A data8(_FlashByte_PARM_2;)
+90 DF 05
+12 addr16(_FlashByte;)  
+02 DF 04
+75 82 00
+22
+02 DF 00
+22
+90 DF FE
+E4
+93
+FA
+A3
+E4
+93
+FB
+90 data16(_PC_save;)  
+EA
+F0
+A3
+EB
+F0
+22
+90 data16(__str_6;)  
+75 F0 80
+02 addr16(_putsp;)  
+D2 BB
+43 B7 80
+22
+</CODE>
+
+<CODE AT 0000>
+02 E0 00
+</CODE>
+
+<CODE AT 001B>
+02 E0 03
+</CODE>
+
+<CODE AT DFFE>
+00
+00
+</CODE>
+
+<CODE R_CSEG>
+</CODE>
+
+<CODE R_CONST>
+80
+50 30 
+81
+53 50 
+82
+44 50 4C 
+83
+44 50 48 
+85
+57 44 54 44 
+86
+53 50 44 52 
+86
+53 50 44 41 54 
+87
+50 43 4F 4E 
+88
+54 43 4F 4E 
+89
+54 4D 4F 44 
+8A
+54 4C 30 
+8B
+54 4C 31 
+8C
+54 48 30 
+8D
+54 48 
+31
+8E
+41 55 58 52 
+90
+50 31 
+98
+53 43 4F 4E 
+99
+53 42 55 46 
+A0
+50 32 
+A2
+41 55 58 52 31 
+A8
+49 45 
+A9
+53 41 44 44 52 
+AA
+53 50 53 52 
+AA
+53 50 43 46 47 
+B0
+50 33 
+B1
+46 43 46 
+B6
+46 53 54 
+B7
+49 50 30 48 
+B8
+49 50 
+B9
+53 41 44 45 4E 
+C0
+57 44 54 43 
+C8
+54 32 43 4F 4E 
+C9
+54 32 4D 4F 44 
+CA
+52 43 41 50 32 4C 
+CB
+52 43 41 50 32 48 
+CC
+54 4C 32 
+CD
+54 48 32 
+D0
+50 53 57 
+D5
+53 50 43 
+52
+D5
+53 50 43 54 4C 
+D8
+43 43 4F 4E 
+D9
+43 4D 4F 44 
+DA
+43 43 41 50 4D 30 
+DB
+43 43 41 50 4D 31 
+DC
+43 43 41 50 4D 32 
+DD
+43 43 41 50 4D 33 
+DE
+43 43 41 50 4D 34 
+E0
+41 43 43 
+E0
+41
+E8
+49
+45 4E 31 
+E9
+43 4C 
+EA
+43 43 41 50 30 4C 
+EB
+43 43 41 50 31 4C 
+EC
+43 43 41 50 32 4C 
+ED
+43 43 41 50 33 4C 
+EE
+43 43 41 50 34 4C 
+F0
+42
+F7
+49 50 31 48 
+F8
+49 50 31 
+F9
+43 48 
+FA
+43 43 41 50 
+30 48 
+FB
+43 43 41 50 31 48 
+FC
+43 43 41 50 32 48 
+FD
+43 43 41 50 33 48 
+FE
+43 43 41 50 34 48 
+FF
+00
+00
+88
+49 54 30 
+89
+49 45 30 
+8A
+49 54 31 
+8B
+49 45 31 
+8C
+54 52 30 
+8D
+54 46 30 
+8E
+54 52 31 
+8F
+54 46 31 
+98
+52 49 
+99
+54 49 
+9A
+52 42 38 
+9B
+54 42 38 
+9C
+52 45 4E 
+9D
+53 4D 32 
+9E
+53 4D 31 
+9F
+53
+4D 30 
+A8
+45 58 30 
+A9
+45 54 30 
+AA
+45 58 31 
+AB
+45 54 31 
+AC
+45 53 
+AF
+45 41 
+B8
+50 58 30 
+B9
+50 54 30 
+BA
+50 58 31 
+BB
+50 54 31 
+BC
+50 53 
+BD
+50 54 32 
+D0
+50
+D1
+46 31 
+D2
+4F 56 
+D3
+52 53 30 
+D4
+52 53 31 
+D5
+46 30 
+D6
+41 43 
+D7
+43 59 
+C8
+43 50 5F 52 4C 32 
+C9
+43 5F 54 32 
+CA
+54 52 32 
+CB
+45 58 45 4E 32 
+CC
+54 43 4C 4B 
+CD
+52 43 4C 4B 
+CE
+45 58 46 32 
+CF
+54 46 32 
+AD
+45 54 32 
+DF
+43 46 
+DE
+43 52 
+DC
+43 43 46 34 
+DB
+43 43 46 33 
+DA
+43 43 46 32 
+D9
+43 43 46 31 
+D8
+43 43 46 30 
+AE
+45 43 
+EB
+45 42 4F 
+BE
+50 50 43 
+FB
+50 42 4F 
+FF
+00
+00
+45 72 61 73 69 6E 67 
+00
+0A
+53 65 6E 64 20 66 69 6C 65 20 6F 72 20 3C 45 73 63
+3E 
+0A
+00
+0A
+43 68 65 63 6B 73 75 6D 20 65 72 72 6F 72 21 
+0A
+00
+0A
+46 6C 61 73 68 20 65 72 72 6F 72 21 
+0A
+00
+0A
+44 6F 6E 65 2E 
+0A
+00
+57 41 52 4E 49 4E 47 3A 20 6D 69 73 73 69 6E 67 20
+54 69 6D 65 72 31 20 6A 6D 70 
+0A
+00
+50 6F 72 74 3A 20 50 38 39 56 35 31 52 44 32 20 56
+31 2E 31 
+0A
+00
+</CODE>
+
+<CODE R_XINIT>
+</CODE>
+
+<CODE AT E000>
+</CODE>

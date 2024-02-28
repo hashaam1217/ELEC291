@@ -1,0 +1,3134 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
+0000              4   ; This file was generated Mon Jan 07 19:38:35 2013
+0000              5   ;--------------------------------------------------------
+                  5   $name cmon51
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_ISEG    segment idata
+0000             13            R_OSEG    segment data overlay
+0000             14            BIT_BANK  segment data overlay
+0000             15            R_HOME    segment code
+0000             16            R_GSINIT  segment code
+0000             17            R_IXSEG   segment xdata
+0000             18            R_CONST   segment code
+0000             19            R_XINIT   segment code
+0000             20            R_DINIT   segment code
+0000             21   
+0000             22   ;--------------------------------------------------------
+0000             23   ; Public variables in this module
+0000             24   ;--------------------------------------------------------
+0000             25            public _fillmem_PARM_3
+0000             26            public _fillmem_PARM_2
+0000             27            public _maskbit
+0000             28            public _hexval
+0000             29            public _cmdlst
+0000             30            public _breakorstep
+0000             31            public _nlist
+0000             32            public _outwordnl
+0000             33            public _disp_regs
+0000             34            public _showreg
+0000             35            public _getwordn
+0000             36            public _cleanbuff
+0000             37            public _dispmem
+0000             38            public _modifymem
+0000             39            public _getbyte
+0000             40            public _getsn
+0000             41            public _clearline
+0000             42            public _trace_type
+0000             43            public _break_address
+0000             44            public _gostep
+0000             45            public _saved_int
+0000             46            public _saved_jmp
+0000             47            public _step_start
+0000             48            public _gotbreak
+0000             49            public _PC_save
+0000             50            public _SP_save
+0000             51            public _DPH_save
+0000             52            public _DPL_save
+0000             53            public _IE_save
+0000             54            public _B_save
+0000             55            public _PSW_save
+0000             56            public _A_save
+0000             57            public _br
+0000             58            public _iram_save
+0000             59            public _breakpoint
+0000             60            public _buff_hasdot
+0000             61            public _buff_haseq
+0000             62            public _keepediting
+0000             63            public _validbyte
+0000             64            public _showreg_PARM_2
+0000             65            public _dispmem_PARM_3
+0000             66            public _dispmem_PARM_2
+0000             67            public _modifymem_PARM_2
+0000             68            public _cursor
+0000             69            public _buff
+0000             70            public _putsp
+0000             71            public _chartohex
+0000             72            public _outbyte
+0000             73            public _outword
+0000             74            public _fillmem
+0000             75            public _getbytene
+0000             76            public _hitanykey
+0000             77            public _do_cmd
+0000             78   ;--------------------------------------------------------
+0000             79   ; Special Function Registers
+0000             80   ;--------------------------------------------------------
+0000             81   _P0             DATA 0x80
+0000             82   _SP             DATA 0x81
+0000             83   _DPL            DATA 0x82
+0000             84   _DPH            DATA 0x83
+0000             85   _PCON           DATA 0x87
+0000             86   _TCON           DATA 0x88
+0000             87   _TMOD           DATA 0x89
+0000             88   _TL0            DATA 0x8a
+0000             89   _TL1            DATA 0x8b
+0000             90   _TH0            DATA 0x8c
+0000             91   _TH1            DATA 0x8d
+0000             92   _P1             DATA 0x90
+0000             93   _SCON           DATA 0x98
+0000             94   _SBUF           DATA 0x99
+0000             95   _P2             DATA 0xa0
+0000             96   _IE             DATA 0xa8
+0000             97   _P3             DATA 0xb0
+0000             98   _IP             DATA 0xb8
+0000             99   _PSW            DATA 0xd0
+0000            100   _ACC            DATA 0xe0
+0000            101   _B              DATA 0xf0
+0000            102   ;--------------------------------------------------------
+0000            103   ; special function bits
+0000            104   ;--------------------------------------------------------
+0000            105   _P0_0           BIT 0x80
+0000            106   _P0_1           BIT 0x81
+0000            107   _P0_2           BIT 0x82
+0000            108   _P0_3           BIT 0x83
+0000            109   _P0_4           BIT 0x84
+0000            110   _P0_5           BIT 0x85
+0000            111   _P0_6           BIT 0x86
+0000            112   _P0_7           BIT 0x87
+0000            113   _IT0            BIT 0x88
+0000            114   _IE0            BIT 0x89
+0000            115   _IT1            BIT 0x8a
+0000            116   _IE1            BIT 0x8b
+0000            117   _TR0            BIT 0x8c
+0000            118   _TF0            BIT 0x8d
+0000            119   _TR1            BIT 0x8e
+0000            120   _TF1            BIT 0x8f
+0000            121   _P1_0           BIT 0x90
+0000            122   _P1_1           BIT 0x91
+0000            123   _P1_2           BIT 0x92
+0000            124   _P1_3           BIT 0x93
+0000            125   _P1_4           BIT 0x94
+0000            126   _P1_5           BIT 0x95
+0000            127   _P1_6           BIT 0x96
+0000            128   _P1_7           BIT 0x97
+0000            129   _RI             BIT 0x98
+0000            130   _TI             BIT 0x99
+0000            131   _RB8            BIT 0x9a
+0000            132   _TB8            BIT 0x9b
+0000            133   _REN            BIT 0x9c
+0000            134   _SM2            BIT 0x9d
+0000            135   _SM1            BIT 0x9e
+0000            136   _SM0            BIT 0x9f
+0000            137   _P2_0           BIT 0xa0
+0000            138   _P2_1           BIT 0xa1
+0000            139   _P2_2           BIT 0xa2
+0000            140   _P2_3           BIT 0xa3
+0000            141   _P2_4           BIT 0xa4
+0000            142   _P2_5           BIT 0xa5
+0000            143   _P2_6           BIT 0xa6
+0000            144   _P2_7           BIT 0xa7
+0000            145   _EX0            BIT 0xa8
+0000            146   _ET0            BIT 0xa9
+0000            147   _EX1            BIT 0xaa
+0000            148   _ET1            BIT 0xab
+0000            149   _ES             BIT 0xac
+0000            150   _EA             BIT 0xaf
+0000            151   _P3_0           BIT 0xb0
+0000            152   _P3_1           BIT 0xb1
+0000            153   _P3_2           BIT 0xb2
+0000            154   _P3_3           BIT 0xb3
+0000            155   _P3_4           BIT 0xb4
+0000            156   _P3_5           BIT 0xb5
+0000            157   _P3_6           BIT 0xb6
+0000            158   _P3_7           BIT 0xb7
+0000            159   _RXD            BIT 0xb0
+0000            160   _TXD            BIT 0xb1
+0000            161   _INT0           BIT 0xb2
+0000            162   _INT1           BIT 0xb3
+0000            163   _T0             BIT 0xb4
+0000            164   _T1             BIT 0xb5
+0000            165   _WR             BIT 0xb6
+0000            166   _RD             BIT 0xb7
+0000            167   _PX0            BIT 0xb8
+0000            168   _PT0            BIT 0xb9
+0000            169   _PX1            BIT 0xba
+0000            170   _PT1            BIT 0xbb
+0000            171   _PS             BIT 0xbc
+0000            172   _P              BIT 0xd0
+0000            173   _F1             BIT 0xd1
+0000            174   _OV             BIT 0xd2
+0000            175   _RS0            BIT 0xd3
+0000            176   _RS1            BIT 0xd4
+0000            177   _F0             BIT 0xd5
+0000            178   _AC             BIT 0xd6
+0000            179   _CY             BIT 0xd7
+0000            180   ;--------------------------------------------------------
+0000            181   ; overlayable register banks
+0000            182   ;--------------------------------------------------------
+0000            183            rbank0 segment data overlay
+0000            184   ;--------------------------------------------------------
+0000            185   ; internal ram data
+0000            186   ;--------------------------------------------------------
+0000            187            rseg R_DSEG
+0000            188   _buff:
+0000            189            ds 32
+0020            190   _cursor:
+0020            191            ds 1
+0021            192   _modifymem_PARM_2:
+0021            193            ds 1
+0022            194   _dispmem_PARM_2:
+0022            195            ds 2
+0024            196   _dispmem_PARM_3:
+0024            197            ds 1
+0025            198   _dispmem_begin_1_106:
+0025            199            ds 3
+0028            200   _dispmem_k_1_107:
+0028            201            ds 1
+0029            202   _showreg_PARM_2:
+0029            203            ds 1
+002A            204   _do_cmd_i_1_150:
+002A            205            ds 2
+002C            206   _do_cmd_j_1_150:
+002C            207            ds 2
+002E            208   _do_cmd_n_1_150:
+002E            209            ds 2
+0030            210   _do_cmd_q_1_150:
+0030            211            ds 2
+0032            212   _do_cmd_d_1_150:
+0032            213            ds 1
+0033            214   _do_cmd_y_1_150:
+0033            215            ds 1
+0034            216   _do_cmd_cmd_1_150:
+0034            217            ds 1
+0035            218   _do_cmd_sloc0_1_0:
+0035            219            ds 2
+0037            220   ;--------------------------------------------------------
+0037            221   ; overlayable items in internal ram 
+0037            222   ;--------------------------------------------------------
+0000            223            rseg    R_OSEG
+0000            224            rseg    R_OSEG
+0000            225            rseg    R_OSEG
+0000            226            rseg    R_OSEG
+0000            227   _fillmem_PARM_2:
+0000            228            ds 2
+0002            229   _fillmem_PARM_3:
+0002            230            ds 1
+0003            231            rseg    R_OSEG
+0003            232   _nlist_q_1_136:
+0003            233            ds 1
+0004            234   _nlist_sloc0_1_0:
+0004            235            ds 3
+0007            236   ;--------------------------------------------------------
+0007            237   ; indirectly addressable internal ram data
+0007            238   ;--------------------------------------------------------
+0000            239            rseg R_ISEG
+0000            240   ;--------------------------------------------------------
+0000            241   ; absolute internal ram data
+0000            242   ;--------------------------------------------------------
+0000            243            DSEG
+0000            244   ;--------------------------------------------------------
+0000            245   ; bit data
+0000            246   ;--------------------------------------------------------
+0000            247            rseg R_BSEG
+0000            248   _validbyte:
+0000            249            DBIT    1
+0001            250   _keepediting:
+0001            251            DBIT    1
+0002            252   _buff_haseq:
+0002            253            DBIT    1
+0003            254   _buff_hasdot:
+0003            255            DBIT    1
+0004            256   _breakpoint:
+0004            257            DBIT    1
+0005            258   ;--------------------------------------------------------
+0005            259   ; paged external ram data
+0005            260   ;--------------------------------------------------------
+0000            261            rseg R_XSEG
+0000            262   ;--------------------------------------------------------
+0000            263   ; external ram data
+0000            264   ;--------------------------------------------------------
+0000            265            rseg R_XSEG
+0000            266   _iram_save:
+0000            267            ds 128
+0080            268   _br:
+0080            269            ds 8
+0088            270   _A_save:
+0088            271            ds 1
+0089            272   _PSW_save:
+0089            273            ds 1
+008A            274   _B_save:
+008A            275            ds 1
+008B            276   _IE_save:
+008B            277            ds 1
+008C            278   _DPL_save:
+008C            279            ds 2
+008E            280   _DPH_save:
+008E            281            ds 2
+0090            282   _SP_save:
+0090            283            ds 1
+0091            284   _PC_save:
+0091            285            ds 2
+0093            286   _gotbreak:
+0093            287            ds 1
+0094            288   _step_start:
+0094            289            ds 2
+0096            290   _saved_jmp:
+0096            291            ds 3
+0099            292   _saved_int:
+0099            293            ds 3
+009C            294   _gostep:
+009C            295            ds 1
+009D            296   _break_address:
+009D            297            ds 2
+009F            298   _trace_type:
+009F            299            ds 1
+00A0            300   _getsn_buff2_1_63:
+00A0            301            ds 32
+00C0            302   _getsn_count2_1_63:
+00C0            303            ds 1
+00C1            304   ;--------------------------------------------------------
+00C1            305   ; absolute external ram data
+00C1            306   ;--------------------------------------------------------
+0000            307            XSEG
+0000            308   ;--------------------------------------------------------
+0000            309   ; external initialized ram data
+0000            310   ;--------------------------------------------------------
+0000            311            rseg R_IXSEG
+0000            312            rseg R_HOME
+0000            313            rseg R_GSINIT
+0000            314            rseg R_CSEG
+0000            315   ;--------------------------------------------------------
+0000            316   ; Interrupt vectors
+0000            317   ;--------------------------------------------------------
+0000            318   ;--------------------------------------------------------
+0000            319   ; global & static initialisations
+0000            320   ;--------------------------------------------------------
+0000            321            rseg R_HOME
+0000            322            rseg R_GSINIT
+0000            323            rseg R_GSINIT
+0000            324   ;--------------------------------------------------------
+0000            325   ; data variables initialization
+0000            326   ;--------------------------------------------------------
+0000            327            rseg R_DINIT
+0000            328            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            329   ;--------------------------------------------------------
+0000            330   ; code
+0000            331   ;--------------------------------------------------------
+0000            332            rseg R_CSEG
+0000            333   ;------------------------------------------------------------
+0000            334   ;Allocation info for local variables in function 'putsp'
+0000            335   ;------------------------------------------------------------
+0000            336   ;x                         Allocated to registers r2 r3 r4 
+0000            337   ;------------------------------------------------------------
+0000            338   ;        .\cmon51.c:58: void putsp(unsigned char * x)
+0000            339   ;        -----------------------------------------
+0000            340   ;         function putsp
+0000            341   ;        -----------------------------------------
+0000            342   _putsp:
+0000            343            using   0
+0000 AA82       344            mov     r2,dpl
+0002 AB83       345            mov     r3,dph
+0004 ACF0       346            mov     r4,b
+0006            347   ;        .\cmon51.c:60: while( ((*x)>0) && ((*x)<0x80) )
+0006            348   L002010?:
+0006 8A82       349            mov     dpl,r2
+0008 8B83       350            mov     dph,r3
+000A 8CF0       351            mov     b,r4
+000C 120100     352            lcall   __gptrget
+000F FD         353            mov     r5,a
+0010 6001       354            jz      L002013?
+0012 BD80B0     355            cjne    r5,#0x80,L002024?
+0015            356   L002024?:
+0015 5001       357            jnc     L002013?
+0017            358   ;        .\cmon51.c:62: if(*x==(unsigned char)'\n') putc('\r');
+0017 BD0AF0     359            cjne    r5,#0x0A,L002006?
+001A            360   L002001?:
+001A 109970     361            jbc     _TI,L002028?
+001D 8001       362            sjmp    L002001?
+001F            363   L002028?:
+001F 75990D     364            mov     _SBUF,#0x0D
+0022            365   ;        .\cmon51.c:63: putc(*x);
+0022            366   L002006?:
+0022 1099B0     367            jbc     _TI,L002029?
+0025 8001       368            sjmp    L002006?
+0027            369   L002029?:
+0027 8A82       370            mov     dpl,r2
+0029 8B83       371            mov     dph,r3
+002B 8CF0       372            mov     b,r4
+002D 120100     373            lcall   __gptrget
+0030 F599       374            mov     _SBUF,a
+0032 A3         375            inc     dptr
+0033 AA82       376            mov     r2,dpl
+0035 AB83       377            mov     r3,dph
+0037            378   ;        .\cmon51.c:64: x++;
+0037 8001       379            sjmp    L002010?
+0039            380   L002013?:
+0039 22         381            ret
+003A            382   ;------------------------------------------------------------
+003A            383   ;Allocation info for local variables in function 'clearline'
+003A            384   ;------------------------------------------------------------
+003A            385   ;j                         Allocated to registers r2 
+003A            386   ;------------------------------------------------------------
+003A            387   ;        .\cmon51.c:68: void clearline (void)
+003A            388   ;        -----------------------------------------
+003A            389   ;         function clearline
+003A            390   ;        -----------------------------------------
+003A            391   _clearline:
+003A            392   ;        .\cmon51.c:71: putc('\r');
+003A            393   L003001?:
+003A 109930     394            jbc     _TI,L003024?
+003D 8001       395            sjmp    L003001?
+003F            396   L003024?:
+003F 75990D     397            mov     _SBUF,#0x0D
+0042            398   ;        .\cmon51.c:72: for(j=0; j<79; j++) putc(' ');
+0042 7A00       399            mov     r2,#0x00
+0044            400   L003010?:
+0044 BA4FB0     401            cjne    r2,#0x4F,L003025?
+0047            402   L003025?:
+0047 5001       403            jnc     L003007?
+0049            404   L003004?:
+0049 109970     405            jbc     _TI,L003027?
+004C 8001       406            sjmp    L003004?
+004E            407   L003027?:
+004E 759920     408            mov     _SBUF,#0x20
+0051 0A         409            inc     r2
+0052            410   ;        .\cmon51.c:73: putc('\r');
+0052 8001       411            sjmp    L003010?
+0054            412   L003007?:
+0054 1099B0     413            jbc     _TI,L003028?
+0057 8001       414            sjmp    L003007?
+0059            415   L003028?:
+0059 75990D     416            mov     _SBUF,#0x0D
+005C 22         417            ret
+005D            418   ;------------------------------------------------------------
+005D            419   ;Allocation info for local variables in function 'getsn'
+005D            420   ;------------------------------------------------------------
+005D            421   ;c                         Allocated to registers r3 
+005D            422   ;count                     Allocated to registers r2 
+005D            423   ;buff2                     Allocated with name '_getsn_buff2_1_63'
+005D            424   ;count2                    Allocated with name '_getsn_count2_1_63'
+005D            425   ;------------------------------------------------------------
+005D            426   ;        .\cmon51.c:79: void getsn (void)
+005D            427   ;        -----------------------------------------
+005D            428   ;         function getsn
+005D            429   ;        -----------------------------------------
+005D            430   _getsn:
+005D            431   ;        .\cmon51.c:82: unsigned char count=0;
+005D 7A00       432            mov     r2,#0x00
+005F            433   ;        .\cmon51.c:84: volatile xdata unsigned char count2=0;
+005F 9066F0     434            mov     dptr,#_getsn_count2_1_63
+0062 E4         435            clr     a
+0063 F0         436            movx    @dptr,a
+0064            437   ;        .\cmon51.c:86: while (1)
+0064            438   L004024?:
+0064            439   ;        .\cmon51.c:88: c=getchar();
+0064 C002       440            push    ar2
+0066 120100     441            lcall   _getchar
+0069 AB82       442            mov     r3,dpl
+006B D002       443            pop     ar2
+006D            444   ;        .\cmon51.c:90: switch(c)
+006D BB0870     445            cjne    r3,#0x08,L004055?
+0070 8001       446            sjmp    L004001?
+0072            447   L004055?:
+0072 BB0AF0     448            cjne    r3,#0x0A,L004056?
+0075 8001       449            sjmp    L004005?
+0077            450   L004056?:
+0077 BB0D70     451            cjne    r3,#0x0D,L004057?
+007A 8001       452            sjmp    L004005?
+007C            453   L004057?:
+007C BB16B0     454            cjne    r3,#0x16,L004058?
+007F 8001       455            sjmp    L004008?
+0081            456   L004058?:
+0081 020100     457            ljmp    L004012?
+0084            458   ;        .\cmon51.c:92: case '\b': // backspace
+0084            459   L004001?:
+0084            460   ;        .\cmon51.c:93: if (count)
+0084 EA         461            mov     a,r2
+0085 6001       462            jz      L004024?
+0087            463   ;        .\cmon51.c:95: putsp("\b \b");
+0087 906E70     464            mov     dptr,#__str_0
+008A 75F080     465            mov     b,#0x80
+008D C002       466            push    ar2
+008F 120100     467            lcall   _putsp
+0092 D002       468            pop     ar2
+0094            469   ;        .\cmon51.c:96: buff[count--]=0;
+0094 8A04       470            mov     ar4,r2
+0096 1A         471            dec     r2
+0097 EC         472            mov     a,r4
+0098 24C0       473            add     a,#_buff
+009A F8         474            mov     r0,a
+009B 7600       475            mov     @r0,#0x00
+009D            476   ;        .\cmon51.c:98: break;
+009D            477   ;        .\cmon51.c:100: case '\r': // CR or LF
+009D 8001       478            sjmp    L004024?
+009F            479   L004005?:
+009F            480   ;        .\cmon51.c:101: putnl();
+009F C002       481            push    ar2
+00A1 120100     482            lcall   _putnl
+00A4 D002       483            pop     ar2
+00A6            484   ;        .\cmon51.c:102: buff[count]=0;
+00A6 EA         485            mov     a,r2
+00A7 24C0       486            add     a,#_buff
+00A9 F8         487            mov     r0,a
+00AA 7600       488            mov     @r0,#0x00
+00AC            489   ;        .\cmon51.c:103: if(count)
+00AC EA         490            mov     a,r2
+00AD 6001       491            jz      L004007?
+00AF            492   ;        .\cmon51.c:105: count2=count;
+00AF 9066F0     493            mov     dptr,#_getsn_count2_1_63
+00B2 EA         494            mov     a,r2
+00B3 F0         495            movx    @dptr,a
+00B4            496   ;        .\cmon51.c:106: for(c=0; c<=count; c++) buff2[c]=buff[c];
+00B4 7C00       497            mov     r4,#0x00
+00B6            498   L004026?:
+00B6 C3         499            clr     c
+00B7 EA         500            mov     a,r2
+00B8 9C         501            subb    a,r4
+00B9 4001       502            jc      L004007?
+00BB EC         503            mov     a,r4
+00BC 24A0       504            add     a,#_getsn_buff2_1_63
+00BE F582       505            mov     dpl,a
+00C0 E4         506            clr     a
+00C1 3466       507            addc    a,#(_getsn_buff2_1_63 >> 8)
+00C3 F583       508            mov     dph,a
+00C5 EC         509            mov     a,r4
+00C6 24C0       510            add     a,#_buff
+00C8 F8         511            mov     r0,a
+00C9 E6         512            mov     a,@r0
+00CA FD         513            mov     r5,a
+00CB F0         514            movx    @dptr,a
+00CC 0C         515            inc     r4
+00CD 8001       516            sjmp    L004026?
+00CF            517   L004007?:
+00CF            518   ;        .\cmon51.c:108: return;
+00CF            519   ;        .\cmon51.c:109: case 0x16: // <CTRL>+V
+00CF 22         520            ret
+00D0            521   L004008?:
+00D0            522   ;        .\cmon51.c:110: clearline();
+00D0 120100     523            lcall   _clearline
+00D3            524   ;        .\cmon51.c:111: count=count2;
+00D3 9066F0     525            mov     dptr,#_getsn_count2_1_63
+00D6 E0         526            movx    a,@dptr
+00D7 FA         527            mov     r2,a
+00D8            528   ;        .\cmon51.c:112: putsp("> ");
+00D8 906F70     529            mov     dptr,#__str_1
+00DB 75F080     530            mov     b,#0x80
+00DE C002       531            push    ar2
+00E0 120100     532            lcall   _putsp
+00E3 D002       533            pop     ar2
+00E5            534   ;        .\cmon51.c:113: for(c=0; c<=count; c++) {buff[c]=buff2[c]; putc(buff[c]);}
+00E5 7C00       535            mov     r4,#0x00
+00E7            536   L004030?:
+00E7 C3         537            clr     c
+00E8 EA         538            mov     a,r2
+00E9 9C         539            subb    a,r4
+00EA 5001       540            jnc     L004062?
+00EC 020100     541            ljmp    L004024?
+00EF            542   L004062?:
+00EF EC         543            mov     a,r4
+00F0 24C0       544            add     a,#_buff
+00F2 F8         545            mov     r0,a
+00F3 EC         546            mov     a,r4
+00F4 24A0       547            add     a,#_getsn_buff2_1_63
+00F6 F582       548            mov     dpl,a
+00F8 E4         549            clr     a
+00F9 3466       550            addc    a,#(_getsn_buff2_1_63 >> 8)
+00FB F583       551            mov     dph,a
+00FD E0         552            movx    a,@dptr
+00FE FD         553            mov     r5,a
+00FF F6         554            mov     @r0,a
+0100            555   L004009?:
+0100 109970     556            jbc     _TI,L004063?
+0103 8001       557            sjmp    L004009?
+0105            558   L004063?:
+0105 EC         559            mov     a,r4
+0106 24C0       560            add     a,#_buff
+0108 F8         561            mov     r0,a
+0109 8699       562            mov     _SBUF,@r0
+010B 0C         563            inc     r4
+010C            564   ;        .\cmon51.c:115: default:
+010C 8001       565            sjmp    L004030?
+010E            566   L004012?:
+010E            567   ;        .\cmon51.c:116: if(count<(BUFFSIZE-1))
+010E BA1FB0     568            cjne    r2,#0x1F,L004064?
+0111            569   L004064?:
+0111 5001       570            jnc     L004016?
+0113            571   ;        .\cmon51.c:118: buff[count++]=c;
+0113 8A04       572            mov     ar4,r2
+0115 0A         573            inc     r2
+0116 EC         574            mov     a,r4
+0117 24C0       575            add     a,#_buff
+0119 F8         576            mov     r0,a
+011A A603       577            mov     @r0,ar3
+011C            578   ;        .\cmon51.c:119: putc(c);
+011C            579   L004013?:
+011C 109970     580            jbc     _TI,L004066?
+011F 8001       581            sjmp    L004013?
+0121            582   L004066?:
+0121 8B99       583            mov     _SBUF,r3
+0123 020100     584            ljmp    L004024?
+0126            585   ;        .\cmon51.c:121: else putc('\a'); //Ding!
+0126            586   L004016?:
+0126 1099B0     587            jbc     _TI,L004067?
+0129 8001       588            sjmp    L004016?
+012B            589   L004067?:
+012B 759907     590            mov     _SBUF,#0x07
+012E            591   ;        .\cmon51.c:123: }
+012E 020100     592            ljmp    L004024?
+0131            593   ;------------------------------------------------------------
+0131            594   ;Allocation info for local variables in function 'chartohex'
+0131            595   ;------------------------------------------------------------
+0131            596   ;c                         Allocated to registers r2 
+0131            597   ;i                         Allocated to registers r2 
+0131            598   ;------------------------------------------------------------
+0131            599   ;        .\cmon51.c:127: unsigned char chartohex(char c)
+0131            600   ;        -----------------------------------------
+0131            601   ;         function chartohex
+0131            602   ;        -----------------------------------------
+0131            603   _chartohex:
+0131            604   ;        .\cmon51.c:130: i=toupper(c)-'0';
+0131 AA82       605            mov  r2,dpl
+0133 C002       606            push    ar2
+0135 120100     607            lcall   _islower
+0138 E582       608            mov     a,dpl
+013A D002       609            pop     ar2
+013C 6001       610            jz      L005005?
+013E 74DF       611            mov     a,#0xDF
+0140 5A         612            anl     a,r2
+0141 FB         613            mov     r3,a
+0142 8001       614            sjmp    L005006?
+0144            615   L005005?:
+0144 8A03       616            mov     ar3,r2
+0146            617   L005006?:
+0146 EB         618            mov     a,r3
+0147 24D0       619            add     a,#0xd0
+0149            620   ;        .\cmon51.c:131: if(i>9) i-=7; //letter from A to F
+0149 FA         621            mov  r2,a
+014A 24F6       622            add     a,#0xff - 0x09
+014C 5001       623            jnc     L005002?
+014E EA         624            mov     a,r2
+014F 24F9       625            add     a,#0xf9
+0151 FA         626            mov     r2,a
+0152            627   L005002?:
+0152            628   ;        .\cmon51.c:132: return i;
+0152 8A82       629            mov     dpl,r2
+0154 22         630            ret
+0155            631   ;------------------------------------------------------------
+0155            632   ;Allocation info for local variables in function 'outbyte'
+0155            633   ;------------------------------------------------------------
+0155            634   ;x                         Allocated to registers r2 
+0155            635   ;------------------------------------------------------------
+0155            636   ;        .\cmon51.c:135: void outbyte(unsigned char x)
+0155            637   ;        -----------------------------------------
+0155            638   ;         function outbyte
+0155            639   ;        -----------------------------------------
+0155            640   _outbyte:
+0155 AA82       641            mov     r2,dpl
+0157            642   ;        .\cmon51.c:137: putc(hexval[x/0x10]);
+0157            643   L006001?:
+0157 109930     644            jbc     _TI,L006013?
+015A 8001       645            sjmp    L006001?
+015C            646   L006013?:
+015C EA         647            mov     a,r2
+015D C4         648            swap    a
+015E 540F       649            anl     a,#0x0f
+0160 FB         650            mov     r3,a
+0161 9012B0     651            mov     dptr,#_hexval
+0164 93         652            movc    a,@a+dptr
+0165 F599       653            mov     _SBUF,a
+0167            654   ;        .\cmon51.c:138: putc(hexval[x&0xf]);
+0167            655   L006004?:
+0167 1099B0     656            jbc     _TI,L006014?
+016A 8001       657            sjmp    L006004?
+016C            658   L006014?:
+016C 740F       659            mov     a,#0x0F
+016E 5A         660            anl     a,r2
+016F 9012B0     661            mov     dptr,#_hexval
+0172 93         662            movc    a,@a+dptr
+0173 F599       663            mov     _SBUF,a
+0175 22         664            ret
+0176            665   ;------------------------------------------------------------
+0176            666   ;Allocation info for local variables in function 'outword'
+0176            667   ;------------------------------------------------------------
+0176            668   ;x                         Allocated to registers r2 r3 
+0176            669   ;------------------------------------------------------------
+0176            670   ;        .\cmon51.c:141: void outword(unsigned int x)
+0176            671   ;        -----------------------------------------
+0176            672   ;         function outword
+0176            673   ;        -----------------------------------------
+0176            674   _outword:
+0176 AA82       675            mov     r2,dpl
+0178 AB83       676            mov     r3,dph
+017A            677   ;        .\cmon51.c:143: outbyte(highof(x));
+017A 8B04       678            mov     ar4,r3
+017C 8C82       679            mov     dpl,r4
+017E C002       680            push    ar2
+0180 C003       681            push    ar3
+0182 120100     682            lcall   _outbyte
+0185 D003       683            pop     ar3
+0187 D002       684            pop     ar2
+0189            685   ;        .\cmon51.c:144: outbyte(lowof(x));
+0189 8A82       686            mov     dpl,r2
+018B 020100     687            ljmp    _outbyte
+018E            688   ;------------------------------------------------------------
+018E            689   ;Allocation info for local variables in function 'fillmem'
+018E            690   ;------------------------------------------------------------
+018E            691   ;len                       Allocated with name '_fillmem_PARM_2'
+018E            692   ;val                       Allocated with name '_fillmem_PARM_3'
+018E            693   ;begin                     Allocated to registers r2 r3 r4 
+018E            694   ;------------------------------------------------------------
+018E            695   ;        .\cmon51.c:148: void fillmem(unsigned char * begin,  unsigned int len, unsigned char val)
+018E            696   ;        -----------------------------------------
+018E            697   ;         function fillmem
+018E            698   ;        -----------------------------------------
+018E            699   _fillmem:
+018E AA82       700            mov     r2,dpl
+0190 AB83       701            mov     r3,dph
+0192 ACF0       702            mov     r4,b
+0194            703   ;        .\cmon51.c:150: while(len)
+0194 AD30       704            mov     r5,_fillmem_PARM_2
+0196 AE31       705            mov     r6,(_fillmem_PARM_2 + 1)
+0198            706   L008001?:
+0198 ED         707            mov     a,r5
+0199 4E         708            orl     a,r6
+019A 6001       709            jz      L008004?
+019C            710   ;        .\cmon51.c:152: *begin=val;
+019C 8A82       711            mov     dpl,r2
+019E 8B83       712            mov     dph,r3
+01A0 8CF0       713            mov     b,r4
+01A2 E5F0       714            mov     a,_fillmem_PARM_3
+01A4 120100     715            lcall   __gptrput
+01A7 A3         716            inc     dptr
+01A8 AA82       717            mov     r2,dpl
+01AA AB83       718            mov     r3,dph
+01AC            719   ;        .\cmon51.c:153: begin++;
+01AC            720   ;        .\cmon51.c:154: len--;
+01AC 1D         721            dec     r5
+01AD BDFFF0     722            cjne    r5,#0xff,L008001?
+01B0 1E         723            dec     r6
+01B1 8001       724            sjmp    L008001?
+01B3            725   L008004?:
+01B3 22         726            ret
+01B4            727   ;------------------------------------------------------------
+01B4            728   ;Allocation info for local variables in function 'getbytene'
+01B4            729   ;------------------------------------------------------------
+01B4            730   ;j                         Allocated to registers r2 
+01B4            731   ;------------------------------------------------------------
+01B4            732   ;        .\cmon51.c:159: unsigned char getbytene (void)
+01B4            733   ;        -----------------------------------------
+01B4            734   ;         function getbytene
+01B4            735   ;        -----------------------------------------
+01B4            736   _getbytene:
+01B4            737   ;        .\cmon51.c:163: j=chartohex(getchar());
+01B4 120100     738            lcall   _getchar
+01B7 120100     739            lcall   _chartohex
+01BA            740   ;        .\cmon51.c:164: return (j*0x10+chartohex(getchar()));
+01BA E582       741            mov     a,dpl
+01BC C4         742            swap    a
+01BD 54F0       743            anl     a,#0xf0
+01BF FA         744            mov     r2,a
+01C0 C002       745            push    ar2
+01C2 120100     746            lcall   _getchar
+01C5 120100     747            lcall   _chartohex
+01C8 AB82       748            mov     r3,dpl
+01CA D002       749            pop     ar2
+01CC EB         750            mov     a,r3
+01CD 2A         751            add     a,r2
+01CE F582       752            mov     dpl,a
+01D0 22         753            ret
+01D1            754   ;------------------------------------------------------------
+01D1            755   ;Allocation info for local variables in function 'getbyte'
+01D1            756   ;------------------------------------------------------------
+01D1            757   ;i                         Allocated to registers r5 
+01D1            758   ;j                         Allocated to registers r2 
+01D1            759   ;k                         Allocated to registers r3 
+01D1            760   ;------------------------------------------------------------
+01D1            761   ;        .\cmon51.c:168: unsigned char getbyte (void)
+01D1            762   ;        -----------------------------------------
+01D1            763   ;         function getbyte
+01D1            764   ;        -----------------------------------------
+01D1            765   _getbyte:
+01D1            766   ;        .\cmon51.c:170: unsigned char i, j=0, k;
+01D1 7A00       767            mov     r2,#0x00
+01D3            768   ;        .\cmon51.c:172: for (k=0; k<2; k++)
+01D3 7B00       769            mov     r3,#0x00
+01D5 7C00       770            mov     r4,#0x00
+01D7            771   L010014?:
+01D7 BC02F0     772            cjne    r4,#0x02,L010031?
+01DA            773   L010031?:
+01DA 4001       774            jc      L010032?
+01DC 020100     775            ljmp    L010017?
+01DF            776   L010032?:
+01DF            777   ;        .\cmon51.c:174: i=getchar();
+01DF C002       778            push    ar2
+01E1 C003       779            push    ar3
+01E3 C004       780            push    ar4
+01E5 120100     781            lcall   _getchar
+01E8 AD82       782            mov     r5,dpl
+01EA D004       783            pop     ar4
+01EC D003       784            pop     ar3
+01EE D002       785            pop     ar2
+01F0            786   ;        .\cmon51.c:175: putc(i==(unsigned char)' '?'x':i);
+01F0            787   L010001?:
+01F0 1099F0     788            jbc     _TI,L010033?
+01F3 8001       789            sjmp    L010001?
+01F5            790   L010033?:
+01F5 E4         791            clr     a
+01F6 BD2030     792            cjne    r5,#0x20,L010034?
+01F9 04         793            inc     a
+01FA            794   L010034?:
+01FA FE         795            mov     r6,a
+01FB 6001       796            jz      L010020?
+01FD 7F78       797            mov     r7,#0x78
+01FF 8001       798            sjmp    L010021?
+0201            799   L010020?:
+0201 8D07       800            mov     ar7,r5
+0203            801   L010021?:
+0203 8F99       802            mov     _SBUF,r7
+0205            803   ;        .\cmon51.c:176: if(!isxdigit(i))
+0205 8D82       804            mov     dpl,r5
+0207 C002       805            push    ar2
+0209 C003       806            push    ar3
+020B C004       807            push    ar4
+020D C005       808            push    ar5
+020F C006       809            push    ar6
+0211 120100     810            lcall   _isxdigit
+0214 E582       811            mov     a,dpl
+0216 D006       812            pop     ar6
+0218 D005       813            pop     ar5
+021A D004       814            pop     ar4
+021C D003       815            pop     ar3
+021E D002       816            pop     ar2
+0220 7001       817            jnz     L010013?
+0222            818   ;        .\cmon51.c:178: validbyte=0;
+0222 C230       819            clr     _validbyte
+0224            820   ;        .\cmon51.c:179: if(i==(unsigned char)' ')
+0224 EE         821            mov     a,r6
+0225 6001       822            jz      L010010?
+0227            823   ;        .\cmon51.c:181: keepediting=1;
+0227 D2F0       824            setb    _keepediting
+0229            825   ;        .\cmon51.c:182: if(k==0) putc('x');
+0229 EB         826            mov     a,r3
+022A 7001       827            jnz     L010011?
+022C            828   L010004?:
+022C 109930     829            jbc     _TI,L010040?
+022F 8001       830            sjmp    L010004?
+0231            831   L010040?:
+0231 759978     832            mov     _SBUF,#0x78
+0234 8001       833            sjmp    L010011?
+0236            834   L010010?:
+0236            835   ;        .\cmon51.c:184: else keepediting=0;
+0236 C2F0       836            clr     _keepediting
+0238            837   L010011?:
+0238            838   ;        .\cmon51.c:185: return j;
+0238 8A82       839            mov     dpl,r2
+023A 22         840            ret
+023B            841   L010013?:
+023B            842   ;        .\cmon51.c:187: j=j*0x10+chartohex(i);
+023B EA         843            mov     a,r2
+023C C4         844            swap    a
+023D 54F0       845            anl     a,#0xf0
+023F FE         846            mov     r6,a
+0240 8D82       847            mov     dpl,r5
+0242 C004       848            push    ar4
+0244 C006       849            push    ar6
+0246 120100     850            lcall   _chartohex
+0249 AD82       851            mov     r5,dpl
+024B D006       852            pop     ar6
+024D D004       853            pop     ar4
+024F ED         854            mov     a,r5
+0250 2E         855            add     a,r6
+0251 FA         856            mov     r2,a
+0252            857   ;        .\cmon51.c:172: for (k=0; k<2; k++)
+0252 0C         858            inc     r4
+0253 8C03       859            mov     ar3,r4
+0255 020100     860            ljmp    L010014?
+0258            861   L010017?:
+0258            862   ;        .\cmon51.c:189: keepediting=1;
+0258 D2F0       863            setb    _keepediting
+025A            864   ;        .\cmon51.c:190: validbyte=1;
+025A D230       865            setb    _validbyte
+025C            866   ;        .\cmon51.c:191: return j;
+025C 8A82       867            mov     dpl,r2
+025E 22         868            ret
+025F            869   ;------------------------------------------------------------
+025F            870   ;Allocation info for local variables in function 'modifymem'
+025F            871   ;------------------------------------------------------------
+025F            872   ;loc                       Allocated with name '_modifymem_PARM_2'
+025F            873   ;ptr                       Allocated to registers r2 r3 r4 
+025F            874   ;j                         Allocated to registers r6 
+025F            875   ;k                         Allocated to registers r5 
+025F            876   ;------------------------------------------------------------
+025F            877   ;        .\cmon51.c:195: void modifymem(unsigned char * ptr,  char loc)
+025F            878   ;        -----------------------------------------
+025F            879   ;         function modifymem
+025F            880   ;        -----------------------------------------
+025F            881   _modifymem:
+025F AA82       882            mov     r2,dpl
+0261 AB83       883            mov     r3,dph
+0263 ACF0       884            mov     r4,b
+0265            885   ;        .\cmon51.c:197: unsigned char j, k=0;
+0265 7D00       886            mov     r5,#0x00
+0267            887   ;        .\cmon51.c:199: while(1)
+0267            888   L011034?:
+0267            889   ;        .\cmon51.c:201: if(k==0)
+0267 ED         890            mov     a,r5
+0268 7001       891            jnz     L011016?
+026A            892   ;        .\cmon51.c:203: putnl();
+026A C002       893            push    ar2
+026C C003       894            push    ar3
+026E C004       895            push    ar4
+0270 C005       896            push    ar5
+0272 120100     897            lcall   _putnl
+0275 D005       898            pop     ar5
+0277 D004       899            pop     ar4
+0279 D003       900            pop     ar3
+027B D002       901            pop     ar2
+027D            902   ;        .\cmon51.c:204: putc(loc);
+027D            903   L011001?:
+027D 109930     904            jbc     _TI,L011059?
+0280 8001       905            sjmp    L011001?
+0282            906   L011059?:
+0282 AE40       907            mov     r6,_modifymem_PARM_2
+0284 8E99       908            mov     _SBUF,r6
+0286            909   ;        .\cmon51.c:205: putc(':');
+0286            910   L011004?:
+0286 1099B0     911            jbc     _TI,L011060?
+0289 8001       912            sjmp    L011004?
+028B            913   L011060?:
+028B 75993A     914            mov     _SBUF,#0x3A
+028E            915   ;        .\cmon51.c:206: if((loc=='D')||(loc=='I'))
+028E BE44F0     916            cjne    r6,#0x44,L011061?
+0291 8001       917            sjmp    L011007?
+0293            918   L011061?:
+0293 BE4970     919            cjne    r6,#0x49,L011008?
+0296            920   L011007?:
+0296            921   ;        .\cmon51.c:207: outbyte((unsigned char)ptr);
+0296 8A82       922            mov     dpl,r2
+0298 C002       923            push    ar2
+029A C003       924            push    ar3
+029C C004       925            push    ar4
+029E C005       926            push    ar5
+02A0 120100     927            lcall   _outbyte
+02A3 D005       928            pop     ar5
+02A5 D004       929            pop     ar4
+02A7 D003       930            pop     ar3
+02A9 D002       931            pop     ar2
+02AB 8001       932            sjmp    L011011?
+02AD            933   L011008?:
+02AD            934   ;        .\cmon51.c:209: outword((unsigned int)ptr);
+02AD 8A82       935            mov     dpl,r2
+02AF 8B83       936            mov     dph,r3
+02B1 C002       937            push    ar2
+02B3 C003       938            push    ar3
+02B5 C004       939            push    ar4
+02B7 C005       940            push    ar5
+02B9 120100     941            lcall   _outword
+02BC D005       942            pop     ar5
+02BE D004       943            pop     ar4
+02C0 D003       944            pop     ar3
+02C2 D002       945            pop     ar2
+02C4            946   ;        .\cmon51.c:210: putc(':');
+02C4            947   L011011?:
+02C4 1099F0     948            jbc     _TI,L011064?
+02C7 8001       949            sjmp    L011011?
+02C9            950   L011064?:
+02C9 75993A     951            mov     _SBUF,#0x3A
+02CC            952   ;        .\cmon51.c:212: putc(' ');
+02CC            953   L011016?:
+02CC 109930     954            jbc     _TI,L011065?
+02CF 8001       955            sjmp    L011016?
+02D1            956   L011065?:
+02D1 759920     957            mov     _SBUF,#0x20
+02D4            958   ;        .\cmon51.c:213: outbyte(*ptr);
+02D4 8A82       959            mov     dpl,r2
+02D6 8B83       960            mov     dph,r3
+02D8 8CF0       961            mov     b,r4
+02DA 120100     962            lcall   __gptrget
+02DD F582       963            mov     dpl,a
+02DF C002       964            push    ar2
+02E1 C003       965            push    ar3
+02E3 C004       966            push    ar4
+02E5 C005       967            push    ar5
+02E7 120100     968            lcall   _outbyte
+02EA D005       969            pop     ar5
+02EC D004       970            pop     ar4
+02EE D003       971            pop     ar3
+02F0 D002       972            pop     ar2
+02F2            973   ;        .\cmon51.c:214: putc('.');
+02F2            974   L011019?:
+02F2 1099B0     975            jbc     _TI,L011066?
+02F5 8001       976            sjmp    L011019?
+02F7            977   L011066?:
+02F7 75992E     978            mov     _SBUF,#0x2E
+02FA            979   ;        .\cmon51.c:215: j=getbyte();
+02FA C002       980            push    ar2
+02FC C003       981            push    ar3
+02FE C004       982            push    ar4
+0300 C005       983            push    ar5
+0302 120100     984            lcall   _getbyte
+0305 AE82       985            mov     r6,dpl
+0307 D005       986            pop     ar5
+0309 D004       987            pop     ar4
+030B D003       988            pop     ar3
+030D D002       989            pop     ar2
+030F            990   ;        .\cmon51.c:216: if((!validbyte)&&(!keepediting)) break;
+030F 2030F0     991            jb      _validbyte,L011023?
+0312 30F030     992            jnb     _keepediting,L011035?
+0315            993   L011023?:
+0315            994   ;        .\cmon51.c:217: if(validbyte) *ptr=j;
+0315 303070     995            jnb     _validbyte,L011027?
+0318 8A82       996            mov     dpl,r2
+031A 8B83       997            mov     dph,r3
+031C 8CF0       998            mov     b,r4
+031E EE         999            mov     a,r6
+031F 120100    1000            lcall   __gptrput
+0322           1001   ;        .\cmon51.c:218: putc('\b');
+0322           1002   L011027?:
+0322 1099B0    1003            jbc     _TI,L011070?
+0325 8001      1004            sjmp    L011027?
+0327           1005   L011070?:
+0327 759908    1006            mov     _SBUF,#0x08
+032A           1007   ;        .\cmon51.c:219: putc('\b');
+032A           1008   L011030?:
+032A 109930    1009            jbc     _TI,L011071?
+032D 8001      1010            sjmp    L011030?
+032F           1011   L011071?:
+032F 759908    1012            mov     _SBUF,#0x08
+0332           1013   ;        .\cmon51.c:220: outbyte(*ptr);
+0332 8A82      1014            mov     dpl,r2
+0334 8B83      1015            mov     dph,r3
+0336 8CF0      1016            mov     b,r4
+0338 120100    1017            lcall   __gptrget
+033B FE        1018            mov     r6,a
+033C A3        1019            inc     dptr
+033D AA82      1020            mov     r2,dpl
+033F AB83      1021            mov     r3,dph
+0341 8E82      1022            mov     dpl,r6
+0343 C002      1023            push    ar2
+0345 C003      1024            push    ar3
+0347 C004      1025            push    ar4
+0349 C005      1026            push    ar5
+034B 120100    1027            lcall   _outbyte
+034E D005      1028            pop     ar5
+0350 D004      1029            pop     ar4
+0352 D003      1030            pop     ar3
+0354 D002      1031            pop     ar2
+0356           1032   ;        .\cmon51.c:221: ptr++;
+0356           1033   ;        .\cmon51.c:222: k++;
+0356 0D        1034            inc     r5
+0357           1035   ;        .\cmon51.c:223: k&=7;
+0357 530507    1036            anl     ar5,#0x07
+035A 020100    1037            ljmp    L011034?
+035D           1038   L011035?:
+035D           1039   ;        .\cmon51.c:225: putnl();
+035D 020100    1040            ljmp    _putnl
+0360           1041   ;------------------------------------------------------------
+0360           1042   ;Allocation info for local variables in function 'hitanykey'
+0360           1043   ;------------------------------------------------------------
+0360           1044   ;------------------------------------------------------------
+0360           1045   ;        .\cmon51.c:228: unsigned char hitanykey (void)
+0360           1046   ;        -----------------------------------------
+0360           1047   ;         function hitanykey
+0360           1048   ;        -----------------------------------------
+0360           1049   _hitanykey:
+0360           1050   ;        .\cmon51.c:230: putsp("<Space>=line <Enter>=page <ESC>=stop\r");
+0360 907D70    1051            mov     dptr,#__str_2
+0363 75F080    1052            mov     b,#0x80
+0366 120100    1053            lcall   _putsp
+0369           1054   ;        .\cmon51.c:231: while (!RI);
+0369           1055   L012001?:
+0369 3098B0    1056            jnb     _RI,L012001?
+036C           1057   ;        .\cmon51.c:232: clearline();
+036C 120100    1058            lcall   _clearline
+036F           1059   ;        .\cmon51.c:233: RI=0;
+036F C298      1060            clr     _RI
+0371           1061   ;        .\cmon51.c:234: return (SBUF);
+0371 859982    1062            mov     dpl,_SBUF
+0374 22        1063            ret
+0375           1064   ;------------------------------------------------------------
+0375           1065   ;Allocation info for local variables in function 'dispmem'
+0375           1066   ;------------------------------------------------------------
+0375           1067   ;len                       Allocated with name '_dispmem_PARM_2'
+0375           1068   ;loc                       Allocated with name '_dispmem_PARM_3'
+0375           1069   ;begin                     Allocated with name '_dispmem_begin_1_106'
+0375           1070   ;j                         Allocated to registers r6 r7 
+0375           1071   ;n                         Allocated to registers r2 
+0375           1072   ;i                         Allocated to registers r3 
+0375           1073   ;k                         Allocated with name '_dispmem_k_1_107'
+0375           1074   ;------------------------------------------------------------
+0375           1075   ;        .\cmon51.c:238: void dispmem(unsigned char * begin,  unsigned int len, char loc)
+0375           1076   ;        -----------------------------------------
+0375           1077   ;         function dispmem
+0375           1078   ;        -----------------------------------------
+0375           1079   _dispmem:
+0375 858250    1080            mov     _dispmem_begin_1_106,dpl
+0378 858351    1081            mov     (_dispmem_begin_1_106 + 1),dph
+037B 85F052    1082            mov     (_dispmem_begin_1_106 + 2),b
+037E           1083   ;        .\cmon51.c:241: unsigned char n, i, k=0;
+037E 75A000    1084            mov     _dispmem_k_1_107,#0x00
+0381           1085   ;        .\cmon51.c:243: if(len==0) len=0x80;
+0381 E5F0      1086            mov     a,_dispmem_PARM_2
+0383 45F1      1087            orl     a,(_dispmem_PARM_2 + 1)
+0385 7001      1088            jnz     L013002?
+0387 75F080    1089            mov     _dispmem_PARM_2,#0x80
+038A E4        1090            clr     a
+038B F5F1      1091            mov     (_dispmem_PARM_2 + 1),a
+038D           1092   L013002?:
+038D           1093   ;        .\cmon51.c:245: buff[16]=0;
+038D 75D000    1094            mov     (_buff + 0x0010),#0x00
+0390           1095   ;        .\cmon51.c:247: for(j=0; j<len; j++)
+0390 7E00      1096            mov     r6,#0x00
+0392 7F00      1097            mov     r7,#0x00
+0394           1098   L013033?:
+0394 C3        1099            clr     c
+0395 EE        1100            mov     a,r6
+0396 95F0      1101            subb    a,_dispmem_PARM_2
+0398 EF        1102            mov     a,r7
+0399 95F1      1103            subb    a,(_dispmem_PARM_2 + 1)
+039B 4001      1104            jc      L013061?
+039D 22        1105            ret
+039E           1106   L013061?:
+039E           1107   ;        .\cmon51.c:249: n=begin[j];
+039E EE        1108            mov     a,r6
+039F 2550      1109            add     a,_dispmem_begin_1_106
+03A1 FD        1110            mov     r5,a
+03A2 EF        1111            mov     a,r7
+03A3 3551      1112            addc    a,(_dispmem_begin_1_106 + 1)
+03A5 FA        1113            mov     r2,a
+03A6 AB52      1114            mov     r3,(_dispmem_begin_1_106 + 2)
+03A8 8D82      1115            mov     dpl,r5
+03AA 8A83      1116            mov     dph,r2
+03AC 8BF0      1117            mov     b,r3
+03AE 120100    1118            lcall   __gptrget
+03B1 FA        1119            mov     r2,a
+03B2           1120   ;        .\cmon51.c:250: i=j&0xf;
+03B2 740F      1121            mov     a,#0x0F
+03B4 5E        1122            anl     a,r6
+03B5           1123   ;        .\cmon51.c:252: if(i==0)
+03B5 FB        1124            mov     r3,a
+03B6 7C00      1125            mov     r4,#0x00
+03B8 7001      1126            jnz     L013014?
+03BA           1127   ;        .\cmon51.c:254: putc(loc);  //A letter to indicate Data, Xram, Code, Idata
+03BA           1128   L013003?:
+03BA 109930    1129            jbc     _TI,L013063?
+03BD 8001      1130            sjmp    L013003?
+03BF           1131   L013063?:
+03BF ACB0      1132            mov     r4,_dispmem_PARM_3
+03C1 8C99      1133            mov     _SBUF,r4
+03C3           1134   ;        .\cmon51.c:255: putc(':');
+03C3           1135   L013006?:
+03C3 1099B0    1136            jbc     _TI,L013064?
+03C6 8001      1137            sjmp    L013006?
+03C8           1138   L013064?:
+03C8 75993A    1139            mov     _SBUF,#0x3A
+03CB           1140   ;        .\cmon51.c:256: if((loc=='D')||(loc=='I'))
+03CB BC44F0    1141            cjne    r4,#0x44,L013065?
+03CE 8001      1142            sjmp    L013009?
+03D0           1143   L013065?:
+03D0 BC4970    1144            cjne    r4,#0x49,L013010?
+03D3           1145   L013009?:
+03D3           1146   ;        .\cmon51.c:257: outbyte((unsigned char)begin+j);
+03D3 AC50      1147            mov     r4,_dispmem_begin_1_106
+03D5 EE        1148            mov     a,r6
+03D6 2C        1149            add     a,r4
+03D7 F582      1150            mov     dpl,a
+03D9 C002      1151            push    ar2
+03DB C003      1152            push    ar3
+03DD C006      1153            push    ar6
+03DF C007      1154            push    ar7
+03E1 120100    1155            lcall   _outbyte
+03E4 D007      1156            pop     ar7
+03E6 D006      1157            pop     ar6
+03E8 D003      1158            pop     ar3
+03EA D002      1159            pop     ar2
+03EC 8001      1160            sjmp    L013011?
+03EE           1161   L013010?:
+03EE           1162   ;        .\cmon51.c:259: outword((unsigned int)begin+j);
+03EE AC50      1163            mov     r4,_dispmem_begin_1_106
+03F0 AD51      1164            mov     r5,(_dispmem_begin_1_106 + 1)
+03F2 EE        1165            mov     a,r6
+03F3 2C        1166            add     a,r4
+03F4 F582      1167            mov     dpl,a
+03F6 EF        1168            mov     a,r7
+03F7 3D        1169            addc    a,r5
+03F8 F583      1170            mov     dph,a
+03FA C002      1171            push    ar2
+03FC C003      1172            push    ar3
+03FE C006      1173            push    ar6
+0400 C007      1174            push    ar7
+0402 120100    1175            lcall   _outword
+0405 D007      1176            pop     ar7
+0407 D006      1177            pop     ar6
+0409 D003      1178            pop     ar3
+040B D002      1179            pop     ar2
+040D           1180   L013011?:
+040D           1181   ;        .\cmon51.c:260: putsp(":  ");
+040D 9080F0    1182            mov     dptr,#__str_3
+0410 75F080    1183            mov     b,#0x80
+0413 C002      1184            push    ar2
+0415 C003      1185            push    ar3
+0417 C006      1186            push    ar6
+0419 C007      1187            push    ar7
+041B 120100    1188            lcall   _putsp
+041E D007      1189            pop     ar7
+0420 D006      1190            pop     ar6
+0422 D003      1191            pop     ar3
+0424 D002      1192            pop     ar2
+0426           1193   L013014?:
+0426           1194   ;        .\cmon51.c:262: outbyte(n);
+0426 8A82      1195            mov     dpl,r2
+0428 C002      1196            push    ar2
+042A C003      1197            push    ar3
+042C C006      1198            push    ar6
+042E C007      1199            push    ar7
+0430 120100    1200            lcall   _outbyte
+0433 D007      1201            pop     ar7
+0435 D006      1202            pop     ar6
+0437 D003      1203            pop     ar3
+0439 D002      1204            pop     ar2
+043B           1205   ;        .\cmon51.c:263: putc(i==7?'-':' '); //A middle separator like the old good DOS debug
+043B           1206   L013015?:
+043B 109970    1207            jbc     _TI,L013068?
+043E 8001      1208            sjmp    L013015?
+0440           1209   L013068?:
+0440 BB07B0    1210            cjne    r3,#0x07,L013039?
+0443 7C2D      1211            mov     r4,#0x2D
+0445 8001      1212            sjmp    L013040?
+0447           1213   L013039?:
+0447 7C20      1214            mov     r4,#0x20
+0449           1215   L013040?:
+0449 8C99      1216            mov     _SBUF,r4
+044B           1217   ;        .\cmon51.c:265: if((n>0x20)&&(n<0x7f))
+044B EA        1218            mov     a,r2
+044C 24DF      1219            add     a,#0xff - 0x20
+044E 5001      1220            jnc     L013019?
+0450 BA7F70    1221            cjne    r2,#0x7F,L013072?
+0453           1222   L013072?:
+0453 5001      1223            jnc     L013019?
+0455           1224   ;        .\cmon51.c:266: buff[i]=n;
+0455 EB        1225            mov     a,r3
+0456 24C0      1226            add     a,#_buff
+0458 F8        1227            mov     r0,a
+0459 A602      1228            mov     @r0,ar2
+045B 8001      1229            sjmp    L013020?
+045D           1230   L013019?:
+045D           1231   ;        .\cmon51.c:268: buff[i]='.';
+045D EB        1232            mov     a,r3
+045E 24C0      1233            add     a,#_buff
+0460 F8        1234            mov     r0,a
+0461 762E      1235            mov     @r0,#0x2E
+0463           1236   L013020?:
+0463           1237   ;        .\cmon51.c:270: if(i==0xf)
+0463 BB0FF0    1238            cjne    r3,#0x0F,L013035?
+0466           1239   ;        .\cmon51.c:272: putsp("   ");
+0466 908330    1240            mov     dptr,#__str_4
+0469 75F080    1241            mov     b,#0x80
+046C C006      1242            push    ar6
+046E C007      1243            push    ar7
+0470 120100    1244            lcall   _putsp
+0473           1245   ;        .\cmon51.c:273: putsp(buff);
+0473 9048C0    1246            mov     dptr,#_buff
+0476 75F040    1247            mov     b,#0x40
+0479 120100    1248            lcall   _putsp
+047C           1249   ;        .\cmon51.c:274: putnl();
+047C 120100    1250            lcall   _putnl
+047F D007      1251            pop     ar7
+0481 D006      1252            pop     ar6
+0483           1253   ;        .\cmon51.c:275: if((++k==23) && (j<len))
+0483 05A0      1254            inc     _dispmem_k_1_107
+0485 7417      1255            mov     a,#0x17
+0487 B5A0F0    1256            cjne    a,_dispmem_k_1_107,L013035?
+048A C3        1257            clr     c
+048B EE        1258            mov     a,r6
+048C 95F0      1259            subb    a,_dispmem_PARM_2
+048E EF        1260            mov     a,r7
+048F 95F1      1261            subb    a,(_dispmem_PARM_2 + 1)
+0491 5001      1262            jnc     L013035?
+0493           1263   ;        .\cmon51.c:277: n=hitanykey();
+0493 C006      1264            push    ar6
+0495 C007      1265            push    ar7
+0497 120100    1266            lcall   _hitanykey
+049A AA82      1267            mov     r2,dpl
+049C D007      1268            pop     ar7
+049E D006      1269            pop     ar6
+04A0           1270   ;        .\cmon51.c:278: if (n==0x1b) break;
+04A0 BA1B70    1271            cjne    r2,#0x1B,L013079?
+04A3 22        1272            ret
+04A4           1273   L013079?:
+04A4           1274   ;        .\cmon51.c:279: else if (n==(unsigned char)' ') k--;
+04A4 BA20B0    1275            cjne    r2,#0x20,L013023?
+04A7 15A0      1276            dec     _dispmem_k_1_107
+04A9 8001      1277            sjmp    L013035?
+04AB           1278   L013023?:
+04AB           1279   ;        .\cmon51.c:280: else k=0;
+04AB 75A000    1280            mov     _dispmem_k_1_107,#0x00
+04AE           1281   L013035?:
+04AE           1282   ;        .\cmon51.c:247: for(j=0; j<len; j++)
+04AE 0E        1283            inc     r6
+04AF BE00F0    1284            cjne    r6,#0x00,L013082?
+04B2 0F        1285            inc     r7
+04B3           1286   L013082?:
+04B3 020100    1287            ljmp    L013033?
+04B6           1288   ;------------------------------------------------------------
+04B6           1289   ;Allocation info for local variables in function 'cleanbuff'
+04B6           1290   ;------------------------------------------------------------
+04B6           1291   ;j                         Allocated to registers r2 
+04B6           1292   ;k                         Allocated to registers r2 
+04B6           1293   ;------------------------------------------------------------
+04B6           1294   ;        .\cmon51.c:287: void cleanbuff (void)
+04B6           1295   ;        -----------------------------------------
+04B6           1296   ;         function cleanbuff
+04B6           1297   ;        -----------------------------------------
+04B6           1298   _cleanbuff:
+04B6           1299   ;        .\cmon51.c:291: buff_haseq=0;
+04B6 C2B0      1300            clr     _buff_haseq
+04B8           1301   ;        .\cmon51.c:292: buff_hasdot=0;
+04B8 C270      1302            clr     _buff_hasdot
+04BA           1303   ;        .\cmon51.c:295: for(j=0; j<BUFFSIZE; j++)
+04BA 7A00      1304            mov     r2,#0x00
+04BC           1305   L014013?:
+04BC BA2070    1306            cjne    r2,#0x20,L014044?
+04BF           1307   L014044?:
+04BF 5001      1308            jnc     L014016?
+04C1           1309   ;        .\cmon51.c:297: buff[j]=toupper(buff[j]);
+04C1 EA        1310            mov     a,r2
+04C2 24C0      1311            add     a,#_buff
+04C4 F8        1312            mov     r0,a
+04C5 8682      1313            mov     dpl,@r0
+04C7 C002      1314            push    ar2
+04C9 C000      1315            push    ar0
+04CB 120100    1316            lcall   _islower
+04CE E582      1317            mov     a,dpl
+04D0 D000      1318            pop     ar0
+04D2 D002      1319            pop     ar2
+04D4 6001      1320            jz      L014027?
+04D6 EA        1321            mov     a,r2
+04D7 24C0      1322            add     a,#_buff
+04D9 F9        1323            mov     r1,a
+04DA 8703      1324            mov     ar3,@r1
+04DC 5303DF    1325            anl     ar3,#0xDF
+04DF 8001      1326            sjmp    L014028?
+04E1           1327   L014027?:
+04E1 EA        1328            mov     a,r2
+04E2 24C0      1329            add     a,#_buff
+04E4 F9        1330            mov     r1,a
+04E5 8703      1331            mov     ar3,@r1
+04E7           1332   L014028?:
+04E7 A603      1333            mov     @r0,ar3
+04E9           1334   ;        .\cmon51.c:298: if(isspace(buff[j])) buff[j]=0;
+04E9 EA        1335            mov     a,r2
+04EA 24C0      1336            add     a,#_buff
+04EC F8        1337            mov     r0,a
+04ED 8682      1338            mov     dpl,@r0
+04EF C002      1339            push    ar2
+04F1 120100    1340            lcall   _isspace
+04F4 E582      1341            mov     a,dpl
+04F6 D002      1342            pop     ar2
+04F8 6001      1343            jz      L014002?
+04FA EA        1344            mov     a,r2
+04FB 24C0      1345            add     a,#_buff
+04FD F8        1346            mov     r0,a
+04FE 7600      1347            mov     @r0,#0x00
+0500           1348   L014002?:
+0500           1349   ;        .\cmon51.c:299: if(buff[j]=='=')
+0500 EA        1350            mov     a,r2
+0501 24C0      1351            add     a,#_buff
+0503 F8        1352            mov     r0,a
+0504 8603      1353            mov     ar3,@r0
+0506 BB3DF0    1354            cjne    r3,#0x3D,L014007?
+0509           1355   ;        .\cmon51.c:301: buff[j]=0;
+0509 7600      1356            mov     @r0,#0x00
+050B           1357   ;        .\cmon51.c:302: buff_haseq=1;
+050B D2B0      1358            setb    _buff_haseq
+050D 8001      1359            sjmp    L014015?
+050F           1360   L014007?:
+050F           1361   ;        .\cmon51.c:304: else if((buff[j]=='.')||(buff[j]=='_'))
+050F 8603      1362            mov     ar3,@r0
+0511 BB2E70    1363            cjne    r3,#0x2E,L014050?
+0514 8001      1364            sjmp    L014003?
+0516           1365   L014050?:
+0516 BB5F30    1366            cjne    r3,#0x5F,L014015?
+0519           1367   L014003?:
+0519           1368   ;        .\cmon51.c:306: buff[j]=0;
+0519 EA        1369            mov     a,r2
+051A 24C0      1370            add     a,#_buff
+051C F8        1371            mov     r0,a
+051D 7600      1372            mov     @r0,#0x00
+051F           1373   ;        .\cmon51.c:307: buff_hasdot=1;
+051F D270      1374            setb    _buff_hasdot
+0521           1375   L014015?:
+0521           1376   ;        .\cmon51.c:295: for(j=0; j<BUFFSIZE; j++)
+0521 0A        1377            inc     r2
+0522 8001      1378            sjmp    L014013?
+0524           1379   L014016?:
+0524           1380   ;        .\cmon51.c:312: for(j=0, k=0; j<BUFFSIZE; j++)
+0524 7A00      1381            mov     r2,#0x00
+0526 7B00      1382            mov     r3,#0x00
+0528           1383   L014017?:
+0528 BB2030    1384            cjne    r3,#0x20,L014053?
+052B           1385   L014053?:
+052B 5001      1386            jnc     L014040?
+052D           1387   ;        .\cmon51.c:314: buff[k]=buff[j];
+052D EA        1388            mov     a,r2
+052E 24C0      1389            add     a,#_buff
+0530 F8        1390            mov     r0,a
+0531 EB        1391            mov     a,r3
+0532 24C0      1392            add     a,#_buff
+0534 F9        1393            mov     r1,a
+0535 8704      1394            mov     ar4,@r1
+0537 A604      1395            mov     @r0,ar4
+0539           1396   ;        .\cmon51.c:315: if( ((buff[j]!=0)||(buff[j+1]!=0)) && buff[0]!=0) k++;
+0539 EC        1397            mov     a,r4
+053A 7001      1398            jnz     L014012?
+053C EB        1399            mov     a,r3
+053D 04        1400            inc     a
+053E 24C0      1401            add     a,#_buff
+0540 F8        1402            mov     r0,a
+0541 E6        1403            mov     a,@r0
+0542 6001      1404            jz      L014019?
+0544           1405   L014012?:
+0544 E5C0      1406            mov     a,_buff
+0546 6001      1407            jz      L014019?
+0548 0A        1408            inc     r2
+0549           1409   L014019?:
+0549           1410   ;        .\cmon51.c:312: for(j=0, k=0; j<BUFFSIZE; j++)
+0549 0B        1411            inc     r3
+054A 8001      1412            sjmp    L014017?
+054C           1413   L014040?:
+054C           1414   L014021?:
+054C           1415   ;        .\cmon51.c:317: for(; k<BUFFSIZE; k++) buff[k]=0;
+054C BA2070    1416            cjne    r2,#0x20,L014058?
+054F           1417   L014058?:
+054F 5001      1418            jnc     L014025?
+0551 EA        1419            mov     a,r2
+0552 24C0      1420            add     a,#_buff
+0554 F8        1421            mov     r0,a
+0555 7600      1422            mov     @r0,#0x00
+0557 0A        1423            inc     r2
+0558 8001      1424            sjmp    L014021?
+055A           1425   L014025?:
+055A 22        1426            ret
+055B           1427   ;------------------------------------------------------------
+055B           1428   ;Allocation info for local variables in function 'getwordn'
+055B           1429   ;------------------------------------------------------------
+055B           1430   ;word                      Allocated to registers r2 r3 
+055B           1431   ;------------------------------------------------------------
+055B           1432   ;        .\cmon51.c:321: unsigned int getwordn(void)
+055B           1433   ;        -----------------------------------------
+055B           1434   ;         function getwordn
+055B           1435   ;        -----------------------------------------
+055B           1436   _getwordn:
+055B           1437   ;        .\cmon51.c:323: unsigned int word=0;
+055B 7A00      1438            mov     r2,#0x00
+055D 7B00      1439            mov     r3,#0x00
+055F           1440   ;        .\cmon51.c:330: cursor++;
+055F           1441   L015003?:
+055F           1442   ;        .\cmon51.c:325: for( ; buff[cursor]!=0; cursor++)
+055F E580      1443            mov     a,_cursor
+0561 24C0      1444            add     a,#_buff
+0563 F8        1445            mov     r0,a
+0564 8604      1446            mov     ar4,@r0
+0566 BC0030    1447            cjne    r4,#0x00,L015012?
+0569 8001      1448            sjmp    L015006?
+056B           1449   L015012?:
+056B           1450   ;        .\cmon51.c:327: if(isxdigit(buff[cursor]))
+056B 8C82      1451            mov     dpl,r4
+056D C002      1452            push    ar2
+056F C003      1453            push    ar3
+0571 120100    1454            lcall   _isxdigit
+0574 E582      1455            mov     a,dpl
+0576 D003      1456            pop     ar3
+0578 D002      1457            pop     ar2
+057A 6001      1458            jz      L015005?
+057C           1459   ;        .\cmon51.c:328: word=(word*0x10)+chartohex(buff[cursor]);
+057C 8A04      1460            mov     ar4,r2
+057E EB        1461            mov     a,r3
+057F C4        1462            swap    a
+0580 54F0      1463            anl     a,#0xf0
+0582 CC        1464            xch     a,r4
+0583 C4        1465            swap    a
+0584 CC        1466            xch     a,r4
+0585 6C        1467            xrl     a,r4
+0586 CC        1468            xch     a,r4
+0587 54F0      1469            anl     a,#0xf0
+0589 CC        1470            xch     a,r4
+058A 6C        1471            xrl     a,r4
+058B FD        1472            mov     r5,a
+058C E580      1473            mov     a,_cursor
+058E 24C0      1474            add     a,#_buff
+0590 F8        1475            mov     r0,a
+0591 8682      1476            mov     dpl,@r0
+0593 C004      1477            push    ar4
+0595 C005      1478            push    ar5
+0597 120100    1479            lcall   _chartohex
+059A AE82      1480            mov     r6,dpl
+059C D005      1481            pop     ar5
+059E D004      1482            pop     ar4
+05A0 7F00      1483            mov     r7,#0x00
+05A2 EE        1484            mov     a,r6
+05A3 2C        1485            add     a,r4
+05A4 FA        1486            mov     r2,a
+05A5 EF        1487            mov     a,r7
+05A6 3D        1488            addc    a,r5
+05A7 FB        1489            mov     r3,a
+05A8           1490   L015005?:
+05A8           1491   ;        .\cmon51.c:325: for( ; buff[cursor]!=0; cursor++)
+05A8 0580      1492            inc     _cursor
+05AA 8001      1493            sjmp    L015003?
+05AC           1494   L015006?:
+05AC           1495   ;        .\cmon51.c:330: cursor++;
+05AC 0580      1496            inc     _cursor
+05AE           1497   ;        .\cmon51.c:331: return word;
+05AE 8A82      1498            mov     dpl,r2
+05B0 8B83      1499            mov     dph,r3
+05B2 22        1500            ret
+05B3           1501   ;------------------------------------------------------------
+05B3           1502   ;Allocation info for local variables in function 'showreg'
+05B3           1503   ;------------------------------------------------------------
+05B3           1504   ;val                       Allocated with name '_showreg_PARM_2'
+05B3           1505   ;name                      Allocated to registers r2 r3 r4 
+05B3           1506   ;------------------------------------------------------------
+05B3           1507   ;        .\cmon51.c:334: void showreg(char * name, unsigned char val)
+05B3           1508   ;        -----------------------------------------
+05B3           1509   ;         function showreg
+05B3           1510   ;        -----------------------------------------
+05B3           1511   _showreg:
+05B3           1512   ;        .\cmon51.c:336: putsp(name);
+05B3 120100    1513            lcall   _putsp
+05B6           1514   ;        .\cmon51.c:337: putc('=');
+05B6           1515   L016001?:
+05B6 109930    1516            jbc     _TI,L016018?
+05B9 8001      1517            sjmp    L016001?
+05BB           1518   L016018?:
+05BB 75993D    1519            mov     _SBUF,#0x3D
+05BE           1520   ;        .\cmon51.c:338: outbyte(val);
+05BE 857082    1521            mov     dpl,_showreg_PARM_2
+05C1 120100    1522            lcall   _outbyte
+05C4           1523   ;        .\cmon51.c:339: putc(' ');
+05C4           1524   L016004?:
+05C4 1099B0    1525            jbc     _TI,L016019?
+05C7 8001      1526            sjmp    L016004?
+05C9           1527   L016019?:
+05C9 759920    1528            mov     _SBUF,#0x20
+05CC           1529   ;        .\cmon51.c:340: putc(' ');
+05CC           1530   L016007?:
+05CC 109930    1531            jbc     _TI,L016020?
+05CF 8001      1532            sjmp    L016007?
+05D1           1533   L016020?:
+05D1 759920    1534            mov     _SBUF,#0x20
+05D4 22        1535            ret
+05D5           1536   ;------------------------------------------------------------
+05D5           1537   ;Allocation info for local variables in function 'disp_regs'
+05D5           1538   ;------------------------------------------------------------
+05D5           1539   ;j                         Allocated to registers r4 
+05D5           1540   ;bank                      Allocated to registers r2 
+05D5           1541   ;------------------------------------------------------------
+05D5           1542   ;        .\cmon51.c:343: void disp_regs(void)
+05D5           1543   ;        -----------------------------------------
+05D5           1544   ;         function disp_regs
+05D5           1545   ;        -----------------------------------------
+05D5           1546   _disp_regs:
+05D5           1547   ;        .\cmon51.c:347: putnl();
+05D5 120100    1548            lcall   _putnl
+05D8           1549   ;        .\cmon51.c:348: showreg("  A", A_save);
+05D8 904570    1550            mov     dptr,#_A_save
+05DB E0        1551            movx    a,@dptr
+05DC F570      1552            mov     _showreg_PARM_2,a
+05DE 908B70    1553            mov     dptr,#__str_5
+05E1 75F080    1554            mov     b,#0x80
+05E4 120100    1555            lcall   _showreg
+05E7           1556   ;        .\cmon51.c:349: showreg("  B", B_save);
+05E7 9044F0    1557            mov     dptr,#_B_save
+05EA E0        1558            movx    a,@dptr
+05EB F570      1559            mov     _showreg_PARM_2,a
+05ED 908BB0    1560            mov     dptr,#__str_6
+05F0 75F080    1561            mov     b,#0x80
+05F3 120100    1562            lcall   _showreg
+05F6           1563   ;        .\cmon51.c:350: showreg(" SP", SP_save);
+05F6 9043F0    1564            mov     dptr,#_SP_save
+05F9 E0        1565            movx    a,@dptr
+05FA F570      1566            mov     _showreg_PARM_2,a
+05FC 908BF0    1567            mov     dptr,#__str_7
+05FF 75F080    1568            mov     b,#0x80
+0602 120100    1569            lcall   _showreg
+0605           1570   ;        .\cmon51.c:351: showreg(" IE", IE_save);
+0605 9044B0    1571            mov     dptr,#_IE_save
+0608 E0        1572            movx    a,@dptr
+0609 F570      1573            mov     _showreg_PARM_2,a
+060B 908C30    1574            mov     dptr,#__str_8
+060E 75F080    1575            mov     b,#0x80
+0611 120100    1576            lcall   _showreg
+0614           1577   ;        .\cmon51.c:352: showreg("DPH", DPH_save);
+0614 904430    1578            mov     dptr,#_DPH_save
+0617 E0        1579            movx    a,@dptr
+0618 FA        1580            mov     r2,a
+0619 A3        1581            inc     dptr
+061A E0        1582            movx    a,@dptr
+061B 8A70      1583            mov     _showreg_PARM_2,r2
+061D 908C70    1584            mov     dptr,#__str_9
+0620 75F080    1585            mov     b,#0x80
+0623 120100    1586            lcall   _showreg
+0626           1587   ;        .\cmon51.c:353: showreg("DPL", DPL_save);
+0626 904470    1588            mov     dptr,#_DPL_save
+0629 E0        1589            movx    a,@dptr
+062A FA        1590            mov     r2,a
+062B A3        1591            inc     dptr
+062C E0        1592            movx    a,@dptr
+062D 8A70      1593            mov     _showreg_PARM_2,r2
+062F 908CB0    1594            mov     dptr,#__str_10
+0632 75F080    1595            mov     b,#0x80
+0635 120100    1596            lcall   _showreg
+0638           1597   ;        .\cmon51.c:354: showreg("PSW", PSW_save);
+0638 904530    1598            mov     dptr,#_PSW_save
+063B E0        1599            movx    a,@dptr
+063C F570      1600            mov     _showreg_PARM_2,a
+063E 908CF0    1601            mov     dptr,#__str_11
+0641 75F080    1602            mov     b,#0x80
+0644 120100    1603            lcall   _showreg
+0647           1604   ;        .\cmon51.c:355: putsp(" PC=");
+0647 908D30    1605            mov     dptr,#__str_12
+064A 75F080    1606            mov     b,#0x80
+064D 120100    1607            lcall   _putsp
+0650           1608   ;        .\cmon51.c:356: outword(PC_save);
+0650 9043B0    1609            mov     dptr,#_PC_save
+0653 E0        1610            movx    a,@dptr
+0654 FA        1611            mov     r2,a
+0655 A3        1612            inc     dptr
+0656 E0        1613            movx    a,@dptr
+0657 FB        1614            mov     r3,a
+0658 8A82      1615            mov     dpl,r2
+065A 8B83      1616            mov     dph,r3
+065C 120100    1617            lcall   _outword
+065F           1618   ;        .\cmon51.c:357: putnl();
+065F 120100    1619            lcall   _putnl
+0662           1620   ;        .\cmon51.c:359: bank=(PSW_save/0x8)&0x3;
+0662 904530    1621            mov     dptr,#_PSW_save
+0665 E0        1622            movx    a,@dptr
+0666 C4        1623            swap    a
+0667 23        1624            rl      a
+0668 541F      1625            anl     a,#0x1f
+066A FA        1626            mov     r2,a
+066B 530203    1627            anl     ar2,#0x03
+066E           1628   ;        .\cmon51.c:360: buff[0]=' ';
+066E 75C020    1629            mov     _buff,#0x20
+0671           1630   ;        .\cmon51.c:361: buff[1]='R';
+0671 75C152    1631            mov     (_buff + 0x0001),#0x52
+0674           1632   ;        .\cmon51.c:362: buff[3]=0;
+0674 75C300    1633            mov     (_buff + 0x0003),#0x00
+0677           1634   ;        .\cmon51.c:363: for(j=0; j<8; j++)
+0677 EA        1635            mov     a,r2
+0678 C4        1636            swap    a
+0679 03        1637            rr      a
+067A 54F8      1638            anl     a,#0xf8
+067C FB        1639            mov     r3,a
+067D 7C00      1640            mov     r4,#0x00
+067F           1641   L017004?:
+067F BC08B0    1642            cjne    r4,#0x08,L017015?
+0682           1643   L017015?:
+0682 5001      1644            jnc     L017007?
+0684           1645   ;        .\cmon51.c:365: buff[2]='0'+j;
+0684 7430      1646            mov     a,#0x30
+0686 2C        1647            add     a,r4
+0687 F5C2      1648            mov     (_buff + 0x0002),a
+0689           1649   ;        .\cmon51.c:366: showreg(buff, iram_save[j+bank*8]);
+0689 EB        1650            mov     a,r3
+068A 2C        1651            add     a,r4
+068B 24F0      1652            add     a,#_iram_save
+068D F582      1653            mov     dpl,a
+068F E4        1654            clr     a
+0690 3445      1655            addc    a,#(_iram_save >> 8)
+0692 F583      1656            mov     dph,a
+0694 E0        1657            movx    a,@dptr
+0695 F570      1658            mov     _showreg_PARM_2,a
+0697 9048C0    1659            mov     dptr,#_buff
+069A 75F040    1660            mov     b,#0x40
+069D C002      1661            push    ar2
+069F C003      1662            push    ar3
+06A1 C004      1663            push    ar4
+06A3 120100    1664            lcall   _showreg
+06A6 D004      1665            pop     ar4
+06A8 D003      1666            pop     ar3
+06AA D002      1667            pop     ar2
+06AC           1668   ;        .\cmon51.c:363: for(j=0; j<8; j++)
+06AC 0C        1669            inc     r4
+06AD 8001      1670            sjmp    L017004?
+06AF           1671   L017007?:
+06AF           1672   ;        .\cmon51.c:368: putsp(" BANK ");
+06AF 908E30    1673            mov     dptr,#__str_13
+06B2 75F080    1674            mov     b,#0x80
+06B5 C002      1675            push    ar2
+06B7 120100    1676            lcall   _putsp
+06BA D002      1677            pop     ar2
+06BC           1678   ;        .\cmon51.c:369: putc('0'+bank);
+06BC           1679   L017001?:
+06BC 1099B0    1680            jbc     _TI,L017017?
+06BF 8001      1681            sjmp    L017001?
+06C1           1682   L017017?:
+06C1 7430      1683            mov     a,#0x30
+06C3 2A        1684            add     a,r2
+06C4 F599      1685            mov     _SBUF,a
+06C6           1686   ;        .\cmon51.c:370: putnl();
+06C6 020100    1687            ljmp    _putnl
+06C9           1688   ;------------------------------------------------------------
+06C9           1689   ;Allocation info for local variables in function 'outwordnl'
+06C9           1690   ;------------------------------------------------------------
+06C9           1691   ;val                       Allocated to registers r2 r3 
+06C9           1692   ;------------------------------------------------------------
+06C9           1693   ;        .\cmon51.c:373: void outwordnl (unsigned int val)
+06C9           1694   ;        -----------------------------------------
+06C9           1695   ;         function outwordnl
+06C9           1696   ;        -----------------------------------------
+06C9           1697   _outwordnl:
+06C9           1698   ;        .\cmon51.c:375: outword(val);
+06C9 120100    1699            lcall   _outword
+06CC           1700   ;        .\cmon51.c:376: putnl();
+06CC 020100    1701            ljmp    _putnl
+06CF           1702   ;------------------------------------------------------------
+06CF           1703   ;Allocation info for local variables in function 'nlist'
+06CF           1704   ;------------------------------------------------------------
+06CF           1705   ;slist                     Allocated to registers r2 r3 r4 
+06CF           1706   ;x                         Allocated to registers r5 
+06CF           1707   ;q                         Allocated with name '_nlist_q_1_136'
+06CF           1708   ;sloc0                     Allocated with name '_nlist_sloc0_1_0'
+06CF           1709   ;------------------------------------------------------------
+06CF           1710   ;        .\cmon51.c:379: unsigned char nlist (unsigned char * slist)
+06CF           1711   ;        -----------------------------------------
+06CF           1712   ;         function nlist
+06CF           1713   ;        -----------------------------------------
+06CF           1714   _nlist:
+06CF AA82      1715            mov     r2,dpl
+06D1 AB83      1716            mov     r3,dph
+06D3 ACF0      1717            mov     r4,b
+06D5           1718   ;        .\cmon51.c:381: unsigned char x=0xff, q;
+06D5 7DFF      1719            mov     r5,#0xFF
+06D7           1720   ;        .\cmon51.c:383: while(*slist)
+06D7           1721   L019006?:
+06D7 8A82      1722            mov     dpl,r2
+06D9 8B83      1723            mov     dph,r3
+06DB 8CF0      1724            mov     b,r4
+06DD 120100    1725            lcall   __gptrget
+06E0 FE        1726            mov     r6,a
+06E1 6001      1727            jz      L019008?
+06E3           1728   ;        .\cmon51.c:385: if((*slist)>0x7f)
+06E3 EE        1729            mov     a,r6
+06E4 2480      1730            add     a,#0xff - 0x7F
+06E6 5001      1731            jnc     L019005?
+06E8           1732   ;        .\cmon51.c:387: x=*(slist++);
+06E8 8E05      1733            mov     ar5,r6
+06EA 0A        1734            inc     r2
+06EB BA00B0    1735            cjne    r2,#0x00,L019029?
+06EE 0B        1736            inc     r3
+06EF           1737   L019029?:
+06EF           1738   ;        .\cmon51.c:388: for(q=0; (*slist<=0x7f) && (*slist==(unsigned char)buff[q]) ; q++) slist++;
+06EF 8A50      1739            mov     _nlist_sloc0_1_0,r2
+06F1 8B51      1740            mov     (_nlist_sloc0_1_0 + 1),r3
+06F3 8C52      1741            mov     (_nlist_sloc0_1_0 + 2),r4
+06F5 750000    1742            mov     _nlist_q_1_136,#0x00
+06F8           1743   L019012?:
+06F8 855082    1744            mov     dpl,_nlist_sloc0_1_0
+06FB 855183    1745            mov     dph,(_nlist_sloc0_1_0 + 1)
+06FE 8552F0    1746            mov     b,(_nlist_sloc0_1_0 + 2)
+0701 120100    1747            lcall   __gptrget
+0704 FF        1748            mov  r7,a
+0705 2480      1749            add     a,#0xff - 0x7F
+0707 4001      1750            jc      L019026?
+0709 E500      1751            mov     a,_nlist_q_1_136
+070B 24C0      1752            add     a,#_buff
+070D F8        1753            mov     r0,a
+070E 8606      1754            mov     ar6,@r0
+0710 EF        1755            mov     a,r7
+0711 B50630    1756            cjne    a,ar6,L019026?
+0714 0550      1757            inc     _nlist_sloc0_1_0
+0716 E4        1758            clr     a
+0717 B55070    1759            cjne    a,_nlist_sloc0_1_0,L019033?
+071A 0551      1760            inc     (_nlist_sloc0_1_0 + 1)
+071C           1761   L019033?:
+071C 0500      1762            inc     _nlist_q_1_136
+071E 8001      1763            sjmp    L019012?
+0720           1764   L019026?:
+0720 AA50      1765            mov     r2,_nlist_sloc0_1_0
+0722 AB51      1766            mov     r3,(_nlist_sloc0_1_0 + 1)
+0724 AC52      1767            mov     r4,(_nlist_sloc0_1_0 + 2)
+0726           1768   ;        .\cmon51.c:389: if((*slist>0x7f)&&(buff[q]==0)) break;
+0726 855082    1769            mov     dpl,_nlist_sloc0_1_0
+0729 855183    1770            mov     dph,(_nlist_sloc0_1_0 + 1)
+072C 8552F0    1771            mov     b,(_nlist_sloc0_1_0 + 2)
+072F 120100    1772            lcall   __gptrget
+0732 FE        1773            mov  r6,a
+0733 2480      1774            add     a,#0xff - 0x7F
+0735 5001      1775            jnc     L019005?
+0737 E500      1776            mov     a,_nlist_q_1_136
+0739 24C0      1777            add     a,#_buff
+073B F8        1778            mov     r0,a
+073C E6        1779            mov     a,@r0
+073D 6001      1780            jz      L019008?
+073F           1781   L019005?:
+073F           1782   ;        .\cmon51.c:391: slist++;
+073F 0A        1783            inc     r2
+0740 BA00F0    1784            cjne    r2,#0x00,L019006?
+0743 0B        1785            inc     r3
+0744 8001      1786            sjmp    L019006?
+0746           1787   L019008?:
+0746           1788   ;        .\cmon51.c:393: if(*slist) return x;//Found one!
+0746 8A82      1789            mov     dpl,r2
+0748 8B83      1790            mov     dph,r3
+074A 8CF0      1791            mov     b,r4
+074C 120100    1792            lcall   __gptrget
+074F 6001      1793            jz      L019010?
+0751 8D82      1794            mov     dpl,r5
+0753           1795   ;        .\cmon51.c:394: return 0xff; //What if a sfr is located at 0xff?
+0753 22        1796            ret
+0754           1797   L019010?:
+0754 7582FF    1798            mov     dpl,#0xFF
+0757 22        1799            ret
+0758           1800   ;------------------------------------------------------------
+0758           1801   ;Allocation info for local variables in function 'breakorstep'
+0758           1802   ;------------------------------------------------------------
+0758           1803   ;n                         Allocated to registers r2 
+0758           1804   ;------------------------------------------------------------
+0758           1805   ;        .\cmon51.c:397: void breakorstep (void)
+0758           1806   ;        -----------------------------------------
+0758           1807   ;         function breakorstep
+0758           1808   ;        -----------------------------------------
+0758           1809   _breakorstep:
+0758           1810   ;        .\cmon51.c:401: gotbreak=0;
+0758 904370    1811            mov     dptr,#_gotbreak
+075B E4        1812            clr     a
+075C F0        1813            movx    @dptr,a
+075D           1814   ;        .\cmon51.c:402: breakpoint=0;
+075D C230      1815            clr     _breakpoint
+075F           1816   ;        .\cmon51.c:403: if (trace_type)
+075F 9041F0    1817            mov     dptr,#_trace_type
+0762 E0        1818            movx    a,@dptr
+0763 FA        1819            mov     r2,a
+0764 7001      1820            jnz     L020038?
+0766 020100    1821            ljmp    L020015?
+0769           1822   L020038?:
+0769           1823   ;        .\cmon51.c:405: if(trace_type==1) //Run in trace mode until a breapoint is hit
+0769 9041F0    1824            mov     dptr,#_trace_type
+076C E0        1825            movx    a,@dptr
+076D FA        1826            mov     r2,a
+076E BA0170    1827            cjne    r2,#0x01,L020004?
+0771           1828   ;        .\cmon51.c:407: for (n=0; n<4; n++)
+0771 7A00      1829            mov     r2,#0x00
+0773           1830   L020019?:
+0773 BA04F0    1831            cjne    r2,#0x04,L020041?
+0776           1832   L020041?:
+0776 5001      1833            jnc     L020004?
+0778           1834   ;        .\cmon51.c:409: if(br[n]==PC_save)
+0778 EA        1835            mov     a,r2
+0779 2A        1836            add     a,r2
+077A 24B0      1837            add     a,#_br
+077C F582      1838            mov     dpl,a
+077E E4        1839            clr     a
+077F 3445      1840            addc    a,#(_br >> 8)
+0781 F583      1841            mov     dph,a
+0783 E0        1842            movx    a,@dptr
+0784 FB        1843            mov     r3,a
+0785 A3        1844            inc     dptr
+0786 E0        1845            movx    a,@dptr
+0787 FC        1846            mov     r4,a
+0788 9043B0    1847            mov     dptr,#_PC_save
+078B E0        1848            movx    a,@dptr
+078C FD        1849            mov     r5,a
+078D A3        1850            inc     dptr
+078E E0        1851            movx    a,@dptr
+078F FE        1852            mov     r6,a
+0790 EB        1853            mov     a,r3
+0791 B50530    1854            cjne    a,ar5,L020021?
+0794 EC        1855            mov     a,r4
+0795 B50630    1856            cjne    a,ar6,L020021?
+0798           1857   ;        .\cmon51.c:411: breakpoint=1;
+0798 D230      1858            setb    _breakpoint
+079A           1859   L020021?:
+079A           1860   ;        .\cmon51.c:407: for (n=0; n<4; n++)
+079A 0A        1861            inc     r2
+079B 8001      1862            sjmp    L020019?
+079D           1863   L020004?:
+079D           1864   ;        .\cmon51.c:415: if ((break_address!=PC_save))
+079D 904230    1865            mov     dptr,#_break_address
+07A0 E0        1866            movx    a,@dptr
+07A1 FA        1867            mov     r2,a
+07A2 A3        1868            inc     dptr
+07A3 E0        1869            movx    a,@dptr
+07A4 FB        1870            mov     r3,a
+07A5 9043B0    1871            mov     dptr,#_PC_save
+07A8 E0        1872            movx    a,@dptr
+07A9 FC        1873            mov     r4,a
+07AA A3        1874            inc     dptr
+07AB E0        1875            movx    a,@dptr
+07AC FD        1876            mov     r5,a
+07AD EA        1877            mov     a,r2
+07AE B50470    1878            cjne    a,ar4,L020045?
+07B1 EB        1879            mov     a,r3
+07B2 B50570    1880            cjne    a,ar5,L020045?
+07B5 8001      1881            sjmp    L020015?
+07B7           1882   L020045?:
+07B7           1883   ;        .\cmon51.c:417: if (trace_type>=2)
+07B7 9041F0    1884            mov     dptr,#_trace_type
+07BA E0        1885            movx    a,@dptr
+07BB FA        1886            mov     r2,a
+07BC BA02B0    1887            cjne    r2,#0x02,L020046?
+07BF           1888   L020046?:
+07BF 4001      1889            jc      L020006?
+07C1           1890   ;        .\cmon51.c:419: discnt=1;
+07C1 750001    1891            mov     _discnt,#0x01
+07C4 E4        1892            clr     a
+07C5 F501      1893            mov     (_discnt + 1),a
+07C7           1894   ;        .\cmon51.c:420: unassemble(step_start); //The executed assembly instruction...
+07C7 904330    1895            mov     dptr,#_step_start
+07CA E0        1896            movx    a,@dptr
+07CB FA        1897            mov     r2,a
+07CC A3        1898            inc     dptr
+07CD E0        1899            movx    a,@dptr
+07CE FB        1900            mov     r3,a
+07CF 8A82      1901            mov     dpl,r2
+07D1 8B83      1902            mov     dph,r3
+07D3 120100    1903            lcall   _unassemble
+07D6           1904   L020006?:
+07D6           1905   ;        .\cmon51.c:422: if((RI==0)&&(breakpoint==0))
+07D6 209830    1906            jb      _RI,L020015?
+07D9 203030    1907            jb      _breakpoint,L020015?
+07DC           1908   ;        .\cmon51.c:424: if(trace_type==3) disp_regs();
+07DC 9041F0    1909            mov     dptr,#_trace_type
+07DF E0        1910            movx    a,@dptr
+07E0 FA        1911            mov     r2,a
+07E1 BA03B0    1912            cjne    r2,#0x03,L020008?
+07E4 120100    1913            lcall   _disp_regs
+07E7           1914   L020008?:
+07E7           1915   ;        .\cmon51.c:425: step_start=PC_save;
+07E7 9043B0    1916            mov     dptr,#_PC_save
+07EA E0        1917            movx    a,@dptr
+07EB FA        1918            mov     r2,a
+07EC A3        1919            inc     dptr
+07ED E0        1920            movx    a,@dptr
+07EE FB        1921            mov     r3,a
+07EF 904330    1922            mov     dptr,#_step_start
+07F2 EA        1923            mov     a,r2
+07F3 F0        1924            movx    @dptr,a
+07F4 A3        1925            inc     dptr
+07F5 EB        1926            mov     a,r3
+07F6 F0        1927            movx    @dptr,a
+07F7           1928   ;        .\cmon51.c:426: dostep();
+07F7 120100    1929            lcall   _dostep
+07FA           1930   L020015?:
+07FA           1931   ;        .\cmon51.c:430: if((trace_type>=2) && (RI==0))
+07FA 9041F0    1932            mov     dptr,#_trace_type
+07FD E0        1933            movx    a,@dptr
+07FE FA        1934            mov     r2,a
+07FF BA0230    1935            cjne    r2,#0x02,L020052?
+0802           1936   L020052?:
+0802 4001      1937            jc      L020017?
+0804 209870    1938            jb      _RI,L020017?
+0807           1939   ;        .\cmon51.c:432: discnt=1;
+0807 750001    1940            mov     _discnt,#0x01
+080A E4        1941            clr     a
+080B F501      1942            mov     (_discnt + 1),a
+080D           1943   ;        .\cmon51.c:433: unassemble(step_start); //The executed assembly instruction...
+080D 904330    1944            mov     dptr,#_step_start
+0810 E0        1945            movx    a,@dptr
+0811 FA        1946            mov     r2,a
+0812 A3        1947            inc     dptr
+0813 E0        1948            movx    a,@dptr
+0814 FB        1949            mov     r3,a
+0815 8A82      1950            mov     dpl,r2
+0817 8B83      1951            mov     dph,r3
+0819 120100    1952            lcall   _unassemble
+081C           1953   L020017?:
+081C           1954   ;        .\cmon51.c:435: RI=0; //So the character does not show in the terminal
+081C C298      1955            clr     _RI
+081E           1956   ;        .\cmon51.c:437: disp_regs();
+081E 120100    1957            lcall   _disp_regs
+0821           1958   ;        .\cmon51.c:438: discnt=1;
+0821 750001    1959            mov     _discnt,#0x01
+0824 E4        1960            clr     a
+0825 F501      1961            mov     (_discnt + 1),a
+0827           1962   ;        .\cmon51.c:439: unassemble(PC_save); //The next assembly instruction...
+0827 9043B0    1963            mov     dptr,#_PC_save
+082A E0        1964            movx    a,@dptr
+082B FA        1965            mov     r2,a
+082C A3        1966            inc     dptr
+082D E0        1967            movx    a,@dptr
+082E FB        1968            mov     r3,a
+082F 8A82      1969            mov     dpl,r2
+0831 8B83      1970            mov     dph,r3
+0833 020100    1971            ljmp    _unassemble
+0836           1972   ;------------------------------------------------------------
+0836           1973   ;Allocation info for local variables in function 'do_cmd'
+0836           1974   ;------------------------------------------------------------
+0836           1975   ;i                         Allocated with name '_do_cmd_i_1_150'
+0836           1976   ;j                         Allocated with name '_do_cmd_j_1_150'
+0836           1977   ;n                         Allocated with name '_do_cmd_n_1_150'
+0836           1978   ;p                         Allocated to registers r4 r5 
+0836           1979   ;q                         Allocated with name '_do_cmd_q_1_150'
+0836           1980   ;c                         Allocated to registers r6 
+0836           1981   ;d                         Allocated with name '_do_cmd_d_1_150'
+0836           1982   ;x                         Allocated to registers r7 
+0836           1983   ;y                         Allocated with name '_do_cmd_y_1_150'
+0836           1984   ;cmd                       Allocated with name '_do_cmd_cmd_1_150'
+0836           1985   ;sloc0                     Allocated with name '_do_cmd_sloc0_1_0'
+0836           1986   ;------------------------------------------------------------
+0836           1987   ;        .\cmon51.c:442: void do_cmd (void)
+0836           1988   ;        -----------------------------------------
+0836           1989   ;         function do_cmd
+0836           1990   ;        -----------------------------------------
+0836           1991   _do_cmd:
+0836           1992   ;        .\cmon51.c:449: if (gotbreak!=1) //Power-on reset
+0836 904370    1993            mov     dptr,#_gotbreak
+0839 E0        1994            movx    a,@dptr
+083A FA        1995            mov     r2,a
+083B BA01B0    1996            cjne    r2,#0x01,L021180?
+083E 8001      1997            sjmp    L021002?
+0840           1998   L021180?:
+0840           1999   ;        .\cmon51.c:451: putsp(BANNER);
+0840 909530    2000            mov     dptr,#__str_14
+0843 75F080    2001            mov     b,#0x80
+0846 120100    2002            lcall   _putsp
+0849           2003   ;        .\cmon51.c:452: cpuid();
+0849 120100    2004            lcall   _cpuid
+084C           2005   ;        .\cmon51.c:453: SP_save=7; //Default user stack location
+084C 9043F0    2006            mov     dptr,#_SP_save
+084F 7407      2007            mov     a,#0x07
+0851 F0        2008            movx    @dptr,a
+0852           2009   ;        .\cmon51.c:454: restorePC();
+0852 120100    2010            lcall   _restorePC
+0855           2011   ;        .\cmon51.c:455: cmd=0;
+0855 757000    2012            mov     _do_cmd_cmd_1_150,#0x00
+0858 8001      2013            sjmp    L021123?
+085A           2014   L021002?:
+085A           2015   ;        .\cmon51.c:457: else breakorstep(); //Got here from the beak/step interrupt
+085A 120100    2016            lcall   _breakorstep
+085D           2017   ;        .\cmon51.c:459: while(1)
+085D           2018   L021123?:
+085D           2019   ;        .\cmon51.c:461: putsp("> ");
+085D 906F70    2020            mov     dptr,#__str_1
+0860 75F080    2021            mov     b,#0x80
+0863 120100    2022            lcall   _putsp
+0866           2023   ;        .\cmon51.c:462: fillmem(buff, BUFFSIZE, 0);;
+0866 753020    2024            mov     _fillmem_PARM_2,#0x20
+0869 E4        2025            clr     a
+086A F531      2026            mov     (_fillmem_PARM_2 + 1),a
+086C 75F000    2027            mov     _fillmem_PARM_3,#0x00
+086F 9048C0    2028            mov     dptr,#_buff
+0872 75F040    2029            mov     b,#0x40
+0875 120100    2030            lcall   _fillmem
+0878           2031   ;        .\cmon51.c:463: getsn();
+0878 120100    2032            lcall   _getsn
+087B           2033   ;        .\cmon51.c:464: cleanbuff();
+087B 120100    2034            lcall   _cleanbuff
+087E           2035   ;        .\cmon51.c:465: break_address=0;
+087E 904230    2036            mov     dptr,#_break_address
+0881 E4        2037            clr     a
+0882 F0        2038            movx    @dptr,a
+0883 A3        2039            inc     dptr
+0884 F0        2040            movx    @dptr,a
+0885           2041   ;        .\cmon51.c:466: trace_type=0;
+0885 9041F0    2042            mov     dptr,#_trace_type
+0888 E4        2043            clr     a
+0889 F0        2044            movx    @dptr,a
+088A           2045   ;        .\cmon51.c:469: cursor=0;
+088A 758000    2046            mov     _cursor,#0x00
+088D           2047   ;        .\cmon51.c:470: getwordn();   //skip the command name
+088D 120100    2048            lcall   _getwordn
+0890           2049   ;        .\cmon51.c:471: n=getwordn(); //n is the first parameter/number
+0890 120100    2050            lcall   _getwordn
+0893 858260    2051            mov     _do_cmd_n_1_150,dpl
+0896 858361    2052            mov     (_do_cmd_n_1_150 + 1),dph
+0899           2053   ;        .\cmon51.c:472: p=getwordn(); //p is the second parameter/number
+0899 120100    2054            lcall   _getwordn
+089C AC82      2055            mov     r4,dpl
+089E AD83      2056            mov     r5,dph
+08A0           2057   ;        .\cmon51.c:473: q=getwordn(); //q is the third parameter/number
+08A0 C004      2058            push    ar4
+08A2 C005      2059            push    ar5
+08A4 120100    2060            lcall   _getwordn
+08A7 8582A0    2061            mov     _do_cmd_q_1_150,dpl
+08AA 8583A1    2062            mov     (_do_cmd_q_1_150 + 1),dph
+08AD D005      2063            pop     ar5
+08AF D004      2064            pop     ar4
+08B1           2065   ;        .\cmon51.c:474: i=n&0xfff0;
+08B1 74F0      2066            mov     a,#0xF0
+08B3 5560      2067            anl     a,_do_cmd_n_1_150
+08B5 F5E0      2068            mov     _do_cmd_i_1_150,a
+08B7 8561E1    2069            mov     (_do_cmd_i_1_150 + 1),(_do_cmd_n_1_150 + 1)
+08BA           2070   ;        .\cmon51.c:475: j=(p+15)&0xfff0;
+08BA 740F      2071            mov     a,#0x0F
+08BC 2C        2072            add     a,r4
+08BD FE        2073            mov     r6,a
+08BE E4        2074            clr     a
+08BF 3D        2075            addc    a,r5
+08C0 FF        2076            mov     r7,a
+08C1 74F0      2077            mov     a,#0xF0
+08C3 5E        2078            anl     a,r6
+08C4 F520      2079            mov     _do_cmd_j_1_150,a
+08C6 8F21      2080            mov     (_do_cmd_j_1_150 + 1),r7
+08C8           2081   ;        .\cmon51.c:476: c=n; // Sometimes for the first parameter we need an unsigned char
+08C8 AE60      2082            mov     r6,_do_cmd_n_1_150
+08CA           2083   ;        .\cmon51.c:478: cmd=nlist(cmdlst)&0x7f;
+08CA 9012F0    2084            mov     dptr,#_cmdlst
+08CD 75F080    2085            mov     b,#0x80
+08D0 C004      2086            push    ar4
+08D2 C005      2087            push    ar5
+08D4 C006      2088            push    ar6
+08D6 120100    2089            lcall   _nlist
+08D9 E582      2090            mov     a,dpl
+08DB D006      2091            pop     ar6
+08DD D005      2092            pop     ar5
+08DF D004      2093            pop     ar4
+08E1 547F      2094            anl     a,#0x7F
+08E3 F570      2095            mov     _do_cmd_cmd_1_150,a
+08E5           2096   ;        .\cmon51.c:480: switch(cmd)
+08E5 E570      2097            mov     a,_do_cmd_cmd_1_150
+08E7 FF        2098            mov     r7,a
+08E8 24DC      2099            add     a,#0xff - 0x23
+08EA 5001      2100            jnc     L021181?
+08EC 020100    2101            ljmp    L021054?
+08EF           2102   L021181?:
+08EF EF        2103            mov     a,r7
+08F0           2104   L021184?:
+08F0 243D      2105            add     a,#(L021182?-3-L021184?)
+08F2 83        2106            movc    a,@a+pc
+08F3 C0E0      2107            push    acc
+08F5 EF        2108            mov     a,r7
+08F6           2109   L021185?:
+08F6 243D      2110            add     a,#(L021183?-3-L021185?)
+08F8 83        2111            movc    a,@a+pc
+08F9 C0E0      2112            push    acc
+08FB 22        2113            ret
+08FC           2114   L021182?:
+08FC F0        2115            db      L021005?
+08FD 30        2116            db      L021006?
+08FE 70        2117            db      L021007?
+08FF B0        2118            db      L021008?
+0900 F0        2119            db      L021009?
+0901 30        2120            db      L021010?
+0902 70        2121            db      L021011?
+0903 B0        2122            db      L021012?
+0904 F0        2123            db      L021013?
+0905 30        2124            db      L021014?
+0906 70        2125            db      L021015?
+0907 B0        2126            db      L021021?
+0908 F0        2127            db      L021022?
+0909 30        2128            db      L021023?
+090A 70        2129            db      L021024?
+090B B0        2130            db      L021025?
+090C F0        2131            db      L021029?
+090D 30        2132            db      L021017?
+090E 70        2133            db      L021033?
+090F B0        2134            db      L021034?
+0910 F0        2135            db      L021035?
+0911 30        2136            db      L021036?
+0912 70        2137            db      L021037?
+0913 B0        2138            db      L021038?
+0914 F0        2139            db      L021039?
+0915 30        2140            db      L021040?
+0916 70        2141            db      L021016?
+0917 B0        2142            db      L021020?
+0918 F0        2143            db      L021044?
+0919 30        2144            db      L021045?
+091A 70        2145            db      L021046?
+091B B0        2146            db      L021047?
+091C F0        2147            db      L021052?
+091D 30        2148            db      L021051?
+091E 70        2149            db      L021053?
+091F B0        2150            db      L021004?
+0920           2151   L021183?:
+0920 97        2152            db      L021005?>>8
+0921 98        2153            db      L021006?>>8
+0922 98        2154            db      L021007?>>8
+0923 98        2155            db      L021008?>>8
+0924 98        2156            db      L021009?>>8
+0925 99        2157            db      L021010?>>8
+0926 99        2158            db      L021011?>>8
+0927 99        2159            db      L021012?>>8
+0928 99        2160            db      L021013?>>8
+0929 9A        2161            db      L021014?>>8
+092A 9A        2162            db      L021015?>>8
+092B 9A        2163            db      L021021?>>8
+092C 9A        2164            db      L021022?>>8
+092D 9B        2165            db      L021023?>>8
+092E 9B        2166            db      L021024?>>8
+092F 9B        2167            db      L021025?>>8
+0930 9B        2168            db      L021029?>>8
+0931 9C        2169            db      L021017?>>8
+0932 9C        2170            db      L021033?>>8
+0933 9C        2171            db      L021034?>>8
+0934 9C        2172            db      L021035?>>8
+0935 9D        2173            db      L021036?>>8
+0936 9D        2174            db      L021037?>>8
+0937 9D        2175            db      L021038?>>8
+0938 9D        2176            db      L021039?>>8
+0939 9E        2177            db      L021040?>>8
+093A 9E        2178            db      L021016?>>8
+093B 9E        2179            db      L021020?>>8
+093C 9E        2180            db      L021044?>>8
+093D 9F        2181            db      L021045?>>8
+093E 9F        2182            db      L021046?>>8
+093F 9F        2183            db      L021047?>>8
+0940 9F        2184            db      L021052?>>8
+0941 A0        2185            db      L021051?>>8
+0942 A0        2186            db      L021053?>>8
+0943 A0        2187            db      L021004?>>8
+0944           2188   ;        .\cmon51.c:482: case ID_nothing:
+0944           2189   L021004?:
+0944           2190   ;        .\cmon51.c:483: break;
+0944 020100    2191            ljmp    L021123?
+0947           2192   ;        .\cmon51.c:485: case ID_display_data:
+0947           2193   L021005?:
+0947           2194   ;        .\cmon51.c:486: dispmem(iram_save, 0, 'D');
+0947 E4        2195            clr     a
+0948 F5F0      2196            mov     _dispmem_PARM_2,a
+094A F5F1      2197            mov     (_dispmem_PARM_2 + 1),a
+094C 75B044    2198            mov     _dispmem_PARM_3,#0x44
+094F 9045F0    2199            mov     dptr,#_iram_save
+0952 75F000    2200            mov     b,#0x00
+0955 120100    2201            lcall   _dispmem
+0958           2202   ;        .\cmon51.c:487: break;
+0958 020100    2203            ljmp    L021123?
+095B           2204   ;        .\cmon51.c:489: case ID_modify_data:
+095B           2205   L021006?:
+095B           2206   ;        .\cmon51.c:490: modifymem(&iram_save[n&0x7f], 'D');
+095B 747F      2207            mov     a,#0x7F
+095D 5560      2208            anl     a,_do_cmd_n_1_150
+095F 7A00      2209            mov     r2,#0x00
+0961 24F0      2210            add     a,#_iram_save
+0963 FF        2211            mov     r7,a
+0964 EA        2212            mov     a,r2
+0965 3445      2213            addc    a,#(_iram_save >> 8)
+0967 FA        2214            mov     r2,a
+0968 7B00      2215            mov     r3,#0x00
+096A 754044    2216            mov     _modifymem_PARM_2,#0x44
+096D 8F82      2217            mov     dpl,r7
+096F 8A83      2218            mov     dph,r2
+0971 8BF0      2219            mov     b,r3
+0973 120100    2220            lcall   _modifymem
+0976           2221   ;        .\cmon51.c:491: break;
+0976 020100    2222            ljmp    L021123?
+0979           2223   ;        .\cmon51.c:493: case ID_fill_data:
+0979           2224   L021007?:
+0979           2225   ;        .\cmon51.c:494: fillmem(&iram_save[n&0x7f], (p>0x80)?0x80:p, (unsigned char) q);
+0979 747F      2226            mov     a,#0x7F
+097B 5560      2227            anl     a,_do_cmd_n_1_150
+097D 7B00      2228            mov     r3,#0x00
+097F 24F0      2229            add     a,#_iram_save
+0981 FA        2230            mov     r2,a
+0982 EB        2231            mov     a,r3
+0983 3445      2232            addc    a,#(_iram_save >> 8)
+0985 FB        2233            mov     r3,a
+0986 7F00      2234            mov     r7,#0x00
+0988 C3        2235            clr     c
+0989 7480      2236            mov     a,#0x80
+098B 9C        2237            subb    a,r4
+098C E4        2238            clr     a
+098D 9D        2239            subb    a,r5
+098E 5001      2240            jnc     L021131?
+0990 75C080    2241            mov     _do_cmd_sloc0_1_0,#0x80
+0993 E4        2242            clr     a
+0994 F5C1      2243            mov     (_do_cmd_sloc0_1_0 + 1),a
+0996 8001      2244            sjmp    L021132?
+0998           2245   L021131?:
+0998 8CC0      2246            mov     _do_cmd_sloc0_1_0,r4
+099A 8DC1      2247            mov     (_do_cmd_sloc0_1_0 + 1),r5
+099C           2248   L021132?:
+099C 85A0F0    2249            mov     _fillmem_PARM_3,_do_cmd_q_1_150
+099F 85C030    2250            mov     _fillmem_PARM_2,_do_cmd_sloc0_1_0
+09A2 85C131    2251            mov     (_fillmem_PARM_2 + 1),(_do_cmd_sloc0_1_0 + 1)
+09A5 8A82      2252            mov     dpl,r2
+09A7 8B83      2253            mov     dph,r3
+09A9 8FF0      2254            mov     b,r7
+09AB 120100    2255            lcall   _fillmem
+09AE           2256   ;        .\cmon51.c:495: break;
+09AE 020100    2257            ljmp    L021123?
+09B1           2258   ;        .\cmon51.c:497: case ID_display_idata:
+09B1           2259   L021008?:
+09B1           2260   ;        .\cmon51.c:498: dispmem((unsigned char data *)(0x80), 0, 'I');
+09B1 E4        2261            clr     a
+09B2 F5F0      2262            mov     _dispmem_PARM_2,a
+09B4 F5F1      2263            mov     (_dispmem_PARM_2 + 1),a
+09B6 75B049    2264            mov     _dispmem_PARM_3,#0x49
+09B9 904080    2265            mov     dptr,#0x4080
+09BC 75F000    2266            mov     b,#0x00
+09BF 120100    2267            lcall   _dispmem
+09C2           2268   ;        .\cmon51.c:499: break;
+09C2 020100    2269            ljmp    L021123?
+09C5           2270   ;        .\cmon51.c:501: case ID_modify_idata:
+09C5           2271   L021009?:
+09C5           2272   ;        .\cmon51.c:502: modifymem((unsigned char data *)((n&0x7f)|0x80), 'I');
+09C5 747F      2273            mov     a,#0x7F
+09C7 5560      2274            anl     a,_do_cmd_n_1_150
+09C9 FA        2275            mov     r2,a
+09CA 430280    2276            orl     ar2,#0x80
+09CD 7B00      2277            mov     r3,#0x00
+09CF 7F40      2278            mov     r7,#0x40
+09D1 754049    2279            mov     _modifymem_PARM_2,#0x49
+09D4 8A82      2280            mov     dpl,r2
+09D6 8B83      2281            mov     dph,r3
+09D8 8FF0      2282            mov     b,r7
+09DA 120100    2283            lcall   _modifymem
+09DD           2284   ;        .\cmon51.c:503: break;
+09DD 020100    2285            ljmp    L021123?
+09E0           2286   ;        .\cmon51.c:505: case ID_fill_idata:
+09E0           2287   L021010?:
+09E0           2288   ;        .\cmon51.c:506: fillmem((unsigned char data *)((n&0x7f)|0x80), p>0x80?0x80:p, (unsigned char) q);
+09E0 747F      2289            mov     a,#0x7F
+09E2 5560      2290            anl     a,_do_cmd_n_1_150
+09E4 FA        2291            mov     r2,a
+09E5 430280    2292            orl     ar2,#0x80
+09E8 7B00      2293            mov     r3,#0x00
+09EA 7F40      2294            mov     r7,#0x40
+09EC C3        2295            clr     c
+09ED 7480      2296            mov     a,#0x80
+09EF 9C        2297            subb    a,r4
+09F0 E4        2298            clr     a
+09F1 9D        2299            subb    a,r5
+09F2 5001      2300            jnc     L021133?
+09F4 75C080    2301            mov     _do_cmd_sloc0_1_0,#0x80
+09F7 E4        2302            clr     a
+09F8 F5C1      2303            mov     (_do_cmd_sloc0_1_0 + 1),a
+09FA 8001      2304            sjmp    L021134?
+09FC           2305   L021133?:
+09FC 8CC0      2306            mov     _do_cmd_sloc0_1_0,r4
+09FE 8DC1      2307            mov     (_do_cmd_sloc0_1_0 + 1),r5
+0A00           2308   L021134?:
+0A00 85A0F0    2309            mov     _fillmem_PARM_3,_do_cmd_q_1_150
+0A03 85C030    2310            mov     _fillmem_PARM_2,_do_cmd_sloc0_1_0
+0A06 85C131    2311            mov     (_fillmem_PARM_2 + 1),(_do_cmd_sloc0_1_0 + 1)
+0A09 8A82      2312            mov     dpl,r2
+0A0B 8B83      2313            mov     dph,r3
+0A0D 8FF0      2314            mov     b,r7
+0A0F 120100    2315            lcall   _fillmem
+0A12           2316   ;        .\cmon51.c:507: break;
+0A12 020100    2317            ljmp    L021123?
+0A15           2318   ;        .\cmon51.c:509: case ID_display_xdata:
+0A15           2319   L021011?:
+0A15           2320   ;        .\cmon51.c:510: dispmem((unsigned char xdata *)i, j, 'X');
+0A15 AAE0      2321            mov     r2,_do_cmd_i_1_150
+0A17 ABE1      2322            mov     r3,(_do_cmd_i_1_150 + 1)
+0A19 7F00      2323            mov     r7,#0x00
+0A1B 8520F0    2324            mov     _dispmem_PARM_2,_do_cmd_j_1_150
+0A1E 8521F1    2325            mov     (_dispmem_PARM_2 + 1),(_do_cmd_j_1_150 + 1)
+0A21 75B058    2326            mov     _dispmem_PARM_3,#0x58
+0A24 8A82      2327            mov     dpl,r2
+0A26 8B83      2328            mov     dph,r3
+0A28 8FF0      2329            mov     b,r7
+0A2A 120100    2330            lcall   _dispmem
+0A2D           2331   ;        .\cmon51.c:511: break;
+0A2D 020100    2332            ljmp    L021123?
+0A30           2333   ;        .\cmon51.c:513: case ID_modify_xdata:
+0A30           2334   L021012?:
+0A30           2335   ;        .\cmon51.c:514: modifymem((unsigned char xdata *)n, 'X');
+0A30 AA60      2336            mov     r2,_do_cmd_n_1_150
+0A32 AB61      2337            mov     r3,(_do_cmd_n_1_150 + 1)
+0A34 7F00      2338            mov     r7,#0x00
+0A36 754058    2339            mov     _modifymem_PARM_2,#0x58
+0A39 8A82      2340            mov     dpl,r2
+0A3B 8B83      2341            mov     dph,r3
+0A3D 8FF0      2342            mov     b,r7
+0A3F 120100    2343            lcall   _modifymem
+0A42           2344   ;        .\cmon51.c:515: break;
+0A42 020100    2345            ljmp    L021123?
+0A45           2346   ;        .\cmon51.c:517: case ID_fill_xdata:
+0A45           2347   L021013?:
+0A45           2348   ;        .\cmon51.c:518: fillmem((unsigned char xdata *)n, p, (unsigned char)q);
+0A45 AA60      2349            mov     r2,_do_cmd_n_1_150
+0A47 AB61      2350            mov     r3,(_do_cmd_n_1_150 + 1)
+0A49 7F00      2351            mov     r7,#0x00
+0A4B 85A0F0    2352            mov     _fillmem_PARM_3,_do_cmd_q_1_150
+0A4E 8C30      2353            mov     _fillmem_PARM_2,r4
+0A50 8D31      2354            mov     (_fillmem_PARM_2 + 1),r5
+0A52 8A82      2355            mov     dpl,r2
+0A54 8B83      2356            mov     dph,r3
+0A56 8FF0      2357            mov     b,r7
+0A58 120100    2358            lcall   _fillmem
+0A5B           2359   ;        .\cmon51.c:519: break;
+0A5B 020100    2360            ljmp    L021123?
+0A5E           2361   ;        .\cmon51.c:521: case ID_display_code:
+0A5E           2362   L021014?:
+0A5E           2363   ;        .\cmon51.c:522: dispmem((unsigned char code *)i, j, 'C');
+0A5E AAE0      2364            mov     r2,_do_cmd_i_1_150
+0A60 ABE1      2365            mov     r3,(_do_cmd_i_1_150 + 1)
+0A62 7F80      2366            mov     r7,#0x80
+0A64 8520F0    2367            mov     _dispmem_PARM_2,_do_cmd_j_1_150
+0A67 8521F1    2368            mov     (_dispmem_PARM_2 + 1),(_do_cmd_j_1_150 + 1)
+0A6A 75B043    2369            mov     _dispmem_PARM_3,#0x43
+0A6D 8A82      2370            mov     dpl,r2
+0A6F 8B83      2371            mov     dph,r3
+0A71 8FF0      2372            mov     b,r7
+0A73 120100    2373            lcall   _dispmem
+0A76           2374   ;        .\cmon51.c:523: break;
+0A76 020100    2375            ljmp    L021123?
+0A79           2376   ;        .\cmon51.c:525: case ID_unassemble:
+0A79           2377   L021015?:
+0A79           2378   ;        .\cmon51.c:526: discnt=p;
+0A79 8C00      2379            mov     _discnt,r4
+0A7B 8D01      2380            mov     (_discnt + 1),r5
+0A7D           2381   ;        .\cmon51.c:527: unassemble(n);
+0A7D 856082    2382            mov     dpl,_do_cmd_n_1_150
+0A80 856183    2383            mov     dph,(_do_cmd_n_1_150 + 1)
+0A83 120100    2384            lcall   _unassemble
+0A86           2385   ;        .\cmon51.c:528: break;
+0A86 020100    2386            ljmp    L021123?
+0A89           2387   ;        .\cmon51.c:530: case ID_trace_reg:
+0A89           2388   L021016?:
+0A89           2389   ;        .\cmon51.c:531: trace_type++;
+0A89 9041F0    2390            mov     dptr,#_trace_type
+0A8C E0        2391            movx    a,@dptr
+0A8D 2401      2392            add     a,#0x01
+0A8F F0        2393            movx    @dptr,a
+0A90           2394   ;        .\cmon51.c:533: case ID_trace:
+0A90           2395   L021017?:
+0A90           2396   ;        .\cmon51.c:534: trace_type++;
+0A90 9041F0    2397            mov     dptr,#_trace_type
+0A93 E0        2398            movx    a,@dptr
+0A94 2401      2399            add     a,#0x01
+0A96 F0        2400            movx    @dptr,a
+0A97           2401   ;        .\cmon51.c:535: if(n==0) break;
+0A97 E560      2402            mov     a,_do_cmd_n_1_150
+0A99 4561      2403            orl     a,(_do_cmd_n_1_150 + 1)
+0A9B 7001      2404            jnz     L021188?
+0A9D 020100    2405            ljmp    L021123?
+0AA0           2406   L021188?:
+0AA0           2407   ;        .\cmon51.c:536: break_address=n;
+0AA0 904230    2408            mov     dptr,#_break_address
+0AA3 E560      2409            mov     a,_do_cmd_n_1_150
+0AA5 F0        2410            movx    @dptr,a
+0AA6 A3        2411            inc     dptr
+0AA7 E561      2412            mov     a,(_do_cmd_n_1_150 + 1)
+0AA9 F0        2413            movx    @dptr,a
+0AAA           2414   ;        .\cmon51.c:537: n=0;
+0AAA E4        2415            clr     a
+0AAB F560      2416            mov     _do_cmd_n_1_150,a
+0AAD F561      2417            mov     (_do_cmd_n_1_150 + 1),a
+0AAF           2418   ;        .\cmon51.c:539: case ID_go_breaks:
+0AAF           2419   L021020?:
+0AAF           2420   ;        .\cmon51.c:540: trace_type++;
+0AAF 9041F0    2421            mov     dptr,#_trace_type
+0AB2 E0        2422            movx    a,@dptr
+0AB3 2401      2423            add     a,#0x01
+0AB5 F0        2424            movx    @dptr,a
+0AB6           2425   ;        .\cmon51.c:542: case ID_go:
+0AB6           2426   L021021?:
+0AB6           2427   ;        .\cmon51.c:543: case ID_step:
+0AB6           2428   L021022?:
+0AB6           2429   ;        .\cmon51.c:544: step_start=(n==0)?PC_save:n; //Next instruction to be executed
+0AB6 E560      2430            mov     a,_do_cmd_n_1_150
+0AB8 4561      2431            orl     a,(_do_cmd_n_1_150 + 1)
+0ABA B40130    2432            cjne    a,#0x01,L021189?
+0ABD           2433   L021189?:
+0ABD E4        2434            clr     a
+0ABE 33        2435            rlc     a
+0ABF FA        2436            mov     r2,a
+0AC0 6001      2437            jz      L021135?
+0AC2 9043B0    2438            mov     dptr,#_PC_save
+0AC5 E0        2439            movx    a,@dptr
+0AC6 FA        2440            mov     r2,a
+0AC7 A3        2441            inc     dptr
+0AC8 E0        2442            movx    a,@dptr
+0AC9 FB        2443            mov     r3,a
+0ACA 8001      2444            sjmp    L021136?
+0ACC           2445   L021135?:
+0ACC AA60      2446            mov     r2,_do_cmd_n_1_150
+0ACE AB61      2447            mov     r3,(_do_cmd_n_1_150 + 1)
+0AD0           2448   L021136?:
+0AD0 904330    2449            mov     dptr,#_step_start
+0AD3 EA        2450            mov     a,r2
+0AD4 F0        2451            movx    @dptr,a
+0AD5 A3        2452            inc     dptr
+0AD6 EB        2453            mov     a,r3
+0AD7 F0        2454            movx    @dptr,a
+0AD8           2455   ;        .\cmon51.c:545: gotbreak=0; //If changes to 1, the single step function worked!
+0AD8 904370    2456            mov     dptr,#_gotbreak
+0ADB E4        2457            clr     a
+0ADC F0        2458            movx    @dptr,a
+0ADD           2459   ;        .\cmon51.c:546: gostep=(cmd==ID_go)?1:0;
+0ADD 740B      2460            mov     a,#0x0B
+0ADF B570F0    2461            cjne    a,_do_cmd_cmd_1_150,L021137?
+0AE2 7A01      2462            mov     r2,#0x01
+0AE4 8001      2463            sjmp    L021138?
+0AE6           2464   L021137?:
+0AE6 7A00      2465            mov     r2,#0x00
+0AE8           2466   L021138?:
+0AE8 904270    2467            mov     dptr,#_gostep
+0AEB EA        2468            mov     a,r2
+0AEC F0        2469            movx    @dptr,a
+0AED           2470   ;        .\cmon51.c:547: dostep();
+0AED 120100    2471            lcall   _dostep
+0AF0           2472   ;        .\cmon51.c:548: break;
+0AF0 020100    2473            ljmp    L021123?
+0AF3           2474   ;        .\cmon51.c:550: case ID_registers:
+0AF3           2475   L021023?:
+0AF3           2476   ;        .\cmon51.c:551: disp_regs();
+0AF3 120100    2477            lcall   _disp_regs
+0AF6           2478   ;        .\cmon51.c:552: break;
+0AF6 020100    2479            ljmp    L021123?
+0AF9           2480   ;        .\cmon51.c:554: case ID_load:
+0AF9           2481   L021024?:
+0AF9           2482   ;        .\cmon51.c:555: loadintelhex();
+0AF9 120100    2483            lcall   _loadintelhex
+0AFC           2484   ;        .\cmon51.c:556: break;
+0AFC 020100    2485            ljmp    L021123?
+0AFF           2486   ;        .\cmon51.c:558: case ID_reg_dptr:
+0AFF           2487   L021025?:
+0AFF           2488   ;        .\cmon51.c:559: if(buff_haseq)
+0AFF 30B0B0    2489            jnb     _buff_haseq,L021027?
+0B02           2490   ;        .\cmon51.c:561: DPL_save=c;
+0B02 904470    2491            mov     dptr,#_DPL_save
+0B05 EE        2492            mov     a,r6
+0B06 F0        2493            movx    @dptr,a
+0B07 A3        2494            inc     dptr
+0B08 E4        2495            clr     a
+0B09 F0        2496            movx    @dptr,a
+0B0A           2497   ;        .\cmon51.c:562: DPH_save=highof(n);
+0B0A AA61      2498            mov     r2,(_do_cmd_n_1_150 + 1)
+0B0C 7B00      2499            mov     r3,#0x00
+0B0E 904430    2500            mov     dptr,#_DPH_save
+0B11 EA        2501            mov     a,r2
+0B12 F0        2502            movx    @dptr,a
+0B13 A3        2503            inc     dptr
+0B14 EB        2504            mov     a,r3
+0B15 F0        2505            movx    @dptr,a
+0B16 020100    2506            ljmp    L021123?
+0B19           2507   L021027?:
+0B19           2508   ;        .\cmon51.c:564: else outwordnl((DPH_save*0x100)+DPL_save);
+0B19 904430    2509            mov     dptr,#_DPH_save
+0B1C E0        2510            movx    a,@dptr
+0B1D FA        2511            mov     r2,a
+0B1E A3        2512            inc     dptr
+0B1F E0        2513            movx    a,@dptr
+0B20 8AC1      2514            mov     (_do_cmd_sloc0_1_0 + 1),r2
+0B22 75C000    2515            mov     _do_cmd_sloc0_1_0,#0x00
+0B25 904470    2516            mov     dptr,#_DPL_save
+0B28 E0        2517            movx    a,@dptr
+0B29 FF        2518            mov     r7,a
+0B2A A3        2519            inc     dptr
+0B2B E0        2520            movx    a,@dptr
+0B2C FA        2521            mov     r2,a
+0B2D EF        2522            mov     a,r7
+0B2E 25C0      2523            add     a,_do_cmd_sloc0_1_0
+0B30 F582      2524            mov     dpl,a
+0B32 EA        2525            mov     a,r2
+0B33 35C1      2526            addc    a,(_do_cmd_sloc0_1_0 + 1)
+0B35 F583      2527            mov     dph,a
+0B37 120100    2528            lcall   _outwordnl
+0B3A           2529   ;        .\cmon51.c:565: break;
+0B3A 020100    2530            ljmp    L021123?
+0B3D           2531   ;        .\cmon51.c:567: case ID_reg_pc:
+0B3D           2532   L021029?:
+0B3D           2533   ;        .\cmon51.c:568: if(buff_haseq) PC_save=n;
+0B3D 30B0F0    2534            jnb     _buff_haseq,L021031?
+0B40 9043B0    2535            mov     dptr,#_PC_save
+0B43 E560      2536            mov     a,_do_cmd_n_1_150
+0B45 F0        2537            movx    @dptr,a
+0B46 A3        2538            inc     dptr
+0B47 E561      2539            mov     a,(_do_cmd_n_1_150 + 1)
+0B49 F0        2540            movx    @dptr,a
+0B4A 020100    2541            ljmp    L021123?
+0B4D           2542   L021031?:
+0B4D           2543   ;        .\cmon51.c:569: else outwordnl(PC_save);
+0B4D 9043B0    2544            mov     dptr,#_PC_save
+0B50 E0        2545            movx    a,@dptr
+0B51 FA        2546            mov     r2,a
+0B52 A3        2547            inc     dptr
+0B53 E0        2548            movx    a,@dptr
+0B54 FB        2549            mov     r3,a
+0B55 8A82      2550            mov     dpl,r2
+0B57 8B83      2551            mov     dph,r3
+0B59 120100    2552            lcall   _outwordnl
+0B5C           2553   ;        .\cmon51.c:570: break;
+0B5C 020100    2554            ljmp    L021123?
+0B5F           2555   ;        .\cmon51.c:572: case ID_reg_r0:
+0B5F           2556   L021033?:
+0B5F           2557   ;        .\cmon51.c:573: case ID_reg_r1:
+0B5F           2558   L021034?:
+0B5F           2559   ;        .\cmon51.c:574: case ID_reg_r2:
+0B5F           2560   L021035?:
+0B5F           2561   ;        .\cmon51.c:575: case ID_reg_r3:
+0B5F           2562   L021036?:
+0B5F           2563   ;        .\cmon51.c:576: case ID_reg_r4:
+0B5F           2564   L021037?:
+0B5F           2565   ;        .\cmon51.c:577: case ID_reg_r5:
+0B5F           2566   L021038?:
+0B5F           2567   ;        .\cmon51.c:578: case ID_reg_r6:
+0B5F           2568   L021039?:
+0B5F           2569   ;        .\cmon51.c:579: case ID_reg_r7:
+0B5F           2570   L021040?:
+0B5F           2571   ;        .\cmon51.c:580: d=(PSW_save&0x18)+buff[1]-'0';
+0B5F 904530    2572            mov     dptr,#_PSW_save
+0B62 E0        2573            movx    a,@dptr
+0B63 FA        2574            mov     r2,a
+0B64 530218    2575            anl     ar2,#0x18
+0B67 E5C1      2576            mov     a,(_buff + 0x0001)
+0B69 2A        2577            add     a,r2
+0B6A 24D0      2578            add     a,#0xd0
+0B6C FA        2579            mov     r2,a
+0B6D           2580   ;        .\cmon51.c:581: if(buff_haseq) iram_save[d]=c;
+0B6D 30B030    2581            jnb     _buff_haseq,L021042?
+0B70 EA        2582            mov     a,r2
+0B71 24F0      2583            add     a,#_iram_save
+0B73 F582      2584            mov     dpl,a
+0B75 E4        2585            clr     a
+0B76 3445      2586            addc    a,#(_iram_save >> 8)
+0B78 F583      2587            mov     dph,a
+0B7A EE        2588            mov     a,r6
+0B7B F0        2589            movx    @dptr,a
+0B7C 020100    2590            ljmp    L021123?
+0B7F           2591   L021042?:
+0B7F           2592   ;        .\cmon51.c:582: else { outbyte (iram_save[d]); putnl(); };
+0B7F EA        2593            mov     a,r2
+0B80 24F0      2594            add     a,#_iram_save
+0B82 F582      2595            mov     dpl,a
+0B84 E4        2596            clr     a
+0B85 3445      2597            addc    a,#(_iram_save >> 8)
+0B87 F583      2598            mov     dph,a
+0B89 E0        2599            movx    a,@dptr
+0B8A F582      2600            mov     dpl,a
+0B8C 120100    2601            lcall   _outbyte
+0B8F 120100    2602            lcall   _putnl
+0B92           2603   ;        .\cmon51.c:583: break;
+0B92 020100    2604            ljmp    L021123?
+0B95           2605   ;        .\cmon51.c:585: case ID_br0:
+0B95           2606   L021044?:
+0B95           2607   ;        .\cmon51.c:586: case ID_br1:
+0B95           2608   L021045?:
+0B95           2609   ;        .\cmon51.c:587: case ID_br2:
+0B95           2610   L021046?:
+0B95           2611   ;        .\cmon51.c:588: case ID_br3:
+0B95           2612   L021047?:
+0B95           2613   ;        .\cmon51.c:589: d=buff[2]-'0';
+0B95 E5C2      2614            mov     a,(_buff + 0x0002)
+0B97 24D0      2615            add     a,#0xd0
+0B99 FA        2616            mov     r2,a
+0B9A           2617   ;        .\cmon51.c:590: if(buff_haseq) br[d]=n;
+0B9A 30B070    2618            jnb     _buff_haseq,L021049?
+0B9D EA        2619            mov     a,r2
+0B9E 2A        2620            add     a,r2
+0B9F FB        2621            mov     r3,a
+0BA0 24B0      2622            add     a,#_br
+0BA2 F582      2623            mov     dpl,a
+0BA4 E4        2624            clr     a
+0BA5 3445      2625            addc    a,#(_br >> 8)
+0BA7 F583      2626            mov     dph,a
+0BA9 E560      2627            mov     a,_do_cmd_n_1_150
+0BAB F0        2628            movx    @dptr,a
+0BAC A3        2629            inc     dptr
+0BAD E561      2630            mov     a,(_do_cmd_n_1_150 + 1)
+0BAF F0        2631            movx    @dptr,a
+0BB0 020100    2632            ljmp    L021123?
+0BB3           2633   L021049?:
+0BB3           2634   ;        .\cmon51.c:591: else outwordnl(br[d]);
+0BB3 EA        2635            mov     a,r2
+0BB4 2A        2636            add     a,r2
+0BB5 24B0      2637            add     a,#_br
+0BB7 F582      2638            mov     dpl,a
+0BB9 E4        2639            clr     a
+0BBA 3445      2640            addc    a,#(_br >> 8)
+0BBC F583      2641            mov     dph,a
+0BBE E0        2642            movx    a,@dptr
+0BBF FB        2643            mov     r3,a
+0BC0 A3        2644            inc     dptr
+0BC1 E0        2645            movx    a,@dptr
+0BC2 FF        2646            mov     r7,a
+0BC3 8B82      2647            mov     dpl,r3
+0BC5 8F83      2648            mov     dph,r7
+0BC7 120100    2649            lcall   _outwordnl
+0BCA           2650   ;        .\cmon51.c:592: break;
+0BCA 020100    2651            ljmp    L021123?
+0BCD           2652   ;        .\cmon51.c:594: case ID_br:
+0BCD           2653   L021051?:
+0BCD           2654   ;        .\cmon51.c:595: for(d=0; d<4; d++) outwordnl(br[d]);
+0BCD 75E000    2655            mov     _do_cmd_d_1_150,#0x00
+0BD0           2656   L021125?:
+0BD0 74FC      2657            mov     a,#0x100 - 0x04
+0BD2 25E0      2658            add     a,_do_cmd_d_1_150
+0BD4 5001      2659            jnc     L021197?
+0BD6 020100    2660            ljmp    L021123?
+0BD9           2661   L021197?:
+0BD9 E5E0      2662            mov     a,_do_cmd_d_1_150
+0BDB 25E0      2663            add     a,_do_cmd_d_1_150
+0BDD 24B0      2664            add     a,#_br
+0BDF F582      2665            mov     dpl,a
+0BE1 E4        2666            clr     a
+0BE2 3445      2667            addc    a,#(_br >> 8)
+0BE4 F583      2668            mov     dph,a
+0BE6 E0        2669            movx    a,@dptr
+0BE7 FF        2670            mov     r7,a
+0BE8 A3        2671            inc     dptr
+0BE9 E0        2672            movx    a,@dptr
+0BEA FB        2673            mov     r3,a
+0BEB 8F82      2674            mov     dpl,r7
+0BED 8B83      2675            mov     dph,r3
+0BEF 120100    2676            lcall   _outwordnl
+0BF2 05E0      2677            inc     _do_cmd_d_1_150
+0BF4           2678   ;        .\cmon51.c:598: case ID_brc:
+0BF4 8001      2679            sjmp    L021125?
+0BF6           2680   L021052?:
+0BF6           2681   ;        .\cmon51.c:599: fillmem((unsigned char xdata *)br, 8, 0);
+0BF6 753008    2682            mov     _fillmem_PARM_2,#0x08
+0BF9 E4        2683            clr     a
+0BFA F531      2684            mov     (_fillmem_PARM_2 + 1),a
+0BFC 75F000    2685            mov     _fillmem_PARM_3,#0x00
+0BFF 9045B0    2686            mov     dptr,#_br
+0C02 75F000    2687            mov     b,#0x00
+0C05 120100    2688            lcall   _fillmem
+0C08           2689   ;        .\cmon51.c:600: break;
+0C08 020100    2690            ljmp    L021123?
+0C0B           2691   ;        .\cmon51.c:602: case ID_pcr:  //Restore the PC
+0C0B           2692   L021053?:
+0C0B           2693   ;        .\cmon51.c:603: restorePC();
+0C0B 120100    2694            lcall   _restorePC
+0C0E           2695   ;        .\cmon51.c:604: break;
+0C0E 020100    2696            ljmp    L021123?
+0C11           2697   ;        .\cmon51.c:606: default:
+0C11           2698   L021054?:
+0C11           2699   ;        .\cmon51.c:608: y=nlist(bitn); //Search for bit names first
+0C11 900000    2700            mov     dptr,#_bitn
+0C14 75F080    2701            mov     b,#0x80
+0C17 C004      2702            push    ar4
+0C19 C005      2703            push    ar5
+0C1B C006      2704            push    ar6
+0C1D 120100    2705            lcall   _nlist
+0C20 858220    2706            mov     _do_cmd_y_1_150,dpl
+0C23 D006      2707            pop     ar6
+0C25 D005      2708            pop     ar5
+0C27 D004      2709            pop     ar4
+0C29           2710   ;        .\cmon51.c:609: if (y!=0xff)
+0C29 74FF      2711            mov     a,#0xFF
+0C2B B52070    2712            cjne    a,_do_cmd_y_1_150,L021198?
+0C2E 8001      2713            sjmp    L021058?
+0C30           2714   L021198?:
+0C30           2715   ;        .\cmon51.c:611: x=y&0xf8;
+0C30 74F8      2716            mov     a,#0xF8
+0C32 5520      2717            anl     a,_do_cmd_y_1_150
+0C34 FF        2718            mov     r7,a
+0C35           2719   ;        .\cmon51.c:612: y=maskbit[y&0x7];
+0C35 7407      2720            mov     a,#0x07
+0C37 5520      2721            anl     a,_do_cmd_y_1_150
+0C39 901270    2722            mov     dptr,#_maskbit
+0C3C 93        2723            movc    a,@a+dptr
+0C3D F520      2724            mov     _do_cmd_y_1_150,a
+0C3F 8001      2725            sjmp    L021059?
+0C41           2726   L021058?:
+0C41           2727   ;        .\cmon51.c:616: x=nlist(sfrn); //Is not a bit, try a sfr
+0C41 900000    2728            mov     dptr,#_sfrn
+0C44 75F080    2729            mov     b,#0x80
+0C47 C004      2730            push    ar4
+0C49 C005      2731            push    ar5
+0C4B C006      2732            push    ar6
+0C4D 120100    2733            lcall   _nlist
+0C50 AF82      2734            mov     r7,dpl
+0C52 D006      2735            pop     ar6
+0C54 D005      2736            pop     ar5
+0C56 D004      2737            pop     ar4
+0C58           2738   ;        .\cmon51.c:617: if(buff_hasdot)
+0C58 3070F0    2739            jnb     _buff_hasdot,L021059?
+0C5B           2740   ;        .\cmon51.c:619: y=maskbit[c&0x7];
+0C5B 7407      2741            mov     a,#0x07
+0C5D 5E        2742            anl     a,r6
+0C5E 901270    2743            mov     dptr,#_maskbit
+0C61 93        2744            movc    a,@a+dptr
+0C62 F520      2745            mov     _do_cmd_y_1_150,a
+0C64           2746   ;        .\cmon51.c:620: c=p;
+0C64 8C06      2747            mov     ar6,r4
+0C66           2748   L021059?:
+0C66           2749   ;        .\cmon51.c:624: if(x!=0xff)
+0C66 BFFF70    2750            cjne    r7,#0xFF,L021200?
+0C69 020100    2751            ljmp    L021119?
+0C6C           2752   L021200?:
+0C6C           2753   ;        .\cmon51.c:627: /**/ if (x==0xd0) d=PSW_save;
+0C6C E4        2754            clr     a
+0C6D BFD0F0    2755            cjne    r7,#0xD0,L021201?
+0C70 04        2756            inc     a
+0C71           2757   L021201?:
+0C71 FC        2758            mov     r4,a
+0C72 6001      2759            jz      L021079?
+0C74 904530    2760            mov     dptr,#_PSW_save
+0C77 E0        2761            movx    a,@dptr
+0C78 FA        2762            mov     r2,a
+0C79 8001      2763            sjmp    L021080?
+0C7B           2764   L021079?:
+0C7B           2765   ;        .\cmon51.c:628: else if (x==0xe0) d=A_save;
+0C7B BFE0B0    2766            cjne    r7,#0xE0,L021076?
+0C7E 904570    2767            mov     dptr,#_A_save
+0C81 E0        2768            movx    a,@dptr
+0C82 FA        2769            mov     r2,a
+0C83 8001      2770            sjmp    L021080?
+0C85           2771   L021076?:
+0C85           2772   ;        .\cmon51.c:629: else if (x==0xf0) d=B_save;
+0C85 BFF0F0    2773            cjne    r7,#0xF0,L021073?
+0C88 9044F0    2774            mov     dptr,#_B_save
+0C8B E0        2775            movx    a,@dptr
+0C8C FA        2776            mov     r2,a
+0C8D 8001      2777            sjmp    L021080?
+0C8F           2778   L021073?:
+0C8F           2779   ;        .\cmon51.c:630: else if (x==0xa8) d=IE_save;
+0C8F BFA830    2780            cjne    r7,#0xA8,L021070?
+0C92 9044B0    2781            mov     dptr,#_IE_save
+0C95 E0        2782            movx    a,@dptr
+0C96 FA        2783            mov     r2,a
+0C97 8001      2784            sjmp    L021080?
+0C99           2785   L021070?:
+0C99           2786   ;        .\cmon51.c:631: else if (x==0x81) d=SP_save;
+0C99 BF8170    2787            cjne    r7,#0x81,L021067?
+0C9C 9043F0    2788            mov     dptr,#_SP_save
+0C9F E0        2789            movx    a,@dptr
+0CA0 FA        2790            mov     r2,a
+0CA1 8001      2791            sjmp    L021080?
+0CA3           2792   L021067?:
+0CA3           2793   ;        .\cmon51.c:632: else if (x==0x82) d=DPL_save;
+0CA3 BF82B0    2794            cjne    r7,#0x82,L021064?
+0CA6 904470    2795            mov     dptr,#_DPL_save
+0CA9 E0        2796            movx    a,@dptr
+0CAA FD        2797            mov     r5,a
+0CAB A3        2798            inc     dptr
+0CAC E0        2799            movx    a,@dptr
+0CAD FB        2800            mov     r3,a
+0CAE 8D02      2801            mov     ar2,r5
+0CB0 8001      2802            sjmp    L021080?
+0CB2           2803   L021064?:
+0CB2           2804   ;        .\cmon51.c:633: else if (x==0x83) d=DPH_save;
+0CB2 BF83F0    2805            cjne    r7,#0x83,L021061?
+0CB5 904430    2806            mov     dptr,#_DPH_save
+0CB8 E0        2807            movx    a,@dptr
+0CB9 FB        2808            mov     r3,a
+0CBA A3        2809            inc     dptr
+0CBB E0        2810            movx    a,@dptr
+0CBC FD        2811            mov     r5,a
+0CBD 8B02      2812            mov     ar2,r3
+0CBF 8001      2813            sjmp    L021080?
+0CC1           2814   L021061?:
+0CC1           2815   ;        .\cmon51.c:634: else d=read_sfr(x);
+0CC1 8F82      2816            mov     dpl,r7
+0CC3 C004      2817            push    ar4
+0CC5 C006      2818            push    ar6
+0CC7 C007      2819            push    ar7
+0CC9 120100    2820            lcall   _read_sfr
+0CCC AA82      2821            mov     r2,dpl
+0CCE D007      2822            pop     ar7
+0CD0 D006      2823            pop     ar6
+0CD2 D004      2824            pop     ar4
+0CD4           2825   L021080?:
+0CD4           2826   ;        .\cmon51.c:637: if(y!=0xff)
+0CD4 74FF      2827            mov     a,#0xFF
+0CD6 B52070    2828            cjne    a,_do_cmd_y_1_150,L021216?
+0CD9 7401      2829            mov     a,#0x01
+0CDB 8001      2830            sjmp    L021217?
+0CDD           2831   L021216?:
+0CDD E4        2832            clr     a
+0CDE           2833   L021217?:
+0CDE FB        2834            mov     r3,a
+0CDF 7001      2835            jnz     L021085?
+0CE1           2836   ;        .\cmon51.c:639: if(c) c=d|y;
+0CE1 EE        2837            mov     a,r6
+0CE2 6001      2838            jz      L021082?
+0CE4 E520      2839            mov     a,_do_cmd_y_1_150
+0CE6 4A        2840            orl     a,r2
+0CE7 FE        2841            mov     r6,a
+0CE8 8001      2842            sjmp    L021085?
+0CEA           2843   L021082?:
+0CEA           2844   ;        .\cmon51.c:640: else c=d&(~y);
+0CEA E520      2845            mov     a,_do_cmd_y_1_150
+0CEC F4        2846            cpl     a
+0CED FD        2847            mov     r5,a
+0CEE 5A        2848            anl     a,r2
+0CEF FE        2849            mov     r6,a
+0CF0           2850   L021085?:
+0CF0           2851   ;        .\cmon51.c:644: if(x==0xB0) c=(P3&0x3)|(c&0xfc);
+0CF0 BFB070    2852            cjne    r7,#0xB0,L021087?
+0CF3 7403      2853            mov     a,#0x03
+0CF5 55B0      2854            anl     a,_P3
+0CF7 FD        2855            mov     r5,a
+0CF8 74FC      2856            mov     a,#0xFC
+0CFA 5E        2857            anl     a,r6
+0CFB 4D        2858            orl     a,r5
+0CFC FE        2859            mov     r6,a
+0CFD           2860   L021087?:
+0CFD           2861   ;        .\cmon51.c:647: if(buff_haseq)
+0CFD 30B0B0    2862            jnb     _buff_haseq,L021116?
+0D00           2863   ;        .\cmon51.c:649: /**/ if (x==0xd0) PSW_save=c;
+0D00 EC        2864            mov     a,r4
+0D01 6001      2865            jz      L021107?
+0D03 904530    2866            mov     dptr,#_PSW_save
+0D06 EE        2867            mov     a,r6
+0D07 F0        2868            movx    @dptr,a
+0D08 020100    2869            ljmp    L021123?
+0D0B           2870   L021107?:
+0D0B           2871   ;        .\cmon51.c:650: else if (x==0xe0) A_save=c;
+0D0B BFE030    2872            cjne    r7,#0xE0,L021104?
+0D0E 904570    2873            mov     dptr,#_A_save
+0D11 EE        2874            mov     a,r6
+0D12 F0        2875            movx    @dptr,a
+0D13 020100    2876            ljmp    L021123?
+0D16           2877   L021104?:
+0D16           2878   ;        .\cmon51.c:651: else if (x==0xf0) B_save=c;
+0D16 BFF070    2879            cjne    r7,#0xF0,L021101?
+0D19 9044F0    2880            mov     dptr,#_B_save
+0D1C EE        2881            mov     a,r6
+0D1D F0        2882            movx    @dptr,a
+0D1E 020100    2883            ljmp    L021123?
+0D21           2884   L021101?:
+0D21           2885   ;        .\cmon51.c:652: else if (x==0xa8) IE_save=c;
+0D21 BFA8B0    2886            cjne    r7,#0xA8,L021098?
+0D24 9044B0    2887            mov     dptr,#_IE_save
+0D27 EE        2888            mov     a,r6
+0D28 F0        2889            movx    @dptr,a
+0D29 020100    2890            ljmp    L021123?
+0D2C           2891   L021098?:
+0D2C           2892   ;        .\cmon51.c:653: else if (x==0x81) SP_save=c;
+0D2C BF81F0    2893            cjne    r7,#0x81,L021095?
+0D2F 9043F0    2894            mov     dptr,#_SP_save
+0D32 EE        2895            mov     a,r6
+0D33 F0        2896            movx    @dptr,a
+0D34 020100    2897            ljmp    L021123?
+0D37           2898   L021095?:
+0D37           2899   ;        .\cmon51.c:654: else if (x==0x82) DPL_save=c;
+0D37 BF8230    2900            cjne    r7,#0x82,L021092?
+0D3A 904470    2901            mov     dptr,#_DPL_save
+0D3D EE        2902            mov     a,r6
+0D3E F0        2903            movx    @dptr,a
+0D3F A3        2904            inc     dptr
+0D40 E4        2905            clr     a
+0D41 F0        2906            movx    @dptr,a
+0D42 020100    2907            ljmp    L021123?
+0D45           2908   L021092?:
+0D45           2909   ;        .\cmon51.c:655: else if (x==0x83) DPH_save=c;
+0D45 BF8370    2910            cjne    r7,#0x83,L021089?
+0D48 904430    2911            mov     dptr,#_DPH_save
+0D4B EE        2912            mov     a,r6
+0D4C F0        2913            movx    @dptr,a
+0D4D A3        2914            inc     dptr
+0D4E E4        2915            clr     a
+0D4F F0        2916            movx    @dptr,a
+0D50 020100    2917            ljmp    L021123?
+0D53           2918   L021089?:
+0D53           2919   ;        .\cmon51.c:656: else write_sfr(c);
+0D53 8E82      2920            mov     dpl,r6
+0D55 120100    2921            lcall   _write_sfr
+0D58 020100    2922            ljmp    L021123?
+0D5B           2923   L021116?:
+0D5B           2924   ;        .\cmon51.c:660: if(y==0xff)
+0D5B EB        2925            mov     a,r3
+0D5C 6001      2926            jz      L021109?
+0D5E           2927   ;        .\cmon51.c:661: outbyte(d);
+0D5E 8A82      2928            mov     dpl,r2
+0D60 120100    2929            lcall   _outbyte
+0D63           2930   ;        .\cmon51.c:663: putc((d&y)?'1':'0');
+0D63 8001      2931            sjmp    L021114?
+0D65           2932   L021109?:
+0D65 109970    2933            jbc     _TI,L021237?
+0D68 8001      2934            sjmp    L021109?
+0D6A           2935   L021237?:
+0D6A E520      2936            mov     a,_do_cmd_y_1_150
+0D6C 5A        2937            anl     a,r2
+0D6D 6001      2938            jz      L021139?
+0D6F 7A31      2939            mov     r2,#0x31
+0D71 8001      2940            sjmp    L021140?
+0D73           2941   L021139?:
+0D73 7A30      2942            mov     r2,#0x30
+0D75           2943   L021140?:
+0D75 8A99      2944            mov     _SBUF,r2
+0D77           2945   L021114?:
+0D77           2946   ;        .\cmon51.c:664: putnl();
+0D77 120100    2947            lcall   _putnl
+0D7A 020100    2948            ljmp    L021123?
+0D7D           2949   L021119?:
+0D7D           2950   ;        .\cmon51.c:667: else putsp("What?\n");
+0D7D 90AE30    2951            mov     dptr,#__str_15
+0D80 75F080    2952            mov     b,#0x80
+0D83 120100    2953            lcall   _putsp
+0D86           2954   ;        .\cmon51.c:669: }
+0D86 020100    2955            ljmp    L021123?
+0D89           2956            rseg R_CSEG
+0D89           2957   
+0000           2958            rseg R_CONST
+0000           2959   _cmdlst:
+0000 80        2960            db 0x80
+0001 44        2961            db 'D'
+0002 81        2962            db 0x81
+0003 4D44      2963            db 'MD'
+0005 82        2964            db 0x82
+0006 4644      2965            db 'FD'
+0008 83        2966            db 0x83
+0009 49        2967            db 'I'
+000A 84        2968            db 0x84
+000B 4D49      2969            db 'MI'
+000D 85        2970            db 0x85
+000E 4649      2971            db 'FI'
+0010 86        2972            db 0x86
+0011 58        2973            db 'X'
+0012 87        2974            db 0x87
+0013 4D58      2975            db 'MX'
+0015 88        2976            db 0x88
+0016 4658      2977            db 'FX'
+0018 89        2978            db 0x89
+0019 43        2979            db 'C'
+001A 8A        2980            db 0x8A
+001B 55        2981            db 'U'
+001C 8B        2982            db 0x8B
+001D 47        2983            db 'G'
+001E 8C        2984            db 0x8C
+001F 53        2985            db 'S'
+0020 8D        2986            db 0x8D
+0021 52        2987            db 'R'
+0022 8E        2988            db 0x8E
+0023 4C        2989            db 'L'
+0024 8F        2990            db 0x8F
+0025 44505452  2991            db 'DPTR'
+0029 90        2992            db 0x90
+002A 5043      2993            db 'PC'
+002C 91        2994            db 0x91
+002D 54        2995            db 'T'
+002E 92        2996            db 0x92
+002F 5230      2997            db 'R0'
+0031 93        2998            db 0x93
+0032 5231      2999            db 'R1'
+0034 94        3000            db 0x94
+0035 5232      3001            db 'R2'
+0037 95        3002            db 0x95
+0038 5233      3003            db 'R3'
+003A 96        3004            db 0x96
+003B 52        3005            db 'R'
+003C 34        3006            db '4'
+003D 97        3007            db 0x97
+003E 5235      3008            db 'R5'
+0040 98        3009            db 0x98
+0041 5236      3010            db 'R6'
+0043 99        3011            db 0x99
+0044 5237      3012            db 'R7'
+0046 9A        3013            db 0x9A
+0047 5452      3014            db 'TR'
+0049 9B        3015            db 0x9B
+004A 4742      3016            db 'GB'
+004C 9C        3017            db 0x9C
+004D 425230    3018            db 'BR0'
+0050 9D        3019            db 0x9D
+0051 425231    3020            db 'BR1'
+0054 9E        3021            db 0x9E
+0055 425232    3022            db 'BR2'
+0058 9F        3023            db 0x9F
+0059 425233    3024            db 'BR3'
+005C A0        3025            db 0xA0
+005D 425243    3026            db 'BRC'
+0060 A1        3027            db 0xA1
+0061 4252      3028            db 'BR'
+0063 A2        3029            db 0xA2
+0064 504352    3030            db 'PCR'
+0067 A3        3031            db 0xA3
+0068 A4        3032            db 0xA4
+0069 00        3033            db 0x00
+006A 00        3034            db 0x00
+006B           3035   _hexval:
+006B 30313233  3036            db '0123456789ABCDEF'
+     34353637
+     38394142
+     43444546
+007B 00        3037            db 0x00
+007C           3038   _maskbit:
+007C 01        3039            db 0x01         ; 1
+007D 02        3040            db 0x02         ; 2
+007E 04        3041            db 0x04         ; 4
+007F 08        3042            db 0x08         ; 8
+0080 10        3043            db 0x10         ; 16
+0081 20        3044            db 0x20         ; 32
+0082 40        3045            db 0x40         ; 64
+0083 80        3046            db 0x80         ; 128
+0084           3047   __str_0:
+0084 08        3048            db 0x08
+0085 20        3049            db ' '
+0086 08        3050            db 0x08
+0087 00        3051            db 0x00
+0088           3052   __str_1:
+0088 3E20      3053            db '> '
+008A 00        3054            db 0x00
+008B           3055   __str_2:
+008B 3C537061  3056            db '<Space>=line <Enter>=page <ESC>=stop'
+     63653E3D
+     6C696E65
+     203C456E
+     7465723E
+     3D706167
+     65203C45
+     53433E3D
+     73746F70
+00AF 0D        3057            db 0x0D
+00B0 00        3058            db 0x00
+00B1           3059   __str_3:
+00B1 3A2020    3060            db ':  '
+00B4 00        3061            db 0x00
+00B5           3062   __str_4:
+00B5 202020    3063            db '   '
+00B8 00        3064            db 0x00
+00B9           3065   __str_5:
+00B9 202041    3066            db '  A'
+00BC 00        3067            db 0x00
+00BD           3068   __str_6:
+00BD 202042    3069            db '  B'
+00C0 00        3070            db 0x00
+00C1           3071   __str_7:
+00C1 205350    3072            db ' SP'
+00C4 00        3073            db 0x00
+00C5           3074   __str_8:
+00C5 204945    3075            db ' IE'
+00C8 00        3076            db 0x00
+00C9           3077   __str_9:
+00C9 445048    3078            db 'DPH'
+00CC 00        3079            db 0x00
+00CD           3080   __str_10:
+00CD 44504C    3081            db 'DPL'
+00D0 00        3082            db 0x00
+00D1           3083   __str_11:
+00D1 505357    3084            db 'PSW'
+00D4 00        3085            db 0x00
+00D5           3086   __str_12:
+00D5 2050433D  3087            db ' PC='
+00D9 00        3088            db 0x00
+00DA           3089   __str_13:
+00DA 2042414E  3090            db ' BANK '
+     4B20
+00E0 00        3091            db 0x00
+00E1           3092   __str_14:
+00E1 0A        3093            db 0x0A
+00E2 0A        3094            db 0x0A
+00E3 434D4F4E  3095            db 'CMON51 V2.0'
+     35312056
+     322E30
+00EE 0A        3096            db 0x0A
+00EF 436F7079  3097            db 'CopyRight (c) 2005-2013 Jesus Calvino-Fraga'
+     52696768
+     74202863
+     29203230
+     30352D32
+     30313320
+     4A657375
+     73204361
+     6C76696E
+     6F2D4672
+     616761
+011A 0A        3098            db 0x0A
+011B 00        3099            db 0x00
+011C           3100   __str_15:
+011C 57686174  3101            db 'What?'
+     3F
+0121 0A        3102            db 0x0A
+0122 00        3103            db 0x00
+0123           3104   
+0000           3105            rseg R_XINIT
+0000           3106   
+0000           3107            CSEG
+0000           3108   
+0000           3109   end

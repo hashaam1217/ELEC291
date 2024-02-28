@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: S51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\JCF\AppData\Local\Temp\RSP2121.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/S51.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\S51\disasm.c"
+"C:\Source\call51\Source\S51\hex.c"
+"C:\Source\call51\Source\S51\s51.c"
+"C:\Source\call51\Source\S51\globals.c"
+]
+Creating command line "cl.exe @C:\Users\JCF\AppData\Local\Temp\RSP2121.tmp" 
+Creating temporary file "C:\Users\JCF\AppData\Local\Temp\RSP2122.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib ws2_32.lib wininet.lib /nologo /subsystem:console /incremental:no /pdb:"Release/s51.pdb" /machine:I386 /out:"..\..\bin\s51.exe" 
+.\Release\disasm.obj
+.\Release\hex.obj
+.\Release\s51.obj
+.\Release\globals.obj
+]
+Creating command line "link.exe @C:\Users\JCF\AppData\Local\Temp\RSP2122.tmp"
+<h3>Output Window</h3>
+Compiling...
+disasm.c
+hex.c
+s51.c
+globals.c
+Linking...
+
+
+
+<h3>Results</h3>
+s51.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,331 @@
+; Options for the C51PP front end.
+; Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+;
+; This file is part of GCC.
+;
+; GCC is free software; you can redistribute it and/or modify it under
+; the terms of the GNU General Public License as published by the Free
+; Software Foundation; either version 2, or (at your option) any later
+; version.
+;
+; GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+; WARRANTY; without even the implied warranty of MERCHANTABILITY or
+; FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+; for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with GCC; see the file COPYING.  If not, write to the Free
+; Software Foundation, 51 Franklin Street, Fifth Floor, Boston, MA
+; 02110-1301, USA.
+
+; See the GCC internals manual for a description of this file's format.
+
+; Please try to keep this file in ASCII collating order.
+
+Language
+C51PP
+
+-help
+Common
+Display this information
+
+-version
+Common
+Display the compiler's version
+
+;***-output-pch=
+;***C51PP Joined Separate
+
+A
+C51PP Joined Separate
+-A<question>=<answer>	Assert the <answer> to <question>.  Putting '-' before <question> disables the <answer> to <question>
+
+C
+C51PP
+Do not discard comments
+
+CC
+C51PP
+Do not discard comments in macro expansions
+
+D
+C51PP Joined Separate
+-D<macro>[=<val>]	Define a <macro> with <val> as its value.  If just <macro> is given, <val> is taken to be 1
+
+H
+C51PP
+Print the name of header files as they are used
+
+I
+C51PP Joined Separate
+-I <dir>	Add <dir> to the end of the main include path.  -I- gives more include path control; see info documentation
+
+M
+C51PP
+Generate make dependencies
+
+MD
+C51PP Separate
+Generate make dependencies and compile
+
+MF
+C51PP Joined Separate
+-MF <file>	Write dependency output to the given file
+
+MG
+C51PP
+Treat missing header files as generated files
+
+MM
+C51PP
+Like -M but ignore system header files
+
+MMD
+C51PP Separate
+Like -MD but ignore system header files
+
+MP
+C51PP
+Generate phony targets for all headers
+
+MQ
+C51PP Joined Separate
+-MQ <target>	Add a MAKE-quoted target
+
+MT
+C51PP Joined Separate
+-MT <target>	Add an unquoted target
+
+P
+C51PP
+Do not generate #line directives
+
+U
+C51PP Joined Separate
+-U<macro>	Undefine <macro>
+
+Wall
+C51PP
+Enable most warning messages
+
+Wcomment
+C51PP
+Warn about possibly nested block comments, and C++ comments spanning more than one physical line
+
+Wcomments
+C51PP
+Synonym for -Wcomment
+
+Wdeprecated
+C51PP
+Warn about deprecated compiler features
+
+Wendif-labels
+C51PP
+Warn about stray tokens after #elif and #endif
+
+Werror
+C51PP
+Treat all warnings as errors
+
+Wfatal-errors
+C51PP Var(flag_fatal_errors)
+Exit on the first error occurred
+
+Wimport
+C51PP
+Deprecated.  This switch has no effect.
+
+;***Winvalid-pch
+;***C51PP
+;***Warn about PCH files that are found but not used
+
+Wsystem-headers
+C51PP
+Do not suppress warnings from system headers
+
+Wtraditional
+C51PP Var(warn_traditional)
+Warn about features not present in traditional C
+
+Wtrigraphs
+C51PP
+Warn if trigraphs are encountered that might affect the meaning of the program
+
+Wundef
+C51PP
+Warn if an undefined macro is used in an #if directive
+
+Wunused-macros
+C51PP
+Warn about macros defined in the main file that are not used
+
+Wvariadic-macros
+C51PP
+Do not warn about using variadic macros when -pedantic
+
+ansi
+C51PP
+A synonym for -std=c89.
+
+d
+C51PP Joined
+-d<letters>	Enable dumps from specific passes of the compiler
+
+fdollars-in-identifiers
+C51PP
+Permit '$' as an identifier character
+
+fexec-charset=
+C51PP Joined RejectNegative
+-fexec-charset=<cset>	Convert all strings and character constants to character set <cset>
+
+finput-charset=
+C51PP Joined RejectNegative
+-finput-charset=<cset>      Specify the default character set for source files.
+
+;***fpch-deps
+;***C51PP
+
+fpreprocessed
+C51PP
+Treat the input file as already preprocessed
+
+fshow-column
+C51PP
+
+fsigned-char
+C51PP
+Make \"char\" signed by default
+
+ftabstop=
+C51PP Joined RejectNegative UInteger
+-ftabstop=<number>	Distance between tab stops for column reporting
+
+funsigned-char
+C51PP
+Make \"char\" unsigned by default
+
+fwide-exec-charset=
+C51PP Joined RejectNegative
+-fwide-exec-charset=<cset>	Convert all wide strings and character constants to character set <cset>
+
+fworking-directory
+C51PP
+Generate a #line directive pointing at the current working directory
+
+idirafter
+C51PP Joined Separate
+-idirafter <dir>	Add <dir> to the end of the system include path
+
+imacros
+C51PP Joined Separate
+-imacros <file>	Accept definition of macros in <file>
+
+imultilib
+C ObjC C++ ObjC++ Joined Separate
+-imultilib <dir> Set <dir> to be the multilib include subdirectory
+
+include
+C51PP Joined Separate
+-include <file>	Include the contents of <file> before other files
+
+iprefix
+C51PP Joined Separate
+-iprefix <path>	Specify <path> as a prefix for next two options
+
+isysroot
+C51PP Joined Separate
+-isysroot <dir>	Set <dir> to be the system root directory
+
+isystem
+C51PP Joined Separate
+-isystem <dir>	Add <dir> to the start of the system include path
+
+iquote
+C51PP Joined Separate
+-iquote <dir>	Add <dir> to the end of the quote include path
+
+iwithprefix
+C51PP Joined Separate
+-iwithprefix <dir>	Add <dir> to the end of the system include path
+
+iwithprefixbefore
+C51PP Joined Separate
+-iwithprefixbefore <dir>	Add <dir> to the end of the main include path
+
+lang-asm
+C Undocumented
+
+lang-objc
+C51PP Undocumented
+
+nostdinc
+C51PP
+Do not search standard system include directories (those specified with -isystem will still be used)
+
+o
+C51PP Joined Separate
+-o <file>	Place output into <file>
+
+obj-ext=
+C51PP Joined
+-obj-ext=<extension>	Define object file extension, used for generation of make dependencies
+
+pedantic
+C51PP Var(pedantic)
+Issue warnings needed for strict compliance to the standard
+
+pedantic-errors
+C51PP
+Like -pedantic but issue them as errors
+
+pedantic-parse-number
+C51PP
+Pedantic parse number
+
+remap
+C51PP
+Remap file names when including files
+
+std=c89
+C51PP
+Conform to the ISO 1990 C standard
+
+std=c99
+C51PP
+Conform to the ISO 1999 C standard
+
+std=iso9899:1990
+C ObjC
+Conform to the ISO 1990 C standard
+
+std=iso9899:199409
+C51PP
+Conform to the ISO 1990 C standard as amended in 1994
+
+std=iso9899:1999
+C ObjC
+Conform to the ISO 1999 C standard
+
+traditional-cpp
+C51PP
+Enable traditional preprocessing
+
+trigraphs
+C51PP
+-trigraphs	Support ISO C trigraphs
+
+v
+C51PP
+Enable verbose output
+
+;***version
+;***C51PP Var(version_flag)
+;***Display the compiler's version
+
+w
+C51PP Var(inhibit_warnings)
+Suppress warnings
+
+; This comment is to ensure we retain the blank line above.

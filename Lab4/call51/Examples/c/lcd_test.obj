@@ -1,0 +1,237 @@
+<MODULE>
+lcd_test
+</MODULE>
+
+<OPTC51>
+--model-small
+</OPTC51>
+
+<SEGMENTS>
+R_GSINIT,code,0115,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,001E,NO
+rbank0,data,0000,OV
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,0000,NO
+</SEGMENTS>
+
+<LOCALS>
+forever?home?,R_GSINIT,0054,0000
+XInitLoop?done?,R_GSINIT,0033,0000
+XInitLoop?repeat?,R_GSINIT,001D,0000
+__c51_program_startup,R_GSINIT,0051,0000
+X1,R_GSINIT,005A,0000
+L006005?,R_GSINIT,00AB,0000
+L006001?,R_GSINIT,007F,0000
+L007003?,R_GSINIT,00EE,0000
+XClearLoop?repeat?,R_GSINIT,0040,0000
+__str_0,R_CONST,0000,0000
+__str_1,R_CONST,000D,0000
+XClearLoop?done?,R_GSINIT,004E,0000
+__c51_init_data,R_GSINIT,000D,0000
+</LOCALS>
+
+<PUBLICS>
+_main,R_GSINIT,00AC,0000
+_LCD_puts,R_GSINIT,0077,0000
+_LCD_data,R_GSINIT,006B,0000
+_de2_8052_crt0,R_CSEG,0000,0000
+_Wait40us,R_GSINIT,0056,0000
+_crt0,R_GSINIT,0000,0000
+_LCD_command,R_GSINIT,005F,0000
+</PUBLICS>
+
+<EXTERNALS>
+_R_IXSEG_start,any,0000,0000
+__gptrget,any,0000,0000
+_R_IXSEG_size,any,0000,0000
+_R_DINIT_start,any,0000,0000
+__c51_external_startup,any,0000,0000
+_R_XSEG_size,any,0000,0000
+_R_XINIT_start,any,0000,0000
+_stack_start,any,0000,0000
+_R_XSEG_start,any,0000,0000
+</EXTERNALS>
+
+<CODE AT 0000>
+</CODE>
+
+<CODE R_HOME>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_CSEG>
+</CODE>
+
+<CODE AT 0000>
+02 addr16(_crt0;)  
+</CODE>
+
+<CODE R_HOME>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_GSINIT>
+</CODE>
+
+<CODE R_DINIT>
+</CODE>
+
+<CODE R_CSEG>
+</CODE>
+
+<CODE R_GSINIT>
+75 81 data8(_stack_start;0x0001;-;)
+12 addr16(__c51_external_startup;)  
+E5 82
+60 rel2(__c51_init_data;)
+02 addr16(__c51_program_startup;)  
+75 82 data8(_R_XINIT_start;)
+75 83 data8(_R_XINIT_start;0x0008;>>;)
+75 84 data8(_R_IXSEG_start;)
+75 85 data8(_R_IXSEG_start;0x0008;>>;)
+78 data8(_R_IXSEG_size;)
+79 data8(_R_IXSEG_size;0x0008;>>;)
+E8
+49
+60 rel2(XInitLoop?done?;)
+E4
+75 86 00
+93
+A3
+75 86 01
+F0
+A3
+18
+B8 FF rel3(XInitLoop?repeat?;)
+19
+80 rel2(XInitLoop?repeat?;)
+75 86 00
+75 82 data8(_R_XSEG_start;)
+75 83 data8(_R_XSEG_start;0x0008;>>;)
+7C data8(_R_XSEG_size;)
+7D data8(_R_XSEG_size;0x0008;>>;)
+EC
+4D
+60 rel2(XClearLoop?done?;)
+E4
+F0
+A3
+1C
+BC FF rel3(XClearLoop?repeat?;)
+1D
+80 rel2(XClearLoop?repeat?;)
+12 addr16(_R_DINIT_start;)  
+12 addr16(_main;)  
+80 rel2(forever?home?;)
+C0 00
+78 C8
+D8 rel2(X1;)
+D0 00
+22
+85 82 D9
+C2 DA
+D2 D9
+C2 D9
+02 addr16(_Wait40us;)  
+85 82 D9
+D2 DA
+D2 D9
+C2 D9
+02 addr16(_Wait40us;)  
+AA 82
+AB 83
+AC F0
+7D 00
+ED
+2A
+FE
+E4
+3B
+FF
+8C 00
+8E 82
+8F 83
+88 F0
+12 addr16(__gptrget;)  
+FE
+60 rel2(L006005?;)
+8E 82
+C0 02
+C0 03
+C0 04
+C0 05
+12 addr16(_LCD_data;)  
+D0 05
+D0 04
+D0 03
+D0 02
+0D
+80 rel2(L006001?;)
+22
+75 91 FF
+75 92 FF
+75 93 FF
+75 94 FF
+75 8E FF
+75 8F FF
+75 96 FF
+75 97 FF
+75 E8 00
+75 95 00
+75 9E 00
+75 F8 00
+D2 DB
+12 addr16(_Wait40us;)  
+75 DA FF
+C2 D8
+75 82 0C
+12 addr16(_LCD_command;)  
+75 82 38
+12 addr16(_LCD_command;)  
+75 82 01
+12 addr16(_LCD_command;)  
+7A 64
+C0 02
+12 addr16(_Wait40us;)  
+D0 02
+DA rel2(L007003?;)
+75 82 80
+12 addr16(_LCD_command;)  
+90 data16(__str_0;)  
+75 F0 80
+12 addr16(_LCD_puts;)  
+75 82 C0
+12 addr16(_LCD_command;)  
+90 data16(__str_1;)  
+75 F0 80
+02 addr16(_LCD_puts;)  
+</CODE>
+
+<CODE R_CSEG>
+</CODE>
+
+<CODE R_CONST>
+48 65 6C 6C 6F 20 57 6F 72 6C 64 21 
+00
+53 65 63 6F 6E 64 20 4C 43 44 20 6C 69 6E 65 2E 
+00
+</CODE>
+
+<CODE R_XINIT>
+</CODE>
+
+<CODE AT 0003>
+</CODE>

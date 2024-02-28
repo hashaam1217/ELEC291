@@ -1,0 +1,1639 @@
+--- Running: cases\t_abs
+Running testAbs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_absolute_mem___code
+Running testAbsolute
+Running testAbsBdata
+--- Summary: 0/9/2: 0 failed of 9 tests in 2 cases.
+--- Running: cases\t_absolute_mem___xdata
+Running testAbsolute
+Running testAbsBdata
+--- Summary: 0/9/2: 0 failed of 9 tests in 2 cases.
+--- Running: cases\t_addsub_storage_none_type_int_attr_volatile
+Running testAdd
+Running testSub
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_addsub_storage_none_type_long_attr_volatile
+Running testAdd
+Running testSub
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_addsub_storage_none_type_signed_char_attr_volatile
+Running testAdd
+Running testSub
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_addsub_storage_static_type_int_attr_volatile
+Running testAdd
+Running testSub
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_addsub_storage_static_type_long_attr_volatile
+Running testAdd
+Running testSub
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_addsub_storage_static_type_signed_char_attr_volatile
+Running testAdd
+Running testSub
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_args_type1_char_type3_char_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_char_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_char_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_int_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_int_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_int_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_long_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_long_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_char_type3_long_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_char_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_char_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_char_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_int_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_int_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_int_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_long_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_long_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_int_type3_long_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_char_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_char_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_char_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_int_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_int_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_int_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_long_type2_char
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_long_type2_int
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_args_type1_long_type3_long_type2_long
+Running testArgs
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_arithcse_type_char_attr_none
+Running test_arithCse
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_arithcse_type_char_attr_volatile
+Running test_arithCse
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_arithcse_type_long_attr_none
+Running test_arithCse
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_arithcse_type_long_attr_volatile
+Running test_arithCse
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_arithcse_type_short_attr_none
+Running test_arithCse
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_arithcse_type_short_attr_volatile
+Running test_arithCse
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_array_storage_none_type_char
+Running testArrayAccess
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_array_storage_none_type_int
+Running testArrayAccess
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_array_storage___code_type_char
+Running testArrayAccess
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_array_storage___code_type_int
+Running testArrayAccess
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_array_storage___xdata_type_char
+Running testArrayAccess
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_array_storage___xdata_type_int
+Running testArrayAccess
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_ast_constant_folding
+Running test_ast_cf
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+t_bitfields.c:154: warning 158: overflow in implicit constant conversion
+t_bitfields.c:165: warning 158: overflow in implicit constant conversion
+t_bitfields.c:178: warning 158: overflow in implicit constant conversion
+t_bitfields.c:255: warning 158: overflow in implicit constant conversion
+t_bitfields.c:260: warning 158: overflow in implicit constant conversion
+t_bitfields.c:265: warning 158: overflow in implicit constant conversion
+t_bitfields.c:266: warning 158: overflow in implicit constant conversion
+t_bitfields.c:270: warning 158: overflow in implicit constant conversion
+t_bitfields.c:275: warning 158: overflow in implicit constant conversion
+t_bitfields.c:280: warning 158: overflow in implicit constant conversion
+t_bitfields.c:281: warning 158: overflow in implicit constant conversion
+t_bitfields.c:369: warning 158: overflow in implicit constant conversion
+t_bitfields.c:371: warning 158: overflow in implicit constant conversion
+t_bitfields.c:380: warning 158: overflow in implicit constant conversion
+--- Running: cases\t_bitfields
+Running testBitfieldSizeof
+Running testBitfieldsSingleBitLiteral
+Running testBitfieldsSingleBit
+Running testBitfieldsMultibitLiteral
+Running testBitfieldsMultibit
+Running testBitfields
+Running testSignedBitfields
+Running testCS
+--- Summary: 0/123/8: 0 failed of 123 tests in 8 cases.
+--- Running: cases\t_bitopcse_type_bool
+Running testcse
+--- Summary: 0/25/1: 0 failed of 25 tests in 1 cases.
+--- Running: cases\t_bitopcse_type_char
+Running testcse
+--- Summary: 0/25/1: 0 failed of 25 tests in 1 cases.
+--- Running: cases\t_bitopcse_type_long
+Running testcse
+--- Summary: 0/25/1: 0 failed of 25 tests in 1 cases.
+--- Running: cases\t_bitopcse_type_short
+Running testcse
+--- Summary: 0/25/1: 0 failed of 25 tests in 1 cases.
+--- Running: cases\t_bitvars_type_bool
+Running testBits
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases\t_bitvars_type_char
+Running testBits
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases\t_bitvars_type_unsigned_char
+Running testBits
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases\t_bitvars_type_unsigned_long
+Running testBits
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases\t_bitvars_type_unsigned_short
+Running testBits
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases\t_bitwise_storage_none_type_char_attr_none
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_none_type_char_attr_volatile
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_none_type_long_attr_none
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_none_type_long_attr_volatile
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_none_type_short_attr_none
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_none_type_short_attr_volatile
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_static_type_char_attr_none
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_static_type_char_attr_volatile
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_static_type_long_attr_none
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_static_type_long_attr_volatile
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_static_type_short_attr_none
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bitwise_storage_static_type_short_attr_volatile
+Running testTwoOpBitwise
+Running testAnd
+Running testOr
+Running testXor
+Running testBug_1777758
+--- Summary: 0/46/5: 0 failed of 46 tests in 5 cases.
+--- Running: cases\t_bool
+Running testBool
+Running testBool
+--- Summary: 0/0/2: 0 failed of 0 tests in 2 cases.
+--- Running: cases\t_bp
+Running testBP
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_compare_storage_none_type_char_attr_volatile
+Running testCmpAroundZero
+Running testCompareConstants
+Running testCompareVariables
+Running testUnsignedCompare
+--- Summary: 0/48/4: 0 failed of 48 tests in 4 cases.
+--- Running: cases\t_compare_storage_none_type_int_attr_volatile
+Running testCmpAroundZero
+Running testCompareConstants
+Running testCompareVariables
+Running testUnsignedCompare
+--- Summary: 0/48/4: 0 failed of 48 tests in 4 cases.
+--- Running: cases\t_compare_storage_none_type_long_attr_volatile
+Running testCmpAroundZero
+Running testCompareConstants
+Running testCompareVariables
+Running testUnsignedCompare
+--- Summary: 0/48/4: 0 failed of 48 tests in 4 cases.
+--- Running: cases\t_compare_storage_static_type_char_attr_volatile
+Running testCmpAroundZero
+Running testCompareConstants
+Running testCompareVariables
+Running testUnsignedCompare
+--- Summary: 0/48/4: 0 failed of 48 tests in 4 cases.
+--- Running: cases\t_compare_storage_static_type_int_attr_volatile
+Running testCmpAroundZero
+Running testCompareConstants
+Running testCompareVariables
+Running testUnsignedCompare
+--- Summary: 0/48/4: 0 failed of 48 tests in 4 cases.
+--- Running: cases\t_compare_storage_static_type_long_attr_volatile
+Running testCmpAroundZero
+Running testCompareConstants
+Running testCompareVariables
+Running testUnsignedCompare
+--- Summary: 0/48/4: 0 failed of 48 tests in 4 cases.
+--- Running: cases\t_const
+Running testConst
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_constantRange
+Running testConstantRange
+Running testFoo1
+Running testFoo2
+--- Summary: 0/106/3: 0 failed of 106 tests in 3 cases.
+--- Running: cases\t_constmodifiers
+Running testUMod
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_critical
+Running testCritical
+--- Summary: 0/24/1: 0 failed of 24 tests in 1 cases.
+--- Running: cases\t_driverstruct
+Running testDriverStruct
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_enum
+Running testSimpleEnum
+Running testValuesEnum
+Running testIndexedEnum
+Running testIntEnum
+--- Summary: 0/17/4: 0 failed of 17 tests in 4 cases.
+--- Running: cases\t_fetchoverlap
+Running testOverlap
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_float_operation_ADD
+Running testFloatMath
+Running testFloatMulRound
+Running testFloatDivOptimization
+--- Summary: 0/20/3: 0 failed of 20 tests in 3 cases.
+--- Running: cases\t_float_operation_DIV
+Running testFloatMath
+Running testFloatMulRound
+Running testFloatDivOptimization
+--- Summary: 0/20/3: 0 failed of 20 tests in 3 cases.
+--- Running: cases\t_float_operation_MUL
+Running testFloatMath
+Running testFloatMulRound
+Running testFloatDivOptimization
+--- Summary: 0/20/3: 0 failed of 20 tests in 3 cases.
+--- Running: cases\t_float_operation_REVDIV
+Running testFloatMath
+Running testFloatMulRound
+Running testFloatDivOptimization
+--- Summary: 0/17/3: 0 failed of 17 tests in 3 cases.
+--- Running: cases\t_float_operation_SUB
+Running testFloatMath
+Running testFloatMulRound
+Running testFloatDivOptimization
+--- Summary: 0/20/3: 0 failed of 20 tests in 3 cases.
+--- Running: cases\t_float_single_func_ACOSF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_ASINF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_ATANF
+Running testFloat
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases\t_float_single_func_CEILF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_COSF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_COSHF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_EXPF
+Running testFloat
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases\t_float_single_func_FABSF
+Running testFloat
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_float_single_func_FLOORF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_LOG10F
+Running testFloat
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases\t_float_single_func_LOGF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_SINF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_SINHF
+Running testFloat
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases\t_float_single_func_SQRTF
+Running testFloat
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases\t_float_single_func_TANF
+Running testFloat
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases\t_float_single_func_TANHF
+Running testFloat
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases\t_float_trans_func_LOGF
+Running testTrans
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_float_trans_func_POWF
+Running testTrans
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_float_trans_func_SQRTF
+Running testTrans
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_float_trans_func_TANF
+Running testTrans
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_funptrs_type_BOOL
+Running testFunPtr
+Running testFunPtrAnsi
+Running testFunPtrReturn
+--- Summary: 0/17/3: 0 failed of 17 tests in 3 cases.
+--- Running: cases\t_funptrs_type_char
+Running testFunPtr
+Running testFunPtrAnsi
+Running testFunPtrReturn
+--- Summary: 0/17/3: 0 failed of 17 tests in 3 cases.
+--- Running: cases\t_funptrs_type_int
+Running testFunPtr
+Running testFunPtrAnsi
+Running testFunPtrReturn
+--- Summary: 0/17/3: 0 failed of 17 tests in 3 cases.
+--- Running: cases\t_funptrs_type_long
+Running testFunPtr
+Running testFunPtrAnsi
+Running testFunPtrReturn
+--- Summary: 0/17/3: 0 failed of 17 tests in 3 cases.
+--- Running: cases\t_funsigned-char
+Running testBug
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_increment_storage_none_type_int_attr_volatile
+Running testIncrement
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_increment_storage_none_type_long_attr_volatile
+Running testIncrement
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_increment_storage_none_type_signed_char_attr_volatile
+Running testIncrement
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_increment_storage_static_type_int_attr_volatile
+Running testIncrement
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_increment_storage_static_type_long_attr_volatile
+Running testIncrement
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_increment_storage_static_type_signed_char_attr_volatile
+Running testIncrement
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_inline
+Running testInline
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_libmullong_type_asm
+Running testlibmullong
+--- Summary: 0/33/1: 0 failed of 33 tests in 1 cases.
+--- Running: cases\t_libmullong_type_c
+Running testlibmullong
+--- Summary: 0/33/1: 0 failed of 33 tests in 1 cases.
+--- Running: cases\t_literalop_type_char
+Running testOpOp
+--- Summary: 0/97/1: 0 failed of 97 tests in 1 cases.
+--- Running: cases\t_literalop_type_LONG
+Running testOpOp
+--- Summary: 0/97/1: 0 failed of 97 tests in 1 cases.
+--- Running: cases\t_literalop_type_short
+Running testOpOp
+--- Summary: 0/97/1: 0 failed of 97 tests in 1 cases.
+--- Running: cases\t_logic_values_31734_storage_none_type_char_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_31734_storage_none_type_int_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_31734_storage_none_type_long_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_31734_storage_static_type_char_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_31734_storage_static_type_int_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_31734_storage_static_type_long_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_350_storage_none_type_char_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_350_storage_none_type_int_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_350_storage_none_type_long_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_350_storage_static_type_char_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_350_storage_static_type_int_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_350_storage_static_type_long_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_5_storage_none_type_char_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_5_storage_none_type_int_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_5_storage_none_type_long_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_5_storage_static_type_char_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_5_storage_static_type_int_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_logic_values_5_storage_static_type_long_attr_volatile
+Running testLogicalAnd
+Running testLogicalOr
+Running testNot
+Running testFlagToVariable
+--- Summary: 0/12/4: 0 failed of 12 tests in 4 cases.
+--- Running: cases\t_longlit
+Running testLongLit
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_longor
+Running testLongOR
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_long_asm_line
+Running testLongAsmLine
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_macro
+Running test_macro
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_malloc
+Running testMalloc
+p1 == NULL when out of memory
+p1: 0
+p1: 73
+p2: 82
+p2, after expanding realloc: 82
+p2, after shrinking realloc: 82
+p3, after freeing p2: 82
+--- Summary: 0/41/1: 0 failed of 41 tests in 1 cases.
+--- Running: cases\t_memory
+Running testmemory
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_muldiv_storage_none_type_char_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_none_type_char_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_none_type_int_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_none_type_int_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_none_type_long_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_none_type_long_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_none_type_short_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_none_type_short_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_char_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_char_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_int_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_int_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_long_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_long_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_short_attr_none
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_muldiv_storage_static_type_short_attr_volatile
+Running testUnsignedModDiv
+Running testUnsignedMul
+i*3 == 111 = 111
+Running testMul
+i*5 == 25 = 25
+i*-4 == -20 = -20
+i*12 == -120 = -120
+i*-3 == 30 = 30
+Running testDiv
+i/5 == 20 = 20
+i/-4 == -25 = -25
+i/25 == -2 = -2
+i/-12 == 4 = 4
+Running testMod
+--- Summary: 0/21/5: 0 failed of 21 tests in 5 cases.
+--- Running: cases\t_not_ANSI_return_type_is_int_attr_none
+Running testNot
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_not_ANSI_return_type_is_int_attr_volatile
+Running testNot
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_nullstring_storage_none
+Running testStringArray
+Running testStringConst
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_nullstring_storage___code
+Running testStringArray
+Running testStringConst
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_nullstring_storage___data
+Running testStringArray
+Running testStringConst
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_nullstring_storage___xdata
+Running testStringArray
+Running testStringConst
+--- Summary: 0/10/2: 0 failed of 10 tests in 2 cases.
+--- Running: cases\t_onebyte_attrL_none_attrR_none
+Running testMul
+Running testDiv
+Running testMod
+Running testOr
+Running testXor
+Running testAnd
+Running testComplement
+Running testCompare
+Running testUMinus
+Running testBug1571231
+--- Summary: 0/132/10: 0 failed of 132 tests in 10 cases.
+--- Running: cases\t_onebyte_attrL_none_attrR_volatile
+Running testMul
+Running testDiv
+Running testMod
+Running testOr
+Running testXor
+Running testAnd
+Running testComplement
+Running testCompare
+Running testUMinus
+Running testBug1571231
+--- Summary: 0/132/10: 0 failed of 132 tests in 10 cases.
+--- Running: cases\t_onebyte_attrL_volatile_attrR_none
+Running testMul
+Running testDiv
+Running testMod
+Running testOr
+Running testXor
+Running testAnd
+Running testComplement
+Running testCompare
+Running testUMinus
+Running testBug1571231
+--- Summary: 0/132/10: 0 failed of 132 tests in 10 cases.
+--- Running: cases\t_onebyte_attrL_volatile_attrR_volatile
+Running testMul
+Running testDiv
+Running testMod
+Running testOr
+Running testXor
+Running testAnd
+Running testComplement
+Running testCompare
+Running testUMinus
+Running testBug1571231
+--- Summary: 0/132/10: 0 failed of 132 tests in 10 cases.
+--- Running: cases\t_packcast
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_pow2shifts_sign_signed
+Running testIntShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_pow2shifts_sign_unsigned
+Running testIntShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_preproc
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_regtrack
+Running testRegTrack
+--- Summary: 0/13/1: 0 failed of 13 tests in 1 cases.
+--- Running: cases\t_rotate_msb_0_size_16
+Running testRol
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_rotate_msb_0_size_32
+Running testRol
+--- Summary: 0/22/1: 0 failed of 22 tests in 1 cases.
+--- Running: cases\t_rotate_msb_0_size_8
+Running testRol
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_rotate_msb_1_size_16
+Running testRol
+--- Summary: 0/15/1: 0 failed of 15 tests in 1 cases.
+--- Running: cases\t_rotate_msb_1_size_32
+Running testRol
+--- Summary: 0/22/1: 0 failed of 22 tests in 1 cases.
+--- Running: cases\t_rotate_msb_1_size_8
+Running testRol
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_scott-add
+Running test_add_lit2uchar
+Running test_add_uchar2uchar_setup
+Running test_add_uchar2uchar
+Running test_add_uchar2uchar2_setup
+Running test_add_uchar2uchar2
+--- Summary: 0/10/5: 0 failed of 10 tests in 5 cases.
+--- Running: cases\t_scott-arrays
+Running testArrays
+--- Summary: 0/14/1: 0 failed of 14 tests in 1 cases.
+--- Running: cases\t_scott-b
+Running testB
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_scott-bool1
+Running testBool1
+--- Summary: 0/14/1: 0 failed of 14 tests in 1 cases.
+--- Running: cases\t_scott-call1
+Running testCall1
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_scott-compare
+Running testCompare
+--- Summary: 0/25/1: 0 failed of 25 tests in 1 cases.
+--- Running: cases\t_scott-compare2
+Running testCompare2
+--- Summary: 0/18/1: 0 failed of 18 tests in 1 cases.
+--- Running: cases\t_scott-compare3
+Running testCompare3
+--- Summary: 0/27/1: 0 failed of 27 tests in 1 cases.
+--- Running: cases\t_scott-for
+Running testFor
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_scott-pointer1
+Running testPointer1
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases\t_scott-struct1
+Running testStruct1
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases\t_scott-sub
+Running testSub
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_scott-while
+Running testWhile
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_setjmp
+Running testJmp
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_sfr16
+Running test_sfr
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_0_sign_none_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_0_sign_none_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_0_sign_none_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_0_sign_u_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_0_sign_u_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_0_sign_u_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_1_sign_none_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_1_sign_none_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_1_sign_none_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_1_sign_u_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_1_sign_u_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_0_right_1_sign_u_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_0_sign_none_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_0_sign_none_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_0_sign_none_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_0_sign_u_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_0_sign_u_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_0_sign_u_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_1_sign_none_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_1_sign_none_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_1_sign_none_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_1_sign_u_size_16
+Running testShift
+--- Summary: 0/16/1: 0 failed of 16 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_1_sign_u_size_32
+Running testShift
+--- Summary: 0/32/1: 0 failed of 32 tests in 1 cases.
+--- Running: cases\t_shifts2_vol_1_right_1_sign_u_size_8
+Running testShift
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_shifts_vals_3_storage_none_type_char_attr_volatile_sign_signed
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_none_type_char_attr_volatile_sign_unsigned
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_none_type_int_attr_volatile_sign_signed
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_none_type_int_attr_volatile_sign_unsigned
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_none_type_long_attr_volatile_sign_signed
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_none_type_long_attr_volatile_sign_unsigned
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_static_type_char_attr_volatile_sign_signed
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_static_type_char_attr_volatile_sign_unsigned
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_static_type_int_attr_volatile_sign_signed
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_static_type_int_attr_volatile_sign_unsigned
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_static_type_long_attr_volatile_sign_signed
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_shifts_vals_3_storage_static_type_long_attr_volatile_sign_unsigned
+Running test1ShiftClasses
+Running test2ShiftRight
+Running test3ShiftByteMultiples
+Running test4ShiftOne
+Running testShiftByParam
+--- Summary: 0/25/5: 0 failed of 25 tests in 5 cases.
+--- Running: cases\t_simplefloat
+Running testCmp
+Running testDiv
+Running testDivNearOne
+--- Summary: 0/8/3: 0 failed of 8 tests in 3 cases.
+--- Running: cases\t_snprintf_type_FLOAT
+Running test_snprintf
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_snprintf_type_INT
+Running test_snprintf
+--- Summary: 0/12/1: 0 failed of 12 tests in 1 cases.
+--- Running: cases\t_snprintf_type_LONG
+Running test_snprintf
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases\t_snprintf_type_STRING
+Running test_snprintf
+--- Summary: 0/9/1: 0 failed of 9 tests in 1 cases.
+--- Running: cases\t_stacks_size_126
+Running testStack
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_stacks_size_127
+Running testStack
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_stacks_size_128
+Running testStack
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_stacks_size_129
+Running testStack
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_staticinit_type_char
+Running testSmallDense
+Running testSmallSparse
+Running testSmallSparseZero
+Running testLargeMixed
+--- Summary: 0/35/4: 0 failed of 35 tests in 4 cases.
+--- Running: cases\t_staticinit_type_int
+Running testSmallDense
+Running testSmallSparse
+Running testSmallSparseZero
+Running testLargeMixed
+--- Summary: 0/35/4: 0 failed of 35 tests in 4 cases.
+--- Running: cases\t_staticinit_type_long
+Running testSmallDense
+Running testSmallSparse
+Running testSmallSparseZero
+Running testLargeMixed
+--- Summary: 0/35/4: 0 failed of 35 tests in 4 cases.
+--- Running: cases\t_storage_dest_storage_none_type_char_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_char_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_char_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_int_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_int_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_int_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_long_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_long_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_none_type_long_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_char_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_char_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_char_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_int_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_int_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_int_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_long_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_long_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_register_type_long_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_char_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_char_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_char_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_int_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_int_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_int_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_long_source_storage_none
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_long_source_storage_register
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_storage_dest_storage_static_type_long_source_storage_static
+Running testStorageTypes
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases\t_strcmp
+Running teststrcmp
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases\t_strcpy
+Running teststrcpy
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_strncmp
+Running teststrncmp
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_strpbrk
+Running teststrpbrk
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_strspn
+Running teststrspn
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_strstr
+Running teststrstr
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_strtok
+Running teststrtok
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases\t_structflexarray
+Running testFlexibleArray1
+Running testFlexibleArray2
+--- Summary: 0/4/2: 0 failed of 4 tests in 2 cases.
+--- Running: cases\t_structidx
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_swap
+Running testSwap
+--- Summary: 0/9/1: 0 failed of 9 tests in 1 cases.
+--- Running: cases\t_switch_storage_none_type_char_attr_volatile_sign_signed
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_none_type_char_attr_volatile_sign_unsigned
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_none_type_int_attr_volatile_sign_signed
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_none_type_int_attr_volatile_sign_unsigned
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_none_type_long_attr_volatile_sign_signed
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_none_type_long_attr_volatile_sign_unsigned
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_static_type_char_attr_volatile_sign_signed
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_static_type_char_attr_volatile_sign_unsigned
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_static_type_int_attr_volatile_sign_signed
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_static_type_int_attr_volatile_sign_unsigned
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_static_type_long_attr_volatile_sign_signed
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_switch_storage_static_type_long_attr_volatile_sign_unsigned
+Running testSparseSwitch
+Running testDenseSwitch
+Running testDenseIntSwitch
+--- Summary: 0/18/3: 0 failed of 18 tests in 3 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_long_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_long_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_long_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_long_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_short_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_short_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_short_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_short_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_signed_char_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_signed_char_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_signed_char_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_long_lefttype_signed_char_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_long_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_long_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_long_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_long_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_short_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_short_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_short_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_short_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_signed_char_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_signed_char_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_signed_char_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_short_lefttype_signed_char_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_long_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_long_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_long_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_long_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_short_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_short_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_short_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_short_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_signed_char_storage_none_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_signed_char_storage_none_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_signed_char_storage_static_attr_none
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_uminus_resulttype_signed_char_lefttype_signed_char_storage_static_attr_volatile
+Running testUMinus
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases\t_using
+Running testUsing
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_int_type3_int_type2_int
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_int_type3_int_type2_va_char
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_int_type3_va_char_type2_int
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_int_type3_va_char_type2_va_char
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_va_char_type3_int_type2_int
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_va_char_type3_int_type2_va_char
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_va_char_type3_va_char_type2_int
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_vaargs_type1_va_char_type3_va_char_type2_va_char
+Running testArgs
+Returning 123
+First arg: 123
+Returning 123
+Returning -123
+Returning -23
+Returning 8
+Returning -35
+Returning 35
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases\t_while
+Running testEmptyWhile
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases\t_zeropad_storage_auto
+Running testZeropad
+--- Summary: 0/36/1: 0 failed of 36 tests in 1 cases.
+--- Running: cases\t_zeropad_storage_none
+Running testZeropad
+--- Summary: 0/26/1: 0 failed of 26 tests in 1 cases.
+--- Running: cases\t_zeropad_storage___code
+Running testZeropad
+--- Summary: 0/26/1: 0 failed of 26 tests in 1 cases.
+--- Running: cases\t_zeropad_storage___idata
+Running testZeropad
+--- Summary: 0/26/1: 0 failed of 26 tests in 1 cases.
+--- Running: cases\t_zeropad_storage___pdata
+Running testZeropad
+--- Summary: 0/26/1: 0 failed of 26 tests in 1 cases.
+--- Running: cases\t_zeropad_storage___xdata
+Running testZeropad
+--- Summary: 0/26/1: 0 failed of 26 tests in 1 cases.

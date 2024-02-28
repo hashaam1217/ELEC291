@@ -1,0 +1,44 @@
+/*
+   20000205-1.c from the execute part of the gcc torture tests.
+ */
+
+#include "../fwk/include/testfwk.h"
+
+#ifdef __C51
+#pragma std_c99
+#endif
+
+static int f (int a)
+{
+  if (a == 0)
+    return 0;
+  do
+    if (a & 128)
+      return 1;
+  while (f (0));
+  return 0;
+}
+
+void
+testTortureExecute (void)
+{
+  if (f (~128))
+    ASSERT (0);
+  return;
+}
+
+
+void
+__runSuite(void)
+{
+  __prints("Running testTortureExecute\n");
+  testTortureExecute();
+}
+
+const int __numCases = 1;
+
+__code const char *
+__getSuiteName(void)
+{
+  return "cases_gcc\\gcc-torture-execute-20000205-1";
+}

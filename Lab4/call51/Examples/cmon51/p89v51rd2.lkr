@@ -1,0 +1,13 @@
+code_start=0xe000
+code_end=0x10000
+xdata_start=0x0200
+xdata_end=0x0300
+path=c:\source\call51\bin\..\lib\small
+lib=libc51.lib
+lib=libint.lib
+lib=liblong.lib
+lib=libfloat.lib
+obj=.\p89v51rd2.obj
+obj=.\d51.obj
+obj=.\step.obj
+obj=.\cmon51.obj

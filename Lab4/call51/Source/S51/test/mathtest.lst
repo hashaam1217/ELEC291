@@ -1,0 +1,2751 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1028 (Jul 17 2012) (MSVC)
+0000              4   ; This file was generated Sun Nov 11 13:21:30 2012
+0000              5   ;--------------------------------------------------------
+                  5   $name mathtest
+                  6   $optc51 --model-small
+                  7   $printf_float
+0000              9            R_DSEG    segment data
+0000             10            R_CSEG    segment code
+0000             11            R_BSEG    segment bit
+0000             12            R_XSEG    segment xdata
+0000             13            R_ISEG    segment idata
+0000             14            R_OSEG    segment data overlay
+0000             15            BIT_BANK  segment data overlay
+0000             16            R_HOME    segment code
+0000             17            R_GSINIT  segment code
+0000             18            R_IXSEG   segment xdata
+0000             19            R_CONST   segment code
+0000             20            R_XINIT   segment code
+0000             21            R_DINIT   segment code
+0000             22   
+0000             23   ;--------------------------------------------------------
+0000             24   ; Public variables in this module
+0000             25   ;--------------------------------------------------------
+0000             26            public _main_fstr_1_1
+0000             27            public _main
+0000             28            public _timer1dummy
+0000             29            public __c51_external_startup
+0000             30            public _ClockTicks
+0000             31            public _ClockIrqHandler
+0000             32   ;--------------------------------------------------------
+0000             33   ; Special Function Registers
+0000             34   ;--------------------------------------------------------
+0000             35   _P0             DATA 0x80
+0000             36   _SP             DATA 0x81
+0000             37   _DPL            DATA 0x82
+0000             38   _DPH            DATA 0x83
+0000             39   _PCON           DATA 0x87
+0000             40   _TCON           DATA 0x88
+0000             41   _TMOD           DATA 0x89
+0000             42   _TL0            DATA 0x8a
+0000             43   _TL1            DATA 0x8b
+0000             44   _TH0            DATA 0x8c
+0000             45   _TH1            DATA 0x8d
+0000             46   _P1             DATA 0x90
+0000             47   _SCON           DATA 0x98
+0000             48   _SBUF           DATA 0x99
+0000             49   _P2             DATA 0xa0
+0000             50   _IE             DATA 0xa8
+0000             51   _P3             DATA 0xb0
+0000             52   _IP             DATA 0xb8
+0000             53   _PSW            DATA 0xd0
+0000             54   _ACC            DATA 0xe0
+0000             55   _B              DATA 0xf0
+0000             56   ;--------------------------------------------------------
+0000             57   ; special function bits
+0000             58   ;--------------------------------------------------------
+0000             59   _P0_0           BIT 0x80
+0000             60   _P0_1           BIT 0x81
+0000             61   _P0_2           BIT 0x82
+0000             62   _P0_3           BIT 0x83
+0000             63   _P0_4           BIT 0x84
+0000             64   _P0_5           BIT 0x85
+0000             65   _P0_6           BIT 0x86
+0000             66   _P0_7           BIT 0x87
+0000             67   _IT0            BIT 0x88
+0000             68   _IE0            BIT 0x89
+0000             69   _IT1            BIT 0x8a
+0000             70   _IE1            BIT 0x8b
+0000             71   _TR0            BIT 0x8c
+0000             72   _TF0            BIT 0x8d
+0000             73   _TR1            BIT 0x8e
+0000             74   _TF1            BIT 0x8f
+0000             75   _P1_0           BIT 0x90
+0000             76   _P1_1           BIT 0x91
+0000             77   _P1_2           BIT 0x92
+0000             78   _P1_3           BIT 0x93
+0000             79   _P1_4           BIT 0x94
+0000             80   _P1_5           BIT 0x95
+0000             81   _P1_6           BIT 0x96
+0000             82   _P1_7           BIT 0x97
+0000             83   _RI             BIT 0x98
+0000             84   _TI             BIT 0x99
+0000             85   _RB8            BIT 0x9a
+0000             86   _TB8            BIT 0x9b
+0000             87   _REN            BIT 0x9c
+0000             88   _SM2            BIT 0x9d
+0000             89   _SM1            BIT 0x9e
+0000             90   _SM0            BIT 0x9f
+0000             91   _P2_0           BIT 0xa0
+0000             92   _P2_1           BIT 0xa1
+0000             93   _P2_2           BIT 0xa2
+0000             94   _P2_3           BIT 0xa3
+0000             95   _P2_4           BIT 0xa4
+0000             96   _P2_5           BIT 0xa5
+0000             97   _P2_6           BIT 0xa6
+0000             98   _P2_7           BIT 0xa7
+0000             99   _EX0            BIT 0xa8
+0000            100   _ET0            BIT 0xa9
+0000            101   _EX1            BIT 0xaa
+0000            102   _ET1            BIT 0xab
+0000            103   _ES             BIT 0xac
+0000            104   _EA             BIT 0xaf
+0000            105   _P3_0           BIT 0xb0
+0000            106   _P3_1           BIT 0xb1
+0000            107   _P3_2           BIT 0xb2
+0000            108   _P3_3           BIT 0xb3
+0000            109   _P3_4           BIT 0xb4
+0000            110   _P3_5           BIT 0xb5
+0000            111   _P3_6           BIT 0xb6
+0000            112   _P3_7           BIT 0xb7
+0000            113   _RXD            BIT 0xb0
+0000            114   _TXD            BIT 0xb1
+0000            115   _INT0           BIT 0xb2
+0000            116   _INT1           BIT 0xb3
+0000            117   _T0             BIT 0xb4
+0000            118   _T1             BIT 0xb5
+0000            119   _WR             BIT 0xb6
+0000            120   _RD             BIT 0xb7
+0000            121   _PX0            BIT 0xb8
+0000            122   _PT0            BIT 0xb9
+0000            123   _PX1            BIT 0xba
+0000            124   _PT1            BIT 0xbb
+0000            125   _PS             BIT 0xbc
+0000            126   _P              BIT 0xd0
+0000            127   _F1             BIT 0xd1
+0000            128   _OV             BIT 0xd2
+0000            129   _RS0            BIT 0xd3
+0000            130   _RS1            BIT 0xd4
+0000            131   _F0             BIT 0xd5
+0000            132   _AC             BIT 0xd6
+0000            133   _CY             BIT 0xd7
+0000            134   ;--------------------------------------------------------
+0000            135   ; overlayable register banks
+0000            136   ;--------------------------------------------------------
+0000            137            rbank0 segment data overlay
+0000            138   ;--------------------------------------------------------
+0000            139   ; internal ram data
+0000            140   ;--------------------------------------------------------
+0000            141            rseg R_DSEG
+0000            142   _milliSeconds:
+0000            143            ds 4
+0004            144   _main_x_1_1:
+0004            145            ds 4
+0008            146   _main_y_1_1:
+0008            147            ds 4
+000C            148   _main_z_1_1:
+000C            149            ds 4
+0010            150   _main_ysin_1_1:
+0010            151            ds 4
+0014            152   _main_i_1_1:
+0014            153            ds 2
+0016            154   _main_j_1_1:
+0016            155            ds 2
+0018            156   _main_etime_1_1:
+0018            157            ds 4
+001C            158   _main_ltime_1_1:
+001C            159            ds 4
+0020            160   _main_expo_1_1:
+0020            161            ds 2
+0022            162   _main_mant_1_1:
+0022            163            ds 4
+0026            164   _main_xx_1_1:
+0026            165            ds 4
+002A            166   _main_sloc0_1_0:
+002A            167            ds 4
+002E            168   ;--------------------------------------------------------
+002E            169   ; overlayable items in internal ram 
+002E            170   ;--------------------------------------------------------
+0000            171            rseg    R_OSEG
+0000            172   ;--------------------------------------------------------
+0000            173   ; indirectly addressable internal ram data
+0000            174   ;--------------------------------------------------------
+0000            175            rseg R_ISEG
+0000            176   ;--------------------------------------------------------
+0000            177   ; absolute internal ram data
+0000            178   ;--------------------------------------------------------
+0000            179            DSEG
+0000            180   ;--------------------------------------------------------
+0000            181   ; bit data
+0000            182   ;--------------------------------------------------------
+0000            183            rseg R_BSEG
+0000            184   ;--------------------------------------------------------
+0000            185   ; paged external ram data
+0000            186   ;--------------------------------------------------------
+0000            187            rseg R_XSEG
+0000            188   ;--------------------------------------------------------
+0000            189   ; external ram data
+0000            190   ;--------------------------------------------------------
+0000            191            rseg R_XSEG
+0000            192   ;--------------------------------------------------------
+0000            193   ; absolute external ram data
+0000            194   ;--------------------------------------------------------
+0000            195            XSEG
+0000            196   ;--------------------------------------------------------
+0000            197   ; external initialized ram data
+0000            198   ;--------------------------------------------------------
+0000            199            rseg R_IXSEG
+0000            200            rseg R_HOME
+0000            201            rseg R_GSINIT
+0000            202            rseg R_CSEG
+0000            203   ;--------------------------------------------------------
+0000            204   ; Reset entry point and interrupt vectors
+0000            205   ;--------------------------------------------------------
+0000            206            CSEG at 0x0000
+0000 020100     207            ljmp    _crt0
+000B            208            CSEG at 0x000b
+000B 020100     209            ljmp    _ClockIrqHandler
+001B            210            CSEG at 0x001b
+001B 020100     211            ljmp    _timer1dummy
+001E            212   ;--------------------------------------------------------
+001E            213   ; global & static initialisations
+001E            214   ;--------------------------------------------------------
+0000            215            rseg R_HOME
+0000            216            rseg R_GSINIT
+0000            217            rseg R_GSINIT
+0000            218   ;--------------------------------------------------------
+0000            219   ; data variables initialization
+0000            220   ;--------------------------------------------------------
+0000            221            rseg R_DINIT
+0000            222            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            223   ;--------------------------------------------------------
+0000            224   ; code
+0000            225   ;--------------------------------------------------------
+0000            226            rseg R_CSEG
+0000            227   ;------------------------------------------------------------
+0000            228   ;Allocation info for local variables in function 'ClockIrqHandler'
+0000            229   ;------------------------------------------------------------
+0000            230   ;------------------------------------------------------------
+0000            231   ;        C:\Source\call51\Source\S51\test\mathtest.c:42: void ClockIrqHandler (void) interrupt 1 {
+0000            232   ;        -----------------------------------------
+0000            233   ;         function ClockIrqHandler
+0000            234   ;        -----------------------------------------
+0000            235   _ClockIrqHandler:
+0000            236            using   0
+0000 C0E0       237            push    acc
+0002 C0D0       238            push    psw
+0004 75D000     239            mov     psw,#0x00
+0007            240   ;        C:\Source\call51\Source\S51\test\mathtest.c:43: TL0 = TIMER0_RELOAD_VALUE&0xff;
+0007 758A0A     241            mov     _TL0,#0x0A
+000A            242   ;        C:\Source\call51\Source\S51\test\mathtest.c:44: TH0 = TIMER0_RELOAD_VALUE>>8;
+000A 758CFE     243            mov     _TH0,#0xFE
+000D            244   ;        C:\Source\call51\Source\S51\test\mathtest.c:45: milliSeconds++;
+000D 05E0       245            inc     _milliSeconds
+000F E4         246            clr     a
+0010 B5E0E8     247            cjne    a,_milliSeconds,L002003?
+0013 05E1       248            inc     (_milliSeconds + 1)
+0015 B5E1E8     249            cjne    a,(_milliSeconds + 1),L002003?
+0018 05E2       250            inc     (_milliSeconds + 2)
+001A B5E2E8     251            cjne    a,(_milliSeconds + 2),L002003?
+001D 05E3       252            inc     (_milliSeconds + 3)
+001F            253   L002003?:
+001F D0D0       254            pop     psw
+0021 D0E0       255            pop     acc
+0023 32         256            reti
+0024            257   ;        eliminated unneeded push/pop dpl
+0024            258   ;        eliminated unneeded push/pop dph
+0024            259   ;        eliminated unneeded push/pop b
+0024            260   ;------------------------------------------------------------
+0024            261   ;Allocation info for local variables in function 'ClockTicks'
+0024            262   ;------------------------------------------------------------
+0024            263   ;ms                        Allocated to registers 
+0024            264   ;------------------------------------------------------------
+0024            265   ;        C:\Source\call51\Source\S51\test\mathtest.c:49: unsigned long ClockTicks(void) {
+0024            266   ;        -----------------------------------------
+0024            267   ;         function ClockTicks
+0024            268   ;        -----------------------------------------
+0024            269   _ClockTicks:
+0024            270   ;        C:\Source\call51\Source\S51\test\mathtest.c:51: ET0=0;
+0024 C2A9       271            clr     _ET0
+0026            272   ;        C:\Source\call51\Source\S51\test\mathtest.c:52: ms=milliSeconds;
+0026 AAE0       273            mov     r2,_milliSeconds
+0028 ABE1       274            mov     r3,(_milliSeconds + 1)
+002A ACE2       275            mov     r4,(_milliSeconds + 2)
+002C ADE3       276            mov     r5,(_milliSeconds + 3)
+002E            277   ;        C:\Source\call51\Source\S51\test\mathtest.c:53: ET0=1;
+002E D2A9       278            setb    _ET0
+0030            279   ;        C:\Source\call51\Source\S51\test\mathtest.c:54: return ms;
+0030 8A82       280            mov     dpl,r2
+0032 8B83       281            mov     dph,r3
+0034 8CF0       282            mov     b,r4
+0036 ED         283            mov     a,r5
+0037 22         284            ret
+0038            285   ;------------------------------------------------------------
+0038            286   ;Allocation info for local variables in function '_c51_external_startup'
+0038            287   ;------------------------------------------------------------
+0038            288   ;------------------------------------------------------------
+0038            289   ;        C:\Source\call51\Source\S51\test\mathtest.c:57: unsigned char _c51_external_startup()
+0038            290   ;        -----------------------------------------
+0038            291   ;         function _c51_external_startup
+0038            292   ;        -----------------------------------------
+0038            293   __c51_external_startup:
+0038            294   ;        C:\Source\call51\Source\S51\test\mathtest.c:60: TR0=0; // stop timer 0
+0038 C28C       295            clr     _TR0
+003A            296   ;        C:\Source\call51\Source\S51\test\mathtest.c:61: TMOD =(TMOD&0xf0)|0x01; // T0=16bit timer
+003A 74F0       297            mov     a,#0xF0
+003C 5589       298            anl     a,_TMOD
+003E F5F0       299            mov     b,a
+0040 7401       300            mov     a,#0x01
+0042 45F0       301            orl     a,b
+0044 F589       302            mov     _TMOD,a
+0046            303   ;        C:\Source\call51\Source\S51\test\mathtest.c:63: TL0 = -TIMER0_RELOAD_VALUE&0xff;
+0046 758AF6     304            mov     _TL0,#0xF6
+0049            305   ;        C:\Source\call51\Source\S51\test\mathtest.c:64: TH0 = -TIMER0_RELOAD_VALUE>>8;
+0049 758C01     306            mov     _TH0,#0x01
+004C            307   ;        C:\Source\call51\Source\S51\test\mathtest.c:65: milliSeconds=0; // reset system time
+004C E4         308            clr     a
+004D F5E0       309            mov     _milliSeconds,a
+004F F5E1       310            mov     (_milliSeconds + 1),a
+0051 F5E2       311            mov     (_milliSeconds + 2),a
+0053 F5E3       312            mov     (_milliSeconds + 3),a
+0055            313   ;        C:\Source\call51\Source\S51\test\mathtest.c:66: TR0=1; // start timer 0
+0055 D28C       314            setb    _TR0
+0057            315   ;        C:\Source\call51\Source\S51\test\mathtest.c:67: ET0=1; // enable timer 0 interrupt
+0057 D2A9       316            setb    _ET0
+0059            317   ;        C:\Source\call51\Source\S51\test\mathtest.c:70: TR1=0; // stop timer 1
+0059 C28E       318            clr     _TR1
+005B            319   ;        C:\Source\call51\Source\S51\test\mathtest.c:71: TMOD = (TMOD&0x0f)|0x20; // T1=8bit autoreload timer
+005B 740F       320            mov     a,#0x0F
+005D 5589       321            anl     a,_TMOD
+005F F5F0       322            mov     b,a
+0061 7420       323            mov     a,#0x20
+0063 45F0       324            orl     a,b
+0065 F589       325            mov     _TMOD,a
+0067            326   ;        C:\Source\call51\Source\S51\test\mathtest.c:72: PCON |= 0x80; // SMOD=1 ---> k=2: double baudrate
+0067 438780     327            orl     _PCON,#0x80
+006A            328   ;        C:\Source\call51\Source\S51\test\mathtest.c:73: TH1=TL1=TIMER1_K2_115200;
+006A 758BFF     329            mov     _TL1,#0xFF
+006D 758DFF     330            mov     _TH1,#0xFF
+0070            331   ;        C:\Source\call51\Source\S51\test\mathtest.c:74: TR1=1; // start timer 1
+0070 D28E       332            setb    _TR1
+0072            333   ;        C:\Source\call51\Source\S51\test\mathtest.c:76: SCON=0x52; // mode 1, ren, txrdy, rxempty
+0072 759852     334            mov     _SCON,#0x52
+0075            335   ;        C:\Source\call51\Source\S51\test\mathtest.c:78: EA=1; // enable global interrupt
+0075 D2AF       336            setb    _EA
+0077            337   ;        C:\Source\call51\Source\S51\test\mathtest.c:80: return 0;
+0077 758200     338            mov     dpl,#0x00
+007A 22         339            ret
+007B            340   ;------------------------------------------------------------
+007B            341   ;Allocation info for local variables in function 'timer1dummy'
+007B            342   ;------------------------------------------------------------
+007B            343   ;------------------------------------------------------------
+007B            344   ;        C:\Source\call51\Source\S51\test\mathtest.c:83: void timer1dummy (void) interrupt 3 _naked
+007B            345   ;        -----------------------------------------
+007B            346   ;         function timer1dummy
+007B            347   ;        -----------------------------------------
+007B            348   _timer1dummy:
+007B            349   ;        naked function: no prologue.
+007B            350   ;        C:\Source\call51\Source\S51\test\mathtest.c:85: puts("Monitor not present\n");
+007B 9062E8     351            mov     dptr,#__str_0
+007E 75F080     352            mov     b,#0x80
+0081 120100     353            lcall   _puts
+0084            354   ;        C:\Source\call51\Source\S51\test\mathtest.c:86: while(1);
+0084            355   L005002?:
+0084 8001       356            sjmp    L005002?
+0086            357   ;        naked function: no epilogue.
+0086            358   ;------------------------------------------------------------
+0086            359   ;Allocation info for local variables in function 'main'
+0086            360   ;------------------------------------------------------------
+0086            361   ;x                         Allocated with name '_main_x_1_1'
+0086            362   ;y                         Allocated with name '_main_y_1_1'
+0086            363   ;z                         Allocated with name '_main_z_1_1'
+0086            364   ;ysin                      Allocated with name '_main_ysin_1_1'
+0086            365   ;ycos                      Allocated to registers r4 r5 r6 r7 
+0086            366   ;i                         Allocated with name '_main_i_1_1'
+0086            367   ;j                         Allocated with name '_main_j_1_1'
+0086            368   ;etime                     Allocated with name '_main_etime_1_1'
+0086            369   ;ltime                     Allocated with name '_main_ltime_1_1'
+0086            370   ;expo                      Allocated with name '_main_expo_1_1'
+0086            371   ;mant                      Allocated with name '_main_mant_1_1'
+0086            372   ;xx                        Allocated with name '_main_xx_1_1'
+0086            373   ;ci                        Allocated to registers r6 
+0086            374   ;sloc0                     Allocated with name '_main_sloc0_1_0'
+0086            375   ;------------------------------------------------------------
+0086            376   ;        C:\Source\call51\Source\S51\test\mathtest.c:89: void main (void)
+0086            377   ;        -----------------------------------------
+0086            378   ;         function main
+0086            379   ;        -----------------------------------------
+0086            380   _main:
+0086            381   ;        C:\Source\call51\Source\S51\test\mathtest.c:105: printf("Built %s, %s\n", __DATE__, __TIME__);
+0086 74A8       382            mov     a,#__str_15
+0088 C0E0       383            push    acc
+008A 7463       384            mov     a,#(__str_15 >> 8)
+008C C0E0       385            push    acc
+008E 7480       386            mov     a,#0x80
+0090 C0E0       387            push    acc
+0092 74E8       388            mov     a,#__str_14
+0094 C0E0       389            push    acc
+0096 7463       390            mov     a,#(__str_14 >> 8)
+0098 C0E0       391            push    acc
+009A 7480       392            mov     a,#0x80
+009C C0E0       393            push    acc
+009E 7428       394            mov     a,#__str_13
+00A0 C0E0       395            push    acc
+00A2 7464       396            mov     a,#(__str_13 >> 8)
+00A4 C0E0       397            push    acc
+00A6 7480       398            mov     a,#0x80
+00A8 C0E0       399            push    acc
+00AA 120100     400            lcall   _printf
+00AD E581       401            mov     a,sp
+00AF 24F7       402            add     a,#0xf7
+00B1 F581       403            mov     sp,a
+00B3            404   ;        C:\Source\call51\Source\S51\test\mathtest.c:107: puts("\n*** Testing atof ***");
+00B3 9064E8     405            mov     dptr,#__str_16
+00B6 75F080     406            mov     b,#0x80
+00B9 120100     407            lcall   _puts
+00BC            408   ;        C:\Source\call51\Source\S51\test\mathtest.c:108: for(j=0; fstr[j][0]!='x'; j++)
+00BC E4         409            clr     a
+00BD F560       410            mov     _main_j_1_1,a
+00BF F561       411            mov     (_main_j_1_1 + 1),a
+00C1            412   L006013?:
+00C1 E560       413            mov     a,_main_j_1_1
+00C3 2560       414            add     a,_main_j_1_1
+00C5 FC         415            mov     r4,a
+00C6 E561       416            mov     a,(_main_j_1_1 + 1)
+00C8 33         417            rlc     a
+00C9 FD         418            mov     r5,a
+00CA EC         419            mov     a,r4
+00CB 24F0       420            add     a,#_main_fstr_1_1
+00CD FC         421            mov     r4,a
+00CE ED         422            mov     a,r5
+00CF 3411       423            addc    a,#(_main_fstr_1_1 >> 8)
+00D1 FD         424            mov     r5,a
+00D2 8C82       425            mov     dpl,r4
+00D4 8D83       426            mov     dph,r5
+00D6 E4         427            clr     a
+00D7 93         428            movc    a,@a+dptr
+00D8 FE         429            mov     r6,a
+00D9 A3         430            inc     dptr
+00DA E4         431            clr     a
+00DB 93         432            movc    a,@a+dptr
+00DC FF         433            mov     r7,a
+00DD 8E82       434            mov     dpl,r6
+00DF 8F83       435            mov     dph,r7
+00E1 E4         436            clr     a
+00E2 93         437            movc    a,@a+dptr
+00E3 FA         438            mov     r2,a
+00E4 BA7868     439            cjne    r2,#0x78,L006141?
+00E7 8001       440            sjmp    L006016?
+00E9            441   L006141?:
+00E9            442   ;        C:\Source\call51\Source\S51\test\mathtest.c:110: x=atof(fstr[j]);
+00E9 7A80       443            mov     r2,#0x80
+00EB 8E82       444            mov     dpl,r6
+00ED 8F83       445            mov     dph,r7
+00EF 8AF0       446            mov     b,r2
+00F1 C004       447            push    ar4
+00F3 C005       448            push    ar5
+00F5 120100     449            lcall   _atof
+00F8 858220     450            mov     _main_x_1_1,dpl
+00FB 858321     451            mov     (_main_x_1_1 + 1),dph
+00FE 85F022     452            mov     (_main_x_1_1 + 2),b
+0101 F523       453            mov     (_main_x_1_1 + 3),a
+0103 D005       454            pop     ar5
+0105 D004       455            pop     ar4
+0107            456   ;        C:\Source\call51\Source\S51\test\mathtest.c:111: printf("%s=%14.10f\n", fstr[j], x);
+0107 8C82       457            mov     dpl,r4
+0109 8D83       458            mov     dph,r5
+010B E4         459            clr     a
+010C 93         460            movc    a,@a+dptr
+010D FC         461            mov     r4,a
+010E A3         462            inc     dptr
+010F E4         463            clr     a
+0110 93         464            movc    a,@a+dptr
+0111 FD         465            mov     r5,a
+0112 7A80       466            mov     r2,#0x80
+0114 C020       467            push    _main_x_1_1
+0116 C021       468            push    (_main_x_1_1 + 1)
+0118 C022       469            push    (_main_x_1_1 + 2)
+011A C023       470            push    (_main_x_1_1 + 3)
+011C C004       471            push    ar4
+011E C005       472            push    ar5
+0120 C002       473            push    ar2
+0122 7428       474            mov     a,#__str_17
+0124 C0E0       475            push    acc
+0126 7466       476            mov     a,#(__str_17 >> 8)
+0128 C0E0       477            push    acc
+012A 7480       478            mov     a,#0x80
+012C C0E0       479            push    acc
+012E 120100     480            lcall   _printf
+0131 E581       481            mov     a,sp
+0133 24F6       482            add     a,#0xf6
+0135 F581       483            mov     sp,a
+0137            484   ;        C:\Source\call51\Source\S51\test\mathtest.c:108: for(j=0; fstr[j][0]!='x'; j++)
+0137 0560       485            inc     _main_j_1_1
+0139 E4         486            clr     a
+013A B56068     487            cjne    a,_main_j_1_1,L006142?
+013D 0561       488            inc     (_main_j_1_1 + 1)
+013F            489   L006142?:
+013F 020100     490            ljmp    L006013?
+0142            491   L006016?:
+0142            492   ;        C:\Source\call51\Source\S51\test\mathtest.c:114: xx.f=1001.0;
+0142 75A800     493            mov     _main_xx_1_1,#0x00
+0145 75A940     494            mov     (_main_xx_1_1 + 1),#0x40
+0148 75AA7A     495            mov     (_main_xx_1_1 + 2),#0x7A
+014B 75AB44     496            mov     (_main_xx_1_1 + 3),#0x44
+014E            497   ;        C:\Source\call51\Source\S51\test\mathtest.c:115: printf("\n0x%08x=", xx.l);
+014E C0A8       498            push    _main_xx_1_1
+0150 C0A9       499            push    (_main_xx_1_1 + 1)
+0152 C0AA       500            push    (_main_xx_1_1 + 2)
+0154 C0AB       501            push    (_main_xx_1_1 + 3)
+0156 74A8       502            mov     a,#__str_18
+0158 C0E0       503            push    acc
+015A 7466       504            mov     a,#(__str_18 >> 8)
+015C C0E0       505            push    acc
+015E 7480       506            mov     a,#0x80
+0160 C0E0       507            push    acc
+0162 120100     508            lcall   _printf
+0165 E581       509            mov     a,sp
+0167 24F9       510            add     a,#0xf9
+0169 F581       511            mov     sp,a
+016B            512   ;        C:\Source\call51\Source\S51\test\mathtest.c:116: printf("%11.8f\n", xx.f);
+016B C0A8       513            push    _main_xx_1_1
+016D C0A9       514            push    (_main_xx_1_1 + 1)
+016F C0AA       515            push    (_main_xx_1_1 + 2)
+0171 C0AB       516            push    (_main_xx_1_1 + 3)
+0173 74E8       517            mov     a,#__str_19
+0175 C0E0       518            push    acc
+0177 7466       519            mov     a,#(__str_19 >> 8)
+0179 C0E0       520            push    acc
+017B 7480       521            mov     a,#0x80
+017D C0E0       522            push    acc
+017F 120100     523            lcall   _printf
+0182 E581       524            mov     a,sp
+0184 24F9       525            add     a,#0xf9
+0186 F581       526            mov     sp,a
+0188            527   ;        C:\Source\call51\Source\S51\test\mathtest.c:118: puts("\n*** Testing frexp ***");
+0188 906728     528            mov     dptr,#__str_20
+018B 75F080     529            mov     b,#0x80
+018E 120100     530            lcall   _puts
+0191            531   ;        C:\Source\call51\Source\S51\test\mathtest.c:120: mant=frexpf(x, &expo);
+0191 750028     532            mov     _frexpf_PARM_2,#_main_expo_1_1
+0194 750100     533            mov     (_frexpf_PARM_2 + 1),#0x00
+0197 750240     534            mov     (_frexpf_PARM_2 + 2),#0x40
+019A 900000     535            mov     dptr,#0x0000
+019D 75F07A     536            mov     b,#0x7A
+01A0 7444       537            mov     a,#0x44
+01A2 120100     538            lcall   _frexpf
+01A5 858268     539            mov     _main_mant_1_1,dpl
+01A8 858369     540            mov     (_main_mant_1_1 + 1),dph
+01AB 85F06A     541            mov     (_main_mant_1_1 + 2),b
+01AE F56B       542            mov     (_main_mant_1_1 + 3),a
+01B0            543   ;        C:\Source\call51\Source\S51\test\mathtest.c:121: printf("%11.8f=%11.8f*(2^%d)\n", x, mant, expo);
+01B0 C028       544            push    _main_expo_1_1
+01B2 C029       545            push    (_main_expo_1_1 + 1)
+01B4 C068       546            push    _main_mant_1_1
+01B6 C069       547            push    (_main_mant_1_1 + 1)
+01B8 C06A       548            push    (_main_mant_1_1 + 2)
+01BA C06B       549            push    (_main_mant_1_1 + 3)
+01BC E4         550            clr     a
+01BD C0E0       551            push    acc
+01BF C0E0       552            push    acc
+01C1 747A       553            mov     a,#0x7A
+01C3 C0E0       554            push    acc
+01C5 7444       555            mov     a,#0x44
+01C7 C0E0       556            push    acc
+01C9 74E8       557            mov     a,#__str_21
+01CB C0E0       558            push    acc
+01CD 7467       559            mov     a,#(__str_21 >> 8)
+01CF C0E0       560            push    acc
+01D1 7480       561            mov     a,#0x80
+01D3 C0E0       562            push    acc
+01D5 120100     563            lcall   _printf
+01D8 E581       564            mov     a,sp
+01DA 24F3       565            add     a,#0xf3
+01DC F581       566            mov     sp,a
+01DE            567   ;        C:\Source\call51\Source\S51\test\mathtest.c:123: puts("\n*** Testing ldexp ***");
+01DE 906828     568            mov     dptr,#__str_22
+01E1 75F080     569            mov     b,#0x80
+01E4 120100     570            lcall   _puts
+01E7            571   ;        C:\Source\call51\Source\S51\test\mathtest.c:124: y=ldexpf(mant, expo);
+01E7 852800     572            mov     _ldexpf_PARM_2,_main_expo_1_1
+01EA 852901     573            mov     (_ldexpf_PARM_2 + 1),(_main_expo_1_1 + 1)
+01ED 856882     574            mov     dpl,_main_mant_1_1
+01F0 856983     575            mov     dph,(_main_mant_1_1 + 1)
+01F3 856AF0     576            mov     b,(_main_mant_1_1 + 2)
+01F6 E56B       577            mov     a,(_main_mant_1_1 + 3)
+01F8 120100     578            lcall   _ldexpf
+01FB AE82       579            mov     r6,dpl
+01FD AF83       580            mov     r7,dph
+01FF AAF0       581            mov     r2,b
+0201 FB         582            mov     r3,a
+0202 8E60       583            mov     _main_y_1_1,r6
+0204 8F61       584            mov     (_main_y_1_1 + 1),r7
+0206 8A62       585            mov     (_main_y_1_1 + 2),r2
+0208 8B63       586            mov     (_main_y_1_1 + 3),r3
+020A            587   ;        C:\Source\call51\Source\S51\test\mathtest.c:125: printf("%11.8f*(2^%d)=%11.8f\n", mant, expo, y);
+020A C006       588            push    ar6
+020C C007       589            push    ar7
+020E C002       590            push    ar2
+0210 C003       591            push    ar3
+0212 C028       592            push    _main_expo_1_1
+0214 C029       593            push    (_main_expo_1_1 + 1)
+0216 C068       594            push    _main_mant_1_1
+0218 C069       595            push    (_main_mant_1_1 + 1)
+021A C06A       596            push    (_main_mant_1_1 + 2)
+021C C06B       597            push    (_main_mant_1_1 + 3)
+021E 74E8       598            mov     a,#__str_23
+0220 C0E0       599            push    acc
+0222 7468       600            mov     a,#(__str_23 >> 8)
+0224 C0E0       601            push    acc
+0226 7480       602            mov     a,#0x80
+0228 C0E0       603            push    acc
+022A 120100     604            lcall   _printf
+022D E581       605            mov     a,sp
+022F 24F3       606            add     a,#0xf3
+0231 F581       607            mov     sp,a
+0233            608   ;        C:\Source\call51\Source\S51\test\mathtest.c:127: ltime=ClockTicks();
+0233 120100     609            lcall   _ClockTicks
+0236 8582E8     610            mov     _main_ltime_1_1,dpl
+0239 8583E9     611            mov     (_main_ltime_1_1 + 1),dph
+023C 85F0EA     612            mov     (_main_ltime_1_1 + 2),b
+023F F5EB       613            mov     (_main_ltime_1_1 + 3),a
+0241            614   ;        C:\Source\call51\Source\S51\test\mathtest.c:128: for(ci=0; ci<100; ci++);
+0241 7E64       615            mov     r6,#0x64
+0243            616   L006019?:
+0243 DE28       617            djnz    r6,L006019?
+0245            618   ;        C:\Source\call51\Source\S51\test\mathtest.c:129: ltime=ClockTicks()-ltime;
+0245 120100     619            lcall   _ClockTicks
+0248 AE82       620            mov     r6,dpl
+024A AF83       621            mov     r7,dph
+024C AAF0       622            mov     r2,b
+024E FB         623            mov     r3,a
+024F EE         624            mov     a,r6
+0250 C3         625            clr     c
+0251 95E8       626            subb    a,_main_ltime_1_1
+0253 F5E8       627            mov     _main_ltime_1_1,a
+0255 EF         628            mov     a,r7
+0256 95E9       629            subb    a,(_main_ltime_1_1 + 1)
+0258 F5E9       630            mov     (_main_ltime_1_1 + 1),a
+025A EA         631            mov     a,r2
+025B 95EA       632            subb    a,(_main_ltime_1_1 + 2)
+025D F5EA       633            mov     (_main_ltime_1_1 + 2),a
+025F EB         634            mov     a,r3
+0260 95EB       635            subb    a,(_main_ltime_1_1 + 3)
+0262 F5EB       636            mov     (_main_ltime_1_1 + 3),a
+0264            637   ;        C:\Source\call51\Source\S51\test\mathtest.c:131: puts("\n*** Testing sqrt(x) ****");
+0264 906968     638            mov     dptr,#__str_24
+0267 75F080     639            mov     b,#0x80
+026A 120100     640            lcall   _puts
+026D            641   ;        C:\Source\call51\Source\S51\test\mathtest.c:133: etime=ClockTicks();
+026D 120100     642            lcall   _ClockTicks
+0270 8582A0     643            mov     _main_etime_1_1,dpl
+0273 8583A1     644            mov     (_main_etime_1_1 + 1),dph
+0276 85F0A2     645            mov     (_main_etime_1_1 + 2),b
+0279 F5A3       646            mov     (_main_etime_1_1 + 3),a
+027B            647   ;        C:\Source\call51\Source\S51\test\mathtest.c:134: for(ci=0; ci<100; ci++)
+027B 7E00       648            mov     r6,#0x00
+027D            649   L006020?:
+027D C3         650            clr     c
+027E EE         651            mov     a,r6
+027F 6480       652            xrl     a,#0x80
+0281 94E4       653            subb    a,#0xe4
+0283 5001       654            jnc     L006023?
+0285            655   ;        C:\Source\call51\Source\S51\test\mathtest.c:136: sqrtf(0.1*ci);
+0285 8E82       656            mov     dpl,r6
+0287 C006       657            push    ar6
+0289 120100     658            lcall   ___schar2fs
+028C AF82       659            mov     r7,dpl
+028E AA83       660            mov     r2,dph
+0290 ABF0       661            mov     r3,b
+0292 FC         662            mov     r4,a
+0293 C007       663            push    ar7
+0295 C002       664            push    ar2
+0297 C003       665            push    ar3
+0299 C004       666            push    ar4
+029B 90CCCD     667            mov     dptr,#0xCCCD
+029E 75F0CC     668            mov     b,#0xCC
+02A1 743D       669            mov     a,#0x3D
+02A3 120100     670            lcall   ___fsmul
+02A6 AA82       671            mov     r2,dpl
+02A8 AB83       672            mov     r3,dph
+02AA ACF0       673            mov     r4,b
+02AC FD         674            mov     r5,a
+02AD E581       675            mov     a,sp
+02AF 24FC       676            add     a,#0xfc
+02B1 F581       677            mov     sp,a
+02B3 8A82       678            mov     dpl,r2
+02B5 8B83       679            mov     dph,r3
+02B7 8CF0       680            mov     b,r4
+02B9 ED         681            mov     a,r5
+02BA 120100     682            lcall   _sqrtf
+02BD D006       683            pop     ar6
+02BF            684   ;        C:\Source\call51\Source\S51\test\mathtest.c:134: for(ci=0; ci<100; ci++)
+02BF 0E         685            inc     r6
+02C0 8001       686            sjmp    L006020?
+02C2            687   L006023?:
+02C2            688   ;        C:\Source\call51\Source\S51\test\mathtest.c:138: etime=ClockTicks()-etime;
+02C2 120100     689            lcall   _ClockTicks
+02C5 AA82       690            mov     r2,dpl
+02C7 AB83       691            mov     r3,dph
+02C9 ACF0       692            mov     r4,b
+02CB FD         693            mov     r5,a
+02CC EA         694            mov     a,r2
+02CD C3         695            clr     c
+02CE 95A0       696            subb    a,_main_etime_1_1
+02D0 F5A0       697            mov     _main_etime_1_1,a
+02D2 EB         698            mov     a,r3
+02D3 95A1       699            subb    a,(_main_etime_1_1 + 1)
+02D5 F5A1       700            mov     (_main_etime_1_1 + 1),a
+02D7 EC         701            mov     a,r4
+02D8 95A2       702            subb    a,(_main_etime_1_1 + 2)
+02DA F5A2       703            mov     (_main_etime_1_1 + 2),a
+02DC ED         704            mov     a,r5
+02DD 95A3       705            subb    a,(_main_etime_1_1 + 3)
+02DF F5A3       706            mov     (_main_etime_1_1 + 3),a
+02E1            707   ;        C:\Source\call51\Source\S51\test\mathtest.c:139: printf("      Average sqrtf(x) execution time: %f ms\n", (etime-ltime)/100.0);
+02E1 E5A0       708            mov     a,_main_etime_1_1
+02E3 C3         709            clr     c
+02E4 95E8       710            subb    a,_main_ltime_1_1
+02E6 FA         711            mov     r2,a
+02E7 E5A1       712            mov     a,(_main_etime_1_1 + 1)
+02E9 95E9       713            subb    a,(_main_ltime_1_1 + 1)
+02EB FB         714            mov     r3,a
+02EC E5A2       715            mov     a,(_main_etime_1_1 + 2)
+02EE 95EA       716            subb    a,(_main_ltime_1_1 + 2)
+02F0 FC         717            mov     r4,a
+02F1 E5A3       718            mov     a,(_main_etime_1_1 + 3)
+02F3 95EB       719            subb    a,(_main_ltime_1_1 + 3)
+02F5 8A82       720            mov     dpl,r2
+02F7 8B83       721            mov     dph,r3
+02F9 8CF0       722            mov     b,r4
+02FB 120100     723            lcall   ___slong2fs
+02FE AA82       724            mov     r2,dpl
+0300 AB83       725            mov     r3,dph
+0302 ACF0       726            mov     r4,b
+0304 FD         727            mov     r5,a
+0305 E4         728            clr     a
+0306 C0E0       729            push    acc
+0308 C0E0       730            push    acc
+030A 74C8       731            mov     a,#0xC8
+030C C0E0       732            push    acc
+030E 7442       733            mov     a,#0x42
+0310 C0E0       734            push    acc
+0312 8A82       735            mov     dpl,r2
+0314 8B83       736            mov     dph,r3
+0316 8CF0       737            mov     b,r4
+0318 ED         738            mov     a,r5
+0319 120100     739            lcall   ___fsdiv
+031C AA82       740            mov     r2,dpl
+031E AB83       741            mov     r3,dph
+0320 ACF0       742            mov     r4,b
+0322 FD         743            mov     r5,a
+0323 E581       744            mov     a,sp
+0325 24FC       745            add     a,#0xfc
+0327 F581       746            mov     sp,a
+0329 C002       747            push    ar2
+032B C003       748            push    ar3
+032D C004       749            push    ar4
+032F C005       750            push    ar5
+0331 7468       751            mov     a,#__str_25
+0333 C0E0       752            push    acc
+0335 746B       753            mov     a,#(__str_25 >> 8)
+0337 C0E0       754            push    acc
+0339 7480       755            mov     a,#0x80
+033B C0E0       756            push    acc
+033D 120100     757            lcall   _printf
+0340 E581       758            mov     a,sp
+0342 24F9       759            add     a,#0xf9
+0344 F581       760            mov     sp,a
+0346            761   ;        C:\Source\call51\Source\S51\test\mathtest.c:141: for(i=0; i<10; i++)
+0346 7A00       762            mov     r2,#0x00
+0348 7B00       763            mov     r3,#0x00
+034A            764   L006024?:
+034A C3         765            clr     c
+034B EA         766            mov     a,r2
+034C 940A       767            subb    a,#0x0A
+034E EB         768            mov     a,r3
+034F 6480       769            xrl     a,#0x80
+0351 9480       770            subb    a,#0x80
+0353 5001       771            jnc     L006027?
+0355            772   ;        C:\Source\call51\Source\S51\test\mathtest.c:143: x=i;
+0355 8A82       773            mov     dpl,r2
+0357 8B83       774            mov     dph,r3
+0359 C002       775            push    ar2
+035B C003       776            push    ar3
+035D 120100     777            lcall   ___sint2fs
+0360            778   ;        C:\Source\call51\Source\S51\test\mathtest.c:144: y=sqrtf(x);
+0360 858220     779            mov     _main_x_1_1,dpl
+0363 858321     780            mov     (_main_x_1_1 + 1),dph
+0366 85F022     781            mov     (_main_x_1_1 + 2),b
+0369 F523       782            mov     (_main_x_1_1 + 3),a
+036B 120100     783            lcall   _sqrtf
+036E AC82       784            mov     r4,dpl
+0370 AD83       785            mov     r5,dph
+0372 AEF0       786            mov     r6,b
+0374 FF         787            mov     r7,a
+0375 8C60       788            mov     _main_y_1_1,r4
+0377 8D61       789            mov     (_main_y_1_1 + 1),r5
+0379 8E62       790            mov     (_main_y_1_1 + 2),r6
+037B 8F63       791            mov     (_main_y_1_1 + 3),r7
+037D            792   ;        C:\Source\call51\Source\S51\test\mathtest.c:145: printf("%5.2f %11.8f\n", x, y);
+037D C004       793            push    ar4
+037F C005       794            push    ar5
+0381 C006       795            push    ar6
+0383 C007       796            push    ar7
+0385 C020       797            push    _main_x_1_1
+0387 C021       798            push    (_main_x_1_1 + 1)
+0389 C022       799            push    (_main_x_1_1 + 2)
+038B C023       800            push    (_main_x_1_1 + 3)
+038D 7468       801            mov     a,#__str_26
+038F C0E0       802            push    acc
+0391 746C       803            mov     a,#(__str_26 >> 8)
+0393 C0E0       804            push    acc
+0395 7480       805            mov     a,#0x80
+0397 C0E0       806            push    acc
+0399 120100     807            lcall   _printf
+039C E581       808            mov     a,sp
+039E 24F5       809            add     a,#0xf5
+03A0 F581       810            mov     sp,a
+03A2 D003       811            pop     ar3
+03A4 D002       812            pop     ar2
+03A6            813   ;        C:\Source\call51\Source\S51\test\mathtest.c:141: for(i=0; i<10; i++)
+03A6 0A         814            inc     r2
+03A7 BA00A8     815            cjne    r2,#0x00,L006024?
+03AA 0B         816            inc     r3
+03AB 8001       817            sjmp    L006024?
+03AD            818   L006027?:
+03AD            819   ;        C:\Source\call51\Source\S51\test\mathtest.c:148: puts("\n*** Testing log(x) and log10(x) ***");
+03AD 906CA8     820            mov     dptr,#__str_27
+03B0 75F080     821            mov     b,#0x80
+03B3 120100     822            lcall   _puts
+03B6            823   ;        C:\Source\call51\Source\S51\test\mathtest.c:149: for(i=1; i<20; i++)
+03B6 752001     824            mov     _main_i_1_1,#0x01
+03B9 E4         825            clr     a
+03BA F521       826            mov     (_main_i_1_1 + 1),a
+03BC            827   L006028?:
+03BC C3         828            clr     c
+03BD E520       829            mov     a,_main_i_1_1
+03BF 9414       830            subb    a,#0x14
+03C1 E521       831            mov     a,(_main_i_1_1 + 1)
+03C3 6480       832            xrl     a,#0x80
+03C5 9480       833            subb    a,#0x80
+03C7 4001       834            jc      L006148?
+03C9 020100     835            ljmp    L006031?
+03CC            836   L006148?:
+03CC            837   ;        C:\Source\call51\Source\S51\test\mathtest.c:151: x=i*4.0;
+03CC 852082     838            mov     dpl,_main_i_1_1
+03CF 852183     839            mov     dph,(_main_i_1_1 + 1)
+03D2 120100     840            lcall   ___sint2fs
+03D5 AC82       841            mov     r4,dpl
+03D7 AD83       842            mov     r5,dph
+03D9 AEF0       843            mov     r6,b
+03DB FF         844            mov     r7,a
+03DC C004       845            push    ar4
+03DE C005       846            push    ar5
+03E0 C006       847            push    ar6
+03E2 C007       848            push    ar7
+03E4 900000     849            mov     dptr,#0x0000
+03E7 75F080     850            mov     b,#0x80
+03EA 7440       851            mov     a,#0x40
+03EC 120100     852            lcall   ___fsmul
+03EF 858220     853            mov     _main_x_1_1,dpl
+03F2 858321     854            mov     (_main_x_1_1 + 1),dph
+03F5 85F022     855            mov     (_main_x_1_1 + 2),b
+03F8 F523       856            mov     (_main_x_1_1 + 3),a
+03FA E581       857            mov     a,sp
+03FC 24FC       858            add     a,#0xfc
+03FE F581       859            mov     sp,a
+0400            860   ;        C:\Source\call51\Source\S51\test\mathtest.c:152: printf("%6.2f %11.8f %11.8f\n", x, logf(x), log10f(x));
+0400 852082     861            mov     dpl,_main_x_1_1
+0403 852183     862            mov     dph,(_main_x_1_1 + 1)
+0406 8522F0     863            mov     b,(_main_x_1_1 + 2)
+0409 E523       864            mov     a,(_main_x_1_1 + 3)
+040B 120100     865            lcall   _log10f
+040E 8582E8     866            mov     _main_sloc0_1_0,dpl
+0411 8583E9     867            mov     (_main_sloc0_1_0 + 1),dph
+0414 85F0EA     868            mov     (_main_sloc0_1_0 + 2),b
+0417 F5EB       869            mov     (_main_sloc0_1_0 + 3),a
+0419 852082     870            mov     dpl,_main_x_1_1
+041C 852183     871            mov     dph,(_main_x_1_1 + 1)
+041F 8522F0     872            mov     b,(_main_x_1_1 + 2)
+0422 E523       873            mov     a,(_main_x_1_1 + 3)
+0424 120100     874            lcall   _logf
+0427 AA82       875            mov     r2,dpl
+0429 AB83       876            mov     r3,dph
+042B ACF0       877            mov     r4,b
+042D FD         878            mov     r5,a
+042E C0E8       879            push    _main_sloc0_1_0
+0430 C0E9       880            push    (_main_sloc0_1_0 + 1)
+0432 C0EA       881            push    (_main_sloc0_1_0 + 2)
+0434 C0EB       882            push    (_main_sloc0_1_0 + 3)
+0436 C002       883            push    ar2
+0438 C003       884            push    ar3
+043A C004       885            push    ar4
+043C C005       886            push    ar5
+043E C020       887            push    _main_x_1_1
+0440 C021       888            push    (_main_x_1_1 + 1)
+0442 C022       889            push    (_main_x_1_1 + 2)
+0444 C023       890            push    (_main_x_1_1 + 3)
+0446 7428       891            mov     a,#__str_28
+0448 C0E0       892            push    acc
+044A 746E       893            mov     a,#(__str_28 >> 8)
+044C C0E0       894            push    acc
+044E 7480       895            mov     a,#0x80
+0450 C0E0       896            push    acc
+0452 120100     897            lcall   _printf
+0455 E581       898            mov     a,sp
+0457 24F1       899            add     a,#0xf1
+0459 F581       900            mov     sp,a
+045B            901   ;        C:\Source\call51\Source\S51\test\mathtest.c:149: for(i=1; i<20; i++)
+045B 0520       902            inc     _main_i_1_1
+045D E4         903            clr     a
+045E B52068     904            cjne    a,_main_i_1_1,L006149?
+0461 0521       905            inc     (_main_i_1_1 + 1)
+0463            906   L006149?:
+0463 020100     907            ljmp    L006028?
+0466            908   L006031?:
+0466            909   ;        C:\Source\call51\Source\S51\test\mathtest.c:154: printf("%6.4f %11.8f %11.8f\n", 45.67, logf(45.67), log10f(45.67));
+0466 90AE14     910            mov     dptr,#0xAE14
+0469 75F036     911            mov     b,#0x36
+046C 7442       912            mov     a,#0x42
+046E 120100     913            lcall   _log10f
+0471 8582E8     914            mov     _main_sloc0_1_0,dpl
+0474 8583E9     915            mov     (_main_sloc0_1_0 + 1),dph
+0477 85F0EA     916            mov     (_main_sloc0_1_0 + 2),b
+047A F5EB       917            mov     (_main_sloc0_1_0 + 3),a
+047C 90AE14     918            mov     dptr,#0xAE14
+047F 75F036     919            mov     b,#0x36
+0482 7442       920            mov     a,#0x42
+0484 120100     921            lcall   _logf
+0487 AE82       922            mov     r6,dpl
+0489 AF83       923            mov     r7,dph
+048B AAF0       924            mov     r2,b
+048D FB         925            mov     r3,a
+048E C0E8       926            push    _main_sloc0_1_0
+0490 C0E9       927            push    (_main_sloc0_1_0 + 1)
+0492 C0EA       928            push    (_main_sloc0_1_0 + 2)
+0494 C0EB       929            push    (_main_sloc0_1_0 + 3)
+0496 C006       930            push    ar6
+0498 C007       931            push    ar7
+049A C002       932            push    ar2
+049C C003       933            push    ar3
+049E 7414       934            mov     a,#0x14
+04A0 C0E0       935            push    acc
+04A2 74AE       936            mov     a,#0xAE
+04A4 C0E0       937            push    acc
+04A6 7436       938            mov     a,#0x36
+04A8 C0E0       939            push    acc
+04AA 7442       940            mov     a,#0x42
+04AC C0E0       941            push    acc
+04AE 74A8       942            mov     a,#__str_29
+04B0 C0E0       943            push    acc
+04B2 746E       944            mov     a,#(__str_29 >> 8)
+04B4 C0E0       945            push    acc
+04B6 7480       946            mov     a,#0x80
+04B8 C0E0       947            push    acc
+04BA 120100     948            lcall   _printf
+04BD E581       949            mov     a,sp
+04BF 24F1       950            add     a,#0xf1
+04C1 F581       951            mov     sp,a
+04C3            952   ;        C:\Source\call51\Source\S51\test\mathtest.c:157: puts("\n*** Testing exp(x) ***");
+04C3 906EE8     953            mov     dptr,#__str_30
+04C6 75F080     954            mov     b,#0x80
+04C9 120100     955            lcall   _puts
+04CC            956   ;        C:\Source\call51\Source\S51\test\mathtest.c:158: for(i=1; i<15; i++)
+04CC 7A01       957            mov     r2,#0x01
+04CE 7B00       958            mov     r3,#0x00
+04D0            959   L006032?:
+04D0 C3         960            clr     c
+04D1 EA         961            mov     a,r2
+04D2 940F       962            subb    a,#0x0F
+04D4 EB         963            mov     a,r3
+04D5 6480       964            xrl     a,#0x80
+04D7 9480       965            subb    a,#0x80
+04D9 5001       966            jnc     L006035?
+04DB            967   ;        C:\Source\call51\Source\S51\test\mathtest.c:160: x=i*4.0;
+04DB 8A82       968            mov     dpl,r2
+04DD 8B83       969            mov     dph,r3
+04DF C002       970            push    ar2
+04E1 C003       971            push    ar3
+04E3 120100     972            lcall   ___sint2fs
+04E6 AC82       973            mov     r4,dpl
+04E8 AD83       974            mov     r5,dph
+04EA AEF0       975            mov     r6,b
+04EC FF         976            mov     r7,a
+04ED C004       977            push    ar4
+04EF C005       978            push    ar5
+04F1 C006       979            push    ar6
+04F3 C007       980            push    ar7
+04F5 900000     981            mov     dptr,#0x0000
+04F8 75F080     982            mov     b,#0x80
+04FB 7440       983            mov     a,#0x40
+04FD 120100     984            lcall   ___fsmul
+0500 858220     985            mov     _main_x_1_1,dpl
+0503 858321     986            mov     (_main_x_1_1 + 1),dph
+0506 85F022     987            mov     (_main_x_1_1 + 2),b
+0509 F523       988            mov     (_main_x_1_1 + 3),a
+050B E581       989            mov     a,sp
+050D 24FC       990            add     a,#0xfc
+050F F581       991            mov     sp,a
+0511            992   ;        C:\Source\call51\Source\S51\test\mathtest.c:161: printf("%6.2f %11.8f\n", x, expf(x));
+0511 852082     993            mov     dpl,_main_x_1_1
+0514 852183     994            mov     dph,(_main_x_1_1 + 1)
+0517 8522F0     995            mov     b,(_main_x_1_1 + 2)
+051A E523       996            mov     a,(_main_x_1_1 + 3)
+051C 120100     997            lcall   _expf
+051F AC82       998            mov     r4,dpl
+0521 AD83       999            mov     r5,dph
+0523 AEF0      1000            mov     r6,b
+0525 FF        1001            mov     r7,a
+0526 C004      1002            push    ar4
+0528 C005      1003            push    ar5
+052A C006      1004            push    ar6
+052C C007      1005            push    ar7
+052E C020      1006            push    _main_x_1_1
+0530 C021      1007            push    (_main_x_1_1 + 1)
+0532 C022      1008            push    (_main_x_1_1 + 2)
+0534 C023      1009            push    (_main_x_1_1 + 3)
+0536 74E8      1010            mov     a,#__str_31
+0538 C0E0      1011            push    acc
+053A 746F      1012            mov     a,#(__str_31 >> 8)
+053C C0E0      1013            push    acc
+053E 7480      1014            mov     a,#0x80
+0540 C0E0      1015            push    acc
+0542 120100    1016            lcall   _printf
+0545 E581      1017            mov     a,sp
+0547 24F5      1018            add     a,#0xf5
+0549 F581      1019            mov     sp,a
+054B D003      1020            pop     ar3
+054D D002      1021            pop     ar2
+054F           1022   ;        C:\Source\call51\Source\S51\test\mathtest.c:158: for(i=1; i<15; i++)
+054F 0A        1023            inc     r2
+0550 BA0028    1024            cjne    r2,#0x00,L006151?
+0553 0B        1025            inc     r3
+0554           1026   L006151?:
+0554 020100    1027            ljmp    L006032?
+0557           1028   L006035?:
+0557           1029   ;        C:\Source\call51\Source\S51\test\mathtest.c:164: puts("\n*** Testing pow(x) ***");
+0557 907068    1030            mov     dptr,#__str_32
+055A 75F080    1031            mov     b,#0x80
+055D 120100    1032            lcall   _puts
+0560           1033   ;        C:\Source\call51\Source\S51\test\mathtest.c:165: for(i=0; i<20; i++)
+0560 7A00      1034            mov     r2,#0x00
+0562 7B00      1035            mov     r3,#0x00
+0564           1036   L006036?:
+0564 C3        1037            clr     c
+0565 EA        1038            mov     a,r2
+0566 9414      1039            subb    a,#0x14
+0568 EB        1040            mov     a,r3
+0569 6480      1041            xrl     a,#0x80
+056B 9480      1042            subb    a,#0x80
+056D 4001      1043            jc      L006152?
+056F 020100    1044            ljmp    L006039?
+0572           1045   L006152?:
+0572           1046   ;        C:\Source\call51\Source\S51\test\mathtest.c:167: x=i*2.976545;
+0572 8A82      1047            mov     dpl,r2
+0574 8B83      1048            mov     dph,r3
+0576 C002      1049            push    ar2
+0578 C003      1050            push    ar3
+057A 120100    1051            lcall   ___sint2fs
+057D AC82      1052            mov     r4,dpl
+057F AD83      1053            mov     r5,dph
+0581 AEF0      1054            mov     r6,b
+0583 FF        1055            mov     r7,a
+0584 C004      1056            push    ar4
+0586 C005      1057            push    ar5
+0588 C006      1058            push    ar6
+058A C007      1059            push    ar7
+058C 907FB7    1060            mov     dptr,#0x7FB7
+058F 75F03E    1061            mov     b,#0x3E
+0592 7440      1062            mov     a,#0x40
+0594 120100    1063            lcall   ___fsmul
+0597 858220    1064            mov     _main_x_1_1,dpl
+059A 858321    1065            mov     (_main_x_1_1 + 1),dph
+059D 85F022    1066            mov     (_main_x_1_1 + 2),b
+05A0 F523      1067            mov     (_main_x_1_1 + 3),a
+05A2 E581      1068            mov     a,sp
+05A4 24FC      1069            add     a,#0xfc
+05A6 F581      1070            mov     sp,a
+05A8           1071   ;        C:\Source\call51\Source\S51\test\mathtest.c:168: y=powf(x, 2.0);
+05A8 750000    1072            mov     _powf_PARM_2,#0x00
+05AB 750100    1073            mov     (_powf_PARM_2 + 1),#0x00
+05AE 750200    1074            mov     (_powf_PARM_2 + 2),#0x00
+05B1 750340    1075            mov     (_powf_PARM_2 + 3),#0x40
+05B4 852082    1076            mov     dpl,_main_x_1_1
+05B7 852183    1077            mov     dph,(_main_x_1_1 + 1)
+05BA 8522F0    1078            mov     b,(_main_x_1_1 + 2)
+05BD E523      1079            mov     a,(_main_x_1_1 + 3)
+05BF 120100    1080            lcall   _powf
+05C2 AC82      1081            mov     r4,dpl
+05C4 AD83      1082            mov     r5,dph
+05C6 AEF0      1083            mov     r6,b
+05C8 FF        1084            mov     r7,a
+05C9 8C60      1085            mov     _main_y_1_1,r4
+05CB 8D61      1086            mov     (_main_y_1_1 + 1),r5
+05CD 8E62      1087            mov     (_main_y_1_1 + 2),r6
+05CF 8F63      1088            mov     (_main_y_1_1 + 3),r7
+05D1           1089   ;        C:\Source\call51\Source\S51\test\mathtest.c:169: printf("(%5.2f)^2= %11.8f\n", x, y);
+05D1 C004      1090            push    ar4
+05D3 C005      1091            push    ar5
+05D5 C006      1092            push    ar6
+05D7 C007      1093            push    ar7
+05D9 C020      1094            push    _main_x_1_1
+05DB C021      1095            push    (_main_x_1_1 + 1)
+05DD C022      1096            push    (_main_x_1_1 + 2)
+05DF C023      1097            push    (_main_x_1_1 + 3)
+05E1 74E8      1098            mov     a,#__str_33
+05E3 C0E0      1099            push    acc
+05E5 7471      1100            mov     a,#(__str_33 >> 8)
+05E7 C0E0      1101            push    acc
+05E9 7480      1102            mov     a,#0x80
+05EB C0E0      1103            push    acc
+05ED 120100    1104            lcall   _printf
+05F0 E581      1105            mov     a,sp
+05F2 24F5      1106            add     a,#0xf5
+05F4 F581      1107            mov     sp,a
+05F6 D003      1108            pop     ar3
+05F8 D002      1109            pop     ar2
+05FA           1110   ;        C:\Source\call51\Source\S51\test\mathtest.c:165: for(i=0; i<20; i++)
+05FA 0A        1111            inc     r2
+05FB BA0028    1112            cjne    r2,#0x00,L006153?
+05FE 0B        1113            inc     r3
+05FF           1114   L006153?:
+05FF 020100    1115            ljmp    L006036?
+0602           1116   L006039?:
+0602           1117   ;        C:\Source\call51\Source\S51\test\mathtest.c:172: puts("\n*** Testing sin(x) and cos(x) ***");
+0602 907268    1118            mov     dptr,#__str_34
+0605 75F080    1119            mov     b,#0x80
+0608 120100    1120            lcall   _puts
+060B           1121   ;        C:\Source\call51\Source\S51\test\mathtest.c:173: puts("    Please wait...");
+060B 9072A8    1122            mov     dptr,#__str_35
+060E 75F080    1123            mov     b,#0x80
+0611 120100    1124            lcall   _puts
+0614           1125   ;        C:\Source\call51\Source\S51\test\mathtest.c:175: x=100000.0;
+0614 752000    1126            mov     _main_x_1_1,#0x00
+0617 752150    1127            mov     (_main_x_1_1 + 1),#0x50
+061A 7522C3    1128            mov     (_main_x_1_1 + 2),#0xC3
+061D 752347    1129            mov     (_main_x_1_1 + 3),#0x47
+0620           1130   ;        C:\Source\call51\Source\S51\test\mathtest.c:176: etime=ClockTicks();
+0620 120100    1131            lcall   _ClockTicks
+0623 8582A0    1132            mov     _main_etime_1_1,dpl
+0626 8583A1    1133            mov     (_main_etime_1_1 + 1),dph
+0629 85F0A2    1134            mov     (_main_etime_1_1 + 2),b
+062C F5A3      1135            mov     (_main_etime_1_1 + 3),a
+062E           1136   ;        C:\Source\call51\Source\S51\test\mathtest.c:177: for(ci=0; ci<50; ci++)
+062E 7A32      1137            mov     r2,#0x32
+0630           1138   L006042?:
+0630           1139   ;        C:\Source\call51\Source\S51\test\mathtest.c:179: x*=1.01;
+0630 C002      1140            push    ar2
+0632 C020      1141            push    _main_x_1_1
+0634 C021      1142            push    (_main_x_1_1 + 1)
+0636 C022      1143            push    (_main_x_1_1 + 2)
+0638 C023      1144            push    (_main_x_1_1 + 3)
+063A 9047AE    1145            mov     dptr,#0x47AE
+063D 75F081    1146            mov     b,#0x81
+0640 743F      1147            mov     a,#0x3F
+0642 120100    1148            lcall   ___fsmul
+0645 858220    1149            mov     _main_x_1_1,dpl
+0648 858321    1150            mov     (_main_x_1_1 + 1),dph
+064B 85F022    1151            mov     (_main_x_1_1 + 2),b
+064E F523      1152            mov     (_main_x_1_1 + 3),a
+0650 E581      1153            mov     a,sp
+0652 24FC      1154            add     a,#0xfc
+0654 F581      1155            mov     sp,a
+0656 D002      1156            pop     ar2
+0658 DAE8      1157            djnz    r2,L006042?
+065A           1158   ;        C:\Source\call51\Source\S51\test\mathtest.c:177: for(ci=0; ci<50; ci++)
+065A           1159   ;        C:\Source\call51\Source\S51\test\mathtest.c:181: etime=ClockTicks()-etime;
+065A 120100    1160            lcall   _ClockTicks
+065D AA82      1161            mov     r2,dpl
+065F AB83      1162            mov     r3,dph
+0661 ACF0      1163            mov     r4,b
+0663 FD        1164            mov     r5,a
+0664 EA        1165            mov     a,r2
+0665 C3        1166            clr     c
+0666 95A0      1167            subb    a,_main_etime_1_1
+0668 F5A0      1168            mov     _main_etime_1_1,a
+066A EB        1169            mov     a,r3
+066B 95A1      1170            subb    a,(_main_etime_1_1 + 1)
+066D F5A1      1171            mov     (_main_etime_1_1 + 1),a
+066F EC        1172            mov     a,r4
+0670 95A2      1173            subb    a,(_main_etime_1_1 + 2)
+0672 F5A2      1174            mov     (_main_etime_1_1 + 2),a
+0674 ED        1175            mov     a,r5
+0675 95A3      1176            subb    a,(_main_etime_1_1 + 3)
+0677 F5A3      1177            mov     (_main_etime_1_1 + 3),a
+0679           1178   ;        C:\Source\call51\Source\S51\test\mathtest.c:182: printf("      Average `*` execution time: %f ms\n", (etime-ltime)/50.0);
+0679 E5A0      1179            mov     a,_main_etime_1_1
+067B C3        1180            clr     c
+067C 95E8      1181            subb    a,_main_ltime_1_1
+067E FA        1182            mov     r2,a
+067F E5A1      1183            mov     a,(_main_etime_1_1 + 1)
+0681 95E9      1184            subb    a,(_main_ltime_1_1 + 1)
+0683 FB        1185            mov     r3,a
+0684 E5A2      1186            mov     a,(_main_etime_1_1 + 2)
+0686 95EA      1187            subb    a,(_main_ltime_1_1 + 2)
+0688 FC        1188            mov     r4,a
+0689 E5A3      1189            mov     a,(_main_etime_1_1 + 3)
+068B 95EB      1190            subb    a,(_main_ltime_1_1 + 3)
+068D 8A82      1191            mov     dpl,r2
+068F 8B83      1192            mov     dph,r3
+0691 8CF0      1193            mov     b,r4
+0693 120100    1194            lcall   ___slong2fs
+0696 AA82      1195            mov     r2,dpl
+0698 AB83      1196            mov     r3,dph
+069A ACF0      1197            mov     r4,b
+069C FD        1198            mov     r5,a
+069D E4        1199            clr     a
+069E C0E0      1200            push    acc
+06A0 C0E0      1201            push    acc
+06A2 7448      1202            mov     a,#0x48
+06A4 C0E0      1203            push    acc
+06A6 7442      1204            mov     a,#0x42
+06A8 C0E0      1205            push    acc
+06AA 8A82      1206            mov     dpl,r2
+06AC 8B83      1207            mov     dph,r3
+06AE 8CF0      1208            mov     b,r4
+06B0 ED        1209            mov     a,r5
+06B1 120100    1210            lcall   ___fsdiv
+06B4 AA82      1211            mov     r2,dpl
+06B6 AB83      1212            mov     r3,dph
+06B8 ACF0      1213            mov     r4,b
+06BA FD        1214            mov     r5,a
+06BB E581      1215            mov     a,sp
+06BD 24FC      1216            add     a,#0xfc
+06BF F581      1217            mov     sp,a
+06C1 C002      1218            push    ar2
+06C3 C003      1219            push    ar3
+06C5 C004      1220            push    ar4
+06C7 C005      1221            push    ar5
+06C9 7428      1222            mov     a,#__str_36
+06CB C0E0      1223            push    acc
+06CD 7473      1224            mov     a,#(__str_36 >> 8)
+06CF C0E0      1225            push    acc
+06D1 7480      1226            mov     a,#0x80
+06D3 C0E0      1227            push    acc
+06D5 120100    1228            lcall   _printf
+06D8 E581      1229            mov     a,sp
+06DA 24F9      1230            add     a,#0xf9
+06DC F581      1231            mov     sp,a
+06DE           1232   ;        C:\Source\call51\Source\S51\test\mathtest.c:184: etime=ClockTicks();
+06DE 120100    1233            lcall   _ClockTicks
+06E1 8582A0    1234            mov     _main_etime_1_1,dpl
+06E4 8583A1    1235            mov     (_main_etime_1_1 + 1),dph
+06E7 85F0A2    1236            mov     (_main_etime_1_1 + 2),b
+06EA F5A3      1237            mov     (_main_etime_1_1 + 3),a
+06EC           1238   ;        C:\Source\call51\Source\S51\test\mathtest.c:185: for(ci=0; ci<100; ci++)
+06EC 7A64      1239            mov     r2,#0x64
+06EE           1240   L006045?:
+06EE           1241   ;        C:\Source\call51\Source\S51\test\mathtest.c:187: sinf(0.1);
+06EE 90CCCD    1242            mov     dptr,#0xCCCD
+06F1 75F0CC    1243            mov     b,#0xCC
+06F4 743D      1244            mov     a,#0x3D
+06F6 C002      1245            push    ar2
+06F8 120100    1246            lcall   _sinf
+06FB D002      1247            pop     ar2
+06FD DA68      1248            djnz    r2,L006045?
+06FF           1249   ;        C:\Source\call51\Source\S51\test\mathtest.c:185: for(ci=0; ci<100; ci++)
+06FF           1250   ;        C:\Source\call51\Source\S51\test\mathtest.c:189: etime=ClockTicks()-etime;
+06FF 120100    1251            lcall   _ClockTicks
+0702 AA82      1252            mov     r2,dpl
+0704 AB83      1253            mov     r3,dph
+0706 ACF0      1254            mov     r4,b
+0708 FD        1255            mov     r5,a
+0709 EA        1256            mov     a,r2
+070A C3        1257            clr     c
+070B 95A0      1258            subb    a,_main_etime_1_1
+070D F5A0      1259            mov     _main_etime_1_1,a
+070F EB        1260            mov     a,r3
+0710 95A1      1261            subb    a,(_main_etime_1_1 + 1)
+0712 F5A1      1262            mov     (_main_etime_1_1 + 1),a
+0714 EC        1263            mov     a,r4
+0715 95A2      1264            subb    a,(_main_etime_1_1 + 2)
+0717 F5A2      1265            mov     (_main_etime_1_1 + 2),a
+0719 ED        1266            mov     a,r5
+071A 95A3      1267            subb    a,(_main_etime_1_1 + 3)
+071C F5A3      1268            mov     (_main_etime_1_1 + 3),a
+071E           1269   ;        C:\Source\call51\Source\S51\test\mathtest.c:190: printf("      Average sin(x) execution time: %f ms\n", (etime-ltime)/100.0);
+071E E5A0      1270            mov     a,_main_etime_1_1
+0720 C3        1271            clr     c
+0721 95E8      1272            subb    a,_main_ltime_1_1
+0723 FA        1273            mov     r2,a
+0724 E5A1      1274            mov     a,(_main_etime_1_1 + 1)
+0726 95E9      1275            subb    a,(_main_ltime_1_1 + 1)
+0728 FB        1276            mov     r3,a
+0729 E5A2      1277            mov     a,(_main_etime_1_1 + 2)
+072B 95EA      1278            subb    a,(_main_ltime_1_1 + 2)
+072D FC        1279            mov     r4,a
+072E E5A3      1280            mov     a,(_main_etime_1_1 + 3)
+0730 95EB      1281            subb    a,(_main_ltime_1_1 + 3)
+0732 8A82      1282            mov     dpl,r2
+0734 8B83      1283            mov     dph,r3
+0736 8CF0      1284            mov     b,r4
+0738 120100    1285            lcall   ___slong2fs
+073B AA82      1286            mov     r2,dpl
+073D AB83      1287            mov     r3,dph
+073F ACF0      1288            mov     r4,b
+0741 FD        1289            mov     r5,a
+0742 E4        1290            clr     a
+0743 C0E0      1291            push    acc
+0745 C0E0      1292            push    acc
+0747 74C8      1293            mov     a,#0xC8
+0749 C0E0      1294            push    acc
+074B 7442      1295            mov     a,#0x42
+074D C0E0      1296            push    acc
+074F 8A82      1297            mov     dpl,r2
+0751 8B83      1298            mov     dph,r3
+0753 8CF0      1299            mov     b,r4
+0755 ED        1300            mov     a,r5
+0756 120100    1301            lcall   ___fsdiv
+0759 AA82      1302            mov     r2,dpl
+075B AB83      1303            mov     r3,dph
+075D ACF0      1304            mov     r4,b
+075F FD        1305            mov     r5,a
+0760 E581      1306            mov     a,sp
+0762 24FC      1307            add     a,#0xfc
+0764 F581      1308            mov     sp,a
+0766 C002      1309            push    ar2
+0768 C003      1310            push    ar3
+076A C004      1311            push    ar4
+076C C005      1312            push    ar5
+076E 74E8      1313            mov     a,#__str_37
+0770 C0E0      1314            push    acc
+0772 7473      1315            mov     a,#(__str_37 >> 8)
+0774 C0E0      1316            push    acc
+0776 7480      1317            mov     a,#0x80
+0778 C0E0      1318            push    acc
+077A 120100    1319            lcall   _printf
+077D E581      1320            mov     a,sp
+077F 24F9      1321            add     a,#0xf9
+0781 F581      1322            mov     sp,a
+0783           1323   ;        C:\Source\call51\Source\S51\test\mathtest.c:192: puts("    Please wait...");
+0783 9072A8    1324            mov     dptr,#__str_35
+0786 75F080    1325            mov     b,#0x80
+0789 120100    1326            lcall   _puts
+078C           1327   ;        C:\Source\call51\Source\S51\test\mathtest.c:194: etime=ClockTicks();
+078C 120100    1328            lcall   _ClockTicks
+078F 8582A0    1329            mov     _main_etime_1_1,dpl
+0792 8583A1    1330            mov     (_main_etime_1_1 + 1),dph
+0795 85F0A2    1331            mov     (_main_etime_1_1 + 2),b
+0798 F5A3      1332            mov     (_main_etime_1_1 + 3),a
+079A           1333   ;        C:\Source\call51\Source\S51\test\mathtest.c:195: for(ci=0; ci<100; ci++)
+079A 7A64      1334            mov     r2,#0x64
+079C           1335   L006048?:
+079C           1336   ;        C:\Source\call51\Source\S51\test\mathtest.c:197: cosf(0.1);
+079C 90CCCD    1337            mov     dptr,#0xCCCD
+079F 75F0CC    1338            mov     b,#0xCC
+07A2 743D      1339            mov     a,#0x3D
+07A4 C002      1340            push    ar2
+07A6 120100    1341            lcall   _cosf
+07A9 D002      1342            pop     ar2
+07AB DA28      1343            djnz    r2,L006048?
+07AD           1344   ;        C:\Source\call51\Source\S51\test\mathtest.c:195: for(ci=0; ci<100; ci++)
+07AD           1345   ;        C:\Source\call51\Source\S51\test\mathtest.c:199: etime=ClockTicks()-etime;
+07AD 120100    1346            lcall   _ClockTicks
+07B0 AA82      1347            mov     r2,dpl
+07B2 AB83      1348            mov     r3,dph
+07B4 ACF0      1349            mov     r4,b
+07B6 FD        1350            mov     r5,a
+07B7 EA        1351            mov     a,r2
+07B8 C3        1352            clr     c
+07B9 95A0      1353            subb    a,_main_etime_1_1
+07BB F5A0      1354            mov     _main_etime_1_1,a
+07BD EB        1355            mov     a,r3
+07BE 95A1      1356            subb    a,(_main_etime_1_1 + 1)
+07C0 F5A1      1357            mov     (_main_etime_1_1 + 1),a
+07C2 EC        1358            mov     a,r4
+07C3 95A2      1359            subb    a,(_main_etime_1_1 + 2)
+07C5 F5A2      1360            mov     (_main_etime_1_1 + 2),a
+07C7 ED        1361            mov     a,r5
+07C8 95A3      1362            subb    a,(_main_etime_1_1 + 3)
+07CA F5A3      1363            mov     (_main_etime_1_1 + 3),a
+07CC           1364   ;        C:\Source\call51\Source\S51\test\mathtest.c:200: printf("      Average cos(x) execution time: %f ms\n\n", (etime-ltime)/100.0);
+07CC E5A0      1365            mov     a,_main_etime_1_1
+07CE C3        1366            clr     c
+07CF 95E8      1367            subb    a,_main_ltime_1_1
+07D1 FA        1368            mov     r2,a
+07D2 E5A1      1369            mov     a,(_main_etime_1_1 + 1)
+07D4 95E9      1370            subb    a,(_main_ltime_1_1 + 1)
+07D6 FB        1371            mov     r3,a
+07D7 E5A2      1372            mov     a,(_main_etime_1_1 + 2)
+07D9 95EA      1373            subb    a,(_main_ltime_1_1 + 2)
+07DB FC        1374            mov     r4,a
+07DC E5A3      1375            mov     a,(_main_etime_1_1 + 3)
+07DE 95EB      1376            subb    a,(_main_ltime_1_1 + 3)
+07E0 8A82      1377            mov     dpl,r2
+07E2 8B83      1378            mov     dph,r3
+07E4 8CF0      1379            mov     b,r4
+07E6 120100    1380            lcall   ___slong2fs
+07E9 AA82      1381            mov     r2,dpl
+07EB AB83      1382            mov     r3,dph
+07ED ACF0      1383            mov     r4,b
+07EF FD        1384            mov     r5,a
+07F0 E4        1385            clr     a
+07F1 C0E0      1386            push    acc
+07F3 C0E0      1387            push    acc
+07F5 74C8      1388            mov     a,#0xC8
+07F7 C0E0      1389            push    acc
+07F9 7442      1390            mov     a,#0x42
+07FB C0E0      1391            push    acc
+07FD 8A82      1392            mov     dpl,r2
+07FF 8B83      1393            mov     dph,r3
+0801 8CF0      1394            mov     b,r4
+0803 ED        1395            mov     a,r5
+0804 120100    1396            lcall   ___fsdiv
+0807 AA82      1397            mov     r2,dpl
+0809 AB83      1398            mov     r3,dph
+080B ACF0      1399            mov     r4,b
+080D FD        1400            mov     r5,a
+080E E581      1401            mov     a,sp
+0810 24FC      1402            add     a,#0xfc
+0812 F581      1403            mov     sp,a
+0814 C002      1404            push    ar2
+0816 C003      1405            push    ar3
+0818 C004      1406            push    ar4
+081A C005      1407            push    ar5
+081C 74A8      1408            mov     a,#__str_38
+081E C0E0      1409            push    acc
+0820 7474      1410            mov     a,#(__str_38 >> 8)
+0822 C0E0      1411            push    acc
+0824 7480      1412            mov     a,#0x80
+0826 C0E0      1413            push    acc
+0828 120100    1414            lcall   _printf
+082B E581      1415            mov     a,sp
+082D 24F9      1416            add     a,#0xf9
+082F F581      1417            mov     sp,a
+0831           1418   ;        C:\Source\call51\Source\S51\test\mathtest.c:202: for(i=0; i<35; i++)
+0831 7A00      1419            mov     r2,#0x00
+0833 7B00      1420            mov     r3,#0x00
+0835           1421   L006049?:
+0835 C3        1422            clr     c
+0836 EA        1423            mov     a,r2
+0837 9423      1424            subb    a,#0x23
+0839 EB        1425            mov     a,r3
+083A 6480      1426            xrl     a,#0x80
+083C 9480      1427            subb    a,#0x80
+083E 4001      1428            jc      L006160?
+0840 020100    1429            ljmp    L006052?
+0843           1430   L006160?:
+0843           1431   ;        C:\Source\call51\Source\S51\test\mathtest.c:205: if(i==31) x=1.57079633;
+0843 BA1FA8    1432            cjne    r2,#0x1F,L006011?
+0846 BB00A8    1433            cjne    r3,#0x00,L006011?
+0849 7520DB    1434            mov     _main_x_1_1,#0xDB
+084C 75210F    1435            mov     (_main_x_1_1 + 1),#0x0F
+084F 7522C9    1436            mov     (_main_x_1_1 + 2),#0xC9
+0852 75233F    1437            mov     (_main_x_1_1 + 3),#0x3F
+0855 8001      1438            sjmp    L006012?
+0857           1439   L006011?:
+0857           1440   ;        C:\Source\call51\Source\S51\test\mathtest.c:206: else if(i==32) x=0.78539816;
+0857 BA2028    1441            cjne    r2,#0x20,L006008?
+085A BB0028    1442            cjne    r3,#0x00,L006008?
+085D 7520DB    1443            mov     _main_x_1_1,#0xDB
+0860 75210F    1444            mov     (_main_x_1_1 + 1),#0x0F
+0863 752249    1445            mov     (_main_x_1_1 + 2),#0x49
+0866 75233F    1446            mov     (_main_x_1_1 + 3),#0x3F
+0869 8001      1447            sjmp    L006012?
+086B           1448   L006008?:
+086B           1449   ;        C:\Source\call51\Source\S51\test\mathtest.c:207: else if(i==33) x=3.14159265;
+086B BA2168    1450            cjne    r2,#0x21,L006005?
+086E BB0068    1451            cjne    r3,#0x00,L006005?
+0871 7520DB    1452            mov     _main_x_1_1,#0xDB
+0874 75210F    1453            mov     (_main_x_1_1 + 1),#0x0F
+0877 752249    1454            mov     (_main_x_1_1 + 2),#0x49
+087A 752340    1455            mov     (_main_x_1_1 + 3),#0x40
+087D 8001      1456            sjmp    L006012?
+087F           1457   L006005?:
+087F           1458   ;        C:\Source\call51\Source\S51\test\mathtest.c:208: else if(i==34) x=6.28318531;
+087F BA22A8    1459            cjne    r2,#0x22,L006002?
+0882 BB00A8    1460            cjne    r3,#0x00,L006002?
+0885 7520DB    1461            mov     _main_x_1_1,#0xDB
+0888 75210F    1462            mov     (_main_x_1_1 + 1),#0x0F
+088B 7522C9    1463            mov     (_main_x_1_1 + 2),#0xC9
+088E 752340    1464            mov     (_main_x_1_1 + 3),#0x40
+0891 8001      1465            sjmp    L006012?
+0893           1466   L006002?:
+0893           1467   ;        C:\Source\call51\Source\S51\test\mathtest.c:209: else x=i*0.2;
+0893 8A82      1468            mov     dpl,r2
+0895 8B83      1469            mov     dph,r3
+0897 C002      1470            push    ar2
+0899 C003      1471            push    ar3
+089B 120100    1472            lcall   ___sint2fs
+089E AC82      1473            mov     r4,dpl
+08A0 AD83      1474            mov     r5,dph
+08A2 AEF0      1475            mov     r6,b
+08A4 FF        1476            mov     r7,a
+08A5 C004      1477            push    ar4
+08A7 C005      1478            push    ar5
+08A9 C006      1479            push    ar6
+08AB C007      1480            push    ar7
+08AD 90CCCD    1481            mov     dptr,#0xCCCD
+08B0 75F04C    1482            mov     b,#0x4C
+08B3 743E      1483            mov     a,#0x3E
+08B5 120100    1484            lcall   ___fsmul
+08B8 858220    1485            mov     _main_x_1_1,dpl
+08BB 858321    1486            mov     (_main_x_1_1 + 1),dph
+08BE 85F022    1487            mov     (_main_x_1_1 + 2),b
+08C1 F523      1488            mov     (_main_x_1_1 + 3),a
+08C3 E581      1489            mov     a,sp
+08C5 24FC      1490            add     a,#0xfc
+08C7 F581      1491            mov     sp,a
+08C9 D003      1492            pop     ar3
+08CB D002      1493            pop     ar2
+08CD           1494   L006012?:
+08CD           1495   ;        C:\Source\call51\Source\S51\test\mathtest.c:211: ysin=sinf(x);
+08CD 852082    1496            mov     dpl,_main_x_1_1
+08D0 852183    1497            mov     dph,(_main_x_1_1 + 1)
+08D3 8522F0    1498            mov     b,(_main_x_1_1 + 2)
+08D6 E523      1499            mov     a,(_main_x_1_1 + 3)
+08D8 C002      1500            push    ar2
+08DA C003      1501            push    ar3
+08DC 120100    1502            lcall   _sinf
+08DF 8582E0    1503            mov     _main_ysin_1_1,dpl
+08E2 8583E1    1504            mov     (_main_ysin_1_1 + 1),dph
+08E5 85F0E2    1505            mov     (_main_ysin_1_1 + 2),b
+08E8 F5E3      1506            mov     (_main_ysin_1_1 + 3),a
+08EA           1507   ;        C:\Source\call51\Source\S51\test\mathtest.c:212: ycos=cosf(x);
+08EA 852082    1508            mov     dpl,_main_x_1_1
+08ED 852183    1509            mov     dph,(_main_x_1_1 + 1)
+08F0 8522F0    1510            mov     b,(_main_x_1_1 + 2)
+08F3 E523      1511            mov     a,(_main_x_1_1 + 3)
+08F5 120100    1512            lcall   _cosf
+08F8 AC82      1513            mov     r4,dpl
+08FA AD83      1514            mov     r5,dph
+08FC AEF0      1515            mov     r6,b
+08FE FF        1516            mov     r7,a
+08FF           1517   ;        C:\Source\call51\Source\S51\test\mathtest.c:214: printf("%5.2f %11.8f %11.8f\n", x, ysin, ycos);
+08FF C004      1518            push    ar4
+0901 C005      1519            push    ar5
+0903 C006      1520            push    ar6
+0905 C007      1521            push    ar7
+0907 C0E0      1522            push    _main_ysin_1_1
+0909 C0E1      1523            push    (_main_ysin_1_1 + 1)
+090B C0E2      1524            push    (_main_ysin_1_1 + 2)
+090D C0E3      1525            push    (_main_ysin_1_1 + 3)
+090F C020      1526            push    _main_x_1_1
+0911 C021      1527            push    (_main_x_1_1 + 1)
+0913 C022      1528            push    (_main_x_1_1 + 2)
+0915 C023      1529            push    (_main_x_1_1 + 3)
+0917 74E8      1530            mov     a,#__str_39
+0919 C0E0      1531            push    acc
+091B 7476      1532            mov     a,#(__str_39 >> 8)
+091D C0E0      1533            push    acc
+091F 7480      1534            mov     a,#0x80
+0921 C0E0      1535            push    acc
+0923 120100    1536            lcall   _printf
+0926 E581      1537            mov     a,sp
+0928 24F1      1538            add     a,#0xf1
+092A F581      1539            mov     sp,a
+092C D003      1540            pop     ar3
+092E D002      1541            pop     ar2
+0930           1542   ;        C:\Source\call51\Source\S51\test\mathtest.c:202: for(i=0; i<35; i++)
+0930 0A        1543            inc     r2
+0931 BA0028    1544            cjne    r2,#0x00,L006169?
+0934 0B        1545            inc     r3
+0935           1546   L006169?:
+0935 020100    1547            ljmp    L006049?
+0938           1548   L006052?:
+0938           1549   ;        C:\Source\call51\Source\S51\test\mathtest.c:217: puts("\n*** Testing tan(x) and cot(x) ***");
+0938 907768    1550            mov     dptr,#__str_40
+093B 75F080    1551            mov     b,#0x80
+093E 120100    1552            lcall   _puts
+0941           1553   ;        C:\Source\call51\Source\S51\test\mathtest.c:218: for(i=0; i<35; i++)
+0941 E4        1554            clr     a
+0942 F520      1555            mov     _main_i_1_1,a
+0944 F521      1556            mov     (_main_i_1_1 + 1),a
+0946           1557   L006053?:
+0946 C3        1558            clr     c
+0947 E520      1559            mov     a,_main_i_1_1
+0949 9423      1560            subb    a,#0x23
+094B E521      1561            mov     a,(_main_i_1_1 + 1)
+094D 6480      1562            xrl     a,#0x80
+094F 9480      1563            subb    a,#0x80
+0951 4001      1564            jc      L006170?
+0953 020100    1565            ljmp    L006056?
+0956           1566   L006170?:
+0956           1567   ;        C:\Source\call51\Source\S51\test\mathtest.c:220: x=i*0.2;
+0956 852082    1568            mov     dpl,_main_i_1_1
+0959 852183    1569            mov     dph,(_main_i_1_1 + 1)
+095C 120100    1570            lcall   ___sint2fs
+095F AC82      1571            mov     r4,dpl
+0961 AD83      1572            mov     r5,dph
+0963 AEF0      1573            mov     r6,b
+0965 FF        1574            mov     r7,a
+0966 C004      1575            push    ar4
+0968 C005      1576            push    ar5
+096A C006      1577            push    ar6
+096C C007      1578            push    ar7
+096E 90CCCD    1579            mov     dptr,#0xCCCD
+0971 75F04C    1580            mov     b,#0x4C
+0974 743E      1581            mov     a,#0x3E
+0976 120100    1582            lcall   ___fsmul
+0979 858220    1583            mov     _main_x_1_1,dpl
+097C 858321    1584            mov     (_main_x_1_1 + 1),dph
+097F 85F022    1585            mov     (_main_x_1_1 + 2),b
+0982 F523      1586            mov     (_main_x_1_1 + 3),a
+0984 E581      1587            mov     a,sp
+0986 24FC      1588            add     a,#0xfc
+0988 F581      1589            mov     sp,a
+098A           1590   ;        C:\Source\call51\Source\S51\test\mathtest.c:221: printf("%5.2f %12.8f %12.8f\n", x, tanf(x), cotf(x));
+098A 852082    1591            mov     dpl,_main_x_1_1
+098D 852183    1592            mov     dph,(_main_x_1_1 + 1)
+0990 8522F0    1593            mov     b,(_main_x_1_1 + 2)
+0993 E523      1594            mov     a,(_main_x_1_1 + 3)
+0995 120100    1595            lcall   _cotf
+0998 8582E8    1596            mov     _main_sloc0_1_0,dpl
+099B 8583E9    1597            mov     (_main_sloc0_1_0 + 1),dph
+099E 85F0EA    1598            mov     (_main_sloc0_1_0 + 2),b
+09A1 F5EB      1599            mov     (_main_sloc0_1_0 + 3),a
+09A3 852082    1600            mov     dpl,_main_x_1_1
+09A6 852183    1601            mov     dph,(_main_x_1_1 + 1)
+09A9 8522F0    1602            mov     b,(_main_x_1_1 + 2)
+09AC E523      1603            mov     a,(_main_x_1_1 + 3)
+09AE 120100    1604            lcall   _tanf
+09B1 AA82      1605            mov     r2,dpl
+09B3 AB83      1606            mov     r3,dph
+09B5 ACF0      1607            mov     r4,b
+09B7 FD        1608            mov     r5,a
+09B8 C0E8      1609            push    _main_sloc0_1_0
+09BA C0E9      1610            push    (_main_sloc0_1_0 + 1)
+09BC C0EA      1611            push    (_main_sloc0_1_0 + 2)
+09BE C0EB      1612            push    (_main_sloc0_1_0 + 3)
+09C0 C002      1613            push    ar2
+09C2 C003      1614            push    ar3
+09C4 C004      1615            push    ar4
+09C6 C005      1616            push    ar5
+09C8 C020      1617            push    _main_x_1_1
+09CA C021      1618            push    (_main_x_1_1 + 1)
+09CC C022      1619            push    (_main_x_1_1 + 2)
+09CE C023      1620            push    (_main_x_1_1 + 3)
+09D0 74E8      1621            mov     a,#__str_41
+09D2 C0E0      1622            push    acc
+09D4 7478      1623            mov     a,#(__str_41 >> 8)
+09D6 C0E0      1624            push    acc
+09D8 7480      1625            mov     a,#0x80
+09DA C0E0      1626            push    acc
+09DC 120100    1627            lcall   _printf
+09DF E581      1628            mov     a,sp
+09E1 24F1      1629            add     a,#0xf1
+09E3 F581      1630            mov     sp,a
+09E5           1631   ;        C:\Source\call51\Source\S51\test\mathtest.c:218: for(i=0; i<35; i++)
+09E5 0520      1632            inc     _main_i_1_1
+09E7 E4        1633            clr     a
+09E8 B52028    1634            cjne    a,_main_i_1_1,L006171?
+09EB 0521      1635            inc     (_main_i_1_1 + 1)
+09ED           1636   L006171?:
+09ED 020100    1637            ljmp    L006053?
+09F0           1638   L006056?:
+09F0           1639   ;        C:\Source\call51\Source\S51\test\mathtest.c:224: puts("\n*** Testing asin(x) and acos(x) ***");
+09F0 907968    1640            mov     dptr,#__str_42
+09F3 75F080    1641            mov     b,#0x80
+09F6 120100    1642            lcall   _puts
+09F9           1643   ;        C:\Source\call51\Source\S51\test\mathtest.c:225: for(i=-10; i<11; i++)
+09F9 7520F6    1644            mov     _main_i_1_1,#0xF6
+09FC 7521FF    1645            mov     (_main_i_1_1 + 1),#0xFF
+09FF           1646   L006057?:
+09FF C3        1647            clr     c
+0A00 E520      1648            mov     a,_main_i_1_1
+0A02 940B      1649            subb    a,#0x0B
+0A04 E521      1650            mov     a,(_main_i_1_1 + 1)
+0A06 6480      1651            xrl     a,#0x80
+0A08 9480      1652            subb    a,#0x80
+0A0A 4001      1653            jc      L006172?
+0A0C 020100    1654            ljmp    L006060?
+0A0F           1655   L006172?:
+0A0F           1656   ;        C:\Source\call51\Source\S51\test\mathtest.c:227: x=i*0.1;
+0A0F 852082    1657            mov     dpl,_main_i_1_1
+0A12 852183    1658            mov     dph,(_main_i_1_1 + 1)
+0A15 120100    1659            lcall   ___sint2fs
+0A18 AC82      1660            mov     r4,dpl
+0A1A AD83      1661            mov     r5,dph
+0A1C AEF0      1662            mov     r6,b
+0A1E FF        1663            mov     r7,a
+0A1F C004      1664            push    ar4
+0A21 C005      1665            push    ar5
+0A23 C006      1666            push    ar6
+0A25 C007      1667            push    ar7
+0A27 90CCCD    1668            mov     dptr,#0xCCCD
+0A2A 75F0CC    1669            mov     b,#0xCC
+0A2D 743D      1670            mov     a,#0x3D
+0A2F 120100    1671            lcall   ___fsmul
+0A32 858220    1672            mov     _main_x_1_1,dpl
+0A35 858321    1673            mov     (_main_x_1_1 + 1),dph
+0A38 85F022    1674            mov     (_main_x_1_1 + 2),b
+0A3B F523      1675            mov     (_main_x_1_1 + 3),a
+0A3D E581      1676            mov     a,sp
+0A3F 24FC      1677            add     a,#0xfc
+0A41 F581      1678            mov     sp,a
+0A43           1679   ;        C:\Source\call51\Source\S51\test\mathtest.c:228: printf("%5.2f %12.8f %12.8f\n", x, asinf(x), acosf(x));
+0A43 852082    1680            mov     dpl,_main_x_1_1
+0A46 852183    1681            mov     dph,(_main_x_1_1 + 1)
+0A49 8522F0    1682            mov     b,(_main_x_1_1 + 2)
+0A4C E523      1683            mov     a,(_main_x_1_1 + 3)
+0A4E 120100    1684            lcall   _acosf
+0A51 8582E8    1685            mov     _main_sloc0_1_0,dpl
+0A54 8583E9    1686            mov     (_main_sloc0_1_0 + 1),dph
+0A57 85F0EA    1687            mov     (_main_sloc0_1_0 + 2),b
+0A5A F5EB      1688            mov     (_main_sloc0_1_0 + 3),a
+0A5C 852082    1689            mov     dpl,_main_x_1_1
+0A5F 852183    1690            mov     dph,(_main_x_1_1 + 1)
+0A62 8522F0    1691            mov     b,(_main_x_1_1 + 2)
+0A65 E523      1692            mov     a,(_main_x_1_1 + 3)
+0A67 120100    1693            lcall   _asinf
+0A6A AA82      1694            mov     r2,dpl
+0A6C AB83      1695            mov     r3,dph
+0A6E ACF0      1696            mov     r4,b
+0A70 FD        1697            mov     r5,a
+0A71 C0E8      1698            push    _main_sloc0_1_0
+0A73 C0E9      1699            push    (_main_sloc0_1_0 + 1)
+0A75 C0EA      1700            push    (_main_sloc0_1_0 + 2)
+0A77 C0EB      1701            push    (_main_sloc0_1_0 + 3)
+0A79 C002      1702            push    ar2
+0A7B C003      1703            push    ar3
+0A7D C004      1704            push    ar4
+0A7F C005      1705            push    ar5
+0A81 C020      1706            push    _main_x_1_1
+0A83 C021      1707            push    (_main_x_1_1 + 1)
+0A85 C022      1708            push    (_main_x_1_1 + 2)
+0A87 C023      1709            push    (_main_x_1_1 + 3)
+0A89 74E8      1710            mov     a,#__str_41
+0A8B C0E0      1711            push    acc
+0A8D 7478      1712            mov     a,#(__str_41 >> 8)
+0A8F C0E0      1713            push    acc
+0A91 7480      1714            mov     a,#0x80
+0A93 C0E0      1715            push    acc
+0A95 120100    1716            lcall   _printf
+0A98 E581      1717            mov     a,sp
+0A9A 24F1      1718            add     a,#0xf1
+0A9C F581      1719            mov     sp,a
+0A9E           1720   ;        C:\Source\call51\Source\S51\test\mathtest.c:225: for(i=-10; i<11; i++)
+0A9E 0520      1721            inc     _main_i_1_1
+0AA0 E4        1722            clr     a
+0AA1 B520E8    1723            cjne    a,_main_i_1_1,L006173?
+0AA4 0521      1724            inc     (_main_i_1_1 + 1)
+0AA6           1725   L006173?:
+0AA6 020100    1726            ljmp    L006057?
+0AA9           1727   L006060?:
+0AA9           1728   ;        C:\Source\call51\Source\S51\test\mathtest.c:231: puts("\n*** Testing atan(x) ***");
+0AA9 907B28    1729            mov     dptr,#__str_43
+0AAC 75F080    1730            mov     b,#0x80
+0AAF 120100    1731            lcall   _puts
+0AB2           1732   ;        C:\Source\call51\Source\S51\test\mathtest.c:232: for(i=-10; i<11; i++)
+0AB2 7AF6      1733            mov     r2,#0xF6
+0AB4 7BFF      1734            mov     r3,#0xFF
+0AB6           1735   L006061?:
+0AB6 C3        1736            clr     c
+0AB7 EA        1737            mov     a,r2
+0AB8 940B      1738            subb    a,#0x0B
+0ABA EB        1739            mov     a,r3
+0ABB 6480      1740            xrl     a,#0x80
+0ABD 9480      1741            subb    a,#0x80
+0ABF 5001      1742            jnc     L006064?
+0AC1           1743   ;        C:\Source\call51\Source\S51\test\mathtest.c:234: x=i*0.5;
+0AC1 8A82      1744            mov     dpl,r2
+0AC3 8B83      1745            mov     dph,r3
+0AC5 C002      1746            push    ar2
+0AC7 C003      1747            push    ar3
+0AC9 120100    1748            lcall   ___sint2fs
+0ACC AC82      1749            mov     r4,dpl
+0ACE AD83      1750            mov     r5,dph
+0AD0 AEF0      1751            mov     r6,b
+0AD2 FF        1752            mov     r7,a
+0AD3 C004      1753            push    ar4
+0AD5 C005      1754            push    ar5
+0AD7 C006      1755            push    ar6
+0AD9 C007      1756            push    ar7
+0ADB 900000    1757            mov     dptr,#(0x00&0x00ff)
+0ADE E4        1758            clr     a
+0ADF F5F0      1759            mov     b,a
+0AE1 743F      1760            mov     a,#0x3F
+0AE3 120100    1761            lcall   ___fsmul
+0AE6 858220    1762            mov     _main_x_1_1,dpl
+0AE9 858321    1763            mov     (_main_x_1_1 + 1),dph
+0AEC 85F022    1764            mov     (_main_x_1_1 + 2),b
+0AEF F523      1765            mov     (_main_x_1_1 + 3),a
+0AF1 E581      1766            mov     a,sp
+0AF3 24FC      1767            add     a,#0xfc
+0AF5 F581      1768            mov     sp,a
+0AF7           1769   ;        C:\Source\call51\Source\S51\test\mathtest.c:235: printf("%5.2f %12.8f\n", x, atanf(x));
+0AF7 852082    1770            mov     dpl,_main_x_1_1
+0AFA 852183    1771            mov     dph,(_main_x_1_1 + 1)
+0AFD 8522F0    1772            mov     b,(_main_x_1_1 + 2)
+0B00 E523      1773            mov     a,(_main_x_1_1 + 3)
+0B02 120100    1774            lcall   _atanf
+0B05 AC82      1775            mov     r4,dpl
+0B07 AD83      1776            mov     r5,dph
+0B09 AEF0      1777            mov     r6,b
+0B0B FF        1778            mov     r7,a
+0B0C C004      1779            push    ar4
+0B0E C005      1780            push    ar5
+0B10 C006      1781            push    ar6
+0B12 C007      1782            push    ar7
+0B14 C020      1783            push    _main_x_1_1
+0B16 C021      1784            push    (_main_x_1_1 + 1)
+0B18 C022      1785            push    (_main_x_1_1 + 2)
+0B1A C023      1786            push    (_main_x_1_1 + 3)
+0B1C 7428      1787            mov     a,#__str_44
+0B1E C0E0      1788            push    acc
+0B20 747C      1789            mov     a,#(__str_44 >> 8)
+0B22 C0E0      1790            push    acc
+0B24 7480      1791            mov     a,#0x80
+0B26 C0E0      1792            push    acc
+0B28 120100    1793            lcall   _printf
+0B2B E581      1794            mov     a,sp
+0B2D 24F5      1795            add     a,#0xf5
+0B2F F581      1796            mov     sp,a
+0B31 D003      1797            pop     ar3
+0B33 D002      1798            pop     ar2
+0B35           1799   ;        C:\Source\call51\Source\S51\test\mathtest.c:232: for(i=-10; i<11; i++)
+0B35 0A        1800            inc     r2
+0B36 BA0068    1801            cjne    r2,#0x00,L006175?
+0B39 0B        1802            inc     r3
+0B3A           1803   L006175?:
+0B3A 020100    1804            ljmp    L006061?
+0B3D           1805   L006064?:
+0B3D           1806   ;        C:\Source\call51\Source\S51\test\mathtest.c:238: puts("\n*** Testing atan2(x) ***");
+0B3D 907CA8    1807            mov     dptr,#__str_45
+0B40 75F080    1808            mov     b,#0x80
+0B43 120100    1809            lcall   _puts
+0B46           1810   ;        C:\Source\call51\Source\S51\test\mathtest.c:239: printf("atan( 1.0,  1.0)=%12.8f\n", atan2f( 1.0,  1.0));
+0B46 750000    1811            mov     _atan2f_PARM_2,#0x00
+0B49 750100    1812            mov     (_atan2f_PARM_2 + 1),#0x00
+0B4C 750280    1813            mov     (_atan2f_PARM_2 + 2),#0x80
+0B4F 75033F    1814            mov     (_atan2f_PARM_2 + 3),#0x3F
+0B52 900000    1815            mov     dptr,#0x0000
+0B55 75F080    1816            mov     b,#0x80
+0B58 743F      1817            mov     a,#0x3F
+0B5A 120100    1818            lcall   _atan2f
+0B5D AA82      1819            mov     r2,dpl
+0B5F AB83      1820            mov     r3,dph
+0B61 ACF0      1821            mov     r4,b
+0B63 FD        1822            mov     r5,a
+0B64 C002      1823            push    ar2
+0B66 C003      1824            push    ar3
+0B68 C004      1825            push    ar4
+0B6A C005      1826            push    ar5
+0B6C 7468      1827            mov     a,#__str_46
+0B6E C0E0      1828            push    acc
+0B70 747D      1829            mov     a,#(__str_46 >> 8)
+0B72 C0E0      1830            push    acc
+0B74 7480      1831            mov     a,#0x80
+0B76 C0E0      1832            push    acc
+0B78 120100    1833            lcall   _printf
+0B7B E581      1834            mov     a,sp
+0B7D 24F9      1835            add     a,#0xf9
+0B7F F581      1836            mov     sp,a
+0B81           1837   ;        C:\Source\call51\Source\S51\test\mathtest.c:240: printf("atan(-1.0,  1.0)=%12.8f\n", atan2f(-1.0,  1.0));
+0B81 750000    1838            mov     _atan2f_PARM_2,#0x00
+0B84 750100    1839            mov     (_atan2f_PARM_2 + 1),#0x00
+0B87 750280    1840            mov     (_atan2f_PARM_2 + 2),#0x80
+0B8A 75033F    1841            mov     (_atan2f_PARM_2 + 3),#0x3F
+0B8D 900000    1842            mov     dptr,#0x0000
+0B90 75F080    1843            mov     b,#0x80
+0B93 74BF      1844            mov     a,#0xBF
+0B95 120100    1845            lcall   _atan2f
+0B98 AA82      1846            mov     r2,dpl
+0B9A AB83      1847            mov     r3,dph
+0B9C ACF0      1848            mov     r4,b
+0B9E FD        1849            mov     r5,a
+0B9F C002      1850            push    ar2
+0BA1 C003      1851            push    ar3
+0BA3 C004      1852            push    ar4
+0BA5 C005      1853            push    ar5
+0BA7 74A8      1854            mov     a,#__str_47
+0BA9 C0E0      1855            push    acc
+0BAB 747D      1856            mov     a,#(__str_47 >> 8)
+0BAD C0E0      1857            push    acc
+0BAF 7480      1858            mov     a,#0x80
+0BB1 C0E0      1859            push    acc
+0BB3 120100    1860            lcall   _printf
+0BB6 E581      1861            mov     a,sp
+0BB8 24F9      1862            add     a,#0xf9
+0BBA F581      1863            mov     sp,a
+0BBC           1864   ;        C:\Source\call51\Source\S51\test\mathtest.c:241: printf("atan(-1.0, -1.0)=%12.8f\n", atan2f(-1.0, -1.0));
+0BBC 750000    1865            mov     _atan2f_PARM_2,#0x00
+0BBF 750100    1866            mov     (_atan2f_PARM_2 + 1),#0x00
+0BC2 750280    1867            mov     (_atan2f_PARM_2 + 2),#0x80
+0BC5 7503BF    1868            mov     (_atan2f_PARM_2 + 3),#0xBF
+0BC8 900000    1869            mov     dptr,#0x0000
+0BCB 75F080    1870            mov     b,#0x80
+0BCE 74BF      1871            mov     a,#0xBF
+0BD0 120100    1872            lcall   _atan2f
+0BD3 AA82      1873            mov     r2,dpl
+0BD5 AB83      1874            mov     r3,dph
+0BD7 ACF0      1875            mov     r4,b
+0BD9 FD        1876            mov     r5,a
+0BDA C002      1877            push    ar2
+0BDC C003      1878            push    ar3
+0BDE C004      1879            push    ar4
+0BE0 C005      1880            push    ar5
+0BE2 74E8      1881            mov     a,#__str_48
+0BE4 C0E0      1882            push    acc
+0BE6 747D      1883            mov     a,#(__str_48 >> 8)
+0BE8 C0E0      1884            push    acc
+0BEA 7480      1885            mov     a,#0x80
+0BEC C0E0      1886            push    acc
+0BEE 120100    1887            lcall   _printf
+0BF1 E581      1888            mov     a,sp
+0BF3 24F9      1889            add     a,#0xf9
+0BF5 F581      1890            mov     sp,a
+0BF7           1891   ;        C:\Source\call51\Source\S51\test\mathtest.c:242: printf("atan( 1.0, -1.0)=%12.8f\n", atan2f( 1.0, -1.0));
+0BF7 750000    1892            mov     _atan2f_PARM_2,#0x00
+0BFA 750100    1893            mov     (_atan2f_PARM_2 + 1),#0x00
+0BFD 750280    1894            mov     (_atan2f_PARM_2 + 2),#0x80
+0C00 7503BF    1895            mov     (_atan2f_PARM_2 + 3),#0xBF
+0C03 900000    1896            mov     dptr,#0x0000
+0C06 75F080    1897            mov     b,#0x80
+0C09 743F      1898            mov     a,#0x3F
+0C0B 120100    1899            lcall   _atan2f
+0C0E AA82      1900            mov     r2,dpl
+0C10 AB83      1901            mov     r3,dph
+0C12 ACF0      1902            mov     r4,b
+0C14 FD        1903            mov     r5,a
+0C15 C002      1904            push    ar2
+0C17 C003      1905            push    ar3
+0C19 C004      1906            push    ar4
+0C1B C005      1907            push    ar5
+0C1D 7428      1908            mov     a,#__str_49
+0C1F C0E0      1909            push    acc
+0C21 747E      1910            mov     a,#(__str_49 >> 8)
+0C23 C0E0      1911            push    acc
+0C25 7480      1912            mov     a,#0x80
+0C27 C0E0      1913            push    acc
+0C29 120100    1914            lcall   _printf
+0C2C E581      1915            mov     a,sp
+0C2E 24F9      1916            add     a,#0xf9
+0C30 F581      1917            mov     sp,a
+0C32           1918   ;        C:\Source\call51\Source\S51\test\mathtest.c:244: puts("\n*** Testing sinh(x) and cosh(x) ***");
+0C32 907E68    1919            mov     dptr,#__str_50
+0C35 75F080    1920            mov     b,#0x80
+0C38 120100    1921            lcall   _puts
+0C3B           1922   ;        C:\Source\call51\Source\S51\test\mathtest.c:245: for(i=0; i<16; i++)
+0C3B E4        1923            clr     a
+0C3C F520      1924            mov     _main_i_1_1,a
+0C3E F521      1925            mov     (_main_i_1_1 + 1),a
+0C40           1926   L006065?:
+0C40 C3        1927            clr     c
+0C41 E520      1928            mov     a,_main_i_1_1
+0C43 9410      1929            subb    a,#0x10
+0C45 E521      1930            mov     a,(_main_i_1_1 + 1)
+0C47 6480      1931            xrl     a,#0x80
+0C49 9480      1932            subb    a,#0x80
+0C4B 4001      1933            jc      L006176?
+0C4D 020100    1934            ljmp    L006068?
+0C50           1935   L006176?:
+0C50           1936   ;        C:\Source\call51\Source\S51\test\mathtest.c:247: x=i*0.5;
+0C50 852082    1937            mov     dpl,_main_i_1_1
+0C53 852183    1938            mov     dph,(_main_i_1_1 + 1)
+0C56 120100    1939            lcall   ___sint2fs
+0C59 AC82      1940            mov     r4,dpl
+0C5B AD83      1941            mov     r5,dph
+0C5D AEF0      1942            mov     r6,b
+0C5F FF        1943            mov     r7,a
+0C60 C004      1944            push    ar4
+0C62 C005      1945            push    ar5
+0C64 C006      1946            push    ar6
+0C66 C007      1947            push    ar7
+0C68 900000    1948            mov     dptr,#(0x00&0x00ff)
+0C6B E4        1949            clr     a
+0C6C F5F0      1950            mov     b,a
+0C6E 743F      1951            mov     a,#0x3F
+0C70 120100    1952            lcall   ___fsmul
+0C73 858220    1953            mov     _main_x_1_1,dpl
+0C76 858321    1954            mov     (_main_x_1_1 + 1),dph
+0C79 85F022    1955            mov     (_main_x_1_1 + 2),b
+0C7C F523      1956            mov     (_main_x_1_1 + 3),a
+0C7E E581      1957            mov     a,sp
+0C80 24FC      1958            add     a,#0xfc
+0C82 F581      1959            mov     sp,a
+0C84           1960   ;        C:\Source\call51\Source\S51\test\mathtest.c:248: printf("%5.2f %12.8f %12.8f\n", x, sinhf(x), coshf(x));
+0C84 852082    1961            mov     dpl,_main_x_1_1
+0C87 852183    1962            mov     dph,(_main_x_1_1 + 1)
+0C8A 8522F0    1963            mov     b,(_main_x_1_1 + 2)
+0C8D E523      1964            mov     a,(_main_x_1_1 + 3)
+0C8F 120100    1965            lcall   _coshf
+0C92 8582E8    1966            mov     _main_sloc0_1_0,dpl
+0C95 8583E9    1967            mov     (_main_sloc0_1_0 + 1),dph
+0C98 85F0EA    1968            mov     (_main_sloc0_1_0 + 2),b
+0C9B F5EB      1969            mov     (_main_sloc0_1_0 + 3),a
+0C9D 852082    1970            mov     dpl,_main_x_1_1
+0CA0 852183    1971            mov     dph,(_main_x_1_1 + 1)
+0CA3 8522F0    1972            mov     b,(_main_x_1_1 + 2)
+0CA6 E523      1973            mov     a,(_main_x_1_1 + 3)
+0CA8 120100    1974            lcall   _sinhf
+0CAB AA82      1975            mov     r2,dpl
+0CAD AB83      1976            mov     r3,dph
+0CAF ACF0      1977            mov     r4,b
+0CB1 FD        1978            mov     r5,a
+0CB2 C0E8      1979            push    _main_sloc0_1_0
+0CB4 C0E9      1980            push    (_main_sloc0_1_0 + 1)
+0CB6 C0EA      1981            push    (_main_sloc0_1_0 + 2)
+0CB8 C0EB      1982            push    (_main_sloc0_1_0 + 3)
+0CBA C002      1983            push    ar2
+0CBC C003      1984            push    ar3
+0CBE C004      1985            push    ar4
+0CC0 C005      1986            push    ar5
+0CC2 C020      1987            push    _main_x_1_1
+0CC4 C021      1988            push    (_main_x_1_1 + 1)
+0CC6 C022      1989            push    (_main_x_1_1 + 2)
+0CC8 C023      1990            push    (_main_x_1_1 + 3)
+0CCA 74E8      1991            mov     a,#__str_41
+0CCC C0E0      1992            push    acc
+0CCE 7478      1993            mov     a,#(__str_41 >> 8)
+0CD0 C0E0      1994            push    acc
+0CD2 7480      1995            mov     a,#0x80
+0CD4 C0E0      1996            push    acc
+0CD6 120100    1997            lcall   _printf
+0CD9 E581      1998            mov     a,sp
+0CDB 24F1      1999            add     a,#0xf1
+0CDD F581      2000            mov     sp,a
+0CDF           2001   ;        C:\Source\call51\Source\S51\test\mathtest.c:245: for(i=0; i<16; i++)
+0CDF 0520      2002            inc     _main_i_1_1
+0CE1 E4        2003            clr     a
+0CE2 B520E8    2004            cjne    a,_main_i_1_1,L006177?
+0CE5 0521      2005            inc     (_main_i_1_1 + 1)
+0CE7           2006   L006177?:
+0CE7 020100    2007            ljmp    L006065?
+0CEA           2008   L006068?:
+0CEA           2009   ;        C:\Source\call51\Source\S51\test\mathtest.c:251: puts("\n*** Testing tanh(x) ***");
+0CEA 908028    2010            mov     dptr,#__str_51
+0CED 75F080    2011            mov     b,#0x80
+0CF0 120100    2012            lcall   _puts
+0CF3           2013   ;        C:\Source\call51\Source\S51\test\mathtest.c:252: for(i=0; i<22; i++)
+0CF3 7A00      2014            mov     r2,#0x00
+0CF5 7B00      2015            mov     r3,#0x00
+0CF7           2016   L006069?:
+0CF7 C3        2017            clr     c
+0CF8 EA        2018            mov     a,r2
+0CF9 9416      2019            subb    a,#0x16
+0CFB EB        2020            mov     a,r3
+0CFC 6480      2021            xrl     a,#0x80
+0CFE 9480      2022            subb    a,#0x80
+0D00 5001      2023            jnc     L006072?
+0D02           2024   ;        C:\Source\call51\Source\S51\test\mathtest.c:254: x=i*0.5;
+0D02 8A82      2025            mov     dpl,r2
+0D04 8B83      2026            mov     dph,r3
+0D06 C002      2027            push    ar2
+0D08 C003      2028            push    ar3
+0D0A 120100    2029            lcall   ___sint2fs
+0D0D AC82      2030            mov     r4,dpl
+0D0F AD83      2031            mov     r5,dph
+0D11 AEF0      2032            mov     r6,b
+0D13 FF        2033            mov     r7,a
+0D14 C004      2034            push    ar4
+0D16 C005      2035            push    ar5
+0D18 C006      2036            push    ar6
+0D1A C007      2037            push    ar7
+0D1C 900000    2038            mov     dptr,#(0x00&0x00ff)
+0D1F E4        2039            clr     a
+0D20 F5F0      2040            mov     b,a
+0D22 743F      2041            mov     a,#0x3F
+0D24 120100    2042            lcall   ___fsmul
+0D27 858220    2043            mov     _main_x_1_1,dpl
+0D2A 858321    2044            mov     (_main_x_1_1 + 1),dph
+0D2D 85F022    2045            mov     (_main_x_1_1 + 2),b
+0D30 F523      2046            mov     (_main_x_1_1 + 3),a
+0D32 E581      2047            mov     a,sp
+0D34 24FC      2048            add     a,#0xfc
+0D36 F581      2049            mov     sp,a
+0D38           2050   ;        C:\Source\call51\Source\S51\test\mathtest.c:255: printf("%5.2f %12.8f\n", x, tanhf(x));
+0D38 852082    2051            mov     dpl,_main_x_1_1
+0D3B 852183    2052            mov     dph,(_main_x_1_1 + 1)
+0D3E 8522F0    2053            mov     b,(_main_x_1_1 + 2)
+0D41 E523      2054            mov     a,(_main_x_1_1 + 3)
+0D43 120100    2055            lcall   _tanhf
+0D46 AC82      2056            mov     r4,dpl
+0D48 AD83      2057            mov     r5,dph
+0D4A AEF0      2058            mov     r6,b
+0D4C FF        2059            mov     r7,a
+0D4D C004      2060            push    ar4
+0D4F C005      2061            push    ar5
+0D51 C006      2062            push    ar6
+0D53 C007      2063            push    ar7
+0D55 C020      2064            push    _main_x_1_1
+0D57 C021      2065            push    (_main_x_1_1 + 1)
+0D59 C022      2066            push    (_main_x_1_1 + 2)
+0D5B C023      2067            push    (_main_x_1_1 + 3)
+0D5D 7428      2068            mov     a,#__str_44
+0D5F C0E0      2069            push    acc
+0D61 747C      2070            mov     a,#(__str_44 >> 8)
+0D63 C0E0      2071            push    acc
+0D65 7480      2072            mov     a,#0x80
+0D67 C0E0      2073            push    acc
+0D69 120100    2074            lcall   _printf
+0D6C E581      2075            mov     a,sp
+0D6E 24F5      2076            add     a,#0xf5
+0D70 F581      2077            mov     sp,a
+0D72 D003      2078            pop     ar3
+0D74 D002      2079            pop     ar2
+0D76           2080   ;        C:\Source\call51\Source\S51\test\mathtest.c:252: for(i=0; i<22; i++)
+0D76 0A        2081            inc     r2
+0D77 BA0028    2082            cjne    r2,#0x00,L006179?
+0D7A 0B        2083            inc     r3
+0D7B           2084   L006179?:
+0D7B 020100    2085            ljmp    L006069?
+0D7E           2086   L006072?:
+0D7E           2087   ;        C:\Source\call51\Source\S51\test\mathtest.c:258: puts("\n*** Testing exp(x) ***");
+0D7E 906EE8    2088            mov     dptr,#__str_30
+0D81 75F080    2089            mov     b,#0x80
+0D84 120100    2090            lcall   _puts
+0D87           2091   ;        C:\Source\call51\Source\S51\test\mathtest.c:259: for(i=0; i<20; i++)
+0D87 7A00      2092            mov     r2,#0x00
+0D89 7B00      2093            mov     r3,#0x00
+0D8B           2094   L006073?:
+0D8B C3        2095            clr     c
+0D8C EA        2096            mov     a,r2
+0D8D 9414      2097            subb    a,#0x14
+0D8F EB        2098            mov     a,r3
+0D90 6480      2099            xrl     a,#0x80
+0D92 9480      2100            subb    a,#0x80
+0D94 5001      2101            jnc     L006076?
+0D96           2102   ;        C:\Source\call51\Source\S51\test\mathtest.c:261: x=i*(-1.0/10.0);
+0D96 8A82      2103            mov     dpl,r2
+0D98 8B83      2104            mov     dph,r3
+0D9A C002      2105            push    ar2
+0D9C C003      2106            push    ar3
+0D9E 120100    2107            lcall   ___sint2fs
+0DA1 AC82      2108            mov     r4,dpl
+0DA3 AD83      2109            mov     r5,dph
+0DA5 AEF0      2110            mov     r6,b
+0DA7 FF        2111            mov     r7,a
+0DA8 C004      2112            push    ar4
+0DAA C005      2113            push    ar5
+0DAC C006      2114            push    ar6
+0DAE C007      2115            push    ar7
+0DB0 90CCCD    2116            mov     dptr,#0xCCCD
+0DB3 75F0CC    2117            mov     b,#0xCC
+0DB6 74BD      2118            mov     a,#0xBD
+0DB8 120100    2119            lcall   ___fsmul
+0DBB 858220    2120            mov     _main_x_1_1,dpl
+0DBE 858321    2121            mov     (_main_x_1_1 + 1),dph
+0DC1 85F022    2122            mov     (_main_x_1_1 + 2),b
+0DC4 F523      2123            mov     (_main_x_1_1 + 3),a
+0DC6 E581      2124            mov     a,sp
+0DC8 24FC      2125            add     a,#0xfc
+0DCA F581      2126            mov     sp,a
+0DCC           2127   ;        C:\Source\call51\Source\S51\test\mathtest.c:262: printf("%5.2f %12.8f\n", x, expf(x));
+0DCC 852082    2128            mov     dpl,_main_x_1_1
+0DCF 852183    2129            mov     dph,(_main_x_1_1 + 1)
+0DD2 8522F0    2130            mov     b,(_main_x_1_1 + 2)
+0DD5 E523      2131            mov     a,(_main_x_1_1 + 3)
+0DD7 120100    2132            lcall   _expf
+0DDA AC82      2133            mov     r4,dpl
+0DDC AD83      2134            mov     r5,dph
+0DDE AEF0      2135            mov     r6,b
+0DE0 FF        2136            mov     r7,a
+0DE1 C004      2137            push    ar4
+0DE3 C005      2138            push    ar5
+0DE5 C006      2139            push    ar6
+0DE7 C007      2140            push    ar7
+0DE9 C020      2141            push    _main_x_1_1
+0DEB C021      2142            push    (_main_x_1_1 + 1)
+0DED C022      2143            push    (_main_x_1_1 + 2)
+0DEF C023      2144            push    (_main_x_1_1 + 3)
+0DF1 7428      2145            mov     a,#__str_44
+0DF3 C0E0      2146            push    acc
+0DF5 747C      2147            mov     a,#(__str_44 >> 8)
+0DF7 C0E0      2148            push    acc
+0DF9 7480      2149            mov     a,#0x80
+0DFB C0E0      2150            push    acc
+0DFD 120100    2151            lcall   _printf
+0E00 E581      2152            mov     a,sp
+0E02 24F5      2153            add     a,#0xf5
+0E04 F581      2154            mov     sp,a
+0E06 D003      2155            pop     ar3
+0E08 D002      2156            pop     ar2
+0E0A           2157   ;        C:\Source\call51\Source\S51\test\mathtest.c:259: for(i=0; i<20; i++)
+0E0A 0A        2158            inc     r2
+0E0B BA00E8    2159            cjne    r2,#0x00,L006181?
+0E0E 0B        2160            inc     r3
+0E0F           2161   L006181?:
+0E0F 020100    2162            ljmp    L006073?
+0E12           2163   L006076?:
+0E12           2164   ;        C:\Source\call51\Source\S51\test\mathtest.c:265: puts("\n*** Testing floor(x), ceil(x), and modf(x) ***");
+0E12 908228    2165            mov     dptr,#__str_52
+0E15 75F080    2166            mov     b,#0x80
+0E18 120100    2167            lcall   _puts
+0E1B           2168   ;        C:\Source\call51\Source\S51\test\mathtest.c:266: puts("x     int   frc   floor  ceil");
+0E1B 908268    2169            mov     dptr,#__str_53
+0E1E 75F080    2170            mov     b,#0x80
+0E21 120100    2171            lcall   _puts
+0E24           2172   ;        C:\Source\call51\Source\S51\test\mathtest.c:267: for(i=-10; i<11; i++)
+0E24 7520F6    2173            mov     _main_i_1_1,#0xF6
+0E27 7521FF    2174            mov     (_main_i_1_1 + 1),#0xFF
+0E2A           2175   L006077?:
+0E2A C3        2176            clr     c
+0E2B E520      2177            mov     a,_main_i_1_1
+0E2D 940B      2178            subb    a,#0x0B
+0E2F E521      2179            mov     a,(_main_i_1_1 + 1)
+0E31 6480      2180            xrl     a,#0x80
+0E33 9480      2181            subb    a,#0x80
+0E35 4001      2182            jc      L006182?
+0E37 020100    2183            ljmp    L006080?
+0E3A           2184   L006182?:
+0E3A           2185   ;        C:\Source\call51\Source\S51\test\mathtest.c:269: x=i*0.33;
+0E3A 852082    2186            mov     dpl,_main_i_1_1
+0E3D 852183    2187            mov     dph,(_main_i_1_1 + 1)
+0E40 120100    2188            lcall   ___sint2fs
+0E43 AC82      2189            mov     r4,dpl
+0E45 AD83      2190            mov     r5,dph
+0E47 AEF0      2191            mov     r6,b
+0E49 FF        2192            mov     r7,a
+0E4A C004      2193            push    ar4
+0E4C C005      2194            push    ar5
+0E4E C006      2195            push    ar6
+0E50 C007      2196            push    ar7
+0E52 90F5C3    2197            mov     dptr,#0xF5C3
+0E55 75F0A8    2198            mov     b,#0xA8
+0E58 743E      2199            mov     a,#0x3E
+0E5A 120100    2200            lcall   ___fsmul
+0E5D 858220    2201            mov     _main_x_1_1,dpl
+0E60 858321    2202            mov     (_main_x_1_1 + 1),dph
+0E63 85F022    2203            mov     (_main_x_1_1 + 2),b
+0E66 F523      2204            mov     (_main_x_1_1 + 3),a
+0E68 E581      2205            mov     a,sp
+0E6A 24FC      2206            add     a,#0xfc
+0E6C F581      2207            mov     sp,a
+0E6E           2208   ;        C:\Source\call51\Source\S51\test\mathtest.c:270: z=modff(x, &y);
+0E6E 750060    2209            mov     _modff_PARM_2,#_main_y_1_1
+0E71 750100    2210            mov     (_modff_PARM_2 + 1),#0x00
+0E74 750240    2211            mov     (_modff_PARM_2 + 2),#0x40
+0E77 852082    2212            mov     dpl,_main_x_1_1
+0E7A 852183    2213            mov     dph,(_main_x_1_1 + 1)
+0E7D 8522F0    2214            mov     b,(_main_x_1_1 + 2)
+0E80 E523      2215            mov     a,(_main_x_1_1 + 3)
+0E82 120100    2216            lcall   _modff
+0E85 8582A0    2217            mov     _main_z_1_1,dpl
+0E88 8583A1    2218            mov     (_main_z_1_1 + 1),dph
+0E8B 85F0A2    2219            mov     (_main_z_1_1 + 2),b
+0E8E F5A3      2220            mov     (_main_z_1_1 + 3),a
+0E90           2221   ;        C:\Source\call51\Source\S51\test\mathtest.c:272: x, y, z, floorf(x), ceilf(x));
+0E90 852082    2222            mov     dpl,_main_x_1_1
+0E93 852183    2223            mov     dph,(_main_x_1_1 + 1)
+0E96 8522F0    2224            mov     b,(_main_x_1_1 + 2)
+0E99 E523      2225            mov     a,(_main_x_1_1 + 3)
+0E9B 120100    2226            lcall   _ceilf
+0E9E 8582E8    2227            mov     _main_sloc0_1_0,dpl
+0EA1 8583E9    2228            mov     (_main_sloc0_1_0 + 1),dph
+0EA4 85F0EA    2229            mov     (_main_sloc0_1_0 + 2),b
+0EA7 F5EB      2230            mov     (_main_sloc0_1_0 + 3),a
+0EA9 852082    2231            mov     dpl,_main_x_1_1
+0EAC 852183    2232            mov     dph,(_main_x_1_1 + 1)
+0EAF 8522F0    2233            mov     b,(_main_x_1_1 + 2)
+0EB2 E523      2234            mov     a,(_main_x_1_1 + 3)
+0EB4 120100    2235            lcall   _floorf
+0EB7 AA82      2236            mov     r2,dpl
+0EB9 AB83      2237            mov     r3,dph
+0EBB ACF0      2238            mov     r4,b
+0EBD FD        2239            mov     r5,a
+0EBE           2240   ;        C:\Source\call51\Source\S51\test\mathtest.c:271: printf("%5.2f %5.2f %5.2f %5.2f %5.2f\n",
+0EBE C0E8      2241            push    _main_sloc0_1_0
+0EC0 C0E9      2242            push    (_main_sloc0_1_0 + 1)
+0EC2 C0EA      2243            push    (_main_sloc0_1_0 + 2)
+0EC4 C0EB      2244            push    (_main_sloc0_1_0 + 3)
+0EC6 C002      2245            push    ar2
+0EC8 C003      2246            push    ar3
+0ECA C004      2247            push    ar4
+0ECC C005      2248            push    ar5
+0ECE C0A0      2249            push    _main_z_1_1
+0ED0 C0A1      2250            push    (_main_z_1_1 + 1)
+0ED2 C0A2      2251            push    (_main_z_1_1 + 2)
+0ED4 C0A3      2252            push    (_main_z_1_1 + 3)
+0ED6 C060      2253            push    _main_y_1_1
+0ED8 C061      2254            push    (_main_y_1_1 + 1)
+0EDA C062      2255            push    (_main_y_1_1 + 2)
+0EDC C063      2256            push    (_main_y_1_1 + 3)
+0EDE C020      2257            push    _main_x_1_1
+0EE0 C021      2258            push    (_main_x_1_1 + 1)
+0EE2 C022      2259            push    (_main_x_1_1 + 2)
+0EE4 C023      2260            push    (_main_x_1_1 + 3)
+0EE6 7468      2261            mov     a,#__str_54
+0EE8 C0E0      2262            push    acc
+0EEA 7484      2263            mov     a,#(__str_54 >> 8)
+0EEC C0E0      2264            push    acc
+0EEE 7480      2265            mov     a,#0x80
+0EF0 C0E0      2266            push    acc
+0EF2 120100    2267            lcall   _printf
+0EF5 E581      2268            mov     a,sp
+0EF7 24E9      2269            add     a,#0xe9
+0EF9 F581      2270            mov     sp,a
+0EFB           2271   ;        C:\Source\call51\Source\S51\test\mathtest.c:267: for(i=-10; i<11; i++)
+0EFB 0520      2272            inc     _main_i_1_1
+0EFD E4        2273            clr     a
+0EFE B520A8    2274            cjne    a,_main_i_1_1,L006183?
+0F01 0521      2275            inc     (_main_i_1_1 + 1)
+0F03           2276   L006183?:
+0F03 020100    2277            ljmp    L006077?
+0F06           2278   L006080?:
+0F06           2279   ;        C:\Source\call51\Source\S51\test\mathtest.c:274: puts("\nTest completed.");
+0F06 9084E8    2280            mov     dptr,#__str_55
+0F09 75F080    2281            mov     b,#0x80
+0F0C 120100    2282            lcall   _puts
+0F0F           2283   ;        C:\Source\call51\Source\S51\test\mathtest.c:277: _endasm; //Go back to the monitor
+0F0F           2284            
+0F0F 02001B    2285             ljmp 0x1b
+0F12           2286             
+0F12 22        2287            ret
+0F13           2288            rseg R_CSEG
+0F13           2289   
+0000           2290            rseg R_CONST
+0000           2291   __str_0:
+0000 4D6F6E69  2292            db 'Monitor not present'
+     746F7220
+     6E6F7420
+     70726573
+     656E74
+0013 0A        2293            db 0x0A
+0014 00        2294            db 0x00
+0015           2295   _main_fstr_1_1:
+0015 2885      2296            db __str_1,(__str_1 >> 8)
+0017 6885      2297            db __str_2,(__str_2 >> 8)
+0019 A885      2298            db __str_3,(__str_3 >> 8)
+001B E885      2299            db __str_4,(__str_4 >> 8)
+001D 2886      2300            db __str_5,(__str_5 >> 8)
+001F 6886      2301            db __str_6,(__str_6 >> 8)
+0021 A886      2302            db __str_7,(__str_7 >> 8)
+0023 E886      2303            db __str_8,(__str_8 >> 8)
+0025 2887      2304            db __str_9,(__str_9 >> 8)
+0027 6887      2305            db __str_10,(__str_10 >> 8)
+0029 A887      2306            db __str_11,(__str_11 >> 8)
+002B E887      2307            db __str_12,(__str_12 >> 8)
+002D           2308   __str_1:
+002D 00        2309            db 0x00
+002E           2310   __str_2:
+002E 302E30    2311            db '0.0'
+0031 00        2312            db 0x00
+0032           2313   __str_3:
+0032 312E30    2314            db '1.0'
+0035 00        2315            db 0x00
+0036           2316   __str_4:
+0036 2D312E30  2317            db '-1.0'
+003A 00        2318            db 0x00
+003B           2319   __str_5:
+003B 332E3134  2320            db '3.1416'
+     3136
+0041 00        2321            db 0x00
+0042           2322   __str_6:
+0042 2D333134  2323            db '-31416e-4'
+     3136652D
+     34
+004B 00        2324            db 0x00
+004C           2325   __str_7:
+004C 2020202D  2326            db '   -0.031416e2'
+     302E3033
+     31343136
+     6532
+005A 00        2327            db 0x00
+005B           2328   __str_8:
+005B 09        2329            db 0x09
+005C 302E3033  2330            db '0.031416E+2'
+     31343136
+     452B32
+0067 00        2331            db 0x00
+0068           2332   __str_9:
+0068 316534    2333            db '1e4'
+006B 00        2334            db 0x00
+006C           2335   __str_10:
+006C 30303030  2336            db '000001.0000'
+     30312E30
+     303030
+0077 00        2337            db 0x00
+0078           2338   __str_11:
+0078 2D302E32  2339            db '-0.27e-7'
+     37652D37
+0080 00        2340            db 0x00
+0081           2341   __str_12:
+0081 78        2342            db 'x'
+0082 00        2343            db 0x00
+0083           2344   __str_13:
+0083 4275696C  2345            db 'Built %s, %s'
+     74202573
+     2C202573
+008F 0A        2346            db 0x0A
+0090 00        2347            db 0x00
+0091           2348   __str_14:
+0091 4E6F7620  2349            db 'Nov 11 2012'
+     31312032
+     303132
+009C 00        2350            db 0x00
+009D           2351   __str_15:
+009D 31333A32  2352            db '13:21:29'
+     313A3239
+00A5 00        2353            db 0x00
+00A6           2354   __str_16:
+00A6 0A        2355            db 0x0A
+00A7 2A2A2A20  2356            db '*** Testing atof ***'
+     54657374
+     696E6720
+     61746F66
+     202A2A2A
+00BB 00        2357            db 0x00
+00BC           2358   __str_17:
+00BC 25733D25  2359            db '%s=%14.10f'
+     31342E31
+     3066
+00C6 0A        2360            db 0x0A
+00C7 00        2361            db 0x00
+00C8           2362   __str_18:
+00C8 0A        2363            db 0x0A
+00C9 30782530  2364            db '0x%08x='
+     38783D
+00D0 00        2365            db 0x00
+00D1           2366   __str_19:
+00D1 2531312E  2367            db '%11.8f'
+     3866
+00D7 0A        2368            db 0x0A
+00D8 00        2369            db 0x00
+00D9           2370   __str_20:
+00D9 0A        2371            db 0x0A
+00DA 2A2A2A20  2372            db '*** Testing frexp ***'
+     54657374
+     696E6720
+     66726578
+     70202A2A
+     2A
+00EF 00        2373            db 0x00
+00F0           2374   __str_21:
+00F0 2531312E  2375            db '%11.8f=%11.8f*(2^%d)'
+     38663D25
+     31312E38
+     662A2832
+     5E256429
+0104 0A        2376            db 0x0A
+0105 00        2377            db 0x00
+0106           2378   __str_22:
+0106 0A        2379            db 0x0A
+0107 2A2A2A20  2380            db '*** Testing ldexp ***'
+     54657374
+     696E6720
+     6C646578
+     70202A2A
+     2A
+011C 00        2381            db 0x00
+011D           2382   __str_23:
+011D 2531312E  2383            db '%11.8f*(2^%d)=%11.8f'
+     38662A28
+     325E2564
+     293D2531
+     312E3866
+0131 0A        2384            db 0x0A
+0132 00        2385            db 0x00
+0133           2386   __str_24:
+0133 0A        2387            db 0x0A
+0134 2A2A2A20  2388            db '*** Testing sqrt(x) ****'
+     54657374
+     696E6720
+     73717274
+     28782920
+     2A2A2A2A
+014C 00        2389            db 0x00
+014D           2390   __str_25:
+014D 20202020  2391            db '      Average sqrtf(x) execution time: %f ms'
+     20204176
+     65726167
+     65207371
+     72746628
+     78292065
+     78656375
+     74696F6E
+     2074696D
+     653A2025
+     66206D73
+0179 0A        2392            db 0x0A
+017A 00        2393            db 0x00
+017B           2394   __str_26:
+017B 25352E32  2395            db '%5.2f %11.8f'
+     66202531
+     312E3866
+0187 0A        2396            db 0x0A
+0188 00        2397            db 0x00
+0189           2398   __str_27:
+0189 0A        2399            db 0x0A
+018A 2A2A2A20  2400            db '*** Testing log(x) and log10(x) ***'
+     54657374
+     696E6720
+     6C6F6728
+     78292061
+     6E64206C
+     6F673130
+     28782920
+     2A2A2A
+01AD 00        2401            db 0x00
+01AE           2402   __str_28:
+01AE 25362E32  2403            db '%6.2f %11.8f %11.8f'
+     66202531
+     312E3866
+     20253131
+     2E3866
+01C1 0A        2404            db 0x0A
+01C2 00        2405            db 0x00
+01C3           2406   __str_29:
+01C3 25362E34  2407            db '%6.4f %11.8f %11.8f'
+     66202531
+     312E3866
+     20253131
+     2E3866
+01D6 0A        2408            db 0x0A
+01D7 00        2409            db 0x00
+01D8           2410   __str_30:
+01D8 0A        2411            db 0x0A
+01D9 2A2A2A20  2412            db '*** Testing exp(x) ***'
+     54657374
+     696E6720
+     65787028
+     7829202A
+     2A2A
+01EF 00        2413            db 0x00
+01F0           2414   __str_31:
+01F0 25362E32  2415            db '%6.2f %11.8f'
+     66202531
+     312E3866
+01FC 0A        2416            db 0x0A
+01FD 00        2417            db 0x00
+01FE           2418   __str_32:
+01FE 0A        2419            db 0x0A
+01FF 2A2A2A20  2420            db '*** Testing pow(x) ***'
+     54657374
+     696E6720
+     706F7728
+     7829202A
+     2A2A
+0215 00        2421            db 0x00
+0216           2422   __str_33:
+0216 2825352E  2423            db '(%5.2f)^2= %11.8f'
+     3266295E
+     323D2025
+     31312E38
+     66
+0227 0A        2424            db 0x0A
+0228 00        2425            db 0x00
+0229           2426   __str_34:
+0229 0A        2427            db 0x0A
+022A 2A2A2A20  2428            db '*** Testing sin(x) and cos(x) ***'
+     54657374
+     696E6720
+     73696E28
+     78292061
+     6E642063
+     6F732878
+     29202A2A
+     2A
+024B 00        2429            db 0x00
+024C           2430   __str_35:
+024C 20202020  2431            db '    Please wait...'
+     506C6561
+     73652077
+     6169742E
+     2E2E
+025E 00        2432            db 0x00
+025F           2433   __str_36:
+025F 20202020  2434            db '      Average `*` execution time: %f ms'
+     20204176
+     65726167
+     6520602A
+     60206578
+     65637574
+     696F6E20
+     74696D65
+     3A202566
+     206D73
+0286 0A        2435            db 0x0A
+0287 00        2436            db 0x00
+0288           2437   __str_37:
+0288 20202020  2438            db '      Average sin(x) execution time: %f ms'
+     20204176
+     65726167
+     65207369
+     6E287829
+     20657865
+     63757469
+     6F6E2074
+     696D653A
+     20256620
+     6D73
+02B2 0A        2439            db 0x0A
+02B3 00        2440            db 0x00
+02B4           2441   __str_38:
+02B4 20202020  2442            db '      Average cos(x) execution time: %f ms'
+     20204176
+     65726167
+     6520636F
+     73287829
+     20657865
+     63757469
+     6F6E2074
+     696D653A
+     20256620
+     6D73
+02DE 0A        2443            db 0x0A
+02DF 0A        2444            db 0x0A
+02E0 00        2445            db 0x00
+02E1           2446   __str_39:
+02E1 25352E32  2447            db '%5.2f %11.8f %11.8f'
+     66202531
+     312E3866
+     20253131
+     2E3866
+02F4 0A        2448            db 0x0A
+02F5 00        2449            db 0x00
+02F6           2450   __str_40:
+02F6 0A        2451            db 0x0A
+02F7 2A2A2A20  2452            db '*** Testing tan(x) and cot(x) ***'
+     54657374
+     696E6720
+     74616E28
+     78292061
+     6E642063
+     6F742878
+     29202A2A
+     2A
+0318 00        2453            db 0x00
+0319           2454   __str_41:
+0319 25352E32  2455            db '%5.2f %12.8f %12.8f'
+     66202531
+     322E3866
+     20253132
+     2E3866
+032C 0A        2456            db 0x0A
+032D 00        2457            db 0x00
+032E           2458   __str_42:
+032E 0A        2459            db 0x0A
+032F 2A2A2A20  2460            db '*** Testing asin(x) and acos(x) ***'
+     54657374
+     696E6720
+     6173696E
+     28782920
+     616E6420
+     61636F73
+     28782920
+     2A2A2A
+0352 00        2461            db 0x00
+0353           2462   __str_43:
+0353 0A        2463            db 0x0A
+0354 2A2A2A20  2464            db '*** Testing atan(x) ***'
+     54657374
+     696E6720
+     6174616E
+     28782920
+     2A2A2A
+036B 00        2465            db 0x00
+036C           2466   __str_44:
+036C 25352E32  2467            db '%5.2f %12.8f'
+     66202531
+     322E3866
+0378 0A        2468            db 0x0A
+0379 00        2469            db 0x00
+037A           2470   __str_45:
+037A 0A        2471            db 0x0A
+037B 2A2A2A20  2472            db '*** Testing atan2(x) ***'
+     54657374
+     696E6720
+     6174616E
+     32287829
+     202A2A2A
+0393 00        2473            db 0x00
+0394           2474   __str_46:
+0394 6174616E  2475            db 'atan( 1.0,  1.0)=%12.8f'
+     2820312E
+     302C2020
+     312E3029
+     3D253132
+     2E3866
+03AB 0A        2476            db 0x0A
+03AC 00        2477            db 0x00
+03AD           2478   __str_47:
+03AD 6174616E  2479            db 'atan(-1.0,  1.0)=%12.8f'
+     282D312E
+     302C2020
+     312E3029
+     3D253132
+     2E3866
+03C4 0A        2480            db 0x0A
+03C5 00        2481            db 0x00
+03C6           2482   __str_48:
+03C6 6174616E  2483            db 'atan(-1.0, -1.0)=%12.8f'
+     282D312E
+     302C202D
+     312E3029
+     3D253132
+     2E3866
+03DD 0A        2484            db 0x0A
+03DE 00        2485            db 0x00
+03DF           2486   __str_49:
+03DF 6174616E  2487            db 'atan( 1.0, -1.0)=%12.8f'
+     2820312E
+     302C202D
+     312E3029
+     3D253132
+     2E3866
+03F6 0A        2488            db 0x0A
+03F7 00        2489            db 0x00
+03F8           2490   __str_50:
+03F8 0A        2491            db 0x0A
+03F9 2A2A2A20  2492            db '*** Testing sinh(x) and cosh(x) ***'
+     54657374
+     696E6720
+     73696E68
+     28782920
+     616E6420
+     636F7368
+     28782920
+     2A2A2A
+041C 00        2493            db 0x00
+041D           2494   __str_51:
+041D 0A        2495            db 0x0A
+041E 2A2A2A20  2496            db '*** Testing tanh(x) ***'
+     54657374
+     696E6720
+     74616E68
+     28782920
+     2A2A2A
+0435 00        2497            db 0x00
+0436           2498   __str_52:
+0436 0A        2499            db 0x0A
+0437 2A2A2A20  2500            db '*** Testing floor(x), ceil(x), and modf(x) ***'
+     54657374
+     696E6720
+     666C6F6F
+     72287829
+     2C206365
+     696C2878
+     292C2061
+     6E64206D
+     6F646628
+     7829202A
+     2A2A
+0465 00        2501            db 0x00
+0466           2502   __str_53:
+0466 78202020  2503            db 'x     int   frc   floor  ceil'
+     2020696E
+     74202020
+     66726320
+     2020666C
+     6F6F7220
+     20636569
+     6C
+0483 00        2504            db 0x00
+0484           2505   __str_54:
+0484 25352E32  2506            db '%5.2f %5.2f %5.2f %5.2f %5.2f'
+     66202535
+     2E326620
+     25352E32
+     66202535
+     2E326620
+     25352E32
+     66
+04A1 0A        2507            db 0x0A
+04A2 00        2508            db 0x00
+04A3           2509   __str_55:
+04A3 0A        2510            db 0x0A
+04A4 54657374  2511            db 'Test completed.'
+     20636F6D
+     706C6574
+     65642E
+04B3 00        2512            db 0x00
+04B4           2513   
+0000           2514            rseg R_XINIT
+0000           2515   
+001E           2516            CSEG
+001E           2517   
+001E           2518   end

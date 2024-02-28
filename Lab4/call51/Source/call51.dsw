@@ -1,0 +1,251 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "A51"=.\A51\A51.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Util
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "C51"=.\C51\src\C51.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name yacc
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name config
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name mcs51
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name flex
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Lib51"=.\Lib51\Lib51.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Link51"=.\Link51\link51.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "S51"=.\S51\S51.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Util"=.\A51\Util.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name bison
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "_Call51"=.\_Call51.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name A51
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name C51
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Lib51
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Link51
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name c51pp
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Util
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name S51
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "bison"=.\Tools\bison\bison.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "c51pp"=.\Cpp\c51pp.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name c51ppa
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "c51ppa"=.\Cpp\c51ppa.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gawk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "flex"=.\tools\flex\flex.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "gawk"=.\Tools\gawk\gawk.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "mcs51"=.\C51\src\mcs51\mcs51.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name mcs51a
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "mcs51a"=.\C51\src\mcs51\mcs51a.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gawk
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "yacc"=.\C51\src\yacc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name bison
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,149 @@
+                  1   ; Add32.asm: shows how to add two 32-bit numbers at RAM
+                  2   ; addresses 30H and 34H and place result at XRAM address
+                  3   ; 100H
+                  4   
+                 -1   $MOD52
+                  1   ;  MOD52: Register definition for the standard 8052
+                  2   ;
+                  3   ;   Copyright (C) 2011  Jesus Calvino-Fraga, jesuscf@gmail.com
+                  4   ;
+                  5   ;   This library is free software; you can redistribute it and/or
+                  6   ;   modify it under the terms of the GNU Lesser General Public
+                  7   ;   License as published by the Free Software Foundation; either
+                  8   ;   version 2.1 of the License, or (at your option) any later version.
+                  9   ;
+                 10   ;   This library is distributed in the hope that it will be useful,
+                 11   ;   but WITHOUT ANY WARRANTY; without even the implied warranty of
+                 12   ;   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+                 13   ;   Lesser General Public License for more details.
+                 14   ;
+                 15   ;   You should have received a copy of the GNU Lesser General Public
+                 16   ;   License along with this library; if not, write to the Free Software
+                 17   ;   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+                 18   ;
+0000             19   P0     DATA  080H  ;PORT 0
+0000             20   SP     DATA  081H  ;STACK POINTER
+0000             21   DPL    DATA  082H  ;DATA POINTER - LOW BYTE
+0000             22   DPH    DATA  083H  ;DATA POINTER - HIGH BYTE
+0000             23   PCON   DATA  087H  ;POWER CONTROL
+0000             24   TCON   DATA  088H  ;TIMER CONTROL
+0000             25   TMOD   DATA  089H  ;TIMER MODE
+0000             26   TL0    DATA  08AH  ;TIMER 0 - LOW BYTE
+0000             27   TL1    DATA  08BH  ;TIMER 1 - LOW BYTE
+0000             28   TH0    DATA  08CH  ;TIMER 0 - HIGH BYTE
+0000             29   TH1    DATA  08DH  ;TIMER 1 - HIGH BYTE
+0000             30   P1     DATA  090H  ;PORT 1
+0000             31   SCON   DATA  098H  ;SERIAL PORT CONTROL
+0000             32   SBUF   DATA  099H  ;SERIAL PORT BUFFER
+0000             33   P2     DATA  0A0H  ;PORT 2
+0000             34   IE     DATA  0A8H  ;INTERRUPT ENABLE
+0000             35   P3     DATA  0B0H  ;PORT 3
+0000             36   IP     DATA  0B8H  ;INTERRUPT PRIORITY
+0000             37   T2CON  DATA  0C8H  ;TIMER 2 CONTROL
+0000             38   RCAP2L DATA  0CAH  ;TIMER 2 CAPTURE REGISTER - LOW BYTE
+0000             39   RCAP2H DATA  0CBH  ;TIMER 2 CAPTURE REGISTER - HIGH BYTE
+0000             40   TL2    DATA  0CCH  ;TIMER 2 - LOW BYTE
+0000             41   TH2    DATA  0CDH  ;TIMER 2 - HIGH BYTE
+0000             42   PSW    DATA  0D0H  ;PROGRAM STATUS WORD
+0000             43   ACC    DATA  0E0H  ;ACCUMULATOR
+0000             44   B      DATA  0F0H  ;MULTIPLICATION REGISTER
+0000             45   IT0    BIT   088H  ;TCON.0 - EXT. INTERRUPT 0 TYPE
+0000             46   IE0    BIT   089H  ;TCON.1 - EXT. INTERRUPT 0 EDGE FLAG
+0000             47   IT1    BIT   08AH  ;TCON.2 - EXT. INTERRUPT 1 TYPE
+0000             48   IE1    BIT   08BH  ;TCON.3 - EXT. INTERRUPT 1 EDGE FLAG
+0000             49   TR0    BIT   08CH  ;TCON.4 - TIMER 0 ON/OFF CONTROL
+0000             50   TF0    BIT   08DH  ;TCON.5 - TIMER 0 OVERFLOW FLAG
+0000             51   TR1    BIT   08EH  ;TCON.6 - TIMER 1 ON/OFF CONTROL
+0000             52   TF1    BIT   08FH  ;TCON.7 - TIMER 1 OVERFLOW FLAG
+0000             53   RI     BIT   098H  ;SCON.0 - RECEIVE INTERRUPT FLAG
+0000             54   TI     BIT   099H  ;SCON.1 - TRANSMIT INTERRUPT FLAG
+0000             55   RB8    BIT   09AH  ;SCON.2 - RECEIVE BIT 8
+0000             56   TB8    BIT   09BH  ;SCON.3 - TRANSMIT BIT 8
+0000             57   REN    BIT   09CH  ;SCON.4 - RECEIVE ENABLE
+0000             58   SM2    BIT   09DH  ;SCON.5 - SERIAL MODE CONTROL BIT 2
+0000             59   SM1    BIT   09EH  ;SCON.6 - SERIAL MODE CONTROL BIT 1
+0000             60   SM0    BIT   09FH  ;SCON.7 - SERIAL MODE CONTROL BIT 0
+0000             61   EX0    BIT   0A8H  ;IE.0 - EXTERNAL INTERRUPT 0 ENABLE
+0000             62   ET0    BIT   0A9H  ;IE.1 - TIMER 0 INTERRUPT ENABLE
+0000             63   EX1    BIT   0AAH  ;IE.2 - EXTERNAL INTERRUPT 1 ENABLE
+0000             64   ET1    BIT   0ABH  ;IE.3 - TIMER 1 INTERRUPT ENABLE
+0000             65   ES     BIT   0ACH  ;IE.4 - SERIAL PORT INTERRUPT ENABLE
+0000             66   ET2    BIT   0ADH  ;IE.5 - TIMER 2 INTERRUPT ENABLE
+0000             67   EA     BIT   0AFH  ;IE.7 - GLOBAL INTERRUPT ENABLE
+0000             68   RXD    BIT   0B0H  ;P3.0 - SERIAL PORT RECEIVE INPUT
+0000             69   TXD    BIT   0B1H  ;P3.1 - SERIAL PORT TRANSMIT OUTPUT
+0000             70   INT0   BIT   0B2H  ;P3.2 - EXTERNAL INTERRUPT 0 INPUT
+0000             71   INT1   BIT   0B3H  ;P3.3 - EXTERNAL INTERRUPT 1 INPUT
+0000             72   T0     BIT   0B4H  ;P3.4 - TIMER 0 COUNT INPUT
+0000             73   T1     BIT   0B5H  ;P3.5 - TIMER 1 COUNT INPUT
+0000             74   WR     BIT   0B6H  ;P3.6 - WRITE CONTROL FOR EXT. MEMORY
+0000             75   RD     BIT   0B7H  ;P3.7 - READ CONTROL FOR EXT. MEMORY
+0000             76   PX0    BIT   0B8H  ;IP.0 - EXTERNAL INTERRUPT 0 PRIORITY
+0000             77   PT0    BIT   0B9H  ;IP.1 - TIMER 0 PRIORITY
+0000             78   PX1    BIT   0BAH  ;IP.2 - EXTERNAL INTERRUPT 1 PRIORITY
+0000             79   PT1    BIT   0BBH  ;IP.3 - TIMER 1 PRIORITY
+0000             80   PS     BIT   0BCH  ;IP.4 - SERIAL PORT PRIORITY
+0000             81   PT2    BIT   0BDH  ;IP.5 - TIMER 2 PRIORITY
+0000             82   CAP2   BIT   0C8H  ;T2CON.0 - CAPTURE OR RELOAD SELECT
+0000             83   CNT2   BIT   0C9H  ;T2CON.1 - TIMER OR COUNTER SELECT
+0000             84   TR2    BIT   0CAH  ;T2CON.2 - TIMER 2 ON/OFF CONTROL
+0000             85   EXEN2  BIT   0CBH  ;T2CON.3 - TIMER 2 EXTERNAL ENABLE FLAG
+0000             86   TCLK   BIT   0CCH  ;T2CON.4 - TRANSMIT CLOCK SELECT
+0000             87   RCLK   BIT   0CDH  ;T2CON.5 - RECEIVE CLOCK SELECTT
+0000             88   EXF2   BIT   0CEH  ;T2CON.6 - EXTERNAL TRANSITION FLAG
+0000             89   TF2    BIT   0CFH  ;T2CON.7 - TIMER 2 OVERFLOW FLAG
+0000             90   P      BIT   0D0H  ;PSW.0 - ACCUMULATOR PARITY FLAG
+0000             91   OV     BIT   0D2H  ;PSW.2 - OVERFLOW FLAG
+0000             92   RS0    BIT   0D3H  ;PSW.3 - REGISTER BANK SELECT 0
+0000             93   RS1    BIT   0D4H  ;PSW.4 - REGISTER BANK SELECT 1
+0000             94   F0     BIT   0D5H  ;PSW.5 - FLAG 0
+0000             95   AC     BIT   0D6H  ;PSW.6 - AUXILIARY CARRY FLAG
+0000             96   CY     BIT   0D7H  ;PSW.7 - CARRY FLAG
+                  6   
+0000              7   org 0000H
+0000 020003       8            ljmp myprogram
+                  9   
+0030             10   DSEG at 30H
+                 11   
+                 12   Num1:    DS      4
+                 13   Num2:    DS      4
+                 14   
+0100             15   XSEG at 100H
+                 16   Result:  DS      4
+                 17   
+0003             18   CSEG
+                 19   myprogram:
+0003 758180      20            mov SP, #80H
+                 21   
+                 22   ; Make Num1=55555555H for testing
+0006 7830        23            mov R0, #Num1
+0008 7655        24   L1:      mov @R0, #55H
+000A 08          25            inc R0
+000B B834FA      26            cjne R0, #Num1+4, L1
+                 27   
+                 28   ; Make Num1=66666666H for testing
+000E 7934        29            mov R1, #Num2
+0010 7766        30   L2:      mov @R1, #66H
+0012 09          31            inc R1
+0013 B938FA      32            cjne R1, #Num2+4, L2    
+                 33   
+                 34   ; Initialize pointers
+0016 7830        35            mov R0, #Num1
+0018 7934        36            mov R1, #Num2
+001A 900100      37            mov DPTR, #Result
+                 38   
+001D C3          39            clr c
+001E 7A04        40            mov R2, #4
+                 41   ; Add the bytes, one by one
+0020 E6          42   L3:      mov A, @R0
+0021 37          43            addc A, @R1
+0022 F0          44            movx @dptr, A
+0023 08          45            inc R0
+0024 09          46            inc R1
+0025 A3          47            inc dptr
+0026 DAF8        48            djnz R2, L3
+                 49            
+                 50   ; Done!  Loop forever    
+                 51   forever:
+0028 80FE        52            sjmp forever
+002A             53   END

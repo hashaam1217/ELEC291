@@ -1,0 +1,1868 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
+0000              4   ; This file was generated Mon Jan 07 19:38:33 2013
+0000              5   ;--------------------------------------------------------
+                  5   $name d51
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_ISEG    segment idata
+0000             13            R_OSEG    segment data overlay
+0000             14            BIT_BANK  segment data overlay
+0000             15            R_HOME    segment code
+0000             16            R_GSINIT  segment code
+0000             17            R_IXSEG   segment xdata
+0000             18            R_CONST   segment code
+0000             19            R_XINIT   segment code
+0000             20            R_DINIT   segment code
+0000             21   
+0000             22   ;--------------------------------------------------------
+0000             23   ; Public variables in this module
+0000             24   ;--------------------------------------------------------
+0000             25            public _mnemtbl
+0000             26            public _mnem
+0000             27            public _addword
+0000             28            public _addstr
+0000             29            public _addbyte
+0000             30            public _discnt
+0000             31            public _cur
+0000             32            public _unassemble
+0000             33   ;--------------------------------------------------------
+0000             34   ; Special Function Registers
+0000             35   ;--------------------------------------------------------
+0000             36   _P0             DATA 0x80
+0000             37   _SP             DATA 0x81
+0000             38   _DPL            DATA 0x82
+0000             39   _DPH            DATA 0x83
+0000             40   _PCON           DATA 0x87
+0000             41   _TCON           DATA 0x88
+0000             42   _TMOD           DATA 0x89
+0000             43   _TL0            DATA 0x8a
+0000             44   _TL1            DATA 0x8b
+0000             45   _TH0            DATA 0x8c
+0000             46   _TH1            DATA 0x8d
+0000             47   _P1             DATA 0x90
+0000             48   _SCON           DATA 0x98
+0000             49   _SBUF           DATA 0x99
+0000             50   _P2             DATA 0xa0
+0000             51   _IE             DATA 0xa8
+0000             52   _P3             DATA 0xb0
+0000             53   _IP             DATA 0xb8
+0000             54   _PSW            DATA 0xd0
+0000             55   _ACC            DATA 0xe0
+0000             56   _B              DATA 0xf0
+0000             57   _T2CON          DATA 0xc8
+0000             58   _T2MOD          DATA 0xc9
+0000             59   _RCAP2L         DATA 0xca
+0000             60   _RCAP2H         DATA 0xcb
+0000             61   _TL2            DATA 0xcc
+0000             62   _TH2            DATA 0xcd
+0000             63   ;--------------------------------------------------------
+0000             64   ; special function bits
+0000             65   ;--------------------------------------------------------
+0000             66   _P0_0           BIT 0x80
+0000             67   _P0_1           BIT 0x81
+0000             68   _P0_2           BIT 0x82
+0000             69   _P0_3           BIT 0x83
+0000             70   _P0_4           BIT 0x84
+0000             71   _P0_5           BIT 0x85
+0000             72   _P0_6           BIT 0x86
+0000             73   _P0_7           BIT 0x87
+0000             74   _IT0            BIT 0x88
+0000             75   _IE0            BIT 0x89
+0000             76   _IT1            BIT 0x8a
+0000             77   _IE1            BIT 0x8b
+0000             78   _TR0            BIT 0x8c
+0000             79   _TF0            BIT 0x8d
+0000             80   _TR1            BIT 0x8e
+0000             81   _TF1            BIT 0x8f
+0000             82   _P1_0           BIT 0x90
+0000             83   _P1_1           BIT 0x91
+0000             84   _P1_2           BIT 0x92
+0000             85   _P1_3           BIT 0x93
+0000             86   _P1_4           BIT 0x94
+0000             87   _P1_5           BIT 0x95
+0000             88   _P1_6           BIT 0x96
+0000             89   _P1_7           BIT 0x97
+0000             90   _RI             BIT 0x98
+0000             91   _TI             BIT 0x99
+0000             92   _RB8            BIT 0x9a
+0000             93   _TB8            BIT 0x9b
+0000             94   _REN            BIT 0x9c
+0000             95   _SM2            BIT 0x9d
+0000             96   _SM1            BIT 0x9e
+0000             97   _SM0            BIT 0x9f
+0000             98   _P2_0           BIT 0xa0
+0000             99   _P2_1           BIT 0xa1
+0000            100   _P2_2           BIT 0xa2
+0000            101   _P2_3           BIT 0xa3
+0000            102   _P2_4           BIT 0xa4
+0000            103   _P2_5           BIT 0xa5
+0000            104   _P2_6           BIT 0xa6
+0000            105   _P2_7           BIT 0xa7
+0000            106   _EX0            BIT 0xa8
+0000            107   _ET0            BIT 0xa9
+0000            108   _EX1            BIT 0xaa
+0000            109   _ET1            BIT 0xab
+0000            110   _ES             BIT 0xac
+0000            111   _EA             BIT 0xaf
+0000            112   _P3_0           BIT 0xb0
+0000            113   _P3_1           BIT 0xb1
+0000            114   _P3_2           BIT 0xb2
+0000            115   _P3_3           BIT 0xb3
+0000            116   _P3_4           BIT 0xb4
+0000            117   _P3_5           BIT 0xb5
+0000            118   _P3_6           BIT 0xb6
+0000            119   _P3_7           BIT 0xb7
+0000            120   _RXD            BIT 0xb0
+0000            121   _TXD            BIT 0xb1
+0000            122   _INT0           BIT 0xb2
+0000            123   _INT1           BIT 0xb3
+0000            124   _T0             BIT 0xb4
+0000            125   _T1             BIT 0xb5
+0000            126   _WR             BIT 0xb6
+0000            127   _RD             BIT 0xb7
+0000            128   _PX0            BIT 0xb8
+0000            129   _PT0            BIT 0xb9
+0000            130   _PX1            BIT 0xba
+0000            131   _PT1            BIT 0xbb
+0000            132   _PS             BIT 0xbc
+0000            133   _P              BIT 0xd0
+0000            134   _F1             BIT 0xd1
+0000            135   _OV             BIT 0xd2
+0000            136   _RS0            BIT 0xd3
+0000            137   _RS1            BIT 0xd4
+0000            138   _F0             BIT 0xd5
+0000            139   _AC             BIT 0xd6
+0000            140   _CY             BIT 0xd7
+0000            141   _ET2            BIT 0xad
+0000            142   _PT2            BIT 0xbd
+0000            143   _T2CON_0        BIT 0xc8
+0000            144   _T2CON_1        BIT 0xc9
+0000            145   _T2CON_2        BIT 0xca
+0000            146   _T2CON_3        BIT 0xcb
+0000            147   _T2CON_4        BIT 0xcc
+0000            148   _T2CON_5        BIT 0xcd
+0000            149   _T2CON_6        BIT 0xce
+0000            150   _T2CON_7        BIT 0xcf
+0000            151   _CP_RL2         BIT 0xc8
+0000            152   _C_T2           BIT 0xc9
+0000            153   _TR2            BIT 0xca
+0000            154   _EXEN2          BIT 0xcb
+0000            155   _TCLK           BIT 0xcc
+0000            156   _RCLK           BIT 0xcd
+0000            157   _EXF2           BIT 0xce
+0000            158   _TF2            BIT 0xcf
+0000            159   ;--------------------------------------------------------
+0000            160   ; overlayable register banks
+0000            161   ;--------------------------------------------------------
+0000            162            rbank0 segment data overlay
+0000            163   ;--------------------------------------------------------
+0000            164   ; internal ram data
+0000            165   ;--------------------------------------------------------
+0000            166            rseg R_DSEG
+0000            167   _cur:
+0000            168            ds 1
+0001            169   _discnt:
+0001            170            ds 2
+0003            171   _unassemble_j_1_30:
+0003            172            ds 2
+0005            173   _unassemble_nb_1_30:
+0005            174            ds 1
+0006            175   _unassemble_i_1_30:
+0006            176            ds 1
+0007            177   _unassemble_ptr_1_30:
+0007            178            ds 3
+000A            179   _unassemble_absadd_1_30:
+000A            180            ds 2
+000C            181   _unassemble_pcounter_1_30:
+000C            182            ds 2
+000E            183   _unassemble_sloc0_1_0:
+000E            184            ds 1
+000F            185   _unassemble_sloc1_1_0:
+000F            186            ds 1
+0010            187   _unassemble_sloc2_1_0:
+0010            188            ds 1
+0011            189   _unassemble_sloc3_1_0:
+0011            190            ds 3
+0014            191   _unassemble_sloc4_1_0:
+0014            192            ds 3
+0017            193   ;--------------------------------------------------------
+0017            194   ; overlayable items in internal ram 
+0017            195   ;--------------------------------------------------------
+0000            196            rseg    R_OSEG
+0000            197            rseg    R_OSEG
+0000            198   ;--------------------------------------------------------
+0000            199   ; indirectly addressable internal ram data
+0000            200   ;--------------------------------------------------------
+0000            201            rseg R_ISEG
+0000            202   ;--------------------------------------------------------
+0000            203   ; absolute internal ram data
+0000            204   ;--------------------------------------------------------
+0000            205            DSEG
+0000            206   ;--------------------------------------------------------
+0000            207   ; bit data
+0000            208   ;--------------------------------------------------------
+0000            209            rseg R_BSEG
+0000            210   _unassemble_bitncheck_1_30:
+0000            211            DBIT    1
+0001            212   _unassemble_opcode0x85_1_30:
+0001            213            DBIT    1
+0002            214   ;--------------------------------------------------------
+0002            215   ; paged external ram data
+0002            216   ;--------------------------------------------------------
+0000            217            rseg R_XSEG
+0000            218   ;--------------------------------------------------------
+0000            219   ; external ram data
+0000            220   ;--------------------------------------------------------
+0000            221            rseg R_XSEG
+0000            222   ;--------------------------------------------------------
+0000            223   ; absolute external ram data
+0000            224   ;--------------------------------------------------------
+0000            225            XSEG
+0000            226   ;--------------------------------------------------------
+0000            227   ; external initialized ram data
+0000            228   ;--------------------------------------------------------
+0000            229            rseg R_IXSEG
+0000            230            rseg R_HOME
+0000            231            rseg R_GSINIT
+0000            232            rseg R_CSEG
+0000            233   ;--------------------------------------------------------
+0000            234   ; Interrupt vectors
+0000            235   ;--------------------------------------------------------
+0000            236   ;--------------------------------------------------------
+0000            237   ; global & static initialisations
+0000            238   ;--------------------------------------------------------
+0000            239            rseg R_HOME
+0000            240            rseg R_GSINIT
+0000            241            rseg R_GSINIT
+0000            242   ;--------------------------------------------------------
+0000            243   ; data variables initialization
+0000            244   ;--------------------------------------------------------
+0000            245            rseg R_DINIT
+0000            246            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            247   ;--------------------------------------------------------
+0000            248   ; code
+0000            249   ;--------------------------------------------------------
+0000            250            rseg R_CSEG
+0000            251   ;------------------------------------------------------------
+0000            252   ;Allocation info for local variables in function 'addbyte'
+0000            253   ;------------------------------------------------------------
+0000            254   ;x                         Allocated to registers r2 
+0000            255   ;------------------------------------------------------------
+0000            256   ;        .\d51.c:36: void addbyte (unsigned char x)
+0000            257   ;        -----------------------------------------
+0000            258   ;         function addbyte
+0000            259   ;        -----------------------------------------
+0000            260   _addbyte:
+0000            261            using   0
+0000 AA82       262            mov     r2,dpl
+0002            263   ;        .\d51.c:38: addchar(hexval[x/0x10]);
+0002 AB70       264            mov     r3,_cur
+0004 0570       265            inc     _cur
+0006 EB         266            mov     a,r3
+0007 2400       267            add     a,#_buff
+0009 F8         268            mov     r0,a
+000A EA         269            mov     a,r2
+000B C4         270            swap    a
+000C 540F       271            anl     a,#0x0f
+000E 900000     272            mov     dptr,#_hexval
+0011 93         273            movc    a,@a+dptr
+0012 F6         274            mov     @r0,a
+0013            275   ;        .\d51.c:39: addchar(hexval[x&0xf]);
+0013 AB70       276            mov     r3,_cur
+0015 0570       277            inc     _cur
+0017 EB         278            mov     a,r3
+0018 2400       279            add     a,#_buff
+001A F8         280            mov     r0,a
+001B 740F       281            mov     a,#0x0F
+001D 5A         282            anl     a,r2
+001E 900000     283            mov     dptr,#_hexval
+0021 93         284            movc    a,@a+dptr
+0022 F6         285            mov     @r0,a
+0023            286   ;        .\d51.c:40: outbyte(x);
+0023 8A82       287            mov     dpl,r2
+0025 120100     288            lcall   _outbyte
+0028            289   ;        .\d51.c:41: putc(' ');
+0028            290   L002001?:
+0028 109938     291            jbc     _TI,L002008?
+002B 8001       292            sjmp    L002001?
+002D            293   L002008?:
+002D 759920     294            mov     _SBUF,#0x20
+0030 22         295            ret
+0031            296   ;------------------------------------------------------------
+0031            297   ;Allocation info for local variables in function 'addstr'
+0031            298   ;------------------------------------------------------------
+0031            299   ;x                         Allocated to registers r2 r3 r4 
+0031            300   ;------------------------------------------------------------
+0031            301   ;        .\d51.c:44: void addstr(unsigned char * x)
+0031            302   ;        -----------------------------------------
+0031            303   ;         function addstr
+0031            304   ;        -----------------------------------------
+0031            305   _addstr:
+0031 AA82       306            mov     r2,dpl
+0033 AB83       307            mov     r3,dph
+0035 ACF0       308            mov     r4,b
+0037            309   ;        .\d51.c:46: while ((*x!=0)&&(*x<0x80))
+0037            310   L003002?:
+0037 8A82       311            mov     dpl,r2
+0039 8B83       312            mov     dph,r3
+003B 8CF0       313            mov     b,r4
+003D 120100     314            lcall   __gptrget
+0040 FD         315            mov     r5,a
+0041 6001       316            jz      L003005?
+0043 BD80B8     317            cjne    r5,#0x80,L003012?
+0046            318   L003012?:
+0046 5001       319            jnc     L003005?
+0048            320   ;        .\d51.c:48: addchar(*x);
+0048 AE70       321            mov     r6,_cur
+004A 0570       322            inc     _cur
+004C EE         323            mov     a,r6
+004D 2400       324            add     a,#_buff
+004F F8         325            mov     r0,a
+0050 A605       326            mov     @r0,ar5
+0052            327   ;        .\d51.c:49: x++;
+0052 0A         328            inc     r2
+0053 BA00F8     329            cjne    r2,#0x00,L003002?
+0056 0B         330            inc     r3
+0057 8001       331            sjmp    L003002?
+0059            332   L003005?:
+0059 22         333            ret
+005A            334   ;------------------------------------------------------------
+005A            335   ;Allocation info for local variables in function 'addword'
+005A            336   ;------------------------------------------------------------
+005A            337   ;x                         Allocated to registers r2 r3 
+005A            338   ;------------------------------------------------------------
+005A            339   ;        .\d51.c:53: void addword (unsigned int x)
+005A            340   ;        -----------------------------------------
+005A            341   ;         function addword
+005A            342   ;        -----------------------------------------
+005A            343   _addword:
+005A AA82       344            mov     r2,dpl
+005C AB83       345            mov     r3,dph
+005E            346   ;        .\d51.c:55: addchar(hexval[(x/0x1000)&0xf]);
+005E AC70       347            mov     r4,_cur
+0060 0570       348            inc     _cur
+0062 EC         349            mov     a,r4
+0063 2400       350            add     a,#_buff
+0065 F8         351            mov     r0,a
+0066 EB         352            mov     a,r3
+0067 C4         353            swap    a
+0068 540F       354            anl     a,#0x0f
+006A FC         355            mov     r4,a
+006B 53040F     356            anl     ar4,#0x0F
+006E 7D00       357            mov     r5,#0x00
+0070 EC         358            mov     a,r4
+0071 2400       359            add     a,#_hexval
+0073 F582       360            mov     dpl,a
+0075 ED         361            mov     a,r5
+0076 3400       362            addc    a,#(_hexval >> 8)
+0078 F583       363            mov     dph,a
+007A E4         364            clr     a
+007B 93         365            movc    a,@a+dptr
+007C F6         366            mov     @r0,a
+007D            367   ;        .\d51.c:56: addchar(hexval[(x/0x100)&0xf]);
+007D AC70       368            mov     r4,_cur
+007F 0570       369            inc     _cur
+0081 EC         370            mov     a,r4
+0082 2400       371            add     a,#_buff
+0084 F8         372            mov     r0,a
+0085 8B04       373            mov     ar4,r3
+0087 53040F     374            anl     ar4,#0x0F
+008A 7D00       375            mov     r5,#0x00
+008C EC         376            mov     a,r4
+008D 2400       377            add     a,#_hexval
+008F F582       378            mov     dpl,a
+0091 ED         379            mov     a,r5
+0092 3400       380            addc    a,#(_hexval >> 8)
+0094 F583       381            mov     dph,a
+0096 E4         382            clr     a
+0097 93         383            movc    a,@a+dptr
+0098 F6         384            mov     @r0,a
+0099            385   ;        .\d51.c:57: addchar(hexval[(x/0x10)&0xf]);
+0099 AC70       386            mov     r4,_cur
+009B 0570       387            inc     _cur
+009D EC         388            mov     a,r4
+009E 2400       389            add     a,#_buff
+00A0 F8         390            mov     r0,a
+00A1 8A04       391            mov     ar4,r2
+00A3 EB         392            mov     a,r3
+00A4 C4         393            swap    a
+00A5 CC         394            xch     a,r4
+00A6 C4         395            swap    a
+00A7 540F       396            anl     a,#0x0f
+00A9 6C         397            xrl     a,r4
+00AA CC         398            xch     a,r4
+00AB 540F       399            anl     a,#0x0f
+00AD CC         400            xch     a,r4
+00AE 6C         401            xrl     a,r4
+00AF CC         402            xch     a,r4
+00B0 53040F     403            anl     ar4,#0x0F
+00B3 7D00       404            mov     r5,#0x00
+00B5 EC         405            mov     a,r4
+00B6 2400       406            add     a,#_hexval
+00B8 F582       407            mov     dpl,a
+00BA ED         408            mov     a,r5
+00BB 3400       409            addc    a,#(_hexval >> 8)
+00BD F583       410            mov     dph,a
+00BF E4         411            clr     a
+00C0 93         412            movc    a,@a+dptr
+00C1 F6         413            mov     @r0,a
+00C2            414   ;        .\d51.c:58: addchar(hexval[x&0xf]);
+00C2 AC70       415            mov     r4,_cur
+00C4 0570       416            inc     _cur
+00C6 EC         417            mov     a,r4
+00C7 2400       418            add     a,#_buff
+00C9 F8         419            mov     r0,a
+00CA 53020F     420            anl     ar2,#0x0F
+00CD 7B00       421            mov     r3,#0x00
+00CF EA         422            mov     a,r2
+00D0 2400       423            add     a,#_hexval
+00D2 F582       424            mov     dpl,a
+00D4 EB         425            mov     a,r3
+00D5 3400       426            addc    a,#(_hexval >> 8)
+00D7 F583       427            mov     dph,a
+00D9 E4         428            clr     a
+00DA 93         429            movc    a,@a+dptr
+00DB F6         430            mov     @r0,a
+00DC 22         431            ret
+00DD            432   ;------------------------------------------------------------
+00DD            433   ;Allocation info for local variables in function 'unassemble'
+00DD            434   ;------------------------------------------------------------
+00DD            435   ;address                   Allocated to registers r2 r3 
+00DD            436   ;j                         Allocated with name '_unassemble_j_1_30'
+00DD            437   ;n                         Allocated to registers r2 
+00DD            438   ;nb                        Allocated with name '_unassemble_nb_1_30'
+00DD            439   ;opcode                    Allocated to registers r5 
+00DD            440   ;i                         Allocated with name '_unassemble_i_1_30'
+00DD            441   ;ptr                       Allocated with name '_unassemble_ptr_1_30'
+00DD            442   ;absadd                    Allocated with name '_unassemble_absadd_1_30'
+00DD            443   ;pcounter                  Allocated with name '_unassemble_pcounter_1_30'
+00DD            444   ;bitnum                    Allocated to registers r6 
+00DD            445   ;sloc0                     Allocated with name '_unassemble_sloc0_1_0'
+00DD            446   ;sloc1                     Allocated with name '_unassemble_sloc1_1_0'
+00DD            447   ;sloc2                     Allocated with name '_unassemble_sloc2_1_0'
+00DD            448   ;sloc3                     Allocated with name '_unassemble_sloc3_1_0'
+00DD            449   ;sloc4                     Allocated with name '_unassemble_sloc4_1_0'
+00DD            450   ;------------------------------------------------------------
+00DD            451   ;        .\d51.c:63: void unassemble (unsigned int address)
+00DD            452   ;        -----------------------------------------
+00DD            453   ;         function unassemble
+00DD            454   ;        -----------------------------------------
+00DD            455   _unassemble:
+00DD AA82       456            mov     r2,dpl
+00DF AB83       457            mov     r3,dph
+00E1            458   ;        .\d51.c:66: unsigned char n, nb, opcode, i=0;
+00E1 759800     459            mov     _unassemble_i_1_30,#0x00
+00E4            460   ;        .\d51.c:73: pcounter=(unsigned char code *)address;
+00E4 8A88       461            mov     _unassemble_pcounter_1_30,r2
+00E6 8B89       462            mov     (_unassemble_pcounter_1_30 + 1),r3
+00E8            463   ;        .\d51.c:74: if(discnt==0) discnt=1;
+00E8 E530       464            mov     a,_discnt
+00EA 4531       465            orl     a,(_discnt + 1)
+00EC 7001       466            jnz     L005150?
+00EE 753001     467            mov     _discnt,#0x01
+00F1 E4         468            clr     a
+00F2 F531       469            mov     (_discnt + 1),a
+00F4            470   ;        .\d51.c:76: while(discnt--)
+00F4            471   L005150?:
+00F4            472   L005081?:
+00F4 AD30       473            mov     r5,_discnt
+00F6 AE31       474            mov     r6,(_discnt + 1)
+00F8 1530       475            dec     _discnt
+00FA 74FF       476            mov     a,#0xff
+00FC B53078     477            cjne    a,_discnt,L005159?
+00FF 1531       478            dec     (_discnt + 1)
+0101            479   L005159?:
+0101 ED         480            mov     a,r5
+0102 4E         481            orl     a,r6
+0103 7001       482            jnz     L005160?
+0105 22         483            ret
+0106            484   L005160?:
+0106            485   ;        .\d51.c:78: outword((int) pcounter);
+0106 858882     486            mov     dpl,_unassemble_pcounter_1_30
+0109 858983     487            mov     dph,(_unassemble_pcounter_1_30 + 1)
+010C 120100     488            lcall   _outword
+010F            489   ;        .\d51.c:79: putsp(": ");
+010F 906638     490            mov     dptr,#__str_0
+0112 75F080     491            mov     b,#0x80
+0115 120100     492            lcall   _putsp
+0118            493   ;        .\d51.c:80: opcode=*pcounter;
+0118 858882     494            mov     dpl,_unassemble_pcounter_1_30
+011B 858983     495            mov     dph,(_unassemble_pcounter_1_30 + 1)
+011E E4         496            clr     a
+011F 93         497            movc    a,@a+dptr
+0120            498   ;        .\d51.c:81: outbyte(opcode);
+0120 FD         499            mov     r5,a
+0121 F582       500            mov     dpl,a
+0123 C005       501            push    ar5
+0125 120100     502            lcall   _outbyte
+0128 D005       503            pop     ar5
+012A            504   ;        .\d51.c:82: putc(' ');
+012A            505   L005003?:
+012A 1099F8     506            jbc     _TI,L005161?
+012D 8001       507            sjmp    L005003?
+012F            508   L005161?:
+012F 759920     509            mov     _SBUF,#0x20
+0132            510   ;        .\d51.c:84: addchar('\t');
+0132 757001     511            mov     _cur,#0x01
+0135 750009     512            mov     _buff,#0x09
+0138            513   ;        .\d51.c:85: opcode0x85=0;
+0138 C2B8       514            clr     _unassemble_opcode0x85_1_30
+013A            515   ;        .\d51.c:90: for(j=0, n=0; (mnemtbl[j]!=0)&&(opcode!=n); j++)
+013A 7E00       516            mov     r6,#0x00
+013C 7F00       517            mov     r7,#0x00
+013E 7C00       518            mov     r4,#0x00
+0140            519   L005085?:
+0140 EF         520            mov     a,r7
+0141 24F0       521            add     a,#_mnemtbl
+0143 F582       522            mov     dpl,a
+0145 EC         523            mov     a,r4
+0146 3411       524            addc    a,#(_mnemtbl >> 8)
+0148 F583       525            mov     dph,a
+014A E4         526            clr     a
+014B 93         527            movc    a,@a+dptr
+014C FA         528            mov     r2,a
+014D 6001       529            jz      L005110?
+014F ED         530            mov     a,r5
+0150 B506B8     531            cjne    a,ar6,L005163?
+0153 8001       532            sjmp    L005110?
+0155            533   L005163?:
+0155            534   ;        .\d51.c:92: if(mnemtbl[j]=='\n') n++;
+0155 BA0AF8     535            cjne    r2,#0x0A,L005087?
+0158 0E         536            inc     r6
+0159            537   L005087?:
+0159            538   ;        .\d51.c:90: for(j=0, n=0; (mnemtbl[j]!=0)&&(opcode!=n); j++)
+0159 0F         539            inc     r7
+015A            540   ;        .\d51.c:98: while (mnemtbl[j]=='\n') j++; 
+015A BF0038     541            cjne    r7,#0x00,L005085?
+015D 0C         542            inc     r4
+015E 8001       543            sjmp    L005085?
+0160            544   L005110?:
+0160 8F02       545            mov     ar2,r7
+0162 8C03       546            mov     ar3,r4
+0164            547   L005008?:
+0164 EA         548            mov     a,r2
+0165 24F0       549            add     a,#_mnemtbl
+0167 F582       550            mov     dpl,a
+0169 EB         551            mov     a,r3
+016A 3411       552            addc    a,#(_mnemtbl >> 8)
+016C F583       553            mov     dph,a
+016E E4         554            clr     a
+016F 93         555            movc    a,@a+dptr
+0170 FC         556            mov     r4,a
+0171 BC0A78     557            cjne    r4,#0x0A,L005149?
+0174 0A         558            inc     r2
+0175 BA0038     559            cjne    r2,#0x00,L005008?
+0178 0B         560            inc     r3
+0179 8001       561            sjmp    L005008?
+017B            562   L005149?:
+017B E4         563            clr     a
+017C BD85B8     564            cjne    r5,#0x85,L005169?
+017F 04         565            inc     a
+0180            566   L005169?:
+0180 FC         567            mov     r4,a
+0181 7407       568            mov     a,#0x07
+0183 5D         569            anl     a,r5
+0184 4430       570            orl     a,#0x30
+0186 F578       571            mov     _unassemble_sloc2_1_0,a
+0188 7401       572            mov     a,#0x01
+018A 5D         573            anl     a,r5
+018B 4430       574            orl     a,#0x30
+018D F528       575            mov     _unassemble_sloc1_1_0,a
+018F E4         576            clr     a
+0190 BD90F8     577            cjne    r5,#0x90,L005171?
+0193 04         578            inc     a
+0194            579   L005171?:
+0194 FD         580            mov     r5,a
+0195 8AF8       581            mov     _unassemble_j_1_30,r2
+0197 8BF9       582            mov     (_unassemble_j_1_30 + 1),r3
+0199            583   L005093?:
+0199            584   ;        .\d51.c:101: for(; mnemtbl[j]!='\n'; j++)
+0199 E5F8       585            mov     a,_unassemble_j_1_30
+019B 24F0       586            add     a,#_mnemtbl
+019D F582       587            mov     dpl,a
+019F E5F9       588            mov     a,(_unassemble_j_1_30 + 1)
+01A1 3411       589            addc    a,#(_mnemtbl >> 8)
+01A3 F583       590            mov     dph,a
+01A5 E4         591            clr     a
+01A6 93         592            movc    a,@a+dptr
+01A7 F5D8       593            mov     _unassemble_sloc0_1_0,a
+01A9 740A       594            mov     a,#0x0A
+01AB B5D878     595            cjne    a,_unassemble_sloc0_1_0,L005173?
+01AE 020100     596            ljmp    L005096?
+01B1            597   L005173?:
+01B1            598   ;        .\d51.c:103: n=mnemtbl[j];
+01B1 AAD8       599            mov     r2,_unassemble_sloc0_1_0
+01B3            600   ;        .\d51.c:105: bitncheck=0;
+01B3 C268       601            clr     _unassemble_bitncheck_1_30
+01B5            602   ;        .\d51.c:107: if((n>=(unsigned char)'A')&&(n<=(unsigned char)'Z')) //Replace with string in table
+01B5 BA41F8     603            cjne    r2,#0x41,L005174?
+01B8            604   L005174?:
+01B8 4001       605            jc      L005070?
+01BA EA         606            mov     a,r2
+01BB 24A5       607            add     a,#0xff - 0x5A
+01BD 4001       608            jc      L005070?
+01BF            609   ;        .\d51.c:108: addstr(mnem[n-'A']);
+01BF EA         610            mov     a,r2
+01C0 24BF       611            add     a,#0xbf
+01C2 25E0       612            add     a,acc
+01C4 FB         613            mov     r3,a
+01C5 901230     614            mov     dptr,#_mnem
+01C8 93         615            movc    a,@a+dptr
+01C9 CB         616            xch     a,r3
+01CA A3         617            inc     dptr
+01CB 93         618            movc    a,@a+dptr
+01CC FE         619            mov     r6,a
+01CD 7F80       620            mov     r7,#0x80
+01CF 8B82       621            mov     dpl,r3
+01D1 8E83       622            mov     dph,r6
+01D3 8FF0       623            mov     b,r7
+01D5 C004       624            push    ar4
+01D7 C005       625            push    ar5
+01D9 120100     626            lcall   _addstr
+01DC D005       627            pop     ar5
+01DE D004       628            pop     ar4
+01E0 020100     629            ljmp    L005095?
+01E3            630   L005070?:
+01E3            631   ;        .\d51.c:109: else switch (n)
+01E3 BA21F8     632            cjne    r2,#0x21,L005177?
+01E6 8001       633            sjmp    L005015?
+01E8            634   L005177?:
+01E8 BA2378     635            cjne    r2,#0x23,L005178?
+01EB 8001       636            sjmp    L005011?
+01ED            637   L005178?:
+01ED BA25F8     638            cjne    r2,#0x25,L005179?
+01F0 8001       639            sjmp    L005014?
+01F2            640   L005179?:
+01F2 BA2678     641            cjne    r2,#0x26,L005180?
+01F5 020100     642            ljmp    L005054?
+01F8            643   L005180?:
+01F8 BA2AF8     644            cjne    r2,#0x2A,L005181?
+01FB 020100     645            ljmp    L005065?
+01FE            646   L005181?:
+01FE BA2E78     647            cjne    r2,#0x2E,L005182?
+0201 020100     648            ljmp    L005050?
+0204            649   L005182?:
+0204 BA3AF8     650            cjne    r2,#0x3A,L005183?
+0207 020100     651            ljmp    L005058?
+020A            652   L005183?:
+020A BA3F78     653            cjne    r2,#0x3F,L005184?
+020D 020100     654            ljmp    L005066?
+0210            655   L005184?:
+0210 020100     656            ljmp    L005067?
+0213            657   ;        .\d51.c:111: case '#': //Numeric constant (in hex)
+0213            658   L005011?:
+0213            659   ;        .\d51.c:112: addchar('#');
+0213 AB70       660            mov     r3,_cur
+0215 0570       661            inc     _cur
+0217 EB         662            mov     a,r3
+0218 2400       663            add     a,#_buff
+021A F8         664            mov     r0,a
+021B 7623       665            mov     @r0,#0x23
+021D            666   ;        .\d51.c:113: addbyte(*(++pcounter));
+021D 0588       667            inc     _unassemble_pcounter_1_30
+021F E4         668            clr     a
+0220 B58838     669            cjne    a,_unassemble_pcounter_1_30,L005185?
+0223 0589       670            inc     (_unassemble_pcounter_1_30 + 1)
+0225            671   L005185?:
+0225 858882     672            mov     dpl,_unassemble_pcounter_1_30
+0228 858983     673            mov     dph,(_unassemble_pcounter_1_30 + 1)
+022B E4         674            clr     a
+022C 93         675            movc    a,@a+dptr
+022D F582       676            mov     dpl,a
+022F C004       677            push    ar4
+0231 C005       678            push    ar5
+0233 120100     679            lcall   _addbyte
+0236 D005       680            pop     ar5
+0238 D004       681            pop     ar4
+023A            682   ;        .\d51.c:114: if(opcode==0x90) //"mov dptr,#1234" uses two bytes (Only exception)
+023A ED         683            mov     a,r5
+023B 7001       684            jnz     L005186?
+023D 020100     685            ljmp    L005095?
+0240            686   L005186?:
+0240            687   ;        .\d51.c:116: addbyte(*(++pcounter));
+0240 0588       688            inc     _unassemble_pcounter_1_30
+0242 E4         689            clr     a
+0243 B588B8     690            cjne    a,_unassemble_pcounter_1_30,L005187?
+0246 0589       691            inc     (_unassemble_pcounter_1_30 + 1)
+0248            692   L005187?:
+0248 858882     693            mov     dpl,_unassemble_pcounter_1_30
+024B 858983     694            mov     dph,(_unassemble_pcounter_1_30 + 1)
+024E E4         695            clr     a
+024F 93         696            movc    a,@a+dptr
+0250 F582       697            mov     dpl,a
+0252 C004       698            push    ar4
+0254 C005       699            push    ar5
+0256 120100     700            lcall   _addbyte
+0259 D005       701            pop     ar5
+025B D004       702            pop     ar4
+025D            703   ;        .\d51.c:118: break;
+025D 020100     704            ljmp    L005095?
+0260            705   ;        .\d51.c:120: case '%': //Direct bit addressing
+0260            706   L005014?:
+0260            707   ;        .\d51.c:121: bitncheck=1;
+0260 D268       708            setb    _unassemble_bitncheck_1_30
+0262            709   ;        .\d51.c:122: case '!': //Direct memory addressing including sfrs
+0262            710   L005015?:
+0262            711   ;        .\d51.c:123: ptr=(bitncheck?bitn:sfrn); //Select the right table of names
+0262 306800     712            jnb     _unassemble_bitncheck_1_30,L005099?
+0265 7B00       713            mov     r3,#_bitn
+0267 7F00       714            mov     r7,#(_bitn >> 8)
+0269 8001       715            sjmp    L005100?
+026B            716   L005099?:
+026B 7B00       717            mov     r3,#_sfrn
+026D 7F00       718            mov     r7,#(_sfrn >> 8)
+026F            719   L005100?:
+026F 8BE8       720            mov     _unassemble_ptr_1_30,r3
+0271 8FE9       721            mov     (_unassemble_ptr_1_30 + 1),r7
+0273 75EA80     722            mov     (_unassemble_ptr_1_30 + 2),#0x80
+0276            723   ;        .\d51.c:124: nb=*(++pcounter);                                  
+0276 0588       724            inc     _unassemble_pcounter_1_30
+0278 E4         725            clr     a
+0279 B58800     726            cjne    a,_unassemble_pcounter_1_30,L005189?
+027C 0589       727            inc     (_unassemble_pcounter_1_30 + 1)
+027E            728   L005189?:
+027E 858882     729            mov     dpl,_unassemble_pcounter_1_30
+0281 858983     730            mov     dph,(_unassemble_pcounter_1_30 + 1)
+0284 E4         731            clr     a
+0285 93         732            movc    a,@a+dptr
+0286 F548       733            mov     _unassemble_nb_1_30,a
+0288            734   ;        .\d51.c:126: bitnum=0;
+0288 7E00       735            mov     r6,#0x00
+028A            736   ;        .\d51.c:130: if(opcode==0x85)
+028A EC         737            mov     a,r4
+028B 6001       738            jz      L005020?
+028D            739   ;        .\d51.c:132: if(opcode0x85==0)
+028D 20B880     740            jb      _unassemble_opcode0x85_1_30,L005017?
+0290            741   ;        .\d51.c:134: n=*(pcounter+1);
+0290 858882     742            mov     dpl,_unassemble_pcounter_1_30
+0293 858983     743            mov     dph,(_unassemble_pcounter_1_30 + 1)
+0296 A3         744            inc     dptr
+0297 E4         745            clr     a
+0298 93         746            movc    a,@a+dptr
+0299 FA         747            mov     r2,a
+029A            748   ;        .\d51.c:135: opcode0x85=1;
+029A D2B8       749            setb    _unassemble_opcode0x85_1_30
+029C 8001       750            sjmp    L005022?
+029E            751   L005017?:
+029E            752   ;        .\d51.c:139: n=*(pcounter-1);
+029E E588       753            mov     a,_unassemble_pcounter_1_30
+02A0 24FF       754            add     a,#0xff
+02A2 F582       755            mov     dpl,a
+02A4 E589       756            mov     a,(_unassemble_pcounter_1_30 + 1)
+02A6 34FF       757            addc    a,#0xff
+02A8 F583       758            mov     dph,a
+02AA E4         759            clr     a
+02AB 93         760            movc    a,@a+dptr
+02AC FA         761            mov     r2,a
+02AD            762   ;        .\d51.c:140: opcode0x85=0;
+02AD C2B8       763            clr     _unassemble_opcode0x85_1_30
+02AF 8001       764            sjmp    L005022?
+02B1            765   L005020?:
+02B1            766   ;        .\d51.c:145: n=nb;      
+02B1 AA48       767            mov     r2,_unassemble_nb_1_30
+02B3            768   ;        .\d51.c:148: checkagain:
+02B3            769   L005022?:
+02B3            770   ;        .\d51.c:149: if(n>0x7f)  //Search for sfr or bit names
+02B3 EA         771            mov     a,r2
+02B4 2480       772            add     a,#0xff - 0x7F
+02B6 4001       773            jc      L005192?
+02B8 020100     774            ljmp    L005048?
+02BB            775   L005192?:
+02BB            776   ;        .\d51.c:193: }
+02BB 85E8C8     777            mov     _unassemble_sloc3_1_0,_unassemble_ptr_1_30
+02BE 85E9C9     778            mov     (_unassemble_sloc3_1_0 + 1),(_unassemble_ptr_1_30 + 1)
+02C1 85EACA     779            mov     (_unassemble_sloc3_1_0 + 2),(_unassemble_ptr_1_30 + 2)
+02C4            780   L005030?:
+02C4            781   ;        .\d51.c:151: for(; *ptr; ptr++)
+02C4 85C882     782            mov     dpl,_unassemble_sloc3_1_0
+02C7 85C983     783            mov     dph,(_unassemble_sloc3_1_0 + 1)
+02CA 85CAF0     784            mov     b,(_unassemble_sloc3_1_0 + 2)
+02CD 120100     785            lcall   __gptrget
+02D0 FF         786            mov     r7,a
+02D1 7001       787            jnz     L005193?
+02D3 020100     788            ljmp    L005033?
+02D6            789   L005193?:
+02D6            790   ;        .\d51.c:153: if(*ptr==n)
+02D6 EF         791            mov     a,r7
+02D7 B50240     792            cjne    a,ar2,L005194?
+02DA 8001       793            sjmp    L005195?
+02DC            794   L005194?:
+02DC 020100     795            ljmp    L005032?
+02DF            796   L005195?:
+02DF            797   ;        .\d51.c:155: outbyte(nb);
+02DF 854882     798            mov     dpl,_unassemble_nb_1_30
+02E2 C002       799            push    ar2
+02E4 C004       800            push    ar4
+02E6 C005       801            push    ar5
+02E8 C006       802            push    ar6
+02EA 120100     803            lcall   _outbyte
+02ED D006       804            pop     ar6
+02EF D005       805            pop     ar5
+02F1 D004       806            pop     ar4
+02F3 D002       807            pop     ar2
+02F5            808   ;        .\d51.c:156: putc(' ');
+02F5            809   L005023?:
+02F5 109940     810            jbc     _TI,L005196?
+02F8 8001       811            sjmp    L005023?
+02FA            812   L005196?:
+02FA 759920     813            mov     _SBUF,#0x20
+02FD            814   ;        .\d51.c:157: for(ptr++; *ptr<0x80; ptr++) addchar(*ptr);
+02FD 05E8       815            inc     _unassemble_ptr_1_30
+02FF E4         816            clr     a
+0300 B5E880     817            cjne    a,_unassemble_ptr_1_30,L005197?
+0303 05E9       818            inc     (_unassemble_ptr_1_30 + 1)
+0305            819   L005197?:
+0305 85E818     820            mov     _unassemble_sloc4_1_0,_unassemble_ptr_1_30
+0308 85E919     821            mov     (_unassemble_sloc4_1_0 + 1),(_unassemble_ptr_1_30 + 1)
+030B 85EA1A     822            mov     (_unassemble_sloc4_1_0 + 2),(_unassemble_ptr_1_30 + 2)
+030E            823   L005089?:
+030E 851882     824            mov     dpl,_unassemble_sloc4_1_0
+0311 851983     825            mov     dph,(_unassemble_sloc4_1_0 + 1)
+0314 851AF0     826            mov     b,(_unassemble_sloc4_1_0 + 2)
+0317 120100     827            lcall   __gptrget
+031A FF         828            mov     r7,a
+031B BF8000     829            cjne    r7,#0x80,L005198?
+031E            830   L005198?:
+031E 5001       831            jnc     L005156?
+0320 AB70       832            mov     r3,_cur
+0322 0570       833            inc     _cur
+0324 EB         834            mov     a,r3
+0325 2400       835            add     a,#_buff
+0327 F8         836            mov     r0,a
+0328 A607       837            mov     @r0,ar7
+032A 0518       838            inc     _unassemble_sloc4_1_0
+032C E4         839            clr     a
+032D B518C0     840            cjne    a,_unassemble_sloc4_1_0,L005089?
+0330 0519       841            inc     (_unassemble_sloc4_1_0 + 1)
+0332 8001       842            sjmp    L005089?
+0334            843   L005156?:
+0334 8518E8     844            mov     _unassemble_ptr_1_30,_unassemble_sloc4_1_0
+0337 8519E9     845            mov     (_unassemble_ptr_1_30 + 1),(_unassemble_sloc4_1_0 + 1)
+033A 851AEA     846            mov     (_unassemble_ptr_1_30 + 2),(_unassemble_sloc4_1_0 + 2)
+033D            847   ;        .\d51.c:158: if(bitnum>0)
+033D C3         848            clr     c
+033E E4         849            clr     a
+033F 6480       850            xrl     a,#0x80
+0341 8EF0       851            mov     b,r6
+0343 63F080     852            xrl     b,#0x80
+0346 95F0       853            subb    a,b
+0348 5001       854            jnc     L005033?
+034A            855   ;        .\d51.c:160: addchar('.');
+034A AB70       856            mov     r3,_cur
+034C 0570       857            inc     _cur
+034E EB         858            mov     a,r3
+034F 2400       859            add     a,#_buff
+0351 F8         860            mov     r0,a
+0352 762E       861            mov     @r0,#0x2E
+0354            862   ;        .\d51.c:161: addchar(bitnum);
+0354 AB70       863            mov     r3,_cur
+0356 0570       864            inc     _cur
+0358 EB         865            mov     a,r3
+0359 2400       866            add     a,#_buff
+035B F8         867            mov     r0,a
+035C A606       868            mov     @r0,ar6
+035E            869   ;        .\d51.c:163: break;
+035E 8001       870            sjmp    L005033?
+0360            871   L005032?:
+0360            872   ;        .\d51.c:151: for(; *ptr; ptr++)
+0360 05C8       873            inc     _unassemble_sloc3_1_0
+0362 E4         874            clr     a
+0363 B5C880     875            cjne    a,_unassemble_sloc3_1_0,L005202?
+0366 05C9       876            inc     (_unassemble_sloc3_1_0 + 1)
+0368            877   L005202?:
+0368 85C8E8     878            mov     _unassemble_ptr_1_30,_unassemble_sloc3_1_0
+036B 85C9E9     879            mov     (_unassemble_ptr_1_30 + 1),(_unassemble_sloc3_1_0 + 1)
+036E 85CAEA     880            mov     (_unassemble_ptr_1_30 + 2),(_unassemble_sloc3_1_0 + 2)
+0371 020100     881            ljmp    L005030?
+0374            882   L005033?:
+0374            883   ;        .\d51.c:166: if(*ptr==0)
+0374 85E882     884            mov     dpl,_unassemble_ptr_1_30
+0377 85E983     885            mov     dph,(_unassemble_ptr_1_30 + 1)
+037A 85EAF0     886            mov     b,(_unassemble_ptr_1_30 + 2)
+037D 120100     887            lcall   __gptrget
+0380 6001       888            jz      L005203?
+0382 020100     889            ljmp    L005095?
+0385            890   L005203?:
+0385            891   ;        .\d51.c:168: if(bitnum>0) n|=(bitnum&7);
+0385 C3         892            clr     c
+0386 E4         893            clr     a
+0387 6480       894            xrl     a,#0x80
+0389 8EF0       895            mov     b,r6
+038B 63F080     896            xrl     b,#0x80
+038E 95F0       897            subb    a,b
+0390 5001       898            jnc     L005035?
+0392 7407       899            mov     a,#0x07
+0394 5E         900            anl     a,r6
+0395 4202       901            orl     ar2,a
+0397            902   L005035?:
+0397            903   ;        .\d51.c:169: if(bitncheck)
+0397            904   ;        .\d51.c:172: bitncheck=0;
+0397 106840     905            jbc     _unassemble_bitncheck_1_30,L005205?
+039A 8001       906            sjmp    L005043?
+039C            907   L005205?:
+039C            908   ;        .\d51.c:173: bitnum=(n&7)|'0';
+039C 7407       909            mov     a,#0x07
+039E 5A         910            anl     a,r2
+039F 4430       911            orl     a,#0x30
+03A1 FE         912            mov     r6,a
+03A2            913   ;        .\d51.c:174: n&=0xf8;
+03A2 5302F8     914            anl     ar2,#0xF8
+03A5            915   ;        .\d51.c:175: ptr=sfrn;
+03A5 75E800     916            mov     _unassemble_ptr_1_30,#_sfrn
+03A8 75E900     917            mov     (_unassemble_ptr_1_30 + 1),#(_sfrn >> 8)
+03AB 75EA80     918            mov     (_unassemble_ptr_1_30 + 2),#0x80
+03AE            919   ;        .\d51.c:176: goto checkagain;
+03AE 020100     920            ljmp    L005022?
+03B1            921   L005043?:
+03B1            922   ;        .\d51.c:180: if(opcode==0x85)
+03B1 EC         923            mov     a,r4
+03B2 6001       924            jz      L005040?
+03B4            925   ;        .\d51.c:182: addchar(hexval[n/0x10]);
+03B4 AB70       926            mov     r3,_cur
+03B6 0570       927            inc     _cur
+03B8 EB         928            mov     a,r3
+03B9 2400       929            add     a,#_buff
+03BB F8         930            mov     r0,a
+03BC EA         931            mov     a,r2
+03BD C4         932            swap    a
+03BE 540F       933            anl     a,#0x0f
+03C0 900000     934            mov     dptr,#_hexval
+03C3 93         935            movc    a,@a+dptr
+03C4 F6         936            mov     @r0,a
+03C5            937   ;        .\d51.c:183: addchar(hexval[n&0x0f]);
+03C5 AB70       938            mov     r3,_cur
+03C7 0570       939            inc     _cur
+03C9 EB         940            mov     a,r3
+03CA 2400       941            add     a,#_buff
+03CC F8         942            mov     r0,a
+03CD 740F       943            mov     a,#0x0F
+03CF 5A         944            anl     a,r2
+03D0 900000     945            mov     dptr,#_hexval
+03D3 93         946            movc    a,@a+dptr
+03D4 F6         947            mov     @r0,a
+03D5            948   ;        .\d51.c:184: outbyte(nb);
+03D5 854882     949            mov     dpl,_unassemble_nb_1_30
+03D8 C004       950            push    ar4
+03DA C005       951            push    ar5
+03DC 120100     952            lcall   _outbyte
+03DF D005       953            pop     ar5
+03E1 D004       954            pop     ar4
+03E3            955   ;        .\d51.c:185: putc(' ');
+03E3            956   L005036?:
+03E3 109940     957            jbc     _TI,L005207?
+03E6 8001       958            sjmp    L005036?
+03E8            959   L005207?:
+03E8 759920     960            mov     _SBUF,#0x20
+03EB 020100     961            ljmp    L005095?
+03EE            962   L005040?:
+03EE            963   ;        .\d51.c:189: addbyte(n);
+03EE 8A82       964            mov     dpl,r2
+03F0 C004       965            push    ar4
+03F2 C005       966            push    ar5
+03F4 120100     967            lcall   _addbyte
+03F7 D005       968            pop     ar5
+03F9 D004       969            pop     ar4
+03FB 020100     970            ljmp    L005095?
+03FE            971   L005048?:
+03FE            972   ;        .\d51.c:194: else addbyte(n); //Not an sfr name print the number
+03FE 8A82       973            mov     dpl,r2
+0400 C004       974            push    ar4
+0402 C005       975            push    ar5
+0404 120100     976            lcall   _addbyte
+0407 D005       977            pop     ar5
+0409 D004       978            pop     ar4
+040B            979   ;        .\d51.c:195: break;
+040B 020100     980            ljmp    L005095?
+040E            981   ;        .\d51.c:197: case '.': //8 bit relative address
+040E            982   L005050?:
+040E            983   ;        .\d51.c:198: pcounter++;
+040E C005       984            push    ar5
+0410 0588       985            inc     _unassemble_pcounter_1_30
+0412 E4         986            clr     a
+0413 B58880     987            cjne    a,_unassemble_pcounter_1_30,L005208?
+0416 0589       988            inc     (_unassemble_pcounter_1_30 + 1)
+0418            989   L005208?:
+0418            990   ;        .\d51.c:199: absadd=(unsigned int)pcounter+(char)*pcounter+1;
+0418 AB88       991            mov     r3,_unassemble_pcounter_1_30
+041A AE89       992            mov     r6,(_unassemble_pcounter_1_30 + 1)
+041C 858882     993            mov     dpl,_unassemble_pcounter_1_30
+041F 858983     994            mov     dph,(_unassemble_pcounter_1_30 + 1)
+0422 E4         995            clr     a
+0423 93         996            movc    a,@a+dptr
+0424 FF         997            mov     r7,a
+0425 33         998            rlc     a
+0426 95E0       999            subb    a,acc
+0428 FD        1000            mov     r5,a
+0429 EF        1001            mov     a,r7
+042A 2B        1002            add     a,r3
+042B FB        1003            mov     r3,a
+042C ED        1004            mov     a,r5
+042D 3E        1005            addc    a,r6
+042E FE        1006            mov     r6,a
+042F 7401      1007            mov     a,#0x01
+0431 2B        1008            add     a,r3
+0432 F538      1009            mov     _unassemble_absadd_1_30,a
+0434 E4        1010            clr     a
+0435 3E        1011            addc    a,r6
+0436 F539      1012            mov     (_unassemble_absadd_1_30 + 1),a
+0438           1013   ;        .\d51.c:200: addword(absadd);
+0438 853882    1014            mov     dpl,_unassemble_absadd_1_30
+043B 853983    1015            mov     dph,(_unassemble_absadd_1_30 + 1)
+043E C004      1016            push    ar4
+0440 C005      1017            push    ar5
+0442 120100    1018            lcall   _addword
+0445           1019   ;        .\d51.c:201: outbyte(*pcounter);
+0445 858882    1020            mov     dpl,_unassemble_pcounter_1_30
+0448 858983    1021            mov     dph,(_unassemble_pcounter_1_30 + 1)
+044B E4        1022            clr     a
+044C 93        1023            movc    a,@a+dptr
+044D F582      1024            mov     dpl,a
+044F 120100    1025            lcall   _outbyte
+0452 D005      1026            pop     ar5
+0454 D004      1027            pop     ar4
+0456           1028   ;        .\d51.c:249: else i=0;
+0456 D005      1029            pop     ar5
+0458           1030   ;        .\d51.c:202: putc(' ');
+0458           1031   L005051?:
+0458 109900    1032            jbc     _TI,L005209?
+045B 8001      1033            sjmp    L005051?
+045D           1034   L005209?:
+045D 759920    1035            mov     _SBUF,#0x20
+0460           1036   ;        .\d51.c:203: break;
+0460 020100    1037            ljmp    L005095?
+0463           1038   ;        .\d51.c:205: case '&': //11 bit paged address
+0463           1039   L005054?:
+0463           1040   ;        .\d51.c:206: n=(*pcounter/0x20)|((((unsigned int)pcounter+2)/0x100)&0xf8);
+0463 C005      1041            push    ar5
+0465 858882    1042            mov     dpl,_unassemble_pcounter_1_30
+0468 858983    1043            mov     dph,(_unassemble_pcounter_1_30 + 1)
+046B E4        1044            clr     a
+046C 93        1045            movc    a,@a+dptr
+046D C4        1046            swap    a
+046E 03        1047            rr      a
+046F 5407      1048            anl     a,#0x07
+0471 FB        1049            mov     r3,a
+0472 AE88      1050            mov     r6,_unassemble_pcounter_1_30
+0474 AF89      1051            mov     r7,(_unassemble_pcounter_1_30 + 1)
+0476 7402      1052            mov     a,#0x02
+0478 2E        1053            add     a,r6
+0479 E4        1054            clr     a
+047A 3F        1055            addc    a,r7
+047B FE        1056            mov     r6,a
+047C 5306F8    1057            anl     ar6,#0xF8
+047F E4        1058            clr     a
+0480 FF        1059            mov     r7,a
+0481 FD        1060            mov     r5,a
+0482 EB        1061            mov     a,r3
+0483 4206      1062            orl     ar6,a
+0485 ED        1063            mov     a,r5
+0486 4207      1064            orl     ar7,a
+0488 8E02      1065            mov     ar2,r6
+048A           1066   ;        .\d51.c:207: pcounter++;
+048A 0588      1067            inc     _unassemble_pcounter_1_30
+048C E4        1068            clr     a
+048D B58840    1069            cjne    a,_unassemble_pcounter_1_30,L005210?
+0490 0589      1070            inc     (_unassemble_pcounter_1_30 + 1)
+0492           1071   L005210?:
+0492           1072   ;        .\d51.c:208: absadd=(n*0x100)+(*pcounter);
+0492 8A03      1073            mov     ar3,r2
+0494 8B05      1074            mov     ar5,r3
+0496 7B00      1075            mov     r3,#0x00
+0498 858882    1076            mov     dpl,_unassemble_pcounter_1_30
+049B 858983    1077            mov     dph,(_unassemble_pcounter_1_30 + 1)
+049E E4        1078            clr     a
+049F 93        1079            movc    a,@a+dptr
+04A0 7F00      1080            mov     r7,#0x00
+04A2 2B        1081            add     a,r3
+04A3 F538      1082            mov     _unassemble_absadd_1_30,a
+04A5 EF        1083            mov     a,r7
+04A6 3D        1084            addc    a,r5
+04A7 F539      1085            mov     (_unassemble_absadd_1_30 + 1),a
+04A9           1086   ;        .\d51.c:209: addword(absadd);
+04A9 853882    1087            mov     dpl,_unassemble_absadd_1_30
+04AC 853983    1088            mov     dph,(_unassemble_absadd_1_30 + 1)
+04AF C004      1089            push    ar4
+04B1 C005      1090            push    ar5
+04B3 120100    1091            lcall   _addword
+04B6           1092   ;        .\d51.c:210: outbyte(*pcounter);
+04B6 858882    1093            mov     dpl,_unassemble_pcounter_1_30
+04B9 858983    1094            mov     dph,(_unassemble_pcounter_1_30 + 1)
+04BC E4        1095            clr     a
+04BD 93        1096            movc    a,@a+dptr
+04BE F582      1097            mov     dpl,a
+04C0 120100    1098            lcall   _outbyte
+04C3 D005      1099            pop     ar5
+04C5 D004      1100            pop     ar4
+04C7           1101   ;        .\d51.c:249: else i=0;
+04C7 D005      1102            pop     ar5
+04C9           1103   ;        .\d51.c:211: putc(' ');
+04C9           1104   L005055?:
+04C9 1099C0    1105            jbc     _TI,L005211?
+04CC 8001      1106            sjmp    L005055?
+04CE           1107   L005211?:
+04CE 759920    1108            mov     _SBUF,#0x20
+04D1           1109   ;        .\d51.c:212: break;
+04D1 020100    1110            ljmp    L005095?
+04D4           1111   ;        .\d51.c:214: case ':': // 16 bit absolute address
+04D4           1112   L005058?:
+04D4           1113   ;        .\d51.c:215: absadd=*(++pcounter)*0x100;
+04D4 0588      1114            inc     _unassemble_pcounter_1_30
+04D6 E4        1115            clr     a
+04D7 B58800    1116            cjne    a,_unassemble_pcounter_1_30,L005212?
+04DA 0589      1117            inc     (_unassemble_pcounter_1_30 + 1)
+04DC           1118   L005212?:
+04DC 858882    1119            mov     dpl,_unassemble_pcounter_1_30
+04DF 858983    1120            mov     dph,(_unassemble_pcounter_1_30 + 1)
+04E2 E4        1121            clr     a
+04E3 93        1122            movc    a,@a+dptr
+04E4 FB        1123            mov     r3,a
+04E5 FE        1124            mov     r6,a
+04E6 8E39      1125            mov     (_unassemble_absadd_1_30 + 1),r6
+04E8 753800    1126            mov     _unassemble_absadd_1_30,#0x00
+04EB           1127   ;        .\d51.c:216: outbyte(*pcounter);
+04EB 8B82      1128            mov     dpl,r3
+04ED C004      1129            push    ar4
+04EF C005      1130            push    ar5
+04F1 120100    1131            lcall   _outbyte
+04F4 D005      1132            pop     ar5
+04F6 D004      1133            pop     ar4
+04F8           1134   ;        .\d51.c:217: putc(' ');
+04F8           1135   L005059?:
+04F8 109980    1136            jbc     _TI,L005213?
+04FB 8001      1137            sjmp    L005059?
+04FD           1138   L005213?:
+04FD 759920    1139            mov     _SBUF,#0x20
+0500           1140   ;        .\d51.c:218: outbyte(*(++pcounter));
+0500 0588      1141            inc     _unassemble_pcounter_1_30
+0502 E4        1142            clr     a
+0503 B588C0    1143            cjne    a,_unassemble_pcounter_1_30,L005214?
+0506 0589      1144            inc     (_unassemble_pcounter_1_30 + 1)
+0508           1145   L005214?:
+0508 858882    1146            mov     dpl,_unassemble_pcounter_1_30
+050B 858983    1147            mov     dph,(_unassemble_pcounter_1_30 + 1)
+050E E4        1148            clr     a
+050F 93        1149            movc    a,@a+dptr
+0510 F582      1150            mov     dpl,a
+0512 C004      1151            push    ar4
+0514 C005      1152            push    ar5
+0516 120100    1153            lcall   _outbyte
+0519 D005      1154            pop     ar5
+051B D004      1155            pop     ar4
+051D           1156   ;        .\d51.c:219: putc(' ');
+051D           1157   L005062?:
+051D 109940    1158            jbc     _TI,L005215?
+0520 8001      1159            sjmp    L005062?
+0522           1160   L005215?:
+0522 759920    1161            mov     _SBUF,#0x20
+0525           1162   ;        .\d51.c:220: absadd+=*pcounter;
+0525 858882    1163            mov     dpl,_unassemble_pcounter_1_30
+0528 858983    1164            mov     dph,(_unassemble_pcounter_1_30 + 1)
+052B E4        1165            clr     a
+052C 93        1166            movc    a,@a+dptr
+052D 7E00      1167            mov     r6,#0x00
+052F 2538      1168            add     a,_unassemble_absadd_1_30
+0531 F538      1169            mov     _unassemble_absadd_1_30,a
+0533 EE        1170            mov     a,r6
+0534 3539      1171            addc    a,(_unassemble_absadd_1_30 + 1)
+0536 F539      1172            mov     (_unassemble_absadd_1_30 + 1),a
+0538           1173   ;        .\d51.c:221: addword(absadd);
+0538 853882    1174            mov     dpl,_unassemble_absadd_1_30
+053B 853983    1175            mov     dph,(_unassemble_absadd_1_30 + 1)
+053E C004      1176            push    ar4
+0540 C005      1177            push    ar5
+0542 120100    1178            lcall   _addword
+0545 D005      1179            pop     ar5
+0547 D004      1180            pop     ar4
+0549           1181   ;        .\d51.c:222: break;
+0549           1182   ;        .\d51.c:224: case '*': //@r0 or @r1
+0549 8001      1183            sjmp    L005095?
+054B           1184   L005065?:
+054B           1185   ;        .\d51.c:225: addstr("@r");
+054B 907A80    1186            mov     dptr,#__str_1
+054E 75F080    1187            mov     b,#0x80
+0551 C004      1188            push    ar4
+0553 C005      1189            push    ar5
+0555 120100    1190            lcall   _addstr
+0558 D005      1191            pop     ar5
+055A D004      1192            pop     ar4
+055C           1193   ;        .\d51.c:226: addchar((opcode&0x1)|'0');
+055C AB70      1194            mov     r3,_cur
+055E 0570      1195            inc     _cur
+0560 EB        1196            mov     a,r3
+0561 2400      1197            add     a,#_buff
+0563 F8        1198            mov     r0,a
+0564 A628      1199            mov     @r0,_unassemble_sloc1_1_0
+0566           1200   ;        .\d51.c:227: break;
+0566           1201   ;        .\d51.c:229: case '?': //r0 to r7
+0566 8001      1202            sjmp    L005095?
+0568           1203   L005066?:
+0568           1204   ;        .\d51.c:230: addchar('r');
+0568 AB70      1205            mov     r3,_cur
+056A 0570      1206            inc     _cur
+056C EB        1207            mov     a,r3
+056D 2400      1208            add     a,#_buff
+056F F8        1209            mov     r0,a
+0570 7672      1210            mov     @r0,#0x72
+0572           1211   ;        .\d51.c:231: addchar((opcode&0x7)|'0');
+0572 AB70      1212            mov     r3,_cur
+0574 0570      1213            inc     _cur
+0576 EB        1214            mov     a,r3
+0577 2400      1215            add     a,#_buff
+0579 F8        1216            mov     r0,a
+057A A678      1217            mov     @r0,_unassemble_sloc2_1_0
+057C           1218   ;        .\d51.c:232: break;
+057C           1219   ;        .\d51.c:234: default:
+057C 8001      1220            sjmp    L005095?
+057E           1221   L005067?:
+057E           1222   ;        .\d51.c:235: addchar(n);
+057E AB70      1223            mov     r3,_cur
+0580 0570      1224            inc     _cur
+0582 EB        1225            mov     a,r3
+0583 2400      1226            add     a,#_buff
+0585 F8        1227            mov     r0,a
+0586 A602      1228            mov     @r0,ar2
+0588           1229   ;        .\d51.c:237: }
+0588           1230   L005095?:
+0588           1231   ;        .\d51.c:101: for(; mnemtbl[j]!='\n'; j++)
+0588 05F8      1232            inc     _unassemble_j_1_30
+058A E4        1233            clr     a
+058B B5F8C0    1234            cjne    a,_unassemble_j_1_30,L005216?
+058E 05F9      1235            inc     (_unassemble_j_1_30 + 1)
+0590           1236   L005216?:
+0590 020100    1237            ljmp    L005093?
+0593           1238   L005096?:
+0593           1239   ;        .\d51.c:239: addchar('\n');
+0593 AB70      1240            mov     r3,_cur
+0595 0570      1241            inc     _cur
+0597 EB        1242            mov     a,r3
+0598 2400      1243            add     a,#_buff
+059A F8        1244            mov     r0,a
+059B 760A      1245            mov     @r0,#0x0A
+059D           1246   ;        .\d51.c:240: addchar(0);
+059D AB70      1247            mov     r3,_cur
+059F 0570      1248            inc     _cur
+05A1 EB        1249            mov     a,r3
+05A2 2400      1250            add     a,#_buff
+05A4 F8        1251            mov     r0,a
+05A5 7600      1252            mov     @r0,#0x00
+05A7           1253   ;        .\d51.c:241: putsp(buff);
+05A7 900000    1254            mov     dptr,#_buff
+05AA 75F040    1255            mov     b,#0x40
+05AD 120100    1256            lcall   _putsp
+05B0           1257   ;        .\d51.c:242: pcounter++; //points to next opcode
+05B0 0588      1258            inc     _unassemble_pcounter_1_30
+05B2 E4        1259            clr     a
+05B3 B58800    1260            cjne    a,_unassemble_pcounter_1_30,L005217?
+05B6 0589      1261            inc     (_unassemble_pcounter_1_30 + 1)
+05B8           1262   L005217?:
+05B8           1263   ;        .\d51.c:244: if(++i==23) 
+05B8 0598      1264            inc     _unassemble_i_1_30
+05BA 7417      1265            mov     a,#0x17
+05BC B59840    1266            cjne    a,_unassemble_i_1_30,L005218?
+05BF 8001      1267            sjmp    L005219?
+05C1           1268   L005218?:
+05C1 020100    1269            ljmp    L005081?
+05C4           1270   L005219?:
+05C4           1271   ;        .\d51.c:246: n=hitanykey();
+05C4 120100    1272            lcall   _hitanykey
+05C7 AA82      1273            mov     r2,dpl
+05C9           1274   ;        .\d51.c:247: if (n==0x1b) break;
+05C9 BA1B00    1275            cjne    r2,#0x1B,L005220?
+05CC 22        1276            ret
+05CD           1277   L005220?:
+05CD           1278   ;        .\d51.c:248: else if (n==(unsigned char)' ') i--;
+05CD BA2040    1279            cjne    r2,#0x20,L005074?
+05D0 1598      1280            dec     _unassemble_i_1_30
+05D2 020100    1281            ljmp    L005081?
+05D5           1282   L005074?:
+05D5           1283   ;        .\d51.c:249: else i=0;
+05D5 759800    1284            mov     _unassemble_i_1_30,#0x00
+05D8 020100    1285            ljmp    L005081?
+05DB           1286            rseg R_CSEG
+05DB           1287   
+0000           1288            rseg R_CONST
+0000           1289   _mnem:
+0000 807C      1290            db _str_2,(_str_2 >> 8)
+0002 C07C      1291            db _str_3,(_str_3 >> 8)
+0004 007D      1292            db _str_4,(_str_4 >> 8)
+0006 407D      1293            db _str_5,(_str_5 >> 8)
+0008 807D      1294            db _str_6,(_str_6 >> 8)
+000A C07D      1295            db _str_7,(_str_7 >> 8)
+000C 007E      1296            db _str_8,(_str_8 >> 8)
+000E 407E      1297            db _str_9,(_str_9 >> 8)
+0010 807E      1298            db _str_10,(_str_10 >> 8)
+0012 C07E      1299            db _str_11,(_str_11 >> 8)
+0014 007F      1300            db _str_12,(_str_12 >> 8)
+0016 407F      1301            db _str_13,(_str_13 >> 8)
+0018 807F      1302            db _str_14,(_str_14 >> 8)
+001A C07F      1303            db _str_15,(_str_15 >> 8)
+001C 0080      1304            db _str_16,(_str_16 >> 8)
+001E 4080      1305            db _str_17,(_str_17 >> 8)
+0020           1306   _mnemtbl:
+0020 6E6F70    1307            db 'nop'
+0023 0A        1308            db 0x0A
+0024 4826      1309            db 'H&'
+0026 0A        1310            db 0x0A
+0027 6C6A6D70  1311            db 'ljmp'
+002B 09        1312            db 0x09
+002C 3A        1313            db ':'
+002D 0A        1314            db 0x0A
+002E 7272      1315            db 'rr'
+0030 09        1316            db 0x09
+0031 61        1317            db 'a'
+0032 0A        1318            db 0x0A
+0033 4261      1319            db 'Ba'
+0035 0A        1320            db 0x0A
+0036 4221      1321            db 'B!'
+0038 0A        1322            db 0x0A
+0039 0A        1323            db 0x0A
+003A 422A      1324            db 'B*'
+003C 0A        1325            db 0x0A
+003D 0A        1326            db 0x0A
+003E 0A        1327            db 0x0A
+003F 0A        1328            db 0x0A
+0040 0A        1329            db 0x0A
+0041 0A        1330            db 0x0A
+0042 0A        1331            db 0x0A
+0043 0A        1332            db 0x0A
+0044 423F      1333            db 'B?'
+0046 0A        1334            db 0x0A
+0047 6A6263    1335            db 'jbc'
+004A 09        1336            db 0x09
+004B 252C2E    1337            db '%,.'
+004E 0A        1338            db 0x0A
+004F 4426      1339            db 'D&'
+0051 0A        1340            db 0x0A
+0052 6C63616C  1341            db 'lcall'
+     6C
+0057 09        1342            db 0x09
+0058 3A        1343            db ':'
+0059 0A        1344            db 0x0A
+005A 7272      1345            db 'rr'
+005C 632061    1346            db 'c a'
+005F 0A        1347            db 0x0A
+0060 4361      1348            db 'Ca'
+0062 0A        1349            db 0x0A
+0063 4321      1350            db 'C!'
+0065 0A        1351            db 0x0A
+0066 0A        1352            db 0x0A
+0067 432A      1353            db 'C*'
+0069 0A        1354            db 0x0A
+006A 0A        1355            db 0x0A
+006B 0A        1356            db 0x0A
+006C 0A        1357            db 0x0A
+006D 0A        1358            db 0x0A
+006E 0A        1359            db 0x0A
+006F 0A        1360            db 0x0A
+0070 0A        1361            db 0x0A
+0071 433F      1362            db 'C?'
+0073 0A        1363            db 0x0A
+0074 6A62      1364            db 'jb'
+0076 09        1365            db 0x09
+0077 252C2E    1366            db '%,.'
+007A 0A        1367            db 0x0A
+007B 4826      1368            db 'H&'
+007D 0A        1369            db 0x0A
+007E 726574    1370            db 'ret'
+0081 0A        1371            db 0x0A
+0082 726C      1372            db 'rl'
+0084 09        1373            db 0x09
+0085 61        1374            db 'a'
+0086 0A        1375            db 0x0A
+0087 4523      1376            db 'E#'
+0089 0A        1377            db 0x0A
+008A 4521      1378            db 'E!'
+008C 0A        1379            db 0x0A
+008D 0A        1380            db 0x0A
+008E 452A      1381            db 'E*'
+0090 0A        1382            db 0x0A
+0091 0A        1383            db 0x0A
+0092 0A        1384            db 0x0A
+0093 0A        1385            db 0x0A
+0094 0A        1386            db 0x0A
+0095 0A        1387            db 0x0A
+0096 0A        1388            db 0x0A
+0097 0A        1389            db 0x0A
+0098 453F      1390            db 'E?'
+009A 0A        1391            db 0x0A
+009B 6A6E62    1392            db 'jnb'
+009E 09        1393            db 0x09
+009F 252C2E    1394            db '%,.'
+00A2 0A        1395            db 0x0A
+00A3 4426      1396            db 'D&'
+00A5 0A        1397            db 0x0A
+00A6 72657469  1398            db 'reti'
+00AA 0A        1399            db 0x0A
+00AB 726C63    1400            db 'rlc'
+00AE 09        1401            db 0x09
+00AF 61        1402            db 'a'
+00B0 0A        1403            db 0x0A
+00B1 4623      1404            db 'F#'
+00B3 0A        1405            db 0x0A
+00B4 4621      1406            db 'F!'
+00B6 0A        1407            db 0x0A
+00B7 0A        1408            db 0x0A
+00B8 462A      1409            db 'F*'
+00BA 0A        1410            db 0x0A
+00BB 0A        1411            db 0x0A
+00BC 0A        1412            db 0x0A
+00BD 0A        1413            db 0x0A
+00BE 0A        1414            db 0x0A
+00BF 0A        1415            db 0x0A
+00C0 0A        1416            db 0x0A
+00C1 0A        1417            db 0x0A
+00C2 463F      1418            db 'F?'
+00C4 0A        1419            db 0x0A
+00C5 6A63      1420            db 'jc'
+00C7 09        1421            db 0x09
+00C8 2E        1422            db '.'
+00C9 0A        1423            db 0x0A
+00CA 4826      1424            db 'H&'
+00CC 0A        1425            db 0x0A
+00CD 6F726C    1426            db 'orl'
+00D0 09        1427            db 0x09
+00D1 212C61    1428            db '!,a'
+00D4 0A        1429            db 0x0A
+00D5 6F726C    1430            db 'orl'
+00D8 09        1431            db 0x09
+00D9 212C23    1432            db '!,#'
+00DC 0A        1433            db 0x0A
+00DD 4723      1434            db 'G#'
+00DF 0A        1435            db 0x0A
+00E0 4721      1436            db 'G!'
+00E2 0A        1437            db 0x0A
+00E3 0A        1438            db 0x0A
+00E4 472A      1439            db 'G*'
+00E6 0A        1440            db 0x0A
+00E7 0A        1441            db 0x0A
+00E8 0A        1442            db 0x0A
+00E9 0A        1443            db 0x0A
+00EA 0A        1444            db 0x0A
+00EB 0A        1445            db 0x0A
+00EC 0A        1446            db 0x0A
+00ED 0A        1447            db 0x0A
+00EE 473F      1448            db 'G?'
+00F0 0A        1449            db 0x0A
+00F1 6A6E63    1450            db 'jnc'
+00F4 09        1451            db 0x09
+00F5 2E        1452            db '.'
+00F6 0A        1453            db 0x0A
+00F7 4426      1454            db 'D&'
+00F9 0A        1455            db 0x0A
+00FA 616E6C    1456            db 'anl'
+00FD 09        1457            db 0x09
+00FE 212C61    1458            db '!,a'
+0101 0A        1459            db 0x0A
+0102 616E6C    1460            db 'anl'
+0105 09        1461            db 0x09
+0106 212C23    1462            db '!,#'
+0109 0A        1463            db 0x0A
+010A 4923      1464            db 'I#'
+010C 0A        1465            db 0x0A
+010D 4921      1466            db 'I!'
+010F 0A        1467            db 0x0A
+0110 0A        1468            db 0x0A
+0111 492A      1469            db 'I*'
+0113 0A        1470            db 0x0A
+0114 0A        1471            db 0x0A
+0115 0A        1472            db 0x0A
+0116 0A        1473            db 0x0A
+0117 0A        1474            db 0x0A
+0118 0A        1475            db 0x0A
+0119 0A        1476            db 0x0A
+011A 0A        1477            db 0x0A
+011B 493F      1478            db 'I?'
+011D 0A        1479            db 0x0A
+011E 6A7A      1480            db 'jz'
+0120 09        1481            db 0x09
+0121 2E        1482            db '.'
+0122 0A        1483            db 0x0A
+0123 4826      1484            db 'H&'
+0125 0A        1485            db 0x0A
+0126 78726C    1486            db 'xrl'
+0129 09        1487            db 0x09
+012A 212C61    1488            db '!,a'
+012D 0A        1489            db 0x0A
+012E 78726C    1490            db 'xrl'
+0131 09        1491            db 0x09
+0132 212C23    1492            db '!,#'
+0135 0A        1493            db 0x0A
+0136 4A23      1494            db 'J#'
+0138 0A        1495            db 0x0A
+0139 4A21      1496            db 'J!'
+013B 0A        1497            db 0x0A
+013C 0A        1498            db 0x0A
+013D 4A2A      1499            db 'J*'
+013F 0A        1500            db 0x0A
+0140 0A        1501            db 0x0A
+0141 0A        1502            db 0x0A
+0142 0A        1503            db 0x0A
+0143 0A        1504            db 0x0A
+0144 0A        1505            db 0x0A
+0145 0A        1506            db 0x0A
+0146 0A        1507            db 0x0A
+0147 4A3F      1508            db 'J?'
+0149 0A        1509            db 0x0A
+014A 6A6E      1510            db 'jn'
+014C 7A        1511            db 'z'
+014D 09        1512            db 0x09
+014E 2E        1513            db '.'
+014F 0A        1514            db 0x0A
+0150 4426      1515            db 'D&'
+0152 0A        1516            db 0x0A
+0153 6F726C    1517            db 'orl'
+0156 09        1518            db 0x09
+0157 632C25    1519            db 'c,%'
+015A 0A        1520            db 0x0A
+015B 6A6D70    1521            db 'jmp'
+015E 09        1522            db 0x09
+015F 40612B50  1523            db '@a+P'
+0163 0A        1524            db 0x0A
+0164 41612C23  1525            db 'Aa,#'
+0168 0A        1526            db 0x0A
+0169 41212C23  1527            db 'A!,#'
+016D 0A        1528            db 0x0A
+016E 0A        1529            db 0x0A
+016F 412A2C23  1530            db 'A*,#'
+0173 0A        1531            db 0x0A
+0174 0A        1532            db 0x0A
+0175 0A        1533            db 0x0A
+0176 0A        1534            db 0x0A
+0177 0A        1535            db 0x0A
+0178 0A        1536            db 0x0A
+0179 0A        1537            db 0x0A
+017A 0A        1538            db 0x0A
+017B 413F2C23  1539            db 'A?,#'
+017F 0A        1540            db 0x0A
+0180 736A6D70  1541            db 'sjmp'
+0184 09        1542            db 0x09
+0185 2E        1543            db '.'
+0186 0A        1544            db 0x0A
+0187 48        1545            db 'H'
+0188 26        1546            db '&'
+0189 0A        1547            db 0x0A
+018A 616E6C20  1548            db 'anl c,%'
+     632C25
+0191 0A        1549            db 0x0A
+0192 6D6F7663  1550            db 'movc'
+0196 09        1551            db 0x09
+0197 612C4061  1552            db 'a,@a+pc'
+     2B7063
+019E 0A        1553            db 0x0A
+019F 646976    1554            db 'div'
+01A2 09        1555            db 0x09
+01A3 6162      1556            db 'ab'
+01A5 0A        1557            db 0x0A
+01A6 41212C21  1558            db 'A!,!'
+01AA 0A        1559            db 0x0A
+01AB 0A        1560            db 0x0A
+01AC 41212C2A  1561            db 'A!,*'
+01B0 0A        1562            db 0x0A
+01B1 0A        1563            db 0x0A
+01B2 0A        1564            db 0x0A
+01B3 0A        1565            db 0x0A
+01B4 0A        1566            db 0x0A
+01B5 0A        1567            db 0x0A
+01B6 0A        1568            db 0x0A
+01B7 0A        1569            db 0x0A
+01B8 41212C3F  1570            db 'A!,?'
+01BC 0A        1571            db 0x0A
+01BD 41502C23  1572            db 'AP,#'
+01C1 0A        1573            db 0x0A
+01C2 4426      1574            db 'D&'
+01C4 0A        1575            db 0x0A
+01C5 41252C63  1576            db 'A%,c'
+01C9 0A        1577            db 0x0A
+01CA 6D6F7663  1578            db 'movc'
+01CE 09        1579            db 0x09
+01CF 612C4061  1580            db 'a,@a+P'
+     2B50
+01D5 0A        1581            db 0x0A
+01D6 4B23      1582            db 'K#'
+01D8 0A        1583            db 0x0A
+01D9 4B21      1584            db 'K!'
+01DB 0A        1585            db 0x0A
+01DC 0A        1586            db 0x0A
+01DD 4B2A      1587            db 'K*'
+01DF 0A        1588            db 0x0A
+01E0 0A        1589            db 0x0A
+01E1 0A        1590            db 0x0A
+01E2 0A        1591            db 0x0A
+01E3 0A        1592            db 0x0A
+01E4 0A        1593            db 0x0A
+01E5 0A        1594            db 0x0A
+01E6 0A        1595            db 0x0A
+01E7 4B3F      1596            db 'K?'
+01E9 0A        1597            db 0x0A
+01EA 6F726C    1598            db 'orl'
+01ED 09        1599            db 0x09
+01EE 632C2F2E  1600            db 'c,/.'
+01F2 0A        1601            db 0x0A
+01F3 4826      1602            db 'H&'
+01F5 0A        1603            db 0x0A
+01F6 41632C25  1604            db 'Ac,%'
+01FA 0A        1605            db 0x0A
+01FB 4250      1606            db 'BP'
+01FD 0A        1607            db 0x0A
+01FE 6D75      1608            db 'mu'
+0200 6C        1609            db 'l'
+0201 09        1610            db 0x09
+0202 6162      1611            db 'ab'
+0204 0A        1612            db 0x0A
+0205 6462      1613            db 'db'
+0207 09        1614            db 0x09
+0208 6135      1615            db 'a5'
+020A 0A        1616            db 0x0A
+020B 0A        1617            db 0x0A
+020C 412A2C21  1618            db 'A*,!'
+0210 0A        1619            db 0x0A
+0211 0A        1620            db 0x0A
+0212 0A        1621            db 0x0A
+0213 0A        1622            db 0x0A
+0214 0A        1623            db 0x0A
+0215 0A        1624            db 0x0A
+0216 0A        1625            db 0x0A
+0217 0A        1626            db 0x0A
+0218 413F2C21  1627            db 'A?,!'
+021C 0A        1628            db 0x0A
+021D 616E6C    1629            db 'anl'
+0220 09        1630            db 0x09
+0221 632C2F2E  1631            db 'c,/.'
+0225 0A        1632            db 0x0A
+0226 4426      1633            db 'D&'
+0228 0A        1634            db 0x0A
+0229 63706C    1635            db 'cpl'
+022C 09        1636            db 0x09
+022D 25        1637            db '%'
+022E 0A        1638            db 0x0A
+022F 63706C    1639            db 'cpl'
+0232 09        1640            db 0x09
+0233 63        1641            db 'c'
+0234 0A        1642            db 0x0A
+0235 4C612C23  1643            db 'La,# .'
+     202E
+023B 0A        1644            db 0x0A
+023C 4C612C21  1645            db 'La,! .'
+     202E
+0242 0A        1646            db 0x0A
+0243 0A        1647            db 0x0A
+0244 4C2A2C23  1648            db 'L*,# .'
+     202E
+024A 0A        1649            db 0x0A
+024B 0A        1650            db 0x0A
+024C 0A        1651            db 0x0A
+024D 0A        1652            db 0x0A
+024E 0A        1653            db 0x0A
+024F 0A        1654            db 0x0A
+0250 0A        1655            db 0x0A
+0251 0A        1656            db 0x0A
+0252 4C3F2C23  1657            db 'L?,# .'
+     202E
+0258 0A        1658            db 0x0A
+0259 70757368  1659            db 'push'
+025D 09        1660            db 0x09
+025E 21        1661            db '!'
+025F 0A        1662            db 0x0A
+0260 4826      1663            db 'H&'
+0262 0A        1664            db 0x0A
+0263 636C72    1665            db 'clr'
+0266 09        1666            db 0x09
+0267 25        1667            db '%'
+0268 0A        1668            db 0x0A
+0269 636C72    1669            db 'clr'
+026C 09        1670            db 0x09
+026D 63        1671            db 'c'
+026E 0A        1672            db 0x0A
+026F 73776170  1673            db 'swap'
+0273 09        1674            db 0x09
+0274 61        1675            db 'a'
+0275 0A        1676            db 0x0A
+0276 4D21      1677            db 'M!'
+0278 0A        1678            db 0x0A
+0279 0A        1679            db 0x0A
+027A 4D2A      1680            db 'M*'
+027C 0A        1681            db 0x0A
+027D 0A        1682            db 0x0A
+027E 0A        1683            db 0x0A
+027F 0A        1684            db 0x0A
+0280 0A        1685            db 0x0A
+0281 0A        1686            db 0x0A
+0282 0A        1687            db 0x0A
+0283 0A        1688            db 0x0A
+0284 4D3F      1689            db 'M?'
+0286 0A        1690            db 0x0A
+0287 706F70    1691            db 'pop'
+028A 09        1692            db 0x09
+028B 21        1693            db '!'
+028C 0A        1694            db 0x0A
+028D 4426      1695            db 'D&'
+028F 0A        1696            db 0x0A
+0290 73657462  1697            db 'setb'
+0294 09        1698            db 0x09
+0295 25        1699            db '%'
+0296 0A        1700            db 0x0A
+0297 73657462  1701            db 'setb'
+029B 09        1702            db 0x09
+029C 63        1703            db 'c'
+029D 0A        1704            db 0x0A
+029E 6461      1705            db 'da'
+02A0 09        1706            db 0x09
+02A1 61        1707            db 'a'
+02A2 0A        1708            db 0x0A
+02A3 4E21202E  1709            db 'N! .'
+02A7 0A        1710            db 0x0A
+02A8 0A        1711            db 0x0A
+02A9 78636864  1712            db 'xchd'
+02AD 09        1713            db 0x09
+02AE 612C2A    1714            db 'a,*'
+02B1 0A        1715            db 0x0A
+02B2 0A        1716            db 0x0A
+02B3 0A        1717            db 0x0A
+02B4 0A        1718            db 0x0A
+02B5 0A        1719            db 0x0A
+02B6 0A        1720            db 0x0A
+02B7 0A        1721            db 0x0A
+02B8 0A        1722            db 0x0A
+02B9 4E3F2C2E  1723            db 'N?,.'
+02BD 0A        1724            db 0x0A
+02BE 4F612C40  1725            db 'Oa,@P'
+     50
+02C3 0A        1726            db 0x0A
+02C4 4826      1727            db 'H&'
+02C6 0A        1728            db 0x0A
+02C7 0A        1729            db 0x0A
+02C8 4F612C2A  1730            db 'Oa,*'
+02CC 0A        1731            db 0x0A
+02CD 636C72    1732            db 'clr'
+02D0 09        1733            db 0x09
+02D1 61        1734            db 'a'
+02D2 0A        1735            db 0x0A
+02D3 41612C21  1736            db 'Aa,!'
+02D7 0A        1737            db 0x0A
+02D8 0A        1738            db 0x0A
+02D9 41612C2A  1739            db 'Aa,*'
+02DD 0A        1740            db 0x0A
+02DE 0A        1741            db 0x0A
+02DF 0A        1742            db 0x0A
+02E0 0A        1743            db 0x0A
+02E1 0A        1744            db 0x0A
+02E2 0A        1745            db 0x0A
+02E3 0A        1746            db 0x0A
+02E4 0A        1747            db 0x0A
+02E5 41612C3F  1748            db 'Aa,?'
+02E9 0A        1749            db 0x0A
+02EA 4F40502C  1750            db 'O@P,a'
+     61
+02EF 0A        1751            db 0x0A
+02F0 4426      1752            db 'D&'
+02F2 0A        1753            db 0x0A
+02F3 0A        1754            db 0x0A
+02F4 4F2A2C61  1755            db 'O*,a'
+02F8 0A        1756            db 0x0A
+02F9 63706C    1757            db 'cpl'
+02FC 09        1758            db 0x09
+02FD 61        1759            db 'a'
+02FE 0A        1760            db 0x0A
+02FF 41212C61  1761            db 'A!,a'
+0303 0A        1762            db 0x0A
+0304 0A        1763            db 0x0A
+0305 412A2C61  1764            db 'A*,a'
+0309 0A        1765            db 0x0A
+030A 0A        1766            db 0x0A
+030B 0A        1767            db 0x0A
+030C 0A        1768            db 0x0A
+030D 0A        1769            db 0x0A
+030E 0A        1770            db 0x0A
+030F 0A        1771            db 0x0A
+0310 0A        1772            db 0x0A
+0311 413F2C61  1773            db 'A?,a'
+0315 0A        1774            db 0x0A
+0316 00        1775            db 0x00
+0317           1776   __str_0:
+0317 3A20      1777            db ': '
+0319 00        1778            db 0x00
+031A           1779   __str_1:
+031A 4072      1780            db '@r'
+031C 00        1781            db 0x00
+031D           1782   _str_2:
+031D 6D6F76    1783            db 'mov'
+0320 09        1784            db 0x09
+0321 00        1785            db 0x00
+0322           1786   _str_3:
+0322 696E63    1787            db 'inc'
+0325 09        1788            db 0x09
+0326 00        1789            db 0x00
+0327           1790   _str_4:
+0327 646563    1791            db 'dec'
+032A 09        1792            db 0x09
+032B 00        1793            db 0x00
+032C           1794   _str_5:
+032C 6163616C  1795            db 'acall'
+     6C
+0331 09        1796            db 0x09
+0332 00        1797            db 0x00
+0333           1798   _str_6:
+0333 616464    1799            db 'add'
+0336 09        1800            db 0x09
+0337 612C      1801            db 'a,'
+0339 00        1802            db 0x00
+033A           1803   _str_7:
+033A 61646463  1804            db 'addc'
+033E 09        1805            db 0x09
+033F 612C      1806            db 'a,'
+0341 00        1807            db 0x00
+0342           1808   _str_8:
+0342 6F726C    1809            db 'orl'
+0345 09        1810            db 0x09
+0346 612C      1811            db 'a,'
+0348 00        1812            db 0x00
+0349           1813   _str_9:
+0349 616A6D70  1814            db 'ajmp'
+034D 09        1815            db 0x09
+034E 00        1816            db 0x00
+034F           1817   _str_10:
+034F 616E6C    1818            db 'anl'
+0352 09        1819            db 0x09
+0353 612C      1820            db 'a,'
+0355 00        1821            db 0x00
+0356           1822   _str_11:
+0356 78726C    1823            db 'xrl'
+0359 09        1824            db 0x09
+035A 612C      1825            db 'a,'
+035C 00        1826            db 0x00
+035D           1827   _str_12:
+035D 73756262  1828            db 'subb'
+0361 09        1829            db 0x09
+0362 612C      1830            db 'a,'
+0364 00        1831            db 0x00
+0365           1832   _str_13:
+0365 636A6E65  1833            db 'cjne'
+0369 09        1834            db 0x09
+036A 00        1835            db 0x00
+036B           1836   _str_14:
+036B 786368    1837            db 'xch'
+036E 09        1838            db 0x09
+036F 612C      1839            db 'a,'
+0371 00        1840            db 0x00
+0372           1841   _str_15:
+0372 646A6E7A  1842            db 'djnz'
+0376 09        1843            db 0x09
+0377 00        1844            db 0x00
+0378           1845   _str_16:
+0378 6D6F7678  1846            db 'movx'
+037C 09        1847            db 0x09
+037D 00        1848            db 0x00
+037E           1849   _str_17:
+037E 64707472  1850            db 'dptr'
+0382 00        1851            db 0x00
+0383           1852   
+0000           1853            rseg R_XINIT
+0000           1854   
+0000           1855            CSEG
+0000           1856   
+0000           1857   end

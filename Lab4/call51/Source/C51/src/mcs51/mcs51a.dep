@@ -1,0 +1,8 @@
+# Microsoft Developer Studio Generated Dependency File, included by mcs51a.mak
+
+!IF  "$(CFG)" == "mcs51a - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "mcs51a - Win32 Release"
+
+!ENDIF 
+

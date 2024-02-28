@@ -1,0 +1,56 @@
+/* bug-751703.c
+
+  Make sure extern within local scope binds to global
+  scope and is not optimized inappropriately.
+ */
+
+#include "../fwk/include/testfwk.h"
+
+int x = 1;
+int y = 2;
+int z = 0;
+
+static void
+addxy(void)
+{
+  extern int x, y, z;
+  z = x+y;
+} 
+
+static void
+times10x(void)
+{
+  unsigned char x;
+  
+  z = 0;
+  for (x=0; x<10; x++)
+    {
+      extern int x; /* bind to the global x */
+      z += x;
+    }
+}
+
+static void
+testExternDeadCode(void)
+{
+  ASSERT(z == 0);
+  addxy();
+  ASSERT(z == 3);
+  times10x();
+  ASSERT(z == 10);
+}
+
+void
+__runSuite(void)
+{
+  __prints("Running testExternDeadCode\n");
+  testExternDeadCode();
+}
+
+const int __numCases = 1;
+
+__code const char *
+__getSuiteName(void)
+{
+  return "cases_sdcc_bugs\\bug-751703";
+}

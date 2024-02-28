@@ -1,0 +1,725 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: bison - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPB8F7.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "HAVE_STRING_H" /D "HAVE_STDLIB_H" /Fp"Release/bison.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\Tools\bison\alloca.c"
+"C:\Source\call51\Source\Tools\bison\allocate.c"
+"C:\Source\call51\Source\Tools\bison\closure.c"
+"C:\Source\call51\Source\Tools\bison\conflicts.c"
+"C:\Source\call51\Source\Tools\bison\derives.c"
+"C:\Source\call51\Source\Tools\bison\files.c"
+"C:\Source\call51\Source\Tools\bison\getargs.c"
+"C:\Source\call51\Source\Tools\bison\getopt.c"
+"C:\Source\call51\Source\Tools\bison\getopt1.c"
+"C:\Source\call51\Source\Tools\bison\gram.c"
+"C:\Source\call51\Source\Tools\bison\lalr.c"
+"C:\Source\call51\Source\Tools\bison\lex.c"
+"C:\Source\call51\Source\Tools\bison\LR0.c"
+"C:\Source\call51\Source\Tools\bison\main.c"
+"C:\Source\call51\Source\Tools\bison\nullable.c"
+"C:\Source\call51\Source\Tools\bison\output.c"
+"C:\Source\call51\Source\Tools\bison\print.c"
+"C:\Source\call51\Source\Tools\bison\reader.c"
+"C:\Source\call51\Source\Tools\bison\reduce.c"
+"C:\Source\call51\Source\Tools\bison\symtab.c"
+"C:\Source\call51\Source\Tools\bison\warshall.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPB8F7.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPB8F8.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/bison.pdb" /machine:I386 /out:"../bin/bison.exe" 
+.\Release\alloca.obj
+.\Release\allocate.obj
+.\Release\closure.obj
+.\Release\conflicts.obj
+.\Release\derives.obj
+.\Release\files.obj
+.\Release\getargs.obj
+.\Release\getopt.obj
+.\Release\getopt1.obj
+.\Release\gram.obj
+.\Release\lalr.obj
+.\Release\lex.obj
+.\Release\LR0.obj
+.\Release\main.obj
+.\Release\nullable.obj
+.\Release\output.obj
+.\Release\print.obj
+.\Release\reader.obj
+.\Release\reduce.obj
+.\Release\symtab.obj
+.\Release\warshall.obj
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPB8F8.tmp"
+<h3>Output Window</h3>
+Compiling...
+alloca.c
+allocate.c
+closure.c
+conflicts.c
+derives.c
+files.c
+getargs.c
+getopt.c
+getopt1.c
+gram.c
+lalr.c
+lex.c
+LR0.c
+main.c
+nullable.c
+output.c
+print.c
+reader.c
+reduce.c
+symtab.c
+warshall.c
+Linking...
+<h3>
+--------------------Configuration: Util - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPBD3F.bat" with contents
+[
+@echo off
+..\tools\bin\bison -d -v -o parser.c parser.y
+]
+Creating command line "C:\Users\jcf_h\AppData\Local\Temp\RSPBD3F.bat"
+<h3>Output Window</h3>
+Performing Custom Build Step on .\parser.y
+<h3>
+--------------------Configuration: A51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x1009 /fo"Release/A51.res" /i "Resources" /d "NDEBUG" "C:\Source\call51\Source\A51\Resources\A51.rc"" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPBE0B.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/A51.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\A51\a51.c"
+"C:\Source\call51\Source\A51\emitter.c"
+"C:\Source\call51\Source\A51\lexer.c"
+"C:\Source\call51\Source\A51\parser.c"
+"C:\Source\call51\Source\A51\pathtools.c"
+"C:\Source\call51\Source\A51\run.c"
+"C:\Source\call51\Source\A51\symbol.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPBE0B.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPBE0C.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/a51.pdb" /machine:I386 /out:"..\..\bin\a51.exe" 
+.\Release\a51.obj
+.\Release\emitter.obj
+.\Release\lexer.obj
+.\Release\parser.obj
+.\Release\pathtools.obj
+.\Release\run.obj
+.\Release\symbol.obj
+.\Release\A51.res
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPBE0C.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+a51.c
+emitter.c
+lexer.c
+parser.c
+pathtools.c
+run.c
+symbol.c
+Linking...
+<h3>
+--------------------Configuration: yacc - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPC0DC.bat" with contents
+[
+@echo off
+"C:\Program Files\TortoiseSVN\bin\SubWCRev"  .\..\..\.. .\version.in .\version.h
+]
+Creating command line "C:\Users\jcf_h\AppData\Local\Temp\RSPC0DC.bat"
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPC0DD.bat" with contents
+[
+@echo off
+..\..\tools\bin\bison  -d -v -o c51y.c c51.y
+]
+Creating command line "C:\Users\jcf_h\AppData\Local\Temp\RSPC0DD.bat"
+<h3>Output Window</h3>
+Performing Custom Build Step on .\version.in
+SubWCRev: 'C:\Source\call51'
+Last committed at revision 170
+Mixed revision range 169:170
+Local modifications found
+Performing Custom Build Step on .\C51.y
+<h3>
+--------------------Configuration: gawk - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPC4D6.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "./" /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "GAWK" /D "HAVE_CONFIG_H" /D __STDC__=0 /Fp"Release/gawk.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\Tools\gawk\array.c"
+"C:\Source\call51\Source\Tools\gawk\awkgram.c"
+"C:\Source\call51\Source\Tools\gawk\builtin.c"
+"C:\Source\call51\Source\Tools\gawk\dfa.c"
+"C:\Source\call51\Source\Tools\gawk\eval.c"
+"C:\Source\call51\Source\Tools\gawk\ext.c"
+"C:\Source\call51\Source\Tools\gawk\field.c"
+"C:\Source\call51\Source\Tools\gawk\gawkmisc.c"
+"C:\Source\call51\Source\Tools\gawk\getid.c"
+"C:\Source\call51\Source\Tools\gawk\getopt.c"
+"C:\Source\call51\Source\Tools\gawk\getopt1.c"
+"C:\Source\call51\Source\Tools\gawk\io.c"
+"C:\Source\call51\Source\Tools\gawk\main.c"
+"C:\Source\call51\Source\Tools\gawk\msg.c"
+"C:\Source\call51\Source\Tools\gawk\node.c"
+"C:\Source\call51\Source\Tools\gawk\popen.c"
+"C:\Source\call51\Source\Tools\gawk\profile.c"
+"C:\Source\call51\Source\Tools\gawk\random.c"
+"C:\Source\call51\Source\Tools\gawk\re.c"
+"C:\Source\call51\Source\Tools\gawk\regex.c"
+"C:\Source\call51\Source\Tools\gawk\version.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPC4D6.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPC4D7.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/gawk.pdb" /machine:I386 /out:"..\bin\gawk.exe" 
+.\Release\array.obj
+.\Release\awkgram.obj
+.\Release\builtin.obj
+.\Release\dfa.obj
+.\Release\eval.obj
+.\Release\ext.obj
+.\Release\field.obj
+.\Release\gawkmisc.obj
+.\Release\getid.obj
+.\Release\getopt.obj
+.\Release\getopt1.obj
+.\Release\io.obj
+.\Release\main.obj
+.\Release\msg.obj
+.\Release\node.obj
+.\Release\popen.obj
+.\Release\profile.obj
+.\Release\random.obj
+.\Release\re.obj
+.\Release\regex.obj
+.\Release\version.obj
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPC4D7.tmp"
+<h3>Output Window</h3>
+Compiling...
+array.c
+awkgram.c
+builtin.c
+dfa.c
+eval.c
+ext.c
+field.c
+gawkmisc.c
+getid.c
+getopt.c
+getopt1.c
+io.c
+main.c
+msg.c
+node.c
+popen.c
+profile.c
+random.c
+re.c
+regex.c
+version.c
+Linking...
+<h3>
+--------------------Configuration: mcs51a - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPCB6F.bat" with contents
+[
+@echo off
+..\..\..\Tools\bin\gawk -f ../C51peeph.awk .\peeph.def >peeph.rul
+]
+Creating command line "C:\Users\jcf_h\AppData\Local\Temp\RSPCB6F.bat"
+<h3>Output Window</h3>
+Performing Custom Build Step on .\peeph.def
+<h3>
+--------------------Configuration: mcs51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPCC0C.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I ".." /I "." /I "..\.." /I "..\..\support\util" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /Fo"Release/" /Fd"Release/" /FD /Zm1500 /c 
+"C:\Source\call51\Source\C51\src\mcs51\gen.c"
+"C:\Source\call51\Source\C51\src\mcs51\main.c"
+"C:\Source\call51\Source\C51\src\mcs51\peep.c"
+"C:\Source\call51\Source\C51\src\mcs51\ralloc.c"
+"C:\Source\call51\Source\C51\src\mcs51\rtrack.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPCC0C.tmp" 
+Creating command line "link.exe -lib /nologo /out:"Release\port.lib"  .\Release\gen.obj .\Release\main.obj .\Release\peep.obj .\Release\ralloc.obj .\Release\rtrack.obj "
+<h3>Output Window</h3>
+Compiling...
+gen.c
+main.c
+peep.c
+ralloc.c
+rtrack.c
+Generating Code...
+Creating library...
+<h3>
+--------------------Configuration: flex - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPD005.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "USG" /Fp"Release/flex.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\tools\flex\ccl.c"
+"C:\Source\call51\Source\tools\flex\dfa.c"
+"C:\Source\call51\Source\tools\flex\ecs.c"
+"C:\Source\call51\Source\tools\flex\gen.c"
+"C:\Source\call51\Source\tools\flex\main.c"
+"C:\Source\call51\Source\tools\flex\misc.c"
+"C:\Source\call51\Source\tools\flex\nfa.c"
+"C:\Source\call51\Source\tools\flex\parse.c"
+"C:\Source\call51\Source\tools\flex\scan.c"
+"C:\Source\call51\Source\tools\flex\skel.c"
+"C:\Source\call51\Source\tools\flex\sym.c"
+"C:\Source\call51\Source\tools\flex\tblcmp.c"
+"C:\Source\call51\Source\tools\flex\yylex.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPD005.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPD016.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/flex.pdb" /machine:I386 /out:"../bin/flex.exe" 
+.\Release\ccl.obj
+.\Release\dfa.obj
+.\Release\ecs.obj
+.\Release\gen.obj
+.\Release\main.obj
+.\Release\misc.obj
+.\Release\nfa.obj
+.\Release\parse.obj
+.\Release\scan.obj
+.\Release\skel.obj
+.\Release\sym.obj
+.\Release\tblcmp.obj
+.\Release\yylex.obj
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPD016.tmp"
+<h3>Output Window</h3>
+Compiling...
+ccl.c
+dfa.c
+ecs.c
+gen.c
+main.c
+misc.c
+nfa.c
+parse.c
+scan.c
+skel.c
+sym.c
+tblcmp.c
+yylex.c
+Linking...
+<h3>
+--------------------Configuration: C51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPD2F5.bat" with contents
+[
+@echo off
+..\..\tools\bin\flex  -oc51lex.c c51.lex
+]
+Creating command line "C:\Users\jcf_h\AppData\Local\Temp\RSPD2F5.bat"
+Creating command line "rc.exe /l 0x409 /fo"Release/c51.res" /i "Resource" /d "NDEBUG" "C:\Source\call51\Source\C51\src\Resource\c51.rc"" 
+Performing Custom Build Step on .\C51.lex
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPD3B2.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "." /I ".." /I "..\support\util" /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\C51\support\Util\BuildCmd.c"
+"C:\Source\call51\Source\C51\src\C51asm.c"
+"C:\Source\call51\Source\C51\src\C51ast.c"
+"C:\Source\call51\Source\C51\src\C51BBlock.c"
+"C:\Source\call51\Source\C51\src\C51bitv.c"
+"C:\Source\call51\Source\C51\src\C51cflow.c"
+"C:\Source\call51\Source\C51\src\C51cse.c"
+"C:\Source\call51\Source\C51\src\C51debug.c"
+"C:\Source\call51\Source\C51\src\C51dflow.c"
+"C:\Source\call51\Source\C51\src\C51dwarf2.c"
+"C:\Source\call51\Source\C51\src\C51err.c"
+"C:\Source\call51\Source\C51\src\C51glue.c"
+"C:\Source\call51\Source\C51\src\C51hasht.c"
+"C:\Source\call51\Source\C51\src\C51icode.c"
+"C:\Source\call51\Source\C51\src\C51label.c"
+"C:\Source\call51\Source\C51\src\C51lex.c"
+"C:\Source\call51\Source\C51\src\C51loop.c"
+"C:\Source\call51\Source\C51\src\C51lrange.c"
+"C:\Source\call51\Source\C51\src\C51macro.c"
+"C:\Source\call51\Source\C51\src\C51main.c"
+"C:\Source\call51\Source\C51\src\C51mem.c"
+"C:\Source\call51\Source\C51\src\C51opt.c"
+"C:\Source\call51\Source\C51\src\C51peeph.c"
+"C:\Source\call51\Source\C51\src\C51ptropt.c"
+"C:\Source\call51\Source\C51\src\C51set.c"
+"C:\Source\call51\Source\C51\src\C51symt.c"
+"C:\Source\call51\Source\C51\src\C51util.c"
+"C:\Source\call51\Source\C51\src\C51val.c"
+"C:\Source\call51\Source\C51\src\c51y.c"
+"C:\Source\call51\Source\C51\src\cdbFile.c"
+"C:\Source\call51\Source\C51\support\Util\dbuf.c"
+"C:\Source\call51\Source\C51\support\Util\dbuf_string.c"
+"C:\Source\call51\Source\C51\support\Util\MySystem.c"
+"C:\Source\call51\Source\C51\support\Util\NewAlloc.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPD3B2.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPD3B3.tmp" with contents
+[
+mcs51\Release\port.lib /nologo /subsystem:console /pdb:none /machine:I386 /out:"..\..\..\bin\c51.exe" 
+.\Release\BuildCmd.obj
+.\Release\C51asm.obj
+.\Release\C51ast.obj
+.\Release\C51BBlock.obj
+.\Release\C51bitv.obj
+.\Release\C51cflow.obj
+.\Release\C51cse.obj
+.\Release\C51debug.obj
+.\Release\C51dflow.obj
+.\Release\C51dwarf2.obj
+.\Release\C51err.obj
+.\Release\C51glue.obj
+.\Release\C51hasht.obj
+.\Release\C51icode.obj
+.\Release\C51label.obj
+.\Release\C51lex.obj
+.\Release\C51loop.obj
+.\Release\C51lrange.obj
+.\Release\C51macro.obj
+.\Release\C51main.obj
+.\Release\C51mem.obj
+.\Release\C51opt.obj
+.\Release\C51peeph.obj
+.\Release\C51ptropt.obj
+.\Release\C51set.obj
+.\Release\C51symt.obj
+.\Release\C51util.obj
+.\Release\C51val.obj
+.\Release\c51y.obj
+.\Release\cdbFile.obj
+.\Release\dbuf.obj
+.\Release\dbuf_string.obj
+.\Release\MySystem.obj
+.\Release\NewAlloc.obj
+.\Release\c51.res
+.\mcs51\Release\port.lib
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPD3B3.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+BuildCmd.c
+C51asm.c
+C51ast.c
+C51BBlock.c
+C51bitv.c
+C51cflow.c
+C51cse.c
+C51debug.c
+C51dflow.c
+C51dwarf2.c
+C51err.c
+C51glue.c
+C51hasht.c
+C51icode.c
+C51label.c
+C51lex.c
+C51loop.c
+C51lrange.c
+C51macro.c
+C51main.c
+Generating Code...
+Compiling...
+C51mem.c
+C51opt.c
+C51peeph.c
+C51ptropt.c
+C51set.c
+C51symt.c
+C51util.c
+C51val.c
+c51y.c
+cdbFile.c
+dbuf.c
+dbuf_string.c
+MySystem.c
+NewAlloc.c
+Generating Code...
+Linking...
+<h3>
+--------------------Configuration: Lib51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE121.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/Lib51.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\Lib51\Lib51.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPE121.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE122.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:console /incremental:no /pdb:"Release/Lib51.pdb" /machine:I386 /out:"..\..\bin\Lib51.exe" 
+.\Release\Lib51.obj
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPE122.tmp"
+<h3>Output Window</h3>
+Compiling...
+Lib51.c
+Linking...
+<h3>
+--------------------Configuration: Link51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE1CF.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/link51.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\Link51\link51.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPE1CF.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE1D0.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/l51.pdb" /machine:I386 /out:"..\..\bin\l51.exe" 
+.\Release\link51.obj
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPE1D0.tmp"
+<h3>Output Window</h3>
+Compiling...
+link51.c
+Linking...
+<h3>
+--------------------Configuration: c51ppa - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE2EA.bat" with contents
+[
+@echo off
+..\Tools\bin\gawk -f opt-gather.awk c51pp.opt | ..\Tools\bin\gawk -f opt-functions.awk -f optc-gen.awk -v header_name="config.h system.h options.h" > options.c
+..\Tools\bin\gawk -f opt-gather.awk c51pp.opt | ..\Tools\bin\gawk -f opt-functions.awk -f opth-gen.awk > options.h
+]
+Creating command line "C:\Users\jcf_h\AppData\Local\Temp\RSPE2EA.bat"
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE2EB.bat" with contents
+[
+@echo off
+copy auto-host_vc_in.h auto-host.h > nul
+]
+Creating command line "C:\Users\jcf_h\AppData\Local\Temp\RSPE2EB.bat"
+<h3>Output Window</h3>
+Performing Custom Build Step on .\c51pp.opt
+Performing Custom Build Step on ".\auto-host_vc_in.h"
+<h3>
+--------------------Configuration: c51pp - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE3F6.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "." /I ".\libiberty" /I ".\win32" /I ".\libcpp" /I ".\libcpp\include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "HAVE_CONFIG_H" /D "_WIN32" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\Cpp\libcpp\charset.c"
+"C:\Source\call51\Source\Cpp\libcpp\directives.c"
+"C:\Source\call51\Source\Cpp\libcpp\errors.c"
+"C:\Source\call51\Source\Cpp\libcpp\expr.c"
+"C:\Source\call51\Source\Cpp\libcpp\files.c"
+"C:\Source\call51\Source\Cpp\libcpp\identifiers.c"
+"C:\Source\call51\Source\Cpp\libcpp\init.c"
+"C:\Source\call51\Source\Cpp\libcpp\lex.c"
+"C:\Source\call51\Source\Cpp\libcpp\line-map.c"
+"C:\Source\call51\Source\Cpp\libcpp\macro.c"
+"C:\Source\call51\Source\Cpp\libcpp\mkdeps.c"
+"C:\Source\call51\Source\Cpp\libcpp\symtab.c"
+"C:\Source\call51\Source\Cpp\libcpp\traditional.c"
+"C:\Source\call51\Source\Cpp\libiberty\concat.c"
+"C:\Source\call51\Source\Cpp\libiberty\fopen_unlocked.c"
+"C:\Source\call51\Source\Cpp\libiberty\getpwd.c"
+"C:\Source\call51\Source\Cpp\libiberty\hashtab.c"
+"C:\Source\call51\Source\Cpp\libiberty\hex.c"
+"C:\Source\call51\Source\Cpp\libiberty\lbasename.c"
+"C:\Source\call51\Source\Cpp\libiberty\md5.c"
+"C:\Source\call51\Source\Cpp\libiberty\obstack.c"
+"C:\Source\call51\Source\Cpp\libiberty\safe-ctype.c"
+"C:\Source\call51\Source\Cpp\libiberty\splay-tree.c"
+"C:\Source\call51\Source\Cpp\libiberty\vasprintf.c"
+"C:\Source\call51\Source\Cpp\libiberty\xexit.c"
+"C:\Source\call51\Source\Cpp\libiberty\xmalloc.c"
+"C:\Source\call51\Source\Cpp\libiberty\xmemdup.c"
+"C:\Source\call51\Source\Cpp\libiberty\xstrdup.c"
+"C:\Source\call51\Source\Cpp\libiberty\xstrerror.c"
+"C:\Source\call51\Source\Cpp\win32\dirent.c"
+"C:\Source\call51\Source\Cpp\c-incpath.c"
+"C:\Source\call51\Source\Cpp\c-ppoutput.c"
+"C:\Source\call51\Source\Cpp\c51pp-diagnostic.c"
+"C:\Source\call51\Source\Cpp\c51pp-opts.c"
+"C:\Source\call51\Source\Cpp\c51pp.c"
+"C:\Source\call51\Source\Cpp\cppdefault.c"
+"C:\Source\call51\Source\Cpp\options.c"
+"C:\Source\call51\Source\Cpp\opts-common.c"
+"C:\Source\call51\Source\Cpp\opts.c"
+"C:\Source\call51\Source\Cpp\prefix.c"
+"C:\Source\call51\Source\Cpp\version.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPE3F6.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPE3F7.tmp" with contents
+[
+/nologo /subsystem:console /incremental:no /pdb:"Release/c51pp.pdb" /machine:I386 /out:"..\..\bin\c51pp.exe" /pdbtype:sept 
+.\Release\charset.obj
+.\Release\directives.obj
+.\Release\errors.obj
+.\Release\expr.obj
+.\Release\files.obj
+.\Release\identifiers.obj
+.\Release\init.obj
+.\Release\lex.obj
+".\Release\line-map.obj"
+.\Release\macro.obj
+.\Release\mkdeps.obj
+.\Release\symtab.obj
+.\Release\traditional.obj
+.\Release\concat.obj
+.\Release\fopen_unlocked.obj
+.\Release\getpwd.obj
+.\Release\hashtab.obj
+.\Release\hex.obj
+.\Release\lbasename.obj
+.\Release\md5.obj
+.\Release\obstack.obj
+".\Release\safe-ctype.obj"
+".\Release\splay-tree.obj"
+.\Release\vasprintf.obj
+.\Release\xexit.obj
+.\Release\xmalloc.obj
+.\Release\xmemdup.obj
+.\Release\xstrdup.obj
+.\Release\xstrerror.obj
+.\Release\dirent.obj
+".\Release\c-incpath.obj"
+".\Release\c-ppoutput.obj"
+".\Release\c51pp-diagnostic.obj"
+".\Release\c51pp-opts.obj"
+.\Release\c51pp.obj
+.\Release\cppdefault.obj
+.\Release\options.obj
+".\Release\opts-common.obj"
+.\Release\opts.obj
+.\Release\prefix.obj
+.\Release\version.obj
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPE3F7.tmp"
+<h3>Output Window</h3>
+Compiling...
+charset.c
+directives.c
+errors.c
+expr.c
+files.c
+identifiers.c
+init.c
+lex.c
+C:\Source\call51\Source\Cpp\libcpp\lex.c(244) : warning C4146: unary minus operator applied to unsigned type, result still unsigned
+line-map.c
+macro.c
+mkdeps.c
+symtab.c
+traditional.c
+concat.c
+fopen_unlocked.c
+getpwd.c
+hashtab.c
+hex.c
+lbasename.c
+md5.c
+Generating Code...
+C:\Source\call51\Source\Cpp\libcpp\files.c(943) : warning C4761: integral size mismatch in argument; conversion supplied
+Compiling...
+obstack.c
+safe-ctype.c
+splay-tree.c
+vasprintf.c
+xexit.c
+xmalloc.c
+xmemdup.c
+xstrdup.c
+xstrerror.c
+dirent.c
+c-incpath.c
+c-ppoutput.c
+c51pp-diagnostic.c
+c51pp-opts.c
+c51pp.c
+cppdefault.c
+options.c
+opts-common.c
+opts.c
+prefix.c
+Generating Code...
+Compiling...
+version.c
+Generating Code...
+Linking...
+<h3>
+--------------------Configuration: S51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPEB4B.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/S51.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Source\call51\Source\S51\disasm.c"
+"C:\Source\call51\Source\S51\globals.c"
+"C:\Source\call51\Source\S51\hex.c"
+"C:\Source\call51\Source\S51\interrupts.c"
+"C:\Source\call51\Source\S51\opcodes.c"
+"C:\Source\call51\Source\S51\s51.c"
+"C:\Source\call51\Source\S51\Timers.c"
+"C:\Source\call51\Source\S51\tserver.c"
+]
+Creating command line "cl.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPEB4B.tmp" 
+Creating temporary file "C:\Users\jcf_h\AppData\Local\Temp\RSPEB4C.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib ws2_32.lib wininet.lib /nologo /subsystem:console /incremental:no /pdb:"Release/s51.pdb" /machine:I386 /out:"..\..\bin\s51.exe" 
+.\Release\disasm.obj
+.\Release\globals.obj
+.\Release\hex.obj
+.\Release\interrupts.obj
+.\Release\opcodes.obj
+.\Release\s51.obj
+.\Release\Timers.obj
+.\Release\tserver.obj
+]
+Creating command line "link.exe @C:\Users\jcf_h\AppData\Local\Temp\RSPEB4C.tmp"
+<h3>Output Window</h3>
+Compiling...
+disasm.c
+globals.c
+hex.c
+interrupts.c
+opcodes.c
+s51.c
+Timers.c
+tserver.c
+Linking...
+<h3>
+--------------------Configuration: _Call51 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+
+
+
+<h3>Results</h3>
+_Call51 - 0 error(s), 2 warning(s)
+</pre>
+</body>
+</html>

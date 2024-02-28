@@ -1,0 +1,35 @@
+0000 858183       1   mov DPH, SP
+0003              2   
+0003 D280         3   setb 0x80
+0005 D288         4   setb 0x88
+0007 D290         5   setb 0x90
+0009 D298         6   setb 0x98
+000B D2A0         7   setb 0xA0
+000D D2A8         8   setb 0xA8
+000F D2B0         9   setb 0xB0
+0011 D2B8        10   setb 0xB8
+0013 D2C0        11   setb 0xC0
+0015 D2C8        12   setb 0xC8
+0017 D2D0        13   setb 0xD0
+0019 D2D8        14   setb 0xD8
+001B D2E0        15   setb 0xE0
+001D D2E8        16   setb 0xE8
+001F D2F0        17   setb 0xF0
+0021 D2F8        18   setb 0xF8
+0023             19   
+0023 758080      20   mov 0x80, #0x80
+0026 758888      21   mov 0x88, #0x88
+0029 759090      22   mov 0x90, #0x90
+002C 759898      23   mov 0x98, #0x98
+002F 75A0A0      24   mov 0xA0, #0xA0
+0032 75A8A8      25   mov 0xA8, #0xA8
+0035 75B0B0      26   mov 0xB0, #0xB0
+0038 75B8B8      27   mov 0xB8, #0xB8
+003B 75C0C0      28   mov 0xC0, #0xC0
+003E 75C8C8      29   mov 0xC8, #0xC8
+0041 75D0D0      30   mov 0xD0, #0xD0
+0044 75D8D8      31   mov 0xD8, #0xD8
+0047 75E0E0      32   mov 0xE0, #0xE0
+004A 75E8E8      33   mov 0xE8, #0xE8
+004D 75F0F0      34   mov 0xF0, #0xF0
+0050 75F8F8      35   mov 0xF8, #0xF8

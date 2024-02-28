@@ -1,0 +1,553 @@
+<CALL51LIB>
+
+<INDEX>
+       456
+<MODULE>
+divsint 11
+__divsint,R_CSEG,0000,0000
+</MODULE>
+
+<MODULE>
+divuint 1339
+__divint,R_CSEG,000A,0000
+__divuint,R_CSEG,0000,0000
+</MODULE>
+
+<MODULE>
+modsint 2534
+__modsint,R_CSEG,0000,0000
+</MODULE>
+
+<MODULE>
+moduint 3861
+__moduint,R_CSEG,0000,0000
+__modint,R_CSEG,000A,0000
+</MODULE>
+
+<MODULE>
+mulint 5276
+__mulint,R_CSEG,0000,0000
+__mulint_dummy,R_CSEG,0000,0000
+</MODULE>
+
+</INDEX>
+
+<FILES>
+
+<FILE>
+divsint
+<OBJ>
+<MODULE>
+divsint
+</MODULE>
+<OPTC51>
+--model-small
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,003D,NO
+</SEGMENTS>
+<LOCALS>
+b_not_negative,R_CSEG,0027,0000
+not_negative,R_CSEG,003C,0000
+a_not_negative,R_CSEG,0014,0000
+__divsint_dummy,R_CSEG,0000,0000
+</LOCALS>
+<PUBLICS>
+__divsint,R_CSEG,0000,0000
+</PUBLICS>
+<EXTERNALS>
+__divint,any,0000,0000
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+C2 D5
+E5 83
+30 E7 rel3(a_not_negative;)
+D2 D5
+E4
+C3
+95 82
+F5 82
+E4
+95 83
+F5 83
+E5 81
+24 FE
+F8
+E6
+30 E7 rel3(b_not_negative;)
+B2 D5
+18
+E4
+C3
+96
+F6
+E4
+08
+96
+F9
+18
+E6
+F8
+12 addr16(__divint;)  
+30 D5 rel3(not_negative;)
+E4
+C3
+95 82
+F5 82
+E4
+95 83
+F5 83
+22
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+<FILE>
+divuint
+<OBJ>
+<MODULE>
+divuint
+</MODULE>
+<OPTC51>
+--model-small
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,0031,NO
+</SEGMENTS>
+<LOCALS>
+loop,R_CSEG,000F,0000
+smaller,R_CSEG,002E,0000
+__divuint_dummy,R_CSEG,0000,0000
+</LOCALS>
+<PUBLICS>
+__divint,R_CSEG,000A,0000
+__divuint,R_CSEG,0000,0000
+</PUBLICS>
+<EXTERNALS>
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+E5 81
+24 FE
+F8
+E6
+F9
+18
+E6
+F8
+7A 10
+E4
+FB
+FC
+E5 82
+25 E0
+F5 82
+E5 83
+33
+F5 83
+EB
+33
+FB
+EC
+33
+FC
+EB
+98
+F5 F0
+EC
+99
+40 rel2(smaller;)
+FC
+AB F0
+43 82 01
+DA rel2(loop;)
+22
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+<FILE>
+modsint
+<OBJ>
+<MODULE>
+modsint
+</MODULE>
+<OPTC51>
+--model-small
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,003D,NO
+</SEGMENTS>
+<LOCALS>
+b_not_negative,R_CSEG,0026,0000
+not_negative,R_CSEG,003C,0000
+a_not_negative,R_CSEG,0014,0000
+__modsint_dummy,R_CSEG,0000,0000
+</LOCALS>
+<PUBLICS>
+__modsint,R_CSEG,0000,0000
+</PUBLICS>
+<EXTERNALS>
+__modint,any,0000,0000
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+C2 D5
+E5 83
+30 E7 rel3(a_not_negative;)
+D2 D5
+E4
+C3
+95 82
+F5 82
+E4
+95 83
+F5 83
+E5 81
+24 FE
+F8
+E6
+30 E7 rel3(b_not_negative;)
+18
+E4
+C3
+96
+F6
+E4
+08
+96
+F6
+86 01
+18
+86 00
+12 addr16(__modint;)  
+30 D5 rel3(not_negative;)
+E4
+C3
+95 82
+F5 82
+E4
+95 83
+F5 83
+22
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+<FILE>
+moduint
+<OBJ>
+<MODULE>
+moduint
+</MODULE>
+<OPTC51>
+--model-small
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,0045,NO
+</SEGMENTS>
+<LOCALS>
+start,R_CSEG,0024,0000
+div_by_0,R_CSEG,0044,0000
+msbset,R_CSEG,0026,0000
+__moduint_dummy,R_CSEG,0000,0000
+loop1,R_CSEG,0010,0000
+loop2,R_CSEG,002B,0000
+smaller,R_CSEG,003B,0000
+</LOCALS>
+<PUBLICS>
+__moduint,R_CSEG,0000,0000
+__modint,R_CSEG,000A,0000
+</PUBLICS>
+<EXTERNALS>
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+E5 81
+24 FE
+F8
+86 01
+18
+86 00
+E8
+49
+60 rel2(div_by_0;)
+7A 01
+E8
+25 E0
+F8
+E9
+33
+40 rel2(msbset;)
+F9
+E5 82
+98
+E5 83
+99
+40 rel2(start;)
+0A
+80 rel2(loop1;)
+C3
+E9
+13
+F9
+E8
+13
+F8
+C3
+E5 82
+98
+F5 F0
+E5 83
+99
+40 rel2(smaller;)
+F5 83
+85 F0 82
+C3
+E9
+13
+F9
+E8
+13
+F8
+DA rel2(loop2;)
+22
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+<FILE>
+mulint
+<OBJ>
+<MODULE>
+mulint
+</MODULE>
+<OPTC51>
+--model-small
+</OPTC51>
+<SEGMENTS>
+R_GSINIT,code,0000,NO
+R_BSEG,bit,0000,NO
+R_XSEG,xdata,0000,NO
+BIT_BANK,data,0000,OV
+R_CONST,code,0000,NO
+rbank0,data,0000,OV
+R_PSEG,xdata,0000,NO
+R_DINIT,code,0000,NO
+R_DSEG,data,0000,NO
+R_OSEG,data,0000,OV
+R_IXSEG,xdata,0000,NO
+R_ISEG,idata,0000,NO
+R_HOME,code,0000,NO
+R_XINIT,code,0000,NO
+R_CSEG,code,0022,NO
+</SEGMENTS>
+<LOCALS>
+</LOCALS>
+<PUBLICS>
+__mulint,R_CSEG,0000,0000
+__mulint_dummy,R_CSEG,0000,0000
+</PUBLICS>
+<EXTERNALS>
+</EXTERNALS>
+<CODE AT 0000>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_HOME>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_GSINIT>
+</CODE>
+<CODE R_DINIT>
+</CODE>
+<CODE R_CSEG>
+74 FE
+25 81
+F8
+E6
+85 82 F0
+A4
+C0 E0
+85 82 F0
+18
+E6
+A4
+F5 82
+D0 E0
+25 F0
+C5 83
+86 F0
+A4
+25 83
+F5 83
+22
+</CODE>
+<CODE R_CSEG>
+</CODE>
+<CODE R_XINIT>
+</CODE>
+<CODE R_CONST>
+</CODE>
+<CODE AT 0000>
+</CODE>
+</OBJ>
+</FILE>
+
+</FILES>
+
+</CALL51LIB>

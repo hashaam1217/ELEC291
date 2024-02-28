@@ -1,0 +1,822 @@
+--- Running: cases_sdcc_bugs\bug-1029883_type_int_sign1_signed_sign2_signed
+Running testgcse
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1029883_type_int_sign1_signed_sign2_unsigned
+Running testgcse
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1029883_type_int_sign1_unsigned_sign2_signed
+Running testgcse
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1029883_type_int_sign1_unsigned_sign2_unsigned
+Running testgcse
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1292721
+Running testBug156270
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1294691
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-136564
+Running testInducion
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1376320
+Running testSign
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1406131
+Running testwhile
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1408066
+Running testBackPatchLabel
+--- Summary: 0/12/1: 0 failed of 12 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1493710
+Running testFindPointerSet
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1654060
+Running testTypedef
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1699804
+Running testFoo
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1805702
+Running test
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1817005
+Running testDummy
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-1981238
+Running testBitfield
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-2051348
+Running testBug2051348
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-221100
+Running testUnsignedCharIndex
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-221168
+Running testMultiDimensionalAddress
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-221220
+Running testStructVolatile
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-223113
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-227710
+Running testPostIncrement
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-2646174
+Running test_2646174
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-2890326
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-2982135
+Running test2982135
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-3034585
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-3117729
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-3184920
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-3495411
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-408972
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-426632
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-435068
+Running testQuestion
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-435214
+Running testDivide
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-441448
+Running testPrePostIncrement
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-448984
+Running testRshRem
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-453196
+Running testDhry
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-460000
+Running testByteShift
+Running testOtherSignedShifts
+Running testShiftByParam
+--- Summary: 0/8/3: 0 failed of 8 tests in 3 cases.
+--- Running: cases_sdcc_bugs\bug-460010
+Running testBadPromotion
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-460444
+Running testXOR
+Running testLeftRightXor
+--- Summary: 0/3/2: 0 failed of 3 tests in 2 cases.
+--- Running: cases_sdcc_bugs\bug-467035
+Running testForMerge
+(a, b) -> (0, 0)
+(a, b) -> (1, 0)
+(a, b) -> (2, 0)
+(a, b) -> (3, 0)
+(a, b) -> (4, 0)
+(a, b) -> (5, 0)
+(a, b) -> (6, 0)
+(a, b) -> (7, 0)
+(a, b) -> (8, 0)
+(a, b) -> (9, 0)
+(a, b) -> (10, 0)
+(a, b) -> (11, 0)
+(a, b) -> (12, 0)
+(a, b) -> (0, 1)
+(a, b) -> (1, 1)
+(a, b) -> (2, 1)
+(a, b) -> (3, 1)
+(a, b) -> (4, 1)
+(a, b) -> (5, 1)
+(a, b) -> (6, 1)
+(a, b) -> (7, 1)
+(a, b) -> (8, 1)
+(a, b) -> (9, 1)
+(a, b) -> (10, 1)
+(a, b) -> (11, 1)
+(a, b) -> (12, 1)
+(a, b) -> (0, 2)
+(a, b) -> (1, 2)
+(a, b) -> (2, 2)
+(a, b) -> (3, 2)
+(a, b) -> (4, 2)
+(a, b) -> (5, 2)
+(a, b) -> (6, 2)
+(a, b) -> (7, 2)
+(a, b) -> (8, 2)
+(a, b) -> (9, 2)
+(a, b) -> (10, 2)
+(a, b) -> (11, 2)
+(a, b) -> (12, 2)
+(a, b) -> (0, 3)
+(a, b) -> (1, 3)
+(a, b) -> (2, 3)
+(a, b) -> (3, 3)
+(a, b) -> (4, 3)
+(a, b) -> (5, 3)
+(a, b) -> (6, 3)
+(a, b) -> (7, 3)
+(a, b) -> (8, 3)
+(a, b) -> (9, 3)
+(a, b) -> (10, 3)
+(a, b) -> (11, 3)
+(a, b) -> (12, 3)
+(a, b) -> (0, 4)
+(a, b) -> (1, 4)
+(a, b) -> (2, 4)
+(a, b) -> (3, 4)
+(a, b) -> (4, 4)
+(a, b) -> (5, 4)
+(a, b) -> (6, 4)
+(a, b) -> (7, 4)
+(a, b) -> (8, 4)
+(a, b) -> (9, 4)
+(a, b) -> (10, 4)
+(a, b) -> (11, 4)
+(a, b) -> (12, 4)
+(a, b) -> (0, 5)
+(a, b) -> (1, 5)
+(a, b) -> (2, 5)
+(a, b) -> (3, 5)
+(a, b) -> (4, 5)
+(a, b) -> (5, 5)
+(a, b) -> (6, 5)
+(a, b) -> (7, 5)
+(a, b) -> (8, 5)
+(a, b) -> (9, 5)
+(a, b) -> (10, 5)
+(a, b) -> (11, 5)
+(a, b) -> (12, 5)
+(a, b) -> (0, 6)
+(a, b) -> (1, 6)
+(a, b) -> (2, 6)
+(a, b) -> (3, 6)
+(a, b) -> (4, 6)
+(a, b) -> (5, 6)
+(a, b) -> (6, 6)
+(a, b) -> (7, 6)
+(a, b) -> (8, 6)
+(a, b) -> (9, 6)
+(a, b) -> (10, 6)
+(a, b) -> (11, 6)
+(a, b) -> (12, 6)
+(a, b) -> (0, 7)
+(a, b) -> (1, 7)
+(a, b) -> (2, 7)
+(a, b) -> (3, 7)
+(a, b) -> (4, 7)
+(a, b) -> (5, 7)
+(a, b) -> (6, 7)
+(a, b) -> (7, 7)
+(a, b) -> (8, 7)
+(a, b) -> (9, 7)
+(a, b) -> (10, 7)
+(a, b) -> (11, 7)
+(a, b) -> (12, 7)
+(a, b) -> (0, 8)
+(a, b) -> (1, 8)
+(a, b) -> (2, 8)
+(a, b) -> (3, 8)
+(a, b) -> (4, 8)
+(a, b) -> (5, 8)
+(a, b) -> (6, 8)
+(a, b) -> (7, 8)
+(a, b) -> (8, 8)
+(a, b) -> (9, 8)
+(a, b) -> (10, 8)
+(a, b) -> (11, 8)
+(a, b) -> (12, 8)
+(a, b) -> (0, 9)
+(a, b) -> (1, 9)
+(a, b) -> (2, 9)
+(a, b) -> (3, 9)
+(a, b) -> (4, 9)
+(a, b) -> (5, 9)
+(a, b) -> (6, 9)
+(a, b) -> (7, 9)
+(a, b) -> (8, 9)
+(a, b) -> (9, 9)
+(a, b) -> (10, 9)
+(a, b) -> (11, 9)
+(a, b) -> (12, 9)
+(a, b) -> (0, 10)
+(a, b) -> (1, 10)
+(a, b) -> (2, 10)
+(a, b) -> (3, 10)
+(a, b) -> (4, 10)
+(a, b) -> (5, 10)
+(a, b) -> (6, 10)
+(a, b) -> (7, 10)
+(a, b) -> (8, 10)
+(a, b) -> (9, 10)
+(a, b) -> (10, 10)
+(a, b) -> (11, 10)
+(a, b) -> (12, 10)
+--- Summary: 0/286/1: 0 failed of 286 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-468811
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-469671_storage_none
+Running testMul
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-469671_storage_static
+Running testMul
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-477835
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-477927
+Running testLoopInit
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-478094
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-485362_type_int
+Running testDivBySelf
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-499644
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-500536
+Running testfs2long
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-524195
+Running testMask
+--- Summary: 0/6/1: 0 failed of 6 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-524209
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-524211
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-524685
+Running testDivPow2
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-524691
+Running testDivByZero
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-524697
+Running testOffset
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-607243
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-716242
+Running testFuncPtr
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-751703
+Running testExternDeadCode
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1_none_storage2_none
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1_none_storage2___far
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1_none_storage2___near
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___code_storage2_none
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___code_storage2___far
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___code_storage2___near
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___far_storage2_none
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___far_storage2___far
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___far_storage2___near
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___near_storage2_none
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___near_storage2___far
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-868103_storage1___near_storage2___near
+Running testBug868103
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-880197
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-895992
+Running testLR
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-905492
+Running testLeftRightAndOr
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-908454
+Running testBitToCharPromotion
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-920866
+Running testReplaceParameterTree
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-927659
+Running testReverse
+Running testAddFunc
+--- Summary: 0/2/2: 0 failed of 2 tests in 2 cases.
+--- Running: cases_sdcc_bugs\bug-971834
+Running testLR
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug-983491
+Running testMergeStr
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1057979
+Running test_sprintf
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1065458
+Running test_1065458
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1115321
+Running test_s
+--- Summary: 0/12/1: 0 failed of 12 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1185672
+Running test_1185672
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1198642
+Running test_cse_generic_ptr
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1273984_sign_none
+Running testAssignInFunctioncall
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1273984_sign_unsigned
+Running testAssignInFunctioncall
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1337835
+Running test_1337835
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1348008
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1399290
+Running testLongPlus
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1409955
+Running test_push_pop
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1426356
+Running test_1426356
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1458678
+Running testDummy
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1464657
+Running test_Peephole251
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1477149_type_float
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1477149_type_long
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1496419
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1503067
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1505811
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1505956
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1509084
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1520966
+Running testFloatOp
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1535242
+Running testSaveBits
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1536762
+Running testBug
+--- Summary: 0/7/1: 0 failed of 7 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1546986
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1551947
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1565152
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1579664
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1579949
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1618050
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1665511
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1670148
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1678803
+Running testCaller
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1712928
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1714204
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1717943
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1721024
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1723128
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1734654
+Running testMyFunc
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1738367
+Running testBug
+--- Summary: 0/13/1: 0 failed of 13 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1745717
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1749275
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1750318
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1757671
+Running testBug
+--- Summary: 0/5/1: 0 failed of 5 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1788177
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1810965
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1816470
+Running testConst
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1838000
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1839277
+Running testBug1839277
+Running testBug1839299
+--- Summary: 0/4/2: 0 failed of 4 tests in 2 cases.
+--- Running: cases_sdcc_bugs\bug1839321
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1856409_storage_none
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1856409_storage_static___code
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1875933
+Running testBug
+--- Summary: 0/12/1: 0 failed of 12 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1888147
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1908493
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1921073
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1928022
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1929140
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1932626
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1938300
+Running testDummy
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1962613
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1994062_sign_signed
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug1994062_sign_unsigned
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2077267
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2084206
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2094505
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2435941
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2655200
+Running testBug
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2686159
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2719592
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2729218
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2740884
+Running testBug
+--- Summary: 0/12/1: 0 failed of 12 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2761883
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2783061
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2805333
+Running test_bug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2817646
+Running testBug
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2823963
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2862308
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2862650
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2889032
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2935162
+Running testBug
+--- Summary: 0/9/1: 0 failed of 9 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2938110
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2942247
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+bug2942343.c:9: warning 158: overflow in implicit constant conversion
+bug2942343.c:9: warning 158: overflow in implicit constant conversion
+--- Running: cases_sdcc_bugs\bug2942343
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2944399
+Running testBug1
+Running testBug2
+Running testBug3
+Running testBug4
+--- Summary: 0/4/4: 0 failed of 4 tests in 4 cases.
+--- Running: cases_sdcc_bugs\bug2947189
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2956580
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug2989562
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3004918
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3027957
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3029630
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3037889
+Running testDummy
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3117721
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3130806
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3135551
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3166064
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3166208
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3183823
+Running testNeg
+--- Summary: 0/10/1: 0 failed of 10 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3188899
+Running testBug3188899
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3190029
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3223041
+Running testBug
+--- Summary: 0/48/1: 0 failed of 48 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3290691
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3299577
+Running testBug
+--- Summary: 0/84/1: 0 failed of 84 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3303325
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3304184
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3361290
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3366711
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3368945
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3379723
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3381400
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3389647_memory__STATMEM
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3389647_memory___code
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3397636
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3401973
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3403429
+Running testBug
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3404101
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3407632
+Running testBug
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.
+bug3410620_bank_1.c:28: warning 139: call via function pointer in ISR using non-zero register bank.
+            Cannot determine which register bank to save.
+--- Running: cases_sdcc_bugs\bug3410620_bank_1
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+bug3410620_bank_2.c:28: warning 139: call via function pointer in ISR using non-zero register bank.
+            Cannot determine which register bank to save.
+--- Running: cases_sdcc_bugs\bug3410620_bank_2
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3410878
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3424150
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+bug3440327.c:45: error 92: Functions called via pointers must be 'reentrant' to take this many arguments
+--- Running: cases_sdcc_bugs\bug3444293
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+bug3467508.c:12: warning 127: non-pointer type cast to generic pointer
+--- Running: cases_sdcc_bugs\bug3467508
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3474855
+Running testBug
+--- Summary: 0/65/1: 0 failed of 65 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3475630
+Running testBug
+--- Summary: 0/40/1: 0 failed of 40 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3475656
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+
+bug3475990.c:10: parse error: token -> 'set_b' ; column 18
+--- Running: cases_sdcc_bugs\bug3480545
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3482146
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3482217
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3482753
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3501942
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3502965
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3521024
+Running testBug
+--- Summary: 0/30/1: 0 failed of 30 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3531687
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3537338
+Running testBug
+--- Summary: 0/3/1: 0 failed of 3 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3559997
+Running testBug
+--- Summary: 0/1/1: 0 failed of 1 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3561215
+Running testBug
+--- Summary: 0/0/1: 0 failed of 0 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug3564104
+Running testBug
+--- Summary: 0/8/1: 0 failed of 8 tests in 1 cases.
+
+bug3564649.c:14: parse error: token -> 'void' ; column 14
+--- Running: cases_sdcc_bugs\bug3565757
+Running testBug
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug608752
+Running testOpAssign
+--- Summary: 0/2/1: 0 failed of 2 tests in 1 cases.
+--- Running: cases_sdcc_bugs\bug663539
+Running test_volatile
+--- Running: cases_sdcc_bugs\bugs-1596270-1736867
+Running testBug156270
+--- Summary: 0/4/1: 0 failed of 4 tests in 1 cases.

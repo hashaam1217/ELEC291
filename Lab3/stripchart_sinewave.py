@@ -4,48 +4,6 @@ import matplotlib.animation as animation
 import sys, time, math
 import serial
 
-import dash_daq as daq
-
-
-# Temp {{{
-
-from dash import Dash, html, dcc, Input, Output, callback
-import dash_daq as daq
-
-app = Dash(__name__)
-
-app.layout = html.Div([
-    daq.Thermometer(
-        id='my-thermometer-1',
-        value=5,
-        min=0,
-        max=10,
-        style={
-            'margin-bottom': '5%'
-        }
-    ),
-    dcc.Slider(
-        id='thermometer-slider-1',
-        value=5,
-        min=0,
-        max=10,
-
-    ),
-])
-
-
-@callback(
-    Output('my-thermometer-1', 'value'),
-    Input('thermometer-slider-1', 'value')
-)
-def update_thermometer(value):
-    return value
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-#}}}
-
 ser = serial.Serial(
     port='/dev/ttyUSB0',
     baudrate=115200,
