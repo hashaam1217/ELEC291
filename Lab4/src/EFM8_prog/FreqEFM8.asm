@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Thu Feb 29 04:06:51 2024
+; This file was generated Thu Feb 29 14:13:02 2024
 ;--------------------------------------------------------
 $name FreqEFM8
 $optc51 --model-small
@@ -502,7 +502,9 @@ _main_sC_1_52:
 _main_measurements_1_52:
 	ds 2
 _main_str_1_52:
-	ds 6
+	ds 11
+_main_boom_1_52:
+	ds 16
 _main_test_num_1_52:
 	ds 20
 _main_sloc0_1_0:
@@ -1091,6 +1093,7 @@ L012008?:
 ;sC                        Allocated with name '_main_sC_1_52'
 ;measurements              Allocated with name '_main_measurements_1_52'
 ;str                       Allocated with name '_main_str_1_52'
+;boom                      Allocated with name '_main_boom_1_52'
 ;test_num                  Allocated with name '_main_test_num_1_52'
 ;sloc0                     Allocated with name '_main_sloc0_1_0'
 ;------------------------------------------------------------
@@ -1108,22 +1111,44 @@ _main:
 	mov	(_main_sC_1_52 + 3),a
 	mov	_main_measurements_1_52,a
 	mov	(_main_measurements_1_52 + 1),a
-;	FreqEFM8.c:234: char str[] = "Hello";
-	mov	_main_str_1_52,#0x48
-	mov	(_main_str_1_52 + 0x0001),#0x65
-	mov	(_main_str_1_52 + 0x0002),#0x6C
-	mov	(_main_str_1_52 + 0x0003),#0x6C
-	mov	(_main_str_1_52 + 0x0004),#0x6F
-	mov	(_main_str_1_52 + 0x0005),#0x00
-;	FreqEFM8.c:236: TIMER0_Init();
+;	FreqEFM8.c:234: char str[] = "Boom meter";
+	mov	_main_str_1_52,#0x42
+	mov	(_main_str_1_52 + 0x0001),#0x6F
+	mov	(_main_str_1_52 + 0x0002),#0x6F
+	mov	(_main_str_1_52 + 0x0003),#0x6D
+	mov	(_main_str_1_52 + 0x0004),#0x20
+	mov	(_main_str_1_52 + 0x0005),#0x6D
+	mov	(_main_str_1_52 + 0x0006),#0x65
+	mov	(_main_str_1_52 + 0x0007),#0x74
+	mov	(_main_str_1_52 + 0x0008),#0x65
+	mov	(_main_str_1_52 + 0x0009),#0x72
+	mov	(_main_str_1_52 + 0x000a),#0x00
+;	FreqEFM8.c:235: char boom[]= "BOOM OUTOFRANGE";
+	mov	_main_boom_1_52,#0x42
+	mov	(_main_boom_1_52 + 0x0001),#0x4F
+	mov	(_main_boom_1_52 + 0x0002),#0x4F
+	mov	(_main_boom_1_52 + 0x0003),#0x4D
+	mov	(_main_boom_1_52 + 0x0004),#0x20
+	mov	(_main_boom_1_52 + 0x0005),#0x4F
+	mov	(_main_boom_1_52 + 0x0006),#0x55
+	mov	(_main_boom_1_52 + 0x0007),#0x54
+	mov	(_main_boom_1_52 + 0x0008),#0x4F
+	mov	(_main_boom_1_52 + 0x0009),#0x46
+	mov	(_main_boom_1_52 + 0x000a),#0x52
+	mov	(_main_boom_1_52 + 0x000b),#0x41
+	mov	(_main_boom_1_52 + 0x000c),#0x4E
+	mov	(_main_boom_1_52 + 0x000d),#0x47
+	mov	(_main_boom_1_52 + 0x000e),#0x45
+	mov	(_main_boom_1_52 + 0x000f),#0x00
+;	FreqEFM8.c:237: TIMER0_Init();
 	lcall	_TIMER0_Init
-;	FreqEFM8.c:238: waitms(500); // Give PuTTY a chance to start.
+;	FreqEFM8.c:239: waitms(500); // Give PuTTY a chance to start.
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	FreqEFM8.c:239: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-	mov	a,#__str_1
+;	FreqEFM8.c:240: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+	mov	a,#__str_2
 	push	acc
-	mov	a,#(__str_1 >> 8)
+	mov	a,#(__str_2 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -1131,8 +1156,14 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	FreqEFM8.c:244: __FILE__, __DATE__, __TIME__);
-;	FreqEFM8.c:243: "Compiled: %s, %s\n\n",
+;	FreqEFM8.c:245: __FILE__, __DATE__, __TIME__);
+;	FreqEFM8.c:244: "Compiled: %s, %s\n\n",
+	mov	a,#__str_6
+	push	acc
+	mov	a,#(__str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
 	mov	a,#__str_5
 	push	acc
 	mov	a,#(__str_5 >> 8)
@@ -1151,42 +1182,36 @@ _main:
 	push	acc
 	mov	a,#0x80
 	push	acc
-	mov	a,#__str_2
-	push	acc
-	mov	a,#(__str_2 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
 	lcall	_printf
 	mov	a,sp
 	add	a,#0xf4
 	mov	sp,a
-;	FreqEFM8.c:248: LCD_4BIT();
+;	FreqEFM8.c:249: LCD_4BIT();
 	lcall	_LCD_4BIT
-;	FreqEFM8.c:249: LCDprint(str, 1, 1);
+;	FreqEFM8.c:250: LCDprint(str, 1, 1);
 	mov	_LCDprint_PARM_2,#0x01
 	setb	_LCDprint_PARM_3
 	mov	dptr,#_main_str_1_52
 	mov	b,#0x40
 	lcall	_LCDprint
-;	FreqEFM8.c:253: while(1)
-L013004?:
-;	FreqEFM8.c:255: TL0=0;
+;	FreqEFM8.c:254: while(1)
+L013007?:
+;	FreqEFM8.c:256: TL0=0;
 	mov	_TL0,#0x00
-;	FreqEFM8.c:256: TH0=0;
+;	FreqEFM8.c:257: TH0=0;
 	mov	_TH0,#0x00
-;	FreqEFM8.c:257: overflow_count=0;
+;	FreqEFM8.c:258: overflow_count=0;
 	mov	_overflow_count,#0x00
-;	FreqEFM8.c:258: TF0=0;
+;	FreqEFM8.c:259: TF0=0;
 	clr	_TF0
-;	FreqEFM8.c:259: TR0=1; // Start Timer/Counter 0
+;	FreqEFM8.c:260: TR0=1; // Start Timer/Counter 0
 	setb	_TR0
-;	FreqEFM8.c:260: waitms(1000);
+;	FreqEFM8.c:261: waitms(1000);
 	mov	dptr,#0x03E8
 	lcall	_waitms
-;	FreqEFM8.c:261: TR0=0; // Stop Timer/Counter 0
+;	FreqEFM8.c:262: TR0=0; // Stop Timer/Counter 0
 	clr	_TR0
-;	FreqEFM8.c:262: F=(overflow_count*0x10000L+TH0*0x100L+TL0);
+;	FreqEFM8.c:263: F=(overflow_count*0x10000L+TH0*0x100L+TL0);
 	mov	r2,_overflow_count
 	mov	r3,#0x00
 	mov	(_main_sloc0_1_0 + 3),r3
@@ -1231,7 +1256,7 @@ L013004?:
 	mov	a,r3
 	addc	a,(_main_sloc0_1_0 + 3)
 	mov	(__mullong_PARM_2 + 3),a
-;	FreqEFM8.c:263: C = 1000*1000000* 1.44 / (3*3900*F);
+;	FreqEFM8.c:264: C = 1000*1000000* 1.44 / (3*3900*F);
 	mov	dptr,#0x2DB4
 	clr	a
 	mov	b,a
@@ -1265,7 +1290,7 @@ L013004?:
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-;	FreqEFM8.c:264: sC += C;
+;	FreqEFM8.c:265: sC += C;
 	mov	a,r2
 	add	a,_main_sC_1_52
 	mov	_main_sC_1_52,a
@@ -1278,13 +1303,13 @@ L013004?:
 	mov	a,r5
 	addc	a,(_main_sC_1_52 + 3)
 	mov	(_main_sC_1_52 + 3),a
-;	FreqEFM8.c:265: measurements++;
+;	FreqEFM8.c:266: measurements++;
 	inc	_main_measurements_1_52
 	clr	a
-	cjne	a,_main_measurements_1_52,L013010?
+	cjne	a,_main_measurements_1_52,L013014?
 	inc	(_main_measurements_1_52 + 1)
-L013010?:
-;	FreqEFM8.c:266: sprintf(test_num, "C=%lu.%lu mF", sC / (measurements * 1000), (sC / measurements) % 1000);
+L013014?:
+;	FreqEFM8.c:267: sprintf(test_num, "C=%lu nF", sC / measurements);
 	mov	__divulong_PARM_2,_main_measurements_1_52
 	mov	(__divulong_PARM_2 + 1),(_main_measurements_1_52 + 1)
 	mov	(__divulong_PARM_2 + 2),#0x00
@@ -1294,45 +1319,17 @@ L013010?:
 	mov	b,(_main_sC_1_52 + 2)
 	mov	a,(_main_sC_1_52 + 3)
 	lcall	__divulong
-	mov	__modulong_PARM_2,#0xE8
-	mov	(__modulong_PARM_2 + 1),#0x03
-	mov	(__modulong_PARM_2 + 2),#0x00
-	mov	(__modulong_PARM_2 + 3),#0x00
-	lcall	__modulong
-	mov	_main_sloc0_1_0,dpl
-	mov	(_main_sloc0_1_0 + 1),dph
-	mov	(_main_sloc0_1_0 + 2),b
-	mov	(_main_sloc0_1_0 + 3),a
-	mov	__mulint_PARM_2,_main_measurements_1_52
-	mov	(__mulint_PARM_2 + 1),(_main_measurements_1_52 + 1)
-	mov	dptr,#0x03E8
-	lcall	__mulint
-	mov	r6,dpl
-	mov	r7,dph
-	mov	__divulong_PARM_2,r6
-	mov	(__divulong_PARM_2 + 1),r7
-	mov	(__divulong_PARM_2 + 2),#0x00
-	mov	(__divulong_PARM_2 + 3),#0x00
-	mov	dpl,_main_sC_1_52
-	mov	dph,(_main_sC_1_52 + 1)
-	mov	b,(_main_sC_1_52 + 2)
-	mov	a,(_main_sC_1_52 + 3)
-	lcall	__divulong
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r2,b
-	mov	r3,a
-	push	_main_sloc0_1_0
-	push	(_main_sloc0_1_0 + 1)
-	push	(_main_sloc0_1_0 + 2)
-	push	(_main_sloc0_1_0 + 3)
-	push	ar6
-	push	ar7
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
 	push	ar2
 	push	ar3
-	mov	a,#__str_6
+	push	ar4
+	push	ar5
+	mov	a,#__str_7
 	push	acc
-	mov	a,#(__str_6 >> 8)
+	mov	a,#(__str_7 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -1344,16 +1341,16 @@ L013010?:
 	push	acc
 	lcall	_sprintf
 	mov	a,sp
-	add	a,#0xf2
+	add	a,#0xf6
 	mov	sp,a
-;	FreqEFM8.c:267: if (measurements > 20)
+;	FreqEFM8.c:268: if (measurements >= 20)
 	clr	c
-	mov	a,#0x14
-	subb	a,_main_measurements_1_52
-	clr	a
-	subb	a,(_main_measurements_1_52 + 1)
-	jnc	L013002?
-;	FreqEFM8.c:269: sC /= 2;
+	mov	a,_main_measurements_1_52
+	subb	a,#0x14
+	mov	a,(_main_measurements_1_52 + 1)
+	subb	a,#0x00
+	jc	L013002?
+;	FreqEFM8.c:270: sC /= 2;
 	mov	a,(_main_sC_1_52 + 3)
 	clr	c
 	rrc	a
@@ -1367,7 +1364,7 @@ L013010?:
 	mov	a,_main_sC_1_52
 	rrc	a
 	mov	_main_sC_1_52,a
-;	FreqEFM8.c:270: measurements /= 2;
+;	FreqEFM8.c:271: measurements /= 2;
 	mov	a,(_main_measurements_1_52 + 1)
 	clr	c
 	rrc	a
@@ -1376,23 +1373,67 @@ L013010?:
 	xch	a,_main_measurements_1_52
 	mov	(_main_measurements_1_52 + 1),a
 L013002?:
-;	FreqEFM8.c:272: LCDprint(test_num, 2, 1);
+;	FreqEFM8.c:274: if (sC / measurements >= 25000)
+	mov	__divulong_PARM_2,_main_measurements_1_52
+	mov	(__divulong_PARM_2 + 1),(_main_measurements_1_52 + 1)
+	mov	(__divulong_PARM_2 + 2),#0x00
+	mov	(__divulong_PARM_2 + 3),#0x00
+	mov	dpl,_main_sC_1_52
+	mov	dph,(_main_sC_1_52 + 1)
+	mov	b,(_main_sC_1_52 + 2)
+	mov	a,(_main_sC_1_52 + 3)
+	lcall	__divulong
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	clr	c
+	mov	a,r2
+	subb	a,#0xA8
+	mov	a,r3
+	subb	a,#0x61
+	mov	a,r4
+	subb	a,#0x00
+	mov	a,r5
+	subb	a,#0x00
+	jc	L013004?
+;	FreqEFM8.c:276: LCDprint(boom, 1, 1);
+	mov	_LCDprint_PARM_2,#0x01
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_boom_1_52
+	mov	b,#0x40
+	lcall	_LCDprint
+;	FreqEFM8.c:277: LCDprint(boom, 2, 1);
+	mov	_LCDprint_PARM_2,#0x02
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_boom_1_52
+	mov	b,#0x40
+	lcall	_LCDprint
+	ljmp	L013007?
+L013004?:
+;	FreqEFM8.c:281: LCDprint(str, 1, 1);
+	mov	_LCDprint_PARM_2,#0x01
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_str_1_52
+	mov	b,#0x40
+	lcall	_LCDprint
+;	FreqEFM8.c:282: LCDprint(test_num, 2, 1);
 	mov	_LCDprint_PARM_2,#0x02
 	setb	_LCDprint_PARM_3
 	mov	dptr,#_main_test_num_1_52
 	mov	b,#0x40
 	lcall	_LCDprint
-	ljmp	L013004?
+	ljmp	L013007?
 	rseg R_CSEG
 
 	rseg R_XINIT
 
 	rseg R_CONST
-__str_1:
+__str_2:
 	db 0x1B
 	db '[2J'
 	db 0x00
-__str_2:
+__str_3:
 	db 'EFM8 Frequency measurement using Timer/Counter 0.'
 	db 0x0A
 	db 'File: %s'
@@ -1402,17 +1443,17 @@ __str_2:
 	db 0x0A
 	db 0x0A
 	db 0x00
-__str_3:
+__str_4:
 	db 'FreqEFM8.c'
 	db 0x00
-__str_4:
+__str_5:
 	db 'Feb 29 2024'
 	db 0x00
-__str_5:
-	db '04:06:51'
-	db 0x00
 __str_6:
-	db 'C=%lu.%lu mF'
+	db '14:13:02'
+	db 0x00
+__str_7:
+	db 'C=%lu nF'
 	db 0x00
 
 	CSEG

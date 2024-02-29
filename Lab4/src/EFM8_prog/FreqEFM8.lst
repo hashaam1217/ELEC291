@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-0000              4   ; This file was generated Thu Feb 29 04:06:51 2024
+0000              4   ; This file was generated Thu Feb 29 14:13:02 2024
 0000              5   ;--------------------------------------------------------
                   5   $name FreqEFM8
                   6   $optc51 --model-small
@@ -502,898 +502,939 @@
 000D            502   _main_measurements_1_52:
 000D            503            ds 2
 000F            504   _main_str_1_52:
-000F            505            ds 6
-0015            506   _main_test_num_1_52:
-0015            507            ds 20
-0029            508   _main_sloc0_1_0:
-0029            509            ds 4
-002D            510   ;--------------------------------------------------------
-002D            511   ; overlayable items in internal ram 
-002D            512   ;--------------------------------------------------------
-0000            513            rseg    R_OSEG
-0000            514   ;--------------------------------------------------------
-0000            515   ; indirectly addressable internal ram data
+000F            505            ds 11
+001A            506   _main_boom_1_52:
+001A            507            ds 16
+002A            508   _main_test_num_1_52:
+002A            509            ds 20
+003E            510   _main_sloc0_1_0:
+003E            511            ds 4
+0042            512   ;--------------------------------------------------------
+0042            513   ; overlayable items in internal ram 
+0042            514   ;--------------------------------------------------------
+0000            515            rseg    R_OSEG
 0000            516   ;--------------------------------------------------------
-0000            517            rseg R_ISEG
+0000            517   ; indirectly addressable internal ram data
 0000            518   ;--------------------------------------------------------
-0000            519   ; absolute internal ram data
+0000            519            rseg R_ISEG
 0000            520   ;--------------------------------------------------------
-0000            521            DSEG
+0000            521   ; absolute internal ram data
 0000            522   ;--------------------------------------------------------
-0000            523   ; bit data
+0000            523            DSEG
 0000            524   ;--------------------------------------------------------
-0000            525            rseg R_BSEG
-0000            526   _LCDprint_PARM_3:
-0000            527            DBIT    1
-0001            528   ;--------------------------------------------------------
-0001            529   ; paged external ram data
+0000            525   ; bit data
+0000            526   ;--------------------------------------------------------
+0000            527            rseg R_BSEG
+0000            528   _LCDprint_PARM_3:
+0000            529            DBIT    1
 0001            530   ;--------------------------------------------------------
-0000            531            rseg R_PSEG
-0000            532   ;--------------------------------------------------------
-0000            533   ; external ram data
+0001            531   ; paged external ram data
+0001            532   ;--------------------------------------------------------
+0000            533            rseg R_PSEG
 0000            534   ;--------------------------------------------------------
-0000            535            rseg R_XSEG
+0000            535   ; external ram data
 0000            536   ;--------------------------------------------------------
-0000            537   ; absolute external ram data
+0000            537            rseg R_XSEG
 0000            538   ;--------------------------------------------------------
-0000            539            XSEG
+0000            539   ; absolute external ram data
 0000            540   ;--------------------------------------------------------
-0000            541   ; external initialized ram data
+0000            541            XSEG
 0000            542   ;--------------------------------------------------------
-0000            543            rseg R_IXSEG
-0000            544            rseg R_HOME
-0000            545            rseg R_GSINIT
-0000            546            rseg R_CSEG
-0000            547   ;--------------------------------------------------------
-0000            548   ; Reset entry point and interrupt vectors
+0000            543   ; external initialized ram data
+0000            544   ;--------------------------------------------------------
+0000            545            rseg R_IXSEG
+0000            546            rseg R_HOME
+0000            547            rseg R_GSINIT
+0000            548            rseg R_CSEG
 0000            549   ;--------------------------------------------------------
-0000            550            CSEG at 0x0000
-0000 020000     551            ljmp    _crt0
-0003            552   ;--------------------------------------------------------
-0003            553   ; global & static initialisations
+0000            550   ; Reset entry point and interrupt vectors
+0000            551   ;--------------------------------------------------------
+0000            552            CSEG at 0x0000
+0000 020000     553            ljmp    _crt0
 0003            554   ;--------------------------------------------------------
-0000            555            rseg R_HOME
-0000            556            rseg R_GSINIT
-0000            557            rseg R_GSINIT
-0000            558   ;--------------------------------------------------------
-0000            559   ; data variables initialization
+0003            555   ; global & static initialisations
+0003            556   ;--------------------------------------------------------
+0000            557            rseg R_HOME
+0000            558            rseg R_GSINIT
+0000            559            rseg R_GSINIT
 0000            560   ;--------------------------------------------------------
-0000            561            rseg R_DINIT
-0000            562            ; The linker places a 'ret' at the end of segment R_DINIT.
-0000            563   ;--------------------------------------------------------
-0000            564   ; code
+0000            561   ; data variables initialization
+0000            562   ;--------------------------------------------------------
+0000            563            rseg R_DINIT
+0000            564            ; The linker places a 'ret' at the end of segment R_DINIT.
 0000            565   ;--------------------------------------------------------
-0000            566            rseg R_CSEG
-0000            567   ;------------------------------------------------------------
-0000            568   ;Allocation info for local variables in function '_c51_external_startup'
+0000            566   ; code
+0000            567   ;--------------------------------------------------------
+0000            568            rseg R_CSEG
 0000            569   ;------------------------------------------------------------
-0000            570   ;------------------------------------------------------------
-0000            571   ;        FreqEFM8.c:25: char _c51_external_startup (void)
-0000            572   ;        -----------------------------------------
-0000            573   ;         function _c51_external_startup
+0000            570   ;Allocation info for local variables in function '_c51_external_startup'
+0000            571   ;------------------------------------------------------------
+0000            572   ;------------------------------------------------------------
+0000            573   ;        FreqEFM8.c:25: char _c51_external_startup (void)
 0000            574   ;        -----------------------------------------
-0000            575   __c51_external_startup:
-0000            576            using   0
-0000            577   ;        FreqEFM8.c:28: SFRPAGE = 0x00;
-0000 75A700     578            mov     _SFRPAGE,#0x00
-0003            579   ;        FreqEFM8.c:29: WDTCN = 0xDE; //First key
-0003 7597DE     580            mov     _WDTCN,#0xDE
-0006            581   ;        FreqEFM8.c:30: WDTCN = 0xAD; //Second key
-0006 7597AD     582            mov     _WDTCN,#0xAD
-0009            583   ;        FreqEFM8.c:32: VDM0CN |= 0x80;
-0009 43FF80     584            orl     _VDM0CN,#0x80
-000C            585   ;        FreqEFM8.c:33: RSTSRC = 0x02;
-000C 75EF02     586            mov     _RSTSRC,#0x02
-000F            587   ;        FreqEFM8.c:40: SFRPAGE = 0x10;
-000F 75A710     588            mov     _SFRPAGE,#0x10
-0012            589   ;        FreqEFM8.c:41: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
-0012 75C120     590            mov     _PFE0CN,#0x20
-0015            591   ;        FreqEFM8.c:42: SFRPAGE = 0x00;
-0015 75A700     592            mov     _SFRPAGE,#0x00
-0018            593   ;        FreqEFM8.c:63: CLKSEL = 0x00;
-0018 75A900     594            mov     _CLKSEL,#0x00
-001B            595   ;        FreqEFM8.c:64: CLKSEL = 0x00;
-001B 75A900     596            mov     _CLKSEL,#0x00
-001E            597   ;        FreqEFM8.c:65: while ((CLKSEL & 0x80) == 0);
-001E            598   L002001?:
-001E E5A9       599            mov     a,_CLKSEL
-0020 30E720     600            jnb     acc.7,L002001?
-0023            601   ;        FreqEFM8.c:66: CLKSEL = 0x03;
-0023 75A903     602            mov     _CLKSEL,#0x03
-0026            603   ;        FreqEFM8.c:67: CLKSEL = 0x03;
-0026 75A903     604            mov     _CLKSEL,#0x03
-0029            605   ;        FreqEFM8.c:68: while ((CLKSEL & 0x80) == 0);
-0029            606   L002004?:
-0029 E5A9       607            mov     a,_CLKSEL
-002B 30E700     608            jnb     acc.7,L002004?
-002E            609   ;        FreqEFM8.c:73: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
-002E 43A410     610            orl     _P0MDOUT,#0x10
-0031            611   ;        FreqEFM8.c:74: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
-0031 75E101     612            mov     _XBR0,#0x01
-0034            613   ;        FreqEFM8.c:75: XBR1     = 0X10; // Enable T0 on P0.0
-0034 75E210     614            mov     _XBR1,#0x10
-0037            615   ;        FreqEFM8.c:76: XBR2     = 0x40; // Enable crossbar and weak pull-ups
-0037 75E340     616            mov     _XBR2,#0x40
-003A            617   ;        FreqEFM8.c:82: SCON0 = 0x10;
-003A 759810     618            mov     _SCON0,#0x10
-003D            619   ;        FreqEFM8.c:83: CKCON0 |= 0b_0000_0000 ; // Timer 1 uses the system clock divided by 12.
-003D 858E8E     620            mov     _CKCON0,_CKCON0
-0040            621   ;        FreqEFM8.c:84: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
-0040 758DE6     622            mov     _TH1,#0xE6
-0043            623   ;        FreqEFM8.c:85: TL1 = TH1;      // Init Timer1
-0043 858D8B     624            mov     _TL1,_TH1
-0046            625   ;        FreqEFM8.c:86: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
-0046 53890F     626            anl     _TMOD,#0x0F
-0049            627   ;        FreqEFM8.c:87: TMOD |=  0x20;                       
-0049 438920     628            orl     _TMOD,#0x20
-004C            629   ;        FreqEFM8.c:88: TR1 = 1; // START Timer1
-004C D28E       630            setb    _TR1
-004E            631   ;        FreqEFM8.c:89: TI = 1;  // Indicate TX0 ready
-004E D299       632            setb    _TI
-0050            633   ;        FreqEFM8.c:91: return 0;
-0050 758200     634            mov     dpl,#0x00
-0053 22         635            ret
-0054            636   ;------------------------------------------------------------
-0054            637   ;Allocation info for local variables in function 'Timer3us'
+0000            575   ;         function _c51_external_startup
+0000            576   ;        -----------------------------------------
+0000            577   __c51_external_startup:
+0000            578            using   0
+0000            579   ;        FreqEFM8.c:28: SFRPAGE = 0x00;
+0000 75A700     580            mov     _SFRPAGE,#0x00
+0003            581   ;        FreqEFM8.c:29: WDTCN = 0xDE; //First key
+0003 7597DE     582            mov     _WDTCN,#0xDE
+0006            583   ;        FreqEFM8.c:30: WDTCN = 0xAD; //Second key
+0006 7597AD     584            mov     _WDTCN,#0xAD
+0009            585   ;        FreqEFM8.c:32: VDM0CN |= 0x80;
+0009 43FF80     586            orl     _VDM0CN,#0x80
+000C            587   ;        FreqEFM8.c:33: RSTSRC = 0x02;
+000C 75EF02     588            mov     _RSTSRC,#0x02
+000F            589   ;        FreqEFM8.c:40: SFRPAGE = 0x10;
+000F 75A710     590            mov     _SFRPAGE,#0x10
+0012            591   ;        FreqEFM8.c:41: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+0012 75C120     592            mov     _PFE0CN,#0x20
+0015            593   ;        FreqEFM8.c:42: SFRPAGE = 0x00;
+0015 75A700     594            mov     _SFRPAGE,#0x00
+0018            595   ;        FreqEFM8.c:63: CLKSEL = 0x00;
+0018 75A900     596            mov     _CLKSEL,#0x00
+001B            597   ;        FreqEFM8.c:64: CLKSEL = 0x00;
+001B 75A900     598            mov     _CLKSEL,#0x00
+001E            599   ;        FreqEFM8.c:65: while ((CLKSEL & 0x80) == 0);
+001E            600   L002001?:
+001E E5A9       601            mov     a,_CLKSEL
+0020 30E730     602            jnb     acc.7,L002001?
+0023            603   ;        FreqEFM8.c:66: CLKSEL = 0x03;
+0023 75A903     604            mov     _CLKSEL,#0x03
+0026            605   ;        FreqEFM8.c:67: CLKSEL = 0x03;
+0026 75A903     606            mov     _CLKSEL,#0x03
+0029            607   ;        FreqEFM8.c:68: while ((CLKSEL & 0x80) == 0);
+0029            608   L002004?:
+0029 E5A9       609            mov     a,_CLKSEL
+002B 30E7B0     610            jnb     acc.7,L002004?
+002E            611   ;        FreqEFM8.c:73: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002E 43A410     612            orl     _P0MDOUT,#0x10
+0031            613   ;        FreqEFM8.c:74: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
+0031 75E101     614            mov     _XBR0,#0x01
+0034            615   ;        FreqEFM8.c:75: XBR1     = 0X10; // Enable T0 on P0.0
+0034 75E210     616            mov     _XBR1,#0x10
+0037            617   ;        FreqEFM8.c:76: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+0037 75E340     618            mov     _XBR2,#0x40
+003A            619   ;        FreqEFM8.c:82: SCON0 = 0x10;
+003A 759810     620            mov     _SCON0,#0x10
+003D            621   ;        FreqEFM8.c:83: CKCON0 |= 0b_0000_0000 ; // Timer 1 uses the system clock divided by 12.
+003D 858E8E     622            mov     _CKCON0,_CKCON0
+0040            623   ;        FreqEFM8.c:84: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
+0040 758DE6     624            mov     _TH1,#0xE6
+0043            625   ;        FreqEFM8.c:85: TL1 = TH1;      // Init Timer1
+0043 858D8B     626            mov     _TL1,_TH1
+0046            627   ;        FreqEFM8.c:86: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0046 53890F     628            anl     _TMOD,#0x0F
+0049            629   ;        FreqEFM8.c:87: TMOD |=  0x20;                       
+0049 438920     630            orl     _TMOD,#0x20
+004C            631   ;        FreqEFM8.c:88: TR1 = 1; // START Timer1
+004C D28E       632            setb    _TR1
+004E            633   ;        FreqEFM8.c:89: TI = 1;  // Indicate TX0 ready
+004E D299       634            setb    _TI
+0050            635   ;        FreqEFM8.c:91: return 0;
+0050 758200     636            mov     dpl,#0x00
+0053 22         637            ret
 0054            638   ;------------------------------------------------------------
-0054            639   ;us                        Allocated to registers r2 
-0054            640   ;i                         Allocated to registers r3 
-0054            641   ;------------------------------------------------------------
-0054            642   ;        FreqEFM8.c:95: void Timer3us(unsigned char us)
-0054            643   ;        -----------------------------------------
-0054            644   ;         function Timer3us
+0054            639   ;Allocation info for local variables in function 'Timer3us'
+0054            640   ;------------------------------------------------------------
+0054            641   ;us                        Allocated to registers r2 
+0054            642   ;i                         Allocated to registers r3 
+0054            643   ;------------------------------------------------------------
+0054            644   ;        FreqEFM8.c:95: void Timer3us(unsigned char us)
 0054            645   ;        -----------------------------------------
-0054            646   _Timer3us:
-0054 AA82       647            mov     r2,dpl
-0056            648   ;        FreqEFM8.c:100: CKCON0|=0b_0100_0000;
-0056 438E40     649            orl     _CKCON0,#0x40
-0059            650   ;        FreqEFM8.c:102: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
-0059 7592B8     651            mov     _TMR3RL,#0xB8
-005C 7593FF     652            mov     (_TMR3RL >> 8),#0xFF
-005F            653   ;        FreqEFM8.c:103: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
-005F 859294     654            mov     _TMR3,_TMR3RL
-0062 859395     655            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
-0065            656   ;        FreqEFM8.c:105: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
-0065 759104     657            mov     _TMR3CN0,#0x04
-0068            658   ;        FreqEFM8.c:106: for (i = 0; i < us; i++)       // Count <us> overflows
-0068 7B00       659            mov     r3,#0x00
-006A            660   L003006?:
-006A C3         661            clr     c
-006B EB         662            mov     a,r3
-006C 9A         663            subb    a,r2
-006D 5000       664            jnc     L003009?
-006F            665   ;        FreqEFM8.c:108: while (!(TMR3CN0 & 0x80));  // Wait for overflow
-006F            666   L003001?:
-006F E591       667            mov     a,_TMR3CN0
-0071 30E7C0     668            jnb     acc.7,L003001?
-0074            669   ;        FreqEFM8.c:109: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
-0074 53917F     670            anl     _TMR3CN0,#0x7F
-0077            671   ;        FreqEFM8.c:110: if (TF0)
-0077            672   ;        FreqEFM8.c:112: TF0=0;
-0077 108D30     673            jbc     _TF0,L003019?
-007A 8000       674            sjmp    L003008?
-007C            675   L003019?:
-007C            676   ;        FreqEFM8.c:113: overflow_count++;
-007C 05E0       677            inc     _overflow_count
-007E            678   L003008?:
-007E            679   ;        FreqEFM8.c:106: for (i = 0; i < us; i++)       // Count <us> overflows
-007E 0B         680            inc     r3
-007F 8000       681            sjmp    L003006?
-0081            682   L003009?:
-0081            683   ;        FreqEFM8.c:116: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
-0081 759100     684            mov     _TMR3CN0,#0x00
-0084 22         685            ret
-0085            686   ;------------------------------------------------------------
-0085            687   ;Allocation info for local variables in function 'waitms'
+0054            646   ;         function Timer3us
+0054            647   ;        -----------------------------------------
+0054            648   _Timer3us:
+0054 AA82       649            mov     r2,dpl
+0056            650   ;        FreqEFM8.c:100: CKCON0|=0b_0100_0000;
+0056 438E40     651            orl     _CKCON0,#0x40
+0059            652   ;        FreqEFM8.c:102: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+0059 7592B8     653            mov     _TMR3RL,#0xB8
+005C 7593FF     654            mov     (_TMR3RL >> 8),#0xFF
+005F            655   ;        FreqEFM8.c:103: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+005F 859294     656            mov     _TMR3,_TMR3RL
+0062 859395     657            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
+0065            658   ;        FreqEFM8.c:105: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+0065 759104     659            mov     _TMR3CN0,#0x04
+0068            660   ;        FreqEFM8.c:106: for (i = 0; i < us; i++)       // Count <us> overflows
+0068 7B00       661            mov     r3,#0x00
+006A            662   L003006?:
+006A C3         663            clr     c
+006B EB         664            mov     a,r3
+006C 9A         665            subb    a,r2
+006D 5000       666            jnc     L003009?
+006F            667   ;        FreqEFM8.c:108: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+006F            668   L003001?:
+006F E591       669            mov     a,_TMR3CN0
+0071 30E7B0     670            jnb     acc.7,L003001?
+0074            671   ;        FreqEFM8.c:109: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+0074 53917F     672            anl     _TMR3CN0,#0x7F
+0077            673   ;        FreqEFM8.c:110: if (TF0)
+0077            674   ;        FreqEFM8.c:112: TF0=0;
+0077 108DF0     675            jbc     _TF0,L003019?
+007A 8000       676            sjmp    L003008?
+007C            677   L003019?:
+007C            678   ;        FreqEFM8.c:113: overflow_count++;
+007C 05B0       679            inc     _overflow_count
+007E            680   L003008?:
+007E            681   ;        FreqEFM8.c:106: for (i = 0; i < us; i++)       // Count <us> overflows
+007E 0B         682            inc     r3
+007F 8000       683            sjmp    L003006?
+0081            684   L003009?:
+0081            685   ;        FreqEFM8.c:116: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+0081 759100     686            mov     _TMR3CN0,#0x00
+0084 22         687            ret
 0085            688   ;------------------------------------------------------------
-0085            689   ;ms                        Allocated to registers r2 r3 
-0085            690   ;j                         Allocated to registers r2 r3 
-0085            691   ;------------------------------------------------------------
-0085            692   ;        FreqEFM8.c:119: void waitms (unsigned int ms)
-0085            693   ;        -----------------------------------------
-0085            694   ;         function waitms
+0085            689   ;Allocation info for local variables in function 'waitms'
+0085            690   ;------------------------------------------------------------
+0085            691   ;ms                        Allocated to registers r2 r3 
+0085            692   ;j                         Allocated to registers r2 r3 
+0085            693   ;------------------------------------------------------------
+0085            694   ;        FreqEFM8.c:119: void waitms (unsigned int ms)
 0085            695   ;        -----------------------------------------
-0085            696   _waitms:
-0085 AA82       697            mov     r2,dpl
-0087 AB83       698            mov     r3,dph
-0089            699   ;        FreqEFM8.c:122: for(j=ms; j!=0; j--)
-0089            700   L004001?:
-0089 BA00F0     701            cjne    r2,#0x00,L004010?
-008C BB00F0     702            cjne    r3,#0x00,L004010?
-008F 22         703            ret
-0090            704   L004010?:
-0090            705   ;        FreqEFM8.c:124: Timer3us(249);
-0090 7582F9     706            mov     dpl,#0xF9
-0093 C002       707            push    ar2
-0095 C003       708            push    ar3
-0097 120000     709            lcall   _Timer3us
-009A            710   ;        FreqEFM8.c:125: Timer3us(249);
-009A 7582F9     711            mov     dpl,#0xF9
-009D 120000     712            lcall   _Timer3us
-00A0            713   ;        FreqEFM8.c:126: Timer3us(249);
-00A0 7582F9     714            mov     dpl,#0xF9
-00A3 120000     715            lcall   _Timer3us
-00A6            716   ;        FreqEFM8.c:127: Timer3us(250);
-00A6 7582FA     717            mov     dpl,#0xFA
-00A9 120000     718            lcall   _Timer3us
-00AC D003       719            pop     ar3
-00AE D002       720            pop     ar2
-00B0            721   ;        FreqEFM8.c:122: for(j=ms; j!=0; j--)
-00B0 1A         722            dec     r2
-00B1 BAFF60     723            cjne    r2,#0xff,L004011?
-00B4 1B         724            dec     r3
-00B5            725   L004011?:
-00B5 8000       726            sjmp    L004001?
-00B7            727   ;------------------------------------------------------------
-00B7            728   ;Allocation info for local variables in function 'TIMER0_Init'
+0085            696   ;         function waitms
+0085            697   ;        -----------------------------------------
+0085            698   _waitms:
+0085 AA82       699            mov     r2,dpl
+0087 AB83       700            mov     r3,dph
+0089            701   ;        FreqEFM8.c:122: for(j=ms; j!=0; j--)
+0089            702   L004001?:
+0089 BA00F0     703            cjne    r2,#0x00,L004010?
+008C BB00F0     704            cjne    r3,#0x00,L004010?
+008F 22         705            ret
+0090            706   L004010?:
+0090            707   ;        FreqEFM8.c:124: Timer3us(249);
+0090 7582F9     708            mov     dpl,#0xF9
+0093 C002       709            push    ar2
+0095 C003       710            push    ar3
+0097 120000     711            lcall   _Timer3us
+009A            712   ;        FreqEFM8.c:125: Timer3us(249);
+009A 7582F9     713            mov     dpl,#0xF9
+009D 120000     714            lcall   _Timer3us
+00A0            715   ;        FreqEFM8.c:126: Timer3us(249);
+00A0 7582F9     716            mov     dpl,#0xF9
+00A3 120000     717            lcall   _Timer3us
+00A6            718   ;        FreqEFM8.c:127: Timer3us(250);
+00A6 7582FA     719            mov     dpl,#0xFA
+00A9 120000     720            lcall   _Timer3us
+00AC D003       721            pop     ar3
+00AE D002       722            pop     ar2
+00B0            723   ;        FreqEFM8.c:122: for(j=ms; j!=0; j--)
+00B0 1A         724            dec     r2
+00B1 BAFF30     725            cjne    r2,#0xff,L004011?
+00B4 1B         726            dec     r3
+00B5            727   L004011?:
+00B5 8000       728            sjmp    L004001?
 00B7            729   ;------------------------------------------------------------
-00B7            730   ;------------------------------------------------------------
-00B7            731   ;        FreqEFM8.c:131: void TIMER0_Init(void)
-00B7            732   ;        -----------------------------------------
-00B7            733   ;         function TIMER0_Init
+00B7            730   ;Allocation info for local variables in function 'TIMER0_Init'
+00B7            731   ;------------------------------------------------------------
+00B7            732   ;------------------------------------------------------------
+00B7            733   ;        FreqEFM8.c:131: void TIMER0_Init(void)
 00B7            734   ;        -----------------------------------------
-00B7            735   _TIMER0_Init:
-00B7            736   ;        FreqEFM8.c:133: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
-00B7 5389F0     737            anl     _TMOD,#0xF0
-00BA            738   ;        FreqEFM8.c:134: TMOD|=0b_0000_0101; // Timer/Counter 0 used as a 16-bit counter
-00BA 438905     739            orl     _TMOD,#0x05
-00BD            740   ;        FreqEFM8.c:135: TR0=0; // Stop Timer/Counter 0
-00BD C28C       741            clr     _TR0
-00BF 22         742            ret
-00C0            743   ;------------------------------------------------------------
-00C0            744   ;Allocation info for local variables in function 'LCD_pulse'
+00B7            735   ;         function TIMER0_Init
+00B7            736   ;        -----------------------------------------
+00B7            737   _TIMER0_Init:
+00B7            738   ;        FreqEFM8.c:133: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+00B7 5389F0     739            anl     _TMOD,#0xF0
+00BA            740   ;        FreqEFM8.c:134: TMOD|=0b_0000_0101; // Timer/Counter 0 used as a 16-bit counter
+00BA 438905     741            orl     _TMOD,#0x05
+00BD            742   ;        FreqEFM8.c:135: TR0=0; // Stop Timer/Counter 0
+00BD C28C       743            clr     _TR0
+00BF 22         744            ret
 00C0            745   ;------------------------------------------------------------
-00C0            746   ;------------------------------------------------------------
-00C0            747   ;        FreqEFM8.c:138: void LCD_pulse (void)
-00C0            748   ;        -----------------------------------------
-00C0            749   ;         function LCD_pulse
+00C0            746   ;Allocation info for local variables in function 'LCD_pulse'
+00C0            747   ;------------------------------------------------------------
+00C0            748   ;------------------------------------------------------------
+00C0            749   ;        FreqEFM8.c:138: void LCD_pulse (void)
 00C0            750   ;        -----------------------------------------
-00C0            751   _LCD_pulse:
-00C0            752   ;        FreqEFM8.c:140: LCD_E=1;
-00C0 D2A0       753            setb    _P2_0
-00C2            754   ;        FreqEFM8.c:141: Timer3us(40);
-00C2 758228     755            mov     dpl,#0x28
-00C5 120000     756            lcall   _Timer3us
-00C8            757   ;        FreqEFM8.c:142: LCD_E=0;
-00C8 C2A0       758            clr     _P2_0
-00CA 22         759            ret
-00CB            760   ;------------------------------------------------------------
-00CB            761   ;Allocation info for local variables in function 'LCD_byte'
+00C0            751   ;         function LCD_pulse
+00C0            752   ;        -----------------------------------------
+00C0            753   _LCD_pulse:
+00C0            754   ;        FreqEFM8.c:140: LCD_E=1;
+00C0 D2A0       755            setb    _P2_0
+00C2            756   ;        FreqEFM8.c:141: Timer3us(40);
+00C2 758228     757            mov     dpl,#0x28
+00C5 120000     758            lcall   _Timer3us
+00C8            759   ;        FreqEFM8.c:142: LCD_E=0;
+00C8 C2A0       760            clr     _P2_0
+00CA 22         761            ret
 00CB            762   ;------------------------------------------------------------
-00CB            763   ;x                         Allocated to registers r2 
+00CB            763   ;Allocation info for local variables in function 'LCD_byte'
 00CB            764   ;------------------------------------------------------------
-00CB            765   ;        FreqEFM8.c:145: void LCD_byte (unsigned char x)
-00CB            766   ;        -----------------------------------------
-00CB            767   ;         function LCD_byte
+00CB            765   ;x                         Allocated to registers r2 
+00CB            766   ;------------------------------------------------------------
+00CB            767   ;        FreqEFM8.c:145: void LCD_byte (unsigned char x)
 00CB            768   ;        -----------------------------------------
-00CB            769   _LCD_byte:
-00CB AA82       770            mov     r2,dpl
-00CD            771   ;        FreqEFM8.c:148: ACC=x; //Send high nible
-00CD 8AE0       772            mov     _ACC,r2
-00CF            773   ;        FreqEFM8.c:149: LCD_D7=ACC_7;
-00CF A2E7       774            mov     c,_ACC_7
-00D1 9290       775            mov     _P1_0,c
-00D3            776   ;        FreqEFM8.c:150: LCD_D6=ACC_6;
-00D3 A2E6       777            mov     c,_ACC_6
-00D5 9291       778            mov     _P1_1,c
-00D7            779   ;        FreqEFM8.c:151: LCD_D5=ACC_5;
-00D7 A2E5       780            mov     c,_ACC_5
-00D9 9292       781            mov     _P1_2,c
-00DB            782   ;        FreqEFM8.c:152: LCD_D4=ACC_4;
-00DB A2E4       783            mov     c,_ACC_4
-00DD 9293       784            mov     _P1_3,c
-00DF            785   ;        FreqEFM8.c:153: LCD_pulse();
-00DF C002       786            push    ar2
-00E1 120000     787            lcall   _LCD_pulse
-00E4            788   ;        FreqEFM8.c:154: Timer3us(40);
-00E4 758228     789            mov     dpl,#0x28
-00E7 120000     790            lcall   _Timer3us
-00EA D002       791            pop     ar2
-00EC            792   ;        FreqEFM8.c:155: ACC=x; //Send low nible
-00EC 8AE0       793            mov     _ACC,r2
-00EE            794   ;        FreqEFM8.c:156: LCD_D7=ACC_3;
-00EE A2E3       795            mov     c,_ACC_3
-00F0 9290       796            mov     _P1_0,c
-00F2            797   ;        FreqEFM8.c:157: LCD_D6=ACC_2;
-00F2 A2E2       798            mov     c,_ACC_2
-00F4 9291       799            mov     _P1_1,c
-00F6            800   ;        FreqEFM8.c:158: LCD_D5=ACC_1;
-00F6 A2E1       801            mov     c,_ACC_1
-00F8 9292       802            mov     _P1_2,c
-00FA            803   ;        FreqEFM8.c:159: LCD_D4=ACC_0;
-00FA A2E0       804            mov     c,_ACC_0
-00FC 9293       805            mov     _P1_3,c
-00FE            806   ;        FreqEFM8.c:160: LCD_pulse();
-00FE 020000     807            ljmp    _LCD_pulse
-0101            808   ;------------------------------------------------------------
-0101            809   ;Allocation info for local variables in function 'WriteData'
+00CB            769   ;         function LCD_byte
+00CB            770   ;        -----------------------------------------
+00CB            771   _LCD_byte:
+00CB AA82       772            mov     r2,dpl
+00CD            773   ;        FreqEFM8.c:148: ACC=x; //Send high nible
+00CD 8AE0       774            mov     _ACC,r2
+00CF            775   ;        FreqEFM8.c:149: LCD_D7=ACC_7;
+00CF A2E7       776            mov     c,_ACC_7
+00D1 9290       777            mov     _P1_0,c
+00D3            778   ;        FreqEFM8.c:150: LCD_D6=ACC_6;
+00D3 A2E6       779            mov     c,_ACC_6
+00D5 9291       780            mov     _P1_1,c
+00D7            781   ;        FreqEFM8.c:151: LCD_D5=ACC_5;
+00D7 A2E5       782            mov     c,_ACC_5
+00D9 9292       783            mov     _P1_2,c
+00DB            784   ;        FreqEFM8.c:152: LCD_D4=ACC_4;
+00DB A2E4       785            mov     c,_ACC_4
+00DD 9293       786            mov     _P1_3,c
+00DF            787   ;        FreqEFM8.c:153: LCD_pulse();
+00DF C002       788            push    ar2
+00E1 120000     789            lcall   _LCD_pulse
+00E4            790   ;        FreqEFM8.c:154: Timer3us(40);
+00E4 758228     791            mov     dpl,#0x28
+00E7 120000     792            lcall   _Timer3us
+00EA D002       793            pop     ar2
+00EC            794   ;        FreqEFM8.c:155: ACC=x; //Send low nible
+00EC 8AE0       795            mov     _ACC,r2
+00EE            796   ;        FreqEFM8.c:156: LCD_D7=ACC_3;
+00EE A2E3       797            mov     c,_ACC_3
+00F0 9290       798            mov     _P1_0,c
+00F2            799   ;        FreqEFM8.c:157: LCD_D6=ACC_2;
+00F2 A2E2       800            mov     c,_ACC_2
+00F4 9291       801            mov     _P1_1,c
+00F6            802   ;        FreqEFM8.c:158: LCD_D5=ACC_1;
+00F6 A2E1       803            mov     c,_ACC_1
+00F8 9292       804            mov     _P1_2,c
+00FA            805   ;        FreqEFM8.c:159: LCD_D4=ACC_0;
+00FA A2E0       806            mov     c,_ACC_0
+00FC 9293       807            mov     _P1_3,c
+00FE            808   ;        FreqEFM8.c:160: LCD_pulse();
+00FE 020000     809            ljmp    _LCD_pulse
 0101            810   ;------------------------------------------------------------
-0101            811   ;x                         Allocated to registers r2 
+0101            811   ;Allocation info for local variables in function 'WriteData'
 0101            812   ;------------------------------------------------------------
-0101            813   ;        FreqEFM8.c:163: void WriteData (unsigned char x)
-0101            814   ;        -----------------------------------------
-0101            815   ;         function WriteData
+0101            813   ;x                         Allocated to registers r2 
+0101            814   ;------------------------------------------------------------
+0101            815   ;        FreqEFM8.c:163: void WriteData (unsigned char x)
 0101            816   ;        -----------------------------------------
-0101            817   _WriteData:
-0101 AA82       818            mov     r2,dpl
-0103            819   ;        FreqEFM8.c:165: LCD_RS=1;
-0103 D297       820            setb    _P1_7
-0105            821   ;        FreqEFM8.c:166: LCD_byte(x);
-0105 8A82       822            mov     dpl,r2
-0107 120000     823            lcall   _LCD_byte
-010A            824   ;        FreqEFM8.c:167: waitms(2);
-010A 900002     825            mov     dptr,#0x0002
-010D 020000     826            ljmp    _waitms
-0110            827   ;------------------------------------------------------------
-0110            828   ;Allocation info for local variables in function 'WriteCommand'
+0101            817   ;         function WriteData
+0101            818   ;        -----------------------------------------
+0101            819   _WriteData:
+0101 AA82       820            mov     r2,dpl
+0103            821   ;        FreqEFM8.c:165: LCD_RS=1;
+0103 D297       822            setb    _P1_7
+0105            823   ;        FreqEFM8.c:166: LCD_byte(x);
+0105 8A82       824            mov     dpl,r2
+0107 120000     825            lcall   _LCD_byte
+010A            826   ;        FreqEFM8.c:167: waitms(2);
+010A 900002     827            mov     dptr,#0x0002
+010D 020000     828            ljmp    _waitms
 0110            829   ;------------------------------------------------------------
-0110            830   ;x                         Allocated to registers r2 
+0110            830   ;Allocation info for local variables in function 'WriteCommand'
 0110            831   ;------------------------------------------------------------
-0110            832   ;        FreqEFM8.c:170: void WriteCommand (unsigned char x)
-0110            833   ;        -----------------------------------------
-0110            834   ;         function WriteCommand
+0110            832   ;x                         Allocated to registers r2 
+0110            833   ;------------------------------------------------------------
+0110            834   ;        FreqEFM8.c:170: void WriteCommand (unsigned char x)
 0110            835   ;        -----------------------------------------
-0110            836   _WriteCommand:
-0110 AA82       837            mov     r2,dpl
-0112            838   ;        FreqEFM8.c:172: LCD_RS=0;
-0112 C297       839            clr     _P1_7
-0114            840   ;        FreqEFM8.c:173: LCD_byte(x);
-0114 8A82       841            mov     dpl,r2
-0116 120000     842            lcall   _LCD_byte
-0119            843   ;        FreqEFM8.c:174: waitms(5);
-0119 900005     844            mov     dptr,#0x0005
-011C 020000     845            ljmp    _waitms
-011F            846   ;------------------------------------------------------------
-011F            847   ;Allocation info for local variables in function 'LCD_4BIT'
+0110            836   ;         function WriteCommand
+0110            837   ;        -----------------------------------------
+0110            838   _WriteCommand:
+0110 AA82       839            mov     r2,dpl
+0112            840   ;        FreqEFM8.c:172: LCD_RS=0;
+0112 C297       841            clr     _P1_7
+0114            842   ;        FreqEFM8.c:173: LCD_byte(x);
+0114 8A82       843            mov     dpl,r2
+0116 120000     844            lcall   _LCD_byte
+0119            845   ;        FreqEFM8.c:174: waitms(5);
+0119 900005     846            mov     dptr,#0x0005
+011C 020000     847            ljmp    _waitms
 011F            848   ;------------------------------------------------------------
-011F            849   ;------------------------------------------------------------
-011F            850   ;        FreqEFM8.c:177: void LCD_4BIT (void)
-011F            851   ;        -----------------------------------------
-011F            852   ;         function LCD_4BIT
+011F            849   ;Allocation info for local variables in function 'LCD_4BIT'
+011F            850   ;------------------------------------------------------------
+011F            851   ;------------------------------------------------------------
+011F            852   ;        FreqEFM8.c:177: void LCD_4BIT (void)
 011F            853   ;        -----------------------------------------
-011F            854   _LCD_4BIT:
-011F            855   ;        FreqEFM8.c:179: LCD_E=0; // Resting state of LCD's enable is zero
-011F C2A0       856            clr     _P2_0
-0121            857   ;        FreqEFM8.c:181: waitms(20);
-0121 900014     858            mov     dptr,#0x0014
-0124 120000     859            lcall   _waitms
-0127            860   ;        FreqEFM8.c:183: WriteCommand(0x33);
-0127 758233     861            mov     dpl,#0x33
-012A 120000     862            lcall   _WriteCommand
-012D            863   ;        FreqEFM8.c:184: WriteCommand(0x33);
-012D 758233     864            mov     dpl,#0x33
-0130 120000     865            lcall   _WriteCommand
-0133            866   ;        FreqEFM8.c:185: WriteCommand(0x32); // Change to 4-bit mode
-0133 758232     867            mov     dpl,#0x32
-0136 120000     868            lcall   _WriteCommand
-0139            869   ;        FreqEFM8.c:188: WriteCommand(0x28);
-0139 758228     870            mov     dpl,#0x28
-013C 120000     871            lcall   _WriteCommand
-013F            872   ;        FreqEFM8.c:189: WriteCommand(0x0c);
-013F 75820C     873            mov     dpl,#0x0C
-0142 120000     874            lcall   _WriteCommand
-0145            875   ;        FreqEFM8.c:190: WriteCommand(0x01); // Clear screen command (takes some time)
-0145 758201     876            mov     dpl,#0x01
-0148 120000     877            lcall   _WriteCommand
-014B            878   ;        FreqEFM8.c:191: waitms(20); // Wait for clear screen command to finsih.
-014B 900014     879            mov     dptr,#0x0014
-014E 020000     880            ljmp    _waitms
-0151            881   ;------------------------------------------------------------
-0151            882   ;Allocation info for local variables in function 'LCDprint'
+011F            854   ;         function LCD_4BIT
+011F            855   ;        -----------------------------------------
+011F            856   _LCD_4BIT:
+011F            857   ;        FreqEFM8.c:179: LCD_E=0; // Resting state of LCD's enable is zero
+011F C2A0       858            clr     _P2_0
+0121            859   ;        FreqEFM8.c:181: waitms(20);
+0121 900014     860            mov     dptr,#0x0014
+0124 120000     861            lcall   _waitms
+0127            862   ;        FreqEFM8.c:183: WriteCommand(0x33);
+0127 758233     863            mov     dpl,#0x33
+012A 120000     864            lcall   _WriteCommand
+012D            865   ;        FreqEFM8.c:184: WriteCommand(0x33);
+012D 758233     866            mov     dpl,#0x33
+0130 120000     867            lcall   _WriteCommand
+0133            868   ;        FreqEFM8.c:185: WriteCommand(0x32); // Change to 4-bit mode
+0133 758232     869            mov     dpl,#0x32
+0136 120000     870            lcall   _WriteCommand
+0139            871   ;        FreqEFM8.c:188: WriteCommand(0x28);
+0139 758228     872            mov     dpl,#0x28
+013C 120000     873            lcall   _WriteCommand
+013F            874   ;        FreqEFM8.c:189: WriteCommand(0x0c);
+013F 75820C     875            mov     dpl,#0x0C
+0142 120000     876            lcall   _WriteCommand
+0145            877   ;        FreqEFM8.c:190: WriteCommand(0x01); // Clear screen command (takes some time)
+0145 758201     878            mov     dpl,#0x01
+0148 120000     879            lcall   _WriteCommand
+014B            880   ;        FreqEFM8.c:191: waitms(20); // Wait for clear screen command to finsih.
+014B 900014     881            mov     dptr,#0x0014
+014E 020000     882            ljmp    _waitms
 0151            883   ;------------------------------------------------------------
-0151            884   ;line                      Allocated with name '_LCDprint_PARM_2'
-0151            885   ;string                    Allocated to registers r2 r3 r4 
-0151            886   ;j                         Allocated to registers r5 r6 
-0151            887   ;------------------------------------------------------------
-0151            888   ;        FreqEFM8.c:194: void LCDprint(char * string, unsigned char line, bit clear)
-0151            889   ;        -----------------------------------------
-0151            890   ;         function LCDprint
+0151            884   ;Allocation info for local variables in function 'LCDprint'
+0151            885   ;------------------------------------------------------------
+0151            886   ;line                      Allocated with name '_LCDprint_PARM_2'
+0151            887   ;string                    Allocated to registers r2 r3 r4 
+0151            888   ;j                         Allocated to registers r5 r6 
+0151            889   ;------------------------------------------------------------
+0151            890   ;        FreqEFM8.c:194: void LCDprint(char * string, unsigned char line, bit clear)
 0151            891   ;        -----------------------------------------
-0151            892   _LCDprint:
-0151 AA82       893            mov     r2,dpl
-0153 AB83       894            mov     r3,dph
-0155 ACF0       895            mov     r4,b
-0157            896   ;        FreqEFM8.c:198: WriteCommand(line==2?0xc0:0x80);
-0157 7402       897            mov     a,#0x02
-0159 B57040     898            cjne    a,_LCDprint_PARM_2,L011013?
-015C 7DC0       899            mov     r5,#0xC0
-015E 8000       900            sjmp    L011014?
-0160            901   L011013?:
-0160 7D80       902            mov     r5,#0x80
-0162            903   L011014?:
-0162 8D82       904            mov     dpl,r5
-0164 C002       905            push    ar2
-0166 C003       906            push    ar3
-0168 C004       907            push    ar4
-016A 120000     908            lcall   _WriteCommand
-016D            909   ;        FreqEFM8.c:199: waitms(5);
-016D 900005     910            mov     dptr,#0x0005
-0170 120000     911            lcall   _waitms
-0173 D004       912            pop     ar4
-0175 D003       913            pop     ar3
-0177 D002       914            pop     ar2
-0179            915   ;        FreqEFM8.c:200: for(j=0; string[j]!=0; j++)     WriteData(string[j]);// Write the message
-0179 7D00       916            mov     r5,#0x00
-017B 7E00       917            mov     r6,#0x00
-017D            918   L011003?:
-017D ED         919            mov     a,r5
-017E 2A         920            add     a,r2
-017F FF         921            mov     r7,a
-0180 EE         922            mov     a,r6
-0181 3B         923            addc    a,r3
-0182 F8         924            mov     r0,a
-0183 8C01       925            mov     ar1,r4
-0185 8F82       926            mov     dpl,r7
-0187 8883       927            mov     dph,r0
-0189 89F0       928            mov     b,r1
-018B 120000     929            lcall   __gptrget
-018E FF         930            mov     r7,a
-018F 6000       931            jz      L011006?
-0191 8F82       932            mov     dpl,r7
-0193 C002       933            push    ar2
-0195 C003       934            push    ar3
-0197 C004       935            push    ar4
-0199 C005       936            push    ar5
-019B C006       937            push    ar6
-019D 120000     938            lcall   _WriteData
-01A0 D006       939            pop     ar6
-01A2 D005       940            pop     ar5
-01A4 D004       941            pop     ar4
-01A6 D003       942            pop     ar3
-01A8 D002       943            pop     ar2
-01AA 0D         944            inc     r5
-01AB BD0020     945            cjne    r5,#0x00,L011003?
-01AE 0E         946            inc     r6
-01AF 8000       947            sjmp    L011003?
-01B1            948   L011006?:
-01B1            949   ;        FreqEFM8.c:201: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
-01B1 309070     950            jnb     _LCDprint_PARM_3,L011011?
-01B4 8D02       951            mov     ar2,r5
-01B6 8E03       952            mov     ar3,r6
-01B8            953   L011007?:
-01B8 C3         954            clr     c
-01B9 EA         955            mov     a,r2
-01BA 9410       956            subb    a,#0x10
-01BC EB         957            mov     a,r3
-01BD 6480       958            xrl     a,#0x80
-01BF 9480       959            subb    a,#0x80
-01C1 5000       960            jnc     L011011?
-01C3 758220     961            mov     dpl,#0x20
-01C6 C002       962            push    ar2
-01C8 C003       963            push    ar3
-01CA 120000     964            lcall   _WriteData
-01CD D003       965            pop     ar3
-01CF D002       966            pop     ar2
-01D1 0A         967            inc     r2
-01D2 BA00E0     968            cjne    r2,#0x00,L011007?
-01D5 0B         969            inc     r3
-01D6 8000       970            sjmp    L011007?
-01D8            971   L011011?:
-01D8 22         972            ret
-01D9            973   ;------------------------------------------------------------
-01D9            974   ;Allocation info for local variables in function 'getsn'
+0151            892   ;         function LCDprint
+0151            893   ;        -----------------------------------------
+0151            894   _LCDprint:
+0151 AA82       895            mov     r2,dpl
+0153 AB83       896            mov     r3,dph
+0155 ACF0       897            mov     r4,b
+0157            898   ;        FreqEFM8.c:198: WriteCommand(line==2?0xc0:0x80);
+0157 7402       899            mov     a,#0x02
+0159 B570B0     900            cjne    a,_LCDprint_PARM_2,L011013?
+015C 7DC0       901            mov     r5,#0xC0
+015E 8000       902            sjmp    L011014?
+0160            903   L011013?:
+0160 7D80       904            mov     r5,#0x80
+0162            905   L011014?:
+0162 8D82       906            mov     dpl,r5
+0164 C002       907            push    ar2
+0166 C003       908            push    ar3
+0168 C004       909            push    ar4
+016A 120000     910            lcall   _WriteCommand
+016D            911   ;        FreqEFM8.c:199: waitms(5);
+016D 900005     912            mov     dptr,#0x0005
+0170 120000     913            lcall   _waitms
+0173 D004       914            pop     ar4
+0175 D003       915            pop     ar3
+0177 D002       916            pop     ar2
+0179            917   ;        FreqEFM8.c:200: for(j=0; string[j]!=0; j++)     WriteData(string[j]);// Write the message
+0179 7D00       918            mov     r5,#0x00
+017B 7E00       919            mov     r6,#0x00
+017D            920   L011003?:
+017D ED         921            mov     a,r5
+017E 2A         922            add     a,r2
+017F FF         923            mov     r7,a
+0180 EE         924            mov     a,r6
+0181 3B         925            addc    a,r3
+0182 F8         926            mov     r0,a
+0183 8C01       927            mov     ar1,r4
+0185 8F82       928            mov     dpl,r7
+0187 8883       929            mov     dph,r0
+0189 89F0       930            mov     b,r1
+018B 120000     931            lcall   __gptrget
+018E FF         932            mov     r7,a
+018F 6000       933            jz      L011006?
+0191 8F82       934            mov     dpl,r7
+0193 C002       935            push    ar2
+0195 C003       936            push    ar3
+0197 C004       937            push    ar4
+0199 C005       938            push    ar5
+019B C006       939            push    ar6
+019D 120000     940            lcall   _WriteData
+01A0 D006       941            pop     ar6
+01A2 D005       942            pop     ar5
+01A4 D004       943            pop     ar4
+01A6 D003       944            pop     ar3
+01A8 D002       945            pop     ar2
+01AA 0D         946            inc     r5
+01AB BD0030     947            cjne    r5,#0x00,L011003?
+01AE 0E         948            inc     r6
+01AF 8000       949            sjmp    L011003?
+01B1            950   L011006?:
+01B1            951   ;        FreqEFM8.c:201: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
+01B1 30E0F0     952            jnb     _LCDprint_PARM_3,L011011?
+01B4 8D02       953            mov     ar2,r5
+01B6 8E03       954            mov     ar3,r6
+01B8            955   L011007?:
+01B8 C3         956            clr     c
+01B9 EA         957            mov     a,r2
+01BA 9410       958            subb    a,#0x10
+01BC EB         959            mov     a,r3
+01BD 6480       960            xrl     a,#0x80
+01BF 9480       961            subb    a,#0x80
+01C1 5000       962            jnc     L011011?
+01C3 758220     963            mov     dpl,#0x20
+01C6 C002       964            push    ar2
+01C8 C003       965            push    ar3
+01CA 120000     966            lcall   _WriteData
+01CD D003       967            pop     ar3
+01CF D002       968            pop     ar2
+01D1 0A         969            inc     r2
+01D2 BA0030     970            cjne    r2,#0x00,L011007?
+01D5 0B         971            inc     r3
+01D6 8000       972            sjmp    L011007?
+01D8            973   L011011?:
+01D8 22         974            ret
 01D9            975   ;------------------------------------------------------------
-01D9            976   ;len                       Allocated with name '_getsn_PARM_2'
-01D9            977   ;buff                      Allocated with name '_getsn_buff_1_46'
-01D9            978   ;j                         Allocated with name '_getsn_sloc0_1_0'
-01D9            979   ;c                         Allocated to registers r3 
-01D9            980   ;sloc0                     Allocated with name '_getsn_sloc0_1_0'
-01D9            981   ;------------------------------------------------------------
-01D9            982   ;        FreqEFM8.c:204: int getsn (char * buff, int len)
-01D9            983   ;        -----------------------------------------
-01D9            984   ;         function getsn
+01D9            976   ;Allocation info for local variables in function 'getsn'
+01D9            977   ;------------------------------------------------------------
+01D9            978   ;len                       Allocated with name '_getsn_PARM_2'
+01D9            979   ;buff                      Allocated with name '_getsn_buff_1_46'
+01D9            980   ;j                         Allocated with name '_getsn_sloc0_1_0'
+01D9            981   ;c                         Allocated to registers r3 
+01D9            982   ;sloc0                     Allocated with name '_getsn_sloc0_1_0'
+01D9            983   ;------------------------------------------------------------
+01D9            984   ;        FreqEFM8.c:204: int getsn (char * buff, int len)
 01D9            985   ;        -----------------------------------------
-01D9            986   _getsn:
-01D9 8582A0     987            mov     _getsn_buff_1_46,dpl
-01DC 8583A1     988            mov     (_getsn_buff_1_46 + 1),dph
-01DF 85F0A2     989            mov     (_getsn_buff_1_46 + 2),b
-01E2            990   ;        FreqEFM8.c:209: for(j=0; j<(len-1); j++)
-01E2 E4         991            clr     a
-01E3 F510       992            mov     _getsn_sloc0_1_0,a
-01E5 F511       993            mov     (_getsn_sloc0_1_0 + 1),a
-01E7 E500       994            mov     a,_getsn_PARM_2
-01E9 24FF       995            add     a,#0xff
-01EB FF         996            mov     r7,a
-01EC E501       997            mov     a,(_getsn_PARM_2 + 1)
-01EE 34FF       998            addc    a,#0xff
-01F0 F8         999            mov     r0,a
-01F1 7900      1000            mov     r1,#0x00
-01F3 7A00      1001            mov     r2,#0x00
-01F5           1002   L012005?:
-01F5 C3        1003            clr     c
-01F6 E9        1004            mov     a,r1
-01F7 9F        1005            subb    a,r7
-01F8 EA        1006            mov     a,r2
-01F9 6480      1007            xrl     a,#0x80
-01FB 88F0      1008            mov     b,r0
-01FD 63F080    1009            xrl     b,#0x80
-0200 95F0      1010            subb    a,b
-0202 5000      1011            jnc     L012008?
-0204           1012   ;        FreqEFM8.c:211: c=getchar();
-0204 C002      1013            push    ar2
-0206 C007      1014            push    ar7
-0208 C000      1015            push    ar0
-020A C001      1016            push    ar1
-020C 120000    1017            lcall   _getchar
-020F AB82      1018            mov     r3,dpl
-0211 D001      1019            pop     ar1
-0213 D000      1020            pop     ar0
-0215 D007      1021            pop     ar7
-0217 D002      1022            pop     ar2
-0219           1023   ;        FreqEFM8.c:212: if ( (c=='\n') || (c=='\r') )
-0219 BB0AA0    1024            cjne    r3,#0x0A,L012015?
-021C 8000      1025            sjmp    L012001?
-021E           1026   L012015?:
-021E BB0D80    1027            cjne    r3,#0x0D,L012002?
-0221           1028   L012001?:
-0221           1029   ;        FreqEFM8.c:214: buff[j]=0;
-0221 E510      1030            mov     a,_getsn_sloc0_1_0
-0223 25A0      1031            add     a,_getsn_buff_1_46
-0225 FC        1032            mov     r4,a
-0226 E511      1033            mov     a,(_getsn_sloc0_1_0 + 1)
-0228 35A1      1034            addc    a,(_getsn_buff_1_46 + 1)
-022A FD        1035            mov     r5,a
-022B AEA2      1036            mov     r6,(_getsn_buff_1_46 + 2)
-022D 8C82      1037            mov     dpl,r4
-022F 8D83      1038            mov     dph,r5
-0231 8EF0      1039            mov     b,r6
-0233 E4        1040            clr     a
-0234 120000    1041            lcall   __gptrput
-0237           1042   ;        FreqEFM8.c:215: return j;
-0237 851082    1043            mov     dpl,_getsn_sloc0_1_0
-023A 851183    1044            mov     dph,(_getsn_sloc0_1_0 + 1)
-023D 22        1045            ret
-023E           1046   L012002?:
-023E           1047   ;        FreqEFM8.c:219: buff[j]=c;
-023E E9        1048            mov     a,r1
-023F 25A0      1049            add     a,_getsn_buff_1_46
-0241 FC        1050            mov     r4,a
-0242 EA        1051            mov     a,r2
-0243 35A1      1052            addc    a,(_getsn_buff_1_46 + 1)
-0245 FD        1053            mov     r5,a
-0246 AEA2      1054            mov     r6,(_getsn_buff_1_46 + 2)
-0248 8C82      1055            mov     dpl,r4
-024A 8D83      1056            mov     dph,r5
-024C 8EF0      1057            mov     b,r6
-024E EB        1058            mov     a,r3
-024F 120000    1059            lcall   __gptrput
-0252           1060   ;        FreqEFM8.c:209: for(j=0; j<(len-1); j++)
-0252 09        1061            inc     r1
-0253 B90060    1062            cjne    r1,#0x00,L012018?
-0256 0A        1063            inc     r2
-0257           1064   L012018?:
-0257 8910      1065            mov     _getsn_sloc0_1_0,r1
-0259 8A11      1066            mov     (_getsn_sloc0_1_0 + 1),r2
-025B 8000      1067            sjmp    L012005?
-025D           1068   L012008?:
-025D           1069   ;        FreqEFM8.c:222: buff[j]=0;
-025D E510      1070            mov     a,_getsn_sloc0_1_0
-025F 25A0      1071            add     a,_getsn_buff_1_46
-0261 FA        1072            mov     r2,a
-0262 E511      1073            mov     a,(_getsn_sloc0_1_0 + 1)
-0264 35A1      1074            addc    a,(_getsn_buff_1_46 + 1)
-0266 FB        1075            mov     r3,a
-0267 ACA2      1076            mov     r4,(_getsn_buff_1_46 + 2)
-0269 8A82      1077            mov     dpl,r2
-026B 8B83      1078            mov     dph,r3
-026D 8CF0      1079            mov     b,r4
-026F E4        1080            clr     a
-0270 120000    1081            lcall   __gptrput
-0273           1082   ;        FreqEFM8.c:223: return len;
-0273 850082    1083            mov     dpl,_getsn_PARM_2
-0276 850183    1084            mov     dph,(_getsn_PARM_2 + 1)
-0279 22        1085            ret
-027A           1086   ;------------------------------------------------------------
-027A           1087   ;Allocation info for local variables in function 'main'
+01D9            986   ;         function getsn
+01D9            987   ;        -----------------------------------------
+01D9            988   _getsn:
+01D9 8582C0     989            mov     _getsn_buff_1_46,dpl
+01DC 8583C1     990            mov     (_getsn_buff_1_46 + 1),dph
+01DF 85F0C2     991            mov     (_getsn_buff_1_46 + 2),b
+01E2            992   ;        FreqEFM8.c:209: for(j=0; j<(len-1); j++)
+01E2 E4         993            clr     a
+01E3 F510       994            mov     _getsn_sloc0_1_0,a
+01E5 F511       995            mov     (_getsn_sloc0_1_0 + 1),a
+01E7 E520       996            mov     a,_getsn_PARM_2
+01E9 24FF       997            add     a,#0xff
+01EB FF         998            mov     r7,a
+01EC E521       999            mov     a,(_getsn_PARM_2 + 1)
+01EE 34FF      1000            addc    a,#0xff
+01F0 F8        1001            mov     r0,a
+01F1 7900      1002            mov     r1,#0x00
+01F3 7A00      1003            mov     r2,#0x00
+01F5           1004   L012005?:
+01F5 C3        1005            clr     c
+01F6 E9        1006            mov     a,r1
+01F7 9F        1007            subb    a,r7
+01F8 EA        1008            mov     a,r2
+01F9 6480      1009            xrl     a,#0x80
+01FB 88F0      1010            mov     b,r0
+01FD 63F080    1011            xrl     b,#0x80
+0200 95F0      1012            subb    a,b
+0202 5000      1013            jnc     L012008?
+0204           1014   ;        FreqEFM8.c:211: c=getchar();
+0204 C002      1015            push    ar2
+0206 C007      1016            push    ar7
+0208 C000      1017            push    ar0
+020A C001      1018            push    ar1
+020C 120000    1019            lcall   _getchar
+020F AB82      1020            mov     r3,dpl
+0211 D001      1021            pop     ar1
+0213 D000      1022            pop     ar0
+0215 D007      1023            pop     ar7
+0217 D002      1024            pop     ar2
+0219           1025   ;        FreqEFM8.c:212: if ( (c=='\n') || (c=='\r') )
+0219 BB0A30    1026            cjne    r3,#0x0A,L012015?
+021C 8000      1027            sjmp    L012001?
+021E           1028   L012015?:
+021E BB0DB0    1029            cjne    r3,#0x0D,L012002?
+0221           1030   L012001?:
+0221           1031   ;        FreqEFM8.c:214: buff[j]=0;
+0221 E510      1032            mov     a,_getsn_sloc0_1_0
+0223 25C0      1033            add     a,_getsn_buff_1_46
+0225 FC        1034            mov     r4,a
+0226 E511      1035            mov     a,(_getsn_sloc0_1_0 + 1)
+0228 35C1      1036            addc    a,(_getsn_buff_1_46 + 1)
+022A FD        1037            mov     r5,a
+022B AEC2      1038            mov     r6,(_getsn_buff_1_46 + 2)
+022D 8C82      1039            mov     dpl,r4
+022F 8D83      1040            mov     dph,r5
+0231 8EF0      1041            mov     b,r6
+0233 E4        1042            clr     a
+0234 120000    1043            lcall   __gptrput
+0237           1044   ;        FreqEFM8.c:215: return j;
+0237 851082    1045            mov     dpl,_getsn_sloc0_1_0
+023A 851183    1046            mov     dph,(_getsn_sloc0_1_0 + 1)
+023D 22        1047            ret
+023E           1048   L012002?:
+023E           1049   ;        FreqEFM8.c:219: buff[j]=c;
+023E E9        1050            mov     a,r1
+023F 25C0      1051            add     a,_getsn_buff_1_46
+0241 FC        1052            mov     r4,a
+0242 EA        1053            mov     a,r2
+0243 35C1      1054            addc    a,(_getsn_buff_1_46 + 1)
+0245 FD        1055            mov     r5,a
+0246 AEC2      1056            mov     r6,(_getsn_buff_1_46 + 2)
+0248 8C82      1057            mov     dpl,r4
+024A 8D83      1058            mov     dph,r5
+024C 8EF0      1059            mov     b,r6
+024E EB        1060            mov     a,r3
+024F 120000    1061            lcall   __gptrput
+0252           1062   ;        FreqEFM8.c:209: for(j=0; j<(len-1); j++)
+0252 09        1063            inc     r1
+0253 B90030    1064            cjne    r1,#0x00,L012018?
+0256 0A        1065            inc     r2
+0257           1066   L012018?:
+0257 8910      1067            mov     _getsn_sloc0_1_0,r1
+0259 8A11      1068            mov     (_getsn_sloc0_1_0 + 1),r2
+025B 8000      1069            sjmp    L012005?
+025D           1070   L012008?:
+025D           1071   ;        FreqEFM8.c:222: buff[j]=0;
+025D E510      1072            mov     a,_getsn_sloc0_1_0
+025F 25C0      1073            add     a,_getsn_buff_1_46
+0261 FA        1074            mov     r2,a
+0262 E511      1075            mov     a,(_getsn_sloc0_1_0 + 1)
+0264 35C1      1076            addc    a,(_getsn_buff_1_46 + 1)
+0266 FB        1077            mov     r3,a
+0267 ACC2      1078            mov     r4,(_getsn_buff_1_46 + 2)
+0269 8A82      1079            mov     dpl,r2
+026B 8B83      1080            mov     dph,r3
+026D 8CF0      1081            mov     b,r4
+026F E4        1082            clr     a
+0270 120000    1083            lcall   __gptrput
+0273           1084   ;        FreqEFM8.c:223: return len;
+0273 852082    1085            mov     dpl,_getsn_PARM_2
+0276 852183    1086            mov     dph,(_getsn_PARM_2 + 1)
+0279 22        1087            ret
 027A           1088   ;------------------------------------------------------------
-027A           1089   ;F                         Allocated to registers 
-027A           1090   ;C                         Allocated to registers r2 r3 r4 r5 
-027A           1091   ;sC                        Allocated with name '_main_sC_1_52'
-027A           1092   ;measurements              Allocated with name '_main_measurements_1_52'
-027A           1093   ;str                       Allocated with name '_main_str_1_52'
-027A           1094   ;test_num                  Allocated with name '_main_test_num_1_52'
-027A           1095   ;sloc0                     Allocated with name '_main_sloc0_1_0'
-027A           1096   ;------------------------------------------------------------
-027A           1097   ;        FreqEFM8.c:228: void main (void) 
-027A           1098   ;        -----------------------------------------
-027A           1099   ;         function main
-027A           1100   ;        -----------------------------------------
-027A           1101   _main:
-027A           1102   ;        FreqEFM8.c:232: unsigned long sC = 0;
-027A           1103   ;        FreqEFM8.c:233: unsigned int measurements = 0;
-027A E4        1104            clr     a
-027B F580      1105            mov     _main_sC_1_52,a
-027D F581      1106            mov     (_main_sC_1_52 + 1),a
-027F F582      1107            mov     (_main_sC_1_52 + 2),a
-0281 F583      1108            mov     (_main_sC_1_52 + 3),a
-0283 F5F0      1109            mov     _main_measurements_1_52,a
-0285 F5F1      1110            mov     (_main_measurements_1_52 + 1),a
-0287           1111   ;        FreqEFM8.c:234: char str[] = "Hello";
-0287 756048    1112            mov     _main_str_1_52,#0x48
-028A 756165    1113            mov     (_main_str_1_52 + 0x0001),#0x65
-028D 75626C    1114            mov     (_main_str_1_52 + 0x0002),#0x6C
-0290 75636C    1115            mov     (_main_str_1_52 + 0x0003),#0x6C
-0293 75646F    1116            mov     (_main_str_1_52 + 0x0004),#0x6F
-0296 756500    1117            mov     (_main_str_1_52 + 0x0005),#0x00
-0299           1118   ;        FreqEFM8.c:236: TIMER0_Init();
-0299 120000    1119            lcall   _TIMER0_Init
-029C           1120   ;        FreqEFM8.c:238: waitms(500); // Give PuTTY a chance to start.
-029C 9001F4    1121            mov     dptr,#0x01F4
-029F 120000    1122            lcall   _waitms
-02A2           1123   ;        FreqEFM8.c:239: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-02A2 74D0      1124            mov     a,#__str_1
-02A4 C0E0      1125            push    acc
-02A6 743A      1126            mov     a,#(__str_1 >> 8)
-02A8 C0E0      1127            push    acc
-02AA 7480      1128            mov     a,#0x80
-02AC C0E0      1129            push    acc
-02AE 120000    1130            lcall   _printf
-02B1 1581      1131            dec     sp
-02B3 1581      1132            dec     sp
-02B5 1581      1133            dec     sp
-02B7           1134   ;        FreqEFM8.c:244: __FILE__, __DATE__, __TIME__);
-02B7           1135   ;        FreqEFM8.c:243: "Compiled: %s, %s\n\n",
-02B7 7420      1136            mov     a,#__str_5
-02B9 C0E0      1137            push    acc
-02BB 743C      1138            mov     a,#(__str_5 >> 8)
-02BD C0E0      1139            push    acc
-02BF 7480      1140            mov     a,#0x80
-02C1 C0E0      1141            push    acc
-02C3 7490      1142            mov     a,#__str_4
-02C5 C0E0      1143            push    acc
-02C7 743C      1144            mov     a,#(__str_4 >> 8)
-02C9 C0E0      1145            push    acc
-02CB 7480      1146            mov     a,#0x80
-02CD C0E0      1147            push    acc
-02CF 7400      1148            mov     a,#__str_3
-02D1 C0E0      1149            push    acc
-02D3 743D      1150            mov     a,#(__str_3 >> 8)
-02D5 C0E0      1151            push    acc
-02D7 7480      1152            mov     a,#0x80
-02D9 C0E0      1153            push    acc
-02DB 7470      1154            mov     a,#__str_2
-02DD C0E0      1155            push    acc
-02DF 743D      1156            mov     a,#(__str_2 >> 8)
-02E1 C0E0      1157            push    acc
-02E3 7480      1158            mov     a,#0x80
-02E5 C0E0      1159            push    acc
-02E7 120000    1160            lcall   _printf
-02EA E581      1161            mov     a,sp
-02EC 24F4      1162            add     a,#0xf4
-02EE F581      1163            mov     sp,a
-02F0           1164   ;        FreqEFM8.c:248: LCD_4BIT();
-02F0 120000    1165            lcall   _LCD_4BIT
-02F3           1166   ;        FreqEFM8.c:249: LCDprint(str, 1, 1);
-02F3 757001    1167            mov     _LCDprint_PARM_2,#0x01
-02F6 D290      1168            setb    _LCDprint_PARM_3
-02F8 902C60    1169            mov     dptr,#_main_str_1_52
-02FB 75F040    1170            mov     b,#0x40
-02FE 120000    1171            lcall   _LCDprint
-0301           1172   ;        FreqEFM8.c:253: while(1)
-0301           1173   L013004?:
-0301           1174   ;        FreqEFM8.c:255: TL0=0;
-0301 758A00    1175            mov     _TL0,#0x00
-0304           1176   ;        FreqEFM8.c:256: TH0=0;
-0304 758C00    1177            mov     _TH0,#0x00
-0307           1178   ;        FreqEFM8.c:257: overflow_count=0;
-0307 75E000    1179            mov     _overflow_count,#0x00
-030A           1180   ;        FreqEFM8.c:258: TF0=0;
-030A C28D      1181            clr     _TF0
-030C           1182   ;        FreqEFM8.c:259: TR0=1; // Start Timer/Counter 0
-030C D28C      1183            setb    _TR0
-030E           1184   ;        FreqEFM8.c:260: waitms(1000);
-030E 9003E8    1185            mov     dptr,#0x03E8
-0311 120000    1186            lcall   _waitms
-0314           1187   ;        FreqEFM8.c:261: TR0=0; // Stop Timer/Counter 0
-0314 C28C      1188            clr     _TR0
-0316           1189   ;        FreqEFM8.c:262: F=(overflow_count*0x10000L+TH0*0x100L+TL0);
-0316 AAE0      1190            mov     r2,_overflow_count
-0318 7B00      1191            mov     r3,#0x00
-031A 8B43      1192            mov     (_main_sloc0_1_0 + 3),r3
-031C 8A42      1193            mov     (_main_sloc0_1_0 + 2),r2
-031E 754100    1194            mov     (_main_sloc0_1_0 + 1),#0x00
-0321 754000    1195            mov     _main_sloc0_1_0,#0x00
-0324 AE8C      1196            mov     r6,_TH0
-0326 7F00      1197            mov     r7,#0x00
-0328 7A00      1198            mov     r2,#0x00
-032A 8A03      1199            mov     ar3,r2
-032C 8F02      1200            mov     ar2,r7
-032E 8E07      1201            mov     ar7,r6
-0330 7E00      1202            mov     r6,#0x00
-0332 EE        1203            mov     a,r6
-0333 2540      1204            add     a,_main_sloc0_1_0
-0335 F540      1205            mov     _main_sloc0_1_0,a
-0337 EF        1206            mov     a,r7
-0338 3541      1207            addc    a,(_main_sloc0_1_0 + 1)
-033A F541      1208            mov     (_main_sloc0_1_0 + 1),a
-033C EA        1209            mov     a,r2
-033D 3542      1210            addc    a,(_main_sloc0_1_0 + 2)
-033F F542      1211            mov     (_main_sloc0_1_0 + 2),a
-0341 EB        1212            mov     a,r3
-0342 3543      1213            addc    a,(_main_sloc0_1_0 + 3)
-0344 F543      1214            mov     (_main_sloc0_1_0 + 3),a
-0346 AC8A      1215            mov     r4,_TL0
-0348 E4        1216            clr     a
-0349 FD        1217            mov     r5,a
-034A 33        1218            rlc     a
-034B 95E0      1219            subb    a,acc
-034D FA        1220            mov     r2,a
-034E FB        1221            mov     r3,a
-034F EC        1222            mov     a,r4
-0350 2540      1223            add     a,_main_sloc0_1_0
-0352 F500      1224            mov     __mullong_PARM_2,a
-0354 ED        1225            mov     a,r5
-0355 3541      1226            addc    a,(_main_sloc0_1_0 + 1)
-0357 F501      1227            mov     (__mullong_PARM_2 + 1),a
-0359 EA        1228            mov     a,r2
-035A 3542      1229            addc    a,(_main_sloc0_1_0 + 2)
-035C F502      1230            mov     (__mullong_PARM_2 + 2),a
-035E EB        1231            mov     a,r3
-035F 3543      1232            addc    a,(_main_sloc0_1_0 + 3)
-0361 F503      1233            mov     (__mullong_PARM_2 + 3),a
-0363           1234   ;        FreqEFM8.c:263: C = 1000*1000000* 1.44 / (3*3900*F);
-0363 902DB4    1235            mov     dptr,#0x2DB4
-0366 E4        1236            clr     a
-0367 F5F0      1237            mov     b,a
-0369 120000    1238            lcall   __mullong
-036C 120000    1239            lcall   ___ulong2fs
-036F AA82      1240            mov     r2,dpl
-0371 AB83      1241            mov     r3,dph
-0373 ACF0      1242            mov     r4,b
-0375 FD        1243            mov     r5,a
-0376 C002      1244            push    ar2
-0378 C003      1245            push    ar3
-037A C004      1246            push    ar4
-037C C005      1247            push    ar5
-037E 90A950    1248            mov     dptr,#0xA950
-0381 75F0AB    1249            mov     b,#0xAB
-0384 744E      1250            mov     a,#0x4E
-0386 120000    1251            lcall   ___fsdiv
-0389 AA82      1252            mov     r2,dpl
-038B AB83      1253            mov     r3,dph
-038D ACF0      1254            mov     r4,b
-038F FD        1255            mov     r5,a
-0390 E581      1256            mov     a,sp
-0392 24FC      1257            add     a,#0xfc
-0394 F581      1258            mov     sp,a
-0396 8A82      1259            mov     dpl,r2
-0398 8B83      1260            mov     dph,r3
-039A 8CF0      1261            mov     b,r4
-039C ED        1262            mov     a,r5
-039D 120000    1263            lcall   ___fs2ulong
-03A0 AA82      1264            mov     r2,dpl
-03A2 AB83      1265            mov     r3,dph
-03A4 ACF0      1266            mov     r4,b
-03A6 FD        1267            mov     r5,a
-03A7           1268   ;        FreqEFM8.c:264: sC += C;
-03A7 EA        1269            mov     a,r2
-03A8 2580      1270            add     a,_main_sC_1_52
-03AA F580      1271            mov     _main_sC_1_52,a
-03AC EB        1272            mov     a,r3
-03AD 3581      1273            addc    a,(_main_sC_1_52 + 1)
-03AF F581      1274            mov     (_main_sC_1_52 + 1),a
-03B1 EC        1275            mov     a,r4
-03B2 3582      1276            addc    a,(_main_sC_1_52 + 2)
-03B4 F582      1277            mov     (_main_sC_1_52 + 2),a
-03B6 ED        1278            mov     a,r5
-03B7 3583      1279            addc    a,(_main_sC_1_52 + 3)
-03B9 F583      1280            mov     (_main_sC_1_52 + 3),a
-03BB           1281   ;        FreqEFM8.c:265: measurements++;
-03BB 05F0      1282            inc     _main_measurements_1_52
-03BD E4        1283            clr     a
-03BE B5F080    1284            cjne    a,_main_measurements_1_52,L013010?
-03C1 05F1      1285            inc     (_main_measurements_1_52 + 1)
-03C3           1286   L013010?:
-03C3           1287   ;        FreqEFM8.c:266: sprintf(test_num, "C=%lu.%lu mF", sC / (measurements * 1000), (sC / measurements) % 1000);
-03C3 85F000    1288            mov     __divulong_PARM_2,_main_measurements_1_52
-03C6 85F101    1289            mov     (__divulong_PARM_2 + 1),(_main_measurements_1_52 + 1)
-03C9 750200    1290            mov     (__divulong_PARM_2 + 2),#0x00
-03CC 750300    1291            mov     (__divulong_PARM_2 + 3),#0x00
-03CF 858082    1292            mov     dpl,_main_sC_1_52
-03D2 858183    1293            mov     dph,(_main_sC_1_52 + 1)
-03D5 8582F0    1294            mov     b,(_main_sC_1_52 + 2)
-03D8 E583      1295            mov     a,(_main_sC_1_52 + 3)
-03DA 120000    1296            lcall   __divulong
-03DD 7500E8    1297            mov     __modulong_PARM_2,#0xE8
-03E0 750103    1298            mov     (__modulong_PARM_2 + 1),#0x03
-03E3 750200    1299            mov     (__modulong_PARM_2 + 2),#0x00
-03E6 750300    1300            mov     (__modulong_PARM_2 + 3),#0x00
-03E9 120000    1301            lcall   __modulong
-03EC 858240    1302            mov     _main_sloc0_1_0,dpl
-03EF 858341    1303            mov     (_main_sloc0_1_0 + 1),dph
-03F2 85F042    1304            mov     (_main_sloc0_1_0 + 2),b
-03F5 F543      1305            mov     (_main_sloc0_1_0 + 3),a
-03F7 85F000    1306            mov     __mulint_PARM_2,_main_measurements_1_52
-03FA 85F101    1307            mov     (__mulint_PARM_2 + 1),(_main_measurements_1_52 + 1)
-03FD 9003E8    1308            mov     dptr,#0x03E8
-0400 120000    1309            lcall   __mulint
-0403 AE82      1310            mov     r6,dpl
-0405 AF83      1311            mov     r7,dph
-0407 8E00      1312            mov     __divulong_PARM_2,r6
-0409 8F01      1313            mov     (__divulong_PARM_2 + 1),r7
-040B 750200    1314            mov     (__divulong_PARM_2 + 2),#0x00
-040E 750300    1315            mov     (__divulong_PARM_2 + 3),#0x00
-0411 858082    1316            mov     dpl,_main_sC_1_52
-0414 858183    1317            mov     dph,(_main_sC_1_52 + 1)
-0417 8582F0    1318            mov     b,(_main_sC_1_52 + 2)
-041A E583      1319            mov     a,(_main_sC_1_52 + 3)
-041C 120000    1320            lcall   __divulong
-041F AE82      1321            mov     r6,dpl
-0421 AF83      1322            mov     r7,dph
-0423 AAF0      1323            mov     r2,b
-0425 FB        1324            mov     r3,a
-0426 C040      1325            push    _main_sloc0_1_0
-0428 C041      1326            push    (_main_sloc0_1_0 + 1)
-042A C042      1327            push    (_main_sloc0_1_0 + 2)
-042C C043      1328            push    (_main_sloc0_1_0 + 3)
-042E C006      1329            push    ar6
-0430 C007      1330            push    ar7
-0432 C002      1331            push    ar2
-0434 C003      1332            push    ar3
-0436 7490      1333            mov     a,#__str_6
-0438 C0E0      1334            push    acc
-043A 7443      1335            mov     a,#(__str_6 >> 8)
-043C C0E0      1336            push    acc
-043E 7480      1337            mov     a,#0x80
-0440 C0E0      1338            push    acc
-0442 74D0      1339            mov     a,#_main_test_num_1_52
-0444 C0E0      1340            push    acc
-0446 742C      1341            mov     a,#(_main_test_num_1_52 >> 8)
-0448 C0E0      1342            push    acc
-044A 7440      1343            mov     a,#0x40
-044C C0E0      1344            push    acc
-044E 120000    1345            lcall   _sprintf
-0451 E581      1346            mov     a,sp
-0453 24F2      1347            add     a,#0xf2
-0455 F581      1348            mov     sp,a
-0457           1349   ;        FreqEFM8.c:267: if (measurements > 20)
-0457 C3        1350            clr     c
-0458 7414      1351            mov     a,#0x14
-045A 95F0      1352            subb    a,_main_measurements_1_52
-045C E4        1353            clr     a
-045D 95F1      1354            subb    a,(_main_measurements_1_52 + 1)
-045F 5000      1355            jnc     L013002?
-0461           1356   ;        FreqEFM8.c:269: sC /= 2;
-0461 E583      1357            mov     a,(_main_sC_1_52 + 3)
-0463 C3        1358            clr     c
-0464 13        1359            rrc     a
-0465 F583      1360            mov     (_main_sC_1_52 + 3),a
-0467 E582      1361            mov     a,(_main_sC_1_52 + 2)
-0469 13        1362            rrc     a
-046A F582      1363            mov     (_main_sC_1_52 + 2),a
-046C E581      1364            mov     a,(_main_sC_1_52 + 1)
-046E 13        1365            rrc     a
-046F F581      1366            mov     (_main_sC_1_52 + 1),a
-0471 E580      1367            mov     a,_main_sC_1_52
-0473 13        1368            rrc     a
-0474 F580      1369            mov     _main_sC_1_52,a
-0476           1370   ;        FreqEFM8.c:270: measurements /= 2;
-0476 E5F1      1371            mov     a,(_main_measurements_1_52 + 1)
-0478 C3        1372            clr     c
-0479 13        1373            rrc     a
-047A C5F0      1374            xch     a,_main_measurements_1_52
-047C 13        1375            rrc     a
-047D C5F0      1376            xch     a,_main_measurements_1_52
-047F F5F1      1377            mov     (_main_measurements_1_52 + 1),a
-0481           1378   L013002?:
-0481           1379   ;        FreqEFM8.c:272: LCDprint(test_num, 2, 1);
-0481 757002    1380            mov     _LCDprint_PARM_2,#0x02
-0484 D290      1381            setb    _LCDprint_PARM_3
-0486 902CD0    1382            mov     dptr,#_main_test_num_1_52
-0489 75F040    1383            mov     b,#0x40
-048C 120000    1384            lcall   _LCDprint
-048F 020000    1385            ljmp    L013004?
-0492           1386            rseg R_CSEG
-0492           1387   
-0000           1388            rseg R_XINIT
-0000           1389   
-0000           1390            rseg R_CONST
-0000           1391   __str_1:
-0000 1B        1392            db 0x1B
-0001 5B324A    1393            db '[2J'
-0004 00        1394            db 0x00
-0005           1395   __str_2:
-0005 45464D38  1396            db 'EFM8 Frequency measurement using Timer/Counter 0.'
+027A           1089   ;Allocation info for local variables in function 'main'
+027A           1090   ;------------------------------------------------------------
+027A           1091   ;F                         Allocated to registers 
+027A           1092   ;C                         Allocated to registers r2 r3 r4 r5 
+027A           1093   ;sC                        Allocated with name '_main_sC_1_52'
+027A           1094   ;measurements              Allocated with name '_main_measurements_1_52'
+027A           1095   ;str                       Allocated with name '_main_str_1_52'
+027A           1096   ;boom                      Allocated with name '_main_boom_1_52'
+027A           1097   ;test_num                  Allocated with name '_main_test_num_1_52'
+027A           1098   ;sloc0                     Allocated with name '_main_sloc0_1_0'
+027A           1099   ;------------------------------------------------------------
+027A           1100   ;        FreqEFM8.c:228: void main (void) 
+027A           1101   ;        -----------------------------------------
+027A           1102   ;         function main
+027A           1103   ;        -----------------------------------------
+027A           1104   _main:
+027A           1105   ;        FreqEFM8.c:232: unsigned long sC = 0;
+027A           1106   ;        FreqEFM8.c:233: unsigned int measurements = 0;
+027A E4        1107            clr     a
+027B F550      1108            mov     _main_sC_1_52,a
+027D F551      1109            mov     (_main_sC_1_52 + 1),a
+027F F552      1110            mov     (_main_sC_1_52 + 2),a
+0281 F553      1111            mov     (_main_sC_1_52 + 3),a
+0283 F5A0      1112            mov     _main_measurements_1_52,a
+0285 F5A1      1113            mov     (_main_measurements_1_52 + 1),a
+0287           1114   ;        FreqEFM8.c:234: char str[] = "Boom meter";
+0287 75E042    1115            mov     _main_str_1_52,#0x42
+028A 75E16F    1116            mov     (_main_str_1_52 + 0x0001),#0x6F
+028D 75E26F    1117            mov     (_main_str_1_52 + 0x0002),#0x6F
+0290 75E36D    1118            mov     (_main_str_1_52 + 0x0003),#0x6D
+0293 75E420    1119            mov     (_main_str_1_52 + 0x0004),#0x20
+0296 75E56D    1120            mov     (_main_str_1_52 + 0x0005),#0x6D
+0299 75E665    1121            mov     (_main_str_1_52 + 0x0006),#0x65
+029C 75E774    1122            mov     (_main_str_1_52 + 0x0007),#0x74
+029F 75E865    1123            mov     (_main_str_1_52 + 0x0008),#0x65
+02A2 75E972    1124            mov     (_main_str_1_52 + 0x0009),#0x72
+02A5 75EA00    1125            mov     (_main_str_1_52 + 0x000a),#0x00
+02A8           1126   ;        FreqEFM8.c:235: char boom[]= "BOOM OUTOFRANGE";
+02A8 752042    1127            mov     _main_boom_1_52,#0x42
+02AB 75214F    1128            mov     (_main_boom_1_52 + 0x0001),#0x4F
+02AE 75224F    1129            mov     (_main_boom_1_52 + 0x0002),#0x4F
+02B1 75234D    1130            mov     (_main_boom_1_52 + 0x0003),#0x4D
+02B4 752420    1131            mov     (_main_boom_1_52 + 0x0004),#0x20
+02B7 75254F    1132            mov     (_main_boom_1_52 + 0x0005),#0x4F
+02BA 752655    1133            mov     (_main_boom_1_52 + 0x0006),#0x55
+02BD 752754    1134            mov     (_main_boom_1_52 + 0x0007),#0x54
+02C0 75284F    1135            mov     (_main_boom_1_52 + 0x0008),#0x4F
+02C3 752946    1136            mov     (_main_boom_1_52 + 0x0009),#0x46
+02C6 752A52    1137            mov     (_main_boom_1_52 + 0x000a),#0x52
+02C9 752B41    1138            mov     (_main_boom_1_52 + 0x000b),#0x41
+02CC 752C4E    1139            mov     (_main_boom_1_52 + 0x000c),#0x4E
+02CF 752D47    1140            mov     (_main_boom_1_52 + 0x000d),#0x47
+02D2 752E45    1141            mov     (_main_boom_1_52 + 0x000e),#0x45
+02D5 752F00    1142            mov     (_main_boom_1_52 + 0x000f),#0x00
+02D8           1143   ;        FreqEFM8.c:237: TIMER0_Init();
+02D8 120000    1144            lcall   _TIMER0_Init
+02DB           1145   ;        FreqEFM8.c:239: waitms(500); // Give PuTTY a chance to start.
+02DB 9001F4    1146            mov     dptr,#0x01F4
+02DE 120000    1147            lcall   _waitms
+02E1           1148   ;        FreqEFM8.c:240: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+02E1 7470      1149            mov     a,#__str_2
+02E3 C0E0      1150            push    acc
+02E5 74BE      1151            mov     a,#(__str_2 >> 8)
+02E7 C0E0      1152            push    acc
+02E9 7480      1153            mov     a,#0x80
+02EB C0E0      1154            push    acc
+02ED 120000    1155            lcall   _printf
+02F0 1581      1156            dec     sp
+02F2 1581      1157            dec     sp
+02F4 1581      1158            dec     sp
+02F6           1159   ;        FreqEFM8.c:245: __FILE__, __DATE__, __TIME__);
+02F6           1160   ;        FreqEFM8.c:244: "Compiled: %s, %s\n\n",
+02F6 7430      1161            mov     a,#__str_6
+02F8 C0E0      1162            push    acc
+02FA 74BF      1163            mov     a,#(__str_6 >> 8)
+02FC C0E0      1164            push    acc
+02FE 7480      1165            mov     a,#0x80
+0300 C0E0      1166            push    acc
+0302 7470      1167            mov     a,#__str_5
+0304 C0E0      1168            push    acc
+0306 74BF      1169            mov     a,#(__str_5 >> 8)
+0308 C0E0      1170            push    acc
+030A 7480      1171            mov     a,#0x80
+030C C0E0      1172            push    acc
+030E 74B0      1173            mov     a,#__str_4
+0310 C0E0      1174            push    acc
+0312 74BF      1175            mov     a,#(__str_4 >> 8)
+0314 C0E0      1176            push    acc
+0316 7480      1177            mov     a,#0x80
+0318 C0E0      1178            push    acc
+031A 74F0      1179            mov     a,#__str_3
+031C C0E0      1180            push    acc
+031E 74BF      1181            mov     a,#(__str_3 >> 8)
+0320 C0E0      1182            push    acc
+0322 7480      1183            mov     a,#0x80
+0324 C0E0      1184            push    acc
+0326 120000    1185            lcall   _printf
+0329 E581      1186            mov     a,sp
+032B 24F4      1187            add     a,#0xf4
+032D F581      1188            mov     sp,a
+032F           1189   ;        FreqEFM8.c:249: LCD_4BIT();
+032F 120000    1190            lcall   _LCD_4BIT
+0332           1191   ;        FreqEFM8.c:250: LCDprint(str, 1, 1);
+0332 757001    1192            mov     _LCDprint_PARM_2,#0x01
+0335 D2E0      1193            setb    _LCDprint_PARM_3
+0337 90B5E0    1194            mov     dptr,#_main_str_1_52
+033A 75F040    1195            mov     b,#0x40
+033D 120000    1196            lcall   _LCDprint
+0340           1197   ;        FreqEFM8.c:254: while(1)
+0340           1198   L013007?:
+0340           1199   ;        FreqEFM8.c:256: TL0=0;
+0340 758A00    1200            mov     _TL0,#0x00
+0343           1201   ;        FreqEFM8.c:257: TH0=0;
+0343 758C00    1202            mov     _TH0,#0x00
+0346           1203   ;        FreqEFM8.c:258: overflow_count=0;
+0346 75B000    1204            mov     _overflow_count,#0x00
+0349           1205   ;        FreqEFM8.c:259: TF0=0;
+0349 C28D      1206            clr     _TF0
+034B           1207   ;        FreqEFM8.c:260: TR0=1; // Start Timer/Counter 0
+034B D28C      1208            setb    _TR0
+034D           1209   ;        FreqEFM8.c:261: waitms(1000);
+034D 9003E8    1210            mov     dptr,#0x03E8
+0350 120000    1211            lcall   _waitms
+0353           1212   ;        FreqEFM8.c:262: TR0=0; // Stop Timer/Counter 0
+0353 C28C      1213            clr     _TR0
+0355           1214   ;        FreqEFM8.c:263: F=(overflow_count*0x10000L+TH0*0x100L+TL0);
+0355 AAB0      1215            mov     r2,_overflow_count
+0357 7B00      1216            mov     r3,#0x00
+0359 8BB3      1217            mov     (_main_sloc0_1_0 + 3),r3
+035B 8AB2      1218            mov     (_main_sloc0_1_0 + 2),r2
+035D 75B100    1219            mov     (_main_sloc0_1_0 + 1),#0x00
+0360 75B000    1220            mov     _main_sloc0_1_0,#0x00
+0363 AE8C      1221            mov     r6,_TH0
+0365 7F00      1222            mov     r7,#0x00
+0367 7A00      1223            mov     r2,#0x00
+0369 8A03      1224            mov     ar3,r2
+036B 8F02      1225            mov     ar2,r7
+036D 8E07      1226            mov     ar7,r6
+036F 7E00      1227            mov     r6,#0x00
+0371 EE        1228            mov     a,r6
+0372 25B0      1229            add     a,_main_sloc0_1_0
+0374 F5B0      1230            mov     _main_sloc0_1_0,a
+0376 EF        1231            mov     a,r7
+0377 35B1      1232            addc    a,(_main_sloc0_1_0 + 1)
+0379 F5B1      1233            mov     (_main_sloc0_1_0 + 1),a
+037B EA        1234            mov     a,r2
+037C 35B2      1235            addc    a,(_main_sloc0_1_0 + 2)
+037E F5B2      1236            mov     (_main_sloc0_1_0 + 2),a
+0380 EB        1237            mov     a,r3
+0381 35B3      1238            addc    a,(_main_sloc0_1_0 + 3)
+0383 F5B3      1239            mov     (_main_sloc0_1_0 + 3),a
+0385 AC8A      1240            mov     r4,_TL0
+0387 E4        1241            clr     a
+0388 FD        1242            mov     r5,a
+0389 33        1243            rlc     a
+038A 95E0      1244            subb    a,acc
+038C FA        1245            mov     r2,a
+038D FB        1246            mov     r3,a
+038E EC        1247            mov     a,r4
+038F 25B0      1248            add     a,_main_sloc0_1_0
+0391 F500      1249            mov     __mullong_PARM_2,a
+0393 ED        1250            mov     a,r5
+0394 35B1      1251            addc    a,(_main_sloc0_1_0 + 1)
+0396 F501      1252            mov     (__mullong_PARM_2 + 1),a
+0398 EA        1253            mov     a,r2
+0399 35B2      1254            addc    a,(_main_sloc0_1_0 + 2)
+039B F502      1255            mov     (__mullong_PARM_2 + 2),a
+039D EB        1256            mov     a,r3
+039E 35B3      1257            addc    a,(_main_sloc0_1_0 + 3)
+03A0 F503      1258            mov     (__mullong_PARM_2 + 3),a
+03A2           1259   ;        FreqEFM8.c:264: C = 1000*1000000* 1.44 / (3*3900*F);
+03A2 902DB4    1260            mov     dptr,#0x2DB4
+03A5 E4        1261            clr     a
+03A6 F5F0      1262            mov     b,a
+03A8 120000    1263            lcall   __mullong
+03AB 120000    1264            lcall   ___ulong2fs
+03AE AA82      1265            mov     r2,dpl
+03B0 AB83      1266            mov     r3,dph
+03B2 ACF0      1267            mov     r4,b
+03B4 FD        1268            mov     r5,a
+03B5 C002      1269            push    ar2
+03B7 C003      1270            push    ar3
+03B9 C004      1271            push    ar4
+03BB C005      1272            push    ar5
+03BD 90A950    1273            mov     dptr,#0xA950
+03C0 75F0AB    1274            mov     b,#0xAB
+03C3 744E      1275            mov     a,#0x4E
+03C5 120000    1276            lcall   ___fsdiv
+03C8 AA82      1277            mov     r2,dpl
+03CA AB83      1278            mov     r3,dph
+03CC ACF0      1279            mov     r4,b
+03CE FD        1280            mov     r5,a
+03CF E581      1281            mov     a,sp
+03D1 24FC      1282            add     a,#0xfc
+03D3 F581      1283            mov     sp,a
+03D5 8A82      1284            mov     dpl,r2
+03D7 8B83      1285            mov     dph,r3
+03D9 8CF0      1286            mov     b,r4
+03DB ED        1287            mov     a,r5
+03DC 120000    1288            lcall   ___fs2ulong
+03DF AA82      1289            mov     r2,dpl
+03E1 AB83      1290            mov     r3,dph
+03E3 ACF0      1291            mov     r4,b
+03E5 FD        1292            mov     r5,a
+03E6           1293   ;        FreqEFM8.c:265: sC += C;
+03E6 EA        1294            mov     a,r2
+03E7 2550      1295            add     a,_main_sC_1_52
+03E9 F550      1296            mov     _main_sC_1_52,a
+03EB EB        1297            mov     a,r3
+03EC 3551      1298            addc    a,(_main_sC_1_52 + 1)
+03EE F551      1299            mov     (_main_sC_1_52 + 1),a
+03F0 EC        1300            mov     a,r4
+03F1 3552      1301            addc    a,(_main_sC_1_52 + 2)
+03F3 F552      1302            mov     (_main_sC_1_52 + 2),a
+03F5 ED        1303            mov     a,r5
+03F6 3553      1304            addc    a,(_main_sC_1_52 + 3)
+03F8 F553      1305            mov     (_main_sC_1_52 + 3),a
+03FA           1306   ;        FreqEFM8.c:266: measurements++;
+03FA 05A0      1307            inc     _main_measurements_1_52
+03FC E4        1308            clr     a
+03FD B5A0C0    1309            cjne    a,_main_measurements_1_52,L013014?
+0400 05A1      1310            inc     (_main_measurements_1_52 + 1)
+0402           1311   L013014?:
+0402           1312   ;        FreqEFM8.c:267: sprintf(test_num, "C=%lu nF", sC / measurements);
+0402 85A000    1313            mov     __divulong_PARM_2,_main_measurements_1_52
+0405 85A101    1314            mov     (__divulong_PARM_2 + 1),(_main_measurements_1_52 + 1)
+0408 750200    1315            mov     (__divulong_PARM_2 + 2),#0x00
+040B 750300    1316            mov     (__divulong_PARM_2 + 3),#0x00
+040E 855082    1317            mov     dpl,_main_sC_1_52
+0411 855183    1318            mov     dph,(_main_sC_1_52 + 1)
+0414 8552F0    1319            mov     b,(_main_sC_1_52 + 2)
+0417 E553      1320            mov     a,(_main_sC_1_52 + 3)
+0419 120000    1321            lcall   __divulong
+041C AA82      1322            mov     r2,dpl
+041E AB83      1323            mov     r3,dph
+0420 ACF0      1324            mov     r4,b
+0422 FD        1325            mov     r5,a
+0423 C002      1326            push    ar2
+0425 C003      1327            push    ar3
+0427 C004      1328            push    ar4
+0429 C005      1329            push    ar5
+042B 7490      1330            mov     a,#__str_7
+042D C0E0      1331            push    acc
+042F 74C2      1332            mov     a,#(__str_7 >> 8)
+0431 C0E0      1333            push    acc
+0433 7480      1334            mov     a,#0x80
+0435 C0E0      1335            push    acc
+0437 7470      1336            mov     a,#_main_test_num_1_52
+0439 C0E0      1337            push    acc
+043B 74B6      1338            mov     a,#(_main_test_num_1_52 >> 8)
+043D C0E0      1339            push    acc
+043F 7440      1340            mov     a,#0x40
+0441 C0E0      1341            push    acc
+0443 120000    1342            lcall   _sprintf
+0446 E581      1343            mov     a,sp
+0448 24F6      1344            add     a,#0xf6
+044A F581      1345            mov     sp,a
+044C           1346   ;        FreqEFM8.c:268: if (measurements >= 20)
+044C C3        1347            clr     c
+044D E5A0      1348            mov     a,_main_measurements_1_52
+044F 9414      1349            subb    a,#0x14
+0451 E5A1      1350            mov     a,(_main_measurements_1_52 + 1)
+0453 9400      1351            subb    a,#0x00
+0455 4000      1352            jc      L013002?
+0457           1353   ;        FreqEFM8.c:270: sC /= 2;
+0457 E553      1354            mov     a,(_main_sC_1_52 + 3)
+0459 C3        1355            clr     c
+045A 13        1356            rrc     a
+045B F553      1357            mov     (_main_sC_1_52 + 3),a
+045D E552      1358            mov     a,(_main_sC_1_52 + 2)
+045F 13        1359            rrc     a
+0460 F552      1360            mov     (_main_sC_1_52 + 2),a
+0462 E551      1361            mov     a,(_main_sC_1_52 + 1)
+0464 13        1362            rrc     a
+0465 F551      1363            mov     (_main_sC_1_52 + 1),a
+0467 E550      1364            mov     a,_main_sC_1_52
+0469 13        1365            rrc     a
+046A F550      1366            mov     _main_sC_1_52,a
+046C           1367   ;        FreqEFM8.c:271: measurements /= 2;
+046C E5A1      1368            mov     a,(_main_measurements_1_52 + 1)
+046E C3        1369            clr     c
+046F 13        1370            rrc     a
+0470 C5A0      1371            xch     a,_main_measurements_1_52
+0472 13        1372            rrc     a
+0473 C5A0      1373            xch     a,_main_measurements_1_52
+0475 F5A1      1374            mov     (_main_measurements_1_52 + 1),a
+0477           1375   L013002?:
+0477           1376   ;        FreqEFM8.c:274: if (sC / measurements >= 25000)
+0477 85A000    1377            mov     __divulong_PARM_2,_main_measurements_1_52
+047A 85A101    1378            mov     (__divulong_PARM_2 + 1),(_main_measurements_1_52 + 1)
+047D 750200    1379            mov     (__divulong_PARM_2 + 2),#0x00
+0480 750300    1380            mov     (__divulong_PARM_2 + 3),#0x00
+0483 855082    1381            mov     dpl,_main_sC_1_52
+0486 855183    1382            mov     dph,(_main_sC_1_52 + 1)
+0489 8552F0    1383            mov     b,(_main_sC_1_52 + 2)
+048C E553      1384            mov     a,(_main_sC_1_52 + 3)
+048E 120000    1385            lcall   __divulong
+0491 AA82      1386            mov     r2,dpl
+0493 AB83      1387            mov     r3,dph
+0495 ACF0      1388            mov     r4,b
+0497 FD        1389            mov     r5,a
+0498 C3        1390            clr     c
+0499 EA        1391            mov     a,r2
+049A 94A8      1392            subb    a,#0xA8
+049C EB        1393            mov     a,r3
+049D 9461      1394            subb    a,#0x61
+049F EC        1395            mov     a,r4
+04A0 9400      1396            subb    a,#0x00
+04A2 ED        1397            mov     a,r5
+04A3 9400      1398            subb    a,#0x00
+04A5 4000      1399            jc      L013004?
+04A7           1400   ;        FreqEFM8.c:276: LCDprint(boom, 1, 1);
+04A7 757001    1401            mov     _LCDprint_PARM_2,#0x01
+04AA D2E0      1402            setb    _LCDprint_PARM_3
+04AC 90B620    1403            mov     dptr,#_main_boom_1_52
+04AF 75F040    1404            mov     b,#0x40
+04B2 120000    1405            lcall   _LCDprint
+04B5           1406   ;        FreqEFM8.c:277: LCDprint(boom, 2, 1);
+04B5 757002    1407            mov     _LCDprint_PARM_2,#0x02
+04B8 D2E0      1408            setb    _LCDprint_PARM_3
+04BA 90B620    1409            mov     dptr,#_main_boom_1_52
+04BD 75F040    1410            mov     b,#0x40
+04C0 120000    1411            lcall   _LCDprint
+04C3 020000    1412            ljmp    L013007?
+04C6           1413   L013004?:
+04C6           1414   ;        FreqEFM8.c:281: LCDprint(str, 1, 1);
+04C6 757001    1415            mov     _LCDprint_PARM_2,#0x01
+04C9 D2E0      1416            setb    _LCDprint_PARM_3
+04CB 90B5E0    1417            mov     dptr,#_main_str_1_52
+04CE 75F040    1418            mov     b,#0x40
+04D1 120000    1419            lcall   _LCDprint
+04D4           1420   ;        FreqEFM8.c:282: LCDprint(test_num, 2, 1);
+04D4 757002    1421            mov     _LCDprint_PARM_2,#0x02
+04D7 D2E0      1422            setb    _LCDprint_PARM_3
+04D9 90B670    1423            mov     dptr,#_main_test_num_1_52
+04DC 75F040    1424            mov     b,#0x40
+04DF 120000    1425            lcall   _LCDprint
+04E2 020000    1426            ljmp    L013007?
+04E5           1427            rseg R_CSEG
+04E5           1428   
+0000           1429            rseg R_XINIT
+0000           1430   
+0000           1431            rseg R_CONST
+0000           1432   __str_2:
+0000 1B        1433            db 0x1B
+0001 5B324A    1434            db '[2J'
+0004 00        1435            db 0x00
+0005           1436   __str_3:
+0005 45464D38  1437            db 'EFM8 Frequency measurement using Timer/Counter 0.'
      20467265
      7175656E
      6379206D
@@ -1406,38 +1447,37 @@
      6F756E74
      65722030
      2E
-0036 0A        1397            db 0x0A
-0037 46696C65  1398            db 'File: %s'
+0036 0A        1438            db 0x0A
+0037 46696C65  1439            db 'File: %s'
      3A202573
-003F 0A        1399            db 0x0A
-0040 43        1400            db 'C'
-0041 6F6D7069  1401            db 'ompiled: %s, %s'
+003F 0A        1440            db 0x0A
+0040 43        1441            db 'C'
+0041 6F6D7069  1442            db 'ompiled: %s, %s'
      6C65643A
      2025732C
      202573
-0050 0A        1402            db 0x0A
-0051 0A        1403            db 0x0A
-0052 00        1404            db 0x00
-0053           1405   __str_3:
-0053 46726571  1406            db 'FreqEFM8.c'
+0050 0A        1443            db 0x0A
+0051 0A        1444            db 0x0A
+0052 00        1445            db 0x00
+0053           1446   __str_4:
+0053 46726571  1447            db 'FreqEFM8.c'
      45464D38
      2E63
-005D 00        1407            db 0x00
-005E           1408   __str_4:
-005E 46656220  1409            db 'Feb 29 2024'
+005D 00        1448            db 0x00
+005E           1449   __str_5:
+005E 46656220  1450            db 'Feb 29 2024'
      32392032
      303234
-0069 00        1410            db 0x00
-006A           1411   __str_5:
-006A 30343A30  1412            db '04:06:51'
-     363A3531
-0072 00        1413            db 0x00
-0073           1414   __str_6:
-0073 433D256C  1415            db 'C=%lu.%lu mF'
-     752E256C
-     75206D46
-007F 00        1416            db 0x00
-0080           1417   
-0003           1418            CSEG
-0003           1419   
-0003           1420   end
+0069 00        1451            db 0x00
+006A           1452   __str_6:
+006A 31343A31  1453            db '14:13:02'
+     333A3032
+0072 00        1454            db 0x00
+0073           1455   __str_7:
+0073 433D256C  1456            db 'C=%lu nF'
+     75206E46
+007B 00        1457            db 0x00
+007C           1458   
+0003           1459            CSEG
+0003           1460   
+0003           1461   end

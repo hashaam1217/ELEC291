@@ -231,7 +231,8 @@ void main (void)
 	unsigned long C;
     unsigned long sC = 0;
     unsigned int measurements = 0;
-    char str[] = "Hello";
+    char str[] = "Boom meter";
+    char boom[]= "BOOM OUTOFRANGE";
     char test_num[20];
 	TIMER0_Init();
 
@@ -263,15 +264,26 @@ void main (void)
         C = 1000*1000000* 1.44 / (3*3900*F);
         sC += C;
         measurements++;
-        sprintf(test_num, "C=%lu.%lu uF", sC / (measurements * 1000), (sC / measurements) % 1000);
+        sprintf(test_num, "C=%lu nF", sC / measurements);
         if (measurements >= 20)
         {
             sC /= 2;
             measurements /= 2;
         }
-        LCDprint(test_num, 2, 1);
 
-        if 
+        if (sC / measurements >= 25000)
+        {
+            LCDprint(boom, 1, 1);
+            LCDprint(boom, 2, 1);
+        }
+        else
+        {
+            LCDprint(str, 1, 1);
+            LCDprint(test_num, 2, 1);
+        }
+
+
+
 
 
 		//printf("\rf=%1.luHz", F);
