@@ -1,0 +1,1008 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
+0000              4   ; This file was generated Wed Feb 28 22:07:17 2024
+0000              5   ;--------------------------------------------------------
+                  5   $name PeriodEFM8
+                  6   $optc51 --model-small
+                  7   $printf_float
+0000              9            R_DSEG    segment data
+0000             10            R_CSEG    segment code
+0000             11            R_BSEG    segment bit
+0000             12            R_XSEG    segment xdata
+0000             13            R_PSEG    segment xdata
+0000             14            R_ISEG    segment idata
+0000             15            R_OSEG    segment data overlay
+0000             16            BIT_BANK  segment data overlay
+0000             17            R_HOME    segment code
+0000             18            R_GSINIT  segment code
+0000             19            R_IXSEG   segment xdata
+0000             20            R_CONST   segment code
+0000             21            R_XINIT   segment code
+0000             22            R_DINIT   segment code
+0000             23   
+0000             24   ;--------------------------------------------------------
+0000             25   ; Public variables in this module
+0000             26   ;--------------------------------------------------------
+0000             27            public _main
+0000             28            public _TIMER0_Init
+0000             29            public _waitms
+0000             30            public _Timer3us
+0000             31            public __c51_external_startup
+0000             32            public _overflow_count
+0000             33   ;--------------------------------------------------------
+0000             34   ; Special Function Registers
+0000             35   ;--------------------------------------------------------
+0000             36   _ACC            DATA 0xe0
+0000             37   _ADC0ASAH       DATA 0xb6
+0000             38   _ADC0ASAL       DATA 0xb5
+0000             39   _ADC0ASCF       DATA 0xa1
+0000             40   _ADC0ASCT       DATA 0xc7
+0000             41   _ADC0CF0        DATA 0xbc
+0000             42   _ADC0CF1        DATA 0xb9
+0000             43   _ADC0CF2        DATA 0xdf
+0000             44   _ADC0CN0        DATA 0xe8
+0000             45   _ADC0CN1        DATA 0xb2
+0000             46   _ADC0CN2        DATA 0xb3
+0000             47   _ADC0GTH        DATA 0xc4
+0000             48   _ADC0GTL        DATA 0xc3
+0000             49   _ADC0H          DATA 0xbe
+0000             50   _ADC0L          DATA 0xbd
+0000             51   _ADC0LTH        DATA 0xc6
+0000             52   _ADC0LTL        DATA 0xc5
+0000             53   _ADC0MX         DATA 0xbb
+0000             54   _B              DATA 0xf0
+0000             55   _CKCON0         DATA 0x8e
+0000             56   _CKCON1         DATA 0xa6
+0000             57   _CLEN0          DATA 0xc6
+0000             58   _CLIE0          DATA 0xc7
+0000             59   _CLIF0          DATA 0xe8
+0000             60   _CLKSEL         DATA 0xa9
+0000             61   _CLOUT0         DATA 0xd1
+0000             62   _CLU0CF         DATA 0xb1
+0000             63   _CLU0FN         DATA 0xaf
+0000             64   _CLU0MX         DATA 0x84
+0000             65   _CLU1CF         DATA 0xb3
+0000             66   _CLU1FN         DATA 0xb2
+0000             67   _CLU1MX         DATA 0x85
+0000             68   _CLU2CF         DATA 0xb6
+0000             69   _CLU2FN         DATA 0xb5
+0000             70   _CLU2MX         DATA 0x91
+0000             71   _CLU3CF         DATA 0xbf
+0000             72   _CLU3FN         DATA 0xbe
+0000             73   _CLU3MX         DATA 0xae
+0000             74   _CMP0CN0        DATA 0x9b
+0000             75   _CMP0CN1        DATA 0x99
+0000             76   _CMP0MD         DATA 0x9d
+0000             77   _CMP0MX         DATA 0x9f
+0000             78   _CMP1CN0        DATA 0xbf
+0000             79   _CMP1CN1        DATA 0xac
+0000             80   _CMP1MD         DATA 0xab
+0000             81   _CMP1MX         DATA 0xaa
+0000             82   _CRC0CN0        DATA 0xce
+0000             83   _CRC0CN1        DATA 0x86
+0000             84   _CRC0CNT        DATA 0xd3
+0000             85   _CRC0DAT        DATA 0xcb
+0000             86   _CRC0FLIP       DATA 0xcf
+0000             87   _CRC0IN         DATA 0xca
+0000             88   _CRC0ST         DATA 0xd2
+0000             89   _DAC0CF0        DATA 0x91
+0000             90   _DAC0CF1        DATA 0x92
+0000             91   _DAC0H          DATA 0x85
+0000             92   _DAC0L          DATA 0x84
+0000             93   _DAC1CF0        DATA 0x93
+0000             94   _DAC1CF1        DATA 0x94
+0000             95   _DAC1H          DATA 0x8a
+0000             96   _DAC1L          DATA 0x89
+0000             97   _DAC2CF0        DATA 0x95
+0000             98   _DAC2CF1        DATA 0x96
+0000             99   _DAC2H          DATA 0x8c
+0000            100   _DAC2L          DATA 0x8b
+0000            101   _DAC3CF0        DATA 0x9a
+0000            102   _DAC3CF1        DATA 0x9c
+0000            103   _DAC3H          DATA 0x8e
+0000            104   _DAC3L          DATA 0x8d
+0000            105   _DACGCF0        DATA 0x88
+0000            106   _DACGCF1        DATA 0x98
+0000            107   _DACGCF2        DATA 0xa2
+0000            108   _DERIVID        DATA 0xad
+0000            109   _DEVICEID       DATA 0xb5
+0000            110   _DPH            DATA 0x83
+0000            111   _DPL            DATA 0x82
+0000            112   _EIE1           DATA 0xe6
+0000            113   _EIE2           DATA 0xf3
+0000            114   _EIP1           DATA 0xbb
+0000            115   _EIP1H          DATA 0xee
+0000            116   _EIP2           DATA 0xed
+0000            117   _EIP2H          DATA 0xf6
+0000            118   _EMI0CN         DATA 0xe7
+0000            119   _FLKEY          DATA 0xb7
+0000            120   _HFO0CAL        DATA 0xc7
+0000            121   _HFO1CAL        DATA 0xd6
+0000            122   _HFOCN          DATA 0xef
+0000            123   _I2C0ADM        DATA 0xff
+0000            124   _I2C0CN0        DATA 0xba
+0000            125   _I2C0DIN        DATA 0xbc
+0000            126   _I2C0DOUT       DATA 0xbb
+0000            127   _I2C0FCN0       DATA 0xad
+0000            128   _I2C0FCN1       DATA 0xab
+0000            129   _I2C0FCT        DATA 0xf5
+0000            130   _I2C0SLAD       DATA 0xbd
+0000            131   _I2C0STAT       DATA 0xb9
+0000            132   _IE             DATA 0xa8
+0000            133   _IP             DATA 0xb8
+0000            134   _IPH            DATA 0xf2
+0000            135   _IT01CF         DATA 0xe4
+0000            136   _LFO0CN         DATA 0xb1
+0000            137   _P0             DATA 0x80
+0000            138   _P0MASK         DATA 0xfe
+0000            139   _P0MAT          DATA 0xfd
+0000            140   _P0MDIN         DATA 0xf1
+0000            141   _P0MDOUT        DATA 0xa4
+0000            142   _P0SKIP         DATA 0xd4
+0000            143   _P1             DATA 0x90
+0000            144   _P1MASK         DATA 0xee
+0000            145   _P1MAT          DATA 0xed
+0000            146   _P1MDIN         DATA 0xf2
+0000            147   _P1MDOUT        DATA 0xa5
+0000            148   _P1SKIP         DATA 0xd5
+0000            149   _P2             DATA 0xa0
+0000            150   _P2MASK         DATA 0xfc
+0000            151   _P2MAT          DATA 0xfb
+0000            152   _P2MDIN         DATA 0xf3
+0000            153   _P2MDOUT        DATA 0xa6
+0000            154   _P2SKIP         DATA 0xcc
+0000            155   _P3             DATA 0xb0
+0000            156   _P3MDIN         DATA 0xf4
+0000            157   _P3MDOUT        DATA 0x9c
+0000            158   _PCA0CENT       DATA 0x9e
+0000            159   _PCA0CLR        DATA 0x9c
+0000            160   _PCA0CN0        DATA 0xd8
+0000            161   _PCA0CPH0       DATA 0xfc
+0000            162   _PCA0CPH1       DATA 0xea
+0000            163   _PCA0CPH2       DATA 0xec
+0000            164   _PCA0CPH3       DATA 0xf5
+0000            165   _PCA0CPH4       DATA 0x85
+0000            166   _PCA0CPH5       DATA 0xde
+0000            167   _PCA0CPL0       DATA 0xfb
+0000            168   _PCA0CPL1       DATA 0xe9
+0000            169   _PCA0CPL2       DATA 0xeb
+0000            170   _PCA0CPL3       DATA 0xf4
+0000            171   _PCA0CPL4       DATA 0x84
+0000            172   _PCA0CPL5       DATA 0xdd
+0000            173   _PCA0CPM0       DATA 0xda
+0000            174   _PCA0CPM1       DATA 0xdb
+0000            175   _PCA0CPM2       DATA 0xdc
+0000            176   _PCA0CPM3       DATA 0xae
+0000            177   _PCA0CPM4       DATA 0xaf
+0000            178   _PCA0CPM5       DATA 0xcc
+0000            179   _PCA0H          DATA 0xfa
+0000            180   _PCA0L          DATA 0xf9
+0000            181   _PCA0MD         DATA 0xd9
+0000            182   _PCA0POL        DATA 0x96
+0000            183   _PCA0PWM        DATA 0xf7
+0000            184   _PCON0          DATA 0x87
+0000            185   _PCON1          DATA 0xcd
+0000            186   _PFE0CN         DATA 0xc1
+0000            187   _PRTDRV         DATA 0xf6
+0000            188   _PSCTL          DATA 0x8f
+0000            189   _PSTAT0         DATA 0xaa
+0000            190   _PSW            DATA 0xd0
+0000            191   _REF0CN         DATA 0xd1
+0000            192   _REG0CN         DATA 0xc9
+0000            193   _REVID          DATA 0xb6
+0000            194   _RSTSRC         DATA 0xef
+0000            195   _SBCON1         DATA 0x94
+0000            196   _SBRLH1         DATA 0x96
+0000            197   _SBRLL1         DATA 0x95
+0000            198   _SBUF           DATA 0x99
+0000            199   _SBUF0          DATA 0x99
+0000            200   _SBUF1          DATA 0x92
+0000            201   _SCON           DATA 0x98
+0000            202   _SCON0          DATA 0x98
+0000            203   _SCON1          DATA 0xc8
+0000            204   _SFRPAGE        DATA 0xa7
+0000            205   _SFRPGCN        DATA 0xbc
+0000            206   _SFRSTACK       DATA 0xd7
+0000            207   _SMB0ADM        DATA 0xd6
+0000            208   _SMB0ADR        DATA 0xd7
+0000            209   _SMB0CF         DATA 0xc1
+0000            210   _SMB0CN0        DATA 0xc0
+0000            211   _SMB0DAT        DATA 0xc2
+0000            212   _SMB0FCN0       DATA 0xc3
+0000            213   _SMB0FCN1       DATA 0xc4
+0000            214   _SMB0FCT        DATA 0xef
+0000            215   _SMB0RXLN       DATA 0xc5
+0000            216   _SMB0TC         DATA 0xac
+0000            217   _SMOD1          DATA 0x93
+0000            218   _SP             DATA 0x81
+0000            219   _SPI0CFG        DATA 0xa1
+0000            220   _SPI0CKR        DATA 0xa2
+0000            221   _SPI0CN0        DATA 0xf8
+0000            222   _SPI0DAT        DATA 0xa3
+0000            223   _SPI0FCN0       DATA 0x9a
+0000            224   _SPI0FCN1       DATA 0x9b
+0000            225   _SPI0FCT        DATA 0xf7
+0000            226   _SPI0PCF        DATA 0xdf
+0000            227   _TCON           DATA 0x88
+0000            228   _TH0            DATA 0x8c
+0000            229   _TH1            DATA 0x8d
+0000            230   _TL0            DATA 0x8a
+0000            231   _TL1            DATA 0x8b
+0000            232   _TMOD           DATA 0x89
+0000            233   _TMR2CN0        DATA 0xc8
+0000            234   _TMR2CN1        DATA 0xfd
+0000            235   _TMR2H          DATA 0xcf
+0000            236   _TMR2L          DATA 0xce
+0000            237   _TMR2RLH        DATA 0xcb
+0000            238   _TMR2RLL        DATA 0xca
+0000            239   _TMR3CN0        DATA 0x91
+0000            240   _TMR3CN1        DATA 0xfe
+0000            241   _TMR3H          DATA 0x95
+0000            242   _TMR3L          DATA 0x94
+0000            243   _TMR3RLH        DATA 0x93
+0000            244   _TMR3RLL        DATA 0x92
+0000            245   _TMR4CN0        DATA 0x98
+0000            246   _TMR4CN1        DATA 0xff
+0000            247   _TMR4H          DATA 0xa5
+0000            248   _TMR4L          DATA 0xa4
+0000            249   _TMR4RLH        DATA 0xa3
+0000            250   _TMR4RLL        DATA 0xa2
+0000            251   _TMR5CN0        DATA 0xc0
+0000            252   _TMR5CN1        DATA 0xf1
+0000            253   _TMR5H          DATA 0xd5
+0000            254   _TMR5L          DATA 0xd4
+0000            255   _TMR5RLH        DATA 0xd3
+0000            256   _TMR5RLL        DATA 0xd2
+0000            257   _UART0PCF       DATA 0xd9
+0000            258   _UART1FCN0      DATA 0x9d
+0000            259   _UART1FCN1      DATA 0xd8
+0000            260   _UART1FCT       DATA 0xfa
+0000            261   _UART1LIN       DATA 0x9e
+0000            262   _UART1PCF       DATA 0xda
+0000            263   _VDM0CN         DATA 0xff
+0000            264   _WDTCN          DATA 0x97
+0000            265   _XBR0           DATA 0xe1
+0000            266   _XBR1           DATA 0xe2
+0000            267   _XBR2           DATA 0xe3
+0000            268   _XOSC0CN        DATA 0x86
+0000            269   _DPTR           DATA 0x8382
+0000            270   _TMR2RL         DATA 0xcbca
+0000            271   _TMR3RL         DATA 0x9392
+0000            272   _TMR4RL         DATA 0xa3a2
+0000            273   _TMR5RL         DATA 0xd3d2
+0000            274   _TMR0           DATA 0x8c8a
+0000            275   _TMR1           DATA 0x8d8b
+0000            276   _TMR2           DATA 0xcfce
+0000            277   _TMR3           DATA 0x9594
+0000            278   _TMR4           DATA 0xa5a4
+0000            279   _TMR5           DATA 0xd5d4
+0000            280   _SBRL1          DATA 0x9695
+0000            281   _PCA0           DATA 0xfaf9
+0000            282   _PCA0CP0        DATA 0xfcfb
+0000            283   _PCA0CP1        DATA 0xeae9
+0000            284   _PCA0CP2        DATA 0xeceb
+0000            285   _PCA0CP3        DATA 0xf5f4
+0000            286   _PCA0CP4        DATA 0x8584
+0000            287   _PCA0CP5        DATA 0xdedd
+0000            288   _ADC0ASA        DATA 0xb6b5
+0000            289   _ADC0GT         DATA 0xc4c3
+0000            290   _ADC0           DATA 0xbebd
+0000            291   _ADC0LT         DATA 0xc6c5
+0000            292   _DAC0           DATA 0x8584
+0000            293   _DAC1           DATA 0x8a89
+0000            294   _DAC2           DATA 0x8c8b
+0000            295   _DAC3           DATA 0x8e8d
+0000            296   ;--------------------------------------------------------
+0000            297   ; special function bits
+0000            298   ;--------------------------------------------------------
+0000            299   _ACC_0          BIT 0xe0
+0000            300   _ACC_1          BIT 0xe1
+0000            301   _ACC_2          BIT 0xe2
+0000            302   _ACC_3          BIT 0xe3
+0000            303   _ACC_4          BIT 0xe4
+0000            304   _ACC_5          BIT 0xe5
+0000            305   _ACC_6          BIT 0xe6
+0000            306   _ACC_7          BIT 0xe7
+0000            307   _TEMPE          BIT 0xe8
+0000            308   _ADGN0          BIT 0xe9
+0000            309   _ADGN1          BIT 0xea
+0000            310   _ADWINT         BIT 0xeb
+0000            311   _ADBUSY         BIT 0xec
+0000            312   _ADINT          BIT 0xed
+0000            313   _IPOEN          BIT 0xee
+0000            314   _ADEN           BIT 0xef
+0000            315   _B_0            BIT 0xf0
+0000            316   _B_1            BIT 0xf1
+0000            317   _B_2            BIT 0xf2
+0000            318   _B_3            BIT 0xf3
+0000            319   _B_4            BIT 0xf4
+0000            320   _B_5            BIT 0xf5
+0000            321   _B_6            BIT 0xf6
+0000            322   _B_7            BIT 0xf7
+0000            323   _C0FIF          BIT 0xe8
+0000            324   _C0RIF          BIT 0xe9
+0000            325   _C1FIF          BIT 0xea
+0000            326   _C1RIF          BIT 0xeb
+0000            327   _C2FIF          BIT 0xec
+0000            328   _C2RIF          BIT 0xed
+0000            329   _C3FIF          BIT 0xee
+0000            330   _C3RIF          BIT 0xef
+0000            331   _D1SRC0         BIT 0x88
+0000            332   _D1SRC1         BIT 0x89
+0000            333   _D1AMEN         BIT 0x8a
+0000            334   _D01REFSL       BIT 0x8b
+0000            335   _D3SRC0         BIT 0x8c
+0000            336   _D3SRC1         BIT 0x8d
+0000            337   _D3AMEN         BIT 0x8e
+0000            338   _D23REFSL       BIT 0x8f
+0000            339   _D0UDIS         BIT 0x98
+0000            340   _D1UDIS         BIT 0x99
+0000            341   _D2UDIS         BIT 0x9a
+0000            342   _D3UDIS         BIT 0x9b
+0000            343   _EX0            BIT 0xa8
+0000            344   _ET0            BIT 0xa9
+0000            345   _EX1            BIT 0xaa
+0000            346   _ET1            BIT 0xab
+0000            347   _ES0            BIT 0xac
+0000            348   _ET2            BIT 0xad
+0000            349   _ESPI0          BIT 0xae
+0000            350   _EA             BIT 0xaf
+0000            351   _PX0            BIT 0xb8
+0000            352   _PT0            BIT 0xb9
+0000            353   _PX1            BIT 0xba
+0000            354   _PT1            BIT 0xbb
+0000            355   _PS0            BIT 0xbc
+0000            356   _PT2            BIT 0xbd
+0000            357   _PSPI0          BIT 0xbe
+0000            358   _P0_0           BIT 0x80
+0000            359   _P0_1           BIT 0x81
+0000            360   _P0_2           BIT 0x82
+0000            361   _P0_3           BIT 0x83
+0000            362   _P0_4           BIT 0x84
+0000            363   _P0_5           BIT 0x85
+0000            364   _P0_6           BIT 0x86
+0000            365   _P0_7           BIT 0x87
+0000            366   _P1_0           BIT 0x90
+0000            367   _P1_1           BIT 0x91
+0000            368   _P1_2           BIT 0x92
+0000            369   _P1_3           BIT 0x93
+0000            370   _P1_4           BIT 0x94
+0000            371   _P1_5           BIT 0x95
+0000            372   _P1_6           BIT 0x96
+0000            373   _P1_7           BIT 0x97
+0000            374   _P2_0           BIT 0xa0
+0000            375   _P2_1           BIT 0xa1
+0000            376   _P2_2           BIT 0xa2
+0000            377   _P2_3           BIT 0xa3
+0000            378   _P2_4           BIT 0xa4
+0000            379   _P2_5           BIT 0xa5
+0000            380   _P2_6           BIT 0xa6
+0000            381   _P3_0           BIT 0xb0
+0000            382   _P3_1           BIT 0xb1
+0000            383   _P3_2           BIT 0xb2
+0000            384   _P3_3           BIT 0xb3
+0000            385   _P3_4           BIT 0xb4
+0000            386   _P3_7           BIT 0xb7
+0000            387   _CCF0           BIT 0xd8
+0000            388   _CCF1           BIT 0xd9
+0000            389   _CCF2           BIT 0xda
+0000            390   _CCF3           BIT 0xdb
+0000            391   _CCF4           BIT 0xdc
+0000            392   _CCF5           BIT 0xdd
+0000            393   _CR             BIT 0xde
+0000            394   _CF             BIT 0xdf
+0000            395   _PARITY         BIT 0xd0
+0000            396   _F1             BIT 0xd1
+0000            397   _OV             BIT 0xd2
+0000            398   _RS0            BIT 0xd3
+0000            399   _RS1            BIT 0xd4
+0000            400   _F0             BIT 0xd5
+0000            401   _AC             BIT 0xd6
+0000            402   _CY             BIT 0xd7
+0000            403   _RI             BIT 0x98
+0000            404   _TI             BIT 0x99
+0000            405   _RB8            BIT 0x9a
+0000            406   _TB8            BIT 0x9b
+0000            407   _REN            BIT 0x9c
+0000            408   _CE             BIT 0x9d
+0000            409   _SMODE          BIT 0x9e
+0000            410   _RI1            BIT 0xc8
+0000            411   _TI1            BIT 0xc9
+0000            412   _RBX1           BIT 0xca
+0000            413   _TBX1           BIT 0xcb
+0000            414   _REN1           BIT 0xcc
+0000            415   _PERR1          BIT 0xcd
+0000            416   _OVR1           BIT 0xce
+0000            417   _SI             BIT 0xc0
+0000            418   _ACK            BIT 0xc1
+0000            419   _ARBLOST        BIT 0xc2
+0000            420   _ACKRQ          BIT 0xc3
+0000            421   _STO            BIT 0xc4
+0000            422   _STA            BIT 0xc5
+0000            423   _TXMODE         BIT 0xc6
+0000            424   _MASTER         BIT 0xc7
+0000            425   _SPIEN          BIT 0xf8
+0000            426   _TXNF           BIT 0xf9
+0000            427   _NSSMD0         BIT 0xfa
+0000            428   _NSSMD1         BIT 0xfb
+0000            429   _RXOVRN         BIT 0xfc
+0000            430   _MODF           BIT 0xfd
+0000            431   _WCOL           BIT 0xfe
+0000            432   _SPIF           BIT 0xff
+0000            433   _IT0            BIT 0x88
+0000            434   _IE0            BIT 0x89
+0000            435   _IT1            BIT 0x8a
+0000            436   _IE1            BIT 0x8b
+0000            437   _TR0            BIT 0x8c
+0000            438   _TF0            BIT 0x8d
+0000            439   _TR1            BIT 0x8e
+0000            440   _TF1            BIT 0x8f
+0000            441   _T2XCLK0        BIT 0xc8
+0000            442   _T2XCLK1        BIT 0xc9
+0000            443   _TR2            BIT 0xca
+0000            444   _T2SPLIT        BIT 0xcb
+0000            445   _TF2CEN         BIT 0xcc
+0000            446   _TF2LEN         BIT 0xcd
+0000            447   _TF2L           BIT 0xce
+0000            448   _TF2H           BIT 0xcf
+0000            449   _T4XCLK0        BIT 0x98
+0000            450   _T4XCLK1        BIT 0x99
+0000            451   _TR4            BIT 0x9a
+0000            452   _T4SPLIT        BIT 0x9b
+0000            453   _TF4CEN         BIT 0x9c
+0000            454   _TF4LEN         BIT 0x9d
+0000            455   _TF4L           BIT 0x9e
+0000            456   _TF4H           BIT 0x9f
+0000            457   _T5XCLK0        BIT 0xc0
+0000            458   _T5XCLK1        BIT 0xc1
+0000            459   _TR5            BIT 0xc2
+0000            460   _T5SPLIT        BIT 0xc3
+0000            461   _TF5CEN         BIT 0xc4
+0000            462   _TF5LEN         BIT 0xc5
+0000            463   _TF5L           BIT 0xc6
+0000            464   _TF5H           BIT 0xc7
+0000            465   _RIE            BIT 0xd8
+0000            466   _RXTO0          BIT 0xd9
+0000            467   _RXTO1          BIT 0xda
+0000            468   _RFRQ           BIT 0xdb
+0000            469   _TIE            BIT 0xdc
+0000            470   _TXHOLD         BIT 0xdd
+0000            471   _TXNF1          BIT 0xde
+0000            472   _TFRQ           BIT 0xdf
+0000            473   ;--------------------------------------------------------
+0000            474   ; overlayable register banks
+0000            475   ;--------------------------------------------------------
+0000            476            rbank0 segment data overlay
+0000            477   ;--------------------------------------------------------
+0000            478   ; internal ram data
+0000            479   ;--------------------------------------------------------
+0000            480            rseg R_DSEG
+0000            481   _overflow_count:
+0000            482            ds 1
+0001            483   ;--------------------------------------------------------
+0001            484   ; overlayable items in internal ram 
+0001            485   ;--------------------------------------------------------
+0000            486            rseg    R_OSEG
+0000            487   ;--------------------------------------------------------
+0000            488   ; indirectly addressable internal ram data
+0000            489   ;--------------------------------------------------------
+0000            490            rseg R_ISEG
+0000            491   ;--------------------------------------------------------
+0000            492   ; absolute internal ram data
+0000            493   ;--------------------------------------------------------
+0000            494            DSEG
+0000            495   ;--------------------------------------------------------
+0000            496   ; bit data
+0000            497   ;--------------------------------------------------------
+0000            498            rseg R_BSEG
+0000            499   ;--------------------------------------------------------
+0000            500   ; paged external ram data
+0000            501   ;--------------------------------------------------------
+0000            502            rseg R_PSEG
+0000            503   ;--------------------------------------------------------
+0000            504   ; external ram data
+0000            505   ;--------------------------------------------------------
+0000            506            rseg R_XSEG
+0000            507   ;--------------------------------------------------------
+0000            508   ; absolute external ram data
+0000            509   ;--------------------------------------------------------
+0000            510            XSEG
+0000            511   ;--------------------------------------------------------
+0000            512   ; external initialized ram data
+0000            513   ;--------------------------------------------------------
+0000            514            rseg R_IXSEG
+0000            515            rseg R_HOME
+0000            516            rseg R_GSINIT
+0000            517            rseg R_CSEG
+0000            518   ;--------------------------------------------------------
+0000            519   ; Reset entry point and interrupt vectors
+0000            520   ;--------------------------------------------------------
+0000            521            CSEG at 0x0000
+0000 020000     522            ljmp    _crt0
+0003            523   ;--------------------------------------------------------
+0003            524   ; global & static initialisations
+0003            525   ;--------------------------------------------------------
+0000            526            rseg R_HOME
+0000            527            rseg R_GSINIT
+0000            528            rseg R_GSINIT
+0000            529   ;--------------------------------------------------------
+0000            530   ; data variables initialization
+0000            531   ;--------------------------------------------------------
+0000            532            rseg R_DINIT
+0000            533            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000            534   ;--------------------------------------------------------
+0000            535   ; code
+0000            536   ;--------------------------------------------------------
+0000            537            rseg R_CSEG
+0000            538   ;------------------------------------------------------------
+0000            539   ;Allocation info for local variables in function '_c51_external_startup'
+0000            540   ;------------------------------------------------------------
+0000            541   ;------------------------------------------------------------
+0000            542   ;        PeriodEFM8.c:16: char _c51_external_startup (void)
+0000            543   ;        -----------------------------------------
+0000            544   ;         function _c51_external_startup
+0000            545   ;        -----------------------------------------
+0000            546   __c51_external_startup:
+0000            547            using   0
+0000            548   ;        PeriodEFM8.c:19: SFRPAGE = 0x00;
+0000 75A700     549            mov     _SFRPAGE,#0x00
+0003            550   ;        PeriodEFM8.c:20: WDTCN = 0xDE; //First key
+0003 7597DE     551            mov     _WDTCN,#0xDE
+0006            552   ;        PeriodEFM8.c:21: WDTCN = 0xAD; //Second key
+0006 7597AD     553            mov     _WDTCN,#0xAD
+0009            554   ;        PeriodEFM8.c:23: VDM0CN |= 0x80;
+0009 43FF80     555            orl     _VDM0CN,#0x80
+000C            556   ;        PeriodEFM8.c:24: RSTSRC = 0x02;
+000C 75EF02     557            mov     _RSTSRC,#0x02
+000F            558   ;        PeriodEFM8.c:31: SFRPAGE = 0x10;
+000F 75A710     559            mov     _SFRPAGE,#0x10
+0012            560   ;        PeriodEFM8.c:32: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+0012 75C120     561            mov     _PFE0CN,#0x20
+0015            562   ;        PeriodEFM8.c:33: SFRPAGE = 0x00;
+0015 75A700     563            mov     _SFRPAGE,#0x00
+0018            564   ;        PeriodEFM8.c:54: CLKSEL = 0x00;
+0018 75A900     565            mov     _CLKSEL,#0x00
+001B            566   ;        PeriodEFM8.c:55: CLKSEL = 0x00;
+001B 75A900     567            mov     _CLKSEL,#0x00
+001E            568   ;        PeriodEFM8.c:56: while ((CLKSEL & 0x80) == 0);
+001E            569   L002001?:
+001E E5A9       570            mov     a,_CLKSEL
+0020 30E7B0     571            jnb     acc.7,L002001?
+0023            572   ;        PeriodEFM8.c:57: CLKSEL = 0x03;
+0023 75A903     573            mov     _CLKSEL,#0x03
+0026            574   ;        PeriodEFM8.c:58: CLKSEL = 0x03;
+0026 75A903     575            mov     _CLKSEL,#0x03
+0029            576   ;        PeriodEFM8.c:59: while ((CLKSEL & 0x80) == 0);
+0029            577   L002004?:
+0029 E5A9       578            mov     a,_CLKSEL
+002B 30E790     579            jnb     acc.7,L002004?
+002E            580   ;        PeriodEFM8.c:64: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002E 43A410     581            orl     _P0MDOUT,#0x10
+0031            582   ;        PeriodEFM8.c:65: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
+0031 75E101     583            mov     _XBR0,#0x01
+0034            584   ;        PeriodEFM8.c:66: XBR1     = 0X00;
+0034 75E200     585            mov     _XBR1,#0x00
+0037            586   ;        PeriodEFM8.c:67: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+0037 75E340     587            mov     _XBR2,#0x40
+003A            588   ;        PeriodEFM8.c:73: SCON0 = 0x10;
+003A 759810     589            mov     _SCON0,#0x10
+003D            590   ;        PeriodEFM8.c:74: CKCON0 |= 0b_0000_0000 ; // Timer 1 uses the system clock divided by 12.
+003D 858E8E     591            mov     _CKCON0,_CKCON0
+0040            592   ;        PeriodEFM8.c:75: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
+0040 758DE6     593            mov     _TH1,#0xE6
+0043            594   ;        PeriodEFM8.c:76: TL1 = TH1;      // Init Timer1
+0043 858D8B     595            mov     _TL1,_TH1
+0046            596   ;        PeriodEFM8.c:77: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0046 53890F     597            anl     _TMOD,#0x0F
+0049            598   ;        PeriodEFM8.c:78: TMOD |=  0x20;                       
+0049 438920     599            orl     _TMOD,#0x20
+004C            600   ;        PeriodEFM8.c:79: TR1 = 1; // START Timer1
+004C D28E       601            setb    _TR1
+004E            602   ;        PeriodEFM8.c:80: TI = 1;  // Indicate TX0 ready
+004E D299       603            setb    _TI
+0050            604   ;        PeriodEFM8.c:82: return 0;
+0050 758200     605            mov     dpl,#0x00
+0053 22         606            ret
+0054            607   ;------------------------------------------------------------
+0054            608   ;Allocation info for local variables in function 'Timer3us'
+0054            609   ;------------------------------------------------------------
+0054            610   ;us                        Allocated to registers r2 
+0054            611   ;i                         Allocated to registers r3 
+0054            612   ;------------------------------------------------------------
+0054            613   ;        PeriodEFM8.c:86: void Timer3us(unsigned char us)
+0054            614   ;        -----------------------------------------
+0054            615   ;         function Timer3us
+0054            616   ;        -----------------------------------------
+0054            617   _Timer3us:
+0054 AA82       618            mov     r2,dpl
+0056            619   ;        PeriodEFM8.c:91: CKCON0|=0b_0100_0000;
+0056 438E40     620            orl     _CKCON0,#0x40
+0059            621   ;        PeriodEFM8.c:93: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+0059 7592B8     622            mov     _TMR3RL,#0xB8
+005C 7593FF     623            mov     (_TMR3RL >> 8),#0xFF
+005F            624   ;        PeriodEFM8.c:94: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+005F 859294     625            mov     _TMR3,_TMR3RL
+0062 859395     626            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
+0065            627   ;        PeriodEFM8.c:96: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+0065 759104     628            mov     _TMR3CN0,#0x04
+0068            629   ;        PeriodEFM8.c:97: for (i = 0; i < us; i++)       // Count <us> overflows
+0068 7B00       630            mov     r3,#0x00
+006A            631   L003004?:
+006A C3         632            clr     c
+006B EB         633            mov     a,r3
+006C 9A         634            subb    a,r2
+006D 5000       635            jnc     L003007?
+006F            636   ;        PeriodEFM8.c:99: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+006F            637   L003001?:
+006F E591       638            mov     a,_TMR3CN0
+0071 30E750     639            jnb     acc.7,L003001?
+0074            640   ;        PeriodEFM8.c:100: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+0074 53917F     641            anl     _TMR3CN0,#0x7F
+0077            642   ;        PeriodEFM8.c:97: for (i = 0; i < us; i++)       // Count <us> overflows
+0077 0B         643            inc     r3
+0078 8000       644            sjmp    L003004?
+007A            645   L003007?:
+007A            646   ;        PeriodEFM8.c:102: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+007A 759100     647            mov     _TMR3CN0,#0x00
+007D 22         648            ret
+007E            649   ;------------------------------------------------------------
+007E            650   ;Allocation info for local variables in function 'waitms'
+007E            651   ;------------------------------------------------------------
+007E            652   ;ms                        Allocated to registers r2 r3 
+007E            653   ;j                         Allocated to registers r2 r3 
+007E            654   ;------------------------------------------------------------
+007E            655   ;        PeriodEFM8.c:105: void waitms (unsigned int ms)
+007E            656   ;        -----------------------------------------
+007E            657   ;         function waitms
+007E            658   ;        -----------------------------------------
+007E            659   _waitms:
+007E AA82       660            mov     r2,dpl
+0080 AB83       661            mov     r3,dph
+0082            662   ;        PeriodEFM8.c:108: for(j=ms; j!=0; j--)
+0082            663   L004001?:
+0082 BA00A0     664            cjne    r2,#0x00,L004010?
+0085 BB00A0     665            cjne    r3,#0x00,L004010?
+0088 22         666            ret
+0089            667   L004010?:
+0089            668   ;        PeriodEFM8.c:110: Timer3us(249);
+0089 7582F9     669            mov     dpl,#0xF9
+008C C002       670            push    ar2
+008E C003       671            push    ar3
+0090 120000     672            lcall   _Timer3us
+0093            673   ;        PeriodEFM8.c:111: Timer3us(249);
+0093 7582F9     674            mov     dpl,#0xF9
+0096 120000     675            lcall   _Timer3us
+0099            676   ;        PeriodEFM8.c:112: Timer3us(249);
+0099 7582F9     677            mov     dpl,#0xF9
+009C 120000     678            lcall   _Timer3us
+009F            679   ;        PeriodEFM8.c:113: Timer3us(250);
+009F 7582FA     680            mov     dpl,#0xFA
+00A2 120000     681            lcall   _Timer3us
+00A5 D003       682            pop     ar3
+00A7 D002       683            pop     ar2
+00A9            684   ;        PeriodEFM8.c:108: for(j=ms; j!=0; j--)
+00A9 1A         685            dec     r2
+00AA BAFF10     686            cjne    r2,#0xff,L004011?
+00AD 1B         687            dec     r3
+00AE            688   L004011?:
+00AE 8000       689            sjmp    L004001?
+00B0            690   ;------------------------------------------------------------
+00B0            691   ;Allocation info for local variables in function 'TIMER0_Init'
+00B0            692   ;------------------------------------------------------------
+00B0            693   ;------------------------------------------------------------
+00B0            694   ;        PeriodEFM8.c:117: void TIMER0_Init(void)
+00B0            695   ;        -----------------------------------------
+00B0            696   ;         function TIMER0_Init
+00B0            697   ;        -----------------------------------------
+00B0            698   _TIMER0_Init:
+00B0            699   ;        PeriodEFM8.c:119: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+00B0 5389F0     700            anl     _TMOD,#0xF0
+00B3            701   ;        PeriodEFM8.c:120: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
+00B3 438901     702            orl     _TMOD,#0x01
+00B6            703   ;        PeriodEFM8.c:121: TR0=0; // Stop Timer/Counter 0
+00B6 C28C       704            clr     _TR0
+00B8 22         705            ret
+00B9            706   ;------------------------------------------------------------
+00B9            707   ;Allocation info for local variables in function 'main'
+00B9            708   ;------------------------------------------------------------
+00B9            709   ;period                    Allocated to registers r2 r3 r4 r5 
+00B9            710   ;------------------------------------------------------------
+00B9            711   ;        PeriodEFM8.c:124: void main (void) 
+00B9            712   ;        -----------------------------------------
+00B9            713   ;         function main
+00B9            714   ;        -----------------------------------------
+00B9            715   _main:
+00B9            716   ;        PeriodEFM8.c:128: TIMER0_Init();
+00B9 120000     717            lcall   _TIMER0_Init
+00BC            718   ;        PeriodEFM8.c:130: waitms(500); // Give PuTTY a chance to start.
+00BC 9001F4     719            mov     dptr,#0x01F4
+00BF 120000     720            lcall   _waitms
+00C2            721   ;        PeriodEFM8.c:131: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+00C2 7480       722            mov     a,#__str_0
+00C4 C0E0       723            push    acc
+00C6 742B       724            mov     a,#(__str_0 >> 8)
+00C8 C0E0       725            push    acc
+00CA 7480       726            mov     a,#0x80
+00CC C0E0       727            push    acc
+00CE 120000     728            lcall   _printf
+00D1 1581       729            dec     sp
+00D3 1581       730            dec     sp
+00D5 1581       731            dec     sp
+00D7            732   ;        PeriodEFM8.c:136: __FILE__, __DATE__, __TIME__);
+00D7            733   ;        PeriodEFM8.c:135: "Compiled: %s, %s\n\n",
+00D7 74D0       734            mov     a,#__str_4
+00D9 C0E0       735            push    acc
+00DB 742C       736            mov     a,#(__str_4 >> 8)
+00DD C0E0       737            push    acc
+00DF 7480       738            mov     a,#0x80
+00E1 C0E0       739            push    acc
+00E3 7440       740            mov     a,#__str_3
+00E5 C0E0       741            push    acc
+00E7 742D       742            mov     a,#(__str_3 >> 8)
+00E9 C0E0       743            push    acc
+00EB 7480       744            mov     a,#0x80
+00ED C0E0       745            push    acc
+00EF 74B0       746            mov     a,#__str_2
+00F1 C0E0       747            push    acc
+00F3 742D       748            mov     a,#(__str_2 >> 8)
+00F5 C0E0       749            push    acc
+00F7 7480       750            mov     a,#0x80
+00F9 C0E0       751            push    acc
+00FB 7420       752            mov     a,#__str_1
+00FD C0E0       753            push    acc
+00FF 742E       754            mov     a,#(__str_1 >> 8)
+0101 C0E0       755            push    acc
+0103 7480       756            mov     a,#0x80
+0105 C0E0       757            push    acc
+0107 120000     758            lcall   _printf
+010A E581       759            mov     a,sp
+010C 24F4       760            add     a,#0xf4
+010E F581       761            mov     sp,a
+0110            762   ;        PeriodEFM8.c:138: while (1)
+0110            763   L006018?:
+0110            764   ;        PeriodEFM8.c:141: TL0=0; 
+0110 758A00     765            mov     _TL0,#0x00
+0113            766   ;        PeriodEFM8.c:142: TH0=0;
+0113 758C00     767            mov     _TH0,#0x00
+0116            768   ;        PeriodEFM8.c:143: TF0=0;
+0116 C28D       769            clr     _TF0
+0118            770   ;        PeriodEFM8.c:144: overflow_count=0;
+0118 758000     771            mov     _overflow_count,#0x00
+011B            772   ;        PeriodEFM8.c:146: while(P0_1!=0); // Wait for the signal to be zero
+011B            773   L006001?:
+011B 208100     774            jb      _P0_1,L006001?
+011E            775   ;        PeriodEFM8.c:147: while(P0_1!=1); // Wait for the signal to be one
+011E            776   L006004?:
+011E 308170     777            jnb     _P0_1,L006004?
+0121            778   ;        PeriodEFM8.c:148: TR0=1; // Start the timer
+0121 D28C       779            setb    _TR0
+0123            780   ;        PeriodEFM8.c:149: while(P0_1!=0) // Wait for the signal to be zero
+0123            781   L006009?:
+0123 308150     782            jnb     _P0_1,L006014?
+0126            783   ;        PeriodEFM8.c:151: if(TF0==1) // Did the 16-bit timer overflow?
+0126            784   ;        PeriodEFM8.c:153: TF0=0;
+0126 108DC0     785            jbc     _TF0,L006035?
+0129 8000       786            sjmp    L006009?
+012B            787   L006035?:
+012B            788   ;        PeriodEFM8.c:154: overflow_count++;
+012B 0580       789            inc     _overflow_count
+012D            790   ;        PeriodEFM8.c:157: while(P0_1!=1) // Wait for the signal to be one
+012D 8000       791            sjmp    L006009?
+012F            792   L006014?:
+012F 208130     793            jb      _P0_1,L006016?
+0132            794   ;        PeriodEFM8.c:159: if(TF0==1) // Did the 16-bit timer overflow?
+0132            795   ;        PeriodEFM8.c:161: TF0=0;
+0132 108DA0     796            jbc     _TF0,L006037?
+0135 8000       797            sjmp    L006014?
+0137            798   L006037?:
+0137            799   ;        PeriodEFM8.c:162: overflow_count++;
+0137 0580       800            inc     _overflow_count
+0139 8000       801            sjmp    L006014?
+013B            802   L006016?:
+013B            803   ;        PeriodEFM8.c:165: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+013B C28C       804            clr     _TR0
+013D            805   ;        PeriodEFM8.c:166: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
+013D 858082     806            mov     dpl,_overflow_count
+0140 120000     807            lcall   ___uchar2fs
+0143 AA82       808            mov     r2,dpl
+0145 AB83       809            mov     r3,dph
+0147 ACF0       810            mov     r4,b
+0149 FD         811            mov     r5,a
+014A C002       812            push    ar2
+014C C003       813            push    ar3
+014E C004       814            push    ar4
+0150 C005       815            push    ar5
+0152 900000     816            mov     dptr,#0x0000
+0155 75F080     817            mov     b,#0x80
+0158 7447       818            mov     a,#0x47
+015A 120000     819            lcall   ___fsmul
+015D AA82       820            mov     r2,dpl
+015F AB83       821            mov     r3,dph
+0161 ACF0       822            mov     r4,b
+0163 FD         823            mov     r5,a
+0164 E581       824            mov     a,sp
+0166 24FC       825            add     a,#0xfc
+0168 F581       826            mov     sp,a
+016A 858C82     827            mov     dpl,_TH0
+016D C002       828            push    ar2
+016F C003       829            push    ar3
+0171 C004       830            push    ar4
+0173 C005       831            push    ar5
+0175 120000     832            lcall   ___uchar2fs
+0178 AE82       833            mov     r6,dpl
+017A AF83       834            mov     r7,dph
+017C A8F0       835            mov     r0,b
+017E F9         836            mov     r1,a
+017F C006       837            push    ar6
+0181 C007       838            push    ar7
+0183 C000       839            push    ar0
+0185 C001       840            push    ar1
+0187 900000     841            mov     dptr,#0x0000
+018A 75F080     842            mov     b,#0x80
+018D 7443       843            mov     a,#0x43
+018F 120000     844            lcall   ___fsmul
+0192 AE82       845            mov     r6,dpl
+0194 AF83       846            mov     r7,dph
+0196 A8F0       847            mov     r0,b
+0198 F9         848            mov     r1,a
+0199 E581       849            mov     a,sp
+019B 24FC       850            add     a,#0xfc
+019D F581       851            mov     sp,a
+019F D005       852            pop     ar5
+01A1 D004       853            pop     ar4
+01A3 D003       854            pop     ar3
+01A5 D002       855            pop     ar2
+01A7 C006       856            push    ar6
+01A9 C007       857            push    ar7
+01AB C000       858            push    ar0
+01AD C001       859            push    ar1
+01AF 8A82       860            mov     dpl,r2
+01B1 8B83       861            mov     dph,r3
+01B3 8CF0       862            mov     b,r4
+01B5 ED         863            mov     a,r5
+01B6 120000     864            lcall   ___fsadd
+01B9 AA82       865            mov     r2,dpl
+01BB AB83       866            mov     r3,dph
+01BD ACF0       867            mov     r4,b
+01BF FD         868            mov     r5,a
+01C0 E581       869            mov     a,sp
+01C2 24FC       870            add     a,#0xfc
+01C4 F581       871            mov     sp,a
+01C6 AE8A       872            mov     r6,_TL0
+01C8 7F00       873            mov     r7,#0x00
+01CA 8E82       874            mov     dpl,r6
+01CC 8F83       875            mov     dph,r7
+01CE C002       876            push    ar2
+01D0 C003       877            push    ar3
+01D2 C004       878            push    ar4
+01D4 C005       879            push    ar5
+01D6 120000     880            lcall   ___sint2fs
+01D9 AE82       881            mov     r6,dpl
+01DB AF83       882            mov     r7,dph
+01DD A8F0       883            mov     r0,b
+01DF F9         884            mov     r1,a
+01E0 D005       885            pop     ar5
+01E2 D004       886            pop     ar4
+01E4 D003       887            pop     ar3
+01E6 D002       888            pop     ar2
+01E8 C006       889            push    ar6
+01EA C007       890            push    ar7
+01EC C000       891            push    ar0
+01EE C001       892            push    ar1
+01F0 8A82       893            mov     dpl,r2
+01F2 8B83       894            mov     dph,r3
+01F4 8CF0       895            mov     b,r4
+01F6 ED         896            mov     a,r5
+01F7 120000     897            lcall   ___fsadd
+01FA AA82       898            mov     r2,dpl
+01FC AB83       899            mov     r3,dph
+01FE ACF0       900            mov     r4,b
+0200 FD         901            mov     r5,a
+0201 E581       902            mov     a,sp
+0203 24FC       903            add     a,#0xfc
+0205 F581       904            mov     sp,a
+0207 C002       905            push    ar2
+0209 C003       906            push    ar3
+020B C004       907            push    ar4
+020D C005       908            push    ar5
+020F 90F4FC     909            mov     dptr,#0xF4FC
+0212 75F032     910            mov     b,#0x32
+0215 7434       911            mov     a,#0x34
+0217 120000     912            lcall   ___fsmul
+021A AA82       913            mov     r2,dpl
+021C AB83       914            mov     r3,dph
+021E ACF0       915            mov     r4,b
+0220 FD         916            mov     r5,a
+0221 E581       917            mov     a,sp
+0223 24FC       918            add     a,#0xfc
+0225 F581       919            mov     sp,a
+0227            920   ;        PeriodEFM8.c:168: printf( "\rT=%f ms    ", period*1000.0);
+0227 C002       921            push    ar2
+0229 C003       922            push    ar3
+022B C004       923            push    ar4
+022D C005       924            push    ar5
+022F 900000     925            mov     dptr,#0x0000
+0232 75F07A     926            mov     b,#0x7A
+0235 7444       927            mov     a,#0x44
+0237 120000     928            lcall   ___fsmul
+023A AA82       929            mov     r2,dpl
+023C AB83       930            mov     r3,dph
+023E ACF0       931            mov     r4,b
+0240 FD         932            mov     r5,a
+0241 E581       933            mov     a,sp
+0243 24FC       934            add     a,#0xfc
+0245 F581       935            mov     sp,a
+0247 C002       936            push    ar2
+0249 C003       937            push    ar3
+024B C004       938            push    ar4
+024D C005       939            push    ar5
+024F 7440       940            mov     a,#__str_5
+0251 C0E0       941            push    acc
+0253 7434       942            mov     a,#(__str_5 >> 8)
+0255 C0E0       943            push    acc
+0257 7480       944            mov     a,#0x80
+0259 C0E0       945            push    acc
+025B 120000     946            lcall   _printf
+025E E581       947            mov     a,sp
+0260 24F9       948            add     a,#0xf9
+0262 F581       949            mov     sp,a
+0264 020000     950            ljmp    L006018?
+0267            951            rseg R_CSEG
+0267            952   
+0000            953            rseg R_XINIT
+0000            954   
+0000            955            rseg R_CONST
+0000            956   __str_0:
+0000 1B         957            db 0x1B
+0001 5B324A     958            db '[2J'
+0004 00         959            db 0x00
+0005            960   __str_1:
+0005 45464D38   961            db 'EFM8 Period measurement at pin P0.1 using Timer 0.'
+     20506572
+     696F6420
+     6D656173
+     7572656D
+     656E7420
+     61742070
+     696E2050
+     302E3120
+     7573696E
+     67205469
+     6D657220
+     302E
+0037 0A         962            db 0x0A
+0038 46696C65   963            db 'File: %s'
+     3A202573
+0040 0A         964            db 0x0A
+0041 436F6D70   965            db 'Compiled: %s, %s'
+     696C6564
+     3A202573
+     2C202573
+0051 0A         966            db 0x0A
+0052 0A         967            db 0x0A
+0053 00         968            db 0x00
+0054            969   __str_2:
+0054 50657269   970            db 'PeriodEFM8.c'
+     6F644546
+     4D382E63
+0060 00         971            db 0x00
+0061            972   __str_3:
+0061 46656220   973            db 'Feb 28 2024'
+     32382032
+     303234
+006C 00         974            db 0x00
+006D            975   __str_4:
+006D 32323A30   976            db '22:07:17'
+     373A3137
+0075 00         977            db 0x00
+0076            978   __str_5:
+0076 0D         979            db 0x0D
+0077 543D2566   980            db 'T=%f ms    '
+     206D7320
+     202020
+0082 00         981            db 0x00
+0083            982   
+0003            983            CSEG
+0003            984   
+0003            985   end
