@@ -263,13 +263,15 @@ void main (void)
         C = 1000*1000000* 1.44 / (3*3900*F);
         sC += C;
         measurements++;
-        sprintf(test_num, "C=%lu.%lu mF", sC / (measurements * 1000), (sC / measurements) % 1000);
-        if (measurements > 20)
+        sprintf(test_num, "C=%lu.%lu uF", sC / (measurements * 1000), (sC / measurements) % 1000);
+        if (measurements >= 20)
         {
             sC /= 2;
             measurements /= 2;
         }
         LCDprint(test_num, 2, 1);
+
+        if 
 
 
 		//printf("\rf=%1.luHz", F);
