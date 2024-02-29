@@ -1,0 +1,920 @@
+
+----------------------------------------------------------------
+Basic Block _entry (df:1 bb:0 lvl:1): loopDepth=0
+
+successors: preHeaderLbl0 
+predecessors: 
+dominators: _entry 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (4) (5) (6) (7) (9) (10) (12) }
+
+local defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (2) (3) (4) (5) (6) (7) (8) (9) (10) (11) (12) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l16:s0:k0:d0:s0)	 _entry($8) :
+qt.c(l16:s0:k1:d0:s0)		proc __c51_external_startup [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char function    ( )  fixed}
+qt.c(l19:s0:k2:d0:s0)		_SFRPAGE [k2 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+qt.c(l20:s0:k3:d0:s0)		_WDTCN [k3 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0xde {const-unsigned-char literal}
+qt.c(l21:s0:k4:d0:s0)		_WDTCN [k3 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0xad {const-unsigned-char literal}
+qt.c(l23:s0:k5:d0:s0)		iTemp0 [k5 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _VDM0CN [k4 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} | 0x80 {const-unsigned-char literal}
+qt.c(l23:s0:k6:d0:s0)		_VDM0CN [k4 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp0 [k5 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register}
+qt.c(l24:s0:k7:d0:s0)		_RSTSRC [k6 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x2 {const-unsigned-char literal}
+qt.c(l31:s0:k8:d0:s0)		_SFRPAGE [k2 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x10 {const-unsigned-char literal}
+qt.c(l32:s0:k9:d0:s0)		_PFE0CN [k7 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x20 {const-unsigned-char literal}
+qt.c(l33:s0:k10:d0:s0)		_SFRPAGE [k2 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+qt.c(l54:s0:k11:d0:s0)		_CLKSEL [k8 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+qt.c(l55:s0:k12:d0:s0)		_CLKSEL [k8 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl0 (df:2 bb:1 lvl:1): loopDepth=0
+
+successors: _whilecontinue_0 
+predecessors: _entry 
+dominators: _entry preHeaderLbl0 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l56:s0:k50:d0:s0)	 preHeaderLbl0($9) :
+
+----------------------------------------------------------------
+Basic Block _whilecontinue_0 (df:3 bb:2 lvl:1): loopDepth=1 partOfLoop
+
+successors: _whilecontinue_0 _eBBlock0 
+predecessors: preHeaderLbl0 
+dominators: _entry preHeaderLbl0 _whilecontinue_0 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (14) }
+
+local defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (14) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l56:s0:k13:d0:s0)	 _whilecontinue_0($1) :
+qt.c(l56:s0:k14:d0:s0)		iTemp1 [k9 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _CLKSEL [k8 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} & 0x80 {const-unsigned-char literal}
+qt.c(l56:s0:k15:d0:s0)		if iTemp1 [k9 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} == 0 goto _whilecontinue_0($1)
+
+----------------------------------------------------------------
+Basic Block _eBBlock0 (df:4 bb:3 lvl:1): loopDepth=0
+
+successors: preHeaderLbl1 
+predecessors: _whilecontinue_0 
+dominators: _entry preHeaderLbl0 _whilecontinue_0 _eBBlock0 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (21) }
+
+local defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (20) (21) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l57:s0:k20:d0:s0)		_CLKSEL [k8 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x3 {const-unsigned-char literal}
+qt.c(l58:s0:k21:d0:s0)		_CLKSEL [k8 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x3 {const-unsigned-char literal}
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl1 (df:5 bb:4 lvl:1): loopDepth=0
+
+successors: _whilecontinue_1 
+predecessors: _eBBlock0 
+dominators: _entry preHeaderLbl0 _whilecontinue_0 _eBBlock0 preHeaderLbl1 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l59:s0:k51:d0:s0)	 preHeaderLbl1($11) :
+
+----------------------------------------------------------------
+Basic Block _whilecontinue_1 (df:6 bb:5 lvl:1): loopDepth=1 partOfLoop
+
+successors: _whilecontinue_1 _eBBlock1 
+predecessors: preHeaderLbl1 
+dominators: _entry preHeaderLbl0 _whilecontinue_0 _eBBlock0 preHeaderLbl1 _whilecontinue_1 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (23) }
+
+local defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (23) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l59:s0:k22:d0:s0)	 _whilecontinue_1($4) :
+qt.c(l59:s0:k23:d0:s0)		iTemp2 [k10 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _CLKSEL [k8 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} & 0x80 {const-unsigned-char literal}
+qt.c(l59:s0:k24:d0:s0)		if iTemp2 [k10 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} == 0 goto _whilecontinue_1($4)
+
+----------------------------------------------------------------
+Basic Block _eBBlock1 (df:7 bb:6 lvl:1): loopDepth=0
+
+successors: _return 
+predecessors: _whilecontinue_1 
+dominators: _entry preHeaderLbl0 _whilecontinue_0 _eBBlock0 preHeaderLbl1 _whilecontinue_1 _eBBlock1 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (29) (30) (31) (32) (33) (34) (35) (36) (37) (38) (39) (40) (41) (43) (44) (45) (46) }
+
+local defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { (29) (30) (31) (32) (33) (34) (35) (36) (37) (38) (39) (40) (41) (42) (43) (44) (45) (46) }
+
+pointers Set bitvector :
+inExprs:
+outExprs: iTemp7(41) iTemp6(40)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l64:s0:k29:d0:s0)		iTemp3 [k12 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _P0MDOUT [k11 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} | 0x10 {const-unsigned-char literal}
+qt.c(l64:s0:k30:d0:s0)		_P0MDOUT [k11 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp3 [k12 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register}
+qt.c(l65:s0:k31:d0:s0)		_XBR0 [k13 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x1 {const-unsigned-char literal}
+qt.c(l66:s0:k32:d0:s0)		_XBR1 [k14 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+qt.c(l67:s0:k33:d0:s0)		_XBR2 [k15 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x40 {const-unsigned-char literal}
+qt.c(l73:s0:k34:d0:s0)		_SCON0 [k16 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x10 {const-unsigned-char literal}
+qt.c(l74:s0:k35:d0:s0)		iTemp4 [k18 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _CKCON0 [k17 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} | 0x0 {const-unsigned-char literal}
+qt.c(l74:s0:k36:d0:s0)		_CKCON0 [k17 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp4 [k18 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register}
+qt.c(l75:s0:k37:d0:s0)		_TH1 [k19 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0xe6 {volatile-unsigned-char literal}
+qt.c(l76:s0:k38:d0:s0)		_TL1 [k20 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := _TH1 [k19 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr}
+qt.c(l77:s0:k39:d0:s0)		iTemp5 [k22 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register} := _TMOD [k21 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr}
+qt.c(l77:s0:k40:d0:s0)		iTemp6 [k23 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register} = iTemp5 [k22 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register} & 0xf {char literal}
+qt.c(l77:s0:k41:d0:s0)		iTemp7 [k24 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp6 [k23 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register}
+qt.c(l77:s0:k42:d0:s0)		_TMOD [k21 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp7 [k24 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr}
+qt.c(l78:s0:k43:d0:s0)		iTemp8 [k25 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _TMOD [k21 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} | 0x20 {const-unsigned-char literal}
+qt.c(l78:s0:k44:d0:s0)		_TMOD [k21 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp8 [k25 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register}
+qt.c(l79:s0:k45:d0:s0)		_TR1 [k26 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x1 {volatile-unsigned-sbit literal}
+qt.c(l80:s0:k46:d0:s0)		_TI [k27 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x1 {volatile-unsigned-sbit literal}
+qt.c(l82:s0:k47:d0:s0)		ret 0x0 {char literal}
+
+----------------------------------------------------------------
+Basic Block _return (df:8 bb:7 lvl:1): loopDepth=0
+
+successors: 
+predecessors: _eBBlock1 
+dominators: _entry preHeaderLbl0 _whilecontinue_0 _eBBlock0 preHeaderLbl1 _whilecontinue_1 _eBBlock1 _return 
+
+defines bitVector :bitvector Size = 52 bSize = 7
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l82:s0:k48:d0:s0)	 _return($7) :
+qt.c(l82:s0:k49:d0:s0)		eproc __c51_external_startup [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char function    ( )  fixed}
+
+----------------------------------------------------------------
+Basic Block _entry (df:1 bb:0 lvl:1): loopDepth=0
+
+successors: preHeaderLbl1 
+predecessors: 
+dominators: _entry 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (2) (3) (4) (5) (6) (7) (8) }
+
+local defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (2) (3) (4) (5) (6) (7) (8) }
+
+pointers Set bitvector :
+inExprs:
+outExprs: i(8)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l86:s0:k0:d0:s0)	 _entry($9) :
+qt.c(l86:s0:k1:d0:s0)		proc _Timer3us [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-char fixed)  fixed}
+qt.c(l86:s0:k2:d0:s0)	iTemp0 [k2 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-char fixed}{ sir@ _Timer3us_us_1_25} = recv _Timer3us [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-char fixed)  fixed}
+qt.c(l91:s0:k3:d0:s0)		iTemp1 [k5 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _CKCON0 [k4 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} | 0x40 {const-unsigned-char literal}
+qt.c(l91:s0:k4:d0:s0)		_CKCON0 [k4 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp1 [k5 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register}
+qt.c(l93:s0:k5:d0:s0)		_TMR3RL [k6 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-int sfr} := 0xffb8 {volatile-unsigned-int literal}
+qt.c(l94:s0:k6:d0:s0)		_TMR3 [k7 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-int sfr} := _TMR3RL [k6 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-int sfr}
+qt.c(l96:s0:k7:d0:s0)		_TMR3CN0 [k8 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x4 {const-unsigned-char literal}
+qt.c(l97:s0:k8:d0:s0)		iTemp2 [k9 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-char fixed}{ sir@ _Timer3us_i_1_26} := 0x0 {const-unsigned-char literal}
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl1 (df:2 bb:1 lvl:1): loopDepth=0
+
+successors: _forcond_0 
+predecessors: _entry 
+dominators: _entry preHeaderLbl1 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l97:s0:k35:d0:s0)	 preHeaderLbl1($12) :
+
+----------------------------------------------------------------
+Basic Block _forcond_0 (df:3 bb:2 lvl:1): loopDepth=1 partOfLoop
+
+successors: _forbreak_0 preHeaderLbl0 
+predecessors: preHeaderLbl1 
+dominators: _entry preHeaderLbl1 _forcond_0 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (10) }
+
+local defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (10) }
+
+pointers Set bitvector :
+inExprs:
+outExprs: iTemp3(10)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l97:s0:k9:d0:s0)	 _forcond_0($4) :
+qt.c(l97:s0:k10:d0:s0)		iTemp3 [k11 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char fixed} = iTemp2 [k9 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-char fixed}{ sir@ _Timer3us_i_1_26} < iTemp0 [k2 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-char fixed}{ sir@ _Timer3us_us_1_25}
+qt.c(l97:s0:k11:d0:s0)		if iTemp3 [k11 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char fixed} == 0 goto _forbreak_0($7)
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl0 (df:4 bb:3 lvl:1): loopDepth=1 partOfLoop
+
+successors: _whilecontinue_2 
+predecessors: _forcond_0 
+dominators: _entry preHeaderLbl1 _forcond_0 preHeaderLbl0 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l99:s0:k34:d0:s0)	 preHeaderLbl0($10) :
+
+----------------------------------------------------------------
+Basic Block _whilecontinue_2 (df:5 bb:4 lvl:2): loopDepth=2 partOfLoop
+
+successors: _whilecontinue_2 _eBBlock0 
+predecessors: preHeaderLbl0 
+dominators: _entry preHeaderLbl1 _forcond_0 preHeaderLbl0 _whilecontinue_2 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (15) }
+
+local defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (15) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l99:s0:k14:d0:s0)	 _whilecontinue_2($1) :
+qt.c(l99:s0:k15:d0:s0)		iTemp4 [k12 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _TMR3CN0 [k8 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} & 0x80 {const-unsigned-char literal}
+qt.c(l99:s0:k16:d0:s0)		if iTemp4 [k12 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} == 0 goto _whilecontinue_2($1)
+
+----------------------------------------------------------------
+Basic Block _eBBlock0 (df:6 bb:5 lvl:1): loopDepth=1 partOfLoop
+
+successors: _forcond_0 
+predecessors: _whilecontinue_2 
+dominators: _entry preHeaderLbl1 _forcond_0 preHeaderLbl0 _whilecontinue_2 _eBBlock0 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (21) (22) (23) (24) (26) (27) (28) }
+
+local defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (21) (22) (23) (24) (26) (27) (28) }
+
+pointers Set bitvector :
+inExprs:
+outExprs: iTemp7(23) iTemp6(22)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l100:s0:k21:d0:s0)		iTemp5 [k13 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register} := _TMR3CN0 [k8 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr}
+qt.c(l100:s0:k22:d0:s0)		iTemp6 [k14 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register} = iTemp5 [k13 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register} & 0x7f {char literal}
+qt.c(l100:s0:k23:d0:s0)		iTemp7 [k15 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp6 [k14 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char register}
+qt.c(l100:s0:k24:d0:s0)		_TMR3CN0 [k8 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp7 [k15 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr}
+qt.c(l97:s0:k26:d0:s0)		iTemp8 [k16 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos1 ru0 dp0}{unsigned-char fixed} := iTemp2 [k9 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-char fixed}{ sir@ _Timer3us_i_1_26}
+qt.c(l97:s0:k27:d0:s0)		iTemp9 [k17 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} = iTemp2 [k9 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-char fixed}{ sir@ _Timer3us_i_1_26} + 0x1 {const-unsigned-char literal}
+qt.c(l97:s0:k28:d0:s0)		iTemp2 [k9 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-char fixed}{ sir@ _Timer3us_i_1_26} := iTemp9 [k17 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l97:s0:k29:d0:s0)		 goto _forcond_0($4)
+
+----------------------------------------------------------------
+Basic Block _forbreak_0 (df:7 bb:6 lvl:1): loopDepth=0
+
+successors: _return 
+predecessors: _forcond_0 
+dominators: _entry preHeaderLbl1 _forcond_0 _forbreak_0 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (31) }
+
+local defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { (31) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l97:s0:k30:d0:s0)	 _forbreak_0($7) :
+qt.c(l102:s0:k31:d0:s0)		_TMR3CN0 [k8 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+
+----------------------------------------------------------------
+Basic Block _return (df:8 bb:7 lvl:1): loopDepth=0
+
+successors: 
+predecessors: _forbreak_0 
+dominators: _entry preHeaderLbl1 _forcond_0 _forbreak_0 _return 
+
+defines bitVector :bitvector Size = 36 bSize = 5
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l102:s0:k32:d0:s0)	 _return($8) :
+qt.c(l102:s0:k33:d0:s0)		eproc _Timer3us [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-char fixed)  fixed}
+
+----------------------------------------------------------------
+Basic Block _entry (df:1 bb:0 lvl:1): loopDepth=0
+
+successors: preHeaderLbl0 
+predecessors: 
+dominators: _entry 
+
+defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { (2) (3) }
+
+local defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { (2) (3) }
+
+pointers Set bitvector :
+inExprs:
+outExprs: j(3)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l105:s0:k0:d0:s0)	 _entry($6) :
+qt.c(l105:s0:k1:d0:s0)		proc _waitms [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-int fixed)  fixed}
+qt.c(l105:s0:k2:d0:s0)	iTemp0 [k2 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-int fixed}{ sir@ _waitms_ms_1_28} = recv _waitms [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-int fixed)  fixed}
+qt.c(l108:s0:k3:d0:s0)		iTemp1 [k4 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-int fixed}{ sir@ _waitms_j_1_29} := iTemp0 [k2 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-int fixed}{ sir@ _waitms_ms_1_28}
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl0 (df:2 bb:1 lvl:1): loopDepth=0
+
+successors: _forcond_1 
+predecessors: _entry 
+dominators: _entry preHeaderLbl0 
+
+defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l108:s0:k25:d0:s0)	 preHeaderLbl0($8) :
+
+----------------------------------------------------------------
+Basic Block _forcond_1 (df:3 bb:2 lvl:1): loopDepth=1 partOfLoop
+
+successors: _return _eBBlock0 
+predecessors: preHeaderLbl0 
+dominators: _entry preHeaderLbl0 _forcond_1 
+
+defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { (5) }
+
+local defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { (5) }
+
+pointers Set bitvector :
+inExprs:
+outExprs: iTemp2(5)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l108:s0:k4:d0:s0)	 _forcond_1($1) :
+qt.c(l108:s0:k5:d0:s0)		iTemp2 [k6 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char fixed} = iTemp1 [k4 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-int fixed}{ sir@ _waitms_j_1_29} == 0x0 {unsigned-int literal}
+qt.c(l108:s0:k6:d0:s0)		if iTemp2 [k6 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{char fixed} != 0 goto _return($5)
+
+----------------------------------------------------------------
+Basic Block _eBBlock0 (df:4 bb:3 lvl:1): loopDepth=1 partOfLoop
+
+successors: _forcond_1 
+predecessors: _forcond_1 
+dominators: _entry preHeaderLbl0 _forcond_1 _eBBlock0 
+
+defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { (10) (12) (14) (16) (18) (19) (20) }
+
+local defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { (10) (12) (14) (16) (18) (19) (20) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l110:s0:k9:d0:s0)		send 0xf9 {const-unsigned-char literal}{argreg = 1}
+qt.c(l110:s0:k10:d0:s0)		iTemp3 [k9 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void fixed} = call _Timer3us [k7 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-char fixed)  fixed}
+qt.c(l111:s0:k11:d0:s0)		send 0xf9 {const-unsigned-char literal}{argreg = 1}
+qt.c(l111:s0:k12:d0:s0)		iTemp4 [k10 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void fixed} = call _Timer3us [k7 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-char fixed)  fixed}
+qt.c(l112:s0:k13:d0:s0)		send 0xf9 {const-unsigned-char literal}{argreg = 1}
+qt.c(l112:s0:k14:d0:s0)		iTemp5 [k11 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void fixed} = call _Timer3us [k7 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-char fixed)  fixed}
+qt.c(l113:s0:k15:d0:s0)		send 0xfa {const-unsigned-char literal}{argreg = 1}
+qt.c(l113:s0:k16:d0:s0)		iTemp6 [k12 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void fixed} = call _Timer3us [k7 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-char fixed)  fixed}
+qt.c(l108:s0:k18:d0:s0)		iTemp7 [k13 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos1 ru0 dp0}{unsigned-int fixed} := iTemp1 [k4 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-int fixed}{ sir@ _waitms_j_1_29}
+qt.c(l108:s0:k19:d0:s0)		iTemp8 [k14 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-int fixed} = iTemp1 [k4 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-int fixed}{ sir@ _waitms_j_1_29} - 0x1 {const-unsigned-char literal}
+qt.c(l108:s0:k20:d0:s0)		iTemp1 [k4 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{unsigned-int fixed}{ sir@ _waitms_j_1_29} := iTemp8 [k14 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-int fixed}
+qt.c(l108:s0:k21:d0:s0)		 goto _forcond_1($1)
+
+----------------------------------------------------------------
+Basic Block _return (df:5 bb:4 lvl:1): loopDepth=0
+
+successors: 
+predecessors: _forcond_1 
+dominators: _entry preHeaderLbl0 _forcond_1 _return 
+
+defines bitVector :bitvector Size = 26 bSize = 4
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l108:s0:k23:d0:s0)	 _return($5) :
+qt.c(l108:s0:k24:d0:s0)		eproc _waitms [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-int fixed)  fixed}
+
+----------------------------------------------------------------
+Basic Block _entry (df:1 bb:0 lvl:1): loopDepth=0
+
+successors: _return 
+predecessors: 
+dominators: _entry 
+
+defines bitVector :bitvector Size = 9 bSize = 2
+Bits on { (2) (4) (5) (6) }
+
+local defines bitVector :bitvector Size = 9 bSize = 2
+Bits on { (2) (3) (4) (5) (6) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l117:s0:k0:d0:s0)	 _entry($2) :
+qt.c(l117:s0:k1:d0:s0)		proc _TIMER0_Init [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( )  fixed}
+qt.c(l119:s0:k2:d0:s0)		iTemp0 [k3 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _TMOD [k2 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} & 0xf0 {const-unsigned-char literal}
+qt.c(l119:s0:k3:d0:s0)		_TMOD [k2 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp0 [k3 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register}
+qt.c(l120:s0:k4:d0:s0)		iTemp1 [k4 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register} = _TMOD [k2 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} | 0x1 {const-unsigned-char literal}
+qt.c(l120:s0:k5:d0:s0)		_TMOD [k2 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := iTemp1 [k4 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-unsigned-char register}
+qt.c(l121:s0:k6:d0:s0)		_TR0 [k5 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x0 {volatile-unsigned-sbit literal}
+
+----------------------------------------------------------------
+Basic Block _return (df:2 bb:1 lvl:1): loopDepth=0
+
+successors: 
+predecessors: _entry 
+dominators: _entry _return 
+
+defines bitVector :bitvector Size = 9 bSize = 2
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l121:s0:k7:d0:s0)	 _return($1) :
+qt.c(l121:s0:k8:d0:s0)		eproc _TIMER0_Init [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( )  fixed}
+
+----------------------------------------------------------------
+Basic Block _return (df:0 bb:17 lvl:1): loopDepth=0 noPath
+
+successors: 
+predecessors: 
+dominators: _return 
+
+defines bitVector :
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l164:s0:k92:d0:s0)	 _return($20) :
+qt.c(l164:s0:k93:d0:s0)		eproc _main [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( )  fixed}
+
+----------------------------------------------------------------
+Basic Block _entry (df:2 bb:0 lvl:1): loopDepth=0
+
+successors: preHeaderLbl4 
+predecessors: 
+dominators: _entry 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (2) (4) (5) (6) (8) (9) (10) (11) (12) (13) (14) (15) (16) (21) }
+
+local defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (2) (4) (5) (6) (8) (9) (10) (11) (12) (13) (14) (15) (16) (21) }
+
+pointers Set bitvector :bitvector Size = 99 bSize = 13
+Bits on { (10) (14) (17) (20) (23) }
+
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l124:s0:k0:d0:s0)	 _entry($21) :
+qt.c(l124:s0:k1:d0:s0)		proc _main [k1 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( )  fixed}
+qt.c(l128:s0:k2:d0:s0)		iTemp0 [k3 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void fixed} = call _TIMER0_Init [k2 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( )  fixed}
+qt.c(l130:s0:k3:d0:s0)		send 0x1f4 {unsigned-int literal}{argreg = 1}
+qt.c(l130:s0:k4:d0:s0)		iTemp1 [k6 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void fixed} = call _waitms [k4 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{void function    ( unsigned-int fixed)  fixed}
+qt.c(l131:s0:k5:d0:s0)		iTemp2 [k9 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed} = &[__str_0 [k8 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char [5] code}]
+qt.c(l131:s0:k6:d0:s0)		iTemp3 [k10 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* fixed} = (const-char generic* fixed)iTemp2 [k9 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed}
+qt.c(l131:s0:k7:d0:s0)		push iTemp3 [k10 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* fixed}{parmPush = 1}
+qt.c(l131:s0:k8:d0:s0)		iTemp4 [k11 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int fixed} = call _printf [k7 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int function    ( const-char generic* fixed)  fixed}
+qt.c(l136:s0:k9:d0:s0)		iTemp5 [k13 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed} = &[__str_4 [k12 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char [9] code}]
+qt.c(l136:s0:k10:d0:s0)		iTemp6 [k14 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* code} = (const-char generic* code)iTemp5 [k13 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed}
+qt.c(l136:s0:k11:d0:s0)		iTemp7 [k16 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed} = &[__str_3 [k15 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char [12] code}]
+qt.c(l136:s0:k12:d0:s0)		iTemp8 [k17 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* code} = (const-char generic* code)iTemp7 [k16 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed}
+qt.c(l136:s0:k13:d0:s0)		iTemp9 [k19 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed} = &[__str_2 [k18 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char [5] code}]
+qt.c(l136:s0:k14:d0:s0)		iTemp10 [k20 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* code} = (const-char generic* code)iTemp9 [k19 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed}
+qt.c(l135:s0:k15:d0:s0)		iTemp11 [k22 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed} = &[__str_1 [k21 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char [79] code}]
+qt.c(l135:s0:k16:d0:s0)		iTemp12 [k23 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* fixed} = (const-char generic* fixed)iTemp11 [k22 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed}
+qt.c(l135:s0:k17:d0:s0)		push iTemp6 [k14 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* code}{parmPush = 1}
+qt.c(l135:s0:k18:d0:s0)		push iTemp8 [k17 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* code}{parmPush = 1}
+qt.c(l135:s0:k19:d0:s0)		push iTemp10 [k20 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* code}{parmPush = 1}
+qt.c(l135:s0:k20:d0:s0)		push iTemp12 [k23 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* fixed}{parmPush = 1}
+qt.c(l135:s0:k21:d0:s0)		iTemp13 [k24 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int fixed} = call _printf [k7 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int function    ( const-char generic* fixed)  fixed}
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl4 (df:3 bb:1 lvl:1): loopDepth=0
+
+successors: _whilebody_3 
+predecessors: _entry 
+dominators: _entry preHeaderLbl4 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l137:s0:k98:d0:s0)	 preHeaderLbl4($31) :
+
+----------------------------------------------------------------
+Basic Block _whilebody_3 (df:4 bb:2 lvl:1): loopDepth=1 partOfLoop
+
+successors: preHeaderLbl0 
+predecessors: preHeaderLbl4 
+dominators: _entry preHeaderLbl4 _whilebody_3 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (25) (26) (27) (28) (29) }
+
+local defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (25) (26) (27) (28) (29) }
+
+pointers Set bitvector :
+inExprs:
+outExprs: overflow_count(29) iTemp14(28)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l137:s0:k24:d0:s0)	 _whilebody_3($18) :
+qt.c(l139:s0:k25:d0:s0)		_TL0 [k25 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+qt.c(l140:s0:k26:d0:s0)		_TH0 [k26 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr} := 0x0 {const-unsigned-char literal}
+qt.c(l141:s0:k27:d0:s0)		_TF0 [k27 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x0 {volatile-unsigned-sbit literal}
+qt.c(l142:s0:k28:d0:s0)		iTemp14 [k29 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} := 0x0 {const-unsigned-char literal}
+qt.c(l142:s0:k29:d0:s0)		_overflow_count [k28 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} := iTemp14 [k29 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl0 (df:5 bb:3 lvl:1): loopDepth=1 partOfLoop
+
+successors: _whilecontinue_4 
+predecessors: _whilebody_3 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l143:s0:k94:d0:s0)	 preHeaderLbl0($22) :
+
+----------------------------------------------------------------
+Basic Block _whilecontinue_4 (df:6 bb:4 lvl:2): loopDepth=5 partOfLoop
+
+successors: _whilecontinue_4 preHeaderLbl1 
+predecessors: preHeaderLbl0 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l143:s0:k30:d0:s0)	 _whilecontinue_4($1) :
+qt.c(l143:s0:k31:d0:s0)		if _P0_1 [k30 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} != 0 goto _whilecontinue_4($1)
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl1 (df:7 bb:5 lvl:1): loopDepth=1 partOfLoop
+
+successors: _whilecontinue_5 
+predecessors: _whilecontinue_4 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l144:s0:k95:d0:s0)	 preHeaderLbl1($23) :
+
+----------------------------------------------------------------
+Basic Block _whilecontinue_5 (df:8 bb:6 lvl:2): loopDepth=5 partOfLoop
+
+successors: _whilecontinue_5 _eBBlock0 
+predecessors: preHeaderLbl1 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l144:s0:k36:d0:s0)	 _whilecontinue_5($4) :
+qt.c(l144:s0:k37:d0:s0)		if _P0_1 [k30 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} == 0 goto _whilecontinue_5($4)
+
+----------------------------------------------------------------
+Basic Block _eBBlock0 (df:9 bb:7 lvl:1): loopDepth=1 partOfLoop
+
+successors: preHeaderLbl2 
+predecessors: _whilecontinue_5 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (42) }
+
+local defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (42) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l145:s0:k42:d0:s0)		_TR0 [k31 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x1 {volatile-unsigned-sbit literal}
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl2 (df:10 bb:8 lvl:1): loopDepth=1 partOfLoop
+
+successors: _whilecontinue_6 
+predecessors: _eBBlock0 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l146:s0:k96:d0:s0)	 preHeaderLbl2($26) :
+
+----------------------------------------------------------------
+Basic Block _whilecontinue_6 (df:11 bb:9 lvl:2): loopDepth=5 partOfLoop
+
+successors: preHeaderLbl3 _eBBlock1 
+predecessors: preHeaderLbl2 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l146:s0:k43:d0:s0)	 _whilecontinue_6($9) :
+qt.c(l146:s0:k44:d0:s0)		if _P0_1 [k30 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} == 0 goto preHeaderLbl3($29)
+
+----------------------------------------------------------------
+Basic Block _eBBlock1 (df:12 bb:10 lvl:1): loopDepth=5 partOfLoop
+
+successors: _whilecontinue_6 _eBBlock2 
+predecessors: _whilecontinue_6 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 _eBBlock1 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l148:s0:k47:d0:s0)		if _TF0 [k27 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} == 0 goto _whilecontinue_6($9)
+
+----------------------------------------------------------------
+Basic Block _eBBlock2 (df:13 bb:11 lvl:1): loopDepth=5 partOfLoop
+
+successors: _whilecontinue_6 
+predecessors: _eBBlock1 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 _eBBlock1 _eBBlock2 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (50) (51) (52) (53) (54) }
+
+local defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (50) (51) (52) (53) (54) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l150:s0:k50:d0:s0)		_TF0 [k27 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x0 {volatile-unsigned-sbit literal}
+qt.c(l151:s0:k51:d0:s0)		iTemp15 [k32 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos1 ru0 dp0}{unsigned-char fixed} := _overflow_count [k28 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l151:s0:k52:d0:s0)		iTemp16 [k33 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} = _overflow_count [k28 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} + 0x1 {const-unsigned-char literal}
+qt.c(l151:s0:k53:d0:s0)		iTemp17 [k34 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} := iTemp16 [k33 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l151:s0:k54:d0:s0)		_overflow_count [k28 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} := iTemp17 [k34 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l151:s0:k56:d0:s0)		 goto _whilecontinue_6($9)
+
+----------------------------------------------------------------
+Basic Block preHeaderLbl3 (df:14 bb:12 lvl:1): loopDepth=1 partOfLoop
+
+successors: _whilecontinue_7 
+predecessors: _whilecontinue_6 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 preHeaderLbl3 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l154:s0:k97:d0:s0)	 preHeaderLbl3($29) :
+
+----------------------------------------------------------------
+Basic Block _whilecontinue_7 (df:15 bb:13 lvl:2): loopDepth=5 partOfLoop
+
+successors: _whilebreak_7 _eBBlock3 
+predecessors: preHeaderLbl3 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 preHeaderLbl3 _whilecontinue_7 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l154:s0:k58:d0:s0)	 _whilecontinue_7($14) :
+qt.c(l154:s0:k59:d0:s0)		if _P0_1 [k30 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} != 0 goto _whilebreak_7($16)
+
+----------------------------------------------------------------
+Basic Block _eBBlock3 (df:16 bb:14 lvl:1): loopDepth=5 partOfLoop
+
+successors: _whilecontinue_7 _eBBlock4 
+predecessors: _whilecontinue_7 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 preHeaderLbl3 _whilecontinue_7 _eBBlock3 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { }
+
+local defines bitVector :
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l156:s0:k62:d0:s0)		if _TF0 [k27 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} == 0 goto _whilecontinue_7($14)
+
+----------------------------------------------------------------
+Basic Block _eBBlock4 (df:17 bb:15 lvl:1): loopDepth=5 partOfLoop
+
+successors: _whilecontinue_7 
+predecessors: _eBBlock3 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 preHeaderLbl3 _whilecontinue_7 _eBBlock3 _eBBlock4 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (65) (66) (67) (68) (69) }
+
+local defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (65) (66) (67) (68) (69) }
+
+pointers Set bitvector :
+inExprs:
+outExprs:
+killedExprs:
+----------------------------------------------------------------
+qt.c(l158:s0:k65:d0:s0)		_TF0 [k27 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x0 {volatile-unsigned-sbit literal}
+qt.c(l159:s0:k66:d0:s0)		iTemp18 [k35 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos1 ru0 dp0}{unsigned-char fixed} := _overflow_count [k28 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l159:s0:k67:d0:s0)		iTemp19 [k36 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} = _overflow_count [k28 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} + 0x1 {const-unsigned-char literal}
+qt.c(l159:s0:k68:d0:s0)		iTemp20 [k37 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} := iTemp19 [k36 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l159:s0:k69:d0:s0)		_overflow_count [k28 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed} := iTemp20 [k37 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l159:s0:k71:d0:s0)		 goto _whilecontinue_7($14)
+
+----------------------------------------------------------------
+Basic Block _whilebreak_7 (df:18 bb:16 lvl:2): loopDepth=1 partOfLoop
+
+successors: _whilebody_3 
+predecessors: _whilecontinue_7 
+dominators: _entry preHeaderLbl4 _whilebody_3 preHeaderLbl0 _whilecontinue_4 preHeaderLbl1 _whilecontinue_5 _eBBlock0 preHeaderLbl2 _whilecontinue_6 preHeaderLbl3 _whilecontinue_7 _whilebreak_7 
+
+defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (73) (74) (75) (76) (77) (78) (79) (80) (81) (82) (83) (84) (85) (86) (89) }
+
+local defines bitVector :bitvector Size = 99 bSize = 13
+Bits on { (73) (74) (75) (76) (77) (78) (79) (80) (81) (82) (83) (84) (85) (86) (89) }
+
+pointers Set bitvector :bitvector Size = 99 bSize = 13
+Bits on { (52) }
+
+inExprs:
+outExprs: iTemp28(80) iTemp25(77)
+killedExprs:
+----------------------------------------------------------------
+qt.c(l159:s0:k72:d0:s0)	 _whilebreak_7($16) :
+qt.c(l162:s0:k73:d0:s0)		_TR0 [k31 lr0:0 so:0]{ ia1 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-sbit sbit} := 0x0 {volatile-unsigned-sbit literal}
+qt.c(l163:s0:k74:d0:s0)		iTemp22 [k40 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = (float fixed)_overflow_count [k28 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{unsigned-char fixed}
+qt.c(l163:s0:k75:d0:s1)		iTemp23 [k41 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = 65536 {const-float literal} * iTemp22 [k40 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed}
+qt.c(l163:s0:k76:d0:s0)		iTemp24 [k42 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = (float fixed)_TH0 [k26 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr}
+qt.c(l163:s0:k77:d0:s1)		iTemp25 [k43 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = 256 {const-float literal} * iTemp24 [k42 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed}
+qt.c(l163:s0:k78:d0:s1)		iTemp26 [k44 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = iTemp23 [k41 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} + iTemp25 [k43 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed}
+qt.c(l163:s0:k79:d0:s0)		iTemp27 [k45 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int fixed} = (int fixed)_TL0 [k25 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{volatile-unsigned-char sfr}
+qt.c(l163:s0:k80:d0:s0)		iTemp28 [k46 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = (float fixed)iTemp27 [k45 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int fixed}
+qt.c(l163:s0:k81:d0:s1)		iTemp29 [k47 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = iTemp26 [k44 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} + iTemp28 [k46 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed}
+qt.c(l163:s0:k82:d0:s1)		iTemp30 [k48 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = 1.66667e-007 {float literal} * iTemp29 [k47 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed}
+qt.c(l163:s0:k83:d0:s0)		iTemp21 [k38 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{float fixed}{ sir@ _main_period_1_34} := iTemp30 [k48 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed}
+qt.c(l164:s0:k84:d0:s1)		iTemp31 [k49 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed} = 1000 {const-float literal} * iTemp21 [k38 lr0:0 so:0]{ ia0 a2p0 re1 rm0 nos0 ru0 dp0}{float fixed}{ sir@ _main_period_1_34}
+qt.c(l164:s0:k85:d0:s0)		iTemp32 [k51 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed} = &[__str_5 [k50 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char [14] code}]
+qt.c(l164:s0:k86:d0:s0)		iTemp33 [k52 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* fixed} = (const-char generic* fixed)iTemp32 [k51 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char code* fixed}
+qt.c(l164:s0:k87:d0:s0)		push iTemp31 [k49 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{float fixed}{parmPush = 1}
+qt.c(l164:s0:k88:d0:s0)		push iTemp33 [k52 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{const-char generic* fixed}{parmPush = 1}
+qt.c(l164:s0:k89:d0:s0)		iTemp34 [k53 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int fixed} = call _printf [k7 lr0:0 so:0]{ ia0 a2p0 re0 rm0 nos0 ru0 dp0}{int function    ( const-char generic* fixed)  fixed}
+qt.c(l164:s0:k90:d0:s0)		 goto _whilebody_3($18)

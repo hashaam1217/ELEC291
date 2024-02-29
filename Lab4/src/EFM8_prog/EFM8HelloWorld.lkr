@@ -1,6 +1,6 @@
-path=c:\call51\bin64\..\lib\small
+path=C:\call51\bin64\..\lib\small
 lib=libc51.lib
 lib=libint.lib
 lib=liblong.lib
 lib=libfloat.lib
-obj=PeriodEFM8.obj
+obj=EFM8HelloWorld.obj

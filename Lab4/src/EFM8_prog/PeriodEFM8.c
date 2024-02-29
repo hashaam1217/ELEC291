@@ -124,7 +124,7 @@ void TIMER0_Init(void)
 void main (void) 
 {
 	float period;
-	
+
 	TIMER0_Init();
 
 	waitms(500); // Give PuTTY a chance to start.
@@ -138,11 +138,11 @@ void main (void)
     while (1)
     {
     	// Reset the counter
-		TL0=0; 
+		TL0=0;
 		TH0=0;
 		TF0=0;
 		overflow_count=0;
-		
+
 		while(P0_1!=0); // Wait for the signal to be zero
 		while(P0_1!=1); // Wait for the signal to be one
 		TR0=1; // Start the timer
@@ -167,8 +167,4 @@ void main (void)
 		// Send the period to the serial port
 		printf( "\rT=%f ms    ", period*1000.0);
     }
-	
 }
-
-
- 

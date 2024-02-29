@@ -1,9 +1,9 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Wed Feb 28 22:02:03 2024
+; This file was generated Thu Feb 29 04:06:51 2024
 ;--------------------------------------------------------
-$name qt
+$name FreqEFM8
 $optc51 --model-small
 	R_DSEG    segment data
 	R_CSEG    segment code
@@ -24,10 +24,20 @@ $optc51 --model-small
 ; Public variables in this module
 ;--------------------------------------------------------
 	public _main
+	public _getsn
+	public _LCDprint
+	public _LCD_4BIT
+	public _WriteCommand
+	public _WriteData
+	public _LCD_byte
+	public _LCD_pulse
 	public _TIMER0_Init
 	public _waitms
 	public _Timer3us
 	public __c51_external_startup
+	public _LCDprint_PARM_3
+	public _getsn_PARM_2
+	public _LCDprint_PARM_2
 	public _overflow_count
 ;--------------------------------------------------------
 ; Special Function Registers
@@ -479,6 +489,24 @@ _TFRQ           BIT 0xdf
 	rseg R_DSEG
 _overflow_count:
 	ds 1
+_LCDprint_PARM_2:
+	ds 1
+_getsn_PARM_2:
+	ds 2
+_getsn_buff_1_46:
+	ds 3
+_getsn_sloc0_1_0:
+	ds 2
+_main_sC_1_52:
+	ds 4
+_main_measurements_1_52:
+	ds 2
+_main_str_1_52:
+	ds 6
+_main_test_num_1_52:
+	ds 20
+_main_sloc0_1_0:
+	ds 4
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -495,6 +523,8 @@ _overflow_count:
 ; bit data
 ;--------------------------------------------------------
 	rseg R_BSEG
+_LCDprint_PARM_3:
+	DBIT	1
 ;--------------------------------------------------------
 ; paged external ram data
 ;--------------------------------------------------------
@@ -538,69 +568,69 @@ _overflow_count:
 ;Allocation info for local variables in function '_c51_external_startup'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	qt.c:16: char _c51_external_startup (void)
+;	FreqEFM8.c:25: char _c51_external_startup (void)
 ;	-----------------------------------------
 ;	 function _c51_external_startup
 ;	-----------------------------------------
 __c51_external_startup:
 	using	0
-;	qt.c:19: SFRPAGE = 0x00;
+;	FreqEFM8.c:28: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	qt.c:20: WDTCN = 0xDE; //First key
+;	FreqEFM8.c:29: WDTCN = 0xDE; //First key
 	mov	_WDTCN,#0xDE
-;	qt.c:21: WDTCN = 0xAD; //Second key
+;	FreqEFM8.c:30: WDTCN = 0xAD; //Second key
 	mov	_WDTCN,#0xAD
-;	qt.c:23: VDM0CN |= 0x80;
+;	FreqEFM8.c:32: VDM0CN |= 0x80;
 	orl	_VDM0CN,#0x80
-;	qt.c:24: RSTSRC = 0x02;
+;	FreqEFM8.c:33: RSTSRC = 0x02;
 	mov	_RSTSRC,#0x02
-;	qt.c:31: SFRPAGE = 0x10;
+;	FreqEFM8.c:40: SFRPAGE = 0x10;
 	mov	_SFRPAGE,#0x10
-;	qt.c:32: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+;	FreqEFM8.c:41: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
 	mov	_PFE0CN,#0x20
-;	qt.c:33: SFRPAGE = 0x00;
+;	FreqEFM8.c:42: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	qt.c:54: CLKSEL = 0x00;
+;	FreqEFM8.c:63: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	qt.c:55: CLKSEL = 0x00;
+;	FreqEFM8.c:64: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	qt.c:56: while ((CLKSEL & 0x80) == 0);
+;	FreqEFM8.c:65: while ((CLKSEL & 0x80) == 0);
 L002001?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002001?
-;	qt.c:57: CLKSEL = 0x03;
+;	FreqEFM8.c:66: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	qt.c:58: CLKSEL = 0x03;
+;	FreqEFM8.c:67: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	qt.c:59: while ((CLKSEL & 0x80) == 0);
+;	FreqEFM8.c:68: while ((CLKSEL & 0x80) == 0);
 L002004?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002004?
-;	qt.c:64: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+;	FreqEFM8.c:73: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 	orl	_P0MDOUT,#0x10
-;	qt.c:65: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
+;	FreqEFM8.c:74: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
 	mov	_XBR0,#0x01
-;	qt.c:66: XBR1     = 0X00;
-	mov	_XBR1,#0x00
-;	qt.c:67: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+;	FreqEFM8.c:75: XBR1     = 0X10; // Enable T0 on P0.0
+	mov	_XBR1,#0x10
+;	FreqEFM8.c:76: XBR2     = 0x40; // Enable crossbar and weak pull-ups
 	mov	_XBR2,#0x40
-;	qt.c:73: SCON0 = 0x10;
+;	FreqEFM8.c:82: SCON0 = 0x10;
 	mov	_SCON0,#0x10
-;	qt.c:74: CKCON0 |= 0b_0000_0000 ; // Timer 1 uses the system clock divided by 12.
+;	FreqEFM8.c:83: CKCON0 |= 0b_0000_0000 ; // Timer 1 uses the system clock divided by 12.
 	mov	_CKCON0,_CKCON0
-;	qt.c:75: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
+;	FreqEFM8.c:84: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
 	mov	_TH1,#0xE6
-;	qt.c:76: TL1 = TH1;      // Init Timer1
+;	FreqEFM8.c:85: TL1 = TH1;      // Init Timer1
 	mov	_TL1,_TH1
-;	qt.c:77: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+;	FreqEFM8.c:86: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 	anl	_TMOD,#0x0F
-;	qt.c:78: TMOD |=  0x20;                       
+;	FreqEFM8.c:87: TMOD |=  0x20;                       
 	orl	_TMOD,#0x20
-;	qt.c:79: TR1 = 1; // START Timer1
+;	FreqEFM8.c:88: TR1 = 1; // START Timer1
 	setb	_TR1
-;	qt.c:80: TI = 1;  // Indicate TX0 ready
+;	FreqEFM8.c:89: TI = 1;  // Indicate TX0 ready
 	setb	_TI
-;	qt.c:82: return 0;
+;	FreqEFM8.c:91: return 0;
 	mov	dpl,#0x00
 	ret
 ;------------------------------------------------------------
@@ -609,40 +639,48 @@ L002004?:
 ;us                        Allocated to registers r2 
 ;i                         Allocated to registers r3 
 ;------------------------------------------------------------
-;	qt.c:86: void Timer3us(unsigned char us)
+;	FreqEFM8.c:95: void Timer3us(unsigned char us)
 ;	-----------------------------------------
 ;	 function Timer3us
 ;	-----------------------------------------
 _Timer3us:
 	mov	r2,dpl
-;	qt.c:91: CKCON0|=0b_0100_0000;
+;	FreqEFM8.c:100: CKCON0|=0b_0100_0000;
 	orl	_CKCON0,#0x40
-;	qt.c:93: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+;	FreqEFM8.c:102: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
 	mov	_TMR3RL,#0xB8
 	mov	(_TMR3RL >> 8),#0xFF
-;	qt.c:94: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+;	FreqEFM8.c:103: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
 	mov	_TMR3,_TMR3RL
 	mov	(_TMR3 >> 8),(_TMR3RL >> 8)
-;	qt.c:96: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+;	FreqEFM8.c:105: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x04
-;	qt.c:97: for (i = 0; i < us; i++)       // Count <us> overflows
+;	FreqEFM8.c:106: for (i = 0; i < us; i++)       // Count <us> overflows
 	mov	r3,#0x00
-L003004?:
+L003006?:
 	clr	c
 	mov	a,r3
 	subb	a,r2
-	jnc	L003007?
-;	qt.c:99: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+	jnc	L003009?
+;	FreqEFM8.c:108: while (!(TMR3CN0 & 0x80));  // Wait for overflow
 L003001?:
 	mov	a,_TMR3CN0
 	jnb	acc.7,L003001?
-;	qt.c:100: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+;	FreqEFM8.c:109: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
 	anl	_TMR3CN0,#0x7F
-;	qt.c:97: for (i = 0; i < us; i++)       // Count <us> overflows
+;	FreqEFM8.c:110: if (TF0)
+;	FreqEFM8.c:112: TF0=0;
+	jbc	_TF0,L003019?
+	sjmp	L003008?
+L003019?:
+;	FreqEFM8.c:113: overflow_count++;
+	inc	_overflow_count
+L003008?:
+;	FreqEFM8.c:106: for (i = 0; i < us; i++)       // Count <us> overflows
 	inc	r3
-	sjmp	L003004?
-L003007?:
-;	qt.c:102: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+	sjmp	L003006?
+L003009?:
+;	FreqEFM8.c:116: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x00
 	ret
 ;------------------------------------------------------------
@@ -651,36 +689,36 @@ L003007?:
 ;ms                        Allocated to registers r2 r3 
 ;j                         Allocated to registers r2 r3 
 ;------------------------------------------------------------
-;	qt.c:105: void waitms (unsigned int ms)
+;	FreqEFM8.c:119: void waitms (unsigned int ms)
 ;	-----------------------------------------
 ;	 function waitms
 ;	-----------------------------------------
 _waitms:
 	mov	r2,dpl
 	mov	r3,dph
-;	qt.c:108: for(j=ms; j!=0; j--)
+;	FreqEFM8.c:122: for(j=ms; j!=0; j--)
 L004001?:
 	cjne	r2,#0x00,L004010?
 	cjne	r3,#0x00,L004010?
 	ret
 L004010?:
-;	qt.c:110: Timer3us(249);
+;	FreqEFM8.c:124: Timer3us(249);
 	mov	dpl,#0xF9
 	push	ar2
 	push	ar3
 	lcall	_Timer3us
-;	qt.c:111: Timer3us(249);
+;	FreqEFM8.c:125: Timer3us(249);
 	mov	dpl,#0xF9
 	lcall	_Timer3us
-;	qt.c:112: Timer3us(249);
+;	FreqEFM8.c:126: Timer3us(249);
 	mov	dpl,#0xF9
 	lcall	_Timer3us
-;	qt.c:113: Timer3us(250);
+;	FreqEFM8.c:127: Timer3us(250);
 	mov	dpl,#0xFA
 	lcall	_Timer3us
 	pop	ar3
 	pop	ar2
-;	qt.c:108: for(j=ms; j!=0; j--)
+;	FreqEFM8.c:122: for(j=ms; j!=0; j--)
 	dec	r2
 	cjne	r2,#0xff,L004011?
 	dec	r3
@@ -690,37 +728,402 @@ L004011?:
 ;Allocation info for local variables in function 'TIMER0_Init'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	qt.c:117: void TIMER0_Init(void)
+;	FreqEFM8.c:131: void TIMER0_Init(void)
 ;	-----------------------------------------
 ;	 function TIMER0_Init
 ;	-----------------------------------------
 _TIMER0_Init:
-;	qt.c:119: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+;	FreqEFM8.c:133: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
 	anl	_TMOD,#0xF0
-;	qt.c:120: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
-	orl	_TMOD,#0x01
-;	qt.c:121: TR0=0; // Stop Timer/Counter 0
+;	FreqEFM8.c:134: TMOD|=0b_0000_0101; // Timer/Counter 0 used as a 16-bit counter
+	orl	_TMOD,#0x05
+;	FreqEFM8.c:135: TR0=0; // Stop Timer/Counter 0
 	clr	_TR0
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'LCD_pulse'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	FreqEFM8.c:138: void LCD_pulse (void)
+;	-----------------------------------------
+;	 function LCD_pulse
+;	-----------------------------------------
+_LCD_pulse:
+;	FreqEFM8.c:140: LCD_E=1;
+	setb	_P2_0
+;	FreqEFM8.c:141: Timer3us(40);
+	mov	dpl,#0x28
+	lcall	_Timer3us
+;	FreqEFM8.c:142: LCD_E=0;
+	clr	_P2_0
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'LCD_byte'
+;------------------------------------------------------------
+;x                         Allocated to registers r2 
+;------------------------------------------------------------
+;	FreqEFM8.c:145: void LCD_byte (unsigned char x)
+;	-----------------------------------------
+;	 function LCD_byte
+;	-----------------------------------------
+_LCD_byte:
+	mov	r2,dpl
+;	FreqEFM8.c:148: ACC=x; //Send high nible
+	mov	_ACC,r2
+;	FreqEFM8.c:149: LCD_D7=ACC_7;
+	mov	c,_ACC_7
+	mov	_P1_0,c
+;	FreqEFM8.c:150: LCD_D6=ACC_6;
+	mov	c,_ACC_6
+	mov	_P1_1,c
+;	FreqEFM8.c:151: LCD_D5=ACC_5;
+	mov	c,_ACC_5
+	mov	_P1_2,c
+;	FreqEFM8.c:152: LCD_D4=ACC_4;
+	mov	c,_ACC_4
+	mov	_P1_3,c
+;	FreqEFM8.c:153: LCD_pulse();
+	push	ar2
+	lcall	_LCD_pulse
+;	FreqEFM8.c:154: Timer3us(40);
+	mov	dpl,#0x28
+	lcall	_Timer3us
+	pop	ar2
+;	FreqEFM8.c:155: ACC=x; //Send low nible
+	mov	_ACC,r2
+;	FreqEFM8.c:156: LCD_D7=ACC_3;
+	mov	c,_ACC_3
+	mov	_P1_0,c
+;	FreqEFM8.c:157: LCD_D6=ACC_2;
+	mov	c,_ACC_2
+	mov	_P1_1,c
+;	FreqEFM8.c:158: LCD_D5=ACC_1;
+	mov	c,_ACC_1
+	mov	_P1_2,c
+;	FreqEFM8.c:159: LCD_D4=ACC_0;
+	mov	c,_ACC_0
+	mov	_P1_3,c
+;	FreqEFM8.c:160: LCD_pulse();
+	ljmp	_LCD_pulse
+;------------------------------------------------------------
+;Allocation info for local variables in function 'WriteData'
+;------------------------------------------------------------
+;x                         Allocated to registers r2 
+;------------------------------------------------------------
+;	FreqEFM8.c:163: void WriteData (unsigned char x)
+;	-----------------------------------------
+;	 function WriteData
+;	-----------------------------------------
+_WriteData:
+	mov	r2,dpl
+;	FreqEFM8.c:165: LCD_RS=1;
+	setb	_P1_7
+;	FreqEFM8.c:166: LCD_byte(x);
+	mov	dpl,r2
+	lcall	_LCD_byte
+;	FreqEFM8.c:167: waitms(2);
+	mov	dptr,#0x0002
+	ljmp	_waitms
+;------------------------------------------------------------
+;Allocation info for local variables in function 'WriteCommand'
+;------------------------------------------------------------
+;x                         Allocated to registers r2 
+;------------------------------------------------------------
+;	FreqEFM8.c:170: void WriteCommand (unsigned char x)
+;	-----------------------------------------
+;	 function WriteCommand
+;	-----------------------------------------
+_WriteCommand:
+	mov	r2,dpl
+;	FreqEFM8.c:172: LCD_RS=0;
+	clr	_P1_7
+;	FreqEFM8.c:173: LCD_byte(x);
+	mov	dpl,r2
+	lcall	_LCD_byte
+;	FreqEFM8.c:174: waitms(5);
+	mov	dptr,#0x0005
+	ljmp	_waitms
+;------------------------------------------------------------
+;Allocation info for local variables in function 'LCD_4BIT'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	FreqEFM8.c:177: void LCD_4BIT (void)
+;	-----------------------------------------
+;	 function LCD_4BIT
+;	-----------------------------------------
+_LCD_4BIT:
+;	FreqEFM8.c:179: LCD_E=0; // Resting state of LCD's enable is zero
+	clr	_P2_0
+;	FreqEFM8.c:181: waitms(20);
+	mov	dptr,#0x0014
+	lcall	_waitms
+;	FreqEFM8.c:183: WriteCommand(0x33);
+	mov	dpl,#0x33
+	lcall	_WriteCommand
+;	FreqEFM8.c:184: WriteCommand(0x33);
+	mov	dpl,#0x33
+	lcall	_WriteCommand
+;	FreqEFM8.c:185: WriteCommand(0x32); // Change to 4-bit mode
+	mov	dpl,#0x32
+	lcall	_WriteCommand
+;	FreqEFM8.c:188: WriteCommand(0x28);
+	mov	dpl,#0x28
+	lcall	_WriteCommand
+;	FreqEFM8.c:189: WriteCommand(0x0c);
+	mov	dpl,#0x0C
+	lcall	_WriteCommand
+;	FreqEFM8.c:190: WriteCommand(0x01); // Clear screen command (takes some time)
+	mov	dpl,#0x01
+	lcall	_WriteCommand
+;	FreqEFM8.c:191: waitms(20); // Wait for clear screen command to finsih.
+	mov	dptr,#0x0014
+	ljmp	_waitms
+;------------------------------------------------------------
+;Allocation info for local variables in function 'LCDprint'
+;------------------------------------------------------------
+;line                      Allocated with name '_LCDprint_PARM_2'
+;string                    Allocated to registers r2 r3 r4 
+;j                         Allocated to registers r5 r6 
+;------------------------------------------------------------
+;	FreqEFM8.c:194: void LCDprint(char * string, unsigned char line, bit clear)
+;	-----------------------------------------
+;	 function LCDprint
+;	-----------------------------------------
+_LCDprint:
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+;	FreqEFM8.c:198: WriteCommand(line==2?0xc0:0x80);
+	mov	a,#0x02
+	cjne	a,_LCDprint_PARM_2,L011013?
+	mov	r5,#0xC0
+	sjmp	L011014?
+L011013?:
+	mov	r5,#0x80
+L011014?:
+	mov	dpl,r5
+	push	ar2
+	push	ar3
+	push	ar4
+	lcall	_WriteCommand
+;	FreqEFM8.c:199: waitms(5);
+	mov	dptr,#0x0005
+	lcall	_waitms
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	FreqEFM8.c:200: for(j=0; string[j]!=0; j++)	WriteData(string[j]);// Write the message
+	mov	r5,#0x00
+	mov	r6,#0x00
+L011003?:
+	mov	a,r5
+	add	a,r2
+	mov	r7,a
+	mov	a,r6
+	addc	a,r3
+	mov	r0,a
+	mov	ar1,r4
+	mov	dpl,r7
+	mov	dph,r0
+	mov	b,r1
+	lcall	__gptrget
+	mov	r7,a
+	jz	L011006?
+	mov	dpl,r7
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	push	ar6
+	lcall	_WriteData
+	pop	ar6
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	inc	r5
+	cjne	r5,#0x00,L011003?
+	inc	r6
+	sjmp	L011003?
+L011006?:
+;	FreqEFM8.c:201: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
+	jnb	_LCDprint_PARM_3,L011011?
+	mov	ar2,r5
+	mov	ar3,r6
+L011007?:
+	clr	c
+	mov	a,r2
+	subb	a,#0x10
+	mov	a,r3
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	L011011?
+	mov	dpl,#0x20
+	push	ar2
+	push	ar3
+	lcall	_WriteData
+	pop	ar3
+	pop	ar2
+	inc	r2
+	cjne	r2,#0x00,L011007?
+	inc	r3
+	sjmp	L011007?
+L011011?:
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'getsn'
+;------------------------------------------------------------
+;len                       Allocated with name '_getsn_PARM_2'
+;buff                      Allocated with name '_getsn_buff_1_46'
+;j                         Allocated with name '_getsn_sloc0_1_0'
+;c                         Allocated to registers r3 
+;sloc0                     Allocated with name '_getsn_sloc0_1_0'
+;------------------------------------------------------------
+;	FreqEFM8.c:204: int getsn (char * buff, int len)
+;	-----------------------------------------
+;	 function getsn
+;	-----------------------------------------
+_getsn:
+	mov	_getsn_buff_1_46,dpl
+	mov	(_getsn_buff_1_46 + 1),dph
+	mov	(_getsn_buff_1_46 + 2),b
+;	FreqEFM8.c:209: for(j=0; j<(len-1); j++)
+	clr	a
+	mov	_getsn_sloc0_1_0,a
+	mov	(_getsn_sloc0_1_0 + 1),a
+	mov	a,_getsn_PARM_2
+	add	a,#0xff
+	mov	r7,a
+	mov	a,(_getsn_PARM_2 + 1)
+	addc	a,#0xff
+	mov	r0,a
+	mov	r1,#0x00
+	mov	r2,#0x00
+L012005?:
+	clr	c
+	mov	a,r1
+	subb	a,r7
+	mov	a,r2
+	xrl	a,#0x80
+	mov	b,r0
+	xrl	b,#0x80
+	subb	a,b
+	jnc	L012008?
+;	FreqEFM8.c:211: c=getchar();
+	push	ar2
+	push	ar7
+	push	ar0
+	push	ar1
+	lcall	_getchar
+	mov	r3,dpl
+	pop	ar1
+	pop	ar0
+	pop	ar7
+	pop	ar2
+;	FreqEFM8.c:212: if ( (c=='\n') || (c=='\r') )
+	cjne	r3,#0x0A,L012015?
+	sjmp	L012001?
+L012015?:
+	cjne	r3,#0x0D,L012002?
+L012001?:
+;	FreqEFM8.c:214: buff[j]=0;
+	mov	a,_getsn_sloc0_1_0
+	add	a,_getsn_buff_1_46
+	mov	r4,a
+	mov	a,(_getsn_sloc0_1_0 + 1)
+	addc	a,(_getsn_buff_1_46 + 1)
+	mov	r5,a
+	mov	r6,(_getsn_buff_1_46 + 2)
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	clr	a
+	lcall	__gptrput
+;	FreqEFM8.c:215: return j;
+	mov	dpl,_getsn_sloc0_1_0
+	mov	dph,(_getsn_sloc0_1_0 + 1)
+	ret
+L012002?:
+;	FreqEFM8.c:219: buff[j]=c;
+	mov	a,r1
+	add	a,_getsn_buff_1_46
+	mov	r4,a
+	mov	a,r2
+	addc	a,(_getsn_buff_1_46 + 1)
+	mov	r5,a
+	mov	r6,(_getsn_buff_1_46 + 2)
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	mov	a,r3
+	lcall	__gptrput
+;	FreqEFM8.c:209: for(j=0; j<(len-1); j++)
+	inc	r1
+	cjne	r1,#0x00,L012018?
+	inc	r2
+L012018?:
+	mov	_getsn_sloc0_1_0,r1
+	mov	(_getsn_sloc0_1_0 + 1),r2
+	sjmp	L012005?
+L012008?:
+;	FreqEFM8.c:222: buff[j]=0;
+	mov	a,_getsn_sloc0_1_0
+	add	a,_getsn_buff_1_46
+	mov	r2,a
+	mov	a,(_getsn_sloc0_1_0 + 1)
+	addc	a,(_getsn_buff_1_46 + 1)
+	mov	r3,a
+	mov	r4,(_getsn_buff_1_46 + 2)
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	clr	a
+	lcall	__gptrput
+;	FreqEFM8.c:223: return len;
+	mov	dpl,_getsn_PARM_2
+	mov	dph,(_getsn_PARM_2 + 1)
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;period                    Allocated to registers r2 r3 r4 r5 
+;F                         Allocated to registers 
+;C                         Allocated to registers r2 r3 r4 r5 
+;sC                        Allocated with name '_main_sC_1_52'
+;measurements              Allocated with name '_main_measurements_1_52'
+;str                       Allocated with name '_main_str_1_52'
+;test_num                  Allocated with name '_main_test_num_1_52'
+;sloc0                     Allocated with name '_main_sloc0_1_0'
 ;------------------------------------------------------------
-;	qt.c:124: void main (void) 
+;	FreqEFM8.c:228: void main (void) 
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	qt.c:128: TIMER0_Init();
+;	FreqEFM8.c:232: unsigned long sC = 0;
+;	FreqEFM8.c:233: unsigned int measurements = 0;
+	clr	a
+	mov	_main_sC_1_52,a
+	mov	(_main_sC_1_52 + 1),a
+	mov	(_main_sC_1_52 + 2),a
+	mov	(_main_sC_1_52 + 3),a
+	mov	_main_measurements_1_52,a
+	mov	(_main_measurements_1_52 + 1),a
+;	FreqEFM8.c:234: char str[] = "Hello";
+	mov	_main_str_1_52,#0x48
+	mov	(_main_str_1_52 + 0x0001),#0x65
+	mov	(_main_str_1_52 + 0x0002),#0x6C
+	mov	(_main_str_1_52 + 0x0003),#0x6C
+	mov	(_main_str_1_52 + 0x0004),#0x6F
+	mov	(_main_str_1_52 + 0x0005),#0x00
+;	FreqEFM8.c:236: TIMER0_Init();
 	lcall	_TIMER0_Init
-;	qt.c:130: waitms(500); // Give PuTTY a chance to start.
+;	FreqEFM8.c:238: waitms(500); // Give PuTTY a chance to start.
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	qt.c:131: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-	mov	a,#__str_0
+;	FreqEFM8.c:239: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+	mov	a,#__str_1
 	push	acc
-	mov	a,#(__str_0 >> 8)
+	mov	a,#(__str_1 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -728,8 +1131,14 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	qt.c:136: __FILE__, __DATE__, __TIME__);
-;	qt.c:135: "Compiled: %s, %s\n\n",
+;	FreqEFM8.c:244: __FILE__, __DATE__, __TIME__);
+;	FreqEFM8.c:243: "Compiled: %s, %s\n\n",
+	mov	a,#__str_5
+	push	acc
+	mov	a,#(__str_5 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
 	mov	a,#__str_4
 	push	acc
 	mov	a,#(__str_4 >> 8)
@@ -748,235 +1157,262 @@ _main:
 	push	acc
 	mov	a,#0x80
 	push	acc
-	mov	a,#__str_1
-	push	acc
-	mov	a,#(__str_1 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
 	lcall	_printf
 	mov	a,sp
 	add	a,#0xf4
 	mov	sp,a
-;	qt.c:137: while (1)
-L006018?:
-;	qt.c:139: TL0=0;
+;	FreqEFM8.c:248: LCD_4BIT();
+	lcall	_LCD_4BIT
+;	FreqEFM8.c:249: LCDprint(str, 1, 1);
+	mov	_LCDprint_PARM_2,#0x01
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_str_1_52
+	mov	b,#0x40
+	lcall	_LCDprint
+;	FreqEFM8.c:253: while(1)
+L013004?:
+;	FreqEFM8.c:255: TL0=0;
 	mov	_TL0,#0x00
-;	qt.c:140: TH0=0;
+;	FreqEFM8.c:256: TH0=0;
 	mov	_TH0,#0x00
-;	qt.c:141: TF0=0;
-	clr	_TF0
-;	qt.c:142: overflow_count=0;
+;	FreqEFM8.c:257: overflow_count=0;
 	mov	_overflow_count,#0x00
-;	qt.c:143: while(P0_1!=0); // Wait for the signal to be zero
-L006001?:
-	jb	_P0_1,L006001?
-;	qt.c:144: while(P0_1!=1); // Wait for the signal to be one
-L006004?:
-	jnb	_P0_1,L006004?
-;	qt.c:145: TR0=1; // Start the timer
+;	FreqEFM8.c:258: TF0=0;
+	clr	_TF0
+;	FreqEFM8.c:259: TR0=1; // Start Timer/Counter 0
 	setb	_TR0
-;	qt.c:146: while(P0_1!=0) // Wait for the signal to be zero
-L006009?:
-	jnb	_P0_1,L006014?
-;	qt.c:148: if(TF0==1) // Did the 16-bit timer overflow?
-;	qt.c:150: TF0=0;
-	jbc	_TF0,L006035?
-	sjmp	L006009?
-L006035?:
-;	qt.c:151: overflow_count++;
-	inc	_overflow_count
-;	qt.c:154: while(P0_1!=1) // Wait for the signal to be one
-	sjmp	L006009?
-L006014?:
-	jb	_P0_1,L006016?
-;	qt.c:156: if(TF0==1) // Did the 16-bit timer overflow?
-;	qt.c:158: TF0=0;
-	jbc	_TF0,L006037?
-	sjmp	L006014?
-L006037?:
-;	qt.c:159: overflow_count++;
-	inc	_overflow_count
-	sjmp	L006014?
-L006016?:
-;	qt.c:162: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
+;	FreqEFM8.c:260: waitms(1000);
+	mov	dptr,#0x03E8
+	lcall	_waitms
+;	FreqEFM8.c:261: TR0=0; // Stop Timer/Counter 0
 	clr	_TR0
-;	qt.c:163: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-	mov	dpl,_overflow_count
-	lcall	___uchar2fs
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x47
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	dpl,_TH0
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	lcall	___uchar2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x43
-	lcall	___fsmul
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	r6,_TL0
+;	FreqEFM8.c:262: F=(overflow_count*0x10000L+TH0*0x100L+TL0);
+	mov	r2,_overflow_count
+	mov	r3,#0x00
+	mov	(_main_sloc0_1_0 + 3),r3
+	mov	(_main_sloc0_1_0 + 2),r2
+	mov	(_main_sloc0_1_0 + 1),#0x00
+	mov	_main_sloc0_1_0,#0x00
+	mov	r6,_TH0
 	mov	r7,#0x00
-	mov	dpl,r6
-	mov	dph,r7
+	mov	r2,#0x00
+	mov	ar3,r2
+	mov	ar2,r7
+	mov	ar7,r6
+	mov	r6,#0x00
+	mov	a,r6
+	add	a,_main_sloc0_1_0
+	mov	_main_sloc0_1_0,a
+	mov	a,r7
+	addc	a,(_main_sloc0_1_0 + 1)
+	mov	(_main_sloc0_1_0 + 1),a
+	mov	a,r2
+	addc	a,(_main_sloc0_1_0 + 2)
+	mov	(_main_sloc0_1_0 + 2),a
+	mov	a,r3
+	addc	a,(_main_sloc0_1_0 + 3)
+	mov	(_main_sloc0_1_0 + 3),a
+	mov	r4,_TL0
+	clr	a
+	mov	r5,a
+	rlc	a
+	subb	a,acc
+	mov	r2,a
+	mov	r3,a
+	mov	a,r4
+	add	a,_main_sloc0_1_0
+	mov	__mullong_PARM_2,a
+	mov	a,r5
+	addc	a,(_main_sloc0_1_0 + 1)
+	mov	(__mullong_PARM_2 + 1),a
+	mov	a,r2
+	addc	a,(_main_sloc0_1_0 + 2)
+	mov	(__mullong_PARM_2 + 2),a
+	mov	a,r3
+	addc	a,(_main_sloc0_1_0 + 3)
+	mov	(__mullong_PARM_2 + 3),a
+;	FreqEFM8.c:263: C = 1000*1000000* 1.44 / (3*3900*F);
+	mov	dptr,#0x2DB4
+	clr	a
+	mov	b,a
+	lcall	__mullong
+	lcall	___ulong2fs
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
 	push	ar2
 	push	ar3
 	push	ar4
 	push	ar5
-	lcall	___sint2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
+	mov	dptr,#0xA950
+	mov	b,#0xAB
+	mov	a,#0x4E
+	lcall	___fsdiv
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
 	mov	a,r5
-	lcall	___fsadd
+	lcall	___fs2ulong
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
+;	FreqEFM8.c:264: sC += C;
+	mov	a,r2
+	add	a,_main_sC_1_52
+	mov	_main_sC_1_52,a
+	mov	a,r3
+	addc	a,(_main_sC_1_52 + 1)
+	mov	(_main_sC_1_52 + 1),a
+	mov	a,r4
+	addc	a,(_main_sC_1_52 + 2)
+	mov	(_main_sC_1_52 + 2),a
+	mov	a,r5
+	addc	a,(_main_sC_1_52 + 3)
+	mov	(_main_sC_1_52 + 3),a
+;	FreqEFM8.c:265: measurements++;
+	inc	_main_measurements_1_52
+	clr	a
+	cjne	a,_main_measurements_1_52,L013010?
+	inc	(_main_measurements_1_52 + 1)
+L013010?:
+;	FreqEFM8.c:266: sprintf(test_num, "C=%lu.%lu mF", sC / (measurements * 1000), (sC / measurements) % 1000);
+	mov	__divulong_PARM_2,_main_measurements_1_52
+	mov	(__divulong_PARM_2 + 1),(_main_measurements_1_52 + 1)
+	mov	(__divulong_PARM_2 + 2),#0x00
+	mov	(__divulong_PARM_2 + 3),#0x00
+	mov	dpl,_main_sC_1_52
+	mov	dph,(_main_sC_1_52 + 1)
+	mov	b,(_main_sC_1_52 + 2)
+	mov	a,(_main_sC_1_52 + 3)
+	lcall	__divulong
+	mov	__modulong_PARM_2,#0xE8
+	mov	(__modulong_PARM_2 + 1),#0x03
+	mov	(__modulong_PARM_2 + 2),#0x00
+	mov	(__modulong_PARM_2 + 3),#0x00
+	lcall	__modulong
+	mov	_main_sloc0_1_0,dpl
+	mov	(_main_sloc0_1_0 + 1),dph
+	mov	(_main_sloc0_1_0 + 2),b
+	mov	(_main_sloc0_1_0 + 3),a
+	mov	__mulint_PARM_2,_main_measurements_1_52
+	mov	(__mulint_PARM_2 + 1),(_main_measurements_1_52 + 1)
+	mov	dptr,#0x03E8
+	lcall	__mulint
+	mov	r6,dpl
+	mov	r7,dph
+	mov	__divulong_PARM_2,r6
+	mov	(__divulong_PARM_2 + 1),r7
+	mov	(__divulong_PARM_2 + 2),#0x00
+	mov	(__divulong_PARM_2 + 3),#0x00
+	mov	dpl,_main_sC_1_52
+	mov	dph,(_main_sC_1_52 + 1)
+	mov	b,(_main_sC_1_52 + 2)
+	mov	a,(_main_sC_1_52 + 3)
+	lcall	__divulong
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r2,b
+	mov	r3,a
+	push	_main_sloc0_1_0
+	push	(_main_sloc0_1_0 + 1)
+	push	(_main_sloc0_1_0 + 2)
+	push	(_main_sloc0_1_0 + 3)
+	push	ar6
+	push	ar7
 	push	ar2
 	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0xF4FC
-	mov	b,#0x32
-	mov	a,#0x34
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-;	qt.c:164: printf( "\rT=%lf ms    ", period*1000.0);
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0x0000
-	mov	b,#0x7A
-	mov	a,#0x44
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	a,#__str_5
+	mov	a,#__str_6
 	push	acc
-	mov	a,#(__str_5 >> 8)
+	mov	a,#(__str_6 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
-	lcall	_printf
+	mov	a,#_main_test_num_1_52
+	push	acc
+	mov	a,#(_main_test_num_1_52 >> 8)
+	push	acc
+	mov	a,#0x40
+	push	acc
+	lcall	_sprintf
 	mov	a,sp
-	add	a,#0xf9
+	add	a,#0xf2
 	mov	sp,a
-	ljmp	L006018?
+;	FreqEFM8.c:267: if (measurements > 20)
+	clr	c
+	mov	a,#0x14
+	subb	a,_main_measurements_1_52
+	clr	a
+	subb	a,(_main_measurements_1_52 + 1)
+	jnc	L013002?
+;	FreqEFM8.c:269: sC /= 2;
+	mov	a,(_main_sC_1_52 + 3)
+	clr	c
+	rrc	a
+	mov	(_main_sC_1_52 + 3),a
+	mov	a,(_main_sC_1_52 + 2)
+	rrc	a
+	mov	(_main_sC_1_52 + 2),a
+	mov	a,(_main_sC_1_52 + 1)
+	rrc	a
+	mov	(_main_sC_1_52 + 1),a
+	mov	a,_main_sC_1_52
+	rrc	a
+	mov	_main_sC_1_52,a
+;	FreqEFM8.c:270: measurements /= 2;
+	mov	a,(_main_measurements_1_52 + 1)
+	clr	c
+	rrc	a
+	xch	a,_main_measurements_1_52
+	rrc	a
+	xch	a,_main_measurements_1_52
+	mov	(_main_measurements_1_52 + 1),a
+L013002?:
+;	FreqEFM8.c:272: LCDprint(test_num, 2, 1);
+	mov	_LCDprint_PARM_2,#0x02
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_test_num_1_52
+	mov	b,#0x40
+	lcall	_LCDprint
+	ljmp	L013004?
 	rseg R_CSEG
 
 	rseg R_XINIT
 
 	rseg R_CONST
-__str_0:
+__str_1:
 	db 0x1B
 	db '[2J'
 	db 0x00
-__str_1:
-	db 'EFM8 Period measurement at pin P0.1 using Timer 0.'
+__str_2:
+	db 'EFM8 Frequency measurement using Timer/Counter 0.'
 	db 0x0A
 	db 'File: %s'
 	db 0x0A
-	db 'Compiled: %s, %s'
+	db 'C'
+	db 'ompiled: %s, %s'
 	db 0x0A
 	db 0x0A
-	db 0x00
-__str_2:
-	db 'qt.c'
 	db 0x00
 __str_3:
-	db 'Feb 28 2024'
+	db 'FreqEFM8.c'
 	db 0x00
 __str_4:
-	db '22:02:03'
+	db 'Feb 29 2024'
 	db 0x00
 __str_5:
-	db 0x0D
-	db 'T=%lf ms    '
+	db '04:06:51'
+	db 0x00
+__str_6:
+	db 'C=%lu.%lu mF'
 	db 0x00
 
 	CSEG

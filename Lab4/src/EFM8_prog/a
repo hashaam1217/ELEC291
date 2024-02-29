@@ -10,7 +10,7 @@ select opt in "${options[@]}" "Quit" ; do
 
     elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
         echo  "Compiling $opt"
-        wine64 a51.exe $opt 2>&1 | grep -v preloader | grep -v fixme
+        wine a51.exe $opt 2>&1 | grep -v preloader | grep -v fixme
         break
 
     else

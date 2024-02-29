@@ -1,11 +1,10 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Wed Feb 28 22:07:17 2024
+; This file was generated Thu Feb 29 01:28:58 2024
 ;--------------------------------------------------------
-$name PeriodEFM8
+$name EFM8HelloWorld
 $optc51 --model-small
-$printf_float
 	R_DSEG    segment data
 	R_CSEG    segment code
 	R_BSEG    segment bit
@@ -25,11 +24,7 @@ $printf_float
 ; Public variables in this module
 ;--------------------------------------------------------
 	public _main
-	public _TIMER0_Init
-	public _waitms
-	public _Timer3us
 	public __c51_external_startup
-	public _overflow_count
 ;--------------------------------------------------------
 ; Special Function Registers
 ;--------------------------------------------------------
@@ -478,12 +473,10 @@ _TFRQ           BIT 0xdf
 ; internal ram data
 ;--------------------------------------------------------
 	rseg R_DSEG
-_overflow_count:
-	ds 1
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
-	rseg	R_OSEG
+	rseg R_OSEG
 ;--------------------------------------------------------
 ; indirectly addressable internal ram data
 ;--------------------------------------------------------
@@ -539,186 +532,69 @@ _overflow_count:
 ;Allocation info for local variables in function '_c51_external_startup'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	PeriodEFM8.c:16: char _c51_external_startup (void)
+;	EFM8HelloWorld.c:7: char _c51_external_startup (void)
 ;	-----------------------------------------
 ;	 function _c51_external_startup
 ;	-----------------------------------------
 __c51_external_startup:
 	using	0
-;	PeriodEFM8.c:19: SFRPAGE = 0x00;
+;	EFM8HelloWorld.c:10: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	PeriodEFM8.c:20: WDTCN = 0xDE; //First key
+;	EFM8HelloWorld.c:11: WDTCN = 0xDE; //First key
 	mov	_WDTCN,#0xDE
-;	PeriodEFM8.c:21: WDTCN = 0xAD; //Second key
+;	EFM8HelloWorld.c:12: WDTCN = 0xAD; //Second key
 	mov	_WDTCN,#0xAD
-;	PeriodEFM8.c:23: VDM0CN |= 0x80;
+;	EFM8HelloWorld.c:14: VDM0CN |= 0x80;
 	orl	_VDM0CN,#0x80
-;	PeriodEFM8.c:24: RSTSRC = 0x02;
+;	EFM8HelloWorld.c:15: RSTSRC = 0x02;
 	mov	_RSTSRC,#0x02
-;	PeriodEFM8.c:31: SFRPAGE = 0x10;
-	mov	_SFRPAGE,#0x10
-;	PeriodEFM8.c:32: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
-	mov	_PFE0CN,#0x20
-;	PeriodEFM8.c:33: SFRPAGE = 0x00;
+;	EFM8HelloWorld.c:18: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	PeriodEFM8.c:54: CLKSEL = 0x00;
+;	EFM8HelloWorld.c:19: CLKSEL  = 0x00;
 	mov	_CLKSEL,#0x00
-;	PeriodEFM8.c:55: CLKSEL = 0x00;
+;	EFM8HelloWorld.c:20: CLKSEL  = 0x00;
 	mov	_CLKSEL,#0x00
-;	PeriodEFM8.c:56: while ((CLKSEL & 0x80) == 0);
+;	EFM8HelloWorld.c:21: while ((CLKSEL & 0x80) == 0);
 L002001?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002001?
-;	PeriodEFM8.c:57: CLKSEL = 0x03;
-	mov	_CLKSEL,#0x03
-;	PeriodEFM8.c:58: CLKSEL = 0x03;
-	mov	_CLKSEL,#0x03
-;	PeriodEFM8.c:59: while ((CLKSEL & 0x80) == 0);
-L002004?:
-	mov	a,_CLKSEL
-	jnb	acc.7,L002004?
-;	PeriodEFM8.c:64: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+;	EFM8HelloWorld.c:23: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 	orl	_P0MDOUT,#0x10
-;	PeriodEFM8.c:65: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
+;	EFM8HelloWorld.c:24: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
 	mov	_XBR0,#0x01
-;	PeriodEFM8.c:66: XBR1     = 0X00;
+;	EFM8HelloWorld.c:25: XBR1     = 0X00;
 	mov	_XBR1,#0x00
-;	PeriodEFM8.c:67: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+;	EFM8HelloWorld.c:26: XBR2     = 0x40; // Enable crossbar and weak pull-ups
 	mov	_XBR2,#0x40
-;	PeriodEFM8.c:73: SCON0 = 0x10;
+;	EFM8HelloWorld.c:29: SCON0 = 0x10;
 	mov	_SCON0,#0x10
-;	PeriodEFM8.c:74: CKCON0 |= 0b_0000_0000 ; // Timer 1 uses the system clock divided by 12.
-	mov	_CKCON0,_CKCON0
-;	PeriodEFM8.c:75: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
-	mov	_TH1,#0xE6
-;	PeriodEFM8.c:76: TL1 = TH1;      // Init Timer1
+;	EFM8HelloWorld.c:30: CKCON0 |= 0b_0000_1000 ; // Timer 1 uses the system clock.
+	orl	_CKCON0,#0x08
+;	EFM8HelloWorld.c:31: TH1 = 0x100-((SYSCLK/BAUDRATE)/2L);
+	mov	_TH1,#0x96
+;	EFM8HelloWorld.c:32: TL1 = TH1;      // Init Timer1
 	mov	_TL1,_TH1
-;	PeriodEFM8.c:77: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+;	EFM8HelloWorld.c:33: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 	anl	_TMOD,#0x0F
-;	PeriodEFM8.c:78: TMOD |=  0x20;                       
+;	EFM8HelloWorld.c:34: TMOD |=  0x20;                       
 	orl	_TMOD,#0x20
-;	PeriodEFM8.c:79: TR1 = 1; // START Timer1
+;	EFM8HelloWorld.c:35: TR1 = 1; // START Timer1
 	setb	_TR1
-;	PeriodEFM8.c:80: TI = 1;  // Indicate TX0 ready
+;	EFM8HelloWorld.c:36: TI = 1;  // Indicate TX0 ready
 	setb	_TI
-;	PeriodEFM8.c:82: return 0;
+;	EFM8HelloWorld.c:38: return 0;
 	mov	dpl,#0x00
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'Timer3us'
-;------------------------------------------------------------
-;us                        Allocated to registers r2 
-;i                         Allocated to registers r3 
-;------------------------------------------------------------
-;	PeriodEFM8.c:86: void Timer3us(unsigned char us)
-;	-----------------------------------------
-;	 function Timer3us
-;	-----------------------------------------
-_Timer3us:
-	mov	r2,dpl
-;	PeriodEFM8.c:91: CKCON0|=0b_0100_0000;
-	orl	_CKCON0,#0x40
-;	PeriodEFM8.c:93: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
-	mov	_TMR3RL,#0xB8
-	mov	(_TMR3RL >> 8),#0xFF
-;	PeriodEFM8.c:94: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
-	mov	_TMR3,_TMR3RL
-	mov	(_TMR3 >> 8),(_TMR3RL >> 8)
-;	PeriodEFM8.c:96: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
-	mov	_TMR3CN0,#0x04
-;	PeriodEFM8.c:97: for (i = 0; i < us; i++)       // Count <us> overflows
-	mov	r3,#0x00
-L003004?:
-	clr	c
-	mov	a,r3
-	subb	a,r2
-	jnc	L003007?
-;	PeriodEFM8.c:99: while (!(TMR3CN0 & 0x80));  // Wait for overflow
-L003001?:
-	mov	a,_TMR3CN0
-	jnb	acc.7,L003001?
-;	PeriodEFM8.c:100: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
-	anl	_TMR3CN0,#0x7F
-;	PeriodEFM8.c:97: for (i = 0; i < us; i++)       // Count <us> overflows
-	inc	r3
-	sjmp	L003004?
-L003007?:
-;	PeriodEFM8.c:102: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
-	mov	_TMR3CN0,#0x00
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'waitms'
-;------------------------------------------------------------
-;ms                        Allocated to registers r2 r3 
-;j                         Allocated to registers r2 r3 
-;------------------------------------------------------------
-;	PeriodEFM8.c:105: void waitms (unsigned int ms)
-;	-----------------------------------------
-;	 function waitms
-;	-----------------------------------------
-_waitms:
-	mov	r2,dpl
-	mov	r3,dph
-;	PeriodEFM8.c:108: for(j=ms; j!=0; j--)
-L004001?:
-	cjne	r2,#0x00,L004010?
-	cjne	r3,#0x00,L004010?
-	ret
-L004010?:
-;	PeriodEFM8.c:110: Timer3us(249);
-	mov	dpl,#0xF9
-	push	ar2
-	push	ar3
-	lcall	_Timer3us
-;	PeriodEFM8.c:111: Timer3us(249);
-	mov	dpl,#0xF9
-	lcall	_Timer3us
-;	PeriodEFM8.c:112: Timer3us(249);
-	mov	dpl,#0xF9
-	lcall	_Timer3us
-;	PeriodEFM8.c:113: Timer3us(250);
-	mov	dpl,#0xFA
-	lcall	_Timer3us
-	pop	ar3
-	pop	ar2
-;	PeriodEFM8.c:108: for(j=ms; j!=0; j--)
-	dec	r2
-	cjne	r2,#0xff,L004011?
-	dec	r3
-L004011?:
-	sjmp	L004001?
-;------------------------------------------------------------
-;Allocation info for local variables in function 'TIMER0_Init'
-;------------------------------------------------------------
-;------------------------------------------------------------
-;	PeriodEFM8.c:117: void TIMER0_Init(void)
-;	-----------------------------------------
-;	 function TIMER0_Init
-;	-----------------------------------------
-_TIMER0_Init:
-;	PeriodEFM8.c:119: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
-	anl	_TMOD,#0xF0
-;	PeriodEFM8.c:120: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit timer
-	orl	_TMOD,#0x01
-;	PeriodEFM8.c:121: TR0=0; // Stop Timer/Counter 0
-	clr	_TR0
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;period                    Allocated to registers r2 r3 r4 r5 
 ;------------------------------------------------------------
-;	PeriodEFM8.c:124: void main (void) 
+;	EFM8HelloWorld.c:41: void main (void) 
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	PeriodEFM8.c:128: TIMER0_Init();
-	lcall	_TIMER0_Init
-;	PeriodEFM8.c:130: waitms(500); // Give PuTTY a chance to start.
-	mov	dptr,#0x01F4
-	lcall	_waitms
-;	PeriodEFM8.c:131: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	EFM8HelloWorld.c:43: printf( "Hello, world!\r\n" );
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -729,255 +605,16 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	PeriodEFM8.c:136: __FILE__, __DATE__, __TIME__);
-;	PeriodEFM8.c:135: "Compiled: %s, %s\n\n",
-	mov	a,#__str_4
-	push	acc
-	mov	a,#(__str_4 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	mov	a,#__str_3
-	push	acc
-	mov	a,#(__str_3 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	mov	a,#__str_2
-	push	acc
-	mov	a,#(__str_2 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	mov	a,#__str_1
-	push	acc
-	mov	a,#(__str_1 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf4
-	mov	sp,a
-;	PeriodEFM8.c:138: while (1)
-L006018?:
-;	PeriodEFM8.c:141: TL0=0; 
-	mov	_TL0,#0x00
-;	PeriodEFM8.c:142: TH0=0;
-	mov	_TH0,#0x00
-;	PeriodEFM8.c:143: TF0=0;
-	clr	_TF0
-;	PeriodEFM8.c:144: overflow_count=0;
-	mov	_overflow_count,#0x00
-;	PeriodEFM8.c:146: while(P0_1!=0); // Wait for the signal to be zero
-L006001?:
-	jb	_P0_1,L006001?
-;	PeriodEFM8.c:147: while(P0_1!=1); // Wait for the signal to be one
-L006004?:
-	jnb	_P0_1,L006004?
-;	PeriodEFM8.c:148: TR0=1; // Start the timer
-	setb	_TR0
-;	PeriodEFM8.c:149: while(P0_1!=0) // Wait for the signal to be zero
-L006009?:
-	jnb	_P0_1,L006014?
-;	PeriodEFM8.c:151: if(TF0==1) // Did the 16-bit timer overflow?
-;	PeriodEFM8.c:153: TF0=0;
-	jbc	_TF0,L006035?
-	sjmp	L006009?
-L006035?:
-;	PeriodEFM8.c:154: overflow_count++;
-	inc	_overflow_count
-;	PeriodEFM8.c:157: while(P0_1!=1) // Wait for the signal to be one
-	sjmp	L006009?
-L006014?:
-	jb	_P0_1,L006016?
-;	PeriodEFM8.c:159: if(TF0==1) // Did the 16-bit timer overflow?
-;	PeriodEFM8.c:161: TF0=0;
-	jbc	_TF0,L006037?
-	sjmp	L006014?
-L006037?:
-;	PeriodEFM8.c:162: overflow_count++;
-	inc	_overflow_count
-	sjmp	L006014?
-L006016?:
-;	PeriodEFM8.c:165: TR0=0; // Stop timer 0, the 24-bit number [overflow_count-TH0-TL0] has the period!
-	clr	_TR0
-;	PeriodEFM8.c:166: period=(overflow_count*65536.0+TH0*256.0+TL0)*(12.0/SYSCLK);
-	mov	dpl,_overflow_count
-	lcall	___uchar2fs
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x47
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	dpl,_TH0
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	lcall	___uchar2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dptr,#0x0000
-	mov	b,#0x80
-	mov	a,#0x43
-	lcall	___fsmul
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	r6,_TL0
-	mov	r7,#0x00
-	mov	dpl,r6
-	mov	dph,r7
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	lcall	___sint2fs
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r0,b
-	mov	r1,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
-	push	ar6
-	push	ar7
-	push	ar0
-	push	ar1
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fsadd
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0xF4FC
-	mov	b,#0x32
-	mov	a,#0x34
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-;	PeriodEFM8.c:168: printf( "\rT=%f ms    ", period*1000.0);
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	dptr,#0x0000
-	mov	b,#0x7A
-	mov	a,#0x44
-	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	a,#__str_5
-	push	acc
-	mov	a,#(__str_5 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	ljmp	L006018?
+	ret
 	rseg R_CSEG
 
 	rseg R_XINIT
 
 	rseg R_CONST
 __str_0:
-	db 0x1B
-	db '[2J'
-	db 0x00
-__str_1:
-	db 'EFM8 Period measurement at pin P0.1 using Timer 0.'
-	db 0x0A
-	db 'File: %s'
-	db 0x0A
-	db 'Compiled: %s, %s'
-	db 0x0A
-	db 0x0A
-	db 0x00
-__str_2:
-	db 'PeriodEFM8.c'
-	db 0x00
-__str_3:
-	db 'Feb 28 2024'
-	db 0x00
-__str_4:
-	db '22:07:17'
-	db 0x00
-__str_5:
+	db 'Hello, world!'
 	db 0x0D
-	db 'T=%f ms    '
+	db 0x0A
 	db 0x00
 
 	CSEG

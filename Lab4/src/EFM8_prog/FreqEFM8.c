@@ -229,10 +229,10 @@ void main (void)
 {
 	unsigned long F;
 	unsigned long C;
-    double Float = 12.3;
-    unsigned long test = 10;
+    unsigned long sC = 0;
+    unsigned int measurements = 0;
     char str[] = "Hello";
-    char test_num[] = "10.3";
+    char test_num[20];
 	TIMER0_Init();
 
 	waitms(500); // Give PuTTY a chance to start.
@@ -246,7 +246,7 @@ void main (void)
 
 	// Configure the LCD
 	LCD_4BIT();
-	LCDprint(test_num, 1, 1);
+	LCDprint(str, 1, 1);
 
    	// Display something in the LCD
 
@@ -260,18 +260,22 @@ void main (void)
 		waitms(1000);
 		TR0=0; // Stop Timer/Counter 0
 		F=(overflow_count*0x10000L+TH0*0x100L+TL0);
-        C = 100*1000000* 1.44 / (3*3900*F);
-        sprintf(test_num, "%lf", Float);
-        //printf("\rC=%1.lu micro F", C);
-        //printf("\rFloat=%s", str);
+        C = 1000*1000000* 1.44 / (3*3900*F);
+        sC += C;
+        measurements++;
+        sprintf(test_num, "C=%lu.%lu mF", sC / (measurements * 1000), (sC / measurements) % 1000);
+        if (measurements > 20)
+        {
+            sC /= 2;
+            measurements /= 2;
+        }
         LCDprint(test_num, 2, 1);
 
 
 		//printf("\rf=%1.luHz", F);
         //printf("\rC=%1.lu micro F", C);
-        //printf("\rC=%s micro str", str);
-		printf("\x1b[0K"); // ANSI: Clear from cursor to end of line.
+        //printf("\rC=%s micro str", test_num);
+		//printf("\x1b[0K"); // ANSI: Clear from cursor to end of line.
 
 	}
-	
 }
