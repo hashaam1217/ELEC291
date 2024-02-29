@@ -1,6 +1,0 @@
-path=c:\call51\bin64\..\lib\small
-lib=libc51.lib
-lib=libint.lib
-lib=liblong.lib
-lib=libfloat.lib
-obj=EFM8HelloWorld.obj
