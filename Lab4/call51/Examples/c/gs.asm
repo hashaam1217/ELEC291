@@ -1,14 +1,16 @@
 ;--------------------------------------------------------
 ; File Created by C51
-; Version 1.0.0 #1005 (Jun 25 2012) (MSVC)
-; This file was generated Tue Jun 26 21:13:35 2012
+; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
+; This file was generated Wed Feb 28 12:32:12 2024
 ;--------------------------------------------------------
 $name gs
 $optc51 --model-small
+$printf_float
 	R_DSEG    segment data
 	R_CSEG    segment code
 	R_BSEG    segment bit
 	R_XSEG    segment xdata
+	R_PSEG    segment xdata
 	R_ISEG    segment idata
 	R_OSEG    segment data overlay
 	BIT_BANK  segment data overlay
@@ -106,6 +108,13 @@ _BPAL           DATA 0xfe
 _BPAH           DATA 0xff
 _LBPAL          DATA 0xfa
 _LBPAH          DATA 0xfb
+_XRAMUSEDAS     DATA 0xc3
+_FLASH_CMD      DATA 0xdb
+_FLASH_DATA     DATA 0xdc
+_FLASH_MOD      DATA 0xdd
+_FLASH_ADD0     DATA 0xe1
+_FLASH_ADD1     DATA 0xe2
+_FLASH_ADD2     DATA 0xe3
 ;--------------------------------------------------------
 ; special function bits
 ;--------------------------------------------------------
@@ -250,7 +259,7 @@ _JTDI           BIT 0xc7
 ; internal ram data
 ;--------------------------------------------------------
 	rseg R_DSEG
-_main_syseq_1_1:
+_main_syseq_1_113:
 	ds 3
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
@@ -273,7 +282,7 @@ _main_syseq_1_1:
 ;--------------------------------------------------------
 ; paged external ram data
 ;--------------------------------------------------------
-	rseg R_XSEG
+	rseg R_PSEG
 ;--------------------------------------------------------
 ; external ram data
 ;--------------------------------------------------------
@@ -315,13 +324,13 @@ __c51_heap:
 ;Allocation info for local variables in function 'de2_8052_crt0'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:/Source/call51/bin/../include/mcs51/DE2_8052.h:304: void de2_8052_crt0 (void) _naked
+;	c:/call51/bin64/../include/mcs51/DE2_8052.h:317: void de2_8052_crt0 (void) _naked
 ;	-----------------------------------------
 ;	 function de2_8052_crt0
 ;	-----------------------------------------
 _de2_8052_crt0:
 ;	naked function: no prologue.
-;	C:/Source/call51/bin/../include/mcs51/DE2_8052.h:373: _endasm;
+;	c:/call51/bin64/../include/mcs51/DE2_8052.h:386: _endasm;
 	
 	
 	 rseg R_GSINIT
@@ -395,19 +404,19 @@ _de2_8052_crt0:
 ;Allocation info for local variables in function 'inituart'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:28: void inituart (void)
+;	gs.c:28: void inituart (void)
 ;	-----------------------------------------
 ;	 function inituart
 ;	-----------------------------------------
 _inituart:
 	using	0
-;	C:\Source\call51\Examples\c\gs.c:30: RCAP2H=HIGH(TIMER_2_RELOAD);
+;	gs.c:30: RCAP2H=HIGH(TIMER_2_RELOAD);
 	mov	_RCAP2H,#0xFF
-;	C:\Source\call51\Examples\c\gs.c:31: RCAP2L=LOW(TIMER_2_RELOAD);
-	mov	_RCAP2L,#0xFD
-;	C:\Source\call51\Examples\c\gs.c:32: T2CON=0x34; // #00110100B
+;	gs.c:31: RCAP2L=LOW(TIMER_2_RELOAD);
+	mov	_RCAP2L,#0xF7
+;	gs.c:32: T2CON=0x34; // #00110100B
 	mov	_T2CON,#0x34
-;	C:\Source\call51\Examples\c\gs.c:33: SCON=0x52; // Serial port in mode 1, ren, txrdy, rxempty
+;	gs.c:33: SCON=0x52; // Serial port in mode 1, ren, txrdy, rxempty
 	mov	_SCON,#0x52
 	ret
 ;------------------------------------------------------------
@@ -415,29 +424,29 @@ _inituart:
 ;------------------------------------------------------------
 ;c                         Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:36: void putchar (char c)
+;	gs.c:36: void putchar (char c)
 ;	-----------------------------------------
 ;	 function putchar
 ;	-----------------------------------------
 _putchar:
 	mov	r2,dpl
-;	C:\Source\call51\Examples\c\gs.c:38: if (c=='\n')
+;	gs.c:38: if (c=='\n')
 	cjne	r2,#0x0A,L004006?
-;	C:\Source\call51\Examples\c\gs.c:40: while (!TI);
+;	gs.c:40: while (!TI);
 L004001?:
-;	C:\Source\call51\Examples\c\gs.c:41: TI=0;
+;	gs.c:41: TI=0;
 	jbc	_TI,L004017?
 	sjmp	L004001?
 L004017?:
-;	C:\Source\call51\Examples\c\gs.c:42: SBUF='\r';
+;	gs.c:42: SBUF='\r';
 	mov	_SBUF,#0x0D
-;	C:\Source\call51\Examples\c\gs.c:44: while (!TI);
+;	gs.c:44: while (!TI);
 L004006?:
-;	C:\Source\call51\Examples\c\gs.c:45: TI=0;
+;	gs.c:45: TI=0;
 	jbc	_TI,L004018?
 	sjmp	L004006?
 L004018?:
-;	C:\Source\call51\Examples\c\gs.c:46: SBUF=c;
+;	gs.c:46: SBUF=c;
 	mov	_SBUF,r2
 	ret
 ;------------------------------------------------------------
@@ -445,34 +454,34 @@ L004018?:
 ;------------------------------------------------------------
 ;c                         Allocated to registers 
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:49: char getchar (void)
+;	gs.c:49: char getchar (void)
 ;	-----------------------------------------
 ;	 function getchar
 ;	-----------------------------------------
 _getchar:
-;	C:\Source\call51\Examples\c\gs.c:53: while (!RI);
+;	gs.c:53: while (!RI);
 L005001?:
-;	C:\Source\call51\Examples\c\gs.c:54: RI=0;
+;	gs.c:54: RI=0;
 	jbc	_RI,L005008?
 	sjmp	L005001?
 L005008?:
-;	C:\Source\call51\Examples\c\gs.c:55: c=SBUF;
+;	gs.c:55: c=SBUF;
 	mov	dpl,_SBUF
-;	C:\Source\call51\Examples\c\gs.c:56: return c;
+;	gs.c:56: return c;
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'exit'
 ;------------------------------------------------------------
 ;j                         Allocated to registers 
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:59: void exit (int j)
+;	gs.c:59: void exit (int j)
 ;	-----------------------------------------
 ;	 function exit
 ;	-----------------------------------------
 _exit:
-;	C:\Source\call51\Examples\c\gs.c:61: while(1);
+;	gs.c:61: while(1);
 L006002?:
-;	C:\Source\call51\Examples\c\gs.c:62: j;
+;	gs.c:62: j;
 	sjmp	L006002?
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'add_syseq'
@@ -489,7 +498,7 @@ L006002?:
 ;sloc4                     Allocated to stack - offset 13
 ;sloc5                     Allocated to stack - offset 16
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:73: void add_syseq(_syseq * syseq, int row, int col, double value) reentrant
+;	gs.c:73: void add_syseq(_syseq * syseq, int row, int col, double value) reentrant
 ;	-----------------------------------------
 ;	 function add_syseq
 ;	-----------------------------------------
@@ -502,7 +511,7 @@ _add_syseq:
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
-;	C:\Source\call51\Examples\c\gs.c:77: if(value==0.0) return; //Preserve sparsity
+;	gs.c:77: if(value==0.0) return; //Preserve sparsity
 	mov	a,_bp
 	add	a,#0xf6
 	mov	r0,a
@@ -512,11 +521,13 @@ _add_syseq:
 	inc	r0
 	orl	a,@r0
 	inc	r0
-	orl	a,@r0
+	mov	b,@r0
+	clr	b.7 ; Clear the sign bit
+	orl	a,b
 	jnz	L007002?
 	ljmp	L007015?
 L007002?:
-;	C:\Source\call51\Examples\c\gs.c:80: if(row==col)
+;	gs.c:80: if(row==col)
 	mov	a,_bp
 	add	a,#0xfc
 	mov	r0,a
@@ -535,7 +546,7 @@ L007002?:
 L007025?:
 	ljmp	L007004?
 L007026?:
-;	C:\Source\call51\Examples\c\gs.c:82: syseq->eq[row].g+=value;
+;	gs.c:82: syseq->eq[row].g+=value;
 	mov	a,#0x10
 	add	a,r2
 	mov	r5,a
@@ -669,10 +680,10 @@ L007026?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:83: return;
+;	gs.c:83: return;
 	ljmp	L007015?
 L007004?:
-;	C:\Source\call51\Examples\c\gs.c:87: for(i=0; i < syseq->eq[row].n; i++)
+;	gs.c:87: for(i=0; i < syseq->eq[row].n; i++)
 	mov	a,_bp
 	add	a,#0x03
 	mov	r0,a
@@ -781,7 +792,7 @@ L007011?:
 	jc	L007027?
 	ljmp	L007014?
 L007027?:
-;	C:\Source\call51\Examples\c\gs.c:89: if (col==syseq->eq[row].eqn[i])
+;	gs.c:89: if (col==syseq->eq[row].eqn[i])
 	push	ar2
 	push	ar3
 	push	ar4
@@ -851,7 +862,7 @@ L007029?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\Source\call51\Examples\c\gs.c:91: syseq->eq[row].gij[i]+=value;
+;	gs.c:91: syseq->eq[row].gij[i]+=value;
 	mov	a,_bp
 	add	a,#0x0d
 	mov	r0,a
@@ -981,10 +992,10 @@ L007029?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:92: return;
+;	gs.c:92: return;
 	ljmp	L007015?
 L007013?:
-;	C:\Source\call51\Examples\c\gs.c:87: for(i=0; i < syseq->eq[row].n; i++)
+;	gs.c:87: for(i=0; i < syseq->eq[row].n; i++)
 	mov	r0,_bp
 	inc	r0
 	inc	@r0
@@ -1005,7 +1016,7 @@ L007030?:
 	mov	@r1,a
 	ljmp	L007011?
 L007014?:
-;	C:\Source\call51\Examples\c\gs.c:97: syseq->eq[row].gij=realloc(syseq->eq[row].gij, (syseq->eq[row].n+1)*sizeof(double));
+;	gs.c:97: syseq->eq[row].gij=realloc(syseq->eq[row].gij, (syseq->eq[row].n+1)*sizeof(double));
 	mov	a,_bp
 	add	a,#0x0d
 	mov	r0,a
@@ -1094,7 +1105,7 @@ L007031?:
 	inc	dptr
 	mov	a,r7
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:98: if((void *)syseq->eq[row].gij==NULL)
+;	gs.c:98: if((void *)syseq->eq[row].gij==NULL)
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1136,7 +1147,7 @@ L007031?:
 	cjne	r5,#0x00,L007008?
 	cjne	r6,#0x00,L007008?
 	cjne	r7,#0x00,L007008?
-;	C:\Source\call51\Examples\c\gs.c:100: printf("ERROR: not enough memory for 'gij' array.\n");
+;	gs.c:100: printf("ERROR: not enough memory for 'gij' array.\n");
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1154,7 +1165,7 @@ L007031?:
 	pop	ar3
 	pop	ar2
 L007008?:
-;	C:\Source\call51\Examples\c\gs.c:103: syseq->eq[row].eqn=realloc(syseq->eq[row].eqn, (syseq->eq[row].n+1)*sizeof(int));
+;	gs.c:103: syseq->eq[row].eqn=realloc(syseq->eq[row].eqn, (syseq->eq[row].n+1)*sizeof(int));
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1268,7 +1279,7 @@ L007034?:
 	inc	dptr
 	mov	a,r7
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:104: if((void *)syseq->eq[row].eqn==NULL)
+;	gs.c:104: if((void *)syseq->eq[row].eqn==NULL)
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1310,7 +1321,7 @@ L007034?:
 	cjne	r5,#0x00,L007010?
 	cjne	r6,#0x00,L007010?
 	cjne	r7,#0x00,L007010?
-;	C:\Source\call51\Examples\c\gs.c:106: printf("ERROR: not enough memory for 'eq' array.\n");
+;	gs.c:106: printf("ERROR: not enough memory for 'eq' array.\n");
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1328,7 +1339,7 @@ L007034?:
 	pop	ar3
 	pop	ar2
 L007010?:
-;	C:\Source\call51\Examples\c\gs.c:110: syseq->eq[row].gij[syseq->eq[row].n]=value;
+;	gs.c:110: syseq->eq[row].gij[syseq->eq[row].n]=value;
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1449,7 +1460,7 @@ L007010?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:111: syseq->eq[row].eqn[syseq->eq[row].n]=col;
+;	gs.c:111: syseq->eq[row].eqn[syseq->eq[row].n]=col;
 	mov	a,#0x0F
 	add	a,r2
 	mov	r2,a
@@ -1496,7 +1507,7 @@ L007010?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:112: syseq->eq[row].n++;
+;	gs.c:112: syseq->eq[row].n++;
 	mov	a,_bp
 	add	a,#0x0a
 	mov	r0,a
@@ -1535,7 +1546,7 @@ L007015?:
 ;syseq                     Allocated to stack - offset 5
 ;sloc0                     Allocated to stack - offset 8
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:116: _syseq * create_syseq(int order, int maxiter, double tol, double alpha) reentrant
+;	gs.c:116: _syseq * create_syseq(int order, int maxiter, double tol, double alpha) reentrant
 ;	-----------------------------------------
 ;	 function create_syseq
 ;	-----------------------------------------
@@ -1547,7 +1558,7 @@ _create_syseq:
 	mov	a,sp
 	add	a,#0x09
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:121: syseq=malloc(sizeof(_syseq));
+;	gs.c:121: syseq=malloc(sizeof(_syseq));
 	mov	dptr,#0x0013
 	lcall	_malloc
 	mov	r4,dpl
@@ -1560,7 +1571,7 @@ _create_syseq:
 	mov	@r0,ar5
 	inc	r0
 	mov	@r0,#0x00
-;	C:\Source\call51\Examples\c\gs.c:122: if(syseq==NULL)
+;	gs.c:122: if(syseq==NULL)
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -1569,7 +1580,7 @@ _create_syseq:
 	cjne	@r0,#0x00,L008002?
 	inc	r0
 	cjne	@r0,#0x00,L008002?
-;	C:\Source\call51\Examples\c\gs.c:124: printf("ERROR: not enough memory for system of equations.\n");
+;	gs.c:124: printf("ERROR: not enough memory for system of equations.\n");
 	mov	a,#__str_2
 	push	acc
 	mov	a,#(__str_2 >> 8)
@@ -1580,11 +1591,11 @@ _create_syseq:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Source\call51\Examples\c\gs.c:125: exit(1);
+;	gs.c:125: exit(1);
 	mov	dptr,#0x0001
 	lcall	_exit
 L008002?:
-;	C:\Source\call51\Examples\c\gs.c:128: syseq->eq=malloc(order*sizeof(_eq));
+;	gs.c:128: syseq->eq=malloc(order*sizeof(_eq));
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -1625,11 +1636,11 @@ L008002?:
 	inc	dptr
 	mov	a,r6
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:129: if(syseq->eq==NULL)
+;	gs.c:129: if(syseq->eq==NULL)
 	cjne	r4,#0x00,L008004?
 	cjne	r5,#0x00,L008004?
 	cjne	r6,#0x00,L008004?
-;	C:\Source\call51\Examples\c\gs.c:131: printf("ERROR: not enough memory for equation.\n");
+;	gs.c:131: printf("ERROR: not enough memory for equation.\n");
 	push	ar2
 	push	ar3
 	push	ar7
@@ -1643,14 +1654,14 @@ L008002?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Source\call51\Examples\c\gs.c:132: exit(1);
+;	gs.c:132: exit(1);
 	mov	dptr,#0x0001
 	lcall	_exit
 	pop	ar7
 	pop	ar3
 	pop	ar2
 L008004?:
-;	C:\Source\call51\Examples\c\gs.c:135: syseq->order=order;
+;	gs.c:135: syseq->order=order;
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -1667,7 +1678,7 @@ L008004?:
 	inc	r1
 	mov	a,@r1
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:136: syseq->alpha=alpha;
+;	gs.c:136: syseq->alpha=alpha;
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -1700,7 +1711,7 @@ L008004?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:137: syseq->maxiter=maxiter;
+;	gs.c:137: syseq->maxiter=maxiter;
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -1725,7 +1736,7 @@ L008004?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:138: syseq->tol=tol;
+;	gs.c:138: syseq->tol=tol;
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -1758,7 +1769,7 @@ L008004?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:139: syseq->debug=0;
+;	gs.c:139: syseq->debug=0;
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -1779,7 +1790,7 @@ L008004?:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:141: for(j=0; j<order; j++)
+;	gs.c:141: for(j=0; j<order; j++)
 	mov	a,_bp
 	add	a,#0x03
 	mov	r0,a
@@ -1813,7 +1824,7 @@ L008005?:
 	jc	L008020?
 	ljmp	L008008?
 L008020?:
-;	C:\Source\call51\Examples\c\gs.c:143: syseq->eq[j].gij=NULL;
+;	gs.c:143: syseq->eq[j].gij=NULL;
 	mov	dpl,r7
 	mov	dph,r2
 	mov	b,r3
@@ -1852,7 +1863,7 @@ L008020?:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:144: syseq->eq[j].eqn=NULL;
+;	gs.c:144: syseq->eq[j].eqn=NULL;
 	mov	dpl,r7
 	mov	dph,r2
 	mov	b,r3
@@ -1891,7 +1902,7 @@ L008020?:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:145: syseq->eq[j].n=0;
+;	gs.c:145: syseq->eq[j].n=0;
 	mov	dpl,r7
 	mov	dph,r2
 	mov	b,r3
@@ -1927,7 +1938,7 @@ L008020?:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:146: syseq->eq[j].x=0;
+;	gs.c:146: syseq->eq[j].x=0;
 	mov	dpl,r7
 	mov	dph,r2
 	mov	b,r3
@@ -1969,7 +1980,7 @@ L008020?:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:147: syseq->eq[j].b=0;
+;	gs.c:147: syseq->eq[j].b=0;
 	mov	dpl,r7
 	mov	dph,r2
 	mov	b,r3
@@ -2005,7 +2016,7 @@ L008020?:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:148: syseq->eq[j].g=0;
+;	gs.c:148: syseq->eq[j].g=0;
 	mov	dpl,r7
 	mov	dph,r2
 	mov	b,r3
@@ -2047,7 +2058,7 @@ L008020?:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:141: for(j=0; j<order; j++)
+;	gs.c:141: for(j=0; j<order; j++)
 	mov	a,_bp
 	add	a,#0x08
 	mov	r0,a
@@ -2068,7 +2079,7 @@ L008020?:
 L008021?:
 	ljmp	L008005?
 L008008?:
-;	C:\Source\call51\Examples\c\gs.c:150: return syseq;
+;	gs.c:150: return syseq;
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -2087,7 +2098,7 @@ L008008?:
 ;j                         Allocated to stack - offset 1
 ;sloc0                     Allocated to stack - offset 3
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:154: void free_syseq(_syseq * syseq) reentrant
+;	gs.c:154: void free_syseq(_syseq * syseq) reentrant
 ;	-----------------------------------------
 ;	 function free_syseq
 ;	-----------------------------------------
@@ -2100,7 +2111,7 @@ _free_syseq:
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
-;	C:\Source\call51\Examples\c\gs.c:157: for(j=0; j<syseq->order; j++)
+;	gs.c:157: for(j=0; j<syseq->order; j++)
 	mov	a,#0x10
 	add	a,r2
 	mov	r5,a
@@ -2150,7 +2161,7 @@ L009001?:
 	jc	L009010?
 	ljmp	L009005?
 L009010?:
-;	C:\Source\call51\Examples\c\gs.c:159: free(syseq->eq[j].gij);
+;	gs.c:159: free(syseq->eq[j].gij);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -2208,7 +2219,7 @@ L009010?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\Source\call51\Examples\c\gs.c:160: free(syseq->eq[j].eqn);
+;	gs.c:160: free(syseq->eq[j].eqn);
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -2263,7 +2274,7 @@ L009010?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\Source\call51\Examples\c\gs.c:157: for(j=0; j<syseq->order; j++)
+;	gs.c:157: for(j=0; j<syseq->order; j++)
 	mov	a,_bp
 	add	a,#0x03
 	mov	r0,a
@@ -2308,7 +2319,7 @@ L009005?:
 ;sloc8                     Allocated to stack - offset 33
 ;sloc9                     Allocated to stack - offset 37
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:166: int eval_syseq(_syseq * syseq) reentrant
+;	gs.c:166: int eval_syseq(_syseq * syseq) reentrant
 ;	-----------------------------------------
 ;	 function eval_syseq
 ;	-----------------------------------------
@@ -2321,7 +2332,7 @@ _eval_syseq:
 	mov	a,sp
 	add	a,#0x28
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:168: int i, j, intol=1;
+;	gs.c:168: int i, j, intol=1;
 	mov	a,_bp
 	add	a,#0x08
 	mov	r0,a
@@ -2329,7 +2340,7 @@ _eval_syseq:
 	clr	a
 	inc	r0
 	mov	@r0,a
-;	C:\Source\call51\Examples\c\gs.c:171: for(j=0; j<syseq->order; j++)
+;	gs.c:171: for(j=0; j<syseq->order; j++)
 	mov	r0,_bp
 	inc	r0
 	mov	a,_bp
@@ -2430,7 +2441,7 @@ L010007?:
 	jc	L010020?
 	ljmp	L010010?
 L010020?:
-;	C:\Source\call51\Examples\c\gs.c:173: x=0.0;
+;	gs.c:173: x=0.0;
 	mov	a,_bp
 	add	a,#0x0a
 	mov	r0,a
@@ -2441,7 +2452,7 @@ L010020?:
 	mov	@r0,#0x00
 	inc	r0
 	mov	@r0,#0x00
-;	C:\Source\call51\Examples\c\gs.c:174: for(i=0; i<syseq->eq[j].n; i++)
+;	gs.c:174: for(i=0; i<syseq->eq[j].n; i++)
 	mov	a,_bp
 	add	a,#0x04
 	mov	r0,a
@@ -2534,7 +2545,7 @@ L010003?:
 	jc	L010021?
 	ljmp	L010006?
 L010021?:
-;	C:\Source\call51\Examples\c\gs.c:176: x-=syseq->eq[j].gij[i]*syseq->eq[syseq->eq[j].eqn[i]].x;
+;	gs.c:176: x-=syseq->eq[j].gij[i]*syseq->eq[syseq->eq[j].eqn[i]].x;
 	mov	a,_bp
 	add	a,#0x1e
 	mov	r0,a
@@ -2738,7 +2749,7 @@ L010021?:
 	mov	@r0,ar4
 	inc	r0
 	mov	@r0,ar5
-;	C:\Source\call51\Examples\c\gs.c:174: for(i=0; i<syseq->eq[j].n; i++)
+;	gs.c:174: for(i=0; i<syseq->eq[j].n; i++)
 	mov	a,_bp
 	add	a,#0x04
 	mov	r0,a
@@ -2749,7 +2760,7 @@ L010021?:
 L010022?:
 	ljmp	L010003?
 L010006?:
-;	C:\Source\call51\Examples\c\gs.c:178: x+=syseq->eq[j].b;
+;	gs.c:178: x+=syseq->eq[j].b;
 	mov	a,_bp
 	add	a,#0x1e
 	mov	r0,a
@@ -2801,7 +2812,7 @@ L010006?:
 	mov	@r0,ar4
 	inc	r0
 	mov	@r0,ar5
-;	C:\Source\call51\Examples\c\gs.c:179: x*=(syseq->alpha/syseq->eq[j].g);
+;	gs.c:179: x*=(syseq->alpha/syseq->eq[j].g);
 	mov	a,_bp
 	add	a,#0x0e
 	mov	r0,a
@@ -2907,7 +2918,7 @@ L010006?:
 	mov	@r0,ar4
 	inc	r0
 	mov	@r0,ar5
-;	C:\Source\call51\Examples\c\gs.c:180: x+=((1.0-syseq->alpha)*syseq->eq[j].x);
+;	gs.c:180: x+=((1.0-syseq->alpha)*syseq->eq[j].x);
 	mov	a,_bp
 	add	a,#0x21
 	mov	r0,a
@@ -3036,7 +3047,7 @@ L010006?:
 	mov	@r0,ar4
 	inc	r0
 	mov	@r0,ar5
-;	C:\Source\call51\Examples\c\gs.c:183: if((fabs(x-syseq->eq[j].x)/fabs(x))>syseq->tol) intol=0;
+;	gs.c:183: if((fabs(x-syseq->eq[j].x)/fabs(x))>syseq->tol) intol=0;
 	mov	a,_bp
 	add	a,#0x25
 	mov	r0,a
@@ -3177,7 +3188,7 @@ L010006?:
 	inc	r0
 	mov	@r0,a
 L010002?:
-;	C:\Source\call51\Examples\c\gs.c:185: syseq->eq[j].x=x;
+;	gs.c:185: syseq->eq[j].x=x;
 	mov	a,_bp
 	add	a,#0x18
 	mov	r0,a
@@ -3230,7 +3241,7 @@ L010002?:
 	inc	r0
 	mov	a,@r0
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:171: for(j=0; j<syseq->order; j++)
+;	gs.c:171: for(j=0; j<syseq->order; j++)
 	mov	a,_bp
 	add	a,#0x14
 	mov	r0,a
@@ -3261,7 +3272,7 @@ L010002?:
 L010024?:
 	ljmp	L010007?
 L010010?:
-;	C:\Source\call51\Examples\c\gs.c:187: return intol;
+;	gs.c:187: return intol;
 	mov	a,_bp
 	add	a,#0x08
 	mov	r0,a
@@ -3282,7 +3293,7 @@ L010010?:
 ;sloc1                     Allocated to stack - offset 28
 ;sloc2                     Allocated to stack - offset 29
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:191: void print_syseq_x(_syseq * syseq) reentrant
+;	gs.c:191: void print_syseq_x(_syseq * syseq) reentrant
 ;	-----------------------------------------
 ;	 function print_syseq_x
 ;	-----------------------------------------
@@ -3295,7 +3306,7 @@ _print_syseq_x:
 	mov	a,sp
 	add	a,#0x20
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:197: digits=(int)log10(1.0/syseq->tol);
+;	gs.c:197: digits=(int)log10(1.0/syseq->tol);
 	mov	r0,_bp
 	inc	r0
 	mov	a,#0x06
@@ -3344,7 +3355,7 @@ _print_syseq_x:
 	lcall	___fs2sint
 	mov	r2,dpl
 	mov	r3,dph
-;	C:\Source\call51\Examples\c\gs.c:198: sprintf(outfmt, "%%%d.%df", digits+3, digits-1);
+;	gs.c:198: sprintf(outfmt, "%%%d.%df", digits+3, digits-1);
 	mov	a,r2
 	add	a,#0xff
 	mov	r4,a
@@ -3392,7 +3403,7 @@ _print_syseq_x:
 	add	a,#0xf6
 	mov	sp,a
 	pop	ar6
-;	C:\Source\call51\Examples\c\gs.c:200: for(j=0; j<syseq->order; j++)
+;	gs.c:200: for(j=0; j<syseq->order; j++)
 	mov	r0,_bp
 	inc	r0
 	mov	a,#0x10
@@ -3450,7 +3461,7 @@ L011004?:
 	jc	L011014?
 	ljmp	L011008?
 L011014?:
-;	C:\Source\call51\Examples\c\gs.c:202: printf(outfmt, syseq->eq[j].x);
+;	gs.c:202: printf(outfmt, syseq->eq[j].x);
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -3534,7 +3545,7 @@ L011014?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\Source\call51\Examples\c\gs.c:203: if(j<(syseq->order-1))
+;	gs.c:203: if(j<(syseq->order-1))
 	mov	r0,_bp
 	inc	r0
 	mov	dpl,@r0
@@ -3567,7 +3578,7 @@ L011015?:
 	pop	ar3
 	pop	ar2
 	jnc	L011002?
-;	C:\Source\call51\Examples\c\gs.c:204: printf(", ");
+;	gs.c:204: printf(", ");
 	push	ar2
 	push	ar3
 	push	ar4
@@ -3586,7 +3597,7 @@ L011015?:
 	pop	ar2
 	sjmp	L011006?
 L011002?:
-;	C:\Source\call51\Examples\c\gs.c:206: printf("\n");
+;	gs.c:206: printf("\n");
 	push	ar2
 	push	ar3
 	push	ar4
@@ -3604,7 +3615,7 @@ L011002?:
 	pop	ar3
 	pop	ar2
 L011006?:
-;	C:\Source\call51\Examples\c\gs.c:200: for(j=0; j<syseq->order; j++)
+;	gs.c:200: for(j=0; j<syseq->order; j++)
 	mov	a,_bp
 	add	a,#0x1a
 	mov	r0,a
@@ -3639,7 +3650,7 @@ L011008?:
 ;sloc3                     Allocated to stack - offset 10
 ;sloc4                     Allocated to stack - offset 17
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:212: int solve_syseq(_syseq * syseq) reentrant
+;	gs.c:212: int solve_syseq(_syseq * syseq) reentrant
 ;	-----------------------------------------
 ;	 function solve_syseq
 ;	-----------------------------------------
@@ -3652,7 +3663,7 @@ _solve_syseq:
 	mov	a,sp
 	add	a,#0x0c
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:214: if(syseq->debug)
+;	gs.c:214: if(syseq->debug)
 	mov	r0,_bp
 	inc	r0
 	mov	a,#0x0E
@@ -3674,7 +3685,7 @@ _solve_syseq:
 	mov	r3,a
 	orl	a,r2
 	jz	L012002?
-;	C:\Source\call51\Examples\c\gs.c:216: printf("x(%d)= ", 0);
+;	gs.c:216: printf("x(%d)= ", 0);
 	push	ar5
 	push	ar6
 	push	ar7
@@ -3691,7 +3702,7 @@ _solve_syseq:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:217: print_syseq_x(syseq);
+;	gs.c:217: print_syseq_x(syseq);
 	mov	r0,_bp
 	inc	r0
 	mov	dpl,@r0
@@ -3704,7 +3715,7 @@ _solve_syseq:
 	pop	ar6
 	pop	ar5
 L012002?:
-;	C:\Source\call51\Examples\c\gs.c:220: for(syseq->numiter=1; syseq->numiter!=syseq->maxiter; syseq->numiter++)
+;	gs.c:220: for(syseq->numiter=1; syseq->numiter!=syseq->maxiter; syseq->numiter++)
 	mov	r0,_bp
 	inc	r0
 	mov	a,_bp
@@ -3792,7 +3803,7 @@ L012011?:
 	ljmp	L012014?
 L012025?:
 	pop	ar7
-;	C:\Source\call51\Examples\c\gs.c:223: intol=eval_syseq(syseq);
+;	gs.c:223: intol=eval_syseq(syseq);
 	push	ar7
 	mov	r0,_bp
 	inc	r0
@@ -3808,7 +3819,7 @@ L012025?:
 	pop	ar7
 	mov	ar2,r5
 	mov	ar3,r6
-;	C:\Source\call51\Examples\c\gs.c:225: if(syseq->debug)
+;	gs.c:225: if(syseq->debug)
 	mov	r0,_bp
 	inc	r0
 	mov	a,_bp
@@ -3843,7 +3854,7 @@ L012025?:
 	pop	ar6
 	pop	ar5
 	jz	L012004?
-;	C:\Source\call51\Examples\c\gs.c:227: printf("x(%d)= ", syseq->numiter);
+;	gs.c:227: printf("x(%d)= ", syseq->numiter);
 	push	ar5
 	push	ar6
 	push	ar7
@@ -3877,7 +3888,7 @@ L012025?:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:228: print_syseq_x(syseq);
+;	gs.c:228: print_syseq_x(syseq);
 	mov	r0,_bp
 	inc	r0
 	mov	dpl,@r0
@@ -3891,19 +3902,19 @@ L012025?:
 	pop	ar5
 	pop	ar3
 	pop	ar2
-;	C:\Source\call51\Examples\c\gs.c:241: return 0;
+;	gs.c:241: return 0;
 	pop	ar7
 	pop	ar6
 	pop	ar5
-;	C:\Source\call51\Examples\c\gs.c:228: print_syseq_x(syseq);
+;	gs.c:228: print_syseq_x(syseq);
 L012004?:
-;	C:\Source\call51\Examples\c\gs.c:231: if(intol)
+;	gs.c:231: if(intol)
 	mov	a,r2
 	orl	a,r3
 	jnz	L012027?
 	ljmp	L012013?
 L012027?:
-;	C:\Source\call51\Examples\c\gs.c:233: if(syseq->debug)
+;	gs.c:233: if(syseq->debug)
 	mov	a,_bp
 	add	a,#0x07
 	mov	r0,a
@@ -3921,7 +3932,7 @@ L012027?:
 	jnz	L012028?
 	ljmp	L012006?
 L012028?:
-;	C:\Source\call51\Examples\c\gs.c:234: printf("%d-digit accuracy reached in %d iterations\n", (int) log10(1.0/syseq->tol), syseq->numiter);
+;	gs.c:234: printf("%d-digit accuracy reached in %d iterations\n", (int) log10(1.0/syseq->tol), syseq->numiter);
 	mov	a,_bp
 	add	a,#0x0a
 	mov	r0,a
@@ -3998,11 +4009,11 @@ L012028?:
 	add	a,#0xf9
 	mov	sp,a
 L012006?:
-;	C:\Source\call51\Examples\c\gs.c:235: return 1;
+;	gs.c:235: return 1;
 	mov	dptr,#0x0001
 	ljmp	L012015?
 L012013?:
-;	C:\Source\call51\Examples\c\gs.c:220: for(syseq->numiter=1; syseq->numiter!=syseq->maxiter; syseq->numiter++)
+;	gs.c:220: for(syseq->numiter=1; syseq->numiter!=syseq->maxiter; syseq->numiter++)
 	mov	a,_bp
 	add	a,#0x0a
 	mov	r0,a
@@ -4035,7 +4046,7 @@ L012029?:
 	lcall	__gptrput
 	ljmp	L012011?
 L012014?:
-;	C:\Source\call51\Examples\c\gs.c:239: if(syseq->debug)
+;	gs.c:239: if(syseq->debug)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -4048,7 +4059,7 @@ L012014?:
 	jnz	L012030?
 	ljmp	L012010?
 L012030?:
-;	C:\Source\call51\Examples\c\gs.c:240: printf("ERROR: %d-digit accuracy not reached in %d iterations\n", (int) log10(1.0/syseq->tol), syseq->numiter);
+;	gs.c:240: printf("ERROR: %d-digit accuracy not reached in %d iterations\n", (int) log10(1.0/syseq->tol), syseq->numiter);
 	mov	a,_bp
 	add	a,#0x0a
 	mov	r0,a
@@ -4125,7 +4136,7 @@ L012030?:
 	add	a,#0xf9
 	mov	sp,a
 L012010?:
-;	C:\Source\call51\Examples\c\gs.c:241: return 0;
+;	gs.c:241: return 0;
 	mov	dptr,#0x0000
 L012015?:
 	mov	sp,_bp
@@ -4142,7 +4153,7 @@ L012015?:
 ;sloc3                     Allocated to stack - offset 14
 ;sloc4                     Allocated to stack - offset 11
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:246: void zero_start_syseq(_syseq * syseq) reentrant
+;	gs.c:246: void zero_start_syseq(_syseq * syseq) reentrant
 ;	-----------------------------------------
 ;	 function zero_start_syseq
 ;	-----------------------------------------
@@ -4155,7 +4166,7 @@ _zero_start_syseq:
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
-;	C:\Source\call51\Examples\c\gs.c:249: for(j=0; j<syseq->order; j++)
+;	gs.c:249: for(j=0; j<syseq->order; j++)
 	mov	a,_bp
 	add	a,#0x05
 	mov	r0,a
@@ -4204,7 +4215,7 @@ L013001?:
 	jc	L013010?
 	ljmp	L013005?
 L013010?:
-;	C:\Source\call51\Examples\c\gs.c:250: syseq->eq[j].x=syseq->eq[j].b/syseq->eq[j].g;
+;	gs.c:250: syseq->eq[j].x=syseq->eq[j].b/syseq->eq[j].g;
 	push	ar2
 	push	ar3
 	push	ar4
@@ -4329,7 +4340,7 @@ L013010?:
 	inc	dptr
 	mov	a,r5
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:249: for(j=0; j<syseq->order; j++)
+;	gs.c:249: for(j=0; j<syseq->order; j++)
 	mov	a,_bp
 	add	a,#0x03
 	mov	r0,a
@@ -4358,21 +4369,21 @@ L013005?:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;syseq                     Allocated with name '_main_syseq_1_1'
+;syseq                     Allocated with name '_main_syseq_1_113'
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\gs.c:253: void main(void)
+;	gs.c:253: void main(void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	C:\Source\call51\Examples\c\gs.c:257: inituart();
+;	gs.c:257: inituart();
 	lcall	_inituart
-;	C:\Source\call51\Examples\c\gs.c:258: LEDRA=0;
+;	gs.c:258: LEDRA=0;
 	mov	_LEDRA,#0x00
-;	C:\Source\call51\Examples\c\gs.c:259: LEDRB=0;
-;	C:\Source\call51\Examples\c\gs.c:260: LEDRC=0;
-;	C:\Source\call51\Examples\c\gs.c:261: LEDG=0;
-;	C:\Source\call51\Examples\c\gs.c:263: printf("\n\nGauss-Seidel Solution of linear systems\nBy Jesus Calvino-Fraga (c) 2006-2011\n\n");	
+;	gs.c:259: LEDRB=0;
+;	gs.c:260: LEDRC=0;
+;	gs.c:261: LEDG=0;
+;	gs.c:263: printf("\n\nGauss-Seidel Solution of linear systems\nBy Jesus Calvino-Fraga (c) 2006-2011\n\n");	
 	clr	a
 	mov	_LEDRB,a
 	mov	_LEDRC,a
@@ -4387,7 +4398,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Source\call51\Examples\c\gs.c:266: syseq=create_syseq(4, 25, 1.0e-7, 1.0);
+;	gs.c:266: syseq=create_syseq(4, 25, 1.0e-7, 1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4409,13 +4420,13 @@ _main:
 	push	acc
 	mov	dptr,#0x0004
 	lcall	_create_syseq
-	mov	_main_syseq_1_1,dpl
-	mov	(_main_syseq_1_1 + 1),dph
-	mov	(_main_syseq_1_1 + 2),b
+	mov	_main_syseq_1_113,dpl
+	mov	(_main_syseq_1_113 + 1),dph
+	mov	(_main_syseq_1_113 + 2),b
 	mov	a,sp
 	add	a,#0xf6
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:268: add_syseq(syseq, 0, 0, 10.0);
+;	gs.c:268: add_syseq(syseq, 0, 0, 10.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4429,14 +4440,14 @@ _main:
 	clr	a
 	push	acc
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:269: add_syseq(syseq, 0, 1, -1.0);
+;	gs.c:269: add_syseq(syseq, 0, 1, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4451,14 +4462,14 @@ _main:
 	clr	a
 	push	acc
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:270: add_syseq(syseq, 0, 2, 2.0);
+;	gs.c:270: add_syseq(syseq, 0, 2, 2.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4472,21 +4483,21 @@ _main:
 	clr	a
 	push	acc
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:271: syseq->eq[0].b=6.0;
+;	gs.c:271: syseq->eq[0].b=6.0;
 	mov	a,#0x10
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -4512,7 +4523,7 @@ _main:
 	inc	dptr
 	mov	a,#0x40
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:273: add_syseq(syseq, 1, 0, -1.0);
+;	gs.c:273: add_syseq(syseq, 1, 0, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4527,14 +4538,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:274: add_syseq(syseq, 1, 1, 11.0);
+;	gs.c:274: add_syseq(syseq, 1, 1, 11.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4550,14 +4561,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:275: add_syseq(syseq, 1, 2, -1.0);
+;	gs.c:275: add_syseq(syseq, 1, 2, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4573,14 +4584,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:276: add_syseq(syseq, 1, 3, 3.0);
+;	gs.c:276: add_syseq(syseq, 1, 3, 3.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4595,21 +4606,21 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:277: syseq->eq[1].b=25.0;
+;	gs.c:277: syseq->eq[1].b=25.0;
 	mov	a,#0x10
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -4641,7 +4652,7 @@ _main:
 	inc	dptr
 	mov	a,#0x41
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:279: add_syseq(syseq, 2, 0, 2.0);
+;	gs.c:279: add_syseq(syseq, 2, 0, 2.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4655,14 +4666,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:280: add_syseq(syseq, 2, 1, -1.0);
+;	gs.c:280: add_syseq(syseq, 2, 1, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4678,14 +4689,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:281: add_syseq(syseq, 2, 2, 10.0);
+;	gs.c:281: add_syseq(syseq, 2, 2, 10.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4701,14 +4712,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:282: add_syseq(syseq, 2, 3, -1.0);
+;	gs.c:282: add_syseq(syseq, 2, 3, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4724,21 +4735,21 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:283: syseq->eq[2].b=-11.0;
+;	gs.c:283: syseq->eq[2].b=-11.0;
 	mov	a,#0x10
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -4770,7 +4781,7 @@ _main:
 	inc	dptr
 	mov	a,#0xC1
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:285: add_syseq(syseq, 3, 1, 3.0);
+;	gs.c:285: add_syseq(syseq, 3, 1, 3.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4785,14 +4796,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:286: add_syseq(syseq, 3, 2, -1.0);
+;	gs.c:286: add_syseq(syseq, 3, 2, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4808,14 +4819,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:287: add_syseq(syseq, 3, 3, 8.0);
+;	gs.c:287: add_syseq(syseq, 3, 3, 8.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4830,21 +4841,21 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:288: syseq->eq[3].b=15.0;
+;	gs.c:288: syseq->eq[3].b=15.0;
 	mov	a,#0x10
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -4876,14 +4887,14 @@ _main:
 	inc	dptr
 	mov	a,#0x41
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:291: syseq->debug=1;
+;	gs.c:291: syseq->debug=1;
 	mov	a,#0x0E
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -4892,22 +4903,22 @@ _main:
 	inc	dptr
 	clr	a
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:292: solve_syseq(syseq);
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+;	gs.c:292: solve_syseq(syseq);
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_solve_syseq
-;	C:\Source\call51\Examples\c\gs.c:293: free_syseq(syseq);
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+;	gs.c:293: free_syseq(syseq);
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_free_syseq
-;	C:\Source\call51\Examples\c\gs.c:294: free(syseq);
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+;	gs.c:294: free(syseq);
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_free
-;	C:\Source\call51\Examples\c\gs.c:299: syseq=create_syseq(3, 25, 1.0e-7, 1.25);
+;	gs.c:299: syseq=create_syseq(3, 25, 1.0e-7, 1.25);
 	clr	a
 	push	acc
 	push	acc
@@ -4929,13 +4940,13 @@ _main:
 	push	acc
 	mov	dptr,#0x0003
 	lcall	_create_syseq
-	mov	_main_syseq_1_1,dpl
-	mov	(_main_syseq_1_1 + 1),dph
-	mov	(_main_syseq_1_1 + 2),b
+	mov	_main_syseq_1_113,dpl
+	mov	(_main_syseq_1_113 + 1),dph
+	mov	(_main_syseq_1_113 + 2),b
 	mov	a,sp
 	add	a,#0xf6
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:301: add_syseq(syseq, 0, 0, 4.0);
+;	gs.c:301: add_syseq(syseq, 0, 0, 4.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4949,14 +4960,14 @@ _main:
 	clr	a
 	push	acc
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:302: add_syseq(syseq, 0, 1, 3.0);
+;	gs.c:302: add_syseq(syseq, 0, 1, 3.0);
 	clr	a
 	push	acc
 	push	acc
@@ -4970,21 +4981,21 @@ _main:
 	clr	a
 	push	acc
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:303: syseq->eq[0].b=24.0;
+;	gs.c:303: syseq->eq[0].b=24.0;
 	mov	a,#0x10
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -5010,7 +5021,7 @@ _main:
 	inc	dptr
 	mov	a,#0x41
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:305: add_syseq(syseq, 1, 0, 3.0);
+;	gs.c:305: add_syseq(syseq, 1, 0, 3.0);
 	clr	a
 	push	acc
 	push	acc
@@ -5024,14 +5035,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:306: add_syseq(syseq, 1, 1, 4.0);
+;	gs.c:306: add_syseq(syseq, 1, 1, 4.0);
 	clr	a
 	push	acc
 	push	acc
@@ -5047,14 +5058,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:307: add_syseq(syseq, 1, 2, -1.0);
+;	gs.c:307: add_syseq(syseq, 1, 2, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -5070,21 +5081,21 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:308: syseq->eq[1].b=30.0;
+;	gs.c:308: syseq->eq[1].b=30.0;
 	mov	a,#0x10
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -5116,7 +5127,7 @@ _main:
 	inc	dptr
 	mov	a,#0x41
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:310: add_syseq(syseq, 2, 1, -1.0);
+;	gs.c:310: add_syseq(syseq, 2, 1, -1.0);
 	clr	a
 	push	acc
 	push	acc
@@ -5132,14 +5143,14 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:311: add_syseq(syseq, 2, 2, 4.0);
+;	gs.c:311: add_syseq(syseq, 2, 2, 4.0);
 	clr	a
 	push	acc
 	push	acc
@@ -5155,21 +5166,21 @@ _main:
 	push	acc
 	clr	a
 	push	acc
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_add_syseq
 	mov	a,sp
 	add	a,#0xf8
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:312: syseq->eq[2].b=-24.0;
+;	gs.c:312: syseq->eq[2].b=-24.0;
 	mov	a,#0x10
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r5,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r6,a
-	mov	r7,(_main_syseq_1_1 + 2)
+	mov	r7,(_main_syseq_1_113 + 2)
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -5202,7 +5213,7 @@ _main:
 	inc	dptr
 	mov	a,#0xC1
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:314: syseq->eq[0].x=1;
+;	gs.c:314: syseq->eq[0].x=1;
 	mov	a,#0x08
 	add	a,r5
 	mov	r2,a
@@ -5224,7 +5235,7 @@ _main:
 	inc	dptr
 	mov	a,#0x3F
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:315: syseq->eq[1].x=1;
+;	gs.c:315: syseq->eq[1].x=1;
 	mov	a,#0x1C
 	add	a,r5
 	mov	r2,a
@@ -5246,7 +5257,7 @@ _main:
 	inc	dptr
 	mov	a,#0x3F
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:316: syseq->eq[2].x=1;
+;	gs.c:316: syseq->eq[2].x=1;
 	mov	a,#0x30
 	add	a,r5
 	mov	r5,a
@@ -5267,19 +5278,19 @@ _main:
 	inc	dptr
 	mov	a,#0x3F
 	lcall	__gptrput
-;	C:\Source\call51\Examples\c\gs.c:318: solve_syseq(syseq);
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+;	gs.c:318: solve_syseq(syseq);
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_solve_syseq
-;	C:\Source\call51\Examples\c\gs.c:320: syseq->numiter, (int) log10(1.0/syseq->tol));
+;	gs.c:320: syseq->numiter, (int) log10(1.0/syseq->tol));
 	mov	a,#0x06
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r2,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r3,a
-	mov	r4,(_main_syseq_1_1 + 2)
+	mov	r4,(_main_syseq_1_113 + 2)
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -5318,12 +5329,12 @@ _main:
 	mov	r2,dpl
 	mov	r3,dph
 	mov	a,#0x04
-	add	a,_main_syseq_1_1
+	add	a,_main_syseq_1_113
 	mov	r4,a
 	clr	a
-	addc	a,(_main_syseq_1_1 + 1)
+	addc	a,(_main_syseq_1_113 + 1)
 	mov	r5,a
-	mov	r6,(_main_syseq_1_1 + 2)
+	mov	r6,(_main_syseq_1_113 + 2)
 	mov	dpl,r4
 	mov	dph,r5
 	mov	b,r6
@@ -5332,7 +5343,7 @@ _main:
 	inc	dptr
 	lcall	__gptrget
 	mov	r5,a
-;	C:\Source\call51\Examples\c\gs.c:319: printf("\nThe second system was solved in %d iterations with %d-digit accuracy:\n",
+;	gs.c:319: printf("\nThe second system was solved in %d iterations with %d-digit accuracy:\n",
 	push	ar2
 	push	ar3
 	push	ar4
@@ -5347,22 +5358,24 @@ _main:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Source\call51\Examples\c\gs.c:321: print_syseq_x(syseq);
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+;	gs.c:321: print_syseq_x(syseq);
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_print_syseq_x
-;	C:\Source\call51\Examples\c\gs.c:322: free_syseq(syseq);
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+;	gs.c:322: free_syseq(syseq);
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	lcall	_free_syseq
-;	C:\Source\call51\Examples\c\gs.c:323: free(syseq);
-	mov	dpl,_main_syseq_1_1
-	mov	dph,(_main_syseq_1_1 + 1)
-	mov	b,(_main_syseq_1_1 + 2)
+;	gs.c:323: free(syseq);
+	mov	dpl,_main_syseq_1_113
+	mov	dph,(_main_syseq_1_113 + 1)
+	mov	b,(_main_syseq_1_113 + 2)
 	ljmp	_free
 	rseg R_CSEG
+
+	rseg R_XINIT
 
 	rseg R_CONST
 __c51_heap_size:
@@ -5427,8 +5440,6 @@ __str_11:
 	db ' accuracy:'
 	db 0x0A
 	db 0x00
-
-	rseg R_XINIT
 
 	CSEG
 

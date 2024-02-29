@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
-; Version 1.0.0 #1069 (Dec 11 2012) (MSVC)
-; This file was generated Sun Jan 06 21:53:34 2013
+; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
+; This file was generated Wed Feb 28 12:33:58 2024
 ;--------------------------------------------------------
 $name lcd_test
 $optc51 --model-small
@@ -9,6 +9,7 @@ $optc51 --model-small
 	R_CSEG    segment code
 	R_BSEG    segment bit
 	R_XSEG    segment xdata
+	R_PSEG    segment xdata
 	R_ISEG    segment idata
 	R_OSEG    segment data overlay
 	BIT_BANK  segment data overlay
@@ -97,6 +98,13 @@ _BPAL           DATA 0xfe
 _BPAH           DATA 0xff
 _LBPAL          DATA 0xfa
 _LBPAH          DATA 0xfb
+_XRAMUSEDAS     DATA 0xc3
+_FLASH_CMD      DATA 0xdb
+_FLASH_DATA     DATA 0xdc
+_FLASH_MOD      DATA 0xdd
+_FLASH_ADD0     DATA 0xe1
+_FLASH_ADD1     DATA 0xe2
+_FLASH_ADD2     DATA 0xe3
 ;--------------------------------------------------------
 ; special function bits
 ;--------------------------------------------------------
@@ -260,7 +268,7 @@ _JTDI           BIT 0xc7
 ;--------------------------------------------------------
 ; paged external ram data
 ;--------------------------------------------------------
-	rseg R_XSEG
+	rseg R_PSEG
 ;--------------------------------------------------------
 ; external ram data
 ;--------------------------------------------------------
@@ -300,13 +308,13 @@ _JTDI           BIT 0xc7
 ;Allocation info for local variables in function 'de2_8052_crt0'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:/Source/call51/bin/../include/mcs51/DE2_8052.h:304: void de2_8052_crt0 (void) _naked
+;	c:/call51/bin64/../include/mcs51/DE2_8052.h:317: void de2_8052_crt0 (void) _naked
 ;	-----------------------------------------
 ;	 function de2_8052_crt0
 ;	-----------------------------------------
 _de2_8052_crt0:
 ;	naked function: no prologue.
-;	C:/Source/call51/bin/../include/mcs51/DE2_8052.h:373: _endasm;
+;	c:/call51/bin64/../include/mcs51/DE2_8052.h:386: _endasm;
 	
 	
 	 rseg R_GSINIT
@@ -380,18 +388,24 @@ _de2_8052_crt0:
 ;Allocation info for local variables in function 'Wait40us'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\lcd_test.c:5: void Wait40us(void)
+;	lcd_test.c:5: void Wait40us(void)
 ;	-----------------------------------------
 ;	 function Wait40us
 ;	-----------------------------------------
 _Wait40us:
 	using	0
-;	C:\Source\call51\Examples\c\lcd_test.c:12: _endasm;
+;	lcd_test.c:19: _endasm;
 	
 	  push AR0
 	  mov R0, #200
 	 X1:
-	djnz R0, X1 ; 3 machine cycles-> 3*90ns*200>40us
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  nop
+	  djnz R0, X1 ; 9 machine cycles-> 9*30ns*200>40us
 	     pop AR0
 	    
 	ret
@@ -400,38 +414,38 @@ _Wait40us:
 ;------------------------------------------------------------
 ;c                         Allocated to registers 
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\lcd_test.c:37: void LCD_command (unsigned char c)
+;	lcd_test.c:44: void LCD_command (unsigned char c)
 ;	-----------------------------------------
 ;	 function LCD_command
 ;	-----------------------------------------
 _LCD_command:
 	mov	_LCD_DATA,dpl
-;	C:\Source\call51\Examples\c\lcd_test.c:40: LCD_RS=0;
+;	lcd_test.c:47: LCD_RS=0;
 	clr	_LCD_RS
-;	C:\Source\call51\Examples\c\lcd_test.c:41: LCD_EN=1;
+;	lcd_test.c:48: LCD_EN=1;
 	setb	_LCD_EN
-;	C:\Source\call51\Examples\c\lcd_test.c:42: LCD_EN=0;
+;	lcd_test.c:49: LCD_EN=0;
 	clr	_LCD_EN
-;	C:\Source\call51\Examples\c\lcd_test.c:43: Wait40us();
+;	lcd_test.c:50: Wait40us();
 	ljmp	_Wait40us
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'LCD_data'
 ;------------------------------------------------------------
 ;c                         Allocated to registers 
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\lcd_test.c:46: void LCD_data (unsigned char c)
+;	lcd_test.c:53: void LCD_data (unsigned char c)
 ;	-----------------------------------------
 ;	 function LCD_data
 ;	-----------------------------------------
 _LCD_data:
 	mov	_LCD_DATA,dpl
-;	C:\Source\call51\Examples\c\lcd_test.c:49: LCD_RS=1;
+;	lcd_test.c:56: LCD_RS=1;
 	setb	_LCD_RS
-;	C:\Source\call51\Examples\c\lcd_test.c:50: LCD_EN=1;
+;	lcd_test.c:57: LCD_EN=1;
 	setb	_LCD_EN
-;	C:\Source\call51\Examples\c\lcd_test.c:51: LCD_EN=0;
+;	lcd_test.c:58: LCD_EN=0;
 	clr	_LCD_EN
-;	C:\Source\call51\Examples\c\lcd_test.c:52: Wait40us();
+;	lcd_test.c:59: Wait40us();
 	ljmp	_Wait40us
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'LCD_puts'
@@ -439,7 +453,7 @@ _LCD_data:
 ;str                       Allocated to registers r2 r3 r4 
 ;j                         Allocated to registers r5 
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\lcd_test.c:56: void LCD_puts(char * str)
+;	lcd_test.c:63: void LCD_puts(char * str)
 ;	-----------------------------------------
 ;	 function LCD_puts
 ;	-----------------------------------------
@@ -447,7 +461,7 @@ _LCD_puts:
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
-;	C:\Source\call51\Examples\c\lcd_test.c:59: for(j=0; str[j]!=0; j++)
+;	lcd_test.c:66: for(j=0; str[j]!=0; j++)
 	mov	r5,#0x00
 L006001?:
 	mov	a,r5
@@ -463,7 +477,7 @@ L006001?:
 	lcall	__gptrget
 	mov	r6,a
 	jz	L006005?
-;	C:\Source\call51\Examples\c\lcd_test.c:61: LCD_data(str[j]);
+;	lcd_test.c:68: LCD_data(str[j]);
 	mov	dpl,r6
 	push	ar2
 	push	ar3
@@ -474,7 +488,7 @@ L006001?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\Source\call51\Examples\c\lcd_test.c:59: for(j=0; str[j]!=0; j++)
+;	lcd_test.c:66: for(j=0; str[j]!=0; j++)
 	inc	r5
 	sjmp	L006001?
 L006005?:
@@ -484,74 +498,76 @@ L006005?:
 ;------------------------------------------------------------
 ;j                         Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\Source\call51\Examples\c\lcd_test.c:65: void main (void)
+;	lcd_test.c:72: void main (void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	C:\Source\call51\Examples\c\lcd_test.c:70: HEX0=0xff;
+;	lcd_test.c:77: HEX0=0xff;
 	mov	_HEX0,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:71: HEX1=0xff;
+;	lcd_test.c:78: HEX1=0xff;
 	mov	_HEX1,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:72: HEX2=0xff;
+;	lcd_test.c:79: HEX2=0xff;
 	mov	_HEX2,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:73: HEX3=0xff;
+;	lcd_test.c:80: HEX3=0xff;
 	mov	_HEX3,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:74: HEX4=0xff;
+;	lcd_test.c:81: HEX4=0xff;
 	mov	_HEX4,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:75: HEX5=0xff;
+;	lcd_test.c:82: HEX5=0xff;
 	mov	_HEX5,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:76: HEX6=0xff;
+;	lcd_test.c:83: HEX6=0xff;
 	mov	_HEX6,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:77: HEX7=0xff;
+;	lcd_test.c:84: HEX7=0xff;
 	mov	_HEX7,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:78: LEDRA=0;
+;	lcd_test.c:85: LEDRA=0;
 	mov	_LEDRA,#0x00
-;	C:\Source\call51\Examples\c\lcd_test.c:79: LEDRB=0;
+;	lcd_test.c:86: LEDRB=0;
 	mov	_LEDRB,#0x00
-;	C:\Source\call51\Examples\c\lcd_test.c:80: LEDRC=0;
+;	lcd_test.c:87: LEDRC=0;
 	mov	_LEDRC,#0x00
-;	C:\Source\call51\Examples\c\lcd_test.c:81: LEDG=0;
+;	lcd_test.c:88: LEDG=0;
 	mov	_LEDG,#0x00
-;	C:\Source\call51\Examples\c\lcd_test.c:85: LCD_ON=1; // Turn LCD on, and wait a bit.
+;	lcd_test.c:92: LCD_ON=1; // Turn LCD on, and wait a bit.
 	setb	_LCD_ON
-;	C:\Source\call51\Examples\c\lcd_test.c:86: Wait40us();
+;	lcd_test.c:93: Wait40us();
 	lcall	_Wait40us
-;	C:\Source\call51\Examples\c\lcd_test.c:88: LCD_MOD=0xff; // Use LCD_DATA as output port
+;	lcd_test.c:95: LCD_MOD=0xff; // Use LCD_DATA as output port
 	mov	_LCD_MOD,#0xFF
-;	C:\Source\call51\Examples\c\lcd_test.c:89: LCD_RW=0; // Only writing to the LCD in this code.
+;	lcd_test.c:96: LCD_RW=0; // Only writing to the LCD in this code.
 	clr	_LCD_RW
-;	C:\Source\call51\Examples\c\lcd_test.c:91: LCD_command(0x0c); // Display on command
+;	lcd_test.c:98: LCD_command(0x0c); // Display on command
 	mov	dpl,#0x0C
 	lcall	_LCD_command
-;	C:\Source\call51\Examples\c\lcd_test.c:92: LCD_command(0x38); // 8-bits interface, 2 lines, 5x7 characters
+;	lcd_test.c:99: LCD_command(0x38); // 8-bits interface, 2 lines, 5x7 characters
 	mov	dpl,#0x38
 	lcall	_LCD_command
-;	C:\Source\call51\Examples\c\lcd_test.c:93: LCD_command(0x01); // Clear screen (Warning, very slow command!)
+;	lcd_test.c:100: LCD_command(0x01); // Clear screen (Warning, very slow command!)
 	mov	dpl,#0x01
 	lcall	_LCD_command
-;	C:\Source\call51\Examples\c\lcd_test.c:94: for(j=0; j<100; j++) Wait40us(); // Delay loop needed for 'clear screen' command above
+;	lcd_test.c:101: for(j=0; j<100; j++) Wait40us(); // Delay loop needed for 'clear screen' command above
 	mov	r2,#0x64
 L007003?:
 	push	ar2
 	lcall	_Wait40us
 	pop	ar2
 	djnz	r2,L007003?
-;	C:\Source\call51\Examples\c\lcd_test.c:96: LCD_command(0x80); // Move to first column of first row
+;	lcd_test.c:103: LCD_command(0x80); // Move to first column of first row
 	mov	dpl,#0x80
 	lcall	_LCD_command
-;	C:\Source\call51\Examples\c\lcd_test.c:97: LCD_puts("Hello World!");
+;	lcd_test.c:104: LCD_puts("Hello World!");
 	mov	dptr,#__str_0
 	mov	b,#0x80
 	lcall	_LCD_puts
-;	C:\Source\call51\Examples\c\lcd_test.c:99: LCD_command(0xC0); // Move to first column of second row
+;	lcd_test.c:106: LCD_command(0xC0); // Move to first column of second row
 	mov	dpl,#0xC0
 	lcall	_LCD_command
-;	C:\Source\call51\Examples\c\lcd_test.c:101: LCD_puts("Second LCD line.");
+;	lcd_test.c:107: LCD_puts("Second LCD line.");
 	mov	dptr,#__str_1
 	mov	b,#0x80
 	ljmp	_LCD_puts
 	rseg R_CSEG
+
+	rseg R_XINIT
 
 	rseg R_CONST
 __str_0:
@@ -560,8 +576,6 @@ __str_0:
 __str_1:
 	db 'Second LCD line.'
 	db 0x00
-
-	rseg R_XINIT
 
 	CSEG
 

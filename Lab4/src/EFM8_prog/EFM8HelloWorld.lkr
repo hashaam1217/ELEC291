@@ -3,4 +3,4 @@ lib=libc51.lib
 lib=libint.lib
 lib=liblong.lib
 lib=libfloat.lib
-obj=gs.obj
+obj=EFM8HelloWorld.obj

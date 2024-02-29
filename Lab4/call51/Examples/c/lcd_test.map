@@ -1,15 +1,15 @@
 Modules linked:
    'lcd_test' from 'lcd_test.obj'
-   'gptrget' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
-   'startup' from 'C:\Source\call51\bin\..\lib\small\libc51.lib'
+   'gptrget' from 'c:\call51\bin64\..\lib\small\libc51.lib'
+   'startup' from 'c:\call51\bin64\..\lib\small\libc51.lib'
 
 Memory use per module linked:
-           lcd_test: C:00307 D:000 I:000 B:000 X:00000
-            gptrget: C:00028 D:000 I:000 B:000 X:00000
-            startup: C:00004 D:000 I:000 B:000 X:00000
-           ABSOLUTE: C:00004 D:000 I:000 B:000 X:00000
+C:00313 D:000 I:000 B:000 X:00000 - lcd_test
+C:00028 D:000 I:000 B:000 X:00000 - gptrget
+C:00004 D:000 I:000 B:000 X:00000 - startup
+C:00004 D:000 I:000 B:000 X:00000 - ABSOLUTE
 ------------------------------------------------------
-             Totals: C:00343 D:000 I:000 B:000 X:00000
+C:00349 D:000 I:000 B:000 X:00000 - Totals
 
 INTERMAL RAM map (see legend below):
 00: 0 0 0 0 0 0 0 0 . . . . . . . . 
@@ -47,7 +47,7 @@ BIT map:
 70: . . . . . . . . . . . . . . . . 
 
 CODE usage map:
-0000: 256 087 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
+0000: 256 093 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
 1000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
 2000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
 3000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
@@ -63,7 +63,7 @@ C000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000
 D000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
 E000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
 F000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
-Total: 343 bytes
+Total: 349 bytes
 
 XDATA usage map:
 0000: 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 
@@ -87,39 +87,40 @@ Total: 0 bytes
 Base Segments:
    BIT_BANK=D:0000, size=0000
    R_BSEG=B:0000, size=0000
-   R_CONST=C:0118, size=001E
-   R_CSEG=C:0137, size=0020
-   R_DINIT=C:0136, size=0000
+   R_CONST=C:011E, size=001E
+   R_CSEG=C:013D, size=0020
+   R_DINIT=C:013C, size=0000
    R_DSEG=D:0000, size=0000
-   R_GSINIT=C:0003, size=0115
+   R_GSINIT=C:0003, size=011B
    R_HOME=C:0000, size=0000
    R_ISEG=I:0000, size=0000
    R_IXSEG=X:0000, size=0000
    R_OSEG=D:0000, size=0000
+   R_PSEG=X:0000, size=0000
    R_XINIT=C:0000, size=0000
    R_XSEG=X:0000, size=0000
    rbank0=D:0000, size=0008
 
 Module Segments:
    CSEG=C:0000, size=0004
-   gptrget:R_CSEG=C:0137, size=001C
-   lcd_test:R_CONST=C:0118, size=001E
-   lcd_test:R_GSINIT=C:0003, size=0115
-   startup:R_CSEG=C:0153, size=0004
+   gptrget:R_CSEG=C:013D, size=001C
+   lcd_test:R_CONST=C:011E, size=001E
+   lcd_test:R_GSINIT=C:0003, size=011B
+   startup:R_CSEG=C:0159, size=0004
 
 Public symbols:
-   _LCD_command=C:0062
-   _LCD_data=C:006E
-   _LCD_puts=C:007A
+   _LCD_command=C:0068
+   _LCD_data=C:0074
+   _LCD_puts=C:0080
    _R_BSEG_size=L:0000
    _R_BSEG_start=L:0000
    _R_CONST_size=L:001E
-   _R_CONST_start=L:0118
+   _R_CONST_start=L:011E
    _R_CSEG_size=L:0020
-   _R_CSEG_start=L:0137
+   _R_CSEG_start=L:013D
    _R_DINIT_size=L:0000
-   _R_DINIT_start=L:0136
-   _R_GSINIT_size=L:0115
+   _R_DINIT_start=L:013C
+   _R_GSINIT_size=L:011B
    _R_GSINIT_start=L:0003
    _R_HOME_size=L:0000
    _R_HOME_start=L:0000
@@ -129,26 +130,28 @@ Public symbols:
    _R_IXSEG_start=L:0000
    _R_OSEG_size=L:0000
    _R_OSEG_start=L:0000
+   _R_PSEG_size=L:0000
+   _R_PSEG_start=L:0000
    _R_XINIT_size=L:0000
    _R_XINIT_start=L:0000
    _R_XSEG_size=L:0000
    _R_XSEG_start=L:0000
    _Wait40us=C:0059
-   __c51_external_startup=C:0153
-   __gptrget=C:0137
+   __c51_external_startup=C:0159
+   __gptrget=C:013D
    _crt0=C:0003
-   _de2_8052_crt0=C:0137
-   _main=C:00AF
+   _de2_8052_crt0=C:013D
+   _main=C:00B5
    _stack_start=L:0008
 
 Local symbols:
-   gptrget:codeptr?=C:014E
-   gptrget:dataptrrestore?=C:0145
-   gptrget:pdataptr?=C:014B
-   gptrget:xdataptr?=C:0151
-   lcd_test:L006001?=C:0082
-   lcd_test:L006005?=C:00AE
-   lcd_test:L007003?=C:00F1
+   gptrget:codeptr?=C:0154
+   gptrget:dataptrrestore?=C:014B
+   gptrget:pdataptr?=C:0151
+   gptrget:xdataptr?=C:0157
+   lcd_test:L006001?=C:0088
+   lcd_test:L006005?=C:00B4
+   lcd_test:L007003?=C:00F7
    lcd_test:X1=C:005D
    lcd_test:XClearLoop?done?=C:0051
    lcd_test:XClearLoop?repeat?=C:0043
@@ -156,6 +159,6 @@ Local symbols:
    lcd_test:XInitLoop?repeat?=C:0020
    lcd_test:__c51_init_data=C:0010
    lcd_test:__c51_program_startup=C:0054
-   lcd_test:__str_0=C:0118
-   lcd_test:__str_1=C:0125
+   lcd_test:__str_0=C:011E
+   lcd_test:__str_1=C:012B
    lcd_test:forever?home?=C:0057

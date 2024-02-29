@@ -1,4 +1,4 @@
-path=C:\Source\call51\bin\..\lib\small
+path=c:\call51\bin64\..\lib\small
 lib=libc51.lib
 lib=libint.lib
 lib=liblong.lib
