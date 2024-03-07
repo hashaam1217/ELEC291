@@ -78,7 +78,7 @@ char _c51_external_startup (void)
 	TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
 	TL1 = TH1;      // Init Timer1
 	TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
-	TMOD |=  0x20;
+	TMOD |=  0x21;
 	TR1 = 1; // START Timer1
 	TI = 1;  // Indicate TX0 ready
 
@@ -211,7 +211,7 @@ float get_period(void)
         float half_period;
         float overflow_count;
         // Start tracking the reference signal
-        ADC0MX=QFP32_MUX_P2_5;
+        ADC0MX=QFP32_MUX_P2_4;
         ADINT = 0;
         ADBUSY=1;
         while (!ADINT); // Wait for conversion to complete
@@ -259,8 +259,20 @@ void main (void)
 		v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
 		v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
 	    //printf ("V@P2.4=%7.5fV, V@P2.5=%7.5fV\r", v[0], v[1]);
+
+
+        //Measure Period/2
         hello = get_period();
-        printf("Period: %f\r", hello);
+        printf("Period: %f\r", (hello*2*12*1000)/SYSCLK);
+
+
+        //Wait for zero
+        while (Get_ADC()!=0); // Wait for the signal to be zero
+
+        //Wait Period/4
+        waitms(hello/2);
+
+
 
 		waitms(500);
 	 }

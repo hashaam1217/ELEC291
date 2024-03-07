@@ -19,18 +19,19 @@ R_CONST,code,005E,NO
 rbank0,data,0000,OV
 R_PSEG,xdata,0000,NO
 R_DINIT,code,0000,NO
-R_DSEG,data,0008,NO
+R_DSEG,data,000C,NO
 R_OSEG,data,0001,OV
 R_IXSEG,xdata,0000,NO
 R_ISEG,idata,0000,NO
 R_HOME,code,0000,NO
 R_XINIT,code,0000,NO
-R_CSEG,code,02FD,NO
+R_CSEG,code,0387,NO
 </SEGMENTS>
 
 <LOCALS>
 L002004?,R_CSEG,0029,0000
 L002001?,R_CSEG,001E,0000
+_main_hello_1_63,R_DSEG,0008,0004
 L006015?,R_CSEG,00EE,0000
 L006014?,R_CSEG,00E9,0000
 L006013?,R_CSEG,00DD,0000
@@ -58,7 +59,8 @@ __str_2,R_CONST,0032,0000
 __str_3,R_CONST,003D,0000
 __str_4,R_CONST,0049,0000
 __str_5,R_CONST,0052,0000
-L011002?,R_CSEG,02A4,0000
+L011005?,R_CSEG,02A4,0000
+L011001?,R_CSEG,0340,0000
 L009001?,R_CSEG,0183,0000
 L005018?,R_CSEG,00A9,0000
 </LOCALS>
@@ -83,6 +85,7 @@ ___fsmul,any,0000,0000
 ___uchar2fs,any,0000,0000
 ___fsadd,any,0000,0000
 _printf,any,0000,0000
+___fs2uint,any,0000,0000
 _crt0,any,0000,0000
 ___sint2fs,any,0000,0000
 ___fsdiv,any,0000,0000
@@ -141,7 +144,7 @@ E5 A9
 75 8D E6
 85 8D 8B
 53 89 0F
-43 89 20
+43 89 21
 D2 8E
 D2 99
 75 82 00
@@ -303,7 +306,7 @@ D2 EC
 85 BD 82
 85 BE 83
 22
-75 BB 12
+75 BB 11
 C2 ED
 D2 EC
 30 ED rel3(L010001?;)
@@ -453,10 +456,45 @@ FD
 8C data8(_main_v_1_63;0x0004;+;0x0002;+;)
 8D data8(_main_v_1_63;0x0004;+;0x0003;+;)
 12 addr16(_get_period;)  
+85 82 data8(_main_hello_1_63;)
+85 83 data8(_main_hello_1_63;0x0001;+;)
+85 F0 data8(_main_hello_1_63;0x0002;+;)
+F5 data8(_main_hello_1_63;0x0003;+;)
+C0 data8(_main_hello_1_63;)
+C0 data8(_main_hello_1_63;0x0001;+;)
+C0 data8(_main_hello_1_63;0x0002;+;)
+C0 data8(_main_hello_1_63;0x0003;+;)
+90 80 00
+75 F0 BB
+74 46
+12 addr16(___fsmul;)  
+AE 82
+AF 83
+AA F0
+FB
+E5 81
+24 FC
+F5 81
+74 40
+C0 E0
+74 54
+C0 E0
+74 89
+C0 E0
+74 4C
+C0 E0
+8E 82
+8F 83
+8A F0
+EB
+12 addr16(___fsdiv;)  
 AA 82
 AB 83
 AC F0
 FD
+E5 81
+24 FC
+F5 81
 C0 02
 C0 03
 C0 04
@@ -471,9 +509,37 @@ C0 E0
 E5 81
 24 F9
 F5 81
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
+70 rel2(L011001?;)
+C0 E0
+C0 E0
+C0 E0
+74 40
+C0 E0
+85 data8(_main_hello_1_63;) 82
+85 data8(_main_hello_1_63;0x0001;+;) 83
+85 data8(_main_hello_1_63;0x0002;+;) F0
+E5 data8(_main_hello_1_63;0x0003;+;)
+12 addr16(___fsdiv;)  
+AA 82
+AB 83
+AC F0
+FD
+E5 81
+24 FC
+F5 81
+8A 82
+8B 83
+8C F0
+ED
+12 addr16(___fs2uint;)  
+12 addr16(_waitms;)  
 90 01 F4
 12 addr16(_waitms;)  
-80 rel2(L011002?;)
+02 addr16(L011005?;)  
 </CODE>
 
 <CODE R_CSEG>
@@ -498,7 +564,7 @@ F5 81
 00
 4D 61 72 20 20 37 20 32 30 32 34 
 00
-30 32 3A 34 39 3A 35 31 
+30 33 3A 35 32 3A 32 31 
 00
 50 65 72 69 6F 64 3A 20 25 66 
 0D

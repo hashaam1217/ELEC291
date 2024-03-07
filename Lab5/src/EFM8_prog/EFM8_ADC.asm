@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Thu Mar 07 02:49:51 2024
+; This file was generated Thu Mar 07 03:52:21 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -485,6 +485,8 @@ _TFRQ           BIT 0xdf
 	rseg R_DSEG
 _main_v_1_63:
 	ds 8
+_main_hello_1_63:
+	ds 4
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -602,8 +604,8 @@ L002004?:
 	mov	_TL1,_TH1
 ;	EFM8_ADC.c:80: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 	anl	_TMOD,#0x0F
-;	EFM8_ADC.c:81: TMOD |=  0x20;
-	orl	_TMOD,#0x20
+;	EFM8_ADC.c:81: TMOD |=  0x21;
+	orl	_TMOD,#0x21
 ;	EFM8_ADC.c:82: TR1 = 1; // START Timer1
 	setb	_TR1
 ;	EFM8_ADC.c:83: TI = 1;  // Indicate TX0 ready
@@ -916,8 +918,8 @@ L009001?:
 ;	 function get_period
 ;	-----------------------------------------
 _get_period:
-;	EFM8_ADC.c:214: ADC0MX=QFP32_MUX_P2_5;
-	mov	_ADC0MX,#0x12
+;	EFM8_ADC.c:214: ADC0MX=QFP32_MUX_P2_4;
+	mov	_ADC0MX,#0x11
 ;	EFM8_ADC.c:215: ADINT = 0;
 	clr	_ADINT
 ;	EFM8_ADC.c:216: ADBUSY=1;
@@ -1019,7 +1021,7 @@ L010010?:
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
 ;v                         Allocated with name '_main_v_1_63'
-;hello                     Allocated to registers r2 r3 r4 r5 
+;hello                     Allocated with name '_main_hello_1_63'
 ;------------------------------------------------------------
 ;	EFM8_ADC.c:234: void main (void)
 ;	-----------------------------------------
@@ -1081,7 +1083,7 @@ _main:
 ;	EFM8_ADC.c:252: InitADC();
 	lcall	_InitADC
 ;	EFM8_ADC.c:254: while(1)
-L011002?:
+L011005?:
 ;	EFM8_ADC.c:259: v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
 	mov	dpl,#0x11
 	lcall	_Volts_at_Pin
@@ -1104,13 +1106,48 @@ L011002?:
 	mov	((_main_v_1_63 + 0x0004) + 1),r3
 	mov	((_main_v_1_63 + 0x0004) + 2),r4
 	mov	((_main_v_1_63 + 0x0004) + 3),r5
-;	EFM8_ADC.c:262: hello = get_period();
+;	EFM8_ADC.c:265: hello = get_period();
 	lcall	_get_period
+	mov	_main_hello_1_63,dpl
+	mov	(_main_hello_1_63 + 1),dph
+	mov	(_main_hello_1_63 + 2),b
+	mov	(_main_hello_1_63 + 3),a
+;	EFM8_ADC.c:266: printf("Period: %f\r", (hello*2*12*1000)/SYSCLK);
+	push	_main_hello_1_63
+	push	(_main_hello_1_63 + 1)
+	push	(_main_hello_1_63 + 2)
+	push	(_main_hello_1_63 + 3)
+	mov	dptr,#0x8000
+	mov	b,#0xBB
+	mov	a,#0x46
+	lcall	___fsmul
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r2,b
+	mov	r3,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	a,#0x40
+	push	acc
+	mov	a,#0x54
+	push	acc
+	mov	a,#0x89
+	push	acc
+	mov	a,#0x4C
+	push	acc
+	mov	dpl,r6
+	mov	dph,r7
+	mov	b,r2
+	mov	a,r3
+	lcall	___fsdiv
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-;	EFM8_ADC.c:263: printf("Period: %f\r", hello);
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1125,10 +1162,41 @@ L011002?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:265: waitms(500);
+;	EFM8_ADC.c:270: while (Get_ADC()!=0); // Wait for the signal to be zero
+L011001?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+;	EFM8_ADC.c:273: waitms(hello/2);
+	jnz	L011001?
+	push	acc
+	push	acc
+	push	acc
+	mov	a,#0x40
+	push	acc
+	mov	dpl,_main_hello_1_63
+	mov	dph,(_main_hello_1_63 + 1)
+	mov	b,(_main_hello_1_63 + 2)
+	mov	a,(_main_hello_1_63 + 3)
+	lcall	___fsdiv
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
+	lcall	___fs2uint
+	lcall	_waitms
+;	EFM8_ADC.c:277: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
-	sjmp	L011002?
+	ljmp	L011005?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -1154,7 +1222,7 @@ __str_3:
 	db 'Mar  7 2024'
 	db 0x00
 __str_4:
-	db '02:49:51'
+	db '03:52:21'
 	db 0x00
 __str_5:
 	db 'Period: %f'
