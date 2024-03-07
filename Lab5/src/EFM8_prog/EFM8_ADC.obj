@@ -19,19 +19,19 @@ R_CONST,code,00C1,NO
 rbank0,data,0000,OV
 R_PSEG,xdata,0000,NO
 R_DINIT,code,0000,NO
-R_DSEG,data,0010,NO
+R_DSEG,data,0014,NO
 R_OSEG,data,0001,OV
 R_IXSEG,xdata,0000,NO
 R_ISEG,idata,0000,NO
 R_HOME,code,0000,NO
 R_XINIT,code,0000,NO
-R_CSEG,code,0664,NO
+R_CSEG,code,05D3,NO
 </SEGMENTS>
 
 <LOCALS>
 L002004?,R_CSEG,0029,0000
 L002001?,R_CSEG,001E,0000
-_main_sloc0_1_0,R_DSEG,000C,0004
+_main_sloc0_1_0,R_DSEG,0010,0004
 _main_hello_1_65,R_DSEG,0008,0004
 L006015?,R_CSEG,00EE,0000
 L006014?,R_CSEG,00E9,0000
@@ -42,13 +42,12 @@ L010010?,R_CSEG,01B7,0000
 L004007?,R_CSEG,0091,0000
 L004004?,R_CSEG,0081,0000
 L004001?,R_CSEG,0086,0000
+_main_peak_voltage_reference_1_65,R_DSEG,000C,0004
 L011010?,R_CSEG,0268,0000
 L005009?,R_CSEG,00CF,0000
 L005007?,R_CSEG,00C8,0000
 L005005?,R_CSEG,009D,0000
 L005001?,R_CSEG,00A6,0000
-L012014?,R_CSEG,0355,0000
-L012010?,R_CSEG,04CE,0000
 L006005?,R_CSEG,010F,0000
 L006003?,R_CSEG,0107,0000
 L006002?,R_CSEG,00FD,0000
@@ -70,8 +69,8 @@ __str_8,R_CONST,0092,0000
 __str_9,R_CONST,00AE,0000
 L011004?,R_CSEG,024B,0000
 L011001?,R_CSEG,0242,0000
-L012007?,R_CSEG,04AE,0000
-L012004?,R_CSEG,0415,0000
+L012008?,R_CSEG,0355,0000
+L012004?,R_CSEG,0437,0000
 L012001?,R_CSEG,03FD,0000
 L009001?,R_CSEG,0183,0000
 L005018?,R_CSEG,00A9,0000
@@ -94,7 +93,6 @@ _waitms,R_CSEG,0095,0000
 
 <EXTERNALS>
 ___uint2fs,any,0000,0000
-___fseq,any,0000,0000
 ___fsmul,any,0000,0000
 ___uchar2fs,any,0000,0000
 ___fsadd,any,0000,0000
@@ -606,42 +604,35 @@ C0 E0
 E5 81
 24 F9
 F5 81
-75 82 11
-12 addr16(_Volts_at_Pin;)  
-AE 82
-AF 83
-AA F0
-FB
-EE
-4F
-4A
-8B F0
-C2 F7
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
 45 F0
 70 rel2(L012001?;)
 75 82 11
 12 addr16(_Volts_at_Pin;)  
-AA 82
-AB 83
-AC F0
-FD
-E4
+85 82 data8(_main_peak_voltage_reference_1_65;)
+85 83 data8(_main_peak_voltage_reference_1_65;0x0001;+;)
+85 F0 data8(_main_peak_voltage_reference_1_65;0x0002;+;)
+F5 data8(_main_peak_voltage_reference_1_65;0x0003;+;)
+C0 data8(_main_peak_voltage_reference_1_65;)
+C0 data8(_main_peak_voltage_reference_1_65;0x0001;+;)
+C0 data8(_main_peak_voltage_reference_1_65;0x0002;+;)
+C0 data8(_main_peak_voltage_reference_1_65;0x0003;+;)
+74 data8(__str_6;)
 C0 E0
+74 data8(__str_6;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
-74 3F
-C0 E0
-8A 82
-8B 83
-8C F0
-ED
-12 addr16(___fseq;)  
-AA 82
+12 addr16(_printf;)  
 E5 81
-24 FC
+24 F9
 F5 81
-EA
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
 70 rel2(L012004?;)
 C0 E0
 C0 E0
@@ -654,99 +645,27 @@ C0 E0
 85 data8(_main_hello_1_65;0x0002;+;) F0
 E5 data8(_main_hello_1_65;0x0003;+;)
 12 addr16(___fsdiv;)  
-AA 82
-AB 83
-AC F0
-FD
+AE 82
+AF 83
+AA F0
+FB
 E5 81
 24 FC
 F5 81
-8A 82
-8B 83
-8C F0
-ED
+8E 82
+8F 83
+8A F0
+EB
 12 addr16(___fs2uint;)  
-AA 82
-AB 83
-C0 02
-C0 03
 12 addr16(_waitms;)  
-75 82 11
-12 addr16(_Volts_at_Pin;)  
-AC 82
-AD 83
-AE F0
-FF
-C0 04
-C0 05
-C0 06
-C0 07
-74 data8(__str_6;)
-C0 E0
-74 data8(__str_6;0x0008;>>;)
-C0 E0
-74 80
-C0 E0
-12 addr16(_printf;)  
-E5 81
-24 F9
-F5 81
-D0 03
-D0 02
-75 82 12
-C0 02
-C0 03
-12 addr16(_Volts_at_Pin;)  
-AC 82
-AD 83
-AE F0
-FF
-D0 03
-D0 02
-EC
-4D
-4E
-8F F0
-C2 F7
-45 F0
-70 rel2(L012007?;)
-75 82 12
-C0 02
-C0 03
-12 addr16(_Volts_at_Pin;)  
-AC 82
-AD 83
-AE F0
-FF
-E4
-C0 E0
-C0 E0
-74 80
-C0 E0
-74 3F
-C0 E0
-8C 82
-8D 83
-8E F0
-EF
-12 addr16(___fseq;)  
-AC 82
-E5 81
-24 FC
-F5 81
-D0 03
-D0 02
-EC
-70 rel2(L012010?;)
-8A 82
-8B 83
-12 addr16(_waitms;)  
+D2 A1
 75 82 12
 12 addr16(_Volts_at_Pin;)  
 AA 82
 AB 83
 AC F0
 FD
+C2 A1
 C0 02
 C0 03
 C0 04
@@ -901,7 +820,7 @@ E5 81
 F5 81
 90 01 F4
 12 addr16(_waitms;)  
-02 addr16(L012014?;)  
+02 addr16(L012008?;)  
 </CODE>
 
 <CODE R_CSEG>
@@ -926,7 +845,7 @@ F5 81
 00
 4D 61 72 20 20 37 20 32 30 32 34 
 00
-30 38 3A 30 38 3A 32 36 
+31 31 3A 30 34 3A 30 39 
 00
 50 65 72 69 6F 64 3A 20 25 66 
 0D

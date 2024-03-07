@@ -274,6 +274,8 @@ void main (void)
 	        "Compiled: %s, %s\n\n",
 	        __FILE__, __DATE__, __TIME__);
 
+	//InitPinADC(2, 2); // Configure P2.2 as analog input
+	//InitPinADC(2, 3); // Configure P2.3 as analog input
 	InitPinADC(2, 4); // Configure P2.4 as analog input
 	InitPinADC(2, 5); // Configure P2.5 as analog input
     InitADC();
@@ -295,20 +297,20 @@ void main (void)
         while (Get_ADC()!=0); // Wait for the signal to be zero
 
         //Wait Period/4
-        //waitms(hello2.0);
+        waitms(hello/4);
         peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_4);
-        printf("Peak Voltage Reference: %f\r", peak_voltage_reference);
+        printf("Peak Voltage Reference: %f\r", v[0] * 1.4142);
 
         //Wait for zero
         while (Get_ADC()!=0); // Wait for the signal to be zero
 
         //Wait Period/4
 
-        waitms(hello/4.0);
+        waitms(hello/2);
         P2_1=1;
         peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
+        printf("Peak Voltage Other: %f\r", v[1] / 1.4142);
         P2_1=0;
-        printf("Peak Voltage Other: %f\r", peak_voltage_other);
 
         hello2 = get_period_2();
         hello2=(hello2*12*1000)/SYSCLK;

@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Thu Mar 07 08:08:26 2024
+; This file was generated Thu Mar 07 11:04:09 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -487,6 +487,8 @@ _TFRQ           BIT 0xdf
 _main_v_1_65:
 	ds 8
 _main_hello_1_65:
+	ds 4
+_main_peak_voltage_reference_1_65:
 	ds 4
 _main_sloc0_1_0:
 	ds 4
@@ -1138,7 +1140,7 @@ L011010?:
 ;v                         Allocated with name '_main_v_1_65'
 ;hello                     Allocated with name '_main_hello_1_65'
 ;hello2                    Allocated to registers r2 r3 r4 r5 
-;peak_voltage_reference    Allocated to registers r4 r5 r6 r7 
+;peak_voltage_reference    Allocated with name '_main_peak_voltage_reference_1_65'
 ;peak_voltage_other        Allocated to registers r2 r3 r4 r5 
 ;y                         Allocated to registers r2 r3 r4 r5 
 ;sloc0                     Allocated with name '_main_sloc0_1_0'
@@ -1192,19 +1194,19 @@ _main:
 	mov	a,sp
 	add	a,#0xf4
 	mov	sp,a
-;	EFM8_ADC.c:279: InitPinADC(2, 4); // Configure P2.4 as analog input
+;	EFM8_ADC.c:277: InitPinADC(2, 4); // Configure P2.4 as analog input
 	mov	_InitPinADC_PARM_2,#0x04
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	EFM8_ADC.c:280: InitPinADC(2, 5); // Configure P2.5 as analog input
+;	EFM8_ADC.c:278: InitPinADC(2, 5); // Configure P2.5 as analog input
 	mov	_InitPinADC_PARM_2,#0x05
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	EFM8_ADC.c:281: InitADC();
+;	EFM8_ADC.c:279: InitADC();
 	lcall	_InitADC
-;	EFM8_ADC.c:283: while(1)
-L012014?:
-;	EFM8_ADC.c:286: v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
+;	EFM8_ADC.c:281: while(1)
+L012008?:
+;	EFM8_ADC.c:284: v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
 	mov	dpl,#0x11
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
@@ -1215,7 +1217,7 @@ L012014?:
 	mov	(_main_v_1_65 + 1),r3
 	mov	(_main_v_1_65 + 2),r4
 	mov	(_main_v_1_65 + 3),r5
-;	EFM8_ADC.c:287: v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
+;	EFM8_ADC.c:285: v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
 	mov	dpl,#0x12
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
@@ -1226,13 +1228,13 @@ L012014?:
 	mov	((_main_v_1_65 + 0x0004) + 1),r3
 	mov	((_main_v_1_65 + 0x0004) + 2),r4
 	mov	((_main_v_1_65 + 0x0004) + 3),r5
-;	EFM8_ADC.c:291: hello = get_period();
+;	EFM8_ADC.c:289: hello = get_period();
 	lcall	_get_period
 	mov	_main_hello_1_65,dpl
 	mov	(_main_hello_1_65 + 1),dph
 	mov	(_main_hello_1_65 + 2),b
 	mov	(_main_hello_1_65 + 3),a
-;	EFM8_ADC.c:292: hello = hello*2*12*1000/SYSCLK;
+;	EFM8_ADC.c:290: hello = hello*2*12*1000/SYSCLK;
 	push	_main_hello_1_65
 	push	(_main_hello_1_65 + 1)
 	push	(_main_hello_1_65 + 2)
@@ -1268,7 +1270,7 @@ L012014?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:293: printf("Period: %f\r", hello);
+;	EFM8_ADC.c:291: printf("Period: %f\r", hello);
 	push	_main_hello_1_65
 	push	(_main_hello_1_65 + 1)
 	push	(_main_hello_1_65 + 2)
@@ -1283,47 +1285,42 @@ L012014?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:297: while (Volts_at_Pin(QFP32_MUX_P2_4)!=0); // Wait for the signal to be zero
+;	EFM8_ADC.c:295: while (Get_ADC()!=0); // Wait for the signal to be zero
 L012001?:
-	mov	dpl,#0x11
-	lcall	_Volts_at_Pin
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r2,b
-	mov	r3,a
-	mov	a,r6
-	orl	a,r7
-	orl	a,r2
-	mov	b,r3
-	clr	b.7 ; Clear the sign bit
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
 	orl	a,b
 	jnz	L012001?
-;	EFM8_ADC.c:298: while (Volts_at_Pin(QFP32_MUX_P2_4)==1); // Wait for the signal to be zero
-L012004?:
+;	EFM8_ADC.c:299: peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_4);
 	mov	dpl,#0x11
 	lcall	_Volts_at_Pin
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	clr	a
+	mov	_main_peak_voltage_reference_1_65,dpl
+	mov	(_main_peak_voltage_reference_1_65 + 1),dph
+	mov	(_main_peak_voltage_reference_1_65 + 2),b
+	mov	(_main_peak_voltage_reference_1_65 + 3),a
+;	EFM8_ADC.c:300: printf("Peak Voltage Reference: %f\r", peak_voltage_reference);
+	push	_main_peak_voltage_reference_1_65
+	push	(_main_peak_voltage_reference_1_65 + 1)
+	push	(_main_peak_voltage_reference_1_65 + 2)
+	push	(_main_peak_voltage_reference_1_65 + 3)
+	mov	a,#__str_6
 	push	acc
+	mov	a,#(__str_6 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
-	mov	a,#0x3F
-	push	acc
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fseq
-	mov	r2,dpl
+	lcall	_printf
 	mov	a,sp
-	add	a,#0xfc
+	add	a,#0xf9
 	mov	sp,a
-	mov	a,r2
-;	EFM8_ADC.c:301: waitms(hello/4);
+;	EFM8_ADC.c:303: while (Get_ADC()!=0); // Wait for the signal to be zero
+L012004?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+;	EFM8_ADC.c:307: waitms(hello/4.0);
 	jnz	L012004?
 	push	acc
 	push	acc
@@ -1336,108 +1333,31 @@ L012004?:
 	mov	b,(_main_hello_1_65 + 2)
 	mov	a,(_main_hello_1_65 + 3)
 	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r2,b
+	mov	r3,a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
+	mov	dpl,r6
+	mov	dph,r7
+	mov	b,r2
+	mov	a,r3
 	lcall	___fs2uint
-	mov	r2,dpl
-	mov  r3,dph
-	push	ar2
-	push	ar3
 	lcall	_waitms
-;	EFM8_ADC.c:302: peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_4);
-	mov	dpl,#0x11
-	lcall	_Volts_at_Pin
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
-;	EFM8_ADC.c:303: printf("Peak Voltage Reference: %f\r", peak_voltage_reference);
-	push	ar4
-	push	ar5
-	push	ar6
-	push	ar7
-	mov	a,#__str_6
-	push	acc
-	mov	a,#(__str_6 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	pop	ar3
-	pop	ar2
-;	EFM8_ADC.c:306: while (Volts_at_Pin(QFP32_MUX_P2_5)!=0); // Wait for the signal to be zero
-L012007?:
-	mov	dpl,#0x12
-	push	ar2
-	push	ar3
-	lcall	_Volts_at_Pin
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
-	pop	ar3
-	pop	ar2
-	mov	a,r4
-	orl	a,r5
-	orl	a,r6
-	mov	b,r7
-	clr	b.7 ; Clear the sign bit
-	orl	a,b
-	jnz	L012007?
-;	EFM8_ADC.c:307: while (Volts_at_Pin(QFP32_MUX_P2_5)==1); // Wait for the signal to be zero
-L012010?:
-	mov	dpl,#0x12
-	push	ar2
-	push	ar3
-	lcall	_Volts_at_Pin
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r6,b
-	mov	r7,a
-	clr	a
-	push	acc
-	push	acc
-	mov	a,#0x80
-	push	acc
-	mov	a,#0x3F
-	push	acc
-	mov	dpl,r4
-	mov	dph,r5
-	mov	b,r6
-	mov	a,r7
-	lcall	___fseq
-	mov	r4,dpl
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	pop	ar3
-	pop	ar2
-	mov	a,r4
-	jnz	L012010?
-;	EFM8_ADC.c:310: waitms(hello/4);
-	mov	dpl,r2
-	mov	dph,r3
-	lcall	_waitms
-;	EFM8_ADC.c:311: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
+;	EFM8_ADC.c:308: P2_1=1;
+	setb	_P2_1
+;	EFM8_ADC.c:309: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
 	mov	dpl,#0x12
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-;	EFM8_ADC.c:312: printf("Peak Voltage Other: %f\r", peak_voltage_other);
+;	EFM8_ADC.c:310: P2_1=0;
+	clr	_P2_1
+;	EFM8_ADC.c:311: printf("Peak Voltage Other: %f\r", peak_voltage_other);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1452,13 +1372,13 @@ L012010?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:314: hello2 = get_period_2();
+;	EFM8_ADC.c:313: hello2 = get_period_2();
 	lcall	_get_period_2
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-;	EFM8_ADC.c:315: hello2=(hello2*12*1000)/SYSCLK;
+;	EFM8_ADC.c:314: hello2=(hello2*12*1000)/SYSCLK;
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1494,7 +1414,7 @@ L012010?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:316: printf("Phase difference in ms: %f\r", hello2);
+;	EFM8_ADC.c:315: printf("Phase difference in ms: %f\r", hello2);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1513,7 +1433,7 @@ L012010?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:317: hello2=hello2*20.0/hello;
+;	EFM8_ADC.c:316: hello2=hello2*20.0/hello;
 	mov	dptr,#0x0000
 	mov	b,#0xA0
 	mov	a,#0x41
@@ -1541,7 +1461,7 @@ L012010?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:318: y=179.0+hello2*1/(-0.056);
+;	EFM8_ADC.c:317: y=179.0+hello2*1/(-0.056);
 	mov	a,#0x42
 	push	acc
 	mov	a,#0x60
@@ -1581,7 +1501,7 @@ L012010?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:319: printf("Phase degrees: %f\r", y);
+;	EFM8_ADC.c:318: printf("Phase degrees: %f\r", y);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1596,10 +1516,10 @@ L012010?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:322: waitms(500);
+;	EFM8_ADC.c:321: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
-	ljmp	L012014?
+	ljmp	L012008?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -1625,7 +1545,7 @@ __str_3:
 	db 'Mar  7 2024'
 	db 0x00
 __str_4:
-	db '08:08:26'
+	db '11:04:09'
 	db 0x00
 __str_5:
 	db 'Period: %f'
