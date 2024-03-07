@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Thu Mar 07 03:52:21 2024
+; This file was generated Thu Mar 07 06:19:43 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -26,6 +26,7 @@ $printf_float
 ;--------------------------------------------------------
 	public _InitPinADC_PARM_2
 	public _main
+	public _get_period_2
 	public _get_period
 	public _Get_ADC
 	public _Volts_at_Pin
@@ -483,9 +484,9 @@ _TFRQ           BIT 0xdf
 ; internal ram data
 ;--------------------------------------------------------
 	rseg R_DSEG
-_main_v_1_63:
+_main_v_1_65:
 	ds 8
-_main_hello_1_63:
+_main_sloc0_1_0:
 	ds 4
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
@@ -1018,20 +1019,134 @@ L010010?:
 	mov	a,r5
 	ret
 ;------------------------------------------------------------
+;Allocation info for local variables in function 'get_period_2'
+;------------------------------------------------------------
+;half_period               Allocated to registers r2 r3 r4 r5 
+;overflow_count            Allocated to registers 
+;------------------------------------------------------------
+;	EFM8_ADC.c:233: float get_period_2(void)
+;	-----------------------------------------
+;	 function get_period_2
+;	-----------------------------------------
+_get_period_2:
+;	EFM8_ADC.c:238: ADC0MX=QFP32_MUX_P2_4;
+	mov	_ADC0MX,#0x11
+;	EFM8_ADC.c:239: ADINT = 0;
+	clr	_ADINT
+;	EFM8_ADC.c:240: ADBUSY=1;
+	setb	_ADBUSY
+;	EFM8_ADC.c:241: while (!ADINT); // Wait for conversion to complete
+L011001?:
+	jnb	_ADINT,L011001?
+;	EFM8_ADC.c:243: TL0=0;
+	mov	_TL0,#0x00
+;	EFM8_ADC.c:244: TH0=0;
+	mov	_TH0,#0x00
+;	EFM8_ADC.c:245: while (Get_ADC()!=0); // Wait for the signal to be zero
+L011004?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jnz	L011004?
+;	EFM8_ADC.c:246: while (Get_ADC()==0); // Wait for the signal to be positive
+L011007?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jz	L011007?
+;	EFM8_ADC.c:247: TR0=1; // Start the timer 0
+	setb	_TR0
+;	EFM8_ADC.c:248: ADC0MX=QFP32_MUX_P2_5;
+	mov	_ADC0MX,#0x12
+;	EFM8_ADC.c:249: while (Get_ADC()!=0); // Wait for the signal to be zero again
+L011010?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jnz	L011010?
+;	EFM8_ADC.c:250: TR0=0; // Stop timer 0
+	clr	_TR0
+;	EFM8_ADC.c:252: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
+	mov	dpl,_TH0
+	lcall	___uchar2fs
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	dptr,#0x0000
+	mov	b,#0x80
+	mov	a,#0x43
+	lcall	___fsmul
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	r6,_TL0
+	mov	r7,#0x00
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	lcall	___sint2fs
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r0,b
+	mov	r1,a
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	push	ar6
+	push	ar7
+	push	ar0
+	push	ar1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
+	lcall	___fsadd
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+;	EFM8_ADC.c:255: return half_period;
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
+	ret
+;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;v                         Allocated with name '_main_v_1_63'
-;hello                     Allocated with name '_main_hello_1_63'
+;v                         Allocated with name '_main_v_1_65'
+;hello                     Allocated to registers r2 r3 r4 r5 
+;peak_voltage_reference    Allocated with name '_main_peak_voltage_reference_1_65'
+;sloc0                     Allocated with name '_main_sloc0_1_0'
 ;------------------------------------------------------------
-;	EFM8_ADC.c:234: void main (void)
+;	EFM8_ADC.c:259: void main (void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	EFM8_ADC.c:240: waitms(500); // Give PuTTy a chance to start before sending
+;	EFM8_ADC.c:266: waitms(500); // Give PuTTy a chance to start before sending
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	EFM8_ADC.c:241: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	EFM8_ADC.c:267: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -1042,8 +1157,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	EFM8_ADC.c:246: __FILE__, __DATE__, __TIME__);
-;	EFM8_ADC.c:245: "Compiled: %s, %s\n\n",
+;	EFM8_ADC.c:272: __FILE__, __DATE__, __TIME__);
+;	EFM8_ADC.c:271: "Compiled: %s, %s\n\n",
 	mov	a,#__str_4
 	push	acc
 	mov	a,#(__str_4 >> 8)
@@ -1072,59 +1187,59 @@ _main:
 	mov	a,sp
 	add	a,#0xf4
 	mov	sp,a
-;	EFM8_ADC.c:250: InitPinADC(2, 4); // Configure P2.4 as analog input
+;	EFM8_ADC.c:276: InitPinADC(2, 4); // Configure P2.4 as analog input
 	mov	_InitPinADC_PARM_2,#0x04
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	EFM8_ADC.c:251: InitPinADC(2, 5); // Configure P2.5 as analog input
+;	EFM8_ADC.c:277: InitPinADC(2, 5); // Configure P2.5 as analog input
 	mov	_InitPinADC_PARM_2,#0x05
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	EFM8_ADC.c:252: InitADC();
+;	EFM8_ADC.c:278: InitADC();
 	lcall	_InitADC
-;	EFM8_ADC.c:254: while(1)
-L011005?:
-;	EFM8_ADC.c:259: v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
+;	EFM8_ADC.c:280: while(1)
+L012002?:
+;	EFM8_ADC.c:285: v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
 	mov	dpl,#0x11
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-	mov	_main_v_1_63,r2
-	mov	(_main_v_1_63 + 1),r3
-	mov	(_main_v_1_63 + 2),r4
-	mov	(_main_v_1_63 + 3),r5
-;	EFM8_ADC.c:260: v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
+	mov	_main_v_1_65,r2
+	mov	(_main_v_1_65 + 1),r3
+	mov	(_main_v_1_65 + 2),r4
+	mov	(_main_v_1_65 + 3),r5
+;	EFM8_ADC.c:286: v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
 	mov	dpl,#0x12
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-	mov	(_main_v_1_63 + 0x0004),r2
-	mov	((_main_v_1_63 + 0x0004) + 1),r3
-	mov	((_main_v_1_63 + 0x0004) + 2),r4
-	mov	((_main_v_1_63 + 0x0004) + 3),r5
-;	EFM8_ADC.c:265: hello = get_period();
+	mov	(_main_v_1_65 + 0x0004),r2
+	mov	((_main_v_1_65 + 0x0004) + 1),r3
+	mov	((_main_v_1_65 + 0x0004) + 2),r4
+	mov	((_main_v_1_65 + 0x0004) + 3),r5
+;	EFM8_ADC.c:291: hello = get_period();
 	lcall	_get_period
-	mov	_main_hello_1_63,dpl
-	mov	(_main_hello_1_63 + 1),dph
-	mov	(_main_hello_1_63 + 2),b
-	mov	(_main_hello_1_63 + 3),a
-;	EFM8_ADC.c:266: printf("Period: %f\r", (hello*2*12*1000)/SYSCLK);
-	push	_main_hello_1_63
-	push	(_main_hello_1_63 + 1)
-	push	(_main_hello_1_63 + 2)
-	push	(_main_hello_1_63 + 3)
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+;	EFM8_ADC.c:292: hello = hello*2*12*1000/SYSCLK;
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	mov	dptr,#0x8000
 	mov	b,#0xBB
 	mov	a,#0x46
 	lcall	___fsmul
-	mov	r6,dpl
-	mov	r7,dph
-	mov	r2,b
-	mov	r3,a
+	mov	_main_sloc0_1_0,dpl
+	mov	(_main_sloc0_1_0 + 1),dph
+	mov	(_main_sloc0_1_0 + 2),b
+	mov	(_main_sloc0_1_0 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
@@ -1136,10 +1251,10 @@ L011005?:
 	push	acc
 	mov	a,#0x4C
 	push	acc
-	mov	dpl,r6
-	mov	dph,r7
-	mov	b,r2
-	mov	a,r3
+	mov	dpl,_main_sloc0_1_0
+	mov	dph,(_main_sloc0_1_0 + 1)
+	mov	b,(_main_sloc0_1_0 + 2)
+	mov	a,(_main_sloc0_1_0 + 3)
 	lcall	___fsdiv
 	mov	r2,dpl
 	mov	r3,dph
@@ -1148,6 +1263,7 @@ L011005?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
+;	EFM8_ADC.c:293: printf("Period: %f\r", hello);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1162,41 +1278,10 @@ L011005?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:270: while (Get_ADC()!=0); // Wait for the signal to be zero
-L011001?:
-	lcall	_Get_ADC
-	mov	a,dpl
-	mov	b,dph
-	orl	a,b
-;	EFM8_ADC.c:273: waitms(hello/2);
-	jnz	L011001?
-	push	acc
-	push	acc
-	push	acc
-	mov	a,#0x40
-	push	acc
-	mov	dpl,_main_hello_1_63
-	mov	dph,(_main_hello_1_63 + 1)
-	mov	b,(_main_hello_1_63 + 2)
-	mov	a,(_main_hello_1_63 + 3)
-	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
-	lcall	___fs2uint
-	lcall	_waitms
-;	EFM8_ADC.c:277: waitms(500);
+;	EFM8_ADC.c:315: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
-	ljmp	L011005?
+	ljmp	L012002?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -1222,7 +1307,7 @@ __str_3:
 	db 'Mar  7 2024'
 	db 0x00
 __str_4:
-	db '03:52:21'
+	db '06:19:43'
 	db 0x00
 __str_5:
 	db 'Period: %f'

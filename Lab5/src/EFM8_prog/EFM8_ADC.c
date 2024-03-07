@@ -230,11 +230,37 @@ float get_period(void)
         return half_period;
 }
 
+float get_period_2(void)
+{
+        float half_period;
+        float overflow_count;
+        // Start tracking the reference signal
+        ADC0MX=QFP32_MUX_P2_4;
+        ADINT = 0;
+        ADBUSY=1;
+        while (!ADINT); // Wait for conversion to complete
+        // Reset the timer
+        TL0=0;
+        TH0=0;
+        while (Get_ADC()!=0); // Wait for the signal to be zero
+        while (Get_ADC()==0); // Wait for the signal to be positive
+        TR0=1; // Start the timer 0
+        ADC0MX=QFP32_MUX_P2_5;
+        while (Get_ADC()!=0); // Wait for the signal to be zero again
+        TR0=0; // Stop timer 0
+        //half_period=TMR0*256.0+TL0; // The 16-bit number [TH0-TL0]
+        half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
+        // Time from the beginning of the sine wave to its peak
+        overflow_count=65536-(half_period/2);
+        return half_period;
+}
+
 // }}}
 void main (void)
 {
 	float v[2];
     float hello;
+    float peak_voltage_reference;
     //float signal[20];
 
     waitms(500); // Give PuTTy a chance to start before sending
@@ -263,16 +289,28 @@ void main (void)
 
         //Measure Period/2
         hello = get_period();
-        printf("Period: %f\r", (hello*2*12*1000)/SYSCLK);
+        hello = hello*2*12*1000/SYSCLK;
+        printf("Period: %f\r", hello);
 
+
+        /*
+        //Wait for zero
+        while (Get_ADC()!=0); // Wait for the signal to be zero
+
+        //Wait Period/4
+        waitms(hello/2);
+        peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_4);
 
         //Wait for zero
         while (Get_ADC()!=0); // Wait for the signal to be zero
 
         //Wait Period/4
         waitms(hello/2);
+        peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_5);
 
-
+        hello = get_period_2();
+        printf("Phase difference in ms: %f\r", (hello*12*1000)/SYSCLK);
+        */
 
 		waitms(500);
 	 }
