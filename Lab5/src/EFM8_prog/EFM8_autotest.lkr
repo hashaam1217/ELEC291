@@ -1,0 +1,6 @@
+path=C:\call51\bin\..\lib\small
+lib=libc51.lib
+lib=libint.lib
+lib=liblong.lib
+lib=libfloat.lib
+obj=EFM8_autotest.obj

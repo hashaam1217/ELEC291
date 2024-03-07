@@ -1,3 +1,4 @@
+// vim:foldmethod=marker:foldlevel=0
 // ADC.c:  Shows how to use the 14-bit ADC.  This program
 // measures the voltage from some pins of the EFM8LB1 using the ADC.
 //
@@ -10,6 +11,8 @@
 
 // ~C51~
 
+// Setup {{{
+// 
 #define SYSCLK 72000000L
 #define BAUDRATE 115200L
 #define SARCLK 18000000L
@@ -81,6 +84,8 @@ char _c51_external_startup (void)
 
 	return 0;
 }
+// }}}
+// ADCInit {{{
 
 void InitADC (void)
 {
@@ -109,7 +114,7 @@ void InitADC (void)
 		(0x0 << 2) | // ADGN (Gain Control). 0x0: PGA gain=1. 0x1: PGA gain=0.75. 0x2: PGA gain=0.5. 0x3: PGA gain=0.25.
 		(0x0 << 0) ; // TEMPE. 0: Disable the Temperature Sensor. 1: Enable the Temperature Sensor.
 
-	AD0CF2=
+	ADC0CF2=
 		(0x0 << 7) | // GNDSL. 0: reference is the GND pin. 1: reference is the AGND pin.
 		(0x1 << 5) | // REFSL. 0x0: VREF pin (external or on-chip). 0x1: VDD pin. 0x2: 1.8V. 0x3: internal voltage reference.
 		(0x1F << 0); // ADPWR. Power Up Delay Time. Tpwrtime = ((4 * (ADPWR + 1)) + 2) / (Fadcclk)
@@ -192,9 +197,45 @@ float Volts_at_Pin(unsigned char pin)
 	 return ((ADC_at_Pin(pin)*VDD)/0b_0011_1111_1111_1111);
 }
 
+//Slidecode
+unsigned int Get_ADC (void)
+{
+    ADINT = 0;
+    ADBUSY = 1;
+    while (!ADINT); // Wait for conversion to complete
+    return (ADC0);
+}
+
+float get_period(void)
+{
+        float half_period;
+        float overflow_count;
+        // Start tracking the reference signal
+        ADC0MX=QFP32_MUX_P2_5;
+        ADINT = 0;
+        ADBUSY=1;
+        while (!ADINT); // Wait for conversion to complete
+        // Reset the timer
+        TL0=0;
+        TH0=0;
+        while (Get_ADC()!=0); // Wait for the signal to be zero
+        while (Get_ADC()==0); // Wait for the signal to be positive
+        TR0=1; // Start the timer 0
+        while (Get_ADC()!=0); // Wait for the signal to be zero again
+        TR0=0; // Stop timer 0
+        //half_period=TMR0*256.0+TL0; // The 16-bit number [TH0-TL0]
+        half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
+        // Time from the beginning of the sine wave to its peak
+        overflow_count=65536-(half_period/2);
+        return half_period;
+}
+
+// }}}
 void main (void)
 {
-	float v[4];
+	float v[2];
+    float hello;
+    //float signal[20];
 
     waitms(500); // Give PuTTy a chance to start before sending
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
@@ -204,8 +245,8 @@ void main (void)
 	        "Compiled: %s, %s\n\n",
 	        __FILE__, __DATE__, __TIME__);
 
-	InitPinADC(2, 2); // Configure P2.2 as analog input
-	InitPinADC(2, 3); // Configure P2.3 as analog input
+	//InitPinADC(2, 2); // Configure P2.2 as analog input
+	//InitPinADC(2, 3); // Configure P2.3 as analog input
 	InitPinADC(2, 4); // Configure P2.4 as analog input
 	InitPinADC(2, 5); // Configure P2.5 as analog input
     InitADC();
@@ -213,11 +254,14 @@ void main (void)
 	while(1)
 	{
 	    // Read 14-bit value from the pins configured as analog inputs
-		v[0] = Volts_at_Pin(QFP32_MUX_P2_2);
-		v[1] = Volts_at_Pin(QFP32_MUX_P2_3);
-		v[2] = Volts_at_Pin(QFP32_MUX_P2_4);
-		v[3] = Volts_at_Pin(QFP32_MUX_P2_5);
-		printf ("V@P2.2=%7.5fV, V@P2.3=%7.5fV, V@P2.4=%7.5fV, V@P2.5=%7.5fV\r", v[0], v[1], v[2], v[3]);
+		//v[0] = Volts_at_Pin(QFP32_MUX_P2_2);
+		//v[1] = Volts_at_Pin(QFP32_MUX_P2_3);
+		v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
+		v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
+	    //printf ("V@P2.4=%7.5fV, V@P2.5=%7.5fV\r", v[0], v[1]);
+        hello = get_period();
+        printf("Period: %f\r", hello);
+
 		waitms(500);
 	 }
 }
