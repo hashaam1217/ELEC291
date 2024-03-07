@@ -358,7 +358,8 @@ int getsn (char * buff, int len)
 // }}}
 void main (void)
 {
-	float v[2];
+    int i;
+	//float v[2];
     float hello;
     float hello2;
     float peak_voltage_reference;
@@ -367,6 +368,9 @@ void main (void)
     char first_line[CHARS_PER_LINE];
     char second_line[CHARS_PER_LINE];
     //float signal[20];
+    xdata float p[3];
+    xdata float vt[3];
+    xdata float per[3];
 
     LCD_4BIT();
 
@@ -383,15 +387,16 @@ void main (void)
     InitADC();
 
 	while(1)
+    for(i = 0; i < 100; i++)
+    {
 	{
 	    // Read 14-bit value from the pins configured as analog inputs
-		v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
-		v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
 
 
         //Measure Period/2
         hello = get_period();
         hello = hello*2*12*1000/SYSCLK;
+        per[i%3] = hello;
         printf("Period: %f\r", hello);
 
 
@@ -418,6 +423,7 @@ void main (void)
         peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
         P2_1=0;
         printf("Peak Voltage Other: %f\r", peak_voltage_other);
+        vt[i%3] = peak_voltage_other;
 
         hello2 = get_period_2();
         hello2=(hello2*12*1000)/SYSCLK;
@@ -425,13 +431,17 @@ void main (void)
         hello2=hello2*20.0/hello;
         y=179.0+hello2*1/(-0.056);
         printf("Phase degrees: %f\r", y);
-
-        sprintf(first_line, "Phase:%.2f deg", y);
-        sprintf(second_line, "Per:%.0f Vt:%.2f", hello, peak_voltage_other);
+        p[i%3] = y;
+        
+        //while(per[i%3] == 0) i--;
+        
+        sprintf(first_line, "Phase:%.2f deg", p[i%3]);
+        sprintf(second_line, "Per:%.0f Vt:%.2f", per[i%3], peak_voltage_other);
         LCDprint(first_line, 1, 1);
         LCDprint(second_line, 2, 1);
 
 		waitms(500);
 	 }
+     }
 }
 
