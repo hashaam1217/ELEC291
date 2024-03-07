@@ -264,7 +264,8 @@ void main (void)
         C = 1000*1000000* 1.44 / (3*3900*F);
         sC += C;
         measurements++;
-        sprintf(test_num, "C=%lu nF", sC / measurements);
+        //sprintf(test_num, "C=%lu.%lu nF", (sC / measurements) % 1000, sC / measurements - (sC / measurements) % 1000);
+        sprintf(test_num, "C=%lu nF", (sC / measurements));
         if (measurements >= 20)
         {
             sC /= 2;
