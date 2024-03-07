@@ -260,7 +260,10 @@ void main (void)
 {
 	float v[2];
     float hello;
+    float hello2;
     float peak_voltage_reference;
+    float peak_voltage_other;
+    float y;
     //float signal[20];
 
     waitms(500); // Give PuTTy a chance to start before sending
@@ -280,11 +283,8 @@ void main (void)
 	while(1)
 	{
 	    // Read 14-bit value from the pins configured as analog inputs
-		//v[0] = Volts_at_Pin(QFP32_MUX_P2_2);
-		//v[1] = Volts_at_Pin(QFP32_MUX_P2_3);
 		v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
 		v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
-	    //printf ("V@P2.4=%7.5fV, V@P2.5=%7.5fV\r", v[0], v[1]);
 
 
         //Measure Period/2
@@ -293,24 +293,29 @@ void main (void)
         printf("Period: %f\r", hello);
 
 
-        /*
         //Wait for zero
         while (Get_ADC()!=0); // Wait for the signal to be zero
 
         //Wait Period/4
-        waitms(hello/2);
+        waitms(hello/4);
         peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_4);
+        printf("Peak Voltage Reference: %f\r", peak_voltage_reference);
 
         //Wait for zero
         while (Get_ADC()!=0); // Wait for the signal to be zero
 
         //Wait Period/4
-        waitms(hello/2);
-        peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_5);
+        waitms(hello/4);
+        peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
+        printf("Peak Voltage Other: %f\r", peak_voltage_other);
 
-        hello = get_period_2();
-        printf("Phase difference in ms: %f\r", (hello*12*1000)/SYSCLK);
-        */
+        hello2 = get_period_2();
+        hello2=(hello2*12*1000)/SYSCLK;
+        printf("Phase difference in ms: %f\r", hello2);
+        hello2=hello2*20.0/hello;
+        y=179.0+hello2*1/(-0.056);
+        printf("Phase degrees: %f\r", y);
+
 
 		waitms(500);
 	 }
