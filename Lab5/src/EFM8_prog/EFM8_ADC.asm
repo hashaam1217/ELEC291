@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Thu Mar 07 13:07:33 2024
+; This file was generated Thu Mar 07 13:24:38 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -514,6 +514,8 @@ _main_second_line_1_82:
 	ds 16
 _main_sloc0_1_0:
 	ds 2
+_main_sloc1_1_0:
+	ds 4
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -1519,6 +1521,7 @@ L018008?:
 ;first_line                Allocated with name '_main_first_line_1_82'
 ;second_line               Allocated with name '_main_second_line_1_82'
 ;sloc0                     Allocated with name '_main_sloc0_1_0'
+;sloc1                     Allocated with name '_main_sloc1_1_0'
 ;p                         Allocated with name '_main_p_1_82'
 ;vt                        Allocated with name '_main_vt_1_82'
 ;per                       Allocated with name '_main_per_1_82'
@@ -1584,19 +1587,20 @@ _main:
 	lcall	_InitPinADC
 ;	EFM8_ADC.c:387: InitADC();
 	lcall	_InitADC
+;	EFM8_ADC.c:389: while(1)
+L019011?:
 ;	EFM8_ADC.c:390: for(i = 0; i < 100; i++)
-L019021?:
 	clr	a
 	mov	_main_i_1_82,a
 	mov	(_main_i_1_82 + 1),a
-L019010?:
+L019013?:
 	clr	c
 	mov	a,_main_i_1_82
 	subb	a,#0x64
 	mov	a,(_main_i_1_82 + 1)
 	xrl	a,#0x80
 	subb	a,#0x80
-	jnc	L019021?
+	jnc	L019011?
 ;	EFM8_ADC.c:397: hello = get_period();
 	lcall	_get_period
 	mov	_main_hello_1_82,dpl
@@ -1647,20 +1651,22 @@ L019010?:
 	mov	dph,(_main_i_1_82 + 1)
 	lcall	__modsint
 	mov	r2,dpl
-	mov	a,dph
-	xch	a,r2
+	mov	r3,dph
+	mov	ar0,r2
+	mov	a,r3
+	xch	a,r0
 	add	a,acc
-	xch	a,r2
+	xch	a,r0
 	rlc	a
-	xch	a,r2
+	xch	a,r0
 	add	a,acc
-	xch	a,r2
+	xch	a,r0
 	rlc	a
-	mov	r3,a
-	mov	a,r2
+	mov	r1,a
+	mov	a,r0
 	add	a,#_main_per_1_82
 	mov	dpl,a
-	mov	a,r3
+	mov	a,r1
 	addc	a,#(_main_per_1_82 >> 8)
 	mov	dph,a
 	mov	a,_main_hello_1_82
@@ -1675,6 +1681,8 @@ L019010?:
 	mov	a,(_main_hello_1_82 + 3)
 	movx	@dptr,a
 ;	EFM8_ADC.c:400: printf("Period: %f\r", hello);
+	push	ar2
+	push	ar3
 	push	_main_hello_1_82
 	push	(_main_hello_1_82 + 1)
 	push	(_main_hello_1_82 + 2)
@@ -1689,25 +1697,39 @@ L019010?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:404: while (Get_ADC()!=0); // Wait for the signal to be zero
+	pop	ar3
+	pop	ar2
+;	EFM8_ADC.c:402: ADC0MX=QFP32_MUX_P2_5;
+	mov	_ADC0MX,#0x12
+;	EFM8_ADC.c:405: while (Get_ADC()!=0); // Wait for the signal to be zero
 L019001?:
+	push	ar2
+	push	ar3
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
+	pop	ar3
+	pop	ar2
 	orl	a,b
 	jnz	L019001?
-;	EFM8_ADC.c:405: while (Get_ADC()==0); // Wait for the signal to be zero
+;	EFM8_ADC.c:406: while (Get_ADC()==0); // Wait for the signal to be positive
 L019004?:
+	push	ar2
+	push	ar3
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
+	pop	ar3
+	pop	ar2
 	orl	a,b
 	jz	L019004?
-;	EFM8_ADC.c:421: waitms(hello/6.0);
+;	EFM8_ADC.c:422: waitms(hello/4.0);
+	push	ar2
+	push	ar3
 	clr	a
 	push	acc
 	push	acc
-	mov	a,#0xC0
+	mov	a,#0x80
 	push	acc
 	mov	a,#0x40
 	push	acc
@@ -1716,31 +1738,31 @@ L019004?:
 	mov	b,(_main_hello_1_82 + 2)
 	mov	a,(_main_hello_1_82 + 3)
 	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r0,b
-	mov	r1,a
+	mov	r0,dpl
+	mov	r1,dph
+	mov	r4,b
+	mov	r5,a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r0
-	mov	a,r1
+	mov	dpl,r0
+	mov	dph,r1
+	mov	b,r4
+	mov	a,r5
 	lcall	___fs2uint
 	lcall	_waitms
-;	EFM8_ADC.c:422: P2_1=1;
+;	EFM8_ADC.c:423: P2_1=1;
 	setb	_P2_1
-;	EFM8_ADC.c:423: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
+;	EFM8_ADC.c:424: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
 	mov	dpl,#0x12
 	lcall	_Volts_at_Pin
 	mov	_main_peak_voltage_other_1_82,dpl
 	mov	(_main_peak_voltage_other_1_82 + 1),dph
 	mov	(_main_peak_voltage_other_1_82 + 2),b
 	mov	(_main_peak_voltage_other_1_82 + 3),a
-;	EFM8_ADC.c:424: P2_1=0;
+;	EFM8_ADC.c:425: P2_1=0;
 	clr	_P2_1
-;	EFM8_ADC.c:425: printf("Peak Voltage Other: %f\r", peak_voltage_other);
+;	EFM8_ADC.c:426: printf("Peak Voltage Other: %f\r", peak_voltage_other);
 	push	_main_peak_voltage_other_1_82
 	push	(_main_peak_voltage_other_1_82 + 1)
 	push	(_main_peak_voltage_other_1_82 + 2)
@@ -1755,15 +1777,9 @@ L019004?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:426: vt[i%3] = peak_voltage_other;
-	mov	__modsint_PARM_2,#0x03
-	clr	a
-	mov	(__modsint_PARM_2 + 1),a
-	mov	dpl,_main_i_1_82
-	mov	dph,(_main_i_1_82 + 1)
-	lcall	__modsint
-	mov	r2,dpl
-	mov	r3,dph
+	pop	ar3
+	pop	ar2
+;	EFM8_ADC.c:427: vt[i%3] = peak_voltage_other;
 	mov	_main_sloc0_1_0,r2
 	mov	a,r3
 	xch	a,_main_sloc0_1_0
@@ -1792,13 +1808,15 @@ L019004?:
 	inc	dptr
 	mov	a,(_main_peak_voltage_other_1_82 + 3)
 	movx	@dptr,a
-;	EFM8_ADC.c:428: hello2 = get_period_2();
+;	EFM8_ADC.c:429: hello2 = get_period_2();
 	lcall	_get_period_2
 	mov	r0,dpl
 	mov	r1,dph
 	mov	r4,b
 	mov	r5,a
-;	EFM8_ADC.c:429: hello2=(hello2*12*1000)/SYSCLK;
+;	EFM8_ADC.c:430: ADC0MX=QFP32_MUX_P2_5;
+	mov	_ADC0MX,#0x12
+;	EFM8_ADC.c:431: hello2=(hello2*12*1000)/SYSCLK;
 	push	ar0
 	push	ar1
 	push	ar4
@@ -1834,7 +1852,7 @@ L019004?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:430: printf("Phase difference in ms: %f\r", hello2);
+;	EFM8_ADC.c:432: printf("Phase difference in ms: %f\r", hello2);
 	push	ar4
 	push	ar5
 	push	ar0
@@ -1857,7 +1875,7 @@ L019004?:
 	pop	ar0
 	pop	ar5
 	pop	ar4
-;	EFM8_ADC.c:431: hello2=hello2*20.0/hello;
+;	EFM8_ADC.c:433: hello2=hello2*20.0/hello;
 	push	ar0
 	push	ar1
 	push	ar4
@@ -1889,7 +1907,7 @@ L019004?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:432: y=179.0+hello2*1/(-0.056);
+;	EFM8_ADC.c:434: y=179.0+hello2*1/(-0.056);
 	mov	a,#0x42
 	push	acc
 	mov	a,#0x60
@@ -1929,7 +1947,7 @@ L019004?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:433: printf("Phase degrees: %f\r", y);
+;	EFM8_ADC.c:435: printf("Phase degrees: %f\r", y);
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1952,7 +1970,7 @@ L019004?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	EFM8_ADC.c:434: p[i%3] = y;
+;	EFM8_ADC.c:436: p[i%3] = y;
 	mov	a,_main_sloc0_1_0
 	add	a,#_main_p_1_82
 	mov	dpl,a
@@ -1970,11 +1988,88 @@ L019004?:
 	inc	dptr
 	mov	a,r5
 	movx	@dptr,a
-;	EFM8_ADC.c:438: sprintf(first_line, "Phase:%.2f deg", p[i%3]);
+;	EFM8_ADC.c:438: while(per[i%3] == 0) i--;
+	mov	r2,_main_i_1_82
+	mov	r3,(_main_i_1_82 + 1)
+L019007?:
+	mov	__modsint_PARM_2,#0x03
+	clr	a
+	mov	(__modsint_PARM_2 + 1),a
+	mov	dpl,r2
+	mov	dph,r3
+	push	ar2
+	push	ar3
+	lcall	__modsint
+	mov	r4,dpl
+	mov	r5,dph
+	pop	ar3
+	pop	ar2
+	mov	a,r5
+	xch	a,r4
+	add	a,acc
+	xch	a,r4
+	rlc	a
+	xch	a,r4
+	add	a,acc
+	xch	a,r4
+	rlc	a
+	mov	r5,a
+	mov	a,r4
+	add	a,#_main_per_1_82
+	mov	_main_sloc0_1_0,a
+	mov	a,r5
+	addc	a,#(_main_per_1_82 >> 8)
+	mov	(_main_sloc0_1_0 + 1),a
+	mov	dpl,_main_sloc0_1_0
+	mov	dph,(_main_sloc0_1_0 + 1)
+	movx	a,@dptr
+	mov	r0,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r1,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	a,r0
+	orl	a,r1
+	orl	a,r6
+	mov	b,r7
+	clr	b.7 ; Clear the sign bit
+	orl	a,b
+	jnz	L019009?
+	dec	r2
+	cjne	r2,#0xff,L019032?
+	dec	r3
+L019032?:
+	sjmp	L019007?
+L019009?:
+;	EFM8_ADC.c:440: sprintf(first_line, "Phase:%.2f deg", p[i%3]);
+	mov	a,r4
+	add	a,#_main_p_1_82
+	mov	dpl,a
+	mov	a,r5
+	addc	a,#(_main_p_1_82 >> 8)
+	mov	dph,a
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
 	push	ar2
 	push	ar3
 	push	ar4
 	push	ar5
+	push	ar6
+	push	ar7
 	mov	a,#__str_9
 	push	acc
 	mov	a,#(__str_9 >> 8)
@@ -1991,30 +2086,46 @@ L019004?:
 	mov	a,sp
 	add	a,#0xf6
 	mov	sp,a
-;	EFM8_ADC.c:439: sprintf(second_line, "Per:%.0f Vt:%.2f", per[i%3], peak_voltage_other);
-	mov	a,_main_sloc0_1_0
-	add	a,#_main_per_1_82
-	mov	dpl,a
-	mov	a,(_main_sloc0_1_0 + 1)
-	addc	a,#(_main_per_1_82 >> 8)
-	mov	dph,a
+;	EFM8_ADC.c:441: sprintf(second_line, "Per:%.0f Vt:%.2f", per[i%3], peak_voltage_other/1.4142);
+	mov	a,#0x81
+	push	acc
+	mov	a,#0x04
+	push	acc
+	mov	a,#0xB5
+	push	acc
+	mov	a,#0x3F
+	push	acc
+	mov	dpl,_main_peak_voltage_other_1_82
+	mov	dph,(_main_peak_voltage_other_1_82 + 1)
+	mov	b,(_main_peak_voltage_other_1_82 + 2)
+	mov	a,(_main_peak_voltage_other_1_82 + 3)
+	lcall	___fsdiv
+	mov	_main_sloc1_1_0,dpl
+	mov	(_main_sloc1_1_0 + 1),dph
+	mov	(_main_sloc1_1_0 + 2),b
+	mov	(_main_sloc1_1_0 + 3),a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	dpl,_main_sloc0_1_0
+	mov	dph,(_main_sloc0_1_0 + 1)
 	movx	a,@dptr
-	mov	r2,a
+	mov	r0,a
 	inc	dptr
 	movx	a,@dptr
-	mov	r3,a
+	mov	r1,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r4,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r5,a
-	push	_main_peak_voltage_other_1_82
-	push	(_main_peak_voltage_other_1_82 + 1)
-	push	(_main_peak_voltage_other_1_82 + 2)
-	push	(_main_peak_voltage_other_1_82 + 3)
-	push	ar2
-	push	ar3
+	push	_main_sloc1_1_0
+	push	(_main_sloc1_1_0 + 1)
+	push	(_main_sloc1_1_0 + 2)
+	push	(_main_sloc1_1_0 + 3)
+	push	ar0
+	push	ar1
 	push	ar4
 	push	ar5
 	mov	a,#__str_10
@@ -2033,28 +2144,31 @@ L019004?:
 	mov	a,sp
 	add	a,#0xf2
 	mov	sp,a
-;	EFM8_ADC.c:440: LCDprint(first_line, 1, 1);
+;	EFM8_ADC.c:442: LCDprint(first_line, 1, 1);
 	mov	_LCDprint_PARM_2,#0x01
 	setb	_LCDprint_PARM_3
 	mov	dptr,#_main_first_line_1_82
 	mov	b,#0x40
 	lcall	_LCDprint
-;	EFM8_ADC.c:441: LCDprint(second_line, 2, 1);
+;	EFM8_ADC.c:443: LCDprint(second_line, 2, 1);
 	mov	_LCDprint_PARM_2,#0x02
 	setb	_LCDprint_PARM_3
 	mov	dptr,#_main_second_line_1_82
 	mov	b,#0x40
 	lcall	_LCDprint
-;	EFM8_ADC.c:443: waitms(500);
+;	EFM8_ADC.c:445: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
+	pop	ar3
+	pop	ar2
 ;	EFM8_ADC.c:390: for(i = 0; i < 100; i++)
-	inc	_main_i_1_82
+	mov	a,#0x01
+	add	a,r2
+	mov	_main_i_1_82,a
 	clr	a
-	cjne	a,_main_i_1_82,L019025?
-	inc	(_main_i_1_82 + 1)
-L019025?:
-	ljmp	L019010?
+	addc	a,r3
+	mov	(_main_i_1_82 + 1),a
+	ljmp	L019013?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -2080,7 +2194,7 @@ __str_3:
 	db 'Mar  7 2024'
 	db 0x00
 __str_4:
-	db '13:07:33'
+	db '13:24:38'
 	db 0x00
 __str_5:
 	db 'Period: %f'

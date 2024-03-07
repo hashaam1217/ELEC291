@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-0000              4   ; This file was generated Thu Mar 07 13:07:33 2024
+0000              4   ; This file was generated Thu Mar 07 13:24:38 2024
 0000              5   ;--------------------------------------------------------
                   5   $name EFM8_ADC
                   6   $optc51 --model-small
@@ -514,1632 +514,1746 @@
 0022            514            ds 16
 0032            515   _main_sloc0_1_0:
 0032            516            ds 2
-0034            517   ;--------------------------------------------------------
-0034            518   ; overlayable items in internal ram 
-0034            519   ;--------------------------------------------------------
-0000            520            rseg    R_OSEG
-0000            521            rseg    R_OSEG
-0000            522   _InitPinADC_PARM_2:
-0000            523            ds 1
-0001            524            rseg    R_OSEG
-0001            525   ;--------------------------------------------------------
-0001            526   ; indirectly addressable internal ram data
+0034            517   _main_sloc1_1_0:
+0034            518            ds 4
+0038            519   ;--------------------------------------------------------
+0038            520   ; overlayable items in internal ram 
+0038            521   ;--------------------------------------------------------
+0000            522            rseg    R_OSEG
+0000            523            rseg    R_OSEG
+0000            524   _InitPinADC_PARM_2:
+0000            525            ds 1
+0001            526            rseg    R_OSEG
 0001            527   ;--------------------------------------------------------
-0000            528            rseg R_ISEG
-0000            529   ;--------------------------------------------------------
-0000            530   ; absolute internal ram data
+0001            528   ; indirectly addressable internal ram data
+0001            529   ;--------------------------------------------------------
+0000            530            rseg R_ISEG
 0000            531   ;--------------------------------------------------------
-0000            532            DSEG
+0000            532   ; absolute internal ram data
 0000            533   ;--------------------------------------------------------
-0000            534   ; bit data
+0000            534            DSEG
 0000            535   ;--------------------------------------------------------
-0000            536            rseg R_BSEG
-0000            537   _LCDprint_PARM_3:
-0000            538            DBIT    1
-0001            539   ;--------------------------------------------------------
-0001            540   ; paged external ram data
+0000            536   ; bit data
+0000            537   ;--------------------------------------------------------
+0000            538            rseg R_BSEG
+0000            539   _LCDprint_PARM_3:
+0000            540            DBIT    1
 0001            541   ;--------------------------------------------------------
-0000            542            rseg R_PSEG
-0000            543   ;--------------------------------------------------------
-0000            544   ; external ram data
+0001            542   ; paged external ram data
+0001            543   ;--------------------------------------------------------
+0000            544            rseg R_PSEG
 0000            545   ;--------------------------------------------------------
-0000            546            rseg R_XSEG
-0000            547   _main_p_1_82:
-0000            548            ds 12
-000C            549   _main_vt_1_82:
-000C            550            ds 12
-0018            551   _main_per_1_82:
-0018            552            ds 12
-0024            553   ;--------------------------------------------------------
-0024            554   ; absolute external ram data
+0000            546   ; external ram data
+0000            547   ;--------------------------------------------------------
+0000            548            rseg R_XSEG
+0000            549   _main_p_1_82:
+0000            550            ds 12
+000C            551   _main_vt_1_82:
+000C            552            ds 12
+0018            553   _main_per_1_82:
+0018            554            ds 12
 0024            555   ;--------------------------------------------------------
-0000            556            XSEG
-0000            557   ;--------------------------------------------------------
-0000            558   ; external initialized ram data
+0024            556   ; absolute external ram data
+0024            557   ;--------------------------------------------------------
+0000            558            XSEG
 0000            559   ;--------------------------------------------------------
-0000            560            rseg R_IXSEG
-0000            561            rseg R_HOME
-0000            562            rseg R_GSINIT
-0000            563            rseg R_CSEG
-0000            564   ;--------------------------------------------------------
-0000            565   ; Reset entry point and interrupt vectors
+0000            560   ; external initialized ram data
+0000            561   ;--------------------------------------------------------
+0000            562            rseg R_IXSEG
+0000            563            rseg R_HOME
+0000            564            rseg R_GSINIT
+0000            565            rseg R_CSEG
 0000            566   ;--------------------------------------------------------
-0000            567            CSEG at 0x0000
-0000 020000     568            ljmp    _crt0
-0003            569   ;--------------------------------------------------------
-0003            570   ; global & static initialisations
+0000            567   ; Reset entry point and interrupt vectors
+0000            568   ;--------------------------------------------------------
+0000            569            CSEG at 0x0000
+0000 020000     570            ljmp    _crt0
 0003            571   ;--------------------------------------------------------
-0000            572            rseg R_HOME
-0000            573            rseg R_GSINIT
-0000            574            rseg R_GSINIT
-0000            575   ;--------------------------------------------------------
-0000            576   ; data variables initialization
+0003            572   ; global & static initialisations
+0003            573   ;--------------------------------------------------------
+0000            574            rseg R_HOME
+0000            575            rseg R_GSINIT
+0000            576            rseg R_GSINIT
 0000            577   ;--------------------------------------------------------
-0000            578            rseg R_DINIT
-0000            579            ; The linker places a 'ret' at the end of segment R_DINIT.
-0000            580   ;--------------------------------------------------------
-0000            581   ; code
+0000            578   ; data variables initialization
+0000            579   ;--------------------------------------------------------
+0000            580            rseg R_DINIT
+0000            581            ; The linker places a 'ret' at the end of segment R_DINIT.
 0000            582   ;--------------------------------------------------------
-0000            583            rseg R_CSEG
-0000            584   ;------------------------------------------------------------
-0000            585   ;Allocation info for local variables in function '_c51_external_startup'
+0000            583   ; code
+0000            584   ;--------------------------------------------------------
+0000            585            rseg R_CSEG
 0000            586   ;------------------------------------------------------------
-0000            587   ;------------------------------------------------------------
-0000            588   ;        EFM8_ADC.c:29: char _c51_external_startup (void)
-0000            589   ;        -----------------------------------------
-0000            590   ;         function _c51_external_startup
+0000            587   ;Allocation info for local variables in function '_c51_external_startup'
+0000            588   ;------------------------------------------------------------
+0000            589   ;------------------------------------------------------------
+0000            590   ;        EFM8_ADC.c:29: char _c51_external_startup (void)
 0000            591   ;        -----------------------------------------
-0000            592   __c51_external_startup:
-0000            593            using   0
-0000            594   ;        EFM8_ADC.c:32: SFRPAGE = 0x00;
-0000 75A700     595            mov     _SFRPAGE,#0x00
-0003            596   ;        EFM8_ADC.c:33: WDTCN = 0xDE; //First key
-0003 7597DE     597            mov     _WDTCN,#0xDE
-0006            598   ;        EFM8_ADC.c:34: WDTCN = 0xAD; //Second key
-0006 7597AD     599            mov     _WDTCN,#0xAD
-0009            600   ;        EFM8_ADC.c:36: VDM0CN=0x80;       // enable VDD monitor
-0009 75FF80     601            mov     _VDM0CN,#0x80
-000C            602   ;        EFM8_ADC.c:37: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
-000C 75EF06     603            mov     _RSTSRC,#0x06
-000F            604   ;        EFM8_ADC.c:44: SFRPAGE = 0x10;
-000F 75A710     605            mov     _SFRPAGE,#0x10
-0012            606   ;        EFM8_ADC.c:45: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
-0012 75C120     607            mov     _PFE0CN,#0x20
-0015            608   ;        EFM8_ADC.c:46: SFRPAGE = 0x00;
-0015 75A700     609            mov     _SFRPAGE,#0x00
-0018            610   ;        EFM8_ADC.c:67: CLKSEL = 0x00;
-0018 75A900     611            mov     _CLKSEL,#0x00
-001B            612   ;        EFM8_ADC.c:68: CLKSEL = 0x00;
-001B 75A900     613            mov     _CLKSEL,#0x00
-001E            614   ;        EFM8_ADC.c:69: while ((CLKSEL & 0x80) == 0);
-001E            615   L002001?:
-001E E5A9       616            mov     a,_CLKSEL
-0020 30E718     617            jnb     acc.7,L002001?
-0023            618   ;        EFM8_ADC.c:70: CLKSEL = 0x03;
-0023 75A903     619            mov     _CLKSEL,#0x03
-0026            620   ;        EFM8_ADC.c:71: CLKSEL = 0x03;
-0026 75A903     621            mov     _CLKSEL,#0x03
-0029            622   ;        EFM8_ADC.c:72: while ((CLKSEL & 0x80) == 0);
-0029            623   L002004?:
-0029 E5A9       624            mov     a,_CLKSEL
-002B 30E798     625            jnb     acc.7,L002004?
-002E            626   ;        EFM8_ADC.c:77: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
-002E 43A410     627            orl     _P0MDOUT,#0x10
-0031            628   ;        EFM8_ADC.c:78: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
-0031 75E101     629            mov     _XBR0,#0x01
-0034            630   ;        EFM8_ADC.c:79: XBR1     = 0X00;
-0034 75E200     631            mov     _XBR1,#0x00
-0037            632   ;        EFM8_ADC.c:80: XBR2     = 0x40; // Enable crossbar and weak pull-ups
-0037 75E340     633            mov     _XBR2,#0x40
-003A            634   ;        EFM8_ADC.c:86: SCON0 = 0x10;
-003A 759810     635            mov     _SCON0,#0x10
-003D            636   ;        EFM8_ADC.c:87: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
-003D 758DE6     637            mov     _TH1,#0xE6
-0040            638   ;        EFM8_ADC.c:88: TL1 = TH1;      // Init Timer1
-0040 858D8B     639            mov     _TL1,_TH1
-0043            640   ;        EFM8_ADC.c:89: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
-0043 53890F     641            anl     _TMOD,#0x0F
-0046            642   ;        EFM8_ADC.c:90: TMOD |=  0x21;
-0046 438921     643            orl     _TMOD,#0x21
-0049            644   ;        EFM8_ADC.c:91: TR1 = 1; // START Timer1
-0049 D28E       645            setb    _TR1
-004B            646   ;        EFM8_ADC.c:92: TI = 1;  // Indicate TX0 ready
-004B D299       647            setb    _TI
-004D            648   ;        EFM8_ADC.c:94: return 0;
-004D 758200     649            mov     dpl,#0x00
-0050 22         650            ret
-0051            651   ;------------------------------------------------------------
-0051            652   ;Allocation info for local variables in function 'InitADC'
+0000            592   ;         function _c51_external_startup
+0000            593   ;        -----------------------------------------
+0000            594   __c51_external_startup:
+0000            595            using   0
+0000            596   ;        EFM8_ADC.c:32: SFRPAGE = 0x00;
+0000 75A700     597            mov     _SFRPAGE,#0x00
+0003            598   ;        EFM8_ADC.c:33: WDTCN = 0xDE; //First key
+0003 7597DE     599            mov     _WDTCN,#0xDE
+0006            600   ;        EFM8_ADC.c:34: WDTCN = 0xAD; //Second key
+0006 7597AD     601            mov     _WDTCN,#0xAD
+0009            602   ;        EFM8_ADC.c:36: VDM0CN=0x80;       // enable VDD monitor
+0009 75FF80     603            mov     _VDM0CN,#0x80
+000C            604   ;        EFM8_ADC.c:37: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
+000C 75EF06     605            mov     _RSTSRC,#0x06
+000F            606   ;        EFM8_ADC.c:44: SFRPAGE = 0x10;
+000F 75A710     607            mov     _SFRPAGE,#0x10
+0012            608   ;        EFM8_ADC.c:45: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+0012 75C120     609            mov     _PFE0CN,#0x20
+0015            610   ;        EFM8_ADC.c:46: SFRPAGE = 0x00;
+0015 75A700     611            mov     _SFRPAGE,#0x00
+0018            612   ;        EFM8_ADC.c:67: CLKSEL = 0x00;
+0018 75A900     613            mov     _CLKSEL,#0x00
+001B            614   ;        EFM8_ADC.c:68: CLKSEL = 0x00;
+001B 75A900     615            mov     _CLKSEL,#0x00
+001E            616   ;        EFM8_ADC.c:69: while ((CLKSEL & 0x80) == 0);
+001E            617   L002001?:
+001E E5A9       618            mov     a,_CLKSEL
+0020 30E710     619            jnb     acc.7,L002001?
+0023            620   ;        EFM8_ADC.c:70: CLKSEL = 0x03;
+0023 75A903     621            mov     _CLKSEL,#0x03
+0026            622   ;        EFM8_ADC.c:71: CLKSEL = 0x03;
+0026 75A903     623            mov     _CLKSEL,#0x03
+0029            624   ;        EFM8_ADC.c:72: while ((CLKSEL & 0x80) == 0);
+0029            625   L002004?:
+0029 E5A9       626            mov     a,_CLKSEL
+002B 30E790     627            jnb     acc.7,L002004?
+002E            628   ;        EFM8_ADC.c:77: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+002E 43A410     629            orl     _P0MDOUT,#0x10
+0031            630   ;        EFM8_ADC.c:78: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
+0031 75E101     631            mov     _XBR0,#0x01
+0034            632   ;        EFM8_ADC.c:79: XBR1     = 0X00;
+0034 75E200     633            mov     _XBR1,#0x00
+0037            634   ;        EFM8_ADC.c:80: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+0037 75E340     635            mov     _XBR2,#0x40
+003A            636   ;        EFM8_ADC.c:86: SCON0 = 0x10;
+003A 759810     637            mov     _SCON0,#0x10
+003D            638   ;        EFM8_ADC.c:87: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
+003D 758DE6     639            mov     _TH1,#0xE6
+0040            640   ;        EFM8_ADC.c:88: TL1 = TH1;      // Init Timer1
+0040 858D8B     641            mov     _TL1,_TH1
+0043            642   ;        EFM8_ADC.c:89: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+0043 53890F     643            anl     _TMOD,#0x0F
+0046            644   ;        EFM8_ADC.c:90: TMOD |=  0x21;
+0046 438921     645            orl     _TMOD,#0x21
+0049            646   ;        EFM8_ADC.c:91: TR1 = 1; // START Timer1
+0049 D28E       647            setb    _TR1
+004B            648   ;        EFM8_ADC.c:92: TI = 1;  // Indicate TX0 ready
+004B D299       649            setb    _TI
+004D            650   ;        EFM8_ADC.c:94: return 0;
+004D 758200     651            mov     dpl,#0x00
+0050 22         652            ret
 0051            653   ;------------------------------------------------------------
-0051            654   ;------------------------------------------------------------
-0051            655   ;        EFM8_ADC.c:99: void InitADC (void)
-0051            656   ;        -----------------------------------------
-0051            657   ;         function InitADC
+0051            654   ;Allocation info for local variables in function 'InitADC'
+0051            655   ;------------------------------------------------------------
+0051            656   ;------------------------------------------------------------
+0051            657   ;        EFM8_ADC.c:99: void InitADC (void)
 0051            658   ;        -----------------------------------------
-0051            659   _InitADC:
-0051            660   ;        EFM8_ADC.c:101: SFRPAGE = 0x00;
-0051 75A700     661            mov     _SFRPAGE,#0x00
-0054            662   ;        EFM8_ADC.c:102: ADEN=0; // Disable ADC
-0054 C2EF       663            clr     _ADEN
-0056            664   ;        EFM8_ADC.c:107: (0x0 << 0) ; // Accumulate n conversions: 0x0: 1, 0x1:4, 0x2:8, 0x3:16, 0x4:32
-0056 75B280     665            mov     _ADC0CN1,#0x80
-0059            666   ;        EFM8_ADC.c:111: (0x0 << 2); // 0:SYSCLK ADCCLK = SYSCLK. 1:HFOSC0 ADCCLK = HFOSC0.
-0059 75BC20     667            mov     _ADC0CF0,#0x20
-005C            668   ;        EFM8_ADC.c:115: (0x1E << 0); // Conversion Tracking Time. Tadtk = ADTK / (Fsarclk)
-005C 75B91E     669            mov     _ADC0CF1,#0x1E
-005F            670   ;        EFM8_ADC.c:124: (0x0 << 0) ; // TEMPE. 0: Disable the Temperature Sensor. 1: Enable the Temperature Sensor.
-005F 75E800     671            mov     _ADC0CN0,#0x00
-0062            672   ;        EFM8_ADC.c:129: (0x1F << 0); // ADPWR. Power Up Delay Time. Tpwrtime = ((4 * (ADPWR + 1)) + 2) / (Fadcclk)
-0062 75DF3F     673            mov     _ADC0CF2,#0x3F
-0065            674   ;        EFM8_ADC.c:133: (0x0 << 0) ; // ADCM. 0x0: ADBUSY, 0x1: TIMER0, 0x2: TIMER2, 0x3: TIMER3, 0x4: CNVSTR, 0x5: CEX5, 0x6: TIMER4, 0x7: TIMER5, 0x8: CLU0, 0x9: CLU1, 0xA: CLU2, 0xB: CLU3
-0065 75B300     675            mov     _ADC0CN2,#0x00
-0068            676   ;        EFM8_ADC.c:135: ADEN=1; // Enable ADC
-0068 D2EF       677            setb    _ADEN
-006A 22         678            ret
-006B            679   ;------------------------------------------------------------
-006B            680   ;Allocation info for local variables in function 'Timer3us'
+0051            659   ;         function InitADC
+0051            660   ;        -----------------------------------------
+0051            661   _InitADC:
+0051            662   ;        EFM8_ADC.c:101: SFRPAGE = 0x00;
+0051 75A700     663            mov     _SFRPAGE,#0x00
+0054            664   ;        EFM8_ADC.c:102: ADEN=0; // Disable ADC
+0054 C2EF       665            clr     _ADEN
+0056            666   ;        EFM8_ADC.c:107: (0x0 << 0) ; // Accumulate n conversions: 0x0: 1, 0x1:4, 0x2:8, 0x3:16, 0x4:32
+0056 75B280     667            mov     _ADC0CN1,#0x80
+0059            668   ;        EFM8_ADC.c:111: (0x0 << 2); // 0:SYSCLK ADCCLK = SYSCLK. 1:HFOSC0 ADCCLK = HFOSC0.
+0059 75BC20     669            mov     _ADC0CF0,#0x20
+005C            670   ;        EFM8_ADC.c:115: (0x1E << 0); // Conversion Tracking Time. Tadtk = ADTK / (Fsarclk)
+005C 75B91E     671            mov     _ADC0CF1,#0x1E
+005F            672   ;        EFM8_ADC.c:124: (0x0 << 0) ; // TEMPE. 0: Disable the Temperature Sensor. 1: Enable the Temperature Sensor.
+005F 75E800     673            mov     _ADC0CN0,#0x00
+0062            674   ;        EFM8_ADC.c:129: (0x1F << 0); // ADPWR. Power Up Delay Time. Tpwrtime = ((4 * (ADPWR + 1)) + 2) / (Fadcclk)
+0062 75DF3F     675            mov     _ADC0CF2,#0x3F
+0065            676   ;        EFM8_ADC.c:133: (0x0 << 0) ; // ADCM. 0x0: ADBUSY, 0x1: TIMER0, 0x2: TIMER2, 0x3: TIMER3, 0x4: CNVSTR, 0x5: CEX5, 0x6: TIMER4, 0x7: TIMER5, 0x8: CLU0, 0x9: CLU1, 0xA: CLU2, 0xB: CLU3
+0065 75B300     677            mov     _ADC0CN2,#0x00
+0068            678   ;        EFM8_ADC.c:135: ADEN=1; // Enable ADC
+0068 D2EF       679            setb    _ADEN
+006A 22         680            ret
 006B            681   ;------------------------------------------------------------
-006B            682   ;us                        Allocated to registers r2 
-006B            683   ;i                         Allocated to registers r3 
-006B            684   ;------------------------------------------------------------
-006B            685   ;        EFM8_ADC.c:139: void Timer3us(unsigned char us)
-006B            686   ;        -----------------------------------------
-006B            687   ;         function Timer3us
+006B            682   ;Allocation info for local variables in function 'Timer3us'
+006B            683   ;------------------------------------------------------------
+006B            684   ;us                        Allocated to registers r2 
+006B            685   ;i                         Allocated to registers r3 
+006B            686   ;------------------------------------------------------------
+006B            687   ;        EFM8_ADC.c:139: void Timer3us(unsigned char us)
 006B            688   ;        -----------------------------------------
-006B            689   _Timer3us:
-006B AA82       690            mov     r2,dpl
-006D            691   ;        EFM8_ADC.c:144: CKCON0|=0b_0100_0000;
-006D 438E40     692            orl     _CKCON0,#0x40
-0070            693   ;        EFM8_ADC.c:146: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
-0070 7592B8     694            mov     _TMR3RL,#0xB8
-0073 7593FF     695            mov     (_TMR3RL >> 8),#0xFF
-0076            696   ;        EFM8_ADC.c:147: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
-0076 859294     697            mov     _TMR3,_TMR3RL
-0079 859395     698            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
-007C            699   ;        EFM8_ADC.c:149: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
-007C 759104     700            mov     _TMR3CN0,#0x04
-007F            701   ;        EFM8_ADC.c:150: for (i = 0; i < us; i++)       // Count <us> overflows
-007F 7B00       702            mov     r3,#0x00
-0081            703   L004004?:
-0081 C3         704            clr     c
-0082 EB         705            mov     a,r3
-0083 9A         706            subb    a,r2
-0084 5000       707            jnc     L004007?
-0086            708   ;        EFM8_ADC.c:152: while (!(TMR3CN0 & 0x80));  // Wait for overflow
-0086            709   L004001?:
-0086 E591       710            mov     a,_TMR3CN0
-0088 30E798     711            jnb     acc.7,L004001?
-008B            712   ;        EFM8_ADC.c:153: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
-008B 53917F     713            anl     _TMR3CN0,#0x7F
-008E            714   ;        EFM8_ADC.c:150: for (i = 0; i < us; i++)       // Count <us> overflows
-008E 0B         715            inc     r3
-008F 8000       716            sjmp    L004004?
-0091            717   L004007?:
-0091            718   ;        EFM8_ADC.c:155: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
-0091 759100     719            mov     _TMR3CN0,#0x00
-0094 22         720            ret
-0095            721   ;------------------------------------------------------------
-0095            722   ;Allocation info for local variables in function 'waitms'
+006B            689   ;         function Timer3us
+006B            690   ;        -----------------------------------------
+006B            691   _Timer3us:
+006B AA82       692            mov     r2,dpl
+006D            693   ;        EFM8_ADC.c:144: CKCON0|=0b_0100_0000;
+006D 438E40     694            orl     _CKCON0,#0x40
+0070            695   ;        EFM8_ADC.c:146: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+0070 7592B8     696            mov     _TMR3RL,#0xB8
+0073 7593FF     697            mov     (_TMR3RL >> 8),#0xFF
+0076            698   ;        EFM8_ADC.c:147: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+0076 859294     699            mov     _TMR3,_TMR3RL
+0079 859395     700            mov     (_TMR3 >> 8),(_TMR3RL >> 8)
+007C            701   ;        EFM8_ADC.c:149: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+007C 759104     702            mov     _TMR3CN0,#0x04
+007F            703   ;        EFM8_ADC.c:150: for (i = 0; i < us; i++)       // Count <us> overflows
+007F 7B00       704            mov     r3,#0x00
+0081            705   L004004?:
+0081 C3         706            clr     c
+0082 EB         707            mov     a,r3
+0083 9A         708            subb    a,r2
+0084 5000       709            jnc     L004007?
+0086            710   ;        EFM8_ADC.c:152: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+0086            711   L004001?:
+0086 E591       712            mov     a,_TMR3CN0
+0088 30E790     713            jnb     acc.7,L004001?
+008B            714   ;        EFM8_ADC.c:153: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+008B 53917F     715            anl     _TMR3CN0,#0x7F
+008E            716   ;        EFM8_ADC.c:150: for (i = 0; i < us; i++)       // Count <us> overflows
+008E 0B         717            inc     r3
+008F 8000       718            sjmp    L004004?
+0091            719   L004007?:
+0091            720   ;        EFM8_ADC.c:155: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+0091 759100     721            mov     _TMR3CN0,#0x00
+0094 22         722            ret
 0095            723   ;------------------------------------------------------------
-0095            724   ;ms                        Allocated to registers r2 r3 
-0095            725   ;j                         Allocated to registers r4 r5 
-0095            726   ;k                         Allocated to registers r6 
-0095            727   ;------------------------------------------------------------
-0095            728   ;        EFM8_ADC.c:158: void waitms (unsigned int ms)
-0095            729   ;        -----------------------------------------
-0095            730   ;         function waitms
+0095            724   ;Allocation info for local variables in function 'waitms'
+0095            725   ;------------------------------------------------------------
+0095            726   ;ms                        Allocated to registers r2 r3 
+0095            727   ;j                         Allocated to registers r4 r5 
+0095            728   ;k                         Allocated to registers r6 
+0095            729   ;------------------------------------------------------------
+0095            730   ;        EFM8_ADC.c:158: void waitms (unsigned int ms)
 0095            731   ;        -----------------------------------------
-0095            732   _waitms:
-0095 AA82       733            mov     r2,dpl
-0097 AB83       734            mov     r3,dph
-0099            735   ;        EFM8_ADC.c:162: for(j=0; j<ms; j++)
-0099 7C00       736            mov     r4,#0x00
-009B 7D00       737            mov     r5,#0x00
-009D            738   L005005?:
-009D C3         739            clr     c
-009E EC         740            mov     a,r4
-009F 9A         741            subb    a,r2
-00A0 ED         742            mov     a,r5
-00A1 9B         743            subb    a,r3
-00A2 5000       744            jnc     L005009?
-00A4            745   ;        EFM8_ADC.c:163: for (k=0; k<4; k++) Timer3us(250);
-00A4 7E00       746            mov     r6,#0x00
-00A6            747   L005001?:
-00A6 BE04D8     748            cjne    r6,#0x04,L005018?
-00A9            749   L005018?:
-00A9 5000       750            jnc     L005007?
-00AB 7582FA     751            mov     dpl,#0xFA
-00AE C002       752            push    ar2
-00B0 C003       753            push    ar3
-00B2 C004       754            push    ar4
-00B4 C005       755            push    ar5
-00B6 C006       756            push    ar6
-00B8 120000     757            lcall   _Timer3us
-00BB D006       758            pop     ar6
-00BD D005       759            pop     ar5
-00BF D004       760            pop     ar4
-00C1 D003       761            pop     ar3
-00C3 D002       762            pop     ar2
-00C5 0E         763            inc     r6
-00C6 8000       764            sjmp    L005001?
-00C8            765   L005007?:
-00C8            766   ;        EFM8_ADC.c:162: for(j=0; j<ms; j++)
-00C8 0C         767            inc     r4
-00C9 BC0018     768            cjne    r4,#0x00,L005005?
-00CC 0D         769            inc     r5
-00CD 8000       770            sjmp    L005005?
-00CF            771   L005009?:
-00CF 22         772            ret
-00D0            773   ;------------------------------------------------------------
-00D0            774   ;Allocation info for local variables in function 'InitPinADC'
+0095            732   ;         function waitms
+0095            733   ;        -----------------------------------------
+0095            734   _waitms:
+0095 AA82       735            mov     r2,dpl
+0097 AB83       736            mov     r3,dph
+0099            737   ;        EFM8_ADC.c:162: for(j=0; j<ms; j++)
+0099 7C00       738            mov     r4,#0x00
+009B 7D00       739            mov     r5,#0x00
+009D            740   L005005?:
+009D C3         741            clr     c
+009E EC         742            mov     a,r4
+009F 9A         743            subb    a,r2
+00A0 ED         744            mov     a,r5
+00A1 9B         745            subb    a,r3
+00A2 5000       746            jnc     L005009?
+00A4            747   ;        EFM8_ADC.c:163: for (k=0; k<4; k++) Timer3us(250);
+00A4 7E00       748            mov     r6,#0x00
+00A6            749   L005001?:
+00A6 BE04D0     750            cjne    r6,#0x04,L005018?
+00A9            751   L005018?:
+00A9 5000       752            jnc     L005007?
+00AB 7582FA     753            mov     dpl,#0xFA
+00AE C002       754            push    ar2
+00B0 C003       755            push    ar3
+00B2 C004       756            push    ar4
+00B4 C005       757            push    ar5
+00B6 C006       758            push    ar6
+00B8 120000     759            lcall   _Timer3us
+00BB D006       760            pop     ar6
+00BD D005       761            pop     ar5
+00BF D004       762            pop     ar4
+00C1 D003       763            pop     ar3
+00C3 D002       764            pop     ar2
+00C5 0E         765            inc     r6
+00C6 8000       766            sjmp    L005001?
+00C8            767   L005007?:
+00C8            768   ;        EFM8_ADC.c:162: for(j=0; j<ms; j++)
+00C8 0C         769            inc     r4
+00C9 BC0010     770            cjne    r4,#0x00,L005005?
+00CC 0D         771            inc     r5
+00CD 8000       772            sjmp    L005005?
+00CF            773   L005009?:
+00CF 22         774            ret
 00D0            775   ;------------------------------------------------------------
-00D0            776   ;pinno                     Allocated with name '_InitPinADC_PARM_2'
-00D0            777   ;portno                    Allocated to registers r2 
-00D0            778   ;mask                      Allocated to registers r3 
-00D0            779   ;------------------------------------------------------------
-00D0            780   ;        EFM8_ADC.c:168: void InitPinADC (unsigned char portno, unsigned char pinno)
-00D0            781   ;        -----------------------------------------
-00D0            782   ;         function InitPinADC
+00D0            776   ;Allocation info for local variables in function 'InitPinADC'
+00D0            777   ;------------------------------------------------------------
+00D0            778   ;pinno                     Allocated with name '_InitPinADC_PARM_2'
+00D0            779   ;portno                    Allocated to registers r2 
+00D0            780   ;mask                      Allocated to registers r3 
+00D0            781   ;------------------------------------------------------------
+00D0            782   ;        EFM8_ADC.c:168: void InitPinADC (unsigned char portno, unsigned char pinno)
 00D0            783   ;        -----------------------------------------
-00D0            784   _InitPinADC:
-00D0 AA82       785            mov     r2,dpl
-00D2            786   ;        EFM8_ADC.c:172: mask=1<<pinno;
-00D2 8548F0     787            mov     b,_InitPinADC_PARM_2
-00D5 05F0       788            inc     b
-00D7 7401       789            mov     a,#0x01
-00D9 8000       790            sjmp    L006013?
-00DB            791   L006011?:
-00DB 25E0       792            add     a,acc
-00DD            793   L006013?:
-00DD D5F0D8     794            djnz    b,L006011?
-00E0 FB         795            mov     r3,a
-00E1            796   ;        EFM8_ADC.c:174: SFRPAGE = 0x20;
-00E1 75A720     797            mov     _SFRPAGE,#0x20
-00E4            798   ;        EFM8_ADC.c:175: switch (portno)
-00E4 BA0018     799            cjne    r2,#0x00,L006014?
-00E7 8000       800            sjmp    L006001?
-00E9            801   L006014?:
-00E9 BA0198     802            cjne    r2,#0x01,L006015?
-00EC 8000       803            sjmp    L006002?
-00EE            804   L006015?:
-00EE            805   ;        EFM8_ADC.c:177: case 0:
-00EE BA0218     806            cjne    r2,#0x02,L006005?
-00F1 8000       807            sjmp    L006003?
-00F3            808   L006001?:
-00F3            809   ;        EFM8_ADC.c:178: P0MDIN &= (~mask); // Set pin as analog input
-00F3 EB         810            mov     a,r3
-00F4 F4         811            cpl     a
-00F5 FA         812            mov     r2,a
-00F6 52F1       813            anl     _P0MDIN,a
-00F8            814   ;        EFM8_ADC.c:179: P0SKIP |= mask; // Skip Crossbar decoding for this pin
-00F8 EB         815            mov     a,r3
-00F9 42D4       816            orl     _P0SKIP,a
-00FB            817   ;        EFM8_ADC.c:180: break;
-00FB            818   ;        EFM8_ADC.c:181: case 1:
-00FB 8000       819            sjmp    L006005?
-00FD            820   L006002?:
-00FD            821   ;        EFM8_ADC.c:182: P1MDIN &= (~mask); // Set pin as analog input
-00FD EB         822            mov     a,r3
-00FE F4         823            cpl     a
-00FF FA         824            mov     r2,a
-0100 52F2       825            anl     _P1MDIN,a
-0102            826   ;        EFM8_ADC.c:183: P1SKIP |= mask; // Skip Crossbar decoding for this pin
-0102 EB         827            mov     a,r3
-0103 42D5       828            orl     _P1SKIP,a
-0105            829   ;        EFM8_ADC.c:184: break;
-0105            830   ;        EFM8_ADC.c:185: case 2:
-0105 8000       831            sjmp    L006005?
-0107            832   L006003?:
-0107            833   ;        EFM8_ADC.c:186: P2MDIN &= (~mask); // Set pin as analog input
-0107 EB         834            mov     a,r3
-0108 F4         835            cpl     a
-0109 FA         836            mov     r2,a
-010A 52F3       837            anl     _P2MDIN,a
-010C            838   ;        EFM8_ADC.c:187: P2SKIP |= mask; // Skip Crossbar decoding for this pin
-010C EB         839            mov     a,r3
-010D 42CC       840            orl     _P2SKIP,a
-010F            841   ;        EFM8_ADC.c:191: }
-010F            842   L006005?:
-010F            843   ;        EFM8_ADC.c:192: SFRPAGE = 0x00;
-010F 75A700     844            mov     _SFRPAGE,#0x00
-0112 22         845            ret
-0113            846   ;------------------------------------------------------------
-0113            847   ;Allocation info for local variables in function 'ADC_at_Pin'
+00D0            784   ;         function InitPinADC
+00D0            785   ;        -----------------------------------------
+00D0            786   _InitPinADC:
+00D0 AA82       787            mov     r2,dpl
+00D2            788   ;        EFM8_ADC.c:172: mask=1<<pinno;
+00D2 8500F0     789            mov     b,_InitPinADC_PARM_2
+00D5 05F0       790            inc     b
+00D7 7401       791            mov     a,#0x01
+00D9 8000       792            sjmp    L006013?
+00DB            793   L006011?:
+00DB 25E0       794            add     a,acc
+00DD            795   L006013?:
+00DD D5F0D0     796            djnz    b,L006011?
+00E0 FB         797            mov     r3,a
+00E1            798   ;        EFM8_ADC.c:174: SFRPAGE = 0x20;
+00E1 75A720     799            mov     _SFRPAGE,#0x20
+00E4            800   ;        EFM8_ADC.c:175: switch (portno)
+00E4 BA0010     801            cjne    r2,#0x00,L006014?
+00E7 8000       802            sjmp    L006001?
+00E9            803   L006014?:
+00E9 BA0190     804            cjne    r2,#0x01,L006015?
+00EC 8000       805            sjmp    L006002?
+00EE            806   L006015?:
+00EE            807   ;        EFM8_ADC.c:177: case 0:
+00EE BA0210     808            cjne    r2,#0x02,L006005?
+00F1 8000       809            sjmp    L006003?
+00F3            810   L006001?:
+00F3            811   ;        EFM8_ADC.c:178: P0MDIN &= (~mask); // Set pin as analog input
+00F3 EB         812            mov     a,r3
+00F4 F4         813            cpl     a
+00F5 FA         814            mov     r2,a
+00F6 52F1       815            anl     _P0MDIN,a
+00F8            816   ;        EFM8_ADC.c:179: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+00F8 EB         817            mov     a,r3
+00F9 42D4       818            orl     _P0SKIP,a
+00FB            819   ;        EFM8_ADC.c:180: break;
+00FB            820   ;        EFM8_ADC.c:181: case 1:
+00FB 8000       821            sjmp    L006005?
+00FD            822   L006002?:
+00FD            823   ;        EFM8_ADC.c:182: P1MDIN &= (~mask); // Set pin as analog input
+00FD EB         824            mov     a,r3
+00FE F4         825            cpl     a
+00FF FA         826            mov     r2,a
+0100 52F2       827            anl     _P1MDIN,a
+0102            828   ;        EFM8_ADC.c:183: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+0102 EB         829            mov     a,r3
+0103 42D5       830            orl     _P1SKIP,a
+0105            831   ;        EFM8_ADC.c:184: break;
+0105            832   ;        EFM8_ADC.c:185: case 2:
+0105 8000       833            sjmp    L006005?
+0107            834   L006003?:
+0107            835   ;        EFM8_ADC.c:186: P2MDIN &= (~mask); // Set pin as analog input
+0107 EB         836            mov     a,r3
+0108 F4         837            cpl     a
+0109 FA         838            mov     r2,a
+010A 52F3       839            anl     _P2MDIN,a
+010C            840   ;        EFM8_ADC.c:187: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+010C EB         841            mov     a,r3
+010D 42CC       842            orl     _P2SKIP,a
+010F            843   ;        EFM8_ADC.c:191: }
+010F            844   L006005?:
+010F            845   ;        EFM8_ADC.c:192: SFRPAGE = 0x00;
+010F 75A700     846            mov     _SFRPAGE,#0x00
+0112 22         847            ret
 0113            848   ;------------------------------------------------------------
-0113            849   ;pin                       Allocated to registers 
+0113            849   ;Allocation info for local variables in function 'ADC_at_Pin'
 0113            850   ;------------------------------------------------------------
-0113            851   ;        EFM8_ADC.c:195: unsigned int ADC_at_Pin(unsigned char pin)
-0113            852   ;        -----------------------------------------
-0113            853   ;         function ADC_at_Pin
+0113            851   ;pin                       Allocated to registers 
+0113            852   ;------------------------------------------------------------
+0113            853   ;        EFM8_ADC.c:195: unsigned int ADC_at_Pin(unsigned char pin)
 0113            854   ;        -----------------------------------------
-0113            855   _ADC_at_Pin:
-0113 8582BB     856            mov     _ADC0MX,dpl
-0116            857   ;        EFM8_ADC.c:198: ADINT = 0;
-0116 C2ED       858            clr     _ADINT
-0118            859   ;        EFM8_ADC.c:199: ADBUSY = 1;     // Convert voltage at the pin
-0118 D2EC       860            setb    _ADBUSY
-011A            861   ;        EFM8_ADC.c:200: while (!ADINT); // Wait for conversion to complete
-011A            862   L007001?:
-011A 30ED98     863            jnb     _ADINT,L007001?
-011D            864   ;        EFM8_ADC.c:201: return (ADC0);
-011D 85BD82     865            mov     dpl,_ADC0
-0120 85BE83     866            mov     dph,(_ADC0 >> 8)
-0123 22         867            ret
-0124            868   ;------------------------------------------------------------
-0124            869   ;Allocation info for local variables in function 'Volts_at_Pin'
+0113            855   ;         function ADC_at_Pin
+0113            856   ;        -----------------------------------------
+0113            857   _ADC_at_Pin:
+0113 8582BB     858            mov     _ADC0MX,dpl
+0116            859   ;        EFM8_ADC.c:198: ADINT = 0;
+0116 C2ED       860            clr     _ADINT
+0118            861   ;        EFM8_ADC.c:199: ADBUSY = 1;     // Convert voltage at the pin
+0118 D2EC       862            setb    _ADBUSY
+011A            863   ;        EFM8_ADC.c:200: while (!ADINT); // Wait for conversion to complete
+011A            864   L007001?:
+011A 30ED90     865            jnb     _ADINT,L007001?
+011D            866   ;        EFM8_ADC.c:201: return (ADC0);
+011D 85BD82     867            mov     dpl,_ADC0
+0120 85BE83     868            mov     dph,(_ADC0 >> 8)
+0123 22         869            ret
 0124            870   ;------------------------------------------------------------
-0124            871   ;pin                       Allocated to registers r2 
+0124            871   ;Allocation info for local variables in function 'Volts_at_Pin'
 0124            872   ;------------------------------------------------------------
-0124            873   ;        EFM8_ADC.c:204: float Volts_at_Pin(unsigned char pin)
-0124            874   ;        -----------------------------------------
-0124            875   ;         function Volts_at_Pin
+0124            873   ;pin                       Allocated to registers r2 
+0124            874   ;------------------------------------------------------------
+0124            875   ;        EFM8_ADC.c:204: float Volts_at_Pin(unsigned char pin)
 0124            876   ;        -----------------------------------------
-0124            877   _Volts_at_Pin:
-0124            878   ;        EFM8_ADC.c:206: return ((ADC_at_Pin(pin)*VDD)/0b_0011_1111_1111_1111);
-0124 120000     879            lcall   _ADC_at_Pin
-0127 120000     880            lcall   ___uint2fs
-012A AA82       881            mov     r2,dpl
-012C AB83       882            mov     r3,dph
-012E ACF0       883            mov     r4,b
-0130 FD         884            mov     r5,a
-0131 C002       885            push    ar2
-0133 C003       886            push    ar3
-0135 C004       887            push    ar4
-0137 C005       888            push    ar5
-0139 906C8B     889            mov     dptr,#0x6C8B
-013C 75F053     890            mov     b,#0x53
-013F 7440       891            mov     a,#0x40
-0141 120000     892            lcall   ___fsmul
-0144 AA82       893            mov     r2,dpl
-0146 AB83       894            mov     r3,dph
-0148 ACF0       895            mov     r4,b
-014A FD         896            mov     r5,a
-014B E581       897            mov     a,sp
-014D 24FC       898            add     a,#0xfc
-014F F581       899            mov     sp,a
-0151 E4         900            clr     a
-0152 C0E0       901            push    acc
-0154 74FC       902            mov     a,#0xFC
-0156 C0E0       903            push    acc
-0158 747F       904            mov     a,#0x7F
-015A C0E0       905            push    acc
-015C 7446       906            mov     a,#0x46
-015E C0E0       907            push    acc
-0160 8A82       908            mov     dpl,r2
-0162 8B83       909            mov     dph,r3
-0164 8CF0       910            mov     b,r4
-0166 ED         911            mov     a,r5
-0167 120000     912            lcall   ___fsdiv
-016A AA82       913            mov     r2,dpl
-016C AB83       914            mov     r3,dph
-016E ACF0       915            mov     r4,b
-0170 FD         916            mov     r5,a
-0171 E581       917            mov     a,sp
-0173 24FC       918            add     a,#0xfc
-0175 F581       919            mov     sp,a
-0177 8A82       920            mov     dpl,r2
-0179 8B83       921            mov     dph,r3
-017B 8CF0       922            mov     b,r4
-017D ED         923            mov     a,r5
-017E 22         924            ret
-017F            925   ;------------------------------------------------------------
-017F            926   ;Allocation info for local variables in function 'Get_ADC'
+0124            877   ;         function Volts_at_Pin
+0124            878   ;        -----------------------------------------
+0124            879   _Volts_at_Pin:
+0124            880   ;        EFM8_ADC.c:206: return ((ADC_at_Pin(pin)*VDD)/0b_0011_1111_1111_1111);
+0124 120000     881            lcall   _ADC_at_Pin
+0127 120000     882            lcall   ___uint2fs
+012A AA82       883            mov     r2,dpl
+012C AB83       884            mov     r3,dph
+012E ACF0       885            mov     r4,b
+0130 FD         886            mov     r5,a
+0131 C002       887            push    ar2
+0133 C003       888            push    ar3
+0135 C004       889            push    ar4
+0137 C005       890            push    ar5
+0139 906C8B     891            mov     dptr,#0x6C8B
+013C 75F053     892            mov     b,#0x53
+013F 7440       893            mov     a,#0x40
+0141 120000     894            lcall   ___fsmul
+0144 AA82       895            mov     r2,dpl
+0146 AB83       896            mov     r3,dph
+0148 ACF0       897            mov     r4,b
+014A FD         898            mov     r5,a
+014B E581       899            mov     a,sp
+014D 24FC       900            add     a,#0xfc
+014F F581       901            mov     sp,a
+0151 E4         902            clr     a
+0152 C0E0       903            push    acc
+0154 74FC       904            mov     a,#0xFC
+0156 C0E0       905            push    acc
+0158 747F       906            mov     a,#0x7F
+015A C0E0       907            push    acc
+015C 7446       908            mov     a,#0x46
+015E C0E0       909            push    acc
+0160 8A82       910            mov     dpl,r2
+0162 8B83       911            mov     dph,r3
+0164 8CF0       912            mov     b,r4
+0166 ED         913            mov     a,r5
+0167 120000     914            lcall   ___fsdiv
+016A AA82       915            mov     r2,dpl
+016C AB83       916            mov     r3,dph
+016E ACF0       917            mov     r4,b
+0170 FD         918            mov     r5,a
+0171 E581       919            mov     a,sp
+0173 24FC       920            add     a,#0xfc
+0175 F581       921            mov     sp,a
+0177 8A82       922            mov     dpl,r2
+0179 8B83       923            mov     dph,r3
+017B 8CF0       924            mov     b,r4
+017D ED         925            mov     a,r5
+017E 22         926            ret
 017F            927   ;------------------------------------------------------------
-017F            928   ;------------------------------------------------------------
-017F            929   ;        EFM8_ADC.c:210: unsigned int Get_ADC (void)
-017F            930   ;        -----------------------------------------
-017F            931   ;         function Get_ADC
+017F            928   ;Allocation info for local variables in function 'Get_ADC'
+017F            929   ;------------------------------------------------------------
+017F            930   ;------------------------------------------------------------
+017F            931   ;        EFM8_ADC.c:210: unsigned int Get_ADC (void)
 017F            932   ;        -----------------------------------------
-017F            933   _Get_ADC:
-017F            934   ;        EFM8_ADC.c:212: ADINT = 0;
-017F C2ED       935            clr     _ADINT
-0181            936   ;        EFM8_ADC.c:213: ADBUSY = 1;
-0181 D2EC       937            setb    _ADBUSY
-0183            938   ;        EFM8_ADC.c:214: while (!ADINT); // Wait for conversion to complete
-0183            939   L009001?:
-0183 30EDD8     940            jnb     _ADINT,L009001?
-0186            941   ;        EFM8_ADC.c:215: return (ADC0);
-0186 85BD82     942            mov     dpl,_ADC0
-0189 85BE83     943            mov     dph,(_ADC0 >> 8)
-018C 22         944            ret
-018D            945   ;------------------------------------------------------------
-018D            946   ;Allocation info for local variables in function 'get_period'
+017F            933   ;         function Get_ADC
+017F            934   ;        -----------------------------------------
+017F            935   _Get_ADC:
+017F            936   ;        EFM8_ADC.c:212: ADINT = 0;
+017F C2ED       937            clr     _ADINT
+0181            938   ;        EFM8_ADC.c:213: ADBUSY = 1;
+0181 D2EC       939            setb    _ADBUSY
+0183            940   ;        EFM8_ADC.c:214: while (!ADINT); // Wait for conversion to complete
+0183            941   L009001?:
+0183 30EDD0     942            jnb     _ADINT,L009001?
+0186            943   ;        EFM8_ADC.c:215: return (ADC0);
+0186 85BD82     944            mov     dpl,_ADC0
+0189 85BE83     945            mov     dph,(_ADC0 >> 8)
+018C 22         946            ret
 018D            947   ;------------------------------------------------------------
-018D            948   ;half_period               Allocated to registers r2 r3 r4 r5 
-018D            949   ;overflow_count            Allocated to registers 
-018D            950   ;------------------------------------------------------------
-018D            951   ;        EFM8_ADC.c:218: float get_period(void)
-018D            952   ;        -----------------------------------------
-018D            953   ;         function get_period
+018D            948   ;Allocation info for local variables in function 'get_period'
+018D            949   ;------------------------------------------------------------
+018D            950   ;half_period               Allocated to registers r2 r3 r4 r5 
+018D            951   ;overflow_count            Allocated to registers 
+018D            952   ;------------------------------------------------------------
+018D            953   ;        EFM8_ADC.c:218: float get_period(void)
 018D            954   ;        -----------------------------------------
-018D            955   _get_period:
-018D            956   ;        EFM8_ADC.c:223: ADC0MX=QFP32_MUX_P2_4;
-018D 75BB11     957            mov     _ADC0MX,#0x11
-0190            958   ;        EFM8_ADC.c:224: ADINT = 0;
-0190 C2ED       959            clr     _ADINT
-0192            960   ;        EFM8_ADC.c:225: ADBUSY=1;
-0192 D2EC       961            setb    _ADBUSY
-0194            962   ;        EFM8_ADC.c:226: while (!ADINT); // Wait for conversion to complete
-0194            963   L010001?:
-0194 30ED18     964            jnb     _ADINT,L010001?
-0197            965   ;        EFM8_ADC.c:228: TL0=0;
-0197 758A00     966            mov     _TL0,#0x00
-019A            967   ;        EFM8_ADC.c:229: TH0=0;
-019A 758C00     968            mov     _TH0,#0x00
-019D            969   ;        EFM8_ADC.c:230: while (Get_ADC()!=0); // Wait for the signal to be zero
-019D            970   L010004?:
-019D 120000     971            lcall   _Get_ADC
-01A0 E582       972            mov     a,dpl
-01A2 8583F0     973            mov     b,dph
-01A5 45F0       974            orl     a,b
-01A7 7000       975            jnz     L010004?
-01A9            976   ;        EFM8_ADC.c:231: while (Get_ADC()==0); // Wait for the signal to be positive
-01A9            977   L010007?:
-01A9 120000     978            lcall   _Get_ADC
-01AC E582       979            mov     a,dpl
-01AE 8583F0     980            mov     b,dph
-01B1 45F0       981            orl     a,b
-01B3 6000       982            jz      L010007?
-01B5            983   ;        EFM8_ADC.c:232: TR0=1; // Start the timer 0
-01B5 D28C       984            setb    _TR0
-01B7            985   ;        EFM8_ADC.c:233: while (Get_ADC()!=0); // Wait for the signal to be zero again
-01B7            986   L010010?:
-01B7 120000     987            lcall   _Get_ADC
-01BA E582       988            mov     a,dpl
-01BC 8583F0     989            mov     b,dph
-01BF 45F0       990            orl     a,b
-01C1 7000       991            jnz     L010010?
-01C3            992   ;        EFM8_ADC.c:234: TR0=0; // Stop timer 0
-01C3 C28C       993            clr     _TR0
-01C5            994   ;        EFM8_ADC.c:236: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
-01C5 858C82     995            mov     dpl,_TH0
-01C8 120000     996            lcall   ___uchar2fs
-01CB AA82       997            mov     r2,dpl
-01CD AB83       998            mov     r3,dph
-01CF ACF0       999            mov     r4,b
-01D1 FD        1000            mov     r5,a
-01D2 C002      1001            push    ar2
-01D4 C003      1002            push    ar3
-01D6 C004      1003            push    ar4
-01D8 C005      1004            push    ar5
-01DA 900000    1005            mov     dptr,#0x0000
-01DD 75F080    1006            mov     b,#0x80
-01E0 7443      1007            mov     a,#0x43
-01E2 120000    1008            lcall   ___fsmul
-01E5 AA82      1009            mov     r2,dpl
-01E7 AB83      1010            mov     r3,dph
-01E9 ACF0      1011            mov     r4,b
-01EB FD        1012            mov     r5,a
-01EC E581      1013            mov     a,sp
-01EE 24FC      1014            add     a,#0xfc
-01F0 F581      1015            mov     sp,a
-01F2 AE8A      1016            mov     r6,_TL0
-01F4 7F00      1017            mov     r7,#0x00
-01F6 8E82      1018            mov     dpl,r6
-01F8 8F83      1019            mov     dph,r7
-01FA C002      1020            push    ar2
-01FC C003      1021            push    ar3
-01FE C004      1022            push    ar4
-0200 C005      1023            push    ar5
-0202 120000    1024            lcall   ___sint2fs
-0205 AE82      1025            mov     r6,dpl
-0207 AF83      1026            mov     r7,dph
-0209 A8F0      1027            mov     r0,b
-020B F9        1028            mov     r1,a
-020C D005      1029            pop     ar5
-020E D004      1030            pop     ar4
-0210 D003      1031            pop     ar3
-0212 D002      1032            pop     ar2
-0214 C006      1033            push    ar6
-0216 C007      1034            push    ar7
-0218 C000      1035            push    ar0
-021A C001      1036            push    ar1
-021C 8A82      1037            mov     dpl,r2
-021E 8B83      1038            mov     dph,r3
-0220 8CF0      1039            mov     b,r4
-0222 ED        1040            mov     a,r5
-0223 120000    1041            lcall   ___fsadd
-0226 AA82      1042            mov     r2,dpl
-0228 AB83      1043            mov     r3,dph
-022A ACF0      1044            mov     r4,b
-022C FD        1045            mov     r5,a
-022D E581      1046            mov     a,sp
-022F 24FC      1047            add     a,#0xfc
-0231 F581      1048            mov     sp,a
-0233           1049   ;        EFM8_ADC.c:239: return half_period;
-0233 8A82      1050            mov     dpl,r2
-0235 8B83      1051            mov     dph,r3
-0237 8CF0      1052            mov     b,r4
-0239 ED        1053            mov     a,r5
-023A 22        1054            ret
-023B           1055   ;------------------------------------------------------------
-023B           1056   ;Allocation info for local variables in function 'get_period_2'
+018D            955   ;         function get_period
+018D            956   ;        -----------------------------------------
+018D            957   _get_period:
+018D            958   ;        EFM8_ADC.c:223: ADC0MX=QFP32_MUX_P2_4;
+018D 75BB11     959            mov     _ADC0MX,#0x11
+0190            960   ;        EFM8_ADC.c:224: ADINT = 0;
+0190 C2ED       961            clr     _ADINT
+0192            962   ;        EFM8_ADC.c:225: ADBUSY=1;
+0192 D2EC       963            setb    _ADBUSY
+0194            964   ;        EFM8_ADC.c:226: while (!ADINT); // Wait for conversion to complete
+0194            965   L010001?:
+0194 30ED10     966            jnb     _ADINT,L010001?
+0197            967   ;        EFM8_ADC.c:228: TL0=0;
+0197 758A00     968            mov     _TL0,#0x00
+019A            969   ;        EFM8_ADC.c:229: TH0=0;
+019A 758C00     970            mov     _TH0,#0x00
+019D            971   ;        EFM8_ADC.c:230: while (Get_ADC()!=0); // Wait for the signal to be zero
+019D            972   L010004?:
+019D 120000     973            lcall   _Get_ADC
+01A0 E582       974            mov     a,dpl
+01A2 8583F0     975            mov     b,dph
+01A5 45F0       976            orl     a,b
+01A7 7000       977            jnz     L010004?
+01A9            978   ;        EFM8_ADC.c:231: while (Get_ADC()==0); // Wait for the signal to be positive
+01A9            979   L010007?:
+01A9 120000     980            lcall   _Get_ADC
+01AC E582       981            mov     a,dpl
+01AE 8583F0     982            mov     b,dph
+01B1 45F0       983            orl     a,b
+01B3 6000       984            jz      L010007?
+01B5            985   ;        EFM8_ADC.c:232: TR0=1; // Start the timer 0
+01B5 D28C       986            setb    _TR0
+01B7            987   ;        EFM8_ADC.c:233: while (Get_ADC()!=0); // Wait for the signal to be zero again
+01B7            988   L010010?:
+01B7 120000     989            lcall   _Get_ADC
+01BA E582       990            mov     a,dpl
+01BC 8583F0     991            mov     b,dph
+01BF 45F0       992            orl     a,b
+01C1 7000       993            jnz     L010010?
+01C3            994   ;        EFM8_ADC.c:234: TR0=0; // Stop timer 0
+01C3 C28C       995            clr     _TR0
+01C5            996   ;        EFM8_ADC.c:236: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
+01C5 858C82     997            mov     dpl,_TH0
+01C8 120000     998            lcall   ___uchar2fs
+01CB AA82       999            mov     r2,dpl
+01CD AB83      1000            mov     r3,dph
+01CF ACF0      1001            mov     r4,b
+01D1 FD        1002            mov     r5,a
+01D2 C002      1003            push    ar2
+01D4 C003      1004            push    ar3
+01D6 C004      1005            push    ar4
+01D8 C005      1006            push    ar5
+01DA 900000    1007            mov     dptr,#0x0000
+01DD 75F080    1008            mov     b,#0x80
+01E0 7443      1009            mov     a,#0x43
+01E2 120000    1010            lcall   ___fsmul
+01E5 AA82      1011            mov     r2,dpl
+01E7 AB83      1012            mov     r3,dph
+01E9 ACF0      1013            mov     r4,b
+01EB FD        1014            mov     r5,a
+01EC E581      1015            mov     a,sp
+01EE 24FC      1016            add     a,#0xfc
+01F0 F581      1017            mov     sp,a
+01F2 AE8A      1018            mov     r6,_TL0
+01F4 7F00      1019            mov     r7,#0x00
+01F6 8E82      1020            mov     dpl,r6
+01F8 8F83      1021            mov     dph,r7
+01FA C002      1022            push    ar2
+01FC C003      1023            push    ar3
+01FE C004      1024            push    ar4
+0200 C005      1025            push    ar5
+0202 120000    1026            lcall   ___sint2fs
+0205 AE82      1027            mov     r6,dpl
+0207 AF83      1028            mov     r7,dph
+0209 A8F0      1029            mov     r0,b
+020B F9        1030            mov     r1,a
+020C D005      1031            pop     ar5
+020E D004      1032            pop     ar4
+0210 D003      1033            pop     ar3
+0212 D002      1034            pop     ar2
+0214 C006      1035            push    ar6
+0216 C007      1036            push    ar7
+0218 C000      1037            push    ar0
+021A C001      1038            push    ar1
+021C 8A82      1039            mov     dpl,r2
+021E 8B83      1040            mov     dph,r3
+0220 8CF0      1041            mov     b,r4
+0222 ED        1042            mov     a,r5
+0223 120000    1043            lcall   ___fsadd
+0226 AA82      1044            mov     r2,dpl
+0228 AB83      1045            mov     r3,dph
+022A ACF0      1046            mov     r4,b
+022C FD        1047            mov     r5,a
+022D E581      1048            mov     a,sp
+022F 24FC      1049            add     a,#0xfc
+0231 F581      1050            mov     sp,a
+0233           1051   ;        EFM8_ADC.c:239: return half_period;
+0233 8A82      1052            mov     dpl,r2
+0235 8B83      1053            mov     dph,r3
+0237 8CF0      1054            mov     b,r4
+0239 ED        1055            mov     a,r5
+023A 22        1056            ret
 023B           1057   ;------------------------------------------------------------
-023B           1058   ;half_period               Allocated to registers r2 r3 r4 r5 
-023B           1059   ;overflow_count            Allocated to registers 
-023B           1060   ;------------------------------------------------------------
-023B           1061   ;        EFM8_ADC.c:242: float get_period_2(void)
-023B           1062   ;        -----------------------------------------
-023B           1063   ;         function get_period_2
+023B           1058   ;Allocation info for local variables in function 'get_period_2'
+023B           1059   ;------------------------------------------------------------
+023B           1060   ;half_period               Allocated to registers r2 r3 r4 r5 
+023B           1061   ;overflow_count            Allocated to registers 
+023B           1062   ;------------------------------------------------------------
+023B           1063   ;        EFM8_ADC.c:242: float get_period_2(void)
 023B           1064   ;        -----------------------------------------
-023B           1065   _get_period_2:
-023B           1066   ;        EFM8_ADC.c:247: ADC0MX=QFP32_MUX_P2_4;
-023B 75BB11    1067            mov     _ADC0MX,#0x11
-023E           1068   ;        EFM8_ADC.c:248: ADINT = 0;
-023E C2ED      1069            clr     _ADINT
-0240           1070   ;        EFM8_ADC.c:249: ADBUSY=1;
-0240 D2EC      1071            setb    _ADBUSY
-0242           1072   ;        EFM8_ADC.c:250: while (!ADINT); // Wait for conversion to complete
-0242           1073   L011001?:
-0242 30EDD8    1074            jnb     _ADINT,L011001?
-0245           1075   ;        EFM8_ADC.c:252: TL0=0;
-0245 758A00    1076            mov     _TL0,#0x00
-0248           1077   ;        EFM8_ADC.c:253: TH0=0;
-0248 758C00    1078            mov     _TH0,#0x00
-024B           1079   ;        EFM8_ADC.c:254: while (Get_ADC()!=0); // Wait for the signal to be zero
-024B           1080   L011004?:
-024B 120000    1081            lcall   _Get_ADC
-024E E582      1082            mov     a,dpl
-0250 8583F0    1083            mov     b,dph
-0253 45F0      1084            orl     a,b
-0255 7000      1085            jnz     L011004?
-0257           1086   ;        EFM8_ADC.c:255: while (Get_ADC()==0); // Wait for the signal to be positive
-0257           1087   L011007?:
-0257 120000    1088            lcall   _Get_ADC
-025A E582      1089            mov     a,dpl
-025C 8583F0    1090            mov     b,dph
-025F 45F0      1091            orl     a,b
-0261 6000      1092            jz      L011007?
-0263           1093   ;        EFM8_ADC.c:256: TR0=1; // Start the timer 0
-0263 D28C      1094            setb    _TR0
-0265           1095   ;        EFM8_ADC.c:257: ADC0MX=QFP32_MUX_P2_5;
-0265 75BB12    1096            mov     _ADC0MX,#0x12
-0268           1097   ;        EFM8_ADC.c:258: while (Get_ADC()!=0); // Wait for the signal to be zero again
-0268           1098   L011010?:
-0268 120000    1099            lcall   _Get_ADC
-026B E582      1100            mov     a,dpl
-026D 8583F0    1101            mov     b,dph
-0270 45F0      1102            orl     a,b
-0272 7000      1103            jnz     L011010?
-0274           1104   ;        EFM8_ADC.c:259: TR0=0; // Stop timer 0
-0274 C28C      1105            clr     _TR0
-0276           1106   ;        EFM8_ADC.c:261: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
-0276 858C82    1107            mov     dpl,_TH0
-0279 120000    1108            lcall   ___uchar2fs
-027C AA82      1109            mov     r2,dpl
-027E AB83      1110            mov     r3,dph
-0280 ACF0      1111            mov     r4,b
-0282 FD        1112            mov     r5,a
-0283 C002      1113            push    ar2
-0285 C003      1114            push    ar3
-0287 C004      1115            push    ar4
-0289 C005      1116            push    ar5
-028B 900000    1117            mov     dptr,#0x0000
-028E 75F080    1118            mov     b,#0x80
-0291 7443      1119            mov     a,#0x43
-0293 120000    1120            lcall   ___fsmul
-0296 AA82      1121            mov     r2,dpl
-0298 AB83      1122            mov     r3,dph
-029A ACF0      1123            mov     r4,b
-029C FD        1124            mov     r5,a
-029D E581      1125            mov     a,sp
-029F 24FC      1126            add     a,#0xfc
-02A1 F581      1127            mov     sp,a
-02A3 AE8A      1128            mov     r6,_TL0
-02A5 7F00      1129            mov     r7,#0x00
-02A7 8E82      1130            mov     dpl,r6
-02A9 8F83      1131            mov     dph,r7
-02AB C002      1132            push    ar2
-02AD C003      1133            push    ar3
-02AF C004      1134            push    ar4
-02B1 C005      1135            push    ar5
-02B3 120000    1136            lcall   ___sint2fs
-02B6 AE82      1137            mov     r6,dpl
-02B8 AF83      1138            mov     r7,dph
-02BA A8F0      1139            mov     r0,b
-02BC F9        1140            mov     r1,a
-02BD D005      1141            pop     ar5
-02BF D004      1142            pop     ar4
-02C1 D003      1143            pop     ar3
-02C3 D002      1144            pop     ar2
-02C5 C006      1145            push    ar6
-02C7 C007      1146            push    ar7
-02C9 C000      1147            push    ar0
-02CB C001      1148            push    ar1
-02CD 8A82      1149            mov     dpl,r2
-02CF 8B83      1150            mov     dph,r3
-02D1 8CF0      1151            mov     b,r4
-02D3 ED        1152            mov     a,r5
-02D4 120000    1153            lcall   ___fsadd
-02D7 AA82      1154            mov     r2,dpl
-02D9 AB83      1155            mov     r3,dph
-02DB ACF0      1156            mov     r4,b
-02DD FD        1157            mov     r5,a
-02DE E581      1158            mov     a,sp
-02E0 24FC      1159            add     a,#0xfc
-02E2 F581      1160            mov     sp,a
-02E4           1161   ;        EFM8_ADC.c:264: return half_period;
-02E4 8A82      1162            mov     dpl,r2
-02E6 8B83      1163            mov     dph,r3
-02E8 8CF0      1164            mov     b,r4
-02EA ED        1165            mov     a,r5
-02EB 22        1166            ret
-02EC           1167   ;------------------------------------------------------------
-02EC           1168   ;Allocation info for local variables in function 'LCD_pulse'
+023B           1065   ;         function get_period_2
+023B           1066   ;        -----------------------------------------
+023B           1067   _get_period_2:
+023B           1068   ;        EFM8_ADC.c:247: ADC0MX=QFP32_MUX_P2_4;
+023B 75BB11    1069            mov     _ADC0MX,#0x11
+023E           1070   ;        EFM8_ADC.c:248: ADINT = 0;
+023E C2ED      1071            clr     _ADINT
+0240           1072   ;        EFM8_ADC.c:249: ADBUSY=1;
+0240 D2EC      1073            setb    _ADBUSY
+0242           1074   ;        EFM8_ADC.c:250: while (!ADINT); // Wait for conversion to complete
+0242           1075   L011001?:
+0242 30EDD0    1076            jnb     _ADINT,L011001?
+0245           1077   ;        EFM8_ADC.c:252: TL0=0;
+0245 758A00    1078            mov     _TL0,#0x00
+0248           1079   ;        EFM8_ADC.c:253: TH0=0;
+0248 758C00    1080            mov     _TH0,#0x00
+024B           1081   ;        EFM8_ADC.c:254: while (Get_ADC()!=0); // Wait for the signal to be zero
+024B           1082   L011004?:
+024B 120000    1083            lcall   _Get_ADC
+024E E582      1084            mov     a,dpl
+0250 8583F0    1085            mov     b,dph
+0253 45F0      1086            orl     a,b
+0255 7000      1087            jnz     L011004?
+0257           1088   ;        EFM8_ADC.c:255: while (Get_ADC()==0); // Wait for the signal to be positive
+0257           1089   L011007?:
+0257 120000    1090            lcall   _Get_ADC
+025A E582      1091            mov     a,dpl
+025C 8583F0    1092            mov     b,dph
+025F 45F0      1093            orl     a,b
+0261 6000      1094            jz      L011007?
+0263           1095   ;        EFM8_ADC.c:256: TR0=1; // Start the timer 0
+0263 D28C      1096            setb    _TR0
+0265           1097   ;        EFM8_ADC.c:257: ADC0MX=QFP32_MUX_P2_5;
+0265 75BB12    1098            mov     _ADC0MX,#0x12
+0268           1099   ;        EFM8_ADC.c:258: while (Get_ADC()!=0); // Wait for the signal to be zero again
+0268           1100   L011010?:
+0268 120000    1101            lcall   _Get_ADC
+026B E582      1102            mov     a,dpl
+026D 8583F0    1103            mov     b,dph
+0270 45F0      1104            orl     a,b
+0272 7000      1105            jnz     L011010?
+0274           1106   ;        EFM8_ADC.c:259: TR0=0; // Stop timer 0
+0274 C28C      1107            clr     _TR0
+0276           1108   ;        EFM8_ADC.c:261: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
+0276 858C82    1109            mov     dpl,_TH0
+0279 120000    1110            lcall   ___uchar2fs
+027C AA82      1111            mov     r2,dpl
+027E AB83      1112            mov     r3,dph
+0280 ACF0      1113            mov     r4,b
+0282 FD        1114            mov     r5,a
+0283 C002      1115            push    ar2
+0285 C003      1116            push    ar3
+0287 C004      1117            push    ar4
+0289 C005      1118            push    ar5
+028B 900000    1119            mov     dptr,#0x0000
+028E 75F080    1120            mov     b,#0x80
+0291 7443      1121            mov     a,#0x43
+0293 120000    1122            lcall   ___fsmul
+0296 AA82      1123            mov     r2,dpl
+0298 AB83      1124            mov     r3,dph
+029A ACF0      1125            mov     r4,b
+029C FD        1126            mov     r5,a
+029D E581      1127            mov     a,sp
+029F 24FC      1128            add     a,#0xfc
+02A1 F581      1129            mov     sp,a
+02A3 AE8A      1130            mov     r6,_TL0
+02A5 7F00      1131            mov     r7,#0x00
+02A7 8E82      1132            mov     dpl,r6
+02A9 8F83      1133            mov     dph,r7
+02AB C002      1134            push    ar2
+02AD C003      1135            push    ar3
+02AF C004      1136            push    ar4
+02B1 C005      1137            push    ar5
+02B3 120000    1138            lcall   ___sint2fs
+02B6 AE82      1139            mov     r6,dpl
+02B8 AF83      1140            mov     r7,dph
+02BA A8F0      1141            mov     r0,b
+02BC F9        1142            mov     r1,a
+02BD D005      1143            pop     ar5
+02BF D004      1144            pop     ar4
+02C1 D003      1145            pop     ar3
+02C3 D002      1146            pop     ar2
+02C5 C006      1147            push    ar6
+02C7 C007      1148            push    ar7
+02C9 C000      1149            push    ar0
+02CB C001      1150            push    ar1
+02CD 8A82      1151            mov     dpl,r2
+02CF 8B83      1152            mov     dph,r3
+02D1 8CF0      1153            mov     b,r4
+02D3 ED        1154            mov     a,r5
+02D4 120000    1155            lcall   ___fsadd
+02D7 AA82      1156            mov     r2,dpl
+02D9 AB83      1157            mov     r3,dph
+02DB ACF0      1158            mov     r4,b
+02DD FD        1159            mov     r5,a
+02DE E581      1160            mov     a,sp
+02E0 24FC      1161            add     a,#0xfc
+02E2 F581      1162            mov     sp,a
+02E4           1163   ;        EFM8_ADC.c:264: return half_period;
+02E4 8A82      1164            mov     dpl,r2
+02E6 8B83      1165            mov     dph,r3
+02E8 8CF0      1166            mov     b,r4
+02EA ED        1167            mov     a,r5
+02EB 22        1168            ret
 02EC           1169   ;------------------------------------------------------------
-02EC           1170   ;------------------------------------------------------------
-02EC           1171   ;        EFM8_ADC.c:271: void LCD_pulse (void)
-02EC           1172   ;        -----------------------------------------
-02EC           1173   ;         function LCD_pulse
+02EC           1170   ;Allocation info for local variables in function 'LCD_pulse'
+02EC           1171   ;------------------------------------------------------------
+02EC           1172   ;------------------------------------------------------------
+02EC           1173   ;        EFM8_ADC.c:271: void LCD_pulse (void)
 02EC           1174   ;        -----------------------------------------
-02EC           1175   _LCD_pulse:
-02EC           1176   ;        EFM8_ADC.c:273: LCD_E=1;
-02EC D2A0      1177            setb    _P2_0
-02EE           1178   ;        EFM8_ADC.c:274: Timer3us(40);
-02EE 758228    1179            mov     dpl,#0x28
-02F1 120000    1180            lcall   _Timer3us
-02F4           1181   ;        EFM8_ADC.c:275: LCD_E=0;
-02F4 C2A0      1182            clr     _P2_0
-02F6 22        1183            ret
-02F7           1184   ;------------------------------------------------------------
-02F7           1185   ;Allocation info for local variables in function 'LCD_byte'
+02EC           1175   ;         function LCD_pulse
+02EC           1176   ;        -----------------------------------------
+02EC           1177   _LCD_pulse:
+02EC           1178   ;        EFM8_ADC.c:273: LCD_E=1;
+02EC D2A0      1179            setb    _P2_0
+02EE           1180   ;        EFM8_ADC.c:274: Timer3us(40);
+02EE 758228    1181            mov     dpl,#0x28
+02F1 120000    1182            lcall   _Timer3us
+02F4           1183   ;        EFM8_ADC.c:275: LCD_E=0;
+02F4 C2A0      1184            clr     _P2_0
+02F6 22        1185            ret
 02F7           1186   ;------------------------------------------------------------
-02F7           1187   ;x                         Allocated to registers r2 
+02F7           1187   ;Allocation info for local variables in function 'LCD_byte'
 02F7           1188   ;------------------------------------------------------------
-02F7           1189   ;        EFM8_ADC.c:278: void LCD_byte (unsigned char x)
-02F7           1190   ;        -----------------------------------------
-02F7           1191   ;         function LCD_byte
+02F7           1189   ;x                         Allocated to registers r2 
+02F7           1190   ;------------------------------------------------------------
+02F7           1191   ;        EFM8_ADC.c:278: void LCD_byte (unsigned char x)
 02F7           1192   ;        -----------------------------------------
-02F7           1193   _LCD_byte:
-02F7 AA82      1194            mov     r2,dpl
-02F9           1195   ;        EFM8_ADC.c:281: ACC=x; //Send high nible
-02F9 8AE0      1196            mov     _ACC,r2
-02FB           1197   ;        EFM8_ADC.c:282: LCD_D7=ACC_7;
-02FB A2E7      1198            mov     c,_ACC_7
-02FD 9290      1199            mov     _P1_0,c
-02FF           1200   ;        EFM8_ADC.c:283: LCD_D6=ACC_6;
-02FF A2E6      1201            mov     c,_ACC_6
-0301 9291      1202            mov     _P1_1,c
-0303           1203   ;        EFM8_ADC.c:284: LCD_D5=ACC_5;
-0303 A2E5      1204            mov     c,_ACC_5
-0305 9292      1205            mov     _P1_2,c
-0307           1206   ;        EFM8_ADC.c:285: LCD_D4=ACC_4;
-0307 A2E4      1207            mov     c,_ACC_4
-0309 9293      1208            mov     _P1_3,c
-030B           1209   ;        EFM8_ADC.c:286: LCD_pulse();
-030B C002      1210            push    ar2
-030D 120000    1211            lcall   _LCD_pulse
-0310           1212   ;        EFM8_ADC.c:287: Timer3us(40);
-0310 758228    1213            mov     dpl,#0x28
-0313 120000    1214            lcall   _Timer3us
-0316 D002      1215            pop     ar2
-0318           1216   ;        EFM8_ADC.c:288: ACC=x; //Send low nible
-0318 8AE0      1217            mov     _ACC,r2
-031A           1218   ;        EFM8_ADC.c:289: LCD_D7=ACC_3;
-031A A2E3      1219            mov     c,_ACC_3
-031C 9290      1220            mov     _P1_0,c
-031E           1221   ;        EFM8_ADC.c:290: LCD_D6=ACC_2;
-031E A2E2      1222            mov     c,_ACC_2
-0320 9291      1223            mov     _P1_1,c
-0322           1224   ;        EFM8_ADC.c:291: LCD_D5=ACC_1;
-0322 A2E1      1225            mov     c,_ACC_1
-0324 9292      1226            mov     _P1_2,c
-0326           1227   ;        EFM8_ADC.c:292: LCD_D4=ACC_0;
-0326 A2E0      1228            mov     c,_ACC_0
-0328 9293      1229            mov     _P1_3,c
-032A           1230   ;        EFM8_ADC.c:293: LCD_pulse();
-032A 020000    1231            ljmp    _LCD_pulse
-032D           1232   ;------------------------------------------------------------
-032D           1233   ;Allocation info for local variables in function 'WriteData'
+02F7           1193   ;         function LCD_byte
+02F7           1194   ;        -----------------------------------------
+02F7           1195   _LCD_byte:
+02F7 AA82      1196            mov     r2,dpl
+02F9           1197   ;        EFM8_ADC.c:281: ACC=x; //Send high nible
+02F9 8AE0      1198            mov     _ACC,r2
+02FB           1199   ;        EFM8_ADC.c:282: LCD_D7=ACC_7;
+02FB A2E7      1200            mov     c,_ACC_7
+02FD 9290      1201            mov     _P1_0,c
+02FF           1202   ;        EFM8_ADC.c:283: LCD_D6=ACC_6;
+02FF A2E6      1203            mov     c,_ACC_6
+0301 9291      1204            mov     _P1_1,c
+0303           1205   ;        EFM8_ADC.c:284: LCD_D5=ACC_5;
+0303 A2E5      1206            mov     c,_ACC_5
+0305 9292      1207            mov     _P1_2,c
+0307           1208   ;        EFM8_ADC.c:285: LCD_D4=ACC_4;
+0307 A2E4      1209            mov     c,_ACC_4
+0309 9293      1210            mov     _P1_3,c
+030B           1211   ;        EFM8_ADC.c:286: LCD_pulse();
+030B C002      1212            push    ar2
+030D 120000    1213            lcall   _LCD_pulse
+0310           1214   ;        EFM8_ADC.c:287: Timer3us(40);
+0310 758228    1215            mov     dpl,#0x28
+0313 120000    1216            lcall   _Timer3us
+0316 D002      1217            pop     ar2
+0318           1218   ;        EFM8_ADC.c:288: ACC=x; //Send low nible
+0318 8AE0      1219            mov     _ACC,r2
+031A           1220   ;        EFM8_ADC.c:289: LCD_D7=ACC_3;
+031A A2E3      1221            mov     c,_ACC_3
+031C 9290      1222            mov     _P1_0,c
+031E           1223   ;        EFM8_ADC.c:290: LCD_D6=ACC_2;
+031E A2E2      1224            mov     c,_ACC_2
+0320 9291      1225            mov     _P1_1,c
+0322           1226   ;        EFM8_ADC.c:291: LCD_D5=ACC_1;
+0322 A2E1      1227            mov     c,_ACC_1
+0324 9292      1228            mov     _P1_2,c
+0326           1229   ;        EFM8_ADC.c:292: LCD_D4=ACC_0;
+0326 A2E0      1230            mov     c,_ACC_0
+0328 9293      1231            mov     _P1_3,c
+032A           1232   ;        EFM8_ADC.c:293: LCD_pulse();
+032A 020000    1233            ljmp    _LCD_pulse
 032D           1234   ;------------------------------------------------------------
-032D           1235   ;x                         Allocated to registers r2 
+032D           1235   ;Allocation info for local variables in function 'WriteData'
 032D           1236   ;------------------------------------------------------------
-032D           1237   ;        EFM8_ADC.c:296: void WriteData (unsigned char x)
-032D           1238   ;        -----------------------------------------
-032D           1239   ;         function WriteData
+032D           1237   ;x                         Allocated to registers r2 
+032D           1238   ;------------------------------------------------------------
+032D           1239   ;        EFM8_ADC.c:296: void WriteData (unsigned char x)
 032D           1240   ;        -----------------------------------------
-032D           1241   _WriteData:
-032D AA82      1242            mov     r2,dpl
-032F           1243   ;        EFM8_ADC.c:298: LCD_RS=1;
-032F D297      1244            setb    _P1_7
-0331           1245   ;        EFM8_ADC.c:299: LCD_byte(x);
-0331 8A82      1246            mov     dpl,r2
-0333 120000    1247            lcall   _LCD_byte
-0336           1248   ;        EFM8_ADC.c:300: waitms(2);
-0336 900002    1249            mov     dptr,#0x0002
-0339 020000    1250            ljmp    _waitms
-033C           1251   ;------------------------------------------------------------
-033C           1252   ;Allocation info for local variables in function 'WriteCommand'
+032D           1241   ;         function WriteData
+032D           1242   ;        -----------------------------------------
+032D           1243   _WriteData:
+032D AA82      1244            mov     r2,dpl
+032F           1245   ;        EFM8_ADC.c:298: LCD_RS=1;
+032F D297      1246            setb    _P1_7
+0331           1247   ;        EFM8_ADC.c:299: LCD_byte(x);
+0331 8A82      1248            mov     dpl,r2
+0333 120000    1249            lcall   _LCD_byte
+0336           1250   ;        EFM8_ADC.c:300: waitms(2);
+0336 900002    1251            mov     dptr,#0x0002
+0339 020000    1252            ljmp    _waitms
 033C           1253   ;------------------------------------------------------------
-033C           1254   ;x                         Allocated to registers r2 
+033C           1254   ;Allocation info for local variables in function 'WriteCommand'
 033C           1255   ;------------------------------------------------------------
-033C           1256   ;        EFM8_ADC.c:303: void WriteCommand (unsigned char x)
-033C           1257   ;        -----------------------------------------
-033C           1258   ;         function WriteCommand
+033C           1256   ;x                         Allocated to registers r2 
+033C           1257   ;------------------------------------------------------------
+033C           1258   ;        EFM8_ADC.c:303: void WriteCommand (unsigned char x)
 033C           1259   ;        -----------------------------------------
-033C           1260   _WriteCommand:
-033C AA82      1261            mov     r2,dpl
-033E           1262   ;        EFM8_ADC.c:305: LCD_RS=0;
-033E C297      1263            clr     _P1_7
-0340           1264   ;        EFM8_ADC.c:306: LCD_byte(x);
-0340 8A82      1265            mov     dpl,r2
-0342 120000    1266            lcall   _LCD_byte
-0345           1267   ;        EFM8_ADC.c:307: waitms(5);
-0345 900005    1268            mov     dptr,#0x0005
-0348 020000    1269            ljmp    _waitms
-034B           1270   ;------------------------------------------------------------
-034B           1271   ;Allocation info for local variables in function 'LCD_4BIT'
+033C           1260   ;         function WriteCommand
+033C           1261   ;        -----------------------------------------
+033C           1262   _WriteCommand:
+033C AA82      1263            mov     r2,dpl
+033E           1264   ;        EFM8_ADC.c:305: LCD_RS=0;
+033E C297      1265            clr     _P1_7
+0340           1266   ;        EFM8_ADC.c:306: LCD_byte(x);
+0340 8A82      1267            mov     dpl,r2
+0342 120000    1268            lcall   _LCD_byte
+0345           1269   ;        EFM8_ADC.c:307: waitms(5);
+0345 900005    1270            mov     dptr,#0x0005
+0348 020000    1271            ljmp    _waitms
 034B           1272   ;------------------------------------------------------------
-034B           1273   ;------------------------------------------------------------
-034B           1274   ;        EFM8_ADC.c:310: void LCD_4BIT (void)
-034B           1275   ;        -----------------------------------------
-034B           1276   ;         function LCD_4BIT
+034B           1273   ;Allocation info for local variables in function 'LCD_4BIT'
+034B           1274   ;------------------------------------------------------------
+034B           1275   ;------------------------------------------------------------
+034B           1276   ;        EFM8_ADC.c:310: void LCD_4BIT (void)
 034B           1277   ;        -----------------------------------------
-034B           1278   _LCD_4BIT:
-034B           1279   ;        EFM8_ADC.c:312: LCD_E=0; // Resting state of LCD's enable is zero
-034B C2A0      1280            clr     _P2_0
-034D           1281   ;        EFM8_ADC.c:314: waitms(20);
-034D 900014    1282            mov     dptr,#0x0014
-0350 120000    1283            lcall   _waitms
-0353           1284   ;        EFM8_ADC.c:316: WriteCommand(0x33);
-0353 758233    1285            mov     dpl,#0x33
-0356 120000    1286            lcall   _WriteCommand
-0359           1287   ;        EFM8_ADC.c:317: WriteCommand(0x33);
-0359 758233    1288            mov     dpl,#0x33
-035C 120000    1289            lcall   _WriteCommand
-035F           1290   ;        EFM8_ADC.c:318: WriteCommand(0x32); // Change to 4-bit mode
-035F 758232    1291            mov     dpl,#0x32
-0362 120000    1292            lcall   _WriteCommand
-0365           1293   ;        EFM8_ADC.c:321: WriteCommand(0x28);
-0365 758228    1294            mov     dpl,#0x28
-0368 120000    1295            lcall   _WriteCommand
-036B           1296   ;        EFM8_ADC.c:322: WriteCommand(0x0c);
-036B 75820C    1297            mov     dpl,#0x0C
-036E 120000    1298            lcall   _WriteCommand
-0371           1299   ;        EFM8_ADC.c:323: WriteCommand(0x01); // Clear screen command (takes some time)
-0371 758201    1300            mov     dpl,#0x01
-0374 120000    1301            lcall   _WriteCommand
-0377           1302   ;        EFM8_ADC.c:324: waitms(20); // Wait for clear screen command to finsih.
-0377 900014    1303            mov     dptr,#0x0014
-037A 020000    1304            ljmp    _waitms
-037D           1305   ;------------------------------------------------------------
-037D           1306   ;Allocation info for local variables in function 'LCDprint'
+034B           1278   ;         function LCD_4BIT
+034B           1279   ;        -----------------------------------------
+034B           1280   _LCD_4BIT:
+034B           1281   ;        EFM8_ADC.c:312: LCD_E=0; // Resting state of LCD's enable is zero
+034B C2A0      1282            clr     _P2_0
+034D           1283   ;        EFM8_ADC.c:314: waitms(20);
+034D 900014    1284            mov     dptr,#0x0014
+0350 120000    1285            lcall   _waitms
+0353           1286   ;        EFM8_ADC.c:316: WriteCommand(0x33);
+0353 758233    1287            mov     dpl,#0x33
+0356 120000    1288            lcall   _WriteCommand
+0359           1289   ;        EFM8_ADC.c:317: WriteCommand(0x33);
+0359 758233    1290            mov     dpl,#0x33
+035C 120000    1291            lcall   _WriteCommand
+035F           1292   ;        EFM8_ADC.c:318: WriteCommand(0x32); // Change to 4-bit mode
+035F 758232    1293            mov     dpl,#0x32
+0362 120000    1294            lcall   _WriteCommand
+0365           1295   ;        EFM8_ADC.c:321: WriteCommand(0x28);
+0365 758228    1296            mov     dpl,#0x28
+0368 120000    1297            lcall   _WriteCommand
+036B           1298   ;        EFM8_ADC.c:322: WriteCommand(0x0c);
+036B 75820C    1299            mov     dpl,#0x0C
+036E 120000    1300            lcall   _WriteCommand
+0371           1301   ;        EFM8_ADC.c:323: WriteCommand(0x01); // Clear screen command (takes some time)
+0371 758201    1302            mov     dpl,#0x01
+0374 120000    1303            lcall   _WriteCommand
+0377           1304   ;        EFM8_ADC.c:324: waitms(20); // Wait for clear screen command to finsih.
+0377 900014    1305            mov     dptr,#0x0014
+037A 020000    1306            ljmp    _waitms
 037D           1307   ;------------------------------------------------------------
-037D           1308   ;line                      Allocated with name '_LCDprint_PARM_2'
-037D           1309   ;string                    Allocated to registers r2 r3 r4 
-037D           1310   ;j                         Allocated to registers r5 r6 
-037D           1311   ;------------------------------------------------------------
-037D           1312   ;        EFM8_ADC.c:327: void LCDprint(char * string, unsigned char line, bit clear)
-037D           1313   ;        -----------------------------------------
-037D           1314   ;         function LCDprint
+037D           1308   ;Allocation info for local variables in function 'LCDprint'
+037D           1309   ;------------------------------------------------------------
+037D           1310   ;line                      Allocated with name '_LCDprint_PARM_2'
+037D           1311   ;string                    Allocated to registers r2 r3 r4 
+037D           1312   ;j                         Allocated to registers r5 r6 
+037D           1313   ;------------------------------------------------------------
+037D           1314   ;        EFM8_ADC.c:327: void LCDprint(char * string, unsigned char line, bit clear)
 037D           1315   ;        -----------------------------------------
-037D           1316   _LCDprint:
-037D AA82      1317            mov     r2,dpl
-037F AB83      1318            mov     r3,dph
-0381 ACF0      1319            mov     r4,b
-0383           1320   ;        EFM8_ADC.c:331: WriteCommand(line==2?0xc0:0x80);
-0383 7402      1321            mov     a,#0x02
-0385 B5B8D8    1322            cjne    a,_LCDprint_PARM_2,L017013?
-0388 7DC0      1323            mov     r5,#0xC0
-038A 8000      1324            sjmp    L017014?
-038C           1325   L017013?:
-038C 7D80      1326            mov     r5,#0x80
-038E           1327   L017014?:
-038E 8D82      1328            mov     dpl,r5
-0390 C002      1329            push    ar2
-0392 C003      1330            push    ar3
-0394 C004      1331            push    ar4
-0396 120000    1332            lcall   _WriteCommand
-0399           1333   ;        EFM8_ADC.c:332: waitms(5);
-0399 900005    1334            mov     dptr,#0x0005
-039C 120000    1335            lcall   _waitms
-039F D004      1336            pop     ar4
-03A1 D003      1337            pop     ar3
-03A3 D002      1338            pop     ar2
-03A5           1339   ;        EFM8_ADC.c:333: for(j=0; string[j]!=0; j++)     WriteData(string[j]);// Write the message
-03A5 7D00      1340            mov     r5,#0x00
-03A7 7E00      1341            mov     r6,#0x00
-03A9           1342   L017003?:
-03A9 ED        1343            mov     a,r5
-03AA 2A        1344            add     a,r2
-03AB FF        1345            mov     r7,a
-03AC EE        1346            mov     a,r6
-03AD 3B        1347            addc    a,r3
-03AE F8        1348            mov     r0,a
-03AF 8C01      1349            mov     ar1,r4
-03B1 8F82      1350            mov     dpl,r7
-03B3 8883      1351            mov     dph,r0
-03B5 89F0      1352            mov     b,r1
-03B7 120000    1353            lcall   __gptrget
-03BA FF        1354            mov     r7,a
-03BB 6000      1355            jz      L017006?
-03BD 8F82      1356            mov     dpl,r7
-03BF C002      1357            push    ar2
-03C1 C003      1358            push    ar3
-03C3 C004      1359            push    ar4
-03C5 C005      1360            push    ar5
-03C7 C006      1361            push    ar6
-03C9 120000    1362            lcall   _WriteData
-03CC D006      1363            pop     ar6
-03CE D005      1364            pop     ar5
-03D0 D004      1365            pop     ar4
-03D2 D003      1366            pop     ar3
-03D4 D002      1367            pop     ar2
-03D6 0D        1368            inc     r5
-03D7 BD0058    1369            cjne    r5,#0x00,L017003?
-03DA 0E        1370            inc     r6
-03DB 8000      1371            sjmp    L017003?
-03DD           1372   L017006?:
-03DD           1373   ;        EFM8_ADC.c:334: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
-03DD 302818    1374            jnb     _LCDprint_PARM_3,L017011?
-03E0 8D02      1375            mov     ar2,r5
-03E2 8E03      1376            mov     ar3,r6
-03E4           1377   L017007?:
-03E4 C3        1378            clr     c
-03E5 EA        1379            mov     a,r2
-03E6 9410      1380            subb    a,#0x10
-03E8 EB        1381            mov     a,r3
-03E9 6480      1382            xrl     a,#0x80
-03EB 9480      1383            subb    a,#0x80
-03ED 5000      1384            jnc     L017011?
-03EF 758220    1385            mov     dpl,#0x20
-03F2 C002      1386            push    ar2
-03F4 C003      1387            push    ar3
-03F6 120000    1388            lcall   _WriteData
-03F9 D003      1389            pop     ar3
-03FB D002      1390            pop     ar2
-03FD 0A        1391            inc     r2
-03FE BA0058    1392            cjne    r2,#0x00,L017007?
-0401 0B        1393            inc     r3
-0402 8000      1394            sjmp    L017007?
-0404           1395   L017011?:
-0404 22        1396            ret
-0405           1397   ;------------------------------------------------------------
-0405           1398   ;Allocation info for local variables in function 'getsn'
+037D           1316   ;         function LCDprint
+037D           1317   ;        -----------------------------------------
+037D           1318   _LCDprint:
+037D AA82      1319            mov     r2,dpl
+037F AB83      1320            mov     r3,dph
+0381 ACF0      1321            mov     r4,b
+0383           1322   ;        EFM8_ADC.c:331: WriteCommand(line==2?0xc0:0x80);
+0383 7402      1323            mov     a,#0x02
+0385 B570D0    1324            cjne    a,_LCDprint_PARM_2,L017013?
+0388 7DC0      1325            mov     r5,#0xC0
+038A 8000      1326            sjmp    L017014?
+038C           1327   L017013?:
+038C 7D80      1328            mov     r5,#0x80
+038E           1329   L017014?:
+038E 8D82      1330            mov     dpl,r5
+0390 C002      1331            push    ar2
+0392 C003      1332            push    ar3
+0394 C004      1333            push    ar4
+0396 120000    1334            lcall   _WriteCommand
+0399           1335   ;        EFM8_ADC.c:332: waitms(5);
+0399 900005    1336            mov     dptr,#0x0005
+039C 120000    1337            lcall   _waitms
+039F D004      1338            pop     ar4
+03A1 D003      1339            pop     ar3
+03A3 D002      1340            pop     ar2
+03A5           1341   ;        EFM8_ADC.c:333: for(j=0; string[j]!=0; j++)     WriteData(string[j]);// Write the message
+03A5 7D00      1342            mov     r5,#0x00
+03A7 7E00      1343            mov     r6,#0x00
+03A9           1344   L017003?:
+03A9 ED        1345            mov     a,r5
+03AA 2A        1346            add     a,r2
+03AB FF        1347            mov     r7,a
+03AC EE        1348            mov     a,r6
+03AD 3B        1349            addc    a,r3
+03AE F8        1350            mov     r0,a
+03AF 8C01      1351            mov     ar1,r4
+03B1 8F82      1352            mov     dpl,r7
+03B3 8883      1353            mov     dph,r0
+03B5 89F0      1354            mov     b,r1
+03B7 120000    1355            lcall   __gptrget
+03BA FF        1356            mov     r7,a
+03BB 6000      1357            jz      L017006?
+03BD 8F82      1358            mov     dpl,r7
+03BF C002      1359            push    ar2
+03C1 C003      1360            push    ar3
+03C3 C004      1361            push    ar4
+03C5 C005      1362            push    ar5
+03C7 C006      1363            push    ar6
+03C9 120000    1364            lcall   _WriteData
+03CC D006      1365            pop     ar6
+03CE D005      1366            pop     ar5
+03D0 D004      1367            pop     ar4
+03D2 D003      1368            pop     ar3
+03D4 D002      1369            pop     ar2
+03D6 0D        1370            inc     r5
+03D7 BD0050    1371            cjne    r5,#0x00,L017003?
+03DA 0E        1372            inc     r6
+03DB 8000      1373            sjmp    L017003?
+03DD           1374   L017006?:
+03DD           1375   ;        EFM8_ADC.c:334: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
+03DD 30E010    1376            jnb     _LCDprint_PARM_3,L017011?
+03E0 8D02      1377            mov     ar2,r5
+03E2 8E03      1378            mov     ar3,r6
+03E4           1379   L017007?:
+03E4 C3        1380            clr     c
+03E5 EA        1381            mov     a,r2
+03E6 9410      1382            subb    a,#0x10
+03E8 EB        1383            mov     a,r3
+03E9 6480      1384            xrl     a,#0x80
+03EB 9480      1385            subb    a,#0x80
+03ED 5000      1386            jnc     L017011?
+03EF 758220    1387            mov     dpl,#0x20
+03F2 C002      1388            push    ar2
+03F4 C003      1389            push    ar3
+03F6 120000    1390            lcall   _WriteData
+03F9 D003      1391            pop     ar3
+03FB D002      1392            pop     ar2
+03FD 0A        1393            inc     r2
+03FE BA0050    1394            cjne    r2,#0x00,L017007?
+0401 0B        1395            inc     r3
+0402 8000      1396            sjmp    L017007?
+0404           1397   L017011?:
+0404 22        1398            ret
 0405           1399   ;------------------------------------------------------------
-0405           1400   ;len                       Allocated with name '_getsn_PARM_2'
-0405           1401   ;buff                      Allocated with name '_getsn_buff_1_76'
-0405           1402   ;j                         Allocated with name '_getsn_sloc0_1_0'
-0405           1403   ;c                         Allocated to registers r3 
-0405           1404   ;sloc0                     Allocated with name '_getsn_sloc0_1_0'
-0405           1405   ;------------------------------------------------------------
-0405           1406   ;        EFM8_ADC.c:337: int getsn (char * buff, int len)
-0405           1407   ;        -----------------------------------------
-0405           1408   ;         function getsn
+0405           1400   ;Allocation info for local variables in function 'getsn'
+0405           1401   ;------------------------------------------------------------
+0405           1402   ;len                       Allocated with name '_getsn_PARM_2'
+0405           1403   ;buff                      Allocated with name '_getsn_buff_1_76'
+0405           1404   ;j                         Allocated with name '_getsn_sloc0_1_0'
+0405           1405   ;c                         Allocated to registers r3 
+0405           1406   ;sloc0                     Allocated with name '_getsn_sloc0_1_0'
+0405           1407   ;------------------------------------------------------------
+0405           1408   ;        EFM8_ADC.c:337: int getsn (char * buff, int len)
 0405           1409   ;        -----------------------------------------
-0405           1410   _getsn:
-0405 8582C8    1411            mov     _getsn_buff_1_76,dpl
-0408 8583C9    1412            mov     (_getsn_buff_1_76 + 1),dph
-040B 85F0CA    1413            mov     (_getsn_buff_1_76 + 2),b
-040E           1414   ;        EFM8_ADC.c:342: for(j=0; j<(len-1); j++)
-040E E4        1415            clr     a
-040F F518      1416            mov     _getsn_sloc0_1_0,a
-0411 F519      1417            mov     (_getsn_sloc0_1_0 + 1),a
-0413 E568      1418            mov     a,_getsn_PARM_2
-0415 24FF      1419            add     a,#0xff
-0417 FF        1420            mov     r7,a
-0418 E569      1421            mov     a,(_getsn_PARM_2 + 1)
-041A 34FF      1422            addc    a,#0xff
-041C F8        1423            mov     r0,a
-041D 7900      1424            mov     r1,#0x00
-041F 7A00      1425            mov     r2,#0x00
-0421           1426   L018005?:
-0421 C3        1427            clr     c
-0422 E9        1428            mov     a,r1
-0423 9F        1429            subb    a,r7
-0424 EA        1430            mov     a,r2
-0425 6480      1431            xrl     a,#0x80
-0427 88F0      1432            mov     b,r0
-0429 63F080    1433            xrl     b,#0x80
-042C 95F0      1434            subb    a,b
-042E 5000      1435            jnc     L018008?
-0430           1436   ;        EFM8_ADC.c:344: c=getchar();
-0430 C002      1437            push    ar2
-0432 C007      1438            push    ar7
-0434 C000      1439            push    ar0
-0436 C001      1440            push    ar1
-0438 120000    1441            lcall   _getchar
-043B AB82      1442            mov     r3,dpl
-043D D001      1443            pop     ar1
-043F D000      1444            pop     ar0
-0441 D007      1445            pop     ar7
-0443 D002      1446            pop     ar2
-0445           1447   ;        EFM8_ADC.c:345: if ( (c=='\n') || (c=='\r') )
-0445 BB0A58    1448            cjne    r3,#0x0A,L018015?
-0448 8000      1449            sjmp    L018001?
-044A           1450   L018015?:
-044A BB0DD8    1451            cjne    r3,#0x0D,L018002?
-044D           1452   L018001?:
-044D           1453   ;        EFM8_ADC.c:347: buff[j]=0;
-044D E518      1454            mov     a,_getsn_sloc0_1_0
-044F 25C8      1455            add     a,_getsn_buff_1_76
-0451 FC        1456            mov     r4,a
-0452 E519      1457            mov     a,(_getsn_sloc0_1_0 + 1)
-0454 35C9      1458            addc    a,(_getsn_buff_1_76 + 1)
-0456 FD        1459            mov     r5,a
-0457 AECA      1460            mov     r6,(_getsn_buff_1_76 + 2)
-0459 8C82      1461            mov     dpl,r4
-045B 8D83      1462            mov     dph,r5
-045D 8EF0      1463            mov     b,r6
-045F E4        1464            clr     a
-0460 120000    1465            lcall   __gptrput
-0463           1466   ;        EFM8_ADC.c:348: return j;
-0463 851882    1467            mov     dpl,_getsn_sloc0_1_0
-0466 851983    1468            mov     dph,(_getsn_sloc0_1_0 + 1)
-0469 22        1469            ret
-046A           1470   L018002?:
-046A           1471   ;        EFM8_ADC.c:352: buff[j]=c;
-046A E9        1472            mov     a,r1
-046B 25C8      1473            add     a,_getsn_buff_1_76
-046D FC        1474            mov     r4,a
-046E EA        1475            mov     a,r2
-046F 35C9      1476            addc    a,(_getsn_buff_1_76 + 1)
-0471 FD        1477            mov     r5,a
-0472 AECA      1478            mov     r6,(_getsn_buff_1_76 + 2)
-0474 8C82      1479            mov     dpl,r4
-0476 8D83      1480            mov     dph,r5
-0478 8EF0      1481            mov     b,r6
-047A EB        1482            mov     a,r3
-047B 120000    1483            lcall   __gptrput
-047E           1484   ;        EFM8_ADC.c:342: for(j=0; j<(len-1); j++)
-047E 09        1485            inc     r1
-047F B90058    1486            cjne    r1,#0x00,L018018?
-0482 0A        1487            inc     r2
-0483           1488   L018018?:
-0483 8918      1489            mov     _getsn_sloc0_1_0,r1
-0485 8A19      1490            mov     (_getsn_sloc0_1_0 + 1),r2
-0487 8000      1491            sjmp    L018005?
-0489           1492   L018008?:
-0489           1493   ;        EFM8_ADC.c:355: buff[j]=0;
-0489 E518      1494            mov     a,_getsn_sloc0_1_0
-048B 25C8      1495            add     a,_getsn_buff_1_76
-048D FA        1496            mov     r2,a
-048E E519      1497            mov     a,(_getsn_sloc0_1_0 + 1)
-0490 35C9      1498            addc    a,(_getsn_buff_1_76 + 1)
-0492 FB        1499            mov     r3,a
-0493 ACCA      1500            mov     r4,(_getsn_buff_1_76 + 2)
-0495 8A82      1501            mov     dpl,r2
-0497 8B83      1502            mov     dph,r3
-0499 8CF0      1503            mov     b,r4
-049B E4        1504            clr     a
-049C 120000    1505            lcall   __gptrput
-049F           1506   ;        EFM8_ADC.c:356: return len;
-049F 856882    1507            mov     dpl,_getsn_PARM_2
-04A2 856983    1508            mov     dph,(_getsn_PARM_2 + 1)
-04A5 22        1509            ret
-04A6           1510   ;------------------------------------------------------------
-04A6           1511   ;Allocation info for local variables in function 'main'
+0405           1410   ;         function getsn
+0405           1411   ;        -----------------------------------------
+0405           1412   _getsn:
+0405 858280    1413            mov     _getsn_buff_1_76,dpl
+0408 858381    1414            mov     (_getsn_buff_1_76 + 1),dph
+040B 85F082    1415            mov     (_getsn_buff_1_76 + 2),b
+040E           1416   ;        EFM8_ADC.c:342: for(j=0; j<(len-1); j++)
+040E E4        1417            clr     a
+040F F5D0      1418            mov     _getsn_sloc0_1_0,a
+0411 F5D1      1419            mov     (_getsn_sloc0_1_0 + 1),a
+0413 E520      1420            mov     a,_getsn_PARM_2
+0415 24FF      1421            add     a,#0xff
+0417 FF        1422            mov     r7,a
+0418 E521      1423            mov     a,(_getsn_PARM_2 + 1)
+041A 34FF      1424            addc    a,#0xff
+041C F8        1425            mov     r0,a
+041D 7900      1426            mov     r1,#0x00
+041F 7A00      1427            mov     r2,#0x00
+0421           1428   L018005?:
+0421 C3        1429            clr     c
+0422 E9        1430            mov     a,r1
+0423 9F        1431            subb    a,r7
+0424 EA        1432            mov     a,r2
+0425 6480      1433            xrl     a,#0x80
+0427 88F0      1434            mov     b,r0
+0429 63F080    1435            xrl     b,#0x80
+042C 95F0      1436            subb    a,b
+042E 5000      1437            jnc     L018008?
+0430           1438   ;        EFM8_ADC.c:344: c=getchar();
+0430 C002      1439            push    ar2
+0432 C007      1440            push    ar7
+0434 C000      1441            push    ar0
+0436 C001      1442            push    ar1
+0438 120000    1443            lcall   _getchar
+043B AB82      1444            mov     r3,dpl
+043D D001      1445            pop     ar1
+043F D000      1446            pop     ar0
+0441 D007      1447            pop     ar7
+0443 D002      1448            pop     ar2
+0445           1449   ;        EFM8_ADC.c:345: if ( (c=='\n') || (c=='\r') )
+0445 BB0A50    1450            cjne    r3,#0x0A,L018015?
+0448 8000      1451            sjmp    L018001?
+044A           1452   L018015?:
+044A BB0DD0    1453            cjne    r3,#0x0D,L018002?
+044D           1454   L018001?:
+044D           1455   ;        EFM8_ADC.c:347: buff[j]=0;
+044D E5D0      1456            mov     a,_getsn_sloc0_1_0
+044F 2580      1457            add     a,_getsn_buff_1_76
+0451 FC        1458            mov     r4,a
+0452 E5D1      1459            mov     a,(_getsn_sloc0_1_0 + 1)
+0454 3581      1460            addc    a,(_getsn_buff_1_76 + 1)
+0456 FD        1461            mov     r5,a
+0457 AE82      1462            mov     r6,(_getsn_buff_1_76 + 2)
+0459 8C82      1463            mov     dpl,r4
+045B 8D83      1464            mov     dph,r5
+045D 8EF0      1465            mov     b,r6
+045F E4        1466            clr     a
+0460 120000    1467            lcall   __gptrput
+0463           1468   ;        EFM8_ADC.c:348: return j;
+0463 85D082    1469            mov     dpl,_getsn_sloc0_1_0
+0466 85D183    1470            mov     dph,(_getsn_sloc0_1_0 + 1)
+0469 22        1471            ret
+046A           1472   L018002?:
+046A           1473   ;        EFM8_ADC.c:352: buff[j]=c;
+046A E9        1474            mov     a,r1
+046B 2580      1475            add     a,_getsn_buff_1_76
+046D FC        1476            mov     r4,a
+046E EA        1477            mov     a,r2
+046F 3581      1478            addc    a,(_getsn_buff_1_76 + 1)
+0471 FD        1479            mov     r5,a
+0472 AE82      1480            mov     r6,(_getsn_buff_1_76 + 2)
+0474 8C82      1481            mov     dpl,r4
+0476 8D83      1482            mov     dph,r5
+0478 8EF0      1483            mov     b,r6
+047A EB        1484            mov     a,r3
+047B 120000    1485            lcall   __gptrput
+047E           1486   ;        EFM8_ADC.c:342: for(j=0; j<(len-1); j++)
+047E 09        1487            inc     r1
+047F B90050    1488            cjne    r1,#0x00,L018018?
+0482 0A        1489            inc     r2
+0483           1490   L018018?:
+0483 89D0      1491            mov     _getsn_sloc0_1_0,r1
+0485 8AD1      1492            mov     (_getsn_sloc0_1_0 + 1),r2
+0487 8000      1493            sjmp    L018005?
+0489           1494   L018008?:
+0489           1495   ;        EFM8_ADC.c:355: buff[j]=0;
+0489 E5D0      1496            mov     a,_getsn_sloc0_1_0
+048B 2580      1497            add     a,_getsn_buff_1_76
+048D FA        1498            mov     r2,a
+048E E5D1      1499            mov     a,(_getsn_sloc0_1_0 + 1)
+0490 3581      1500            addc    a,(_getsn_buff_1_76 + 1)
+0492 FB        1501            mov     r3,a
+0493 AC82      1502            mov     r4,(_getsn_buff_1_76 + 2)
+0495 8A82      1503            mov     dpl,r2
+0497 8B83      1504            mov     dph,r3
+0499 8CF0      1505            mov     b,r4
+049B E4        1506            clr     a
+049C 120000    1507            lcall   __gptrput
+049F           1508   ;        EFM8_ADC.c:356: return len;
+049F 852082    1509            mov     dpl,_getsn_PARM_2
+04A2 852183    1510            mov     dph,(_getsn_PARM_2 + 1)
+04A5 22        1511            ret
 04A6           1512   ;------------------------------------------------------------
-04A6           1513   ;i                         Allocated with name '_main_i_1_82'
-04A6           1514   ;hello                     Allocated with name '_main_hello_1_82'
-04A6           1515   ;hello2                    Allocated to registers r0 r1 r4 r5 
-04A6           1516   ;peak_voltage_reference    Allocated with name '_main_peak_voltage_reference_1_82'
-04A6           1517   ;peak_voltage_other        Allocated with name '_main_peak_voltage_other_1_82'
-04A6           1518   ;y                         Allocated to registers r2 r3 r4 r5 
-04A6           1519   ;first_line                Allocated with name '_main_first_line_1_82'
-04A6           1520   ;second_line               Allocated with name '_main_second_line_1_82'
-04A6           1521   ;sloc0                     Allocated with name '_main_sloc0_1_0'
-04A6           1522   ;p                         Allocated with name '_main_p_1_82'
-04A6           1523   ;vt                        Allocated with name '_main_vt_1_82'
-04A6           1524   ;per                       Allocated with name '_main_per_1_82'
-04A6           1525   ;------------------------------------------------------------
-04A6           1526   ;        EFM8_ADC.c:359: void main (void)
-04A6           1527   ;        -----------------------------------------
-04A6           1528   ;         function main
-04A6           1529   ;        -----------------------------------------
-04A6           1530   _main:
-04A6           1531   ;        EFM8_ADC.c:375: LCD_4BIT();
-04A6 120000    1532            lcall   _LCD_4BIT
-04A9           1533   ;        EFM8_ADC.c:377: waitms(500); // Give PuTTy a chance to start before sending
-04A9 9001F4    1534            mov     dptr,#0x01F4
-04AC 120000    1535            lcall   _waitms
-04AF           1536   ;        EFM8_ADC.c:378: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-04AF 7498      1537            mov     a,#__str_0
-04B1 C0E0      1538            push    acc
-04B3 74C7      1539            mov     a,#(__str_0 >> 8)
-04B5 C0E0      1540            push    acc
-04B7 7480      1541            mov     a,#0x80
-04B9 C0E0      1542            push    acc
-04BB 120000    1543            lcall   _printf
-04BE 1581      1544            dec     sp
-04C0 1581      1545            dec     sp
-04C2 1581      1546            dec     sp
-04C4           1547   ;        EFM8_ADC.c:383: __FILE__, __DATE__, __TIME__);
-04C4           1548   ;        EFM8_ADC.c:382: "Compiled: %s, %s\n\n",
-04C4 7418      1549            mov     a,#__str_4
-04C6 C0E0      1550            push    acc
-04C8 74C8      1551            mov     a,#(__str_4 >> 8)
-04CA C0E0      1552            push    acc
-04CC 7480      1553            mov     a,#0x80
-04CE C0E0      1554            push    acc
-04D0 7458      1555            mov     a,#__str_3
-04D2 C0E0      1556            push    acc
-04D4 74C8      1557            mov     a,#(__str_3 >> 8)
-04D6 C0E0      1558            push    acc
-04D8 7480      1559            mov     a,#0x80
-04DA C0E0      1560            push    acc
-04DC 7498      1561            mov     a,#__str_2
-04DE C0E0      1562            push    acc
-04E0 74C8      1563            mov     a,#(__str_2 >> 8)
-04E2 C0E0      1564            push    acc
-04E4 7480      1565            mov     a,#0x80
-04E6 C0E0      1566            push    acc
-04E8 74D8      1567            mov     a,#__str_1
-04EA C0E0      1568            push    acc
-04EC 74C8      1569            mov     a,#(__str_1 >> 8)
-04EE C0E0      1570            push    acc
-04F0 7480      1571            mov     a,#0x80
-04F2 C0E0      1572            push    acc
-04F4 120000    1573            lcall   _printf
-04F7 E581      1574            mov     a,sp
-04F9 24F4      1575            add     a,#0xf4
-04FB F581      1576            mov     sp,a
-04FD           1577   ;        EFM8_ADC.c:385: InitPinADC(2, 4); // Configure P2.4 as analog input
-04FD 754804    1578            mov     _InitPinADC_PARM_2,#0x04
-0500 758202    1579            mov     dpl,#0x02
-0503 120000    1580            lcall   _InitPinADC
-0506           1581   ;        EFM8_ADC.c:386: InitPinADC(2, 5); // Configure P2.5 as analog input
-0506 754805    1582            mov     _InitPinADC_PARM_2,#0x05
-0509 758202    1583            mov     dpl,#0x02
-050C 120000    1584            lcall   _InitPinADC
-050F           1585   ;        EFM8_ADC.c:387: InitADC();
-050F 120000    1586            lcall   _InitADC
-0512           1587   ;        EFM8_ADC.c:390: for(i = 0; i < 100; i++)
-0512           1588   L019021?:
-0512 E4        1589            clr     a
-0513 F558      1590            mov     _main_i_1_82,a
-0515 F559      1591            mov     (_main_i_1_82 + 1),a
-0517           1592   L019010?:
-0517 C3        1593            clr     c
-0518 E558      1594            mov     a,_main_i_1_82
-051A 9464      1595            subb    a,#0x64
-051C E559      1596            mov     a,(_main_i_1_82 + 1)
-051E 6480      1597            xrl     a,#0x80
-0520 9480      1598            subb    a,#0x80
-0522 5000      1599            jnc     L019021?
-0524           1600   ;        EFM8_ADC.c:397: hello = get_period();
-0524 120000    1601            lcall   _get_period
-0527 8582A8    1602            mov     _main_hello_1_82,dpl
-052A 8583A9    1603            mov     (_main_hello_1_82 + 1),dph
-052D 85F0AA    1604            mov     (_main_hello_1_82 + 2),b
-0530 F5AB      1605            mov     (_main_hello_1_82 + 3),a
-0532           1606   ;        EFM8_ADC.c:398: hello = hello*2*12*1000/SYSCLK;
-0532 C0A8      1607            push    _main_hello_1_82
-0534 C0A9      1608            push    (_main_hello_1_82 + 1)
-0536 C0AA      1609            push    (_main_hello_1_82 + 2)
-0538 C0AB      1610            push    (_main_hello_1_82 + 3)
-053A 908000    1611            mov     dptr,#0x8000
-053D 75F0BB    1612            mov     b,#0xBB
-0540 7446      1613            mov     a,#0x46
-0542 120000    1614            lcall   ___fsmul
-0545 A882      1615            mov     r0,dpl
-0547 A983      1616            mov     r1,dph
-0549 AAF0      1617            mov     r2,b
-054B FB        1618            mov     r3,a
-054C E581      1619            mov     a,sp
-054E 24FC      1620            add     a,#0xfc
-0550 F581      1621            mov     sp,a
-0552 7440      1622            mov     a,#0x40
-0554 C0E0      1623            push    acc
-0556 7454      1624            mov     a,#0x54
-0558 C0E0      1625            push    acc
-055A 7489      1626            mov     a,#0x89
-055C C0E0      1627            push    acc
-055E 744C      1628            mov     a,#0x4C
-0560 C0E0      1629            push    acc
-0562 8882      1630            mov     dpl,r0
-0564 8983      1631            mov     dph,r1
-0566 8AF0      1632            mov     b,r2
-0568 EB        1633            mov     a,r3
-0569 120000    1634            lcall   ___fsdiv
-056C 8582A8    1635            mov     _main_hello_1_82,dpl
-056F 8583A9    1636            mov     (_main_hello_1_82 + 1),dph
-0572 85F0AA    1637            mov     (_main_hello_1_82 + 2),b
-0575 F5AB      1638            mov     (_main_hello_1_82 + 3),a
-0577 E581      1639            mov     a,sp
-0579 24FC      1640            add     a,#0xfc
-057B F581      1641            mov     sp,a
-057D           1642   ;        EFM8_ADC.c:399: per[i%3] = hello;
-057D 750003    1643            mov     __modsint_PARM_2,#0x03
-0580 E4        1644            clr     a
-0581 F501      1645            mov     (__modsint_PARM_2 + 1),a
-0583 855882    1646            mov     dpl,_main_i_1_82
-0586 855983    1647            mov     dph,(_main_i_1_82 + 1)
-0589 120000    1648            lcall   __modsint
-058C AA82      1649            mov     r2,dpl
-058E E583      1650            mov     a,dph
-0590 CA        1651            xch     a,r2
-0591 25E0      1652            add     a,acc
-0593 CA        1653            xch     a,r2
-0594 33        1654            rlc     a
-0595 CA        1655            xch     a,r2
-0596 25E0      1656            add     a,acc
-0598 CA        1657            xch     a,r2
-0599 33        1658            rlc     a
-059A FB        1659            mov     r3,a
-059B EA        1660            mov     a,r2
-059C 2498      1661            add     a,#_main_per_1_82
-059E F582      1662            mov     dpl,a
-05A0 EB        1663            mov     a,r3
-05A1 34B9      1664            addc    a,#(_main_per_1_82 >> 8)
-05A3 F583      1665            mov     dph,a
-05A5 E5A8      1666            mov     a,_main_hello_1_82
-05A7 F0        1667            movx    @dptr,a
-05A8 A3        1668            inc     dptr
-05A9 E5A9      1669            mov     a,(_main_hello_1_82 + 1)
-05AB F0        1670            movx    @dptr,a
-05AC A3        1671            inc     dptr
-05AD E5AA      1672            mov     a,(_main_hello_1_82 + 2)
-05AF F0        1673            movx    @dptr,a
-05B0 A3        1674            inc     dptr
-05B1 E5AB      1675            mov     a,(_main_hello_1_82 + 3)
-05B3 F0        1676            movx    @dptr,a
-05B4           1677   ;        EFM8_ADC.c:400: printf("Period: %f\r", hello);
-05B4 C0A8      1678            push    _main_hello_1_82
-05B6 C0A9      1679            push    (_main_hello_1_82 + 1)
-05B8 C0AA      1680            push    (_main_hello_1_82 + 2)
-05BA C0AB      1681            push    (_main_hello_1_82 + 3)
-05BC 7428      1682            mov     a,#__str_5
-05BE C0E0      1683            push    acc
-05C0 74CA      1684            mov     a,#(__str_5 >> 8)
-05C2 C0E0      1685            push    acc
-05C4 7480      1686            mov     a,#0x80
-05C6 C0E0      1687            push    acc
-05C8 120000    1688            lcall   _printf
-05CB E581      1689            mov     a,sp
-05CD 24F9      1690            add     a,#0xf9
-05CF F581      1691            mov     sp,a
-05D1           1692   ;        EFM8_ADC.c:404: while (Get_ADC()!=0); // Wait for the signal to be zero
-05D1           1693   L019001?:
-05D1 120000    1694            lcall   _Get_ADC
-05D4 E582      1695            mov     a,dpl
-05D6 8583F0    1696            mov     b,dph
-05D9 45F0      1697            orl     a,b
-05DB 7000      1698            jnz     L019001?
-05DD           1699   ;        EFM8_ADC.c:405: while (Get_ADC()==0); // Wait for the signal to be zero
-05DD           1700   L019004?:
-05DD 120000    1701            lcall   _Get_ADC
-05E0 E582      1702            mov     a,dpl
-05E2 8583F0    1703            mov     b,dph
-05E5 45F0      1704            orl     a,b
-05E7 6000      1705            jz      L019004?
-05E9           1706   ;        EFM8_ADC.c:421: waitms(hello/6.0);
-05E9 E4        1707            clr     a
-05EA C0E0      1708            push    acc
-05EC C0E0      1709            push    acc
-05EE 74C0      1710            mov     a,#0xC0
-05F0 C0E0      1711            push    acc
-05F2 7440      1712            mov     a,#0x40
-05F4 C0E0      1713            push    acc
-05F6 85A882    1714            mov     dpl,_main_hello_1_82
-05F9 85A983    1715            mov     dph,(_main_hello_1_82 + 1)
-05FC 85AAF0    1716            mov     b,(_main_hello_1_82 + 2)
-05FF E5AB      1717            mov     a,(_main_hello_1_82 + 3)
-0601 120000    1718            lcall   ___fsdiv
-0604 AA82      1719            mov     r2,dpl
-0606 AB83      1720            mov     r3,dph
-0608 A8F0      1721            mov     r0,b
-060A F9        1722            mov     r1,a
-060B E581      1723            mov     a,sp
-060D 24FC      1724            add     a,#0xfc
-060F F581      1725            mov     sp,a
-0611 8A82      1726            mov     dpl,r2
-0613 8B83      1727            mov     dph,r3
-0615 88F0      1728            mov     b,r0
-0617 E9        1729            mov     a,r1
-0618 120000    1730            lcall   ___fs2uint
-061B 120000    1731            lcall   _waitms
-061E           1732   ;        EFM8_ADC.c:422: P2_1=1;
-061E D2A1      1733            setb    _P2_1
-0620           1734   ;        EFM8_ADC.c:423: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
-0620 758212    1735            mov     dpl,#0x12
-0623 120000    1736            lcall   _Volts_at_Pin
-0626 8582F8    1737            mov     _main_peak_voltage_other_1_82,dpl
-0629 8583F9    1738            mov     (_main_peak_voltage_other_1_82 + 1),dph
-062C 85F0FA    1739            mov     (_main_peak_voltage_other_1_82 + 2),b
-062F F5FB      1740            mov     (_main_peak_voltage_other_1_82 + 3),a
-0631           1741   ;        EFM8_ADC.c:424: P2_1=0;
-0631 C2A1      1742            clr     _P2_1
-0633           1743   ;        EFM8_ADC.c:425: printf("Peak Voltage Other: %f\r", peak_voltage_other);
-0633 C0F8      1744            push    _main_peak_voltage_other_1_82
-0635 C0F9      1745            push    (_main_peak_voltage_other_1_82 + 1)
-0637 C0FA      1746            push    (_main_peak_voltage_other_1_82 + 2)
-0639 C0FB      1747            push    (_main_peak_voltage_other_1_82 + 3)
-063B 7428      1748            mov     a,#__str_6
-063D C0E0      1749            push    acc
-063F 74CB      1750            mov     a,#(__str_6 >> 8)
-0641 C0E0      1751            push    acc
-0643 7480      1752            mov     a,#0x80
-0645 C0E0      1753            push    acc
-0647 120000    1754            lcall   _printf
-064A E581      1755            mov     a,sp
-064C 24F9      1756            add     a,#0xf9
-064E F581      1757            mov     sp,a
-0650           1758   ;        EFM8_ADC.c:426: vt[i%3] = peak_voltage_other;
-0650 750003    1759            mov     __modsint_PARM_2,#0x03
-0653 E4        1760            clr     a
-0654 F501      1761            mov     (__modsint_PARM_2 + 1),a
-0656 855882    1762            mov     dpl,_main_i_1_82
-0659 855983    1763            mov     dph,(_main_i_1_82 + 1)
-065C 120000    1764            lcall   __modsint
-065F AA82      1765            mov     r2,dpl
-0661 AB83      1766            mov     r3,dph
-0663 8AD8      1767            mov     _main_sloc0_1_0,r2
-0665 EB        1768            mov     a,r3
-0666 C5D8      1769            xch     a,_main_sloc0_1_0
-0668 25E0      1770            add     a,acc
-066A C5D8      1771            xch     a,_main_sloc0_1_0
-066C 33        1772            rlc     a
-066D C5D8      1773            xch     a,_main_sloc0_1_0
-066F 25E0      1774            add     a,acc
-0671 C5D8      1775            xch     a,_main_sloc0_1_0
-0673 33        1776            rlc     a
-0674 F5D9      1777            mov     (_main_sloc0_1_0 + 1),a
-0676 E5D8      1778            mov     a,_main_sloc0_1_0
-0678 2458      1779            add     a,#_main_vt_1_82
-067A F582      1780            mov     dpl,a
-067C E5D9      1781            mov     a,(_main_sloc0_1_0 + 1)
-067E 34B9      1782            addc    a,#(_main_vt_1_82 >> 8)
-0680 F583      1783            mov     dph,a
-0682 E5F8      1784            mov     a,_main_peak_voltage_other_1_82
-0684 F0        1785            movx    @dptr,a
-0685 A3        1786            inc     dptr
-0686 E5F9      1787            mov     a,(_main_peak_voltage_other_1_82 + 1)
-0688 F0        1788            movx    @dptr,a
-0689 A3        1789            inc     dptr
-068A E5FA      1790            mov     a,(_main_peak_voltage_other_1_82 + 2)
-068C F0        1791            movx    @dptr,a
-068D A3        1792            inc     dptr
-068E E5FB      1793            mov     a,(_main_peak_voltage_other_1_82 + 3)
-0690 F0        1794            movx    @dptr,a
-0691           1795   ;        EFM8_ADC.c:428: hello2 = get_period_2();
-0691 120000    1796            lcall   _get_period_2
-0694 A882      1797            mov     r0,dpl
-0696 A983      1798            mov     r1,dph
-0698 ACF0      1799            mov     r4,b
-069A FD        1800            mov     r5,a
-069B           1801   ;        EFM8_ADC.c:429: hello2=(hello2*12*1000)/SYSCLK;
-069B C000      1802            push    ar0
-069D C001      1803            push    ar1
-069F C004      1804            push    ar4
-06A1 C005      1805            push    ar5
-06A3 908000    1806            mov     dptr,#0x8000
-06A6 75F03B    1807            mov     b,#0x3B
-06A9 7446      1808            mov     a,#0x46
-06AB 120000    1809            lcall   ___fsmul
-06AE AE82      1810            mov     r6,dpl
-06B0 AF83      1811            mov     r7,dph
-06B2 AAF0      1812            mov     r2,b
-06B4 FB        1813            mov     r3,a
-06B5 E581      1814            mov     a,sp
-06B7 24FC      1815            add     a,#0xfc
-06B9 F581      1816            mov     sp,a
-06BB 7440      1817            mov     a,#0x40
-06BD C0E0      1818            push    acc
-06BF 7454      1819            mov     a,#0x54
-06C1 C0E0      1820            push    acc
-06C3 7489      1821            mov     a,#0x89
-06C5 C0E0      1822            push    acc
-06C7 744C      1823            mov     a,#0x4C
-06C9 C0E0      1824            push    acc
-06CB 8E82      1825            mov     dpl,r6
-06CD 8F83      1826            mov     dph,r7
-06CF 8AF0      1827            mov     b,r2
-06D1 EB        1828            mov     a,r3
-06D2 120000    1829            lcall   ___fsdiv
-06D5 A882      1830            mov     r0,dpl
-06D7 A983      1831            mov     r1,dph
-06D9 ACF0      1832            mov     r4,b
-06DB FD        1833            mov     r5,a
-06DC E581      1834            mov     a,sp
-06DE 24FC      1835            add     a,#0xfc
-06E0 F581      1836            mov     sp,a
-06E2           1837   ;        EFM8_ADC.c:430: printf("Phase difference in ms: %f\r", hello2);
-06E2 C004      1838            push    ar4
-06E4 C005      1839            push    ar5
-06E6 C000      1840            push    ar0
-06E8 C001      1841            push    ar1
-06EA C000      1842            push    ar0
-06EC C001      1843            push    ar1
-06EE C004      1844            push    ar4
-06F0 C005      1845            push    ar5
-06F2 7468      1846            mov     a,#__str_7
-06F4 C0E0      1847            push    acc
-06F6 74CB      1848            mov     a,#(__str_7 >> 8)
-06F8 C0E0      1849            push    acc
-06FA 7480      1850            mov     a,#0x80
-06FC C0E0      1851            push    acc
-06FE 120000    1852            lcall   _printf
-0701 E581      1853            mov     a,sp
-0703 24F9      1854            add     a,#0xf9
-0705 F581      1855            mov     sp,a
-0707 D001      1856            pop     ar1
-0709 D000      1857            pop     ar0
-070B D005      1858            pop     ar5
-070D D004      1859            pop     ar4
-070F           1860   ;        EFM8_ADC.c:431: hello2=hello2*20.0/hello;
-070F C000      1861            push    ar0
-0711 C001      1862            push    ar1
-0713 C004      1863            push    ar4
-0715 C005      1864            push    ar5
-0717 900000    1865            mov     dptr,#0x0000
-071A 75F0A0    1866            mov     b,#0xA0
-071D 7441      1867            mov     a,#0x41
-071F 120000    1868            lcall   ___fsmul
-0722 AA82      1869            mov     r2,dpl
-0724 AB83      1870            mov     r3,dph
-0726 AEF0      1871            mov     r6,b
-0728 FF        1872            mov     r7,a
-0729 E581      1873            mov     a,sp
-072B 24FC      1874            add     a,#0xfc
-072D F581      1875            mov     sp,a
-072F C0A8      1876            push    _main_hello_1_82
-0731 C0A9      1877            push    (_main_hello_1_82 + 1)
-0733 C0AA      1878            push    (_main_hello_1_82 + 2)
-0735 C0AB      1879            push    (_main_hello_1_82 + 3)
-0737 8A82      1880            mov     dpl,r2
-0739 8B83      1881            mov     dph,r3
-073B 8EF0      1882            mov     b,r6
-073D EF        1883            mov     a,r7
-073E 120000    1884            lcall   ___fsdiv
-0741 A882      1885            mov     r0,dpl
-0743 A983      1886            mov     r1,dph
-0745 ACF0      1887            mov     r4,b
-0747 FD        1888            mov     r5,a
-0748 E581      1889            mov     a,sp
-074A 24FC      1890            add     a,#0xfc
-074C F581      1891            mov     sp,a
-074E           1892   ;        EFM8_ADC.c:432: y=179.0+hello2*1/(-0.056);
-074E 7442      1893            mov     a,#0x42
-0750 C0E0      1894            push    acc
-0752 7460      1895            mov     a,#0x60
-0754 C0E0      1896            push    acc
-0756 7465      1897            mov     a,#0x65
-0758 C0E0      1898            push    acc
-075A 74BD      1899            mov     a,#0xBD
-075C C0E0      1900            push    acc
-075E 8882      1901            mov     dpl,r0
-0760 8983      1902            mov     dph,r1
-0762 8CF0      1903            mov     b,r4
-0764 ED        1904            mov     a,r5
-0765 120000    1905            lcall   ___fsdiv
-0768 AA82      1906            mov     r2,dpl
-076A AB83      1907            mov     r3,dph
-076C ACF0      1908            mov     r4,b
-076E FD        1909            mov     r5,a
-076F E581      1910            mov     a,sp
-0771 24FC      1911            add     a,#0xfc
-0773 F581      1912            mov     sp,a
-0775 E4        1913            clr     a
-0776 C0E0      1914            push    acc
-0778 C0E0      1915            push    acc
-077A 7433      1916            mov     a,#0x33
-077C C0E0      1917            push    acc
-077E 7443      1918            mov     a,#0x43
-0780 C0E0      1919            push    acc
-0782 8A82      1920            mov     dpl,r2
-0784 8B83      1921            mov     dph,r3
-0786 8CF0      1922            mov     b,r4
-0788 ED        1923            mov     a,r5
-0789 120000    1924            lcall   ___fsadd
-078C AA82      1925            mov     r2,dpl
-078E AB83      1926            mov     r3,dph
-0790 ACF0      1927            mov     r4,b
-0792 FD        1928            mov     r5,a
-0793 E581      1929            mov     a,sp
-0795 24FC      1930            add     a,#0xfc
-0797 F581      1931            mov     sp,a
-0799           1932   ;        EFM8_ADC.c:433: printf("Phase degrees: %f\r", y);
-0799 C002      1933            push    ar2
-079B C003      1934            push    ar3
-079D C004      1935            push    ar4
-079F C005      1936            push    ar5
-07A1 C002      1937            push    ar2
-07A3 C003      1938            push    ar3
-07A5 C004      1939            push    ar4
-07A7 C005      1940            push    ar5
-07A9 74A8      1941            mov     a,#__str_8
-07AB C0E0      1942            push    acc
-07AD 74CB      1943            mov     a,#(__str_8 >> 8)
-07AF C0E0      1944            push    acc
-07B1 7480      1945            mov     a,#0x80
-07B3 C0E0      1946            push    acc
-07B5 120000    1947            lcall   _printf
-07B8 E581      1948            mov     a,sp
-07BA 24F9      1949            add     a,#0xf9
-07BC F581      1950            mov     sp,a
-07BE D005      1951            pop     ar5
-07C0 D004      1952            pop     ar4
-07C2 D003      1953            pop     ar3
-07C4 D002      1954            pop     ar2
-07C6           1955   ;        EFM8_ADC.c:434: p[i%3] = y;
-07C6 E5D8      1956            mov     a,_main_sloc0_1_0
-07C8 2418      1957            add     a,#_main_p_1_82
-07CA F582      1958            mov     dpl,a
-07CC E5D9      1959            mov     a,(_main_sloc0_1_0 + 1)
-07CE 34B9      1960            addc    a,#(_main_p_1_82 >> 8)
-07D0 F583      1961            mov     dph,a
-07D2 EA        1962            mov     a,r2
-07D3 F0        1963            movx    @dptr,a
-07D4 A3        1964            inc     dptr
-07D5 EB        1965            mov     a,r3
-07D6 F0        1966            movx    @dptr,a
-07D7 A3        1967            inc     dptr
-07D8 EC        1968            mov     a,r4
-07D9 F0        1969            movx    @dptr,a
-07DA A3        1970            inc     dptr
-07DB ED        1971            mov     a,r5
-07DC F0        1972            movx    @dptr,a
-07DD           1973   ;        EFM8_ADC.c:438: sprintf(first_line, "Phase:%.2f deg", p[i%3]);
-07DD C002      1974            push    ar2
-07DF C003      1975            push    ar3
-07E1 C004      1976            push    ar4
-07E3 C005      1977            push    ar5
-07E5 74E8      1978            mov     a,#__str_9
-07E7 C0E0      1979            push    acc
-07E9 74CB      1980            mov     a,#(__str_9 >> 8)
-07EB C0E0      1981            push    acc
-07ED 7480      1982            mov     a,#0x80
-07EF C0E0      1983            push    acc
-07F1 7448      1984            mov     a,#_main_first_line_1_82
-07F3 C0E0      1985            push    acc
-07F5 74B8      1986            mov     a,#(_main_first_line_1_82 >> 8)
-07F7 C0E0      1987            push    acc
-07F9 7440      1988            mov     a,#0x40
-07FB C0E0      1989            push    acc
-07FD 120000    1990            lcall   _sprintf
-0800 E581      1991            mov     a,sp
-0802 24F6      1992            add     a,#0xf6
-0804 F581      1993            mov     sp,a
-0806           1994   ;        EFM8_ADC.c:439: sprintf(second_line, "Per:%.0f Vt:%.2f", per[i%3], peak_voltage_other);
-0806 E5D8      1995            mov     a,_main_sloc0_1_0
-0808 2498      1996            add     a,#_main_per_1_82
-080A F582      1997            mov     dpl,a
-080C E5D9      1998            mov     a,(_main_sloc0_1_0 + 1)
-080E 34B9      1999            addc    a,#(_main_per_1_82 >> 8)
-0810 F583      2000            mov     dph,a
-0812 E0        2001            movx    a,@dptr
-0813 FA        2002            mov     r2,a
-0814 A3        2003            inc     dptr
-0815 E0        2004            movx    a,@dptr
-0816 FB        2005            mov     r3,a
-0817 A3        2006            inc     dptr
-0818 E0        2007            movx    a,@dptr
-0819 FC        2008            mov     r4,a
-081A A3        2009            inc     dptr
-081B E0        2010            movx    a,@dptr
-081C FD        2011            mov     r5,a
-081D C0F8      2012            push    _main_peak_voltage_other_1_82
-081F C0F9      2013            push    (_main_peak_voltage_other_1_82 + 1)
-0821 C0FA      2014            push    (_main_peak_voltage_other_1_82 + 2)
-0823 C0FB      2015            push    (_main_peak_voltage_other_1_82 + 3)
-0825 C002      2016            push    ar2
-0827 C003      2017            push    ar3
-0829 C004      2018            push    ar4
-082B C005      2019            push    ar5
-082D 7468      2020            mov     a,#__str_10
-082F C0E0      2021            push    acc
-0831 74CC      2022            mov     a,#(__str_10 >> 8)
-0833 C0E0      2023            push    acc
-0835 7480      2024            mov     a,#0x80
-0837 C0E0      2025            push    acc
-0839 7498      2026            mov     a,#_main_second_line_1_82
-083B C0E0      2027            push    acc
-083D 74B8      2028            mov     a,#(_main_second_line_1_82 >> 8)
-083F C0E0      2029            push    acc
-0841 7440      2030            mov     a,#0x40
-0843 C0E0      2031            push    acc
-0845 120000    2032            lcall   _sprintf
-0848 E581      2033            mov     a,sp
-084A 24F2      2034            add     a,#0xf2
-084C F581      2035            mov     sp,a
-084E           2036   ;        EFM8_ADC.c:440: LCDprint(first_line, 1, 1);
-084E 75B801    2037            mov     _LCDprint_PARM_2,#0x01
-0851 D228      2038            setb    _LCDprint_PARM_3
-0853 90B848    2039            mov     dptr,#_main_first_line_1_82
-0856 75F040    2040            mov     b,#0x40
-0859 120000    2041            lcall   _LCDprint
-085C           2042   ;        EFM8_ADC.c:441: LCDprint(second_line, 2, 1);
-085C 75B802    2043            mov     _LCDprint_PARM_2,#0x02
-085F D228      2044            setb    _LCDprint_PARM_3
-0861 90B898    2045            mov     dptr,#_main_second_line_1_82
-0864 75F040    2046            mov     b,#0x40
-0867 120000    2047            lcall   _LCDprint
-086A           2048   ;        EFM8_ADC.c:443: waitms(500);
-086A 9001F4    2049            mov     dptr,#0x01F4
-086D 120000    2050            lcall   _waitms
-0870           2051   ;        EFM8_ADC.c:390: for(i = 0; i < 100; i++)
-0870 0558      2052            inc     _main_i_1_82
-0872 E4        2053            clr     a
-0873 B558A8    2054            cjne    a,_main_i_1_82,L019025?
-0876 0559      2055            inc     (_main_i_1_82 + 1)
-0878           2056   L019025?:
-0878 020000    2057            ljmp    L019010?
-087B           2058            rseg R_CSEG
-087B           2059   
-0000           2060            rseg R_XINIT
-0000           2061   
-0000           2062            rseg R_CONST
-0000           2063   __str_0:
-0000 1B        2064            db 0x1B
-0001 5B324A    2065            db '[2J'
-0004 00        2066            db 0x00
-0005           2067   __str_1:
-0005 41444320  2068            db 'ADC test program'
+04A6           1513   ;Allocation info for local variables in function 'main'
+04A6           1514   ;------------------------------------------------------------
+04A6           1515   ;i                         Allocated with name '_main_i_1_82'
+04A6           1516   ;hello                     Allocated with name '_main_hello_1_82'
+04A6           1517   ;hello2                    Allocated to registers r0 r1 r4 r5 
+04A6           1518   ;peak_voltage_reference    Allocated with name '_main_peak_voltage_reference_1_82'
+04A6           1519   ;peak_voltage_other        Allocated with name '_main_peak_voltage_other_1_82'
+04A6           1520   ;y                         Allocated to registers r2 r3 r4 r5 
+04A6           1521   ;first_line                Allocated with name '_main_first_line_1_82'
+04A6           1522   ;second_line               Allocated with name '_main_second_line_1_82'
+04A6           1523   ;sloc0                     Allocated with name '_main_sloc0_1_0'
+04A6           1524   ;sloc1                     Allocated with name '_main_sloc1_1_0'
+04A6           1525   ;p                         Allocated with name '_main_p_1_82'
+04A6           1526   ;vt                        Allocated with name '_main_vt_1_82'
+04A6           1527   ;per                       Allocated with name '_main_per_1_82'
+04A6           1528   ;------------------------------------------------------------
+04A6           1529   ;        EFM8_ADC.c:359: void main (void)
+04A6           1530   ;        -----------------------------------------
+04A6           1531   ;         function main
+04A6           1532   ;        -----------------------------------------
+04A6           1533   _main:
+04A6           1534   ;        EFM8_ADC.c:375: LCD_4BIT();
+04A6 120000    1535            lcall   _LCD_4BIT
+04A9           1536   ;        EFM8_ADC.c:377: waitms(500); // Give PuTTy a chance to start before sending
+04A9 9001F4    1537            mov     dptr,#0x01F4
+04AC 120000    1538            lcall   _waitms
+04AF           1539   ;        EFM8_ADC.c:378: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+04AF 7490      1540            mov     a,#__str_0
+04B1 C0E0      1541            push    acc
+04B3 74C8      1542            mov     a,#(__str_0 >> 8)
+04B5 C0E0      1543            push    acc
+04B7 7480      1544            mov     a,#0x80
+04B9 C0E0      1545            push    acc
+04BB 120000    1546            lcall   _printf
+04BE 1581      1547            dec     sp
+04C0 1581      1548            dec     sp
+04C2 1581      1549            dec     sp
+04C4           1550   ;        EFM8_ADC.c:383: __FILE__, __DATE__, __TIME__);
+04C4           1551   ;        EFM8_ADC.c:382: "Compiled: %s, %s\n\n",
+04C4 7410      1552            mov     a,#__str_4
+04C6 C0E0      1553            push    acc
+04C8 74C9      1554            mov     a,#(__str_4 >> 8)
+04CA C0E0      1555            push    acc
+04CC 7480      1556            mov     a,#0x80
+04CE C0E0      1557            push    acc
+04D0 7450      1558            mov     a,#__str_3
+04D2 C0E0      1559            push    acc
+04D4 74C9      1560            mov     a,#(__str_3 >> 8)
+04D6 C0E0      1561            push    acc
+04D8 7480      1562            mov     a,#0x80
+04DA C0E0      1563            push    acc
+04DC 7490      1564            mov     a,#__str_2
+04DE C0E0      1565            push    acc
+04E0 74C9      1566            mov     a,#(__str_2 >> 8)
+04E2 C0E0      1567            push    acc
+04E4 7480      1568            mov     a,#0x80
+04E6 C0E0      1569            push    acc
+04E8 74D0      1570            mov     a,#__str_1
+04EA C0E0      1571            push    acc
+04EC 74C9      1572            mov     a,#(__str_1 >> 8)
+04EE C0E0      1573            push    acc
+04F0 7480      1574            mov     a,#0x80
+04F2 C0E0      1575            push    acc
+04F4 120000    1576            lcall   _printf
+04F7 E581      1577            mov     a,sp
+04F9 24F4      1578            add     a,#0xf4
+04FB F581      1579            mov     sp,a
+04FD           1580   ;        EFM8_ADC.c:385: InitPinADC(2, 4); // Configure P2.4 as analog input
+04FD 750004    1581            mov     _InitPinADC_PARM_2,#0x04
+0500 758202    1582            mov     dpl,#0x02
+0503 120000    1583            lcall   _InitPinADC
+0506           1584   ;        EFM8_ADC.c:386: InitPinADC(2, 5); // Configure P2.5 as analog input
+0506 750005    1585            mov     _InitPinADC_PARM_2,#0x05
+0509 758202    1586            mov     dpl,#0x02
+050C 120000    1587            lcall   _InitPinADC
+050F           1588   ;        EFM8_ADC.c:387: InitADC();
+050F 120000    1589            lcall   _InitADC
+0512           1590   ;        EFM8_ADC.c:389: while(1)
+0512           1591   L019011?:
+0512           1592   ;        EFM8_ADC.c:390: for(i = 0; i < 100; i++)
+0512 E4        1593            clr     a
+0513 F510      1594            mov     _main_i_1_82,a
+0515 F511      1595            mov     (_main_i_1_82 + 1),a
+0517           1596   L019013?:
+0517 C3        1597            clr     c
+0518 E510      1598            mov     a,_main_i_1_82
+051A 9464      1599            subb    a,#0x64
+051C E511      1600            mov     a,(_main_i_1_82 + 1)
+051E 6480      1601            xrl     a,#0x80
+0520 9480      1602            subb    a,#0x80
+0522 5000      1603            jnc     L019011?
+0524           1604   ;        EFM8_ADC.c:397: hello = get_period();
+0524 120000    1605            lcall   _get_period
+0527 858260    1606            mov     _main_hello_1_82,dpl
+052A 858361    1607            mov     (_main_hello_1_82 + 1),dph
+052D 85F062    1608            mov     (_main_hello_1_82 + 2),b
+0530 F563      1609            mov     (_main_hello_1_82 + 3),a
+0532           1610   ;        EFM8_ADC.c:398: hello = hello*2*12*1000/SYSCLK;
+0532 C060      1611            push    _main_hello_1_82
+0534 C061      1612            push    (_main_hello_1_82 + 1)
+0536 C062      1613            push    (_main_hello_1_82 + 2)
+0538 C063      1614            push    (_main_hello_1_82 + 3)
+053A 908000    1615            mov     dptr,#0x8000
+053D 75F0BB    1616            mov     b,#0xBB
+0540 7446      1617            mov     a,#0x46
+0542 120000    1618            lcall   ___fsmul
+0545 A882      1619            mov     r0,dpl
+0547 A983      1620            mov     r1,dph
+0549 AAF0      1621            mov     r2,b
+054B FB        1622            mov     r3,a
+054C E581      1623            mov     a,sp
+054E 24FC      1624            add     a,#0xfc
+0550 F581      1625            mov     sp,a
+0552 7440      1626            mov     a,#0x40
+0554 C0E0      1627            push    acc
+0556 7454      1628            mov     a,#0x54
+0558 C0E0      1629            push    acc
+055A 7489      1630            mov     a,#0x89
+055C C0E0      1631            push    acc
+055E 744C      1632            mov     a,#0x4C
+0560 C0E0      1633            push    acc
+0562 8882      1634            mov     dpl,r0
+0564 8983      1635            mov     dph,r1
+0566 8AF0      1636            mov     b,r2
+0568 EB        1637            mov     a,r3
+0569 120000    1638            lcall   ___fsdiv
+056C 858260    1639            mov     _main_hello_1_82,dpl
+056F 858361    1640            mov     (_main_hello_1_82 + 1),dph
+0572 85F062    1641            mov     (_main_hello_1_82 + 2),b
+0575 F563      1642            mov     (_main_hello_1_82 + 3),a
+0577 E581      1643            mov     a,sp
+0579 24FC      1644            add     a,#0xfc
+057B F581      1645            mov     sp,a
+057D           1646   ;        EFM8_ADC.c:399: per[i%3] = hello;
+057D 750003    1647            mov     __modsint_PARM_2,#0x03
+0580 E4        1648            clr     a
+0581 F501      1649            mov     (__modsint_PARM_2 + 1),a
+0583 851082    1650            mov     dpl,_main_i_1_82
+0586 851183    1651            mov     dph,(_main_i_1_82 + 1)
+0589 120000    1652            lcall   __modsint
+058C AA82      1653            mov     r2,dpl
+058E AB83      1654            mov     r3,dph
+0590 8A00      1655            mov     ar0,r2
+0592 EB        1656            mov     a,r3
+0593 C8        1657            xch     a,r0
+0594 25E0      1658            add     a,acc
+0596 C8        1659            xch     a,r0
+0597 33        1660            rlc     a
+0598 C8        1661            xch     a,r0
+0599 25E0      1662            add     a,acc
+059B C8        1663            xch     a,r0
+059C 33        1664            rlc     a
+059D F9        1665            mov     r1,a
+059E E8        1666            mov     a,r0
+059F 2490      1667            add     a,#_main_per_1_82
+05A1 F582      1668            mov     dpl,a
+05A3 E9        1669            mov     a,r1
+05A4 34BA      1670            addc    a,#(_main_per_1_82 >> 8)
+05A6 F583      1671            mov     dph,a
+05A8 E560      1672            mov     a,_main_hello_1_82
+05AA F0        1673            movx    @dptr,a
+05AB A3        1674            inc     dptr
+05AC E561      1675            mov     a,(_main_hello_1_82 + 1)
+05AE F0        1676            movx    @dptr,a
+05AF A3        1677            inc     dptr
+05B0 E562      1678            mov     a,(_main_hello_1_82 + 2)
+05B2 F0        1679            movx    @dptr,a
+05B3 A3        1680            inc     dptr
+05B4 E563      1681            mov     a,(_main_hello_1_82 + 3)
+05B6 F0        1682            movx    @dptr,a
+05B7           1683   ;        EFM8_ADC.c:400: printf("Period: %f\r", hello);
+05B7 C002      1684            push    ar2
+05B9 C003      1685            push    ar3
+05BB C060      1686            push    _main_hello_1_82
+05BD C061      1687            push    (_main_hello_1_82 + 1)
+05BF C062      1688            push    (_main_hello_1_82 + 2)
+05C1 C063      1689            push    (_main_hello_1_82 + 3)
+05C3 7420      1690            mov     a,#__str_5
+05C5 C0E0      1691            push    acc
+05C7 74CB      1692            mov     a,#(__str_5 >> 8)
+05C9 C0E0      1693            push    acc
+05CB 7480      1694            mov     a,#0x80
+05CD C0E0      1695            push    acc
+05CF 120000    1696            lcall   _printf
+05D2 E581      1697            mov     a,sp
+05D4 24F9      1698            add     a,#0xf9
+05D6 F581      1699            mov     sp,a
+05D8 D003      1700            pop     ar3
+05DA D002      1701            pop     ar2
+05DC           1702   ;        EFM8_ADC.c:402: ADC0MX=QFP32_MUX_P2_5;
+05DC 75BB12    1703            mov     _ADC0MX,#0x12
+05DF           1704   ;        EFM8_ADC.c:405: while (Get_ADC()!=0); // Wait for the signal to be zero
+05DF           1705   L019001?:
+05DF C002      1706            push    ar2
+05E1 C003      1707            push    ar3
+05E3 120000    1708            lcall   _Get_ADC
+05E6 E582      1709            mov     a,dpl
+05E8 8583F0    1710            mov     b,dph
+05EB D003      1711            pop     ar3
+05ED D002      1712            pop     ar2
+05EF 45F0      1713            orl     a,b
+05F1 7000      1714            jnz     L019001?
+05F3           1715   ;        EFM8_ADC.c:406: while (Get_ADC()==0); // Wait for the signal to be positive
+05F3           1716   L019004?:
+05F3 C002      1717            push    ar2
+05F5 C003      1718            push    ar3
+05F7 120000    1719            lcall   _Get_ADC
+05FA E582      1720            mov     a,dpl
+05FC 8583F0    1721            mov     b,dph
+05FF D003      1722            pop     ar3
+0601 D002      1723            pop     ar2
+0603 45F0      1724            orl     a,b
+0605 6000      1725            jz      L019004?
+0607           1726   ;        EFM8_ADC.c:422: waitms(hello/4.0);
+0607 C002      1727            push    ar2
+0609 C003      1728            push    ar3
+060B E4        1729            clr     a
+060C C0E0      1730            push    acc
+060E C0E0      1731            push    acc
+0610 7480      1732            mov     a,#0x80
+0612 C0E0      1733            push    acc
+0614 7440      1734            mov     a,#0x40
+0616 C0E0      1735            push    acc
+0618 856082    1736            mov     dpl,_main_hello_1_82
+061B 856183    1737            mov     dph,(_main_hello_1_82 + 1)
+061E 8562F0    1738            mov     b,(_main_hello_1_82 + 2)
+0621 E563      1739            mov     a,(_main_hello_1_82 + 3)
+0623 120000    1740            lcall   ___fsdiv
+0626 A882      1741            mov     r0,dpl
+0628 A983      1742            mov     r1,dph
+062A ACF0      1743            mov     r4,b
+062C FD        1744            mov     r5,a
+062D E581      1745            mov     a,sp
+062F 24FC      1746            add     a,#0xfc
+0631 F581      1747            mov     sp,a
+0633 8882      1748            mov     dpl,r0
+0635 8983      1749            mov     dph,r1
+0637 8CF0      1750            mov     b,r4
+0639 ED        1751            mov     a,r5
+063A 120000    1752            lcall   ___fs2uint
+063D 120000    1753            lcall   _waitms
+0640           1754   ;        EFM8_ADC.c:423: P2_1=1;
+0640 D2A1      1755            setb    _P2_1
+0642           1756   ;        EFM8_ADC.c:424: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
+0642 758212    1757            mov     dpl,#0x12
+0645 120000    1758            lcall   _Volts_at_Pin
+0648 8582B0    1759            mov     _main_peak_voltage_other_1_82,dpl
+064B 8583B1    1760            mov     (_main_peak_voltage_other_1_82 + 1),dph
+064E 85F0B2    1761            mov     (_main_peak_voltage_other_1_82 + 2),b
+0651 F5B3      1762            mov     (_main_peak_voltage_other_1_82 + 3),a
+0653           1763   ;        EFM8_ADC.c:425: P2_1=0;
+0653 C2A1      1764            clr     _P2_1
+0655           1765   ;        EFM8_ADC.c:426: printf("Peak Voltage Other: %f\r", peak_voltage_other);
+0655 C0B0      1766            push    _main_peak_voltage_other_1_82
+0657 C0B1      1767            push    (_main_peak_voltage_other_1_82 + 1)
+0659 C0B2      1768            push    (_main_peak_voltage_other_1_82 + 2)
+065B C0B3      1769            push    (_main_peak_voltage_other_1_82 + 3)
+065D 7420      1770            mov     a,#__str_6
+065F C0E0      1771            push    acc
+0661 74CC      1772            mov     a,#(__str_6 >> 8)
+0663 C0E0      1773            push    acc
+0665 7480      1774            mov     a,#0x80
+0667 C0E0      1775            push    acc
+0669 120000    1776            lcall   _printf
+066C E581      1777            mov     a,sp
+066E 24F9      1778            add     a,#0xf9
+0670 F581      1779            mov     sp,a
+0672 D003      1780            pop     ar3
+0674 D002      1781            pop     ar2
+0676           1782   ;        EFM8_ADC.c:427: vt[i%3] = peak_voltage_other;
+0676 8A90      1783            mov     _main_sloc0_1_0,r2
+0678 EB        1784            mov     a,r3
+0679 C590      1785            xch     a,_main_sloc0_1_0
+067B 25E0      1786            add     a,acc
+067D C590      1787            xch     a,_main_sloc0_1_0
+067F 33        1788            rlc     a
+0680 C590      1789            xch     a,_main_sloc0_1_0
+0682 25E0      1790            add     a,acc
+0684 C590      1791            xch     a,_main_sloc0_1_0
+0686 33        1792            rlc     a
+0687 F591      1793            mov     (_main_sloc0_1_0 + 1),a
+0689 E590      1794            mov     a,_main_sloc0_1_0
+068B 2450      1795            add     a,#_main_vt_1_82
+068D F582      1796            mov     dpl,a
+068F E591      1797            mov     a,(_main_sloc0_1_0 + 1)
+0691 34BA      1798            addc    a,#(_main_vt_1_82 >> 8)
+0693 F583      1799            mov     dph,a
+0695 E5B0      1800            mov     a,_main_peak_voltage_other_1_82
+0697 F0        1801            movx    @dptr,a
+0698 A3        1802            inc     dptr
+0699 E5B1      1803            mov     a,(_main_peak_voltage_other_1_82 + 1)
+069B F0        1804            movx    @dptr,a
+069C A3        1805            inc     dptr
+069D E5B2      1806            mov     a,(_main_peak_voltage_other_1_82 + 2)
+069F F0        1807            movx    @dptr,a
+06A0 A3        1808            inc     dptr
+06A1 E5B3      1809            mov     a,(_main_peak_voltage_other_1_82 + 3)
+06A3 F0        1810            movx    @dptr,a
+06A4           1811   ;        EFM8_ADC.c:429: hello2 = get_period_2();
+06A4 120000    1812            lcall   _get_period_2
+06A7 A882      1813            mov     r0,dpl
+06A9 A983      1814            mov     r1,dph
+06AB ACF0      1815            mov     r4,b
+06AD FD        1816            mov     r5,a
+06AE           1817   ;        EFM8_ADC.c:430: ADC0MX=QFP32_MUX_P2_5;
+06AE 75BB12    1818            mov     _ADC0MX,#0x12
+06B1           1819   ;        EFM8_ADC.c:431: hello2=(hello2*12*1000)/SYSCLK;
+06B1 C000      1820            push    ar0
+06B3 C001      1821            push    ar1
+06B5 C004      1822            push    ar4
+06B7 C005      1823            push    ar5
+06B9 908000    1824            mov     dptr,#0x8000
+06BC 75F03B    1825            mov     b,#0x3B
+06BF 7446      1826            mov     a,#0x46
+06C1 120000    1827            lcall   ___fsmul
+06C4 AE82      1828            mov     r6,dpl
+06C6 AF83      1829            mov     r7,dph
+06C8 AAF0      1830            mov     r2,b
+06CA FB        1831            mov     r3,a
+06CB E581      1832            mov     a,sp
+06CD 24FC      1833            add     a,#0xfc
+06CF F581      1834            mov     sp,a
+06D1 7440      1835            mov     a,#0x40
+06D3 C0E0      1836            push    acc
+06D5 7454      1837            mov     a,#0x54
+06D7 C0E0      1838            push    acc
+06D9 7489      1839            mov     a,#0x89
+06DB C0E0      1840            push    acc
+06DD 744C      1841            mov     a,#0x4C
+06DF C0E0      1842            push    acc
+06E1 8E82      1843            mov     dpl,r6
+06E3 8F83      1844            mov     dph,r7
+06E5 8AF0      1845            mov     b,r2
+06E7 EB        1846            mov     a,r3
+06E8 120000    1847            lcall   ___fsdiv
+06EB A882      1848            mov     r0,dpl
+06ED A983      1849            mov     r1,dph
+06EF ACF0      1850            mov     r4,b
+06F1 FD        1851            mov     r5,a
+06F2 E581      1852            mov     a,sp
+06F4 24FC      1853            add     a,#0xfc
+06F6 F581      1854            mov     sp,a
+06F8           1855   ;        EFM8_ADC.c:432: printf("Phase difference in ms: %f\r", hello2);
+06F8 C004      1856            push    ar4
+06FA C005      1857            push    ar5
+06FC C000      1858            push    ar0
+06FE C001      1859            push    ar1
+0700 C000      1860            push    ar0
+0702 C001      1861            push    ar1
+0704 C004      1862            push    ar4
+0706 C005      1863            push    ar5
+0708 7460      1864            mov     a,#__str_7
+070A C0E0      1865            push    acc
+070C 74CC      1866            mov     a,#(__str_7 >> 8)
+070E C0E0      1867            push    acc
+0710 7480      1868            mov     a,#0x80
+0712 C0E0      1869            push    acc
+0714 120000    1870            lcall   _printf
+0717 E581      1871            mov     a,sp
+0719 24F9      1872            add     a,#0xf9
+071B F581      1873            mov     sp,a
+071D D001      1874            pop     ar1
+071F D000      1875            pop     ar0
+0721 D005      1876            pop     ar5
+0723 D004      1877            pop     ar4
+0725           1878   ;        EFM8_ADC.c:433: hello2=hello2*20.0/hello;
+0725 C000      1879            push    ar0
+0727 C001      1880            push    ar1
+0729 C004      1881            push    ar4
+072B C005      1882            push    ar5
+072D 900000    1883            mov     dptr,#0x0000
+0730 75F0A0    1884            mov     b,#0xA0
+0733 7441      1885            mov     a,#0x41
+0735 120000    1886            lcall   ___fsmul
+0738 AA82      1887            mov     r2,dpl
+073A AB83      1888            mov     r3,dph
+073C AEF0      1889            mov     r6,b
+073E FF        1890            mov     r7,a
+073F E581      1891            mov     a,sp
+0741 24FC      1892            add     a,#0xfc
+0743 F581      1893            mov     sp,a
+0745 C060      1894            push    _main_hello_1_82
+0747 C061      1895            push    (_main_hello_1_82 + 1)
+0749 C062      1896            push    (_main_hello_1_82 + 2)
+074B C063      1897            push    (_main_hello_1_82 + 3)
+074D 8A82      1898            mov     dpl,r2
+074F 8B83      1899            mov     dph,r3
+0751 8EF0      1900            mov     b,r6
+0753 EF        1901            mov     a,r7
+0754 120000    1902            lcall   ___fsdiv
+0757 A882      1903            mov     r0,dpl
+0759 A983      1904            mov     r1,dph
+075B ACF0      1905            mov     r4,b
+075D FD        1906            mov     r5,a
+075E E581      1907            mov     a,sp
+0760 24FC      1908            add     a,#0xfc
+0762 F581      1909            mov     sp,a
+0764           1910   ;        EFM8_ADC.c:434: y=179.0+hello2*1/(-0.056);
+0764 7442      1911            mov     a,#0x42
+0766 C0E0      1912            push    acc
+0768 7460      1913            mov     a,#0x60
+076A C0E0      1914            push    acc
+076C 7465      1915            mov     a,#0x65
+076E C0E0      1916            push    acc
+0770 74BD      1917            mov     a,#0xBD
+0772 C0E0      1918            push    acc
+0774 8882      1919            mov     dpl,r0
+0776 8983      1920            mov     dph,r1
+0778 8CF0      1921            mov     b,r4
+077A ED        1922            mov     a,r5
+077B 120000    1923            lcall   ___fsdiv
+077E AA82      1924            mov     r2,dpl
+0780 AB83      1925            mov     r3,dph
+0782 ACF0      1926            mov     r4,b
+0784 FD        1927            mov     r5,a
+0785 E581      1928            mov     a,sp
+0787 24FC      1929            add     a,#0xfc
+0789 F581      1930            mov     sp,a
+078B E4        1931            clr     a
+078C C0E0      1932            push    acc
+078E C0E0      1933            push    acc
+0790 7433      1934            mov     a,#0x33
+0792 C0E0      1935            push    acc
+0794 7443      1936            mov     a,#0x43
+0796 C0E0      1937            push    acc
+0798 8A82      1938            mov     dpl,r2
+079A 8B83      1939            mov     dph,r3
+079C 8CF0      1940            mov     b,r4
+079E ED        1941            mov     a,r5
+079F 120000    1942            lcall   ___fsadd
+07A2 AA82      1943            mov     r2,dpl
+07A4 AB83      1944            mov     r3,dph
+07A6 ACF0      1945            mov     r4,b
+07A8 FD        1946            mov     r5,a
+07A9 E581      1947            mov     a,sp
+07AB 24FC      1948            add     a,#0xfc
+07AD F581      1949            mov     sp,a
+07AF           1950   ;        EFM8_ADC.c:435: printf("Phase degrees: %f\r", y);
+07AF C002      1951            push    ar2
+07B1 C003      1952            push    ar3
+07B3 C004      1953            push    ar4
+07B5 C005      1954            push    ar5
+07B7 C002      1955            push    ar2
+07B9 C003      1956            push    ar3
+07BB C004      1957            push    ar4
+07BD C005      1958            push    ar5
+07BF 74A0      1959            mov     a,#__str_8
+07C1 C0E0      1960            push    acc
+07C3 74CC      1961            mov     a,#(__str_8 >> 8)
+07C5 C0E0      1962            push    acc
+07C7 7480      1963            mov     a,#0x80
+07C9 C0E0      1964            push    acc
+07CB 120000    1965            lcall   _printf
+07CE E581      1966            mov     a,sp
+07D0 24F9      1967            add     a,#0xf9
+07D2 F581      1968            mov     sp,a
+07D4 D005      1969            pop     ar5
+07D6 D004      1970            pop     ar4
+07D8 D003      1971            pop     ar3
+07DA D002      1972            pop     ar2
+07DC           1973   ;        EFM8_ADC.c:436: p[i%3] = y;
+07DC E590      1974            mov     a,_main_sloc0_1_0
+07DE 2410      1975            add     a,#_main_p_1_82
+07E0 F582      1976            mov     dpl,a
+07E2 E591      1977            mov     a,(_main_sloc0_1_0 + 1)
+07E4 34BA      1978            addc    a,#(_main_p_1_82 >> 8)
+07E6 F583      1979            mov     dph,a
+07E8 EA        1980            mov     a,r2
+07E9 F0        1981            movx    @dptr,a
+07EA A3        1982            inc     dptr
+07EB EB        1983            mov     a,r3
+07EC F0        1984            movx    @dptr,a
+07ED A3        1985            inc     dptr
+07EE EC        1986            mov     a,r4
+07EF F0        1987            movx    @dptr,a
+07F0 A3        1988            inc     dptr
+07F1 ED        1989            mov     a,r5
+07F2 F0        1990            movx    @dptr,a
+07F3           1991   ;        EFM8_ADC.c:438: while(per[i%3] == 0) i--;
+07F3 AA10      1992            mov     r2,_main_i_1_82
+07F5 AB11      1993            mov     r3,(_main_i_1_82 + 1)
+07F7           1994   L019007?:
+07F7 750003    1995            mov     __modsint_PARM_2,#0x03
+07FA E4        1996            clr     a
+07FB F501      1997            mov     (__modsint_PARM_2 + 1),a
+07FD 8A82      1998            mov     dpl,r2
+07FF 8B83      1999            mov     dph,r3
+0801 C002      2000            push    ar2
+0803 C003      2001            push    ar3
+0805 120000    2002            lcall   __modsint
+0808 AC82      2003            mov     r4,dpl
+080A AD83      2004            mov     r5,dph
+080C D003      2005            pop     ar3
+080E D002      2006            pop     ar2
+0810 ED        2007            mov     a,r5
+0811 CC        2008            xch     a,r4
+0812 25E0      2009            add     a,acc
+0814 CC        2010            xch     a,r4
+0815 33        2011            rlc     a
+0816 CC        2012            xch     a,r4
+0817 25E0      2013            add     a,acc
+0819 CC        2014            xch     a,r4
+081A 33        2015            rlc     a
+081B FD        2016            mov     r5,a
+081C EC        2017            mov     a,r4
+081D 2490      2018            add     a,#_main_per_1_82
+081F F590      2019            mov     _main_sloc0_1_0,a
+0821 ED        2020            mov     a,r5
+0822 34BA      2021            addc    a,#(_main_per_1_82 >> 8)
+0824 F591      2022            mov     (_main_sloc0_1_0 + 1),a
+0826 859082    2023            mov     dpl,_main_sloc0_1_0
+0829 859183    2024            mov     dph,(_main_sloc0_1_0 + 1)
+082C E0        2025            movx    a,@dptr
+082D F8        2026            mov     r0,a
+082E A3        2027            inc     dptr
+082F E0        2028            movx    a,@dptr
+0830 F9        2029            mov     r1,a
+0831 A3        2030            inc     dptr
+0832 E0        2031            movx    a,@dptr
+0833 FE        2032            mov     r6,a
+0834 A3        2033            inc     dptr
+0835 E0        2034            movx    a,@dptr
+0836 FF        2035            mov     r7,a
+0837 E8        2036            mov     a,r0
+0838 49        2037            orl     a,r1
+0839 4E        2038            orl     a,r6
+083A 8FF0      2039            mov     b,r7
+083C C2F7      2040            clr     b.7 ; Clear the sign bit
+083E 45F0      2041            orl     a,b
+0840 7000      2042            jnz     L019009?
+0842 1A        2043            dec     r2
+0843 BAFF60    2044            cjne    r2,#0xff,L019032?
+0846 1B        2045            dec     r3
+0847           2046   L019032?:
+0847 8000      2047            sjmp    L019007?
+0849           2048   L019009?:
+0849           2049   ;        EFM8_ADC.c:440: sprintf(first_line, "Phase:%.2f deg", p[i%3]);
+0849 EC        2050            mov     a,r4
+084A 2410      2051            add     a,#_main_p_1_82
+084C F582      2052            mov     dpl,a
+084E ED        2053            mov     a,r5
+084F 34BA      2054            addc    a,#(_main_p_1_82 >> 8)
+0851 F583      2055            mov     dph,a
+0853 E0        2056            movx    a,@dptr
+0854 FC        2057            mov     r4,a
+0855 A3        2058            inc     dptr
+0856 E0        2059            movx    a,@dptr
+0857 FD        2060            mov     r5,a
+0858 A3        2061            inc     dptr
+0859 E0        2062            movx    a,@dptr
+085A FE        2063            mov     r6,a
+085B A3        2064            inc     dptr
+085C E0        2065            movx    a,@dptr
+085D FF        2066            mov     r7,a
+085E C002      2067            push    ar2
+0860 C003      2068            push    ar3
+0862 C004      2069            push    ar4
+0864 C005      2070            push    ar5
+0866 C006      2071            push    ar6
+0868 C007      2072            push    ar7
+086A 74A0      2073            mov     a,#__str_9
+086C C0E0      2074            push    acc
+086E 74CD      2075            mov     a,#(__str_9 >> 8)
+0870 C0E0      2076            push    acc
+0872 7480      2077            mov     a,#0x80
+0874 C0E0      2078            push    acc
+0876 7400      2079            mov     a,#_main_first_line_1_82
+0878 C0E0      2080            push    acc
+087A 74B9      2081            mov     a,#(_main_first_line_1_82 >> 8)
+087C C0E0      2082            push    acc
+087E 7440      2083            mov     a,#0x40
+0880 C0E0      2084            push    acc
+0882 120000    2085            lcall   _sprintf
+0885 E581      2086            mov     a,sp
+0887 24F6      2087            add     a,#0xf6
+0889 F581      2088            mov     sp,a
+088B           2089   ;        EFM8_ADC.c:441: sprintf(second_line, "Per:%.0f Vt:%.2f", per[i%3], peak_voltage_other/1.4142);
+088B 7481      2090            mov     a,#0x81
+088D C0E0      2091            push    acc
+088F 7404      2092            mov     a,#0x04
+0891 C0E0      2093            push    acc
+0893 74B5      2094            mov     a,#0xB5
+0895 C0E0      2095            push    acc
+0897 743F      2096            mov     a,#0x3F
+0899 C0E0      2097            push    acc
+089B 85B082    2098            mov     dpl,_main_peak_voltage_other_1_82
+089E 85B183    2099            mov     dph,(_main_peak_voltage_other_1_82 + 1)
+08A1 85B2F0    2100            mov     b,(_main_peak_voltage_other_1_82 + 2)
+08A4 E5B3      2101            mov     a,(_main_peak_voltage_other_1_82 + 3)
+08A6 120000    2102            lcall   ___fsdiv
+08A9 8582D0    2103            mov     _main_sloc1_1_0,dpl
+08AC 8583D1    2104            mov     (_main_sloc1_1_0 + 1),dph
+08AF 85F0D2    2105            mov     (_main_sloc1_1_0 + 2),b
+08B2 F5D3      2106            mov     (_main_sloc1_1_0 + 3),a
+08B4 E581      2107            mov     a,sp
+08B6 24FC      2108            add     a,#0xfc
+08B8 F581      2109            mov     sp,a
+08BA 859082    2110            mov     dpl,_main_sloc0_1_0
+08BD 859183    2111            mov     dph,(_main_sloc0_1_0 + 1)
+08C0 E0        2112            movx    a,@dptr
+08C1 F8        2113            mov     r0,a
+08C2 A3        2114            inc     dptr
+08C3 E0        2115            movx    a,@dptr
+08C4 F9        2116            mov     r1,a
+08C5 A3        2117            inc     dptr
+08C6 E0        2118            movx    a,@dptr
+08C7 FC        2119            mov     r4,a
+08C8 A3        2120            inc     dptr
+08C9 E0        2121            movx    a,@dptr
+08CA FD        2122            mov     r5,a
+08CB C0D0      2123            push    _main_sloc1_1_0
+08CD C0D1      2124            push    (_main_sloc1_1_0 + 1)
+08CF C0D2      2125            push    (_main_sloc1_1_0 + 2)
+08D1 C0D3      2126            push    (_main_sloc1_1_0 + 3)
+08D3 C000      2127            push    ar0
+08D5 C001      2128            push    ar1
+08D7 C004      2129            push    ar4
+08D9 C005      2130            push    ar5
+08DB 7420      2131            mov     a,#__str_10
+08DD C0E0      2132            push    acc
+08DF 74CE      2133            mov     a,#(__str_10 >> 8)
+08E1 C0E0      2134            push    acc
+08E3 7480      2135            mov     a,#0x80
+08E5 C0E0      2136            push    acc
+08E7 7450      2137            mov     a,#_main_second_line_1_82
+08E9 C0E0      2138            push    acc
+08EB 74B9      2139            mov     a,#(_main_second_line_1_82 >> 8)
+08ED C0E0      2140            push    acc
+08EF 7440      2141            mov     a,#0x40
+08F1 C0E0      2142            push    acc
+08F3 120000    2143            lcall   _sprintf
+08F6 E581      2144            mov     a,sp
+08F8 24F2      2145            add     a,#0xf2
+08FA F581      2146            mov     sp,a
+08FC           2147   ;        EFM8_ADC.c:442: LCDprint(first_line, 1, 1);
+08FC 757001    2148            mov     _LCDprint_PARM_2,#0x01
+08FF D2E0      2149            setb    _LCDprint_PARM_3
+0901 90B900    2150            mov     dptr,#_main_first_line_1_82
+0904 75F040    2151            mov     b,#0x40
+0907 120000    2152            lcall   _LCDprint
+090A           2153   ;        EFM8_ADC.c:443: LCDprint(second_line, 2, 1);
+090A 757002    2154            mov     _LCDprint_PARM_2,#0x02
+090D D2E0      2155            setb    _LCDprint_PARM_3
+090F 90B950    2156            mov     dptr,#_main_second_line_1_82
+0912 75F040    2157            mov     b,#0x40
+0915 120000    2158            lcall   _LCDprint
+0918           2159   ;        EFM8_ADC.c:445: waitms(500);
+0918 9001F4    2160            mov     dptr,#0x01F4
+091B 120000    2161            lcall   _waitms
+091E D003      2162            pop     ar3
+0920 D002      2163            pop     ar2
+0922           2164   ;        EFM8_ADC.c:390: for(i = 0; i < 100; i++)
+0922 7401      2165            mov     a,#0x01
+0924 2A        2166            add     a,r2
+0925 F510      2167            mov     _main_i_1_82,a
+0927 E4        2168            clr     a
+0928 3B        2169            addc    a,r3
+0929 F511      2170            mov     (_main_i_1_82 + 1),a
+092B 020000    2171            ljmp    L019013?
+092E           2172            rseg R_CSEG
+092E           2173   
+0000           2174            rseg R_XINIT
+0000           2175   
+0000           2176            rseg R_CONST
+0000           2177   __str_0:
+0000 1B        2178            db 0x1B
+0001 5B324A    2179            db '[2J'
+0004 00        2180            db 0x00
+0005           2181   __str_1:
+0005 41444320  2182            db 'ADC test program'
      74657374
      2070726F
      6772616D
-0015 0A        2069            db 0x0A
-0016 46696C65  2070            db 'File: %s'
+0015 0A        2183            db 0x0A
+0016 46696C65  2184            db 'File: %s'
      3A202573
-001E 0A        2071            db 0x0A
-001F 436F6D70  2072            db 'Compiled: %s, %s'
+001E 0A        2185            db 0x0A
+001F 436F6D70  2186            db 'Compiled: %s, %s'
      696C6564
      3A202573
      2C202573
-002F 0A        2073            db 0x0A
-0030 0A        2074            db 0x0A
-0031 00        2075            db 0x00
-0032           2076   __str_2:
-0032 45464D38  2077            db 'EFM8_ADC.c'
+002F 0A        2187            db 0x0A
+0030 0A        2188            db 0x0A
+0031 00        2189            db 0x00
+0032           2190   __str_2:
+0032 45464D38  2191            db 'EFM8_ADC.c'
      5F414443
      2E63
-003C 00        2078            db 0x00
-003D           2079   __str_3:
-003D 4D617220  2080            db 'Mar  7 2024'
+003C 00        2192            db 0x00
+003D           2193   __str_3:
+003D 4D617220  2194            db 'Mar  7 2024'
      20372032
      303234
-0048 00        2081            db 0x00
-0049           2082   __str_4:
-0049 31333A30  2083            db '13:07:33'
-     373A3333
-0051 00        2084            db 0x00
-0052           2085   __str_5:
-0052 50657269  2086            db 'Period: %f'
+0048 00        2195            db 0x00
+0049           2196   __str_4:
+0049 31333A32  2197            db '13:24:38'
+     343A3338
+0051 00        2198            db 0x00
+0052           2199   __str_5:
+0052 50657269  2200            db 'Period: %f'
      6F643A20
      2566
-005C 0D        2087            db 0x0D
-005D 00        2088            db 0x00
-005E           2089   __str_6:
-005E 5065616B  2090            db 'Peak Voltage Other: %f'
+005C 0D        2201            db 0x0D
+005D 00        2202            db 0x00
+005E           2203   __str_6:
+005E 5065616B  2204            db 'Peak Voltage Other: %f'
      20566F6C
      74616765
      204F7468
      65723A20
      2566
-0074 0D        2091            db 0x0D
-0075 00        2092            db 0x00
-0076           2093   __str_7:
-0076 50686173  2094            db 'Phase difference in ms: %f'
+0074 0D        2205            db 0x0D
+0075 00        2206            db 0x00
+0076           2207   __str_7:
+0076 50686173  2208            db 'Phase difference in ms: %f'
      65206469
      66666572
      656E6365
      20696E20
      6D733A20
      2566
-0090 0D        2095            db 0x0D
-0091 00        2096            db 0x00
-0092           2097   __str_8:
-0092 50686173  2098            db 'Phase degrees: %f'
+0090 0D        2209            db 0x0D
+0091 00        2210            db 0x00
+0092           2211   __str_8:
+0092 50686173  2212            db 'Phase degrees: %f'
      65206465
      67726565
      733A2025
      66
-00A3 0D        2099            db 0x0D
-00A4 00        2100            db 0x00
-00A5           2101   __str_9:
-00A5 50686173  2102            db 'Phase:%.2f deg'
+00A3 0D        2213            db 0x0D
+00A4 00        2214            db 0x00
+00A5           2215   __str_9:
+00A5 50686173  2216            db 'Phase:%.2f deg'
      653A252E
      32662064
      6567
-00B3 00        2103            db 0x00
-00B4           2104   __str_10:
-00B4 5065723A  2105            db 'Per:%.0f Vt:%.2f'
+00B3 00        2217            db 0x00
+00B4           2218   __str_10:
+00B4 5065723A  2219            db 'Per:%.0f Vt:%.2f'
      252E3066
      2056743A
      252E3266
-00C4 00        2106            db 0x00
-00C5           2107   
-0003           2108            CSEG
-0003           2109   
-0003           2110   end
+00C4 00        2220            db 0x00
+00C5           2221   
+0003           2222            CSEG
+0003           2223   
+0003           2224   end

@@ -399,10 +399,11 @@ void main (void)
         per[i%3] = hello;
         printf("Period: %f\r", hello);
 
+        ADC0MX=QFP32_MUX_P2_5;
 
         //Wait for zero
         while (Get_ADC()!=0); // Wait for the signal to be zero
-        while (Get_ADC()==0); // Wait for the signal to be zero
+        while (Get_ADC()==0); // Wait for the signal to be positive
 
         /*
         //Wait Period/4
@@ -418,7 +419,7 @@ void main (void)
         //
         */
 
-        waitms(hello/6.0);
+        waitms(hello/4.0);
         P2_1=1;
         peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
         P2_1=0;
@@ -426,6 +427,7 @@ void main (void)
         vt[i%3] = peak_voltage_other;
 
         hello2 = get_period_2();
+        ADC0MX=QFP32_MUX_P2_5;
         hello2=(hello2*12*1000)/SYSCLK;
         printf("Phase difference in ms: %f\r", hello2);
         hello2=hello2*20.0/hello;
@@ -433,12 +435,14 @@ void main (void)
         printf("Phase degrees: %f\r", y);
         p[i%3] = y;
         
-        //while(per[i%3] == 0) i--;
+        while(per[i%3] == 0) i--;
         
         sprintf(first_line, "Phase:%.2f deg", p[i%3]);
-        sprintf(second_line, "Per:%.0f Vt:%.2f", per[i%3], peak_voltage_other);
+        sprintf(second_line, "Per:%.0f Vt:%.2f", per[i%3], peak_voltage_other/1.4142);
         LCDprint(first_line, 1, 1);
         LCDprint(second_line, 2, 1);
+        sprintf(first_line, "%.2f\r", peak_voltage_other/1.4142);
+        printf(first_line);
 
 		waitms(500);
 	 }
