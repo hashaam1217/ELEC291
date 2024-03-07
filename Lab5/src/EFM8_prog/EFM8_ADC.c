@@ -397,7 +397,7 @@ void main (void)
         hello = get_period();
         hello = hello*2*12*1000/SYSCLK;
         per[i%3] = hello;
-        printf("Period: %f\r", hello);
+        //printf("Period: %f\r", hello);
 
         ADC0MX=QFP32_MUX_P2_5;
 
@@ -423,16 +423,16 @@ void main (void)
         P2_1=1;
         peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
         P2_1=0;
-        printf("Peak Voltage Other: %f\r", peak_voltage_other);
+        //printf("Peak Voltage Other: %f\r", peak_voltage_other);
         vt[i%3] = peak_voltage_other;
 
         hello2 = get_period_2();
         ADC0MX=QFP32_MUX_P2_5;
         hello2=(hello2*12*1000)/SYSCLK;
-        printf("Phase difference in ms: %f\r", hello2);
+        //printf("Phase difference in ms: %f\r", hello2);
         hello2=hello2*20.0/hello;
         y=179.0+hello2*1/(-0.056);
-        printf("Phase degrees: %f\r", y);
+        //printf("Phase degrees: %f\r", y);
         p[i%3] = y;
         
         while(per[i%3] == 0) i--;

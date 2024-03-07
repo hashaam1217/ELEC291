@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Thu Mar 07 13:24:38 2024
+; This file was generated Thu Mar 07 13:28:35 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -1680,25 +1680,6 @@ L019013?:
 	inc	dptr
 	mov	a,(_main_hello_1_82 + 3)
 	movx	@dptr,a
-;	EFM8_ADC.c:400: printf("Period: %f\r", hello);
-	push	ar2
-	push	ar3
-	push	_main_hello_1_82
-	push	(_main_hello_1_82 + 1)
-	push	(_main_hello_1_82 + 2)
-	push	(_main_hello_1_82 + 3)
-	mov	a,#__str_5
-	push	acc
-	mov	a,#(__str_5 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	pop	ar3
-	pop	ar2
 ;	EFM8_ADC.c:402: ADC0MX=QFP32_MUX_P2_5;
 	mov	_ADC0MX,#0x12
 ;	EFM8_ADC.c:405: while (Get_ADC()!=0); // Wait for the signal to be zero
@@ -1760,25 +1741,10 @@ L019004?:
 	mov	(_main_peak_voltage_other_1_82 + 1),dph
 	mov	(_main_peak_voltage_other_1_82 + 2),b
 	mov	(_main_peak_voltage_other_1_82 + 3),a
-;	EFM8_ADC.c:425: P2_1=0;
-	clr	_P2_1
-;	EFM8_ADC.c:426: printf("Peak Voltage Other: %f\r", peak_voltage_other);
-	push	_main_peak_voltage_other_1_82
-	push	(_main_peak_voltage_other_1_82 + 1)
-	push	(_main_peak_voltage_other_1_82 + 2)
-	push	(_main_peak_voltage_other_1_82 + 3)
-	mov	a,#__str_6
-	push	acc
-	mov	a,#(__str_6 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
 	pop	ar3
 	pop	ar2
+;	EFM8_ADC.c:425: P2_1=0;
+	clr	_P2_1
 ;	EFM8_ADC.c:427: vt[i%3] = peak_voltage_other;
 	mov	_main_sloc0_1_0,r2
 	mov	a,r3
@@ -1852,29 +1818,6 @@ L019004?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:432: printf("Phase difference in ms: %f\r", hello2);
-	push	ar4
-	push	ar5
-	push	ar0
-	push	ar1
-	push	ar0
-	push	ar1
-	push	ar4
-	push	ar5
-	mov	a,#__str_7
-	push	acc
-	mov	a,#(__str_7 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	pop	ar1
-	pop	ar0
-	pop	ar5
-	pop	ar4
 ;	EFM8_ADC.c:433: hello2=hello2*20.0/hello;
 	push	ar0
 	push	ar1
@@ -1947,29 +1890,6 @@ L019004?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:435: printf("Phase degrees: %f\r", y);
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	a,#__str_8
-	push	acc
-	mov	a,#(__str_8 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
 ;	EFM8_ADC.c:436: p[i%3] = y;
 	mov	a,_main_sloc0_1_0
 	add	a,#_main_p_1_82
@@ -2070,9 +1990,9 @@ L019009?:
 	push	ar5
 	push	ar6
 	push	ar7
-	mov	a,#__str_9
+	mov	a,#__str_5
 	push	acc
-	mov	a,#(__str_9 >> 8)
+	mov	a,#(__str_5 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2128,9 +2048,9 @@ L019009?:
 	push	ar1
 	push	ar4
 	push	ar5
-	mov	a,#__str_10
+	mov	a,#__str_6
 	push	acc
-	mov	a,#(__str_10 >> 8)
+	mov	a,#(__str_6 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2156,7 +2076,39 @@ L019009?:
 	mov	dptr,#_main_second_line_1_82
 	mov	b,#0x40
 	lcall	_LCDprint
-;	EFM8_ADC.c:445: waitms(500);
+;	EFM8_ADC.c:444: sprintf(first_line, "%.2f\r", peak_voltage_other/1.4142);
+	push	_main_sloc1_1_0
+	push	(_main_sloc1_1_0 + 1)
+	push	(_main_sloc1_1_0 + 2)
+	push	(_main_sloc1_1_0 + 3)
+	mov	a,#__str_7
+	push	acc
+	mov	a,#(__str_7 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	a,#_main_first_line_1_82
+	push	acc
+	mov	a,#(_main_first_line_1_82 >> 8)
+	push	acc
+	mov	a,#0x40
+	push	acc
+	lcall	_sprintf
+	mov	a,sp
+	add	a,#0xf6
+	mov	sp,a
+;	EFM8_ADC.c:445: printf(first_line);
+	mov	a,#_main_first_line_1_82
+	push	acc
+	mov	a,#(_main_first_line_1_82 >> 8)
+	push	acc
+	mov	a,#0x40
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	EFM8_ADC.c:447: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
 	pop	ar3
@@ -2194,29 +2146,17 @@ __str_3:
 	db 'Mar  7 2024'
 	db 0x00
 __str_4:
-	db '13:24:38'
+	db '13:28:35'
 	db 0x00
 __str_5:
-	db 'Period: %f'
-	db 0x0D
-	db 0x00
-__str_6:
-	db 'Peak Voltage Other: %f'
-	db 0x0D
-	db 0x00
-__str_7:
-	db 'Phase difference in ms: %f'
-	db 0x0D
-	db 0x00
-__str_8:
-	db 'Phase degrees: %f'
-	db 0x0D
-	db 0x00
-__str_9:
 	db 'Phase:%.2f deg'
 	db 0x00
-__str_10:
+__str_6:
 	db 'Per:%.0f Vt:%.2f'
+	db 0x00
+__str_7:
+	db '%.2f'
+	db 0x0D
 	db 0x00
 
 	CSEG
