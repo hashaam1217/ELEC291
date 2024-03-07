@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Thu Mar 07 11:04:09 2024
+; This file was generated Thu Mar 07 12:29:31 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -26,6 +26,13 @@ $printf_float
 ;--------------------------------------------------------
 	public _InitPinADC_PARM_2
 	public _main
+	public _getsn
+	public _LCDprint
+	public _LCD_4BIT
+	public _WriteCommand
+	public _WriteData
+	public _LCD_byte
+	public _LCD_pulse
 	public _get_period_2
 	public _get_period
 	public _Get_ADC
@@ -36,6 +43,9 @@ $printf_float
 	public _Timer3us
 	public _InitADC
 	public __c51_external_startup
+	public _LCDprint_PARM_3
+	public _getsn_PARM_2
+	public _LCDprint_PARM_2
 ;--------------------------------------------------------
 ; Special Function Registers
 ;--------------------------------------------------------
@@ -484,12 +494,24 @@ _TFRQ           BIT 0xdf
 ; internal ram data
 ;--------------------------------------------------------
 	rseg R_DSEG
-_main_v_1_65:
+_LCDprint_PARM_2:
+	ds 1
+_getsn_PARM_2:
+	ds 2
+_getsn_buff_1_76:
+	ds 3
+_getsn_sloc0_1_0:
+	ds 2
+_main_v_1_82:
 	ds 8
-_main_hello_1_65:
+_main_hello_1_82:
 	ds 4
-_main_peak_voltage_reference_1_65:
+_main_peak_voltage_other_1_82:
 	ds 4
+_main_first_line_1_82:
+	ds 16
+_main_second_line_1_82:
+	ds 16
 _main_sloc0_1_0:
 	ds 4
 ;--------------------------------------------------------
@@ -512,6 +534,8 @@ _InitPinADC_PARM_2:
 ; bit data
 ;--------------------------------------------------------
 	rseg R_BSEG
+_LCDprint_PARM_3:
+	DBIT	1
 ;--------------------------------------------------------
 ; paged external ram data
 ;--------------------------------------------------------
@@ -555,95 +579,95 @@ _InitPinADC_PARM_2:
 ;Allocation info for local variables in function '_c51_external_startup'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	EFM8_ADC.c:20: char _c51_external_startup (void)
+;	EFM8_ADC.c:29: char _c51_external_startup (void)
 ;	-----------------------------------------
 ;	 function _c51_external_startup
 ;	-----------------------------------------
 __c51_external_startup:
 	using	0
-;	EFM8_ADC.c:23: SFRPAGE = 0x00;
+;	EFM8_ADC.c:32: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	EFM8_ADC.c:24: WDTCN = 0xDE; //First key
+;	EFM8_ADC.c:33: WDTCN = 0xDE; //First key
 	mov	_WDTCN,#0xDE
-;	EFM8_ADC.c:25: WDTCN = 0xAD; //Second key
+;	EFM8_ADC.c:34: WDTCN = 0xAD; //Second key
 	mov	_WDTCN,#0xAD
-;	EFM8_ADC.c:27: VDM0CN=0x80;       // enable VDD monitor
+;	EFM8_ADC.c:36: VDM0CN=0x80;       // enable VDD monitor
 	mov	_VDM0CN,#0x80
-;	EFM8_ADC.c:28: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
+;	EFM8_ADC.c:37: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
 	mov	_RSTSRC,#0x06
-;	EFM8_ADC.c:35: SFRPAGE = 0x10;
+;	EFM8_ADC.c:44: SFRPAGE = 0x10;
 	mov	_SFRPAGE,#0x10
-;	EFM8_ADC.c:36: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+;	EFM8_ADC.c:45: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
 	mov	_PFE0CN,#0x20
-;	EFM8_ADC.c:37: SFRPAGE = 0x00;
+;	EFM8_ADC.c:46: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	EFM8_ADC.c:58: CLKSEL = 0x00;
+;	EFM8_ADC.c:67: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	EFM8_ADC.c:59: CLKSEL = 0x00;
+;	EFM8_ADC.c:68: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	EFM8_ADC.c:60: while ((CLKSEL & 0x80) == 0);
+;	EFM8_ADC.c:69: while ((CLKSEL & 0x80) == 0);
 L002001?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002001?
-;	EFM8_ADC.c:61: CLKSEL = 0x03;
+;	EFM8_ADC.c:70: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	EFM8_ADC.c:62: CLKSEL = 0x03;
+;	EFM8_ADC.c:71: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	EFM8_ADC.c:63: while ((CLKSEL & 0x80) == 0);
+;	EFM8_ADC.c:72: while ((CLKSEL & 0x80) == 0);
 L002004?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002004?
-;	EFM8_ADC.c:68: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+;	EFM8_ADC.c:77: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 	orl	_P0MDOUT,#0x10
-;	EFM8_ADC.c:69: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
+;	EFM8_ADC.c:78: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)
 	mov	_XBR0,#0x01
-;	EFM8_ADC.c:70: XBR1     = 0X00;
+;	EFM8_ADC.c:79: XBR1     = 0X00;
 	mov	_XBR1,#0x00
-;	EFM8_ADC.c:71: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+;	EFM8_ADC.c:80: XBR2     = 0x40; // Enable crossbar and weak pull-ups
 	mov	_XBR2,#0x40
-;	EFM8_ADC.c:77: SCON0 = 0x10;
+;	EFM8_ADC.c:86: SCON0 = 0x10;
 	mov	_SCON0,#0x10
-;	EFM8_ADC.c:78: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
+;	EFM8_ADC.c:87: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*12L));
 	mov	_TH1,#0xE6
-;	EFM8_ADC.c:79: TL1 = TH1;      // Init Timer1
+;	EFM8_ADC.c:88: TL1 = TH1;      // Init Timer1
 	mov	_TL1,_TH1
-;	EFM8_ADC.c:80: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+;	EFM8_ADC.c:89: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 	anl	_TMOD,#0x0F
-;	EFM8_ADC.c:81: TMOD |=  0x21;
+;	EFM8_ADC.c:90: TMOD |=  0x21;
 	orl	_TMOD,#0x21
-;	EFM8_ADC.c:82: TR1 = 1; // START Timer1
+;	EFM8_ADC.c:91: TR1 = 1; // START Timer1
 	setb	_TR1
-;	EFM8_ADC.c:83: TI = 1;  // Indicate TX0 ready
+;	EFM8_ADC.c:92: TI = 1;  // Indicate TX0 ready
 	setb	_TI
-;	EFM8_ADC.c:85: return 0;
+;	EFM8_ADC.c:94: return 0;
 	mov	dpl,#0x00
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'InitADC'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	EFM8_ADC.c:90: void InitADC (void)
+;	EFM8_ADC.c:99: void InitADC (void)
 ;	-----------------------------------------
 ;	 function InitADC
 ;	-----------------------------------------
 _InitADC:
-;	EFM8_ADC.c:92: SFRPAGE = 0x00;
+;	EFM8_ADC.c:101: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	EFM8_ADC.c:93: ADEN=0; // Disable ADC
+;	EFM8_ADC.c:102: ADEN=0; // Disable ADC
 	clr	_ADEN
-;	EFM8_ADC.c:98: (0x0 << 0) ; // Accumulate n conversions: 0x0: 1, 0x1:4, 0x2:8, 0x3:16, 0x4:32
+;	EFM8_ADC.c:107: (0x0 << 0) ; // Accumulate n conversions: 0x0: 1, 0x1:4, 0x2:8, 0x3:16, 0x4:32
 	mov	_ADC0CN1,#0x80
-;	EFM8_ADC.c:102: (0x0 << 2); // 0:SYSCLK ADCCLK = SYSCLK. 1:HFOSC0 ADCCLK = HFOSC0.
+;	EFM8_ADC.c:111: (0x0 << 2); // 0:SYSCLK ADCCLK = SYSCLK. 1:HFOSC0 ADCCLK = HFOSC0.
 	mov	_ADC0CF0,#0x20
-;	EFM8_ADC.c:106: (0x1E << 0); // Conversion Tracking Time. Tadtk = ADTK / (Fsarclk)
+;	EFM8_ADC.c:115: (0x1E << 0); // Conversion Tracking Time. Tadtk = ADTK / (Fsarclk)
 	mov	_ADC0CF1,#0x1E
-;	EFM8_ADC.c:115: (0x0 << 0) ; // TEMPE. 0: Disable the Temperature Sensor. 1: Enable the Temperature Sensor.
+;	EFM8_ADC.c:124: (0x0 << 0) ; // TEMPE. 0: Disable the Temperature Sensor. 1: Enable the Temperature Sensor.
 	mov	_ADC0CN0,#0x00
-;	EFM8_ADC.c:120: (0x1F << 0); // ADPWR. Power Up Delay Time. Tpwrtime = ((4 * (ADPWR + 1)) + 2) / (Fadcclk)
+;	EFM8_ADC.c:129: (0x1F << 0); // ADPWR. Power Up Delay Time. Tpwrtime = ((4 * (ADPWR + 1)) + 2) / (Fadcclk)
 	mov	_ADC0CF2,#0x3F
-;	EFM8_ADC.c:124: (0x0 << 0) ; // ADCM. 0x0: ADBUSY, 0x1: TIMER0, 0x2: TIMER2, 0x3: TIMER3, 0x4: CNVSTR, 0x5: CEX5, 0x6: TIMER4, 0x7: TIMER5, 0x8: CLU0, 0x9: CLU1, 0xA: CLU2, 0xB: CLU3
+;	EFM8_ADC.c:133: (0x0 << 0) ; // ADCM. 0x0: ADBUSY, 0x1: TIMER0, 0x2: TIMER2, 0x3: TIMER3, 0x4: CNVSTR, 0x5: CEX5, 0x6: TIMER4, 0x7: TIMER5, 0x8: CLU0, 0x9: CLU1, 0xA: CLU2, 0xB: CLU3
 	mov	_ADC0CN2,#0x00
-;	EFM8_ADC.c:126: ADEN=1; // Enable ADC
+;	EFM8_ADC.c:135: ADEN=1; // Enable ADC
 	setb	_ADEN
 	ret
 ;------------------------------------------------------------
@@ -652,40 +676,40 @@ _InitADC:
 ;us                        Allocated to registers r2 
 ;i                         Allocated to registers r3 
 ;------------------------------------------------------------
-;	EFM8_ADC.c:130: void Timer3us(unsigned char us)
+;	EFM8_ADC.c:139: void Timer3us(unsigned char us)
 ;	-----------------------------------------
 ;	 function Timer3us
 ;	-----------------------------------------
 _Timer3us:
 	mov	r2,dpl
-;	EFM8_ADC.c:135: CKCON0|=0b_0100_0000;
+;	EFM8_ADC.c:144: CKCON0|=0b_0100_0000;
 	orl	_CKCON0,#0x40
-;	EFM8_ADC.c:137: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+;	EFM8_ADC.c:146: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
 	mov	_TMR3RL,#0xB8
 	mov	(_TMR3RL >> 8),#0xFF
-;	EFM8_ADC.c:138: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+;	EFM8_ADC.c:147: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
 	mov	_TMR3,_TMR3RL
 	mov	(_TMR3 >> 8),(_TMR3RL >> 8)
-;	EFM8_ADC.c:140: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+;	EFM8_ADC.c:149: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x04
-;	EFM8_ADC.c:141: for (i = 0; i < us; i++)       // Count <us> overflows
+;	EFM8_ADC.c:150: for (i = 0; i < us; i++)       // Count <us> overflows
 	mov	r3,#0x00
 L004004?:
 	clr	c
 	mov	a,r3
 	subb	a,r2
 	jnc	L004007?
-;	EFM8_ADC.c:143: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+;	EFM8_ADC.c:152: while (!(TMR3CN0 & 0x80));  // Wait for overflow
 L004001?:
 	mov	a,_TMR3CN0
 	jnb	acc.7,L004001?
-;	EFM8_ADC.c:144: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+;	EFM8_ADC.c:153: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
 	anl	_TMR3CN0,#0x7F
-;	EFM8_ADC.c:141: for (i = 0; i < us; i++)       // Count <us> overflows
+;	EFM8_ADC.c:150: for (i = 0; i < us; i++)       // Count <us> overflows
 	inc	r3
 	sjmp	L004004?
 L004007?:
-;	EFM8_ADC.c:146: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+;	EFM8_ADC.c:155: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x00
 	ret
 ;------------------------------------------------------------
@@ -695,14 +719,14 @@ L004007?:
 ;j                         Allocated to registers r4 r5 
 ;k                         Allocated to registers r6 
 ;------------------------------------------------------------
-;	EFM8_ADC.c:149: void waitms (unsigned int ms)
+;	EFM8_ADC.c:158: void waitms (unsigned int ms)
 ;	-----------------------------------------
 ;	 function waitms
 ;	-----------------------------------------
 _waitms:
 	mov	r2,dpl
 	mov	r3,dph
-;	EFM8_ADC.c:153: for(j=0; j<ms; j++)
+;	EFM8_ADC.c:162: for(j=0; j<ms; j++)
 	mov	r4,#0x00
 	mov	r5,#0x00
 L005005?:
@@ -712,7 +736,7 @@ L005005?:
 	mov	a,r5
 	subb	a,r3
 	jnc	L005009?
-;	EFM8_ADC.c:154: for (k=0; k<4; k++) Timer3us(250);
+;	EFM8_ADC.c:163: for (k=0; k<4; k++) Timer3us(250);
 	mov	r6,#0x00
 L005001?:
 	cjne	r6,#0x04,L005018?
@@ -733,7 +757,7 @@ L005018?:
 	inc	r6
 	sjmp	L005001?
 L005007?:
-;	EFM8_ADC.c:153: for(j=0; j<ms; j++)
+;	EFM8_ADC.c:162: for(j=0; j<ms; j++)
 	inc	r4
 	cjne	r4,#0x00,L005005?
 	inc	r5
@@ -747,13 +771,13 @@ L005009?:
 ;portno                    Allocated to registers r2 
 ;mask                      Allocated to registers r3 
 ;------------------------------------------------------------
-;	EFM8_ADC.c:159: void InitPinADC (unsigned char portno, unsigned char pinno)
+;	EFM8_ADC.c:168: void InitPinADC (unsigned char portno, unsigned char pinno)
 ;	-----------------------------------------
 ;	 function InitPinADC
 ;	-----------------------------------------
 _InitPinADC:
 	mov	r2,dpl
-;	EFM8_ADC.c:163: mask=1<<pinno;
+;	EFM8_ADC.c:172: mask=1<<pinno;
 	mov	b,_InitPinADC_PARM_2
 	inc	b
 	mov	a,#0x01
@@ -763,54 +787,54 @@ L006011?:
 L006013?:
 	djnz	b,L006011?
 	mov	r3,a
-;	EFM8_ADC.c:165: SFRPAGE = 0x20;
+;	EFM8_ADC.c:174: SFRPAGE = 0x20;
 	mov	_SFRPAGE,#0x20
-;	EFM8_ADC.c:166: switch (portno)
+;	EFM8_ADC.c:175: switch (portno)
 	cjne	r2,#0x00,L006014?
 	sjmp	L006001?
 L006014?:
 	cjne	r2,#0x01,L006015?
 	sjmp	L006002?
 L006015?:
-;	EFM8_ADC.c:168: case 0:
+;	EFM8_ADC.c:177: case 0:
 	cjne	r2,#0x02,L006005?
 	sjmp	L006003?
 L006001?:
-;	EFM8_ADC.c:169: P0MDIN &= (~mask); // Set pin as analog input
+;	EFM8_ADC.c:178: P0MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P0MDIN,a
-;	EFM8_ADC.c:170: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+;	EFM8_ADC.c:179: P0SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P0SKIP,a
-;	EFM8_ADC.c:171: break;
-;	EFM8_ADC.c:172: case 1:
+;	EFM8_ADC.c:180: break;
+;	EFM8_ADC.c:181: case 1:
 	sjmp	L006005?
 L006002?:
-;	EFM8_ADC.c:173: P1MDIN &= (~mask); // Set pin as analog input
+;	EFM8_ADC.c:182: P1MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P1MDIN,a
-;	EFM8_ADC.c:174: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+;	EFM8_ADC.c:183: P1SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P1SKIP,a
-;	EFM8_ADC.c:175: break;
-;	EFM8_ADC.c:176: case 2:
+;	EFM8_ADC.c:184: break;
+;	EFM8_ADC.c:185: case 2:
 	sjmp	L006005?
 L006003?:
-;	EFM8_ADC.c:177: P2MDIN &= (~mask); // Set pin as analog input
+;	EFM8_ADC.c:186: P2MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P2MDIN,a
-;	EFM8_ADC.c:178: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+;	EFM8_ADC.c:187: P2SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P2SKIP,a
-;	EFM8_ADC.c:182: }
+;	EFM8_ADC.c:191: }
 L006005?:
-;	EFM8_ADC.c:183: SFRPAGE = 0x00;
+;	EFM8_ADC.c:192: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
 	ret
 ;------------------------------------------------------------
@@ -818,20 +842,20 @@ L006005?:
 ;------------------------------------------------------------
 ;pin                       Allocated to registers 
 ;------------------------------------------------------------
-;	EFM8_ADC.c:186: unsigned int ADC_at_Pin(unsigned char pin)
+;	EFM8_ADC.c:195: unsigned int ADC_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function ADC_at_Pin
 ;	-----------------------------------------
 _ADC_at_Pin:
 	mov	_ADC0MX,dpl
-;	EFM8_ADC.c:189: ADINT = 0;
+;	EFM8_ADC.c:198: ADINT = 0;
 	clr	_ADINT
-;	EFM8_ADC.c:190: ADBUSY = 1;     // Convert voltage at the pin
+;	EFM8_ADC.c:199: ADBUSY = 1;     // Convert voltage at the pin
 	setb	_ADBUSY
-;	EFM8_ADC.c:191: while (!ADINT); // Wait for conversion to complete
+;	EFM8_ADC.c:200: while (!ADINT); // Wait for conversion to complete
 L007001?:
 	jnb	_ADINT,L007001?
-;	EFM8_ADC.c:192: return (ADC0);
+;	EFM8_ADC.c:201: return (ADC0);
 	mov	dpl,_ADC0
 	mov	dph,(_ADC0 >> 8)
 	ret
@@ -840,12 +864,12 @@ L007001?:
 ;------------------------------------------------------------
 ;pin                       Allocated to registers r2 
 ;------------------------------------------------------------
-;	EFM8_ADC.c:195: float Volts_at_Pin(unsigned char pin)
+;	EFM8_ADC.c:204: float Volts_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function Volts_at_Pin
 ;	-----------------------------------------
 _Volts_at_Pin:
-;	EFM8_ADC.c:197: return ((ADC_at_Pin(pin)*VDD)/0b_0011_1111_1111_1111);
+;	EFM8_ADC.c:206: return ((ADC_at_Pin(pin)*VDD)/0b_0011_1111_1111_1111);
 	lcall	_ADC_at_Pin
 	lcall	___uint2fs
 	mov	r2,dpl
@@ -896,19 +920,19 @@ _Volts_at_Pin:
 ;Allocation info for local variables in function 'Get_ADC'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	EFM8_ADC.c:201: unsigned int Get_ADC (void)
+;	EFM8_ADC.c:210: unsigned int Get_ADC (void)
 ;	-----------------------------------------
 ;	 function Get_ADC
 ;	-----------------------------------------
 _Get_ADC:
-;	EFM8_ADC.c:203: ADINT = 0;
+;	EFM8_ADC.c:212: ADINT = 0;
 	clr	_ADINT
-;	EFM8_ADC.c:204: ADBUSY = 1;
+;	EFM8_ADC.c:213: ADBUSY = 1;
 	setb	_ADBUSY
-;	EFM8_ADC.c:205: while (!ADINT); // Wait for conversion to complete
+;	EFM8_ADC.c:214: while (!ADINT); // Wait for conversion to complete
 L009001?:
 	jnb	_ADINT,L009001?
-;	EFM8_ADC.c:206: return (ADC0);
+;	EFM8_ADC.c:215: return (ADC0);
 	mov	dpl,_ADC0
 	mov	dph,(_ADC0 >> 8)
 	ret
@@ -918,50 +942,50 @@ L009001?:
 ;half_period               Allocated to registers r2 r3 r4 r5 
 ;overflow_count            Allocated to registers 
 ;------------------------------------------------------------
-;	EFM8_ADC.c:209: float get_period(void)
+;	EFM8_ADC.c:218: float get_period(void)
 ;	-----------------------------------------
 ;	 function get_period
 ;	-----------------------------------------
 _get_period:
-;	EFM8_ADC.c:214: ADC0MX=QFP32_MUX_P2_4;
+;	EFM8_ADC.c:223: ADC0MX=QFP32_MUX_P2_4;
 	mov	_ADC0MX,#0x11
-;	EFM8_ADC.c:215: ADINT = 0;
+;	EFM8_ADC.c:224: ADINT = 0;
 	clr	_ADINT
-;	EFM8_ADC.c:216: ADBUSY=1;
+;	EFM8_ADC.c:225: ADBUSY=1;
 	setb	_ADBUSY
-;	EFM8_ADC.c:217: while (!ADINT); // Wait for conversion to complete
+;	EFM8_ADC.c:226: while (!ADINT); // Wait for conversion to complete
 L010001?:
 	jnb	_ADINT,L010001?
-;	EFM8_ADC.c:219: TL0=0;
+;	EFM8_ADC.c:228: TL0=0;
 	mov	_TL0,#0x00
-;	EFM8_ADC.c:220: TH0=0;
+;	EFM8_ADC.c:229: TH0=0;
 	mov	_TH0,#0x00
-;	EFM8_ADC.c:221: while (Get_ADC()!=0); // Wait for the signal to be zero
+;	EFM8_ADC.c:230: while (Get_ADC()!=0); // Wait for the signal to be zero
 L010004?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jnz	L010004?
-;	EFM8_ADC.c:222: while (Get_ADC()==0); // Wait for the signal to be positive
+;	EFM8_ADC.c:231: while (Get_ADC()==0); // Wait for the signal to be positive
 L010007?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jz	L010007?
-;	EFM8_ADC.c:223: TR0=1; // Start the timer 0
+;	EFM8_ADC.c:232: TR0=1; // Start the timer 0
 	setb	_TR0
-;	EFM8_ADC.c:224: while (Get_ADC()!=0); // Wait for the signal to be zero again
+;	EFM8_ADC.c:233: while (Get_ADC()!=0); // Wait for the signal to be zero again
 L010010?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jnz	L010010?
-;	EFM8_ADC.c:225: TR0=0; // Stop timer 0
+;	EFM8_ADC.c:234: TR0=0; // Stop timer 0
 	clr	_TR0
-;	EFM8_ADC.c:227: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
+;	EFM8_ADC.c:236: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
 	mov	dpl,_TH0
 	lcall	___uchar2fs
 	mov	r2,dpl
@@ -1016,7 +1040,7 @@ L010010?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:230: return half_period;
+;	EFM8_ADC.c:239: return half_period;
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -1028,52 +1052,52 @@ L010010?:
 ;half_period               Allocated to registers r2 r3 r4 r5 
 ;overflow_count            Allocated to registers 
 ;------------------------------------------------------------
-;	EFM8_ADC.c:233: float get_period_2(void)
+;	EFM8_ADC.c:242: float get_period_2(void)
 ;	-----------------------------------------
 ;	 function get_period_2
 ;	-----------------------------------------
 _get_period_2:
-;	EFM8_ADC.c:238: ADC0MX=QFP32_MUX_P2_4;
+;	EFM8_ADC.c:247: ADC0MX=QFP32_MUX_P2_4;
 	mov	_ADC0MX,#0x11
-;	EFM8_ADC.c:239: ADINT = 0;
+;	EFM8_ADC.c:248: ADINT = 0;
 	clr	_ADINT
-;	EFM8_ADC.c:240: ADBUSY=1;
+;	EFM8_ADC.c:249: ADBUSY=1;
 	setb	_ADBUSY
-;	EFM8_ADC.c:241: while (!ADINT); // Wait for conversion to complete
+;	EFM8_ADC.c:250: while (!ADINT); // Wait for conversion to complete
 L011001?:
 	jnb	_ADINT,L011001?
-;	EFM8_ADC.c:243: TL0=0;
+;	EFM8_ADC.c:252: TL0=0;
 	mov	_TL0,#0x00
-;	EFM8_ADC.c:244: TH0=0;
+;	EFM8_ADC.c:253: TH0=0;
 	mov	_TH0,#0x00
-;	EFM8_ADC.c:245: while (Get_ADC()!=0); // Wait for the signal to be zero
+;	EFM8_ADC.c:254: while (Get_ADC()!=0); // Wait for the signal to be zero
 L011004?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jnz	L011004?
-;	EFM8_ADC.c:246: while (Get_ADC()==0); // Wait for the signal to be positive
+;	EFM8_ADC.c:255: while (Get_ADC()==0); // Wait for the signal to be positive
 L011007?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jz	L011007?
-;	EFM8_ADC.c:247: TR0=1; // Start the timer 0
+;	EFM8_ADC.c:256: TR0=1; // Start the timer 0
 	setb	_TR0
-;	EFM8_ADC.c:248: ADC0MX=QFP32_MUX_P2_5;
+;	EFM8_ADC.c:257: ADC0MX=QFP32_MUX_P2_5;
 	mov	_ADC0MX,#0x12
-;	EFM8_ADC.c:249: while (Get_ADC()!=0); // Wait for the signal to be zero again
+;	EFM8_ADC.c:258: while (Get_ADC()!=0); // Wait for the signal to be zero again
 L011010?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jnz	L011010?
-;	EFM8_ADC.c:250: TR0=0; // Stop timer 0
+;	EFM8_ADC.c:259: TR0=0; // Stop timer 0
 	clr	_TR0
-;	EFM8_ADC.c:252: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
+;	EFM8_ADC.c:261: half_period=TH0*256.0+TL0; // The 16-bit number [TH0-TL0]
 	mov	dpl,_TH0
 	lcall	___uchar2fs
 	mov	r2,dpl
@@ -1128,32 +1152,379 @@ L011010?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:255: return half_period;
+;	EFM8_ADC.c:264: return half_period;
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
 	mov	a,r5
 	ret
 ;------------------------------------------------------------
+;Allocation info for local variables in function 'LCD_pulse'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	EFM8_ADC.c:271: void LCD_pulse (void)
+;	-----------------------------------------
+;	 function LCD_pulse
+;	-----------------------------------------
+_LCD_pulse:
+;	EFM8_ADC.c:273: LCD_E=1;
+	setb	_P2_0
+;	EFM8_ADC.c:274: Timer3us(40);
+	mov	dpl,#0x28
+	lcall	_Timer3us
+;	EFM8_ADC.c:275: LCD_E=0;
+	clr	_P2_0
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'LCD_byte'
+;------------------------------------------------------------
+;x                         Allocated to registers r2 
+;------------------------------------------------------------
+;	EFM8_ADC.c:278: void LCD_byte (unsigned char x)
+;	-----------------------------------------
+;	 function LCD_byte
+;	-----------------------------------------
+_LCD_byte:
+	mov	r2,dpl
+;	EFM8_ADC.c:281: ACC=x; //Send high nible
+	mov	_ACC,r2
+;	EFM8_ADC.c:282: LCD_D7=ACC_7;
+	mov	c,_ACC_7
+	mov	_P1_0,c
+;	EFM8_ADC.c:283: LCD_D6=ACC_6;
+	mov	c,_ACC_6
+	mov	_P1_1,c
+;	EFM8_ADC.c:284: LCD_D5=ACC_5;
+	mov	c,_ACC_5
+	mov	_P1_2,c
+;	EFM8_ADC.c:285: LCD_D4=ACC_4;
+	mov	c,_ACC_4
+	mov	_P1_3,c
+;	EFM8_ADC.c:286: LCD_pulse();
+	push	ar2
+	lcall	_LCD_pulse
+;	EFM8_ADC.c:287: Timer3us(40);
+	mov	dpl,#0x28
+	lcall	_Timer3us
+	pop	ar2
+;	EFM8_ADC.c:288: ACC=x; //Send low nible
+	mov	_ACC,r2
+;	EFM8_ADC.c:289: LCD_D7=ACC_3;
+	mov	c,_ACC_3
+	mov	_P1_0,c
+;	EFM8_ADC.c:290: LCD_D6=ACC_2;
+	mov	c,_ACC_2
+	mov	_P1_1,c
+;	EFM8_ADC.c:291: LCD_D5=ACC_1;
+	mov	c,_ACC_1
+	mov	_P1_2,c
+;	EFM8_ADC.c:292: LCD_D4=ACC_0;
+	mov	c,_ACC_0
+	mov	_P1_3,c
+;	EFM8_ADC.c:293: LCD_pulse();
+	ljmp	_LCD_pulse
+;------------------------------------------------------------
+;Allocation info for local variables in function 'WriteData'
+;------------------------------------------------------------
+;x                         Allocated to registers r2 
+;------------------------------------------------------------
+;	EFM8_ADC.c:296: void WriteData (unsigned char x)
+;	-----------------------------------------
+;	 function WriteData
+;	-----------------------------------------
+_WriteData:
+	mov	r2,dpl
+;	EFM8_ADC.c:298: LCD_RS=1;
+	setb	_P1_7
+;	EFM8_ADC.c:299: LCD_byte(x);
+	mov	dpl,r2
+	lcall	_LCD_byte
+;	EFM8_ADC.c:300: waitms(2);
+	mov	dptr,#0x0002
+	ljmp	_waitms
+;------------------------------------------------------------
+;Allocation info for local variables in function 'WriteCommand'
+;------------------------------------------------------------
+;x                         Allocated to registers r2 
+;------------------------------------------------------------
+;	EFM8_ADC.c:303: void WriteCommand (unsigned char x)
+;	-----------------------------------------
+;	 function WriteCommand
+;	-----------------------------------------
+_WriteCommand:
+	mov	r2,dpl
+;	EFM8_ADC.c:305: LCD_RS=0;
+	clr	_P1_7
+;	EFM8_ADC.c:306: LCD_byte(x);
+	mov	dpl,r2
+	lcall	_LCD_byte
+;	EFM8_ADC.c:307: waitms(5);
+	mov	dptr,#0x0005
+	ljmp	_waitms
+;------------------------------------------------------------
+;Allocation info for local variables in function 'LCD_4BIT'
+;------------------------------------------------------------
+;------------------------------------------------------------
+;	EFM8_ADC.c:310: void LCD_4BIT (void)
+;	-----------------------------------------
+;	 function LCD_4BIT
+;	-----------------------------------------
+_LCD_4BIT:
+;	EFM8_ADC.c:312: LCD_E=0; // Resting state of LCD's enable is zero
+	clr	_P2_0
+;	EFM8_ADC.c:314: waitms(20);
+	mov	dptr,#0x0014
+	lcall	_waitms
+;	EFM8_ADC.c:316: WriteCommand(0x33);
+	mov	dpl,#0x33
+	lcall	_WriteCommand
+;	EFM8_ADC.c:317: WriteCommand(0x33);
+	mov	dpl,#0x33
+	lcall	_WriteCommand
+;	EFM8_ADC.c:318: WriteCommand(0x32); // Change to 4-bit mode
+	mov	dpl,#0x32
+	lcall	_WriteCommand
+;	EFM8_ADC.c:321: WriteCommand(0x28);
+	mov	dpl,#0x28
+	lcall	_WriteCommand
+;	EFM8_ADC.c:322: WriteCommand(0x0c);
+	mov	dpl,#0x0C
+	lcall	_WriteCommand
+;	EFM8_ADC.c:323: WriteCommand(0x01); // Clear screen command (takes some time)
+	mov	dpl,#0x01
+	lcall	_WriteCommand
+;	EFM8_ADC.c:324: waitms(20); // Wait for clear screen command to finsih.
+	mov	dptr,#0x0014
+	ljmp	_waitms
+;------------------------------------------------------------
+;Allocation info for local variables in function 'LCDprint'
+;------------------------------------------------------------
+;line                      Allocated with name '_LCDprint_PARM_2'
+;string                    Allocated to registers r2 r3 r4 
+;j                         Allocated to registers r5 r6 
+;------------------------------------------------------------
+;	EFM8_ADC.c:327: void LCDprint(char * string, unsigned char line, bit clear)
+;	-----------------------------------------
+;	 function LCDprint
+;	-----------------------------------------
+_LCDprint:
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+;	EFM8_ADC.c:331: WriteCommand(line==2?0xc0:0x80);
+	mov	a,#0x02
+	cjne	a,_LCDprint_PARM_2,L017013?
+	mov	r5,#0xC0
+	sjmp	L017014?
+L017013?:
+	mov	r5,#0x80
+L017014?:
+	mov	dpl,r5
+	push	ar2
+	push	ar3
+	push	ar4
+	lcall	_WriteCommand
+;	EFM8_ADC.c:332: waitms(5);
+	mov	dptr,#0x0005
+	lcall	_waitms
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	EFM8_ADC.c:333: for(j=0; string[j]!=0; j++)	WriteData(string[j]);// Write the message
+	mov	r5,#0x00
+	mov	r6,#0x00
+L017003?:
+	mov	a,r5
+	add	a,r2
+	mov	r7,a
+	mov	a,r6
+	addc	a,r3
+	mov	r0,a
+	mov	ar1,r4
+	mov	dpl,r7
+	mov	dph,r0
+	mov	b,r1
+	lcall	__gptrget
+	mov	r7,a
+	jz	L017006?
+	mov	dpl,r7
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	push	ar6
+	lcall	_WriteData
+	pop	ar6
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	inc	r5
+	cjne	r5,#0x00,L017003?
+	inc	r6
+	sjmp	L017003?
+L017006?:
+;	EFM8_ADC.c:334: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
+	jnb	_LCDprint_PARM_3,L017011?
+	mov	ar2,r5
+	mov	ar3,r6
+L017007?:
+	clr	c
+	mov	a,r2
+	subb	a,#0x10
+	mov	a,r3
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	L017011?
+	mov	dpl,#0x20
+	push	ar2
+	push	ar3
+	lcall	_WriteData
+	pop	ar3
+	pop	ar2
+	inc	r2
+	cjne	r2,#0x00,L017007?
+	inc	r3
+	sjmp	L017007?
+L017011?:
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'getsn'
+;------------------------------------------------------------
+;len                       Allocated with name '_getsn_PARM_2'
+;buff                      Allocated with name '_getsn_buff_1_76'
+;j                         Allocated with name '_getsn_sloc0_1_0'
+;c                         Allocated to registers r3 
+;sloc0                     Allocated with name '_getsn_sloc0_1_0'
+;------------------------------------------------------------
+;	EFM8_ADC.c:337: int getsn (char * buff, int len)
+;	-----------------------------------------
+;	 function getsn
+;	-----------------------------------------
+_getsn:
+	mov	_getsn_buff_1_76,dpl
+	mov	(_getsn_buff_1_76 + 1),dph
+	mov	(_getsn_buff_1_76 + 2),b
+;	EFM8_ADC.c:342: for(j=0; j<(len-1); j++)
+	clr	a
+	mov	_getsn_sloc0_1_0,a
+	mov	(_getsn_sloc0_1_0 + 1),a
+	mov	a,_getsn_PARM_2
+	add	a,#0xff
+	mov	r7,a
+	mov	a,(_getsn_PARM_2 + 1)
+	addc	a,#0xff
+	mov	r0,a
+	mov	r1,#0x00
+	mov	r2,#0x00
+L018005?:
+	clr	c
+	mov	a,r1
+	subb	a,r7
+	mov	a,r2
+	xrl	a,#0x80
+	mov	b,r0
+	xrl	b,#0x80
+	subb	a,b
+	jnc	L018008?
+;	EFM8_ADC.c:344: c=getchar();
+	push	ar2
+	push	ar7
+	push	ar0
+	push	ar1
+	lcall	_getchar
+	mov	r3,dpl
+	pop	ar1
+	pop	ar0
+	pop	ar7
+	pop	ar2
+;	EFM8_ADC.c:345: if ( (c=='\n') || (c=='\r') )
+	cjne	r3,#0x0A,L018015?
+	sjmp	L018001?
+L018015?:
+	cjne	r3,#0x0D,L018002?
+L018001?:
+;	EFM8_ADC.c:347: buff[j]=0;
+	mov	a,_getsn_sloc0_1_0
+	add	a,_getsn_buff_1_76
+	mov	r4,a
+	mov	a,(_getsn_sloc0_1_0 + 1)
+	addc	a,(_getsn_buff_1_76 + 1)
+	mov	r5,a
+	mov	r6,(_getsn_buff_1_76 + 2)
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	clr	a
+	lcall	__gptrput
+;	EFM8_ADC.c:348: return j;
+	mov	dpl,_getsn_sloc0_1_0
+	mov	dph,(_getsn_sloc0_1_0 + 1)
+	ret
+L018002?:
+;	EFM8_ADC.c:352: buff[j]=c;
+	mov	a,r1
+	add	a,_getsn_buff_1_76
+	mov	r4,a
+	mov	a,r2
+	addc	a,(_getsn_buff_1_76 + 1)
+	mov	r5,a
+	mov	r6,(_getsn_buff_1_76 + 2)
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	mov	a,r3
+	lcall	__gptrput
+;	EFM8_ADC.c:342: for(j=0; j<(len-1); j++)
+	inc	r1
+	cjne	r1,#0x00,L018018?
+	inc	r2
+L018018?:
+	mov	_getsn_sloc0_1_0,r1
+	mov	(_getsn_sloc0_1_0 + 1),r2
+	sjmp	L018005?
+L018008?:
+;	EFM8_ADC.c:355: buff[j]=0;
+	mov	a,_getsn_sloc0_1_0
+	add	a,_getsn_buff_1_76
+	mov	r2,a
+	mov	a,(_getsn_sloc0_1_0 + 1)
+	addc	a,(_getsn_buff_1_76 + 1)
+	mov	r3,a
+	mov	r4,(_getsn_buff_1_76 + 2)
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	clr	a
+	lcall	__gptrput
+;	EFM8_ADC.c:356: return len;
+	mov	dpl,_getsn_PARM_2
+	mov	dph,(_getsn_PARM_2 + 1)
+	ret
+;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;v                         Allocated with name '_main_v_1_65'
-;hello                     Allocated with name '_main_hello_1_65'
-;hello2                    Allocated to registers r2 r3 r4 r5 
-;peak_voltage_reference    Allocated with name '_main_peak_voltage_reference_1_65'
-;peak_voltage_other        Allocated to registers r2 r3 r4 r5 
+;v                         Allocated with name '_main_v_1_82'
+;hello                     Allocated with name '_main_hello_1_82'
+;hello2                    Allocated to registers r6 r7 r2 r3 
+;peak_voltage_reference    Allocated with name '_main_peak_voltage_reference_1_82'
+;peak_voltage_other        Allocated with name '_main_peak_voltage_other_1_82'
 ;y                         Allocated to registers r2 r3 r4 r5 
+;first_line                Allocated with name '_main_first_line_1_82'
+;second_line               Allocated with name '_main_second_line_1_82'
 ;sloc0                     Allocated with name '_main_sloc0_1_0'
 ;------------------------------------------------------------
-;	EFM8_ADC.c:259: void main (void)
+;	EFM8_ADC.c:359: void main (void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	EFM8_ADC.c:269: waitms(500); // Give PuTTy a chance to start before sending
+;	EFM8_ADC.c:371: LCD_4BIT();
+	lcall	_LCD_4BIT
+;	EFM8_ADC.c:373: waitms(500); // Give PuTTy a chance to start before sending
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	EFM8_ADC.c:270: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	EFM8_ADC.c:374: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -1164,8 +1535,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	EFM8_ADC.c:275: __FILE__, __DATE__, __TIME__);
-;	EFM8_ADC.c:274: "Compiled: %s, %s\n\n",
+;	EFM8_ADC.c:379: __FILE__, __DATE__, __TIME__);
+;	EFM8_ADC.c:378: "Compiled: %s, %s\n\n",
 	mov	a,#__str_4
 	push	acc
 	mov	a,#(__str_4 >> 8)
@@ -1194,51 +1565,51 @@ _main:
 	mov	a,sp
 	add	a,#0xf4
 	mov	sp,a
-;	EFM8_ADC.c:277: InitPinADC(2, 4); // Configure P2.4 as analog input
+;	EFM8_ADC.c:381: InitPinADC(2, 4); // Configure P2.4 as analog input
 	mov	_InitPinADC_PARM_2,#0x04
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	EFM8_ADC.c:278: InitPinADC(2, 5); // Configure P2.5 as analog input
+;	EFM8_ADC.c:382: InitPinADC(2, 5); // Configure P2.5 as analog input
 	mov	_InitPinADC_PARM_2,#0x05
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	EFM8_ADC.c:279: InitADC();
+;	EFM8_ADC.c:383: InitADC();
 	lcall	_InitADC
-;	EFM8_ADC.c:281: while(1)
-L012008?:
-;	EFM8_ADC.c:284: v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
+;	EFM8_ADC.c:385: while(1)
+L019008?:
+;	EFM8_ADC.c:388: v[0] = Volts_at_Pin(QFP32_MUX_P2_4);
 	mov	dpl,#0x11
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-	mov	_main_v_1_65,r2
-	mov	(_main_v_1_65 + 1),r3
-	mov	(_main_v_1_65 + 2),r4
-	mov	(_main_v_1_65 + 3),r5
-;	EFM8_ADC.c:285: v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
+	mov	_main_v_1_82,r2
+	mov	(_main_v_1_82 + 1),r3
+	mov	(_main_v_1_82 + 2),r4
+	mov	(_main_v_1_82 + 3),r5
+;	EFM8_ADC.c:389: v[1] = Volts_at_Pin(QFP32_MUX_P2_5);
 	mov	dpl,#0x12
 	lcall	_Volts_at_Pin
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
 	mov	r5,a
-	mov	(_main_v_1_65 + 0x0004),r2
-	mov	((_main_v_1_65 + 0x0004) + 1),r3
-	mov	((_main_v_1_65 + 0x0004) + 2),r4
-	mov	((_main_v_1_65 + 0x0004) + 3),r5
-;	EFM8_ADC.c:289: hello = get_period();
+	mov	(_main_v_1_82 + 0x0004),r2
+	mov	((_main_v_1_82 + 0x0004) + 1),r3
+	mov	((_main_v_1_82 + 0x0004) + 2),r4
+	mov	((_main_v_1_82 + 0x0004) + 3),r5
+;	EFM8_ADC.c:393: hello = get_period();
 	lcall	_get_period
-	mov	_main_hello_1_65,dpl
-	mov	(_main_hello_1_65 + 1),dph
-	mov	(_main_hello_1_65 + 2),b
-	mov	(_main_hello_1_65 + 3),a
-;	EFM8_ADC.c:290: hello = hello*2*12*1000/SYSCLK;
-	push	_main_hello_1_65
-	push	(_main_hello_1_65 + 1)
-	push	(_main_hello_1_65 + 2)
-	push	(_main_hello_1_65 + 3)
+	mov	_main_hello_1_82,dpl
+	mov	(_main_hello_1_82 + 1),dph
+	mov	(_main_hello_1_82 + 2),b
+	mov	(_main_hello_1_82 + 3),a
+;	EFM8_ADC.c:394: hello = hello*2*12*1000/SYSCLK;
+	push	_main_hello_1_82
+	push	(_main_hello_1_82 + 1)
+	push	(_main_hello_1_82 + 2)
+	push	(_main_hello_1_82 + 3)
 	mov	dptr,#0x8000
 	mov	b,#0xBB
 	mov	a,#0x46
@@ -1263,18 +1634,18 @@ L012008?:
 	mov	b,(_main_sloc0_1_0 + 2)
 	mov	a,(_main_sloc0_1_0 + 3)
 	lcall	___fsdiv
-	mov	_main_hello_1_65,dpl
-	mov	(_main_hello_1_65 + 1),dph
-	mov	(_main_hello_1_65 + 2),b
-	mov	(_main_hello_1_65 + 3),a
+	mov	_main_hello_1_82,dpl
+	mov	(_main_hello_1_82 + 1),dph
+	mov	(_main_hello_1_82 + 2),b
+	mov	(_main_hello_1_82 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:291: printf("Period: %f\r", hello);
-	push	_main_hello_1_65
-	push	(_main_hello_1_65 + 1)
-	push	(_main_hello_1_65 + 2)
-	push	(_main_hello_1_65 + 3)
+;	EFM8_ADC.c:395: printf("Period: %f\r", hello);
+	push	_main_hello_1_82
+	push	(_main_hello_1_82 + 1)
+	push	(_main_hello_1_82 + 2)
+	push	(_main_hello_1_82 + 3)
 	mov	a,#__str_5
 	push	acc
 	mov	a,#(__str_5 >> 8)
@@ -1285,53 +1656,32 @@ L012008?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:295: while (Get_ADC()!=0); // Wait for the signal to be zero
-L012001?:
+;	EFM8_ADC.c:399: while (Get_ADC()!=0); // Wait for the signal to be zero
+L019001?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
-	jnz	L012001?
-;	EFM8_ADC.c:299: peak_voltage_reference=Volts_at_Pin(QFP32_MUX_P2_4);
-	mov	dpl,#0x11
-	lcall	_Volts_at_Pin
-	mov	_main_peak_voltage_reference_1_65,dpl
-	mov	(_main_peak_voltage_reference_1_65 + 1),dph
-	mov	(_main_peak_voltage_reference_1_65 + 2),b
-	mov	(_main_peak_voltage_reference_1_65 + 3),a
-;	EFM8_ADC.c:300: printf("Peak Voltage Reference: %f\r", peak_voltage_reference);
-	push	_main_peak_voltage_reference_1_65
-	push	(_main_peak_voltage_reference_1_65 + 1)
-	push	(_main_peak_voltage_reference_1_65 + 2)
-	push	(_main_peak_voltage_reference_1_65 + 3)
-	mov	a,#__str_6
-	push	acc
-	mov	a,#(__str_6 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-;	EFM8_ADC.c:303: while (Get_ADC()!=0); // Wait for the signal to be zero
-L012004?:
+	jnz	L019001?
+;	EFM8_ADC.c:400: while (Get_ADC()==0); // Wait for the signal to be zero
+L019004?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
-;	EFM8_ADC.c:307: waitms(hello/4.0);
-	jnz	L012004?
+	jz	L019004?
+;	EFM8_ADC.c:416: waitms(hello/6.0);
+	clr	a
 	push	acc
 	push	acc
-	mov	a,#0x80
+	mov	a,#0xC0
 	push	acc
 	mov	a,#0x40
 	push	acc
-	mov	dpl,_main_hello_1_65
-	mov	dph,(_main_hello_1_65 + 1)
-	mov	b,(_main_hello_1_65 + 2)
-	mov	a,(_main_hello_1_65 + 3)
+	mov	dpl,_main_hello_1_82
+	mov	dph,(_main_hello_1_82 + 1)
+	mov	b,(_main_hello_1_82 + 2)
+	mov	a,(_main_hello_1_82 + 3)
 	lcall	___fsdiv
 	mov	r6,dpl
 	mov	r7,dph
@@ -1346,25 +1696,25 @@ L012004?:
 	mov	a,r3
 	lcall	___fs2uint
 	lcall	_waitms
-;	EFM8_ADC.c:308: P2_1=1;
+;	EFM8_ADC.c:417: P2_1=1;
 	setb	_P2_1
-;	EFM8_ADC.c:309: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
+;	EFM8_ADC.c:418: peak_voltage_other=Volts_at_Pin(QFP32_MUX_P2_5);
 	mov	dpl,#0x12
 	lcall	_Volts_at_Pin
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-;	EFM8_ADC.c:310: P2_1=0;
+	mov	_main_peak_voltage_other_1_82,dpl
+	mov	(_main_peak_voltage_other_1_82 + 1),dph
+	mov	(_main_peak_voltage_other_1_82 + 2),b
+	mov	(_main_peak_voltage_other_1_82 + 3),a
+;	EFM8_ADC.c:419: P2_1=0;
 	clr	_P2_1
-;	EFM8_ADC.c:311: printf("Peak Voltage Other: %f\r", peak_voltage_other);
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	mov	a,#__str_7
+;	EFM8_ADC.c:420: printf("Peak Voltage Other: %f\r", peak_voltage_other);
+	push	_main_peak_voltage_other_1_82
+	push	(_main_peak_voltage_other_1_82 + 1)
+	push	(_main_peak_voltage_other_1_82 + 2)
+	push	(_main_peak_voltage_other_1_82 + 3)
+	mov	a,#__str_6
 	push	acc
-	mov	a,#(__str_7 >> 8)
+	mov	a,#(__str_6 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -1372,17 +1722,17 @@ L012004?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:313: hello2 = get_period_2();
+;	EFM8_ADC.c:422: hello2 = get_period_2();
 	lcall	_get_period_2
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
-;	EFM8_ADC.c:314: hello2=(hello2*12*1000)/SYSCLK;
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r2,b
+	mov	r3,a
+;	EFM8_ADC.c:423: hello2=(hello2*12*1000)/SYSCLK;
+	push	ar6
+	push	ar7
 	push	ar2
 	push	ar3
-	push	ar4
-	push	ar5
 	mov	dptr,#0x8000
 	mov	b,#0x3B
 	mov	a,#0x46
@@ -1407,25 +1757,25 @@ L012004?:
 	mov	b,(_main_sloc0_1_0 + 2)
 	mov	a,(_main_sloc0_1_0 + 3)
 	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r2,b
+	mov	r3,a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:315: printf("Phase difference in ms: %f\r", hello2);
+;	EFM8_ADC.c:424: printf("Phase difference in ms: %f\r", hello2);
 	push	ar2
 	push	ar3
-	push	ar4
-	push	ar5
+	push	ar6
+	push	ar7
+	push	ar6
+	push	ar7
 	push	ar2
 	push	ar3
-	push	ar4
-	push	ar5
-	mov	a,#__str_8
+	mov	a,#__str_7
 	push	acc
-	mov	a,#(__str_8 >> 8)
+	mov	a,#(__str_7 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -1433,7 +1783,15 @@ L012004?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:316: hello2=hello2*20.0/hello;
+	pop	ar7
+	pop	ar6
+	pop	ar3
+	pop	ar2
+;	EFM8_ADC.c:425: hello2=hello2*20.0/hello;
+	push	ar6
+	push	ar7
+	push	ar2
+	push	ar3
 	mov	dptr,#0x0000
 	mov	b,#0xA0
 	mov	a,#0x41
@@ -1445,23 +1803,23 @@ L012004?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	push	_main_hello_1_65
-	push	(_main_hello_1_65 + 1)
-	push	(_main_hello_1_65 + 2)
-	push	(_main_hello_1_65 + 3)
+	push	_main_hello_1_82
+	push	(_main_hello_1_82 + 1)
+	push	(_main_hello_1_82 + 2)
+	push	(_main_hello_1_82 + 3)
 	mov	dpl,_main_sloc0_1_0
 	mov	dph,(_main_sloc0_1_0 + 1)
 	mov	b,(_main_sloc0_1_0 + 2)
 	mov	a,(_main_sloc0_1_0 + 3)
 	lcall	___fsdiv
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r2,b
+	mov	r3,a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:317: y=179.0+hello2*1/(-0.056);
+;	EFM8_ADC.c:426: y=179.0+hello2*1/(-0.056);
 	mov	a,#0x42
 	push	acc
 	mov	a,#0x60
@@ -1470,10 +1828,10 @@ L012004?:
 	push	acc
 	mov	a,#0xBD
 	push	acc
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
+	mov	dpl,r6
+	mov	dph,r7
+	mov	b,r2
+	mov	a,r3
 	lcall	___fsdiv
 	mov	r2,dpl
 	mov	r3,dph
@@ -1501,14 +1859,18 @@ L012004?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	EFM8_ADC.c:318: printf("Phase degrees: %f\r", y);
+;	EFM8_ADC.c:427: printf("Phase degrees: %f\r", y);
 	push	ar2
 	push	ar3
 	push	ar4
 	push	ar5
-	mov	a,#__str_9
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	a,#__str_8
 	push	acc
-	mov	a,#(__str_9 >> 8)
+	mov	a,#(__str_8 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -1516,10 +1878,64 @@ L012004?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	EFM8_ADC.c:321: waitms(500);
+;	EFM8_ADC.c:429: sprintf(first_line, "Phase:%.2f deg", y);
+	mov	a,#__str_9
+	push	acc
+	mov	a,#(__str_9 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	a,#_main_first_line_1_82
+	push	acc
+	mov	a,#(_main_first_line_1_82 >> 8)
+	push	acc
+	mov	a,#0x40
+	push	acc
+	lcall	_sprintf
+	mov	a,sp
+	add	a,#0xf6
+	mov	sp,a
+;	EFM8_ADC.c:430: sprintf(second_line, "Per:%.0f Vt:%.2f", hello, peak_voltage_other);
+	push	_main_peak_voltage_other_1_82
+	push	(_main_peak_voltage_other_1_82 + 1)
+	push	(_main_peak_voltage_other_1_82 + 2)
+	push	(_main_peak_voltage_other_1_82 + 3)
+	push	_main_hello_1_82
+	push	(_main_hello_1_82 + 1)
+	push	(_main_hello_1_82 + 2)
+	push	(_main_hello_1_82 + 3)
+	mov	a,#__str_10
+	push	acc
+	mov	a,#(__str_10 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	a,#_main_second_line_1_82
+	push	acc
+	mov	a,#(_main_second_line_1_82 >> 8)
+	push	acc
+	mov	a,#0x40
+	push	acc
+	lcall	_sprintf
+	mov	a,sp
+	add	a,#0xf2
+	mov	sp,a
+;	EFM8_ADC.c:431: LCDprint(first_line, 1, 1);
+	mov	_LCDprint_PARM_2,#0x01
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_first_line_1_82
+	mov	b,#0x40
+	lcall	_LCDprint
+;	EFM8_ADC.c:432: LCDprint(second_line, 2, 1);
+	mov	_LCDprint_PARM_2,#0x02
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_second_line_1_82
+	mov	b,#0x40
+	lcall	_LCDprint
+;	EFM8_ADC.c:434: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
-	ljmp	L012008?
+	ljmp	L019008?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -1545,27 +1961,29 @@ __str_3:
 	db 'Mar  7 2024'
 	db 0x00
 __str_4:
-	db '11:04:09'
+	db '12:29:31'
 	db 0x00
 __str_5:
 	db 'Period: %f'
 	db 0x0D
 	db 0x00
 __str_6:
-	db 'Peak Voltage Reference: %f'
-	db 0x0D
-	db 0x00
-__str_7:
 	db 'Peak Voltage Other: %f'
 	db 0x0D
 	db 0x00
-__str_8:
+__str_7:
 	db 'Phase difference in ms: %f'
 	db 0x0D
 	db 0x00
-__str_9:
+__str_8:
 	db 'Phase degrees: %f'
 	db 0x0D
+	db 0x00
+__str_9:
+	db 'Phase:%.2f deg'
+	db 0x00
+__str_10:
+	db 'Per:%.0f Vt:%.2f'
 	db 0x00
 
 	CSEG
