@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include "../Common/Include/stm32l051xx.h"
+#include "../Common/Include/serial.h"
+#include "../LCD/lcd.h"
 
 #define F_CPU 32000000L
 
@@ -91,6 +93,107 @@ long int GetPeriod (int n)
 //       VSS -|16      17|- VDD
 //             ----------
 
+void Configure_Pins (void)
+{
+	RCC->IOPENR |= BIT0; // peripheral clock enable for port A
+	
+	// Make pins PA0 to PA5 outputs (page 200 of RM0451, two bits used to configure: bit0=1, bit1=0)
+    GPIOA->MODER = (GPIOA->MODER & ~(BIT0|BIT1)) | BIT0; // PA0
+	GPIOA->OTYPER &= ~BIT0; // Push-pull
+    
+    GPIOA->MODER = (GPIOA->MODER & ~(BIT2|BIT3)) | BIT2; // PA1
+	GPIOA->OTYPER &= ~BIT1; // Push-pull
+    
+    GPIOA->MODER = (GPIOA->MODER & ~(BIT4|BIT5)) | BIT4; // PA2
+	GPIOA->OTYPER &= ~BIT2; // Push-pull
+    
+    GPIOA->MODER = (GPIOA->MODER & ~(BIT6|BIT7)) | BIT6; // PA3
+	GPIOA->OTYPER &= ~BIT3; // Push-pull
+    
+    GPIOA->MODER = (GPIOA->MODER & ~(BIT8|BIT9)) | BIT8; // PA4
+	GPIOA->OTYPER &= ~BIT4; // Push-pull
+    
+    GPIOA->MODER = (GPIOA->MODER & ~(BIT10|BIT11)) | BIT10; // PA5
+	GPIOA->OTYPER &= ~BIT5; // Push-pull
+}
+
+// LCD.c
+// Uses SysTick to delay <us> micro-seconds. 
+void Delay_us(unsigned char us)
+{
+	// For SysTick info check the STM32L0xxx Cortex-M0 programming manual page 85.
+	SysTick->LOAD = (F_CPU/(1000000L/us)) - 1;  // set reload register, counter rolls over from zero, hence -1
+	SysTick->VAL = 0; // load the SysTick counter
+	SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk; // Enable SysTick IRQ and SysTick Timer */
+	while((SysTick->CTRL & BIT16)==0); // Bit 16 is the COUNTFLAG.  True when counter rolls over from zero.
+	SysTick->CTRL = 0x00; // Disable Systick counter
+}
+
+void LCD_pulse (void)
+{
+	LCD_E_1;
+	Delay_us(40);
+	LCD_E_0;
+}
+
+void LCD_byte (unsigned char x)
+{
+	//Send high nible
+	if(x&0x80) LCD_D7_1; else LCD_D7_0;
+	if(x&0x40) LCD_D6_1; else LCD_D6_0;
+	if(x&0x20) LCD_D5_1; else LCD_D5_0;
+	if(x&0x10) LCD_D4_1; else LCD_D4_0;
+	LCD_pulse();
+	Delay_us(40);
+	//Send low nible
+	if(x&0x08) LCD_D7_1; else LCD_D7_0;
+	if(x&0x04) LCD_D6_1; else LCD_D6_0;
+	if(x&0x02) LCD_D5_1; else LCD_D5_0;
+	if(x&0x01) LCD_D4_1; else LCD_D4_0;
+	LCD_pulse();
+}
+
+void WriteData (unsigned char x)
+{
+	LCD_RS_1;
+	LCD_byte(x);
+	waitms(2);
+}
+
+void WriteCommand (unsigned char x)
+{
+	LCD_RS_0;
+	LCD_byte(x);
+	waitms(5);
+}
+
+void LCD_4BIT (void)
+{
+	LCD_E_0; // Resting state of LCD's enable is zero
+	//LCD_RW=0; // We are only writing to the LCD in this program
+	waitms(20);
+	// First make sure the LCD is in 8-bit mode and then change to 4-bit mode
+	WriteCommand(0x33);
+	WriteCommand(0x33);
+	WriteCommand(0x32); // Change to 4-bit mode
+
+	// Configure the LCD
+	WriteCommand(0x28);
+	WriteCommand(0x0c);
+	WriteCommand(0x01); // Clear screen command (takes some time)
+	waitms(20); // Wait for clear screen command to finsih.
+}
+
+void LCDprint(char * string, unsigned char line, unsigned char clear)
+{
+	int j;
+
+	WriteCommand(line==2?0xc0:0x80);
+	waitms(5);
+	for(j=0; string[j]!=0; j++)	WriteData(string[j]);// Write the message
+	if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
+}
+
 void main(void)
 {
 	long int count;
@@ -106,6 +209,20 @@ void main(void)
 	waitms(500); // Wait for putty to start.
 	printf("Period measurement using the Systick free running counter.\r\n"
 	      "Connect signal to PA8 (pin 18).\r\n");
+
+	char buff[17];
+	int i;
+
+	Configure_Pins();
+	LCD_4BIT();
+	
+	//WARNING: notice that printf() of floating point numbers is not enabled in the makefile!
+	waitms(500);
+	printf("4-bit mode LCD Test using the STM32L051.\r\n");
+	
+   	// Display something in the LCD
+	LCDprint("LCD 3-bit test:", 1, 1);
+	LCDprint("Hello, World!", 2, 1);
 	
 	while(1)
 	{
@@ -114,8 +231,25 @@ void main(void)
 		{
 			T=count/(F_CPU*100.0); // Since we have the time of 100 periods, we need to divide by 100
 			f=1.0/T;
-            f = (-1/1858.69)*f+101.609;
-			printf("C=%.2f F, count=%.2f            \r", f, 1.0/T);
+            f = (-1/1858.69)*f+101.809;
+            if (f < 10)
+            {
+                sprintf(buff, "C=%.2f nF", f);
+                LCDprint(buff, 1, 1);
+                sprintf(buff, "Black capacitor");
+                LCDprint(buff, 2, 1);
+            }
+            else
+            {
+                sprintf(buff, "C=%.4f uF", f/1000);
+                LCDprint(buff, 1, 1);
+                sprintf(buff, "Yellow capacitor");
+                LCDprint(buff, 2, 1);
+            }
+
+			//printf("C=%.2f F, count=%.2f            \r", f, 1.0/T);
+            //sprintf(buff, "C=%.2f nF", f);
+            //LCDprint(buff, 1, 1);
 		}
 		else
 		{
