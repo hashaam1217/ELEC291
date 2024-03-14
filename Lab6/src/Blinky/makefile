@@ -22,5 +22,5 @@ clean:
 	rm $(OBJS) main.elf main.hex main.map
 	rm *.lst
 Flash_Load:
-	../stm32flash/stm32flash -w main.hex -v -g 0x0 $(PORTN)
+	../stm32flash/stm32flash -w main.hex -v -g 0x0 /dev/USB0
 

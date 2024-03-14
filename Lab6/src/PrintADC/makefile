@@ -5,36 +5,37 @@ CCFLAGS=-mcpu=cortex-m0 -mthumb -g
 PORTN=/dev/$(shell ls /dev | grep "cu.usbserial")
 
 # Search for the path of libraries.
-LIBPATH1=$(shell find /opt -name libgcc.a | grep "v6-m" | sed -e "s/libgcc.a//g")
-LIBPATH2=$(shell find /opt -name libc_nano.a | grep "v6-m" | sed -e "s/libc_nano.a//g")
+LIBPATH1=$(shell find /usr -name libgcc.a | grep "v6-m" | sed -e "s/libgcc.a//g")
+LIBPATH2=$(shell find /usr -name libc_nano.a | grep "v6-m" | sed -e "s/libc_nano.a//g")
 LIBSPEC=-L"$(LIBPATH1)" -L"$(LIBPATH2)"
 
-OBJS=main.o startup.o serial.o lcd.o newlib_stubs.o
+OBJS=main.o startup.o serial.o adc.o newlib_stubs.o
 
 main.hex: $(OBJS)
 	$(LD) $(OBJS) $(LIBSPEC) -Os -u _printf_float -nostdlib -lnosys -lgcc -T ../Common/LDscripts/stm32l051xx.ld --cref -Map main.map -o main.elf
 	arm-none-eabi-objcopy -O ihex main.elf main.hex
 	@echo Success!
 
-main.o: main.c lcd.h
+main.o: main.c adc.h
 	$(CC) -c $(CCFLAGS) main.c -o main.o
 
-lcd.o: lcd.c lcd.h
-	$(CC) -c $(CCFLAGS) lcd.c -o lcd.o
+adc.o: adc.c adc.h
+	find /usr -name "libgcc.a" -print
+	$(CC) -c $(CCFLAGS) adc.c -o adc.o
 
 startup.o: ../Common/Source/startup.c
 	$(CC) -c $(CCFLAGS) -DUSE_USART1 ../Common/Source/startup.c -o startup.o
 
 serial.o: ../Common/Source/serial.c
 	$(CC) -c $(CCFLAGS) ../Common/Source/serial.c -o serial.o
-	
+
 newlib_stubs.o: ../Common/Source/newlib_stubs.c
 	$(CC) -c $(CCFLAGS) ../Common/Source/newlib_stubs.c -o newlib_stubs.o
 
-clean: 
+clean:
 	rm -f $(OBJS) main.elf main.hex main.map
 
 Load_Flash: main.hex
-	../stm32flash/stm32flash -w main.hex -v -g 0x0 $(PORTN)
+	../stm32flash/stm32flash -w main.hex -v -g 0x0 /dev/ttyUSB0
 
 

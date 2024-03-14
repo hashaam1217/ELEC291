@@ -110,13 +110,13 @@ LOAD main.o
 OUTPUT(main.elf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x0000000000000000      0x5a9
+.debug_info     0x0000000000000000      0x5ad
  .debug_info    0x0000000000000000      0x330 startup.o
- .debug_info    0x0000000000000330      0x279 main.o
+ .debug_info    0x0000000000000330      0x27d main.o
 
-.debug_abbrev   0x0000000000000000      0x241
+.debug_abbrev   0x0000000000000000      0x243
  .debug_abbrev  0x0000000000000000      0x152 startup.o
- .debug_abbrev  0x0000000000000152       0xef main.o
+ .debug_abbrev  0x0000000000000152       0xf1 main.o
 
 .debug_aranges  0x0000000000000000       0x48
  .debug_aranges

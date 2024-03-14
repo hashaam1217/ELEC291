@@ -27,11 +27,11 @@ void delay(int dly)
 	while( dly--) x++;
 }
 
-void main(void)
+int main(void)
 {
 	RCC->IOPENR |= BIT0; // peripheral clock enable for port A
     GPIOA->MODER = (GPIOA->MODER & ~(BIT17|BIT16)) | BIT16; // Make pin PA8 output (page 200 of RM0451, two bits used to configure: bit0=1, bit1=0))
-	
+
 	while(1)
 	{
 		GPIOA->ODR ^= BIT8; // Toggle PA8
