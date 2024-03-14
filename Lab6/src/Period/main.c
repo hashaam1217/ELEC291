@@ -114,7 +114,8 @@ void main(void)
 		{
 			T=count/(F_CPU*100.0); // Since we have the time of 100 periods, we need to divide by 100
 			f=1.0/T;
-			printf("f=%.2fHz, count=%d            \r", f, count);
+            f = (-1/1858.69)*f+101.609;
+			printf("C=%.2f F, count=%.2f            \r", f, 1.0/T);
 		}
 		else
 		{
