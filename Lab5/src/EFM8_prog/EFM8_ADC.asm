@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Mon Mar 11 15:09:50 2024
+; This file was generated Tue Mar 19 15:08:58 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -2143,10 +2143,10 @@ __str_2:
 	db 'EFM8_ADC.c'
 	db 0x00
 __str_3:
-	db 'Mar 11 2024'
+	db 'Mar 19 2024'
 	db 0x00
 __str_4:
-	db '15:09:49'
+	db '15:08:58'
 	db 0x00
 __str_5:
 	db 'Phase:%.2f deg'
